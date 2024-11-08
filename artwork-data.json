@@ -1,0 +1,31 @@
+ECHO ist eingeschaltet (ON).
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [10.0, 50.0]  // [longitude, latitude]
+        },
+        "properties": {
+          "title": "Artwork Title 1",
+          "description": "Description of the artwork.",
+          "artist": "Artist Name"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [10.5, 50.5]  // [longitude, latitude]
+        },
+        "properties": {
+          "title": "Artwork Title 2",
+          "description": "Another description.",
+          "artist": "Another Artist"
+        }
+      }
+    ]
+  }
+  
