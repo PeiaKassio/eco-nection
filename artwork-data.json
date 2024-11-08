@@ -1,31 +1,136 @@
-ECHO ist eingeschaltet (ON).
 {
-    "type": "FeatureCollection",
-    "features": [
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [10.0, 50.0]  // [longitude, latitude]
-        },
-        "properties": {
-          "title": "Artwork Title 1",
-          "description": "Description of the artwork.",
-          "artist": "Artist Name"
-        }
+  "type": "FeatureCollection",
+  "features": [
+    // **Eco-Art Paintings**
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.9667, 40.7812] // New York, American Museum of Natural History
       },
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [10.5, 50.5]  // [longitude, latitude]
-        },
-        "properties": {
-          "title": "Artwork Title 2",
-          "description": "Another description.",
-          "artist": "Another Artist"
-        }
+      "properties": {
+        "title": "Blue Planet",
+        "description": "A painting by Alexis Rockman depicting the interconnectedness of natural ecosystems and the impact of human activity on the environment.",
+        "artist": "Alexis Rockman",
+        "type": "Painting",
+        "location": "American Museum of Natural History, New York"
       }
-    ]
-  }
-  
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.128, 51.5074] // London, Tate Modern
+      },
+      "properties": {
+        "title": "Collapse",
+        "description": "An apocalyptic scene by Alexis Rockman, warning of ecological collapse and environmental crisis.",
+        "artist": "Alexis Rockman",
+        "type": "Painting",
+        "location": "Tate Modern, London"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [151.2153, -33.8568] // Sydney, Museum of Contemporary Art
+      },
+      "properties": {
+        "title": "The Great Wave",
+        "description": "Inspired by Hokusai, this eco-art piece reimagines the wave as polluted with debris to highlight ocean pollution.",
+        "artist": "Chris Jordan",
+        "type": "Painting",
+        "location": "Museum of Contemporary Art, Sydney"
+      }
+    },
+
+    // **Eco-Art Sculptures**
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.127, 25.7907] // Miami, Underwater Museum
+      },
+      "properties": {
+        "title": "Silent Evolution",
+        "description": "A submerged sculpture installation creating an artificial coral reef to support marine life.",
+        "artist": "Jason deCaires Taylor",
+        "type": "Sculpture",
+        "location": "Underwater Museum, Cancun"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.149, 51.5033] // London, Hyde Park
+      },
+      "properties": {
+        "title": "Tree of Life",
+        "description": "A sculpture made from reclaimed materials, symbolizing life, growth, and the importance of trees.",
+        "artist": "Andy Goldsworthy",
+        "type": "Sculpture",
+        "location": "Hyde Park, London"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4.9041, 52.3676] // Amsterdam, City Center
+      },
+      "properties": {
+        "title": "Plastic Reef",
+        "description": "A sculpture made entirely of plastic waste to raise awareness of ocean pollution.",
+        "artist": "Maarten Vanden Eynde",
+        "type": "Sculpture",
+        "location": "Amsterdam City Center"
+      }
+    },
+
+    // **Eco-Art Installations**
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.1883, 55.9533] // Edinburgh, Scotland
+      },
+      "properties": {
+        "title": "Ghost Forest",
+        "description": "An installation of tree stumps brought from West Africa to highlight deforestation and climate change.",
+        "artist": "Angela Palmer",
+        "type": "Installation",
+        "location": "Edinburgh, Scotland"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.3287, 34.0928] // Los Angeles, Hollywood
+      },
+      "properties": {
+        "title": "Particulates",
+        "description": "An installation made of smog particles, highlighting air pollution in urban areas.",
+        "artist": "Kim Abeles",
+        "type": "Installation",
+        "location": "Hollywood, Los Angeles"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.3522, 48.8566] // Paris, Eiffel Tower Area
+      },
+      "properties": {
+        "title": "Ice Watch",
+        "description": "An installation using melting ice blocks from Greenland to demonstrate the effects of global warming.",
+        "artist": "Olafur Eliasson",
+        "type": "Installation",
+        "location": "Place du Panthéon, Paris"
+      }
+    }
+  ]
+}
