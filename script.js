@@ -4,7 +4,18 @@ const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',  //'mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re'
     center: [0, 0], // Center coordinates [longitude, latitude]
-    zoom: 3 // Starting zoom level
+    zoom: 1.5, // Start at a zoom level appropriate for a globe view
+    projection: 'globe' // Enable globe projection
+
+});
+// Optional: Customize globe settings for atmospheric effects
+map.on('style.load', () => {
+    map.setFog({
+        'range': [0.5, 10], // Fog intensity and range
+        'color': 'rgb(186, 210, 235)', // Light blue sky color
+        'horizon-blend': 0.1, // Smooths the horizon line
+        'star-intensity': 0.15 // Adjust star intensity for night view
+    });
 });
 
 map.on('load', () => {
@@ -62,6 +73,7 @@ map.on('load', () => {
             'circle-stroke-color': '#fff'
         }
     });
+});
 
     // Click event to display artwork details on click
     map.on('click', 'unclustered-point', (e) => {
