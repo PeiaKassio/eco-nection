@@ -13,7 +13,8 @@
         "description": "A painting by Alexis Rockman depicting the interconnectedness of natural ecosystems and the impact of human activity on the environment.",
         "artist": "Alexis Rockman",
         "type": "Painting",
-        "location": "American Museum of Natural History, New York"
+        "location": "American Museum of Natural History, New York",
+        "year": 2009
       }
     },
     {
@@ -27,7 +28,8 @@
         "description": "An apocalyptic scene by Alexis Rockman, warning of ecological collapse and environmental crisis.",
         "artist": "Alexis Rockman",
         "type": "Painting",
-        "location": "Tate Modern, London"
+        "location": "Tate Modern, London",
+        "year": 2012
       }
     },
     {
@@ -41,7 +43,8 @@
         "description": "Inspired by Hokusai, this eco-art piece reimagines the wave as polluted with debris to highlight ocean pollution.",
         "artist": "Chris Jordan",
         "type": "Painting",
-        "location": "Museum of Contemporary Art, Sydney"
+        "location": "Museum of Contemporary Art, Sydney",
+        "year": 2009
       }
     },
 
@@ -50,14 +53,15 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-80.127, 25.7907] // Miami, Underwater Museum
+        "coordinates": [-86.845, 21.1619] // Cancun, Underwater Museum
       },
       "properties": {
         "title": "Silent Evolution",
         "description": "A submerged sculpture installation creating an artificial coral reef to support marine life.",
         "artist": "Jason deCaires Taylor",
         "type": "Sculpture",
-        "location": "Underwater Museum, Cancun"
+        "location": "Underwater Museum, Cancun",
+        "year": 2010
       }
     },
     {
@@ -71,7 +75,8 @@
         "description": "A sculpture made from reclaimed materials, symbolizing life, growth, and the importance of trees.",
         "artist": "Andy Goldsworthy",
         "type": "Sculpture",
-        "location": "Hyde Park, London"
+        "location": "Hyde Park, London",
+        "year": 2004
       }
     },
     {
@@ -85,7 +90,8 @@
         "description": "A sculpture made entirely of plastic waste to raise awareness of ocean pollution.",
         "artist": "Maarten Vanden Eynde",
         "type": "Sculpture",
-        "location": "Amsterdam City Center"
+        "location": "Amsterdam City Center",
+        "year": 2008
       }
     },
 
@@ -101,7 +107,8 @@
         "description": "An installation of tree stumps brought from West Africa to highlight deforestation and climate change.",
         "artist": "Angela Palmer",
         "type": "Installation",
-        "location": "Edinburgh, Scotland"
+        "location": "Edinburgh, Scotland",
+        "year": 2009
       }
     },
     {
@@ -115,7 +122,8 @@
         "description": "An installation made of smog particles, highlighting air pollution in urban areas.",
         "artist": "Kim Abeles",
         "type": "Installation",
-        "location": "Hollywood, Los Angeles"
+        "location": "Hollywood, Los Angeles",
+        "year": 1992
       }
     },
     {
@@ -129,7 +137,8 @@
         "description": "An installation using melting ice blocks from Greenland to demonstrate the effects of global warming.",
         "artist": "Olafur Eliasson",
         "type": "Installation",
-        "location": "Place du Panthéon, Paris"
+        "location": "Place du Panthéon, Paris",
+        "year": 2015
       }
     }
   ]
