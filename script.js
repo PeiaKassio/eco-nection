@@ -75,18 +75,20 @@ map.on('load', () => {
     });
 });
 
-    // Click event to display artwork details on click
-    map.on('click', 'unclustered-point', (e) => {
-        const coordinates = e.features[0].geometry.coordinates.slice();
-        const { title, description, artist } = e.features[0].properties;
+map.on('click', 'unclustered-point', (e) => {
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const { title, description, artist, year } = e.features[0].properties;
 
-        new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(
-                `<h3>${title}</h3><p><strong>Artist:</strong> ${artist}</p><p>${description}</p>`
-            )
-            .addTo(map);
-    });
+    new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(
+            `<h3>${title}</h3>
+            <p><strong>Artist:</strong> ${artist}</p>
+            <p><strong>Description:</strong> ${description}</p>
+            <p><strong>Year:</strong> ${year}</p>`
+        )
+        .addTo(map);
+});
 
     // Zoom into cluster on click
     map.on('click', 'clusters', (e) => {
