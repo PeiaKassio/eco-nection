@@ -1,1 +1,1 @@
-# eco-nection
+ECHO ist eingeschaltet (ON).
