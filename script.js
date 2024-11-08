@@ -2,12 +2,12 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicGVpc2thc3NpbyIsImEiOiJjbTM4eHB5NHIwd2M5Mmlxe
 
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/dark-v10',  //'mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re'
+    style: 'mapbox://styles/mapbox/dark-v10', // 'mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re'
     center: [0, 0], // Center coordinates [longitude, latitude]
     zoom: 1.5, // Start at a zoom level appropriate for a globe view
     projection: 'globe' // Enable globe projection
-
 });
+
 // Optional: Customize globe settings for atmospheric effects
 map.on('style.load', () => {
     map.setFog({
@@ -75,6 +75,7 @@ map.on('load', () => {
     });
 });
 
+// Click event to display artwork details on individual points
 map.on('click', 'unclustered-point', (e) => {
     const coordinates = e.features[0].geometry.coordinates.slice();
     const { title, description, artist, year } = e.features[0].properties;
@@ -90,19 +91,18 @@ map.on('click', 'unclustered-point', (e) => {
         .addTo(map);
 });
 
-    // Zoom into cluster on click
-    map.on('click', 'clusters', (e) => {
-        const features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
-        const clusterId = features[0].properties.cluster_id;
-        map.getSource('artworks').getClusterExpansionZoom(clusterId, (err, zoom) => {
-            if (err) return;
-            map.easeTo({ center: features[0].geometry.coordinates, zoom });
-        });
+// Zoom into cluster on click
+map.on('click', 'clusters', (e) => {
+    const features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
+    const clusterId = features[0].properties.cluster_id;
+    map.getSource('artworks').getClusterExpansionZoom(clusterId, (err, zoom) => {
+        if (err) return;
+        map.easeTo({ center: features[0].geometry.coordinates, zoom });
     });
-
-    // Change cursor to pointer when hovering over clusters and points
-    map.on('mouseenter', 'clusters', () => map.getCanvas().style.cursor = 'pointer');
-    map.on('mouseleave', 'clusters', () => map.getCanvas().style.cursor = '');
-    map.on('mouseenter', 'unclustered-point', () => map.getCanvas().style.cursor = 'pointer');
-    map.on('mouseleave', 'unclustered-point', () => map.getCanvas().style.cursor = '');
 });
+
+// Change cursor to pointer when hovering over clusters and points
+map.on('mouseenter', 'clusters', () => map.getCanvas().style.cursor = 'pointer');
+map.on('mouseleave', 'clusters', () => map.getCanvas().style.cursor = '');
+map.on('mouseenter', 'unclustered-point', () => map.getCanvas().style.cursor = 'pointer');
+map.on('mouseleave', 'unclustered-point', () => map.getCanvas().style.cursor = '');
