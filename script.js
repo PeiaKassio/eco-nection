@@ -1,8 +1,8 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoicGVpc2thc3NpbyIsImEiOiJjbTM4dnF4amEwbXB2MmtyMTNvM2h6M3M4In0.lMQxgMaKvSoleeld1DLOsA';
+mapboxgl.accessToken = 'pk.eyJ1IjoicGVpc2thc3NpbyIsImEiOiJjbTM4eHB5NHIwd2M5MmlxeGlsOTRqams5In0.hEmqLEzaR2kWC2s7Hgd-Ng';
 
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11', <!--mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re -->
+    style: 'mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re', 
     center: [10.0, 50.0], // Center coordinates [longitude, latitude]
     zoom: 5 // Starting zoom level
 });
