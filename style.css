@@ -19,3 +19,7 @@ header {
     margin-top: 10px;
 }
 
+.mapboxgl-popup-content {
+    color: #000; /* Setze hier die gewünschte Schriftfarbe ein */
+    background-color: #fff; /* Optional: Hintergrundfarbe für bessere Lesbarkeit */
+}
