@@ -1,9 +1,9 @@
 ECHO ist eingeschaltet (ON).
-mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN'; // Replace with your Mapbox token
+mapboxgl.accessToken = 'pk.eyJ1IjoicGVpc2thc3NpbyIsImEiOiJjbTM4dnF4amEwbXB2MmtyMTNvM2h6M3M4In0.lMQxgMaKvSoleeld1DLOsA'; // Replace with your Mapbox token
 
 const map = new mapboxgl.Map({
     container: 'map', // ID of the HTML element
-    style: 'YOUR_MAPBOX_STYLE_URL', // Replace with your Mapbox style URL
+    style: 'mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re', // Replace with your Mapbox style URL
     center: [10.0, 50.0], // Center coordinates [lng, lat]
     zoom: 5 // Zoom level
 });
