@@ -1,12 +1,11 @@
 {
   "type": "FeatureCollection",
   "features": [
-    // **Eco-Art Paintings**
-    {
+      {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-73.9667, 40.7812] // New York, American Museum of Natural History
+        "coordinates": [-73.9667, 40.7812] 
       },
       "properties": {
         "title": "Blue Planet",
@@ -21,7 +20,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-0.128, 51.5074] // London, Tate Modern
+        "coordinates": [-0.128, 51.5074]
       },
       "properties": {
         "title": "Collapse",
@@ -36,7 +35,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [151.2153, -33.8568] // Sydney, Museum of Contemporary Art
+        "coordinates": [151.2153, -33.8568] 
       },
       "properties": {
         "title": "The Great Wave",
@@ -47,13 +46,11 @@
         "year": 2009
       }
     },
-
-    // **Eco-Art Sculptures**
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-86.845, 21.1619] // Cancun, Underwater Museum
+        "coordinates": [-86.845, 21.1619] /
       },
       "properties": {
         "title": "Silent Evolution",
@@ -68,7 +65,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-0.149, 51.5033] // London, Hyde Park
+        "coordinates": [-0.149, 51.5033]
       },
       "properties": {
         "title": "Tree of Life",
@@ -83,7 +80,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [4.9041, 52.3676] // Amsterdam, City Center
+        "coordinates": [4.9041, 52.3676] 
       },
       "properties": {
         "title": "Plastic Reef",
@@ -95,12 +92,11 @@
       }
     },
 
-    // **Eco-Art Installations**
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-3.1883, 55.9533] // Edinburgh, Scotland
+        "coordinates": [-3.1883, 55.9533] 
       },
       "properties": {
         "title": "Ghost Forest",
@@ -115,7 +111,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-118.3287, 34.0928] // Los Angeles, Hollywood
+        "coordinates": [-118.3287, 34.0928]
       },
       "properties": {
         "title": "Particulates",
@@ -130,7 +126,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [2.3522, 48.8566] // Paris, Eiffel Tower Area
+        "coordinates": [2.3522, 48.8566]
       },
       "properties": {
         "title": "Ice Watch",
