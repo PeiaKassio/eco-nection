@@ -50,7 +50,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-86.845, 21.1619] /
+        "coordinates": [-86.845, 21.1619]
       },
       "properties": {
         "title": "Silent Evolution",
