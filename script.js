@@ -1,16 +1,10 @@
-ECHO ist eingeschaltet (ON).
-mapboxgl.accessToken = 'pk.eyJ1IjoicGVpc2thc3NpbyIsImEiOiJjbTM4dnF4amEwbXB2MmtyMTNvM2h6M3M4In0.lMQxgMaKvSoleeld1DLOsA'; // Replace with your Mapbox token
+mapboxgl.accessToken = 'pk.eyJ1IjoicGVpc2thc3NpbyIsImEiOiJjbTM4dnF4amEwbXB2MmtyMTNvM2h6M3M4In0.lMQxgMaKvSoleeld1DLOsA';
 
 const map = new mapboxgl.Map({
-    container: 'map', // ID of the HTML element
-    style: 'mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re', // Replace with your Mapbox style URL
-<<<<<<< HEAD
-    center: [10.0, 50.0], // Starting center of the map [lng, lat]
+    container: 'map',
+    style: 'mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re',
+    center: [10.0, 50.0], // Center coordinates [longitude, latitude]
     zoom: 5 // Starting zoom level
-=======
-    center: [10.0, 50.0], // Center coordinates [lng, lat]
-    zoom: 5 // Zoom level
->>>>>>> 6a0ff05e4d378725d4dc0c2792744e3615ef508d
 });
 
 map.on('load', () => {
