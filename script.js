@@ -4,8 +4,13 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicGVpc2thc3NpbyIsImEiOiJjbTM4dnF4amEwbXB2MmtyM
 const map = new mapboxgl.Map({
     container: 'map', // ID of the HTML element
     style: 'mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re', // Replace with your Mapbox style URL
+<<<<<<< HEAD
     center: [10.0, 50.0], // Starting center of the map [lng, lat]
     zoom: 5 // Starting zoom level
+=======
+    center: [10.0, 50.0], // Center coordinates [lng, lat]
+    zoom: 5 // Zoom level
+>>>>>>> 6a0ff05e4d378725d4dc0c2792744e3615ef508d
 });
 
 map.on('load', () => {
