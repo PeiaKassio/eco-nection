@@ -82,12 +82,12 @@ map.on('click', 'unclustered-point', (e) => {
 
     new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(
-            `<h3>${title}</h3>
+        .setHTML(`
+            <h3>${title}</h3>
             <p><strong>Artist:</strong> ${artist}</p>
             <p><strong>Description:</strong> ${description}</p>
-            <p><strong>Year:</strong> ${year}</p>`
-        )
+            <p><strong>Year:</strong> ${year}</p>
+        `) // Close the backtick correctly here
         .addTo(map);
 });
 
