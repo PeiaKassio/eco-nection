@@ -133,40 +133,43 @@ map.on('load', async () => {
             const artist = properties.artist || 'Unknown';
             const year = properties.year || 'Unknown';
 
-        // Ensure tags are parsed correctly as an object
-        let tags = properties.tags;
-        if (typeof tags === 'string') {
-            try {
-                tags = JSON.parse(tags);
-            } catch (error) {
-                console.error("Error parsing tags JSON:", error);
-                tags = {};
-        }
+            // Ensure tags are parsed correctly as an object
+            let tags = properties.tags;
+            if (typeof tags === 'string') {
+                try {
+                    tags = JSON.parse(tags);
+                } catch (error) {
+                    console.error("Error parsing tags JSON:", error);
+                    tags = {};
+                }
+            }
+
+            // Confirm tags structure
+            console.log("Tags object:", tags);
+
+            // Access topics and artforms from the tags object
+            const popupTopics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
+            const popupArtforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
+
+            console.log("Popup Topics:", popupTopics); // Should show the list of topics as a string
+            console.log("Popup Art Forms:", popupArtforms); // Should show the list of artforms as a string
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(`
+                    <h3>${title}</h3>
+                    <p><strong>Artist:</strong> ${artist}</p>
+                    <p><strong>Description:</strong> ${description}</p>
+                    <p><strong>Year:</strong> ${year}</p>
+                    <p><strong>Topics:</strong> ${popupTopics}</p>
+                    <p><strong>Art Forms:</strong> ${popupArtforms}</p>
+                `)
+                .addTo(map);
+        });
+    } catch (error) {
+        console.error("Error loading data:", error);
     }
-
-    // Confirm tags structure
-    console.log("Tags object:", tags);
-
-    // Access topics and artforms from the tags object
-    const popupTopics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
-    const popupArtforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
-
-    console.log("Popup Topics:", popupTopics); // Should show the list of topics as a string
-    console.log("Popup Art Forms:", popupArtforms); // Should show the list of artforms as a string
-
-    new mapboxgl.Popup()
-        .setLngLat(coordinates)
-        .setHTML(`
-            <h3>${title}</h3>
-            <p><strong>Artist:</strong> ${artist}</p>
-            <p><strong>Description:</strong> ${description}</p>
-            <p><strong>Year:</strong> ${year}</p>
-            <p><strong>Topics:</strong> ${popupTopics}</p>
-            <p><strong>Art Forms:</strong> ${popupArtforms}</p>
-        `)
-        .addTo(map);
 });
-
 
 // Filter function
 function applyFilters() {
