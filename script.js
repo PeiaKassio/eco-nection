@@ -125,32 +125,34 @@ map.on('load', async () => {
         });
 
         map.on('click', 'unclustered-point', (e) => {
-    const coordinates = e.features[0].geometry.coordinates.slice();
-    const properties = e.features[0].properties || {};
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const properties = e.features[0].properties || {};
 
-    const title = properties.title || 'Untitled';
-    const description = properties.description || 'No Description';
-    const artist = properties.artist || 'Unknown';
-    const year = properties.year || 'Unknown';
+            const title = properties.title || 'Untitled';
+            const description = properties.description || 'No Description';
+            const artist = properties.artist || 'Unknown';
+            const year = properties.year || 'Unknown';
 
-    // Ensure tags are parsed correctly as an object
-    let tags = properties.tags;
-    if (typeof tags === 'string') {
-        try {
-            tags = JSON.parse(tags);
-        } catch (error) {
-            console.error("Error parsing tags JSON:", error);
-            tags = {};
+        // Ensure tags are parsed correctly as an object
+        let tags = properties.tags;
+        if (typeof tags === 'string') {
+            try {
+                tags = JSON.parse(tags);
+            } catch (error) {
+                console.error("Error parsing tags JSON:", error);
+                tags = {};
         }
     }
 
-    // Access topics and artforms from the tags object
-    const topics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
-    const artforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
+    // Confirm tags structure
+    console.log("Tags object:", tags);
 
-    console.log("Parsed Tags:", tags);  // Debugging line to check tags structure
-    console.log("Topics:", topics);     // Should output the topics as a string
-    console.log("Art Forms:", artforms); // Should output the artforms as a string
+    // Access topics and artforms from the tags object
+    const popupTopics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
+    const popupArtforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
+
+    console.log("Popup Topics:", popupTopics); // Should show the list of topics as a string
+    console.log("Popup Art Forms:", popupArtforms); // Should show the list of artforms as a string
 
     new mapboxgl.Popup()
         .setLngLat(coordinates)
@@ -159,8 +161,8 @@ map.on('load', async () => {
             <p><strong>Artist:</strong> ${artist}</p>
             <p><strong>Description:</strong> ${description}</p>
             <p><strong>Year:</strong> ${year}</p>
-            <p><strong>Topics:</strong> ${topics}</p>
-            <p><strong>Art Forms:</strong> ${artforms}</p>
+            <p><strong>Topics:</strong> ${popupTopics}</p>
+            <p><strong>Art Forms:</strong> ${popupArtforms}</p>
         `)
         .addTo(map);
 });
