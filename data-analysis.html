@@ -13,35 +13,33 @@
         <nav>
             <button onclick="showAnalysis('topicCountry')">Topic Cluster by Country</button>
             <button onclick="showAnalysis('topicYear')">Topic Cluster by Year</button>
-            <button onclick="showAnalysis('artFormTopic')">Topic by Art Form</button>
+            <button onclick="showAnalysis('artFormTopic')">Art Form and Topic</button>
         </nav>
     </header>
 
     <main>
-        <!-- Analysis Containers -->
+        <!-- Topic Country Analysis -->
         <div id="topicCountryAnalysis" class="analysis-section">
             <h2>Topic Cluster by Country</h2>
-            <select id="continentFilter">
-                <option value="">Select Continent</option>
-            </select>
-            <select id="countryFilter">
-                <option value="">Select Country</option>
-            </select>
+            <select id="continentFilter"></select>
+            <select id="countryFilter"></select>
             <canvas id="topicCountryChart"></canvas>
         </div>
 
+        <!-- Topic Year Analysis -->
         <div id="topicYearAnalysis" class="analysis-section" style="display:none;">
             <h2>Topic Cluster by Year</h2>
+            <input type="number" id="yearFilter" placeholder="Enter Year" onchange="updateTopicYearChart()">
             <canvas id="topicYearChart"></canvas>
         </div>
 
+        <!-- Art Form and Topic Analysis -->
         <div id="artFormTopicAnalysis" class="analysis-section" style="display:none;">
-            <h2>ATopic by Art Form</h2>
+            <h2>Art Form and Topic</h2>
             <canvas id="artFormTopicChart"></canvas>
         </div>
     </main>
 
-    <script type="module" src="continentMapping.js"></script>
-    <script type="module" src="data-analysis.js"></script>
+    <script src="data-analysis.js"></script>
 </body>
 </html>
