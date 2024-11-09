@@ -17,13 +17,31 @@ map.on('style.load', () => {
 });
 
 map.on('load', async () => {
-    const response = await fetch('artwork-data.json');
-    const data = await response.json();
+    const artworkResponse = await fetch('artwork-data.json');
+    const artworkData = await artworkResponse.json();
+    const topicClusterResponse = await fetch('topicClusters.json');
+    const topicClusters = await topicClusterResponse.json();
 
-    // Add source with loaded data
+    // Function to get color based on main topic cluster
+    function getClusterColor(topics) {
+        for (const [cluster, data] of Object.entries(topicClusters)) {
+            if (topics.some(topic => data.topics.includes(topic))) {
+                return data.color;
+            }
+        }
+        return "#FFFFFF"; // Default color if no cluster matches
+    }
+
+    // Add colors to artwork features based on main cluster
+    artworkData.features.forEach(feature => {
+        const mainTopics = feature.properties.tags.topic || [];
+        feature.properties.mainClusterColor = getClusterColor(mainTopics);
+    });
+
+    // Add source with modified artwork data
     map.addSource('artworks', {
         type: 'geojson',
-        data: data,
+        data: artworkData,
         cluster: true,
         clusterMaxZoom: 10,
         clusterRadius: 20
@@ -33,7 +51,7 @@ map.on('load', async () => {
     const topics = new Set();
     const artforms = new Set();
 
-    data.features.forEach(feature => {
+    artworkData.features.forEach(feature => {
         if (feature.properties.tags) {
             if (feature.properties.tags.topic) {
                 feature.properties.tags.topic.forEach(tag => topics.add(tag));
@@ -62,7 +80,7 @@ map.on('load', async () => {
         artformSelect.appendChild(option);
     });
 
-    // Add cluster and unclustered layers
+    // Define cluster and unclustered layers
     map.addLayer({
         id: 'clusters',
         type: 'circle',
@@ -102,7 +120,7 @@ map.on('load', async () => {
         source: 'artworks',
         filter: ['!', ['has', 'point_count']],
         paint: {
-            'circle-color': '#f28cb1',
+            'circle-color': ['get', 'mainClusterColor'],
             'circle-radius': 10,
             'circle-stroke-width': 1,
             'circle-stroke-color': '#fff'
@@ -110,43 +128,33 @@ map.on('load', async () => {
     });
 
     map.on('click', 'unclustered-point', (e) => {
-    const coordinates = e.features[0].geometry.coordinates.slice();
-    const properties = e.features[0].properties || {};
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const properties = e.features[0].properties || {};
 
-    const title = properties.title || 'Untitled';
-    const description = properties.description || 'No Description';
-    const artist = properties.artist || 'Unknown';
-    const year = properties.year || 'Unknown';
+        const title = properties.title || 'Untitled';
+        const description = properties.description || 'No Description';
+        const artist = properties.artist || 'Unknown';
+        const year = properties.year || 'Unknown';
 
-    // Parse tags if it's a JSON string
-    let tags = properties.tags;
-    if (typeof tags === 'string') {
-        try {
-            tags = JSON.parse(tags); // Parse stringified JSON
-        } catch (error) {
-            console.error("Error parsing tags JSON:", error);
-            tags = {}; // Default to empty object if parsing fails
-        }
-    }
+        // Access topics and artforms as comma-separated strings
+        const popupTopics = Array.isArray(properties.tags.topic) ? properties.tags.topic.join(', ') : 'No Topics';
+        const popupArtforms = Array.isArray(properties.tags.artform) ? properties.tags.artform.join(', ') : 'No Art Forms';
 
-    // Access topics and artforms as comma-separated strings
-   const popupTopics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
-const popupArtforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
-
-new mapboxgl.Popup()
-    .setLngLat(coordinates)
-    .setHTML(`
-        <h3>${title}</h3>
-        <p><strong>Artist:</strong> ${artist}</p>
-        <p><strong>Description:</strong> ${description}</p>
-        <p><strong>Year:</strong> ${year}</p>
-        <p><strong>Topics:</strong> ${popupTopics}</p>
-        <p><strong>Art Forms:</strong> ${popupArtforms}</p>
-    `)
-    .addTo(map);
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(`
+                <h3>${title}</h3>
+                <p><strong>Artist:</strong> ${artist}</p>
+                <p><strong>Description:</strong> ${description}</p>
+                <p><strong>Year:</strong> ${year}</p>
+                <p><strong>Topics:</strong> ${popupTopics}</p>
+                <p><strong>Art Forms:</strong> ${popupArtforms}</p>
+            `)
+            .addTo(map);
     });
 });
 
+// Filter function
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopic = document.getElementById('tag-filter').value;
@@ -154,7 +162,6 @@ function applyFilters() {
 
     const filter = ['all'];
 
-    // Search filter for title or description
     if (searchText) {
         filter.push([
             'any',
@@ -163,26 +170,22 @@ function applyFilters() {
         ]);
     }
 
-    // Apply topic filter - correctly accessing `tags.topic` in nested structure
     if (selectedTopic) {
         filter.push(['in', selectedTopic, ['get', 'topic', ['get', 'tags']]]);
     }
 
-    // Apply artform filter - correctly accessing `tags.artform` in nested structure
     if (selectedArtForm) {
         filter.push(['in', selectedArtForm, ['get', 'artform', ['get', 'tags']]]);
     }
 
-    console.log("Applying filter:", JSON.stringify(filter));
-
-    // Apply filter to the unclustered-point layer to show only matching points
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 
-    // Check if the clusters layer exists before trying to filter it
+    // Hide clusters if a filter is active
     if (map.getLayer('clusters')) {
         map.setFilter('clusters', filter.length > 1 ? ['==', 'point_count', 0] : null);
     }
 }
 
-document.getElementById('apply-filters').addEventListener('click', applyFilters);
-
+document.getElementById('search-bar').addEventListener('input', applyFilters);
+document.getElementById('tag-filter').addEventListener('change', applyFilters);
+document.getElementById('artform-filter').addEventListener('change', applyFilters);
