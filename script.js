@@ -130,24 +130,20 @@ map.on('load', async () => {
     }
 
     // Access topics and artforms as comma-separated strings
-    const topics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
-    const artforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
+   const popupTopics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
+const popupArtforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
 
-    console.log("Parsed Tags:", tags);  // Should now show tags as an object
-    console.log("Topics:", topics); // Check if topics is a string or still undefined
-    console.log("Art Forms:", artforms); // Check if artforms is a string or still undefined
-
-    new mapboxgl.Popup()
-        .setLngLat(coordinates)
-        .setHTML(`
-            <h3>${title}</h3>
-            <p><strong>Artist:</strong> ${artist}</p>
-            <p><strong>Description:</strong> ${description}</p>
-            <p><strong>Year:</strong> ${year}</p>
-            <p><strong>Topics:</strong> ${topics}</p>
-            <p><strong>Art Forms:</strong> ${artforms}</p>
-        `)
-        .addTo(map);
+new mapboxgl.Popup()
+    .setLngLat(coordinates)
+    .setHTML(`
+        <h3>${title}</h3>
+        <p><strong>Artist:</strong> ${artist}</p>
+        <p><strong>Description:</strong> ${description}</p>
+        <p><strong>Year:</strong> ${year}</p>
+        <p><strong>Topics:</strong> ${popupTopics}</p>
+        <p><strong>Art Forms:</strong> ${popupArtforms}</p>
+    `)
+    .addTo(map);
     });
 });
 
