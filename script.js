@@ -160,6 +160,7 @@ map.on('load', async () => {
 });
 
 // Function to apply filters
+// Function to apply filters
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopic = document.getElementById('tag-filter').value;
