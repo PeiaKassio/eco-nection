@@ -141,7 +141,6 @@ map.on('load', async () => {
     });
 });
 
-// Filter application function
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopic = document.getElementById('tag-filter').value;
@@ -149,27 +148,27 @@ function applyFilters() {
 
     const filter = ['all'];
 
+    // Apply search filter for title or description
     if (searchText) {
         filter.push([
             'any',
-            ['match', ['to-lower', ['get', 'title']], [searchText], true, false],
-            ['match', ['to-lower', ['get', 'description']], [searchText], true, false]
+            ['match', ['downcase', ['get', 'title']], [searchText], true, false],
+            ['match', ['downcase', ['get', 'description']], [searchText], true, false]
         ]);
     }
 
-    // Correct access to nested `tags.topic` and `tags.artform` for filtering
+    // Apply topic filter
     if (selectedTopic) {
         filter.push(['in', selectedTopic, ['get', 'topic', ['get', 'tags']]]);
     }
 
+    // Apply artform filter
     if (selectedArtForm) {
         filter.push(['in', selectedArtForm, ['get', 'artform', ['get', 'tags']]]);
     }
 
     console.log("Applying filter:", JSON.stringify(filter));
 
+    // Set the filter to only show points that match criteria
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 }
-
-// Apply button event listener for filters
-document.getElementById('apply-filters').addEventListener('click', applyFilters);
