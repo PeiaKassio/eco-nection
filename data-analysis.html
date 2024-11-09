@@ -6,32 +6,33 @@
     <title>Data Analysis</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="continentMapping.js"></script>
 </head>
 <body>
     <header>
         <h1>eco:nection Data Analysis</h1>
         <nav>
-            <button onclick="showAnalysis('topicCountry')">Topic Cluster by Country/Continent</button>
+            <button onclick="showAnalysis('topicCountry')">Topic Cluster by Country</button>
             <button onclick="showAnalysis('topicYear')">Topic Cluster by Year</button>
         </nav>
     </header>
 
     <main>
-        <!-- Topic Cluster by Country/Continent Analysis -->
+        <!-- Analysis Containers -->
         <div id="topicCountryAnalysis" class="analysis-section">
-            <h2>Topic Cluster by Country/Continent</h2>
+            <h2>Topic Cluster by Country and Continent</h2>
+            <label for="continentFilter">Select Continent:</label>
             <select id="continentFilter" onchange="updateTopicCountryChart()">
                 <option value="">All Continents</option>
-                <!-- Continent options will be dynamically populated -->
             </select>
+
+            <label for="countryFilter">Select Country:</label>
             <select id="countryFilter" onchange="updateTopicCountryChart()">
                 <option value="">All Countries</option>
-                <!-- Country options will be dynamically populated -->
             </select>
             <canvas id="topicCountryChart"></canvas>
         </div>
 
-        <!-- Topic Cluster by Year Analysis -->
         <div id="topicYearAnalysis" class="analysis-section" style="display:none;">
             <h2>Topic Cluster by Year</h2>
             <input type="number" id="yearFilter" placeholder="Enter Year" onchange="updateTopicYearChart()">
