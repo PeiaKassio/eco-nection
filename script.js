@@ -48,18 +48,14 @@ map.on('load', async () => {
             clusterRadius: 20
         });
 
-        // Extrahiere alle einzigartigen Topics, Artforms und Cluster
+        // Extrahiere alle einzigartigen Topics und Artforms
         const topics = new Set();
         const artforms = new Set();
-        const clusters = new Set();
 
         artworkData.features.forEach(feature => {
             if (feature.properties.tags) {
                 feature.properties.tags.topic?.forEach(tag => topics.add(tag));
                 feature.properties.tags.artform?.forEach(tag => artforms.add(tag));
-            }
-            if (feature.properties.mainClusterColor) {
-                clusters.add(feature.properties.mainClusterColor); // Clusterfarbe hinzufügen
             }
         });
 
@@ -81,12 +77,12 @@ map.on('load', async () => {
             artformSelect.appendChild(option);
         });
 
-        // Fülle das Cluster Filter Dropdown
+        // Fülle das Cluster Filter Dropdown mit farbigen Punkten und Cluster-Namen
         const clusterSelect = document.getElementById('cluster-filter');
-        clusters.forEach(clusterColor => {
+        Object.entries(topicClusters).forEach(([clusterName, clusterData]) => {
             const option = document.createElement('option');
-            option.value = clusterColor;
-            option.textContent = clusterColor; // Zeigt den Farbwert an
+            option.value = clusterData.color; // Der Farbwert wird als Wert verwendet
+            option.innerHTML = `<span style="color:${clusterData.color}; font-weight: bold;">●</span> ${clusterName}`;
             clusterSelect.appendChild(option);
         });
 
