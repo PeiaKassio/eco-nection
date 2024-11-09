@@ -154,7 +154,7 @@ function applyFilters() {
 
     const filter = ['all'];
 
-    // Search filter for title or description
+    // Apply search filter for title or description
     if (searchText) {
         filter.push([
             'any',
@@ -163,24 +163,27 @@ function applyFilters() {
         ]);
     }
 
-    // Topic filter - checking if the selected topic is in tags.topic array
+    // Apply topic filter by correctly accessing `tags.topic`
     if (selectedTopic) {
-        filter.push(['in', selectedTopic, ['get', 'tags', 'topic']]);
+        filter.push(['in', selectedTopic, ['get', ['get', 'tags'], 'topic']]);
     }
 
-    // Artform filter - checking if the selected artform is in tags.artform array
+    // Apply artform filter by correctly accessing `tags.artform`
     if (selectedArtForm) {
-        filter.push(['in', selectedArtForm, ['get', 'tags', 'artform']]);
+        filter.push(['in', selectedArtForm, ['get', ['get', 'tags'], 'artform']]);
     }
 
     console.log("Applying filter:", JSON.stringify(filter));
 
-    // Apply filter to the unclustered-point layer to show only matching points
+    // Apply the filter to the unclustered-point layer
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 
-    // Apply filter to hide clusters when a filter is active
-    map.setFilter('clusters', filter.length > 1 ? ['==', 'point_count', 0] : null);
+    // Check if the clusters layer exists before trying to filter it
+    if (map.getLayer('clusters')) {
+        map.setFilter('clusters', filter.length > 1 ? ['==', 'point_count', 0] : null);
+    }
 }
+
 
 document.getElementById('apply-filters').addEventListener('click', applyFilters);
 
