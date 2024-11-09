@@ -40,5 +40,18 @@
 
 <script src="data-analysis.js"></script> <!-- Link to the JavaScript file -->
 
+<script>
+// Function to show the selected tab and hide others
+function showTab(tabId) {
+    // Hide all tabs
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Show the selected tab
+    document.getElementById(tabId).classList.add('active');
+}
+</script>
+
 </body>
 </html>
