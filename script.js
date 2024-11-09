@@ -111,30 +111,48 @@ map.on('load', async () => {
     });
 
     // Popup for individual points
-    map.on('click', 'unclustered-point', (e) => {
-        const coordinates = e.features[0].geometry.coordinates.slice();
-        const properties = e.features[0].properties || {};
+  map.on('click', 'unclustered-point', (e) => {
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const properties = e.features[0].properties || {};
 
-        const title = properties.title || 'Untitled';
-        const description = properties.description || 'No Description';
-        const artist = properties.artist || 'Unknown';
-        const year = properties.year || 'Unknown';
-        const topics = properties.tags?.topic ? properties.tags.topic.join(', ') : 'No Topics';
-        const artforms = properties.tags?.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
+    const title = properties.title || 'Untitled';
+    const description = properties.description || 'No Description';
+    const artist = properties.artist || 'Unknown';
+    const year = properties.year || 'Unknown';
 
-        new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(`
-                <h3>${title}</h3>
-                <p><strong>Artist:</strong> ${artist}</p>
-                <p><strong>Description:</strong> ${description}</p>
-                <p><strong>Year:</strong> ${year}</p>
-                <p><strong>Topics:</strong> ${topics}</p>
-                <p><strong>Art Forms:</strong> ${artforms}</p>
-            `)
-            .addTo(map);
-    });
+    // Initialize arrays to store topics and artforms
+    const topics = [];
+    const artforms = [];
+
+    // Loop through `tags` array to separate topics and artforms
+    if (Array.isArray(properties.tags)) {
+        properties.tags.forEach(tag => {
+            if (tag.topic) {
+                topics.push(tag.topic);
+            }
+            if (tag.artform) {
+                artforms.push(tag.artform);
+            }
+        });
+    }
+
+    // Join the arrays into comma-separated strings or show a fallback message
+    const topicsText = topics.length > 0 ? topics.join(', ') : 'No Topics';
+    const artformsText = artforms.length > 0 ? artforms.join(', ') : 'No Art Forms';
+
+    new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(`
+            <h3>${title}</h3>
+            <p><strong>Artist:</strong> ${artist}</p>
+            <p><strong>Description:</strong> ${description}</p>
+            <p><strong>Year:</strong> ${year}</p>
+            <p><strong>Topics:</strong> ${topicsText}</p>
+            <p><strong>Art Forms:</strong> ${artformsText}</p>
+        `)
+        .addTo(map);
 });
+
 
 // Filter application function
 function applyFilters() {
