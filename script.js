@@ -120,25 +120,9 @@ map.on('load', async () => {
     const artist = properties.artist || 'Unknown';
     const year = properties.year || 'Unknown';
 
-    // Initialize arrays to store topics and artforms
-    const topics = [];
-    const artforms = [];
-
-    // Loop through `tags` array to separate topics and artforms
-    if (Array.isArray(properties.tags)) {
-        properties.tags.forEach(tag => {
-            if (tag.topic) {
-                topics.push(tag.topic);
-            }
-            if (tag.artform) {
-                artforms.push(tag.artform);
-            }
-        });
-    }
-
-    // Join the arrays into comma-separated strings or show a fallback message
-    const topicsText = topics.length > 0 ? topics.join(', ') : 'No Topics';
-    const artformsText = artforms.length > 0 ? artforms.join(', ') : 'No Art Forms';
+    // Access topics and artforms from the tags object and join them as comma-separated strings
+    const topics = properties.tags?.topic ? properties.tags.topic.join(', ') : 'No Topics';
+    const artforms = properties.tags?.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
 
     new mapboxgl.Popup()
         .setLngLat(coordinates)
@@ -147,11 +131,12 @@ map.on('load', async () => {
             <p><strong>Artist:</strong> ${artist}</p>
             <p><strong>Description:</strong> ${description}</p>
             <p><strong>Year:</strong> ${year}</p>
-            <p><strong>Topics:</strong> ${topicsText}</p>
-            <p><strong>Art Forms:</strong> ${artformsText}</p>
+            <p><strong>Topics:</strong> ${topics}</p>
+            <p><strong>Art Forms:</strong> ${artforms}</p>
         `)
         .addTo(map);
 });
+
 
 
 // Filter application function
