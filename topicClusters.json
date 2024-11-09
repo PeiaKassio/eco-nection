@@ -1,0 +1,70 @@
+{
+  "Environmental Pollution": [
+    "Plastic Pollution",
+    "Air Pollution",
+    "Water Pollution",
+    "Plastic Waste",
+    "Toxic Waste",
+    "Pollution in Cities"
+  ],
+  "Climate Change": [
+    "Climate Change",
+    "Global Warming",
+    "Carbon Emissions",
+    "Climate Crisis",
+    "Climate Action"
+  ],
+  "Conservation": [
+    "Marine Conservation",
+    "Forest Conservation",
+    "Wildlife Preservation",
+    "Ecosystem Protection",
+    "Natural Habitat"
+  ],
+  "Sustainable Practices": [
+    "Recycling",
+    "Eco-Art",
+    "Sustainable Design",
+    "Upcycling",
+    "Green Architecture"
+  ],
+  "Water Issues": [
+    "Water Conservation",
+    "Freshwater Crisis",
+    "Ocean Conservation",
+    "Water Shortage"
+  ],
+  "Urban Issues": [
+    "Urban Ecology",
+    "Urban Pollution",
+    "Nature",
+    "Green Spaces",
+    "Environmental Impact"
+  ],
+  "Waste Management": [
+    "Waste Reduction",
+    "Plastic Waste",
+    "Recycling",
+    "Upcycling",
+    "Landfill Diversion"
+  ],
+  "Biodiversity": [
+    "Biodiversity Loss",
+    "Ecosystem Protection",
+    "Wildlife Preservation",
+    "Natural Habitat"
+  ],
+  "Health and Environment": [
+    "Air Quality",
+    "Environmental Health",
+    "Toxic Waste",
+    "Pollution Effects"
+  ],
+  "Environmental Awareness": [
+    "Environmental Awareness",
+    "Climate Change",
+    "Eco-Art",
+    "Urgency",
+    "Time"
+  ]
+}
