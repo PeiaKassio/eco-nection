@@ -54,8 +54,8 @@ map.on('load', async () => {
         type: 'geojson',
         data: 'artwork-data.json',
         cluster: true,
-        clusterMaxZoom: 14,
-        clusterRadius: 50
+        clusterMaxZoom: 10,
+        clusterRadius: 20
     });
 
     // Cluster-Layer
