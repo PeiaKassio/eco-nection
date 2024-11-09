@@ -52,7 +52,7 @@ map.on('load', async () => {
     // Map Source und Layer hinzufügen
     map.addSource('artworks', {
         type: 'geojson',
-        data: data,
+        data: 'artwork-data.json',
         cluster: true,
         clusterMaxZoom: 14,
         clusterRadius: 50
