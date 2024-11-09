@@ -5,10 +5,9 @@ const map = new mapboxgl.Map({
     style: 'mapbox://styles/mapbox/dark-v10',
     center: [0, 0],
     zoom: 1.5,
-    projection: 'globe'
+     projection: 'globe'
 });
 
-// Optional: Customize globe settings for atmospheric effects
 map.on('style.load', () => {
     map.setFog({
         'range': [0.5, 10],
@@ -22,16 +21,31 @@ map.on('load', async () => {
     const response = await fetch('artwork-data.json');
     const data = await response.json();
 
-    // Extrahiere einzigartige Tags für Topics und Artforms
+    // Add source with loaded data
+    map.addSource('artworks', {
+        type: 'geojson',
+        data: data,
+        cluster: true,
+        clusterMaxZoom: 10,
+        clusterRadius: 20
+    });
+
+    // Populate unique tags for topics and artforms
     const topics = new Set();
     const artforms = new Set();
 
     data.features.forEach(feature => {
-        feature.properties.tags.topic.forEach(tag => topics.add(tag));
-        feature.properties.tags.artform.forEach(tag => artforms.add(tag));
+        if (feature.properties.tags) {
+            if (feature.properties.tags.topic) {
+                feature.properties.tags.topic.forEach(tag => topics.add(tag));
+            }
+            if (feature.properties.tags.artform) {
+                feature.properties.tags.artform.forEach(tag => artforms.add(tag));
+            }
+        }
     });
 
-    // Fülle die Topic-Filter-Dropdown
+    // Fill the Topic filter dropdown
     const topicSelect = document.getElementById('tag-filter');
     topics.forEach(topic => {
         const option = document.createElement('option');
@@ -40,7 +54,7 @@ map.on('load', async () => {
         topicSelect.appendChild(option);
     });
 
-    // Fülle die Artform-Filter-Dropdown
+    // Fill the Artform filter dropdown
     const artformSelect = document.getElementById('artform-filter');
     artforms.forEach(artform => {
         const option = document.createElement('option');
@@ -49,16 +63,7 @@ map.on('load', async () => {
         artformSelect.appendChild(option);
     });
 
-    // Map Source und Layer hinzufügen
-    map.addSource('artworks', {
-        type: 'geojson',
-        data: 'artwork-data.json',
-        cluster: true,
-        clusterMaxZoom: 10,
-        clusterRadius: 20
-    });
-
-    // Cluster-Layer
+    // Add cluster and unclustered layers
     map.addLayer({
         id: 'clusters',
         type: 'circle',
@@ -77,7 +82,6 @@ map.on('load', async () => {
         }
     });
 
-    // Cluster-Anzahl anzeigen
     map.addLayer({
         id: 'cluster-count',
         type: 'symbol',
@@ -86,14 +90,13 @@ map.on('load', async () => {
         layout: {
             'text-field': '{point_count_abbreviated}',
             'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-             'text-size': 12
-    },
-    paint: {
-        'text-color': '#ffffff' // Set to white or another contrasting color
-    }
+            'text-size': 12
+        },
+        paint: {
+            'text-color': '#ffffff'
+        }
     });
 
-    // Ungeclusterte Punkte für einzelne Kunstwerke
     map.addLayer({
         id: 'unclustered-point',
         type: 'circle',
@@ -107,62 +110,33 @@ map.on('load', async () => {
         }
     });
 
-    // Popup für einzelne Punkte
- map.on('click', 'unclustered-point', (e) => {
-    const coordinates = e.features[0].geometry.coordinates.slice();
-    const properties = e.features[0].properties || {};
+    // Popup for individual points
+    map.on('click', 'unclustered-point', (e) => {
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const properties = e.features[0].properties || {};
 
-    // Extract individual properties
-    const title = properties.title || 'Untitled';
-    const description = properties.description || 'No Description';
-    const artist = properties.artist || 'Unknown';
-    const year = properties.year || 'Unknown';
+        const title = properties.title || 'Untitled';
+        const description = properties.description || 'No Description';
+        const artist = properties.artist || 'Unknown';
+        const year = properties.year || 'Unknown';
+        const topics = properties.tags?.topic ? properties.tags.topic.join(', ') : 'No Topics';
+        const artforms = properties.tags?.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
 
-    // Safely access nested topics and artforms in the tags object
-    const topics = properties.tags && properties.tags.topic ? properties.tags.topic.join(', ') : 'No Topics';
-    const artforms = properties.tags && properties.tags.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
-
-    // Debugging logs to confirm correct data access
-    console.log("Topics:", topics);  // Should output the topics if present
-    console.log("Art Forms:", artforms);  // Should output the art forms if present
-
-    new mapboxgl.Popup()
-        .setLngLat(coordinates)
-        .setHTML(`
-            <h3>${title}</h3>
-            <p><strong>Artist:</strong> ${artist}</p>
-            <p><strong>Description:</strong> ${description}</p>
-            <p><strong>Year:</strong> ${year}</p>
-            <p><strong>Topics:</strong> ${topics}</p>
-            <p><strong>Art Forms:</strong> ${artforms}</p>
-        `)
-        .addTo(map);
-});
-
-
-
-    // Klick auf Cluster zum Zoomen
-    map.on('click', 'clusters', (e) => {
-        const features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
-        const clusterId = features[0].properties.cluster_id;
-        map.getSource('artworks').getClusterExpansionZoom(clusterId, (err, zoom) => {
-            if (err) return;
-            map.easeTo({ center: features[0].geometry.coordinates, zoom });
-        });
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(`
+                <h3>${title}</h3>
+                <p><strong>Artist:</strong> ${artist}</p>
+                <p><strong>Description:</strong> ${description}</p>
+                <p><strong>Year:</strong> ${year}</p>
+                <p><strong>Topics:</strong> ${topics}</p>
+                <p><strong>Art Forms:</strong> ${artforms}</p>
+            `)
+            .addTo(map);
     });
-
-    // Mauszeiger ändern bei Hover
-    map.on('mouseenter', 'clusters', () => map.getCanvas().style.cursor = 'pointer');
-    map.on('mouseleave', 'clusters', () => map.getCanvas().style.cursor = '');
-    map.on('mouseenter', 'unclustered-point', () => map.getCanvas().style.cursor = 'pointer');
-    map.on('mouseleave', 'unclustered-point', () => map.getCanvas().style.cursor = '');
-
-    // Event Listener für Filter und Suche
-    document.getElementById('search-bar').addEventListener('input', applyFilters);
-    document.getElementById('tag-filter').addEventListener('change', applyFilters);
-    document.getElementById('artform-filter').addEventListener('change', applyFilters);
 });
 
+// Filter application function
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopic = document.getElementById('tag-filter').value;
@@ -170,7 +144,6 @@ function applyFilters() {
 
     const filter = ['all'];
 
-    // Add search text filter if there's text in the search bar
     if (searchText) {
         filter.push([
             'any',
@@ -179,22 +152,17 @@ function applyFilters() {
         ]);
     }
 
-    // Apply topic filter by correctly accessing `tags.topic`
     if (selectedTopic) {
         filter.push(['in', selectedTopic, ['get', ['get', 'tags'], 'topic']]);
     }
 
-    // Apply art form filter by correctly accessing `tags.artform`
     if (selectedArtForm) {
         filter.push(['in', selectedArtForm, ['get', ['get', 'tags'], 'artform']]);
     }
 
-    // Log the constructed filter for debugging
     console.log("Applying filter:", JSON.stringify(filter));
 
-    // Apply the filter to the map layer
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 }
 
-// Add an event listener to the "Apply" button
 document.getElementById('apply-filters').addEventListener('click', applyFilters);
