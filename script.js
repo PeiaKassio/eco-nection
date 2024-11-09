@@ -23,23 +23,23 @@ map.on('load', async () => {
         const topicClusterResponse = await fetch('topicClusters.json');
         const topicClusters = await topicClusterResponse.json();
 
-        // Function to get color based on first topic in the list
+        // Funktion, um den Cluster basierend auf dem ersten Thema zu finden
         function getClusterColor(firstTopic) {
             for (const [cluster, data] of Object.entries(topicClusters)) {
                 if (data.topics.includes(firstTopic)) {
-                    return data.color;
+                    return cluster; // Rückgabe des Clusterbezeichners
                 }
             }
-            return "#FFFFFF"; // Default color if no cluster matches
+            return null; // Kein Cluster gefunden
         }
 
-        // Add colors to artwork features based on the first topic in the list
+        // Füge Farben zu den Kunstwerken basierend auf dem ersten Thema hinzu
         artworkData.features.forEach(feature => {
-            const firstTopic = feature.properties.tags.topic?.[0]; // Take only the first topic
-            feature.properties.mainClusterColor = getClusterColor(firstTopic);
+            const firstTopic = feature.properties.tags.topic?.[0]; // Nimm nur das erste Thema
+            feature.properties.mainCluster = getClusterColor(firstTopic); // Cluster anstelle der Farbe
         });
 
-        // Add source with modified artwork data
+        // Füge die Quelle mit den modifizierten Kunstwerken hinzu
         map.addSource('artworks', {
             type: 'geojson',
             data: artworkData,
@@ -48,18 +48,22 @@ map.on('load', async () => {
             clusterRadius: 20
         });
 
-        // Populate unique tags for topics and artforms
+        // Extrahiere alle einzigartigen Topics und Artforms
         const topics = new Set();
         const artforms = new Set();
+        const clusters = new Set(); // Set für die Cluster
 
         artworkData.features.forEach(feature => {
             if (feature.properties.tags) {
                 feature.properties.tags.topic?.forEach(tag => topics.add(tag));
                 feature.properties.tags.artform?.forEach(tag => artforms.add(tag));
+                if (feature.properties.mainCluster) {
+                    clusters.add(feature.properties.mainCluster); // Füge Cluster zu Set hinzu
+                }
             }
         });
 
-        // Fill the Topic filter dropdown
+        // Fülle das Topic Filter Dropdown
         const topicSelect = document.getElementById('tag-filter');
         topics.forEach(topic => {
             const option = document.createElement('option');
@@ -68,7 +72,16 @@ map.on('load', async () => {
             topicSelect.appendChild(option);
         });
 
-        // Fill the Artform filter dropdown
+        // Fülle das TopicCluster Filter Dropdown
+        const clusterSelect = document.getElementById('cluster-filter'); // Neues Dropdown für Cluster
+        clusters.forEach(cluster => {
+            const option = document.createElement('option');
+            option.value = cluster;
+            option.textContent = cluster; // Clustername
+            clusterSelect.appendChild(option);
+        });
+
+        // Fülle das Artform Filter Dropdown
         const artformSelect = document.getElementById('artform-filter');
         artforms.forEach(artform => {
             const option = document.createElement('option');
@@ -77,7 +90,7 @@ map.on('load', async () => {
             artformSelect.appendChild(option);
         });
 
-        // Define cluster and unclustered layers
+        // Definiere Cluster- und Unclustered-Layer
         map.addLayer({
             id: 'clusters',
             type: 'circle',
@@ -117,7 +130,7 @@ map.on('load', async () => {
             source: 'artworks',
             filter: ['!', ['has', 'point_count']],
             paint: {
-                'circle-color': ['get', 'mainClusterColor'],
+                'circle-color': ['get', 'mainCluster'], // Verwende den Cluster-Tag hier
                 'circle-radius': 10,
                 'circle-stroke-width': 1,
                 'circle-stroke-color': '#fff'
@@ -133,7 +146,6 @@ map.on('load', async () => {
             const artist = properties.artist || 'Unknown';
             const year = properties.year || 'Unknown';
 
-            // Ensure tags are parsed correctly as an object
             let tags = properties.tags;
             if (typeof tags === 'string') {
                 try {
@@ -144,15 +156,8 @@ map.on('load', async () => {
                 }
             }
 
-            // Confirm tags structure
-            console.log("Tags object:", tags);
-
-            // Access topics and artforms from the tags object
             const popupTopics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
             const popupArtforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
-
-            console.log("Popup Topics:", popupTopics); // Should show the list of topics as a string
-            console.log("Popup Art Forms:", popupArtforms); // Should show the list of artforms as a string
 
             new mapboxgl.Popup()
                 .setLngLat(coordinates)
@@ -171,10 +176,11 @@ map.on('load', async () => {
     }
 });
 
-// Filter function
+// Filterfunktion
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopic = document.getElementById('tag-filter').value;
+    const selectedCluster = document.getElementById('cluster-filter').value; // Cluster-Filter
     const selectedArtForm = document.getElementById('artform-filter').value;
 
     const filter = ['all'];
@@ -188,11 +194,15 @@ function applyFilters() {
     }
 
     if (selectedTopic) {
-        filter.push(['in', selectedTopic, ['get', 'topic', ['get', 'tags']]]);
+        filter.push(['in', selectedTopic, ['get', 'tags', 'topic']]);
+    }
+
+    if (selectedCluster) {
+        filter.push(['in', selectedCluster, ['get', 'mainCluster']]); // Nach Cluster filtern
     }
 
     if (selectedArtForm) {
-        filter.push(['in', selectedArtForm, ['get', 'artform', ['get', 'tags']]]);
+        filter.push(['in', selectedArtForm, ['get', 'tags', 'artform']]);
     }
 
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
@@ -204,5 +214,5 @@ function applyFilters() {
 
 document.getElementById('search-bar').addEventListener('input', applyFilters);
 document.getElementById('tag-filter').addEventListener('change', applyFilters);
+document.getElementById('cluster-filter').addEventListener('change', applyFilters); // Event Listener für Cluster-Filter
 document.getElementById('artform-filter').addEventListener('change', applyFilters);
-
