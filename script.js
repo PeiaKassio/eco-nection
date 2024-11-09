@@ -2,7 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicGVpc2thc3NpbyIsImEiOiJjbTM4eHB5NHIwd2M5Mmlxe
 
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/dark-v10', //  'mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re'
+    style: 'mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re', 
     center: [0, 0], // Center coordinates [longitude, latitude]
     zoom: 1.5, // Start at a zoom level appropriate for a globe view
     projection: 'globe' // Enable globe projection
