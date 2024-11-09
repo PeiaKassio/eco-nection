@@ -1,141 +1,145 @@
 {
   "type": "FeatureCollection",
   "features": [
-      {
+    {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-73.9667, 40.7812] 
+        "coordinates": [-74.006, 40.7128]
       },
       "properties": {
-        "title": "Blue Planet",
-        "description": "A painting by Alexis Rockman depicting the interconnectedness of natural ecosystems and the impact of human activity on the environment.",
-        "artist": "Alexis Rockman",
-        "type": "Painting",
-        "location": "American Museum of Natural History, New York",
-        "year": 2009
+        "title": "The New York Earth Room",
+        "description": "An installation by Walter De Maria featuring a room filled with 250 cubic yards of earth, highlighting the relationship between humans and the environment.",
+        "artist": "Walter De Maria",
+        "type": "Installation",
+        "location": "Dia Art Foundation, New York",
+        "year": 1977,
+        "tags": ["Land Art", "Nature", "Urban Ecology", "Installation", "Environment"]
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-0.128, 51.5074]
+        "coordinates": [13.4115, 52.5134]
       },
       "properties": {
-        "title": "Collapse",
-        "description": "An apocalyptic scene by Alexis Rockman, warning of ecological collapse and environmental crisis.",
-        "artist": "Alexis Rockman",
-        "type": "Painting",
-        "location": "Tate Modern, London",
-        "year": 2012
+        "title": "Plastic Waste Tower",
+        "description": "A towering sculpture made entirely from discarded plastic bottles, symbolizing the overwhelming problem of plastic pollution.",
+        "artist": "Verena Michelitsch",
+        "type": "Sculpture",
+        "location": "Berlin, Germany",
+        "year": 2018,
+        "tags": ["Sculpture", "Plastic Pollution", "Recycling", "Eco-Art"]
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [151.2153, -33.8568] 
+        "coordinates": [4.8777, 52.3802]
       },
       "properties": {
-        "title": "The Great Wave",
-        "description": "Inspired by Hokusai, this eco-art piece reimagines the wave as polluted with debris to highlight ocean pollution.",
-        "artist": "Chris Jordan",
-        "type": "Painting",
-        "location": "Museum of Contemporary Art, Sydney",
-        "year": 2009
+        "title": "Toxic Garden",
+        "description": "An installation by Agnes Meyer-Brandis that features a garden filled with plants, some real, some artificial, that represent the consequences of toxic waste on ecosystems.",
+        "artist": "Agnes Meyer-Brandis",
+        "type": "Installation",
+        "location": "Leiden, Netherlands",
+        "year": 2016,
+        "tags": ["Environmental Impact", "Toxic Waste", "Installation", "Nature"]
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-86.845, 21.1619]
+        "coordinates": [-73.9821, 40.7515]
       },
       "properties": {
-        "title": "Silent Evolution",
-        "description": "A submerged sculpture installation creating an artificial coral reef to support marine life.",
+        "title": "Submerged Sculpture",
+        "description": "A series of submerged sculptures off the coast of New York, designed to grow into coral reefs, serving as artificial habitats for marine life.",
         "artist": "Jason deCaires Taylor",
         "type": "Sculpture",
-        "location": "Underwater Museum, Cancun",
-        "year": 2010
+        "location": "Coast of New York",
+        "year": 2013,
+        "tags": ["Underwater Sculpture", "Marine Conservation", "Coral Reef", "Eco-Art"]
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-0.149, 51.5033]
+        "coordinates": [13.4050, 52.5200]
       },
       "properties": {
-        "title": "Tree of Life",
-        "description": "A sculpture made from reclaimed materials, symbolizing life, growth, and the importance of trees.",
-        "artist": "Andy Goldsworthy",
+        "title": "River of Time",
+        "description": "A visual installation in Berlin made of thousands of plastic bottles, arranged to depict the passage of time and the rise of environmental degradation.",
+        "artist": "Ha Schult",
+        "type": "Installation",
+        "location": "Berlin, Germany",
+        "year": 2014,
+        "tags": ["Plastic Pollution", "Time", "Urban Art", "Environmental Awareness"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-77.0365, 38.8977]
+      },
+      "properties": {
+        "title": "The Water Table",
+        "description": "An interactive art installation by Anne Percoco, where visitors walk through water-filled trenches, emphasizing the vulnerability of freshwater resources.",
+        "artist": "Anne Percoco",
+        "type": "Installation",
+        "location": "National Mall, Washington D.C.",
+        "year": 2017,
+        "tags": ["Water Conservation", "Interactive Art", "Freshwater Crisis"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [9.1900, 48.4011]
+      },
+      "properties": {
+        "title": "Forest of Plastic",
+        "description": "A sculptural installation in the Black Forest made entirely from plastic debris found in the area, raising awareness about waste in natural environments.",
+        "artist": "Daniela Comani",
         "type": "Sculpture",
-        "location": "Hyde Park, London",
-        "year": 2004
+        "location": "Black Forest, Germany",
+        "year": 2020,
+        "tags": ["Plastic Waste", "Environmental Awareness", "Forest Conservation", "Sculpture"]
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [4.9041, 52.3676] 
+        "coordinates": [-0.1278, 51.5074]
       },
       "properties": {
-        "title": "Plastic Reef",
-        "description": "A sculpture made entirely of plastic waste to raise awareness of ocean pollution.",
-        "artist": "Maarten Vanden Eynde",
+        "title": "Climate Clock",
+        "description": "A digital clock installation in London that shows the time remaining until the global climate emergency reaches a critical point.",
+        "artist": "Gan Golan and Andrew Boyd",
+        "type": "Installation",
+        "location": "London, United Kingdom",
+        "year": 2020,
+        "tags": ["Climate Change", "Time", "Urgency", "Installation"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0.128, 52.2053]
+      },
+      "properties": {
+        "title": "Air Tree",
+        "description": "An interactive tree-like sculpture created from air filters to draw attention to the pollution levels in the city of Cambridge.",
+        "artist": "Diana Scherer's",
         "type": "Sculpture",
-        "location": "Amsterdam City Center",
-        "year": 2008
-      }
-    },
-
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-3.1883, 55.9533] 
-      },
-      "properties": {
-        "title": "Ghost Forest",
-        "description": "An installation of tree stumps brought from West Africa to highlight deforestation and climate change.",
-        "artist": "Angela Palmer",
-        "type": "Installation",
-        "location": "Edinburgh, Scotland",
-        "year": 2009
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-118.3287, 34.0928]
-      },
-      "properties": {
-        "title": "Particulates",
-        "description": "An installation made of smog particles, highlighting air pollution in urban areas.",
-        "artist": "Kim Abeles",
-        "type": "Installation",
-        "location": "Hollywood, Los Angeles",
-        "year": 1992
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [2.3522, 48.8566]
-      },
-      "properties": {
-        "title": "Ice Watch",
-        "description": "An installation using melting ice blocks from Greenland to demonstrate the effects of global warming.",
-        "artist": "Olafur Eliasson",
-        "type": "Installation",
-        "location": "Place du Panthéon, Paris",
-        "year": 2015
-      }
-    }
-  ]
-}
+        "location": "Cambridge, UK",
+        "year": 2019,
+        "tags": ["Air Pollution", "Sculpture", "Interactive", "Ur
