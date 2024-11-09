@@ -8,41 +8,37 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <header>
-        <h1>eco:nection Data Analysis</h1>
-        <nav>
-            <button onclick="showAnalysis('topicCountry')">Topic Clusters by Country</button>
-            <button onclick="showAnalysis('topicYear')">Topic Clusters by Year</button>
-            <button onclick="showAnalysis('artFormTopic')">Art Form and Topic</button>
-        </nav>
-    </header>
 
-    <main>
-        <!-- Page 1: Topic Clusters by Country -->
-        <div id="topicCountryAnalysis" class="analysis-section">
-            <h2>Topic Clusters by Country</h2>
-            <select id="continentFilter" onchange="updateTopicCountryChart()">
-                <option value="">Select Continent</option>
-            </select>
-            <select id="countryFilter" multiple onchange="updateTopicCountryChart()">
-                <option value="">Select Countries</option>
-            </select>
-            <canvas id="topicCountryChart"></canvas>
-        </div>
+<h1>Artworks Data Analysis</h1>
 
-        <!-- Page 2: Topic Clusters by Year -->
-        <div id="topicYearAnalysis" class="analysis-section" style="display:none;">
-            <h2>Topic Clusters by Year</h2>
-            <canvas id="topicYearChart"></canvas>
-        </div>
+<!-- Navigation Tabs -->
+<div>
+    <button onclick="showTab('countryTab')">Topic Cluster by Country</button>
+    <button onclick="showTab('yearTab')">Topic by Year</button>
+    <button onclick="showTab('artformTab')">Topic Cluster by Art Form</button>
+</div>
 
-        <!-- Page 3: Art Form and Topic Clusters -->
-        <div id="artFormTopicAnalysis" class="analysis-section" style="display:none;">
-            <h2>Art Form and Topic Clusters</h2>
-            <canvas id="artFormTopicChart"></canvas>
-        </div>
-    </main>
+<!-- Tab 1: Topic Cluster by Country -->
+<div id="countryTab" class="tab active">
+    <h2>Topic Cluster by Country</h2>
+    <select id="countrySelect" multiple></select>
+    <button onclick="loadCountryData()">Show Data</button>
+    <canvas id="countryChart"></canvas>
+</div>
 
-    <script src="data-analysis.js"></script>
+<!-- Tab 2: Topic by Year -->
+<div id="yearTab" class="tab">
+    <h2>Topic by Year</h2>
+    <canvas id="yearChart"></canvas>
+</div>
+
+<!-- Tab 3: Topic Cluster by Art Form -->
+<div id="artformTab" class="tab">
+    <h2>Topic Cluster by Art Form</h2>
+    <canvas id="artformChart"></canvas>
+</div>
+
+<script src="data-analysis.js"></script> <!-- Link to the JavaScript file -->
+
 </body>
 </html>
