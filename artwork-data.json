@@ -49,10 +49,6 @@
         }
       }
     },
-    
-    // Additional artworks per continent
-
-    // North America
     {
       "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [-118.2437, 34.0522] },
@@ -85,8 +81,6 @@
         }
       }
     },
-
-    // South America
     {
       "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [-58.3816, -34.6037] },
@@ -119,8 +113,6 @@
         }
       }
     },
-
-    // Europe
     {
       "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [2.3522, 48.8566] },
@@ -153,8 +145,6 @@
         }
       }
     },
-
-    // Asia
     {
       "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [139.6917, 35.6895] },
@@ -187,8 +177,6 @@
         }
       }
     },
-
-    // Africa
     {
       "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [31.2336, 30.0444] },
@@ -221,8 +209,6 @@
         }
       }
     },
-
-    // Oceania
     {
       "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [151.2093, -33.8688] },
