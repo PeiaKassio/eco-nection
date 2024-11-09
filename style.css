@@ -50,27 +50,4 @@ canvas {
     height: 400px;
 }
 
-/* Data Analysis Page Specific Styles */
-.data-analysis-container {
-    margin: 20px auto;
-    max-width: 1200px;
-    padding: 20px;
-    background-color: #f8f9fa;
-}
-
-.chart-title {
-    font-size: 1.5em;
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.filter-bar {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-    background-color: #ececec;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
 
