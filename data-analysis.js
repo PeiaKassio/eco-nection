@@ -8,7 +8,7 @@ async function loadData() {
     const response = await fetch('artwork-data.json');
     const data = await response.json();
     
-    // Populate country selection
+    // Populate country selection with countries that have data
     countries = [...new Set(data.features.map(feature => feature.properties.location.split(', ')[1]))]; // Extract country after first comma
     
     const countrySelect = document.getElementById('countrySelect');
