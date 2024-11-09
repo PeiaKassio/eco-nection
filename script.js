@@ -110,33 +110,32 @@ map.on('load', async () => {
         }
     });
 
-    // Popup for individual points
-    map.on('click', 'unclustered-point', (e) => {
-        const coordinates = e.features[0].geometry.coordinates.slice();
-        const properties = e.features[0].properties || {};
+  map.on('click', 'unclustered-point', (e) => {
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const properties = e.features[0].properties || {};
 
-        const title = properties.title || 'Untitled';
-        const description = properties.description || 'No Description';
-        const artist = properties.artist || 'Unknown';
-        const year = properties.year || 'Unknown';
+    const title = properties.title || 'Untitled';
+    const description = properties.description || 'No Description';
+    const artist = properties.artist || 'Unknown';
+    const year = properties.year || 'Unknown';
 
-        // Access topics and artforms from the tags object and join them as comma-separated strings
-        const topics = properties.tags?.topic ? properties.tags.topic.join(', ') : 'No Topics';
-        const artforms = properties.tags?.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
+    // Access topics and artforms from the tags object and join them as comma-separated strings
+    const topics = properties.tags && properties.tags.topic ? properties.tags.topic.join(', ') : 'No Topics';
+    const artforms = properties.tags && properties.tags.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
 
-        new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(`
-                <h3>${title}</h3>
-                <p><strong>Artist:</strong> ${artist}</p>
-                <p><strong>Description:</strong> ${description}</p>
-                <p><strong>Year:</strong> ${year}</p>
-                <p><strong>Topics:</strong> ${topics}</p>
-                <p><strong>Art Forms:</strong> ${artforms}</p>
-            `)
-            .addTo(map);
-    });
+    new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(`
+            <h3>${title}</h3>
+            <p><strong>Artist:</strong> ${artist}</p>
+            <p><strong>Description:</strong> ${description}</p>
+            <p><strong>Year:</strong> ${year}</p>
+            <p><strong>Topics:</strong> ${topics}</p>
+            <p><strong>Art Forms:</strong> ${artforms}</p>
+        `)
+        .addTo(map);
 });
+
 
 // Filter application function
 function applyFilters() {
