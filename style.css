@@ -18,6 +18,21 @@ header {
     text-align: center;
 }
 
+/* Navigation styling */
+nav {
+    background-color: #333; /* Ensure nav has a consistent background */
+}
+
+nav a {
+    color: #ffffff; /* Set link color to white */
+    text-decoration: none; /* Remove underline from links */
+    padding: 10px 15px; /* Add some padding for better clickability */
+}
+
+nav a:hover {
+    color: #FFD700; /* Optional: Change color on hover for better visibility */
+}
+
 /* Search filter container styling */
 .search-filter-container {
     padding: 10px;
@@ -49,5 +64,3 @@ canvas {
     width: 100%;
     height: 400px;
 }
-
-
