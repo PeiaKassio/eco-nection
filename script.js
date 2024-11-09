@@ -109,32 +109,46 @@ map.on('load', async () => {
         }
     });
 
-    // Popup for individual points
     map.on('click', 'unclustered-point', (e) => {
     const coordinates = e.features[0].geometry.coordinates.slice();
     const properties = e.features[0].properties || {};
 
-    console.log("Properties:", properties); // Should log all properties, including tags
+    const title = properties.title || 'Untitled';
+    const description = properties.description || 'No Description';
+    const artist = properties.artist || 'Unknown';
+    const year = properties.year || 'Unknown';
+
+    // Parse tags if it's a JSON string
+    let tags = properties.tags;
+    if (typeof tags === 'string') {
+        try {
+            tags = JSON.parse(tags); // Parse stringified JSON
+        } catch (error) {
+            console.error("Error parsing tags JSON:", error);
+            tags = {}; // Default to empty object if parsing fails
+        }
+    }
 
     // Access topics and artforms as comma-separated strings
-    const topics = Array.isArray(properties.tags?.topic) ? properties.tags.topic.join(', ') : 'No Topics';
-    const artforms = Array.isArray(properties.tags?.artform) ? properties.tags.artform.join(', ') : 'No Art Forms';
+    const topics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
+    const artforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
 
+    console.log("Parsed Tags:", tags);  // Should now show tags as an object
     console.log("Topics:", topics); // Check if topics is a string or still undefined
     console.log("Art Forms:", artforms); // Check if artforms is a string or still undefined
 
     new mapboxgl.Popup()
         .setLngLat(coordinates)
         .setHTML(`
-            <h3>${properties.title || 'Untitled'}</h3>
-            <p><strong>Artist:</strong> ${properties.artist || 'Unknown'}</p>
-            <p><strong>Description:</strong> ${properties.description || 'No Description'}</p>
-            <p><strong>Year:</strong> ${properties.year || 'Unknown'}</p>
+            <h3>${title}</h3>
+            <p><strong>Artist:</strong> ${artist}</p>
+            <p><strong>Description:</strong> ${description}</p>
+            <p><strong>Year:</strong> ${year}</p>
             <p><strong>Topics:</strong> ${topics}</p>
             <p><strong>Art Forms:</strong> ${artforms}</p>
         `)
         .addTo(map);
-});
+    });
 });
 
 function applyFilters() {
