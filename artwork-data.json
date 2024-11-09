@@ -14,7 +14,10 @@
         "type": "Installation",
         "location": "Dia Art Foundation, New York",
         "year": 1977,
-        "tags": ["Land Art", "Nature", "Urban Ecology", "Installation", "Environment"]
+        "tags": {
+          "topic": ["Urban Ecology", "Nature", "Environment"],
+          "artform": ["Land Art", "Installation"]
+        }
       }
     },
     {
@@ -30,7 +33,10 @@
         "type": "Sculpture",
         "location": "Berlin, Germany",
         "year": 2018,
-        "tags": ["Sculpture", "Plastic Pollution", "Recycling", "Eco-Art"]
+        "tags": {
+          "topic": ["Plastic Pollution", "Recycling", "Eco-Art"],
+          "artform": ["Sculpture"]
+        }
       }
     },
     {
@@ -46,7 +52,10 @@
         "type": "Installation",
         "location": "Leiden, Netherlands",
         "year": 2016,
-        "tags": ["Environmental Impact", "Toxic Waste", "Installation", "Nature"]
+        "tags": {
+          "topic": ["Environmental Impact", "Toxic Waste", "Nature"],
+          "artform": ["Installation"]
+        }
       }
     },
     {
@@ -62,7 +71,10 @@
         "type": "Sculpture",
         "location": "Coast of New York",
         "year": 2013,
-        "tags": ["Underwater Sculpture", "Marine Conservation", "Coral Reef", "Eco-Art"]
+        "tags": {
+          "topic": ["Marine Conservation", "Coral Reef", "Eco-Art"],
+          "artform": ["Sculpture"]
+        }
       }
     },
     {
@@ -78,7 +90,10 @@
         "type": "Installation",
         "location": "Berlin, Germany",
         "year": 2014,
-        "tags": ["Plastic Pollution", "Time", "Urban Art", "Environmental Awareness"]
+        "tags": {
+          "topic": ["Plastic Pollution", "Time", "Environmental Awareness"],
+          "artform": ["Installation"]
+        }
       }
     },
     {
@@ -94,7 +109,10 @@
         "type": "Installation",
         "location": "National Mall, Washington D.C.",
         "year": 2017,
-        "tags": ["Water Conservation", "Interactive Art", "Freshwater Crisis"]
+        "tags": {
+          "topic": ["Water Conservation", "Freshwater Crisis"],
+          "artform": ["Installation"]
+        }
       }
     },
     {
@@ -110,7 +128,10 @@
         "type": "Sculpture",
         "location": "Black Forest, Germany",
         "year": 2020,
-        "tags": ["Plastic Waste", "Environmental Awareness", "Forest Conservation", "Sculpture"]
+        "tags": {
+          "topic": ["Plastic Waste", "Environmental Awareness", "Forest Conservation"],
+          "artform": ["Sculpture"]
+        }
       }
     },
     {
@@ -126,7 +147,10 @@
         "type": "Installation",
         "location": "London, United Kingdom",
         "year": 2020,
-        "tags": ["Climate Change", "Time", "Urgency", "Installation"]
+        "tags": {
+          "topic": ["Climate Change", "Time", "Urgency"],
+          "artform": ["Installation"]
+        }
       }
     },
     {
@@ -142,4 +166,11 @@
         "type": "Sculpture",
         "location": "Cambridge, UK",
         "year": 2019,
-        "tags": ["Air Pollution", "Sculpture", "Interactive", "Ur
+        "tags": {
+          "topic": ["Air Pollution"],
+          "artform": ["Sculpture", "Interactive Art"]
+        }
+      }
+    }
+  ]
+}
