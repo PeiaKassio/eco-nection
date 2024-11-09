@@ -48,14 +48,18 @@ map.on('load', async () => {
             clusterRadius: 20
         });
 
-        // Extrahiere alle einzigartigen Topics und Artforms
+        // Extrahiere alle einzigartigen Topics, Artforms und Cluster
         const topics = new Set();
         const artforms = new Set();
+        const clusters = new Set();
 
         artworkData.features.forEach(feature => {
             if (feature.properties.tags) {
                 feature.properties.tags.topic?.forEach(tag => topics.add(tag));
                 feature.properties.tags.artform?.forEach(tag => artforms.add(tag));
+            }
+            if (feature.properties.mainClusterColor) {
+                clusters.add(feature.properties.mainClusterColor); // Clusterfarbe hinzufügen
             }
         });
 
@@ -75,6 +79,15 @@ map.on('load', async () => {
             option.value = artform;
             option.textContent = artform;
             artformSelect.appendChild(option);
+        });
+
+        // Fülle das Cluster Filter Dropdown
+        const clusterSelect = document.getElementById('cluster-filter');
+        clusters.forEach(clusterColor => {
+            const option = document.createElement('option');
+            option.value = clusterColor;
+            option.textContent = clusterColor; // Zeigt den Farbwert an
+            clusterSelect.appendChild(option);
         });
 
         // Definiere Cluster- und Unclustered-Layer
@@ -164,7 +177,6 @@ map.on('load', async () => {
 });
 
 // Filterfunktion
-// Filterfunktion
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopic = document.getElementById('tag-filter').value;
@@ -182,12 +194,10 @@ function applyFilters() {
     }
 
     if (selectedTopic) {
-        // Überprüfe, ob selectedTopic im tags.topic-Array enthalten ist
         filter.push(['in', selectedTopic, ['get', ['get', 'tags'], 'topic']]);
     }
 
     if (selectedCluster) {
-        // Filter auf die Clusterfarbe anwenden
         filter.push(['==', ['get', 'mainClusterColor'], selectedCluster]);
     }
 
