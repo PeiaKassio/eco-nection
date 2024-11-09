@@ -1,70 +1,42 @@
 {
-  "Environmental Pollution": [
-    "Plastic Pollution",
-    "Air Pollution",
-    "Water Pollution",
-    "Plastic Waste",
-    "Toxic Waste",
-    "Pollution in Cities"
-  ],
-  "Climate Change": [
-    "Climate Change",
-    "Global Warming",
-    "Carbon Emissions",
-    "Climate Crisis",
-    "Climate Action"
-  ],
-  "Conservation": [
-    "Marine Conservation",
-    "Forest Conservation",
-    "Wildlife Preservation",
-    "Ecosystem Protection",
-    "Natural Habitat"
-  ],
-  "Sustainable Practices": [
-    "Recycling",
-    "Eco-Art",
-    "Sustainable Design",
-    "Upcycling",
-    "Green Architecture"
-  ],
-  "Water Issues": [
-    "Water Conservation",
-    "Freshwater Crisis",
-    "Ocean Conservation",
-    "Water Shortage"
-  ],
-  "Urban Issues": [
-    "Urban Ecology",
-    "Urban Pollution",
-    "Nature",
-    "Green Spaces",
-    "Environmental Impact"
-  ],
-  "Waste Management": [
-    "Waste Reduction",
-    "Plastic Waste",
-    "Recycling",
-    "Upcycling",
-    "Landfill Diversion"
-  ],
-  "Biodiversity": [
-    "Biodiversity Loss",
-    "Ecosystem Protection",
-    "Wildlife Preservation",
-    "Natural Habitat"
-  ],
-  "Health and Environment": [
-    "Air Quality",
-    "Environmental Health",
-    "Toxic Waste",
-    "Pollution Effects"
-  ],
-  "Environmental Awareness": [
-    "Environmental Awareness",
-    "Climate Change",
-    "Eco-Art",
-    "Urgency",
-    "Time"
-  ]
+  "Environmental Pollution": {
+    "topics": ["Plastic Pollution", "Air Pollution", "Water Pollution", "Plastic Waste", "Toxic Waste", "Pollution in Cities"],
+    "color": "#FF5733"  // Bright orange to represent pollution
+  },
+  "Climate Change": {
+    "topics": ["Climate Change", "Global Warming", "Carbon Emissions", "Climate Crisis", "Climate Action", "Climate Awareness"],
+    "color": "#33A1FF"  // Cool blue to represent climate
+  },
+  "Conservation": {
+    "topics": ["Marine Conservation", "Forest Conservation", "Wildlife Preservation", "Ecosystem Protection", "Natural Habitat", "Coral Reef"],
+    "color": "#28B463"  // Green for conservation efforts
+  },
+  "Sustainable Practices": {
+    "topics": ["Recycling", "Eco-Art", "Sustainable Design", "Upcycling", "Green Architecture"],
+    "color": "#FFD700"  // Gold for sustainability
+  },
+  "Water Issues": {
+    "topics": ["Water Conservation", "Freshwater Crisis", "Ocean Conservation", "Water Shortage"],
+    "color": "#1E90FF"  // Deep blue for water-related topics
+  },
+  "Urban Issues": {
+    "topics": ["Urban Ecology", "Urban Pollution", "Nature", "Green Spaces", "Environmental Impact"],
+    "color": "#8B4513"  // Brown to represent urban earth and land impact
+  },
+  "Waste Management": {
+    "topics": ["Waste Reduction", "Plastic Waste", "Recycling", "Upcycling", "Landfill Diversion"],
+    "color": "#C70039"  // Red for waste-related urgency
+  },
+  "Biodiversity": {
+    "topics": ["Biodiversity Loss", "Ecosystem Protection", "Wildlife Preservation", "Natural Habitat"],
+    "color": "#4B0082"  // Indigo for biodiversity and ecosystem
+  },
+  "Health and Environment": {
+    "topics": ["Air Quality", "Environmental Health", "Toxic Waste", "Pollution Effects"],
+    "color": "#FF69B4"  // Pink to highlight health-focused environmental issues
+  },
+  "Environmental Awareness": {
+    "topics": ["Environmental Awareness", "Eco-Art", "Urgency", "Time"],
+    "color": "#FF8C00"  // Orange to emphasize awareness and urgency
+  }
 }
