@@ -23,20 +23,20 @@ map.on('load', async () => {
         const topicClusterResponse = await fetch('topicClusters.json');
         const topicClusters = await topicClusterResponse.json();
 
-        // Funktion, um den Cluster basierend auf dem ersten Thema zu finden
+        // Funktion, um die Farbe für ein Cluster basierend auf dem ersten Thema zu finden
         function getClusterColor(firstTopic) {
             for (const [cluster, data] of Object.entries(topicClusters)) {
                 if (data.topics.includes(firstTopic)) {
-                    return cluster; // Rückgabe des Clusterbezeichners
+                    return data.color; // Rückgabe der Farbe aus topicClusters.json
                 }
             }
-            return null; // Kein Cluster gefunden
+            return '#000000'; // Standardfarbe, falls kein Cluster gefunden wird
         }
 
         // Füge Farben zu den Kunstwerken basierend auf dem ersten Thema hinzu
         artworkData.features.forEach(feature => {
             const firstTopic = feature.properties.tags.topic?.[0]; // Nimm nur das erste Thema
-            feature.properties.mainCluster = getClusterColor(firstTopic); // Cluster anstelle der Farbe
+            feature.properties.mainClusterColor = getClusterColor(firstTopic); // Farbe statt Cluster-ID speichern
         });
 
         // Füge die Quelle mit den modifizierten Kunstwerken hinzu
@@ -51,15 +51,11 @@ map.on('load', async () => {
         // Extrahiere alle einzigartigen Topics und Artforms
         const topics = new Set();
         const artforms = new Set();
-        const clusters = new Set(); // Set für die Cluster
 
         artworkData.features.forEach(feature => {
             if (feature.properties.tags) {
                 feature.properties.tags.topic?.forEach(tag => topics.add(tag));
                 feature.properties.tags.artform?.forEach(tag => artforms.add(tag));
-                if (feature.properties.mainCluster) {
-                    clusters.add(feature.properties.mainCluster); // Füge Cluster zu Set hinzu
-                }
             }
         });
 
@@ -70,15 +66,6 @@ map.on('load', async () => {
             option.value = topic;
             option.textContent = topic;
             topicSelect.appendChild(option);
-        });
-
-        // Fülle das TopicCluster Filter Dropdown
-        const clusterSelect = document.getElementById('cluster-filter'); // Neues Dropdown für Cluster
-        clusters.forEach(cluster => {
-            const option = document.createElement('option');
-            option.value = cluster;
-            option.textContent = cluster; // Clustername
-            clusterSelect.appendChild(option);
         });
 
         // Fülle das Artform Filter Dropdown
@@ -130,7 +117,7 @@ map.on('load', async () => {
             source: 'artworks',
             filter: ['!', ['has', 'point_count']],
             paint: {
-                'circle-color': ['get', 'mainCluster'], // Verwende den Cluster-Tag hier
+                'circle-color': ['get', 'mainClusterColor'], // Verwende die Farbe des Clusters hier
                 'circle-radius': 10,
                 'circle-stroke-width': 1,
                 'circle-stroke-color': '#fff'
@@ -180,7 +167,6 @@ map.on('load', async () => {
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopic = document.getElementById('tag-filter').value;
-    const selectedCluster = document.getElementById('cluster-filter').value; // Cluster-Filter
     const selectedArtForm = document.getElementById('artform-filter').value;
 
     const filter = ['all'];
@@ -197,10 +183,6 @@ function applyFilters() {
         filter.push(['in', selectedTopic, ['get', 'tags', 'topic']]);
     }
 
-    if (selectedCluster) {
-        filter.push(['in', selectedCluster, ['get', 'mainCluster']]); // Nach Cluster filtern
-    }
-
     if (selectedArtForm) {
         filter.push(['in', selectedArtForm, ['get', 'tags', 'artform']]);
     }
@@ -214,5 +196,4 @@ function applyFilters() {
 
 document.getElementById('search-bar').addEventListener('input', applyFilters);
 document.getElementById('tag-filter').addEventListener('change', applyFilters);
-document.getElementById('cluster-filter').addEventListener('change', applyFilters); // Event Listener für Cluster-Filter
 document.getElementById('artform-filter').addEventListener('change', applyFilters);
