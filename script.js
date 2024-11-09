@@ -167,12 +167,12 @@ function applyFilters() {
         ]);
     }
 
-    // Apply topic filter
+    // Apply topic filter by checking if topic is included in tags.topic array
     if (selectedTopic) {
         filter.push(['in', selectedTopic, ['get', 'topic', ['get', 'tags']]]);
     }
 
-    // Apply artform filter
+    // Apply artform filter by checking if artform is included in tags.artform array
     if (selectedArtForm) {
         filter.push(['in', selectedArtForm, ['get', 'artform', ['get', 'tags']]]);
     }
@@ -182,3 +182,7 @@ function applyFilters() {
     // Set the filter to only show points that match criteria
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 }
+
+// Add the event listener to the Apply button
+document.getElementById('apply-filters').addEventListener('click', applyFilters);
+
