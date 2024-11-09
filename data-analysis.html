@@ -1,39 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Analysis</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-    <header>
-        <h1>eco:nection Data Analysis</h1>
-        <nav>
-            <button onclick="showAnalysis('topicCountry')">Topic Cluster by Country</button>
-            <button onclick="showAnalysis('topicYear')">Topic Cluster by Year</button>
-        </nav>
-    </header>
+<div id="analysis-section">
+    <h2>Topic Cluster Analysis by Continent and Country</h2>
+    <select id="continent-filter">
+        <option value="all">All Continents</option>
+        <!-- Add continent options dynamically -->
+    </select>
+    <select id="country-filter">
+        <option value="all">All Countries</option>
+        <!-- Add country options dynamically -->
+    </select>
+    <canvas id="continent-country-chart"></canvas>
 
-    <main>
-        <!-- Analysis Containers -->
-        <div id="topicCountryAnalysis" class="analysis-section">
-            <h2>Topic Cluster by Country</h2>
-            <select id="countryFilter" onchange="updateTopicCountryChart()">
-                <option value="">Select a Country</option>
-                <!-- Populate country options here -->
-            </select>
-            <canvas id="topicCountryChart"></canvas>
-        </div>
+    <h2>Topic Cluster by Year - Timeline with Continents</h2>
+    <select id="continent-year-filter">
+        <option value="all">All Continents</option>
+        <!-- Add continent options dynamically -->
+    </select>
+    <canvas id="continent-timeline-chart"></canvas>
 
-        <div id="topicYearAnalysis" class="analysis-section" style="display:none;">
-            <h2>Topic Cluster by Year</h2>
-            <input type="number" id="yearFilter" placeholder="Enter Year" onchange="updateTopicYearChart()">
-            <canvas id="topicYearChart"></canvas>
-        </div>
-    </main>
-
-    <script src="data-analysis.js"></script>
-</body>
-</html>
+    <h2>Topic Cluster by Year - Timeline with Countries</h2>
+    <select id="country-year-filter">
+        <option value="all">All Countries</option>
+        <!-- Add country options dynamically -->
+    </select>
+    <canvas id="country-timeline-chart"></canvas>
+</div>
