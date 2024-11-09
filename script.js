@@ -12,7 +12,7 @@ map.on('style.load', () => {
     map.setFog({
         'range': [0.5, 10],
         'color': 'rgb(186, 210, 235)',
-        'horizon-blend': 0.1,
+        'horizon-blend': 0.1
     });
 });
 
@@ -109,32 +109,35 @@ map.on('load', async () => {
         }
     });
 
-  map.on('click', 'unclustered-point', (e) => {
-    const coordinates = e.features[0].geometry.coordinates.slice();
-    const properties = e.features[0].properties || {};
+    // Popup for individual points
+    map.on('click', 'unclustered-point', (e) => {
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const properties = e.features[0].properties || {};
 
-    const title = properties.title || 'Untitled';
-    const description = properties.description || 'No Description';
-    const artist = properties.artist || 'Unknown';
-    const year = properties.year || 'Unknown';
+        const title = properties.title || 'Untitled';
+        const description = properties.description || 'No Description';
+        const artist = properties.artist || 'Unknown';
+        const year = properties.year || 'Unknown';
 
-    // Access and format `tags.topic` and `tags.artform` as strings
-    const topics = Array.isArray(properties.tags?.topic) ? properties.tags.topic.join(', ') : 'No Topics';
-    const artforms = Array.isArray(properties.tags?.artform) ? properties.tags.artform.join(', ') : 'No Art Forms';
-    console.log("Tags:", properties.tags);
-    console.log("Topics:", topics);
-    console.log("Art Forms:", artforms);
-    new mapboxgl.Popup()
-        .setLngLat(coordinates)
-        .setHTML(`
-            <h3>${title}</h3>
-            <p><strong>Artist:</strong> ${artist}</p>
-            <p><strong>Description:</strong> ${description}</p>
-            <p><strong>Year:</strong> ${year}</p>
-            <p><strong>Topics:</strong> ${topics}</p>
-            <p><strong>Art Forms:</strong> ${artforms}</p>
-        `)
-        .addTo(map);
+        // Access and format `tags.topic` and `tags.artform` as strings
+        const topics = Array.isArray(properties.tags?.topic) ? properties.tags.topic.join(', ') : 'No Topics';
+        const artforms = Array.isArray(properties.tags?.artform) ? properties.tags.artform.join(', ') : 'No Art Forms';
+
+        console.log("Tags:", properties.tags);
+        console.log("Topics:", topics);
+        console.log("Art Forms:", artforms);
+
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(`
+                <h3>${title}</h3>
+                <p><strong>Artist:</strong> ${artist}</p>
+                <p><strong>Description:</strong> ${description}</p>
+                <p><strong>Year:</strong> ${year}</p>
+                <p><strong>Topics:</strong> ${topics}</p>
+                <p><strong>Art Forms:</strong> ${artforms}</p>
+            `)
+            .addTo(map);
     });
 });
 
@@ -156,15 +159,11 @@ function applyFilters() {
 
     // Correct access to nested `tags.topic` and `tags.artform` for filtering
     if (selectedTopic) {
-        filter.push([
-            'in', selectedTopic, ['get', 'topic', ['get', 'tags']]
-        ]);
+        filter.push(['in', selectedTopic, ['get', 'topic', ['get', 'tags']]]);
     }
 
     if (selectedArtForm) {
-        filter.push([
-            'in', selectedArtForm, ['get', 'artform', ['get', 'tags']]
-        ]);
+        filter.push(['in', selectedArtForm, ['get', 'artform', ['get', 'tags']]]);
     }
 
     console.log("Applying filter:", JSON.stringify(filter));
