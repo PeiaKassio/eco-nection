@@ -1,4 +1,6 @@
 // Load and analyze the data
+import continentMapping from './continentMapping.js';
+
 async function loadData() {
     const response = await fetch('artwork-data.json');
     const data = await response.json();
