@@ -122,7 +122,9 @@ map.on('load', async () => {
     // Access topics and artforms from the tags object and join them as comma-separated strings
     const topics = properties.tags && properties.tags.topic ? properties.tags.topic.join(', ') : 'No Topics';
     const artforms = properties.tags && properties.tags.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
-
+    console.log("Tags:", properties.tags);
+    console.log("Topics:", topics);
+    console.log("Art Forms:", artforms);
     new mapboxgl.Popup()
         .setLngLat(coordinates)
         .setHTML(`
