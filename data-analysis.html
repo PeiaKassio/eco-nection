@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include Chart.js library for creating charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Data Analysis of Artworks</h1>
+    </header>
+    
+    <section>
+        <h2>Most Common Tags by Country</h2>
+        <canvas id="tagsByCountryChart"></canvas>
+    </section>
+
+    <section>
+        <h2>Most Common Tags by Art Form</h2>
+        <canvas id="tagsByArtFormChart"></canvas>
+    </section>
+
+    <!-- Custom script to load and analyze data -->
+    <script src="data-analysis.js"></script>
+</body>
+</html>
