@@ -174,4 +174,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.showAnalysis = function(section) {
         document.getElementById('topicCountryAnalysis').style.display = section === 'topicCountry' ? 'block' : 'none';
         document.getElementById('topicYearAnalysis').style.display = section === 'topicYear' ? 'block' : 'none';
-        document.getElementById('artFormTopicAnalysis').style.display =
+        document.getElementById('artFormTopicAnalysis').style.display = section === 'artFormTopic' ? 'block' : 'none';
+    };
+});
