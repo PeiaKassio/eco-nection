@@ -135,8 +135,8 @@ map.on('load', async () => {
             <p><strong>Art Forms:</strong> ${artforms}</p>
         `)
         .addTo(map);
+    });
 });
-
 
 // Filter application function
 function applyFilters() {
