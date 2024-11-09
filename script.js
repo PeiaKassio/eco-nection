@@ -158,7 +158,7 @@ function applyFilters() {
 
     const filter = ['all'];
 
-    // Apply search filter for title or description
+    // Search filter for title or description
     if (searchText) {
         filter.push([
             'any',
@@ -167,22 +167,23 @@ function applyFilters() {
         ]);
     }
 
-    // Apply topic filter by checking if topic is included in tags.topic array
+    // Topic filter - checking if the selected topic is in tags.topic array
     if (selectedTopic) {
         filter.push(['in', selectedTopic, ['get', 'topic', ['get', 'tags']]]);
     }
 
-    // Apply artform filter by checking if artform is included in tags.artform array
+    // Artform filter - checking if the selected artform is in tags.artform array
     if (selectedArtForm) {
         filter.push(['in', selectedArtForm, ['get', 'artform', ['get', 'tags']]]);
     }
 
     console.log("Applying filter:", JSON.stringify(filter));
 
-    // Set the filter to only show points that match criteria
+    // Apply filter to the unclustered-point layer to show only matching points
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
+    
+    // Hide clusters if any filter is applied, as they aggregate multiple points
+    map.setFilter('clusters', filter.length > 1 ? ['==', 'point_count', 0] : null);
 }
 
-// Add the event listener to the Apply button
-document.getElementById('apply-filters').addEventListener('click', applyFilters);
 
