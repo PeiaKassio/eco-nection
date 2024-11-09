@@ -1,179 +1,129 @@
-import continentMapping from './continentMapping.js';
+// Dummy data and Chart instances
+let countryData = {}; // Initialize country data here
+let yearData = {}; // Initialize year data here
 
-// Load and process the data
-async function loadData() {
-    try {
-        const response = await fetch('artwork-data.json');
-        const data = await response.json();
-        console.log('Loaded data:', data);
+let topicCountryChart, topicYearChart; // Chart instances
 
-        const tagsByCountry = {};
-        const tagsByContinent = {};
-        const focusShiftByContinent = {};
-
-        data.features.forEach((feature) => {
-            const location = feature.properties.location;
-            const country = location.split(', ').pop();
-            const continent = continentMapping[country] || "Other";
-            const topics = feature.properties.tags.topic || [];
-            const year = feature.properties.year || "Unknown";
-
-            console.log(`Processing ${country} in ${continent} for year ${year}`);
-
-            // Count topics by country
-            if (!tagsByCountry[country]) tagsByCountry[country] = {};
-            topics.forEach(topic => {
-                tagsByCountry[country][topic] = (tagsByCountry[country][topic] || 0) + 1;
-            });
-
-            // Count topics by continent
-            if (!tagsByContinent[continent]) tagsByContinent[continent] = {};
-            topics.forEach(topic => {
-                tagsByContinent[continent][topic] = (tagsByContinent[continent][topic] || 0) + 1;
-            });
-
-            // Track environmental focus shift by continent over time
-            if (!focusShiftByContinent[continent]) focusShiftByContinent[continent] = {};
-            if (!focusShiftByContinent[continent][year]) focusShiftByContinent[continent][year] = {};
-            topics.forEach(topic => {
-                focusShiftByContinent[continent][year][topic] = 
-                    (focusShiftByContinent[continent][year][topic] || 0) + 1;
-            });
-        });
-
-        console.log('Tags by Country:', tagsByCountry);
-        console.log('Tags by Continent:', tagsByContinent);
-        console.log('Focus Shift Over Time:', focusShiftByContinent);
-
-        // Generate the charts
-        createTagsByCountryChart(tagsByCountry);
-        createTagsByContinentChart(tagsByContinent);
-        createFocusShiftOverTimeChart(focusShiftByContinent);
-    } catch (error) {
-        console.error('Error loading or processing data:', error);
-    }
+// Initialize country and year filters
+function initializeFilters(data) {
+    const countryFilter = document.getElementById('countryFilter');
+    const countries = Array.from(new Set(data.map(item => item.properties.location.split(', ').pop())));
+    
+    countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country;
+        option.textContent = country;
+        countryFilter.appendChild(option);
+    });
 }
 
-// Create bar chart for topics by country
-function createTagsByCountryChart(data) {
-    const ctx = document.getElementById('tagsByCountryChart').getContext('2d');
-    const countries = Object.keys(data);
-    const tags = [...new Set(countries.flatMap(country => Object.keys(data[country])))];
+// Load data and initialize charts
+fetch('artwork-data.json')
+    .then(response => response.json())
+    .then(data => {
+        // Prepare countryData and yearData based on data
+        prepareAnalysisData(data.features);
+        initializeFilters(data.features);
 
-    const datasets = tags.map(tag => ({
-        label: tag,
-        data: countries.map(country => data[country][tag] || 0),
-        backgroundColor: getRandomColor(),
-    }));
+        // Initialize charts
+        initializeTopicCountryChart();
+        initializeTopicYearChart();
+    });
 
-    new Chart(ctx, {
+// Prepare analysis data by country and year
+function prepareAnalysisData(features) {
+    countryData = {};
+    yearData = {};
+
+    features.forEach(feature => {
+        const topic = feature.properties.tags.topic[0]; // Use first topic in list as main topic
+        const country = feature.properties.location.split(', ').pop();
+        const year = feature.properties.year;
+
+        // Add data to countryData
+        if (!countryData[country]) countryData[country] = {};
+        if (!countryData[country][topic]) countryData[country][topic] = 0;
+        countryData[country][topic]++;
+
+        // Add data to yearData
+        if (!yearData[year]) yearData[year] = {};
+        if (!yearData[year][topic]) yearData[year][topic] = 0;
+        yearData[year][topic]++;
+    });
+}
+
+// Show the selected analysis section
+function showAnalysis(type) {
+    document.getElementById('topicCountryAnalysis').style.display = type === 'topicCountry' ? 'block' : 'none';
+    document.getElementById('topicYearAnalysis').style.display = type === 'topicYear' ? 'block' : 'none';
+}
+
+// Initialize Topic Country Chart
+function initializeTopicCountryChart() {
+    const ctx = document.getElementById('topicCountryChart').getContext('2d');
+    topicCountryChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: countries,
-            datasets: datasets,
+            labels: [], // Filled in update function
+            datasets: [{
+                label: 'Topic Clusters by Country',
+                data: [],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
         },
         options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Most Common Topic Tags by Country'
-                },
-            },
-            responsive: true,
             scales: {
-                x: { stacked: true },
-                y: { beginAtZero: true, stacked: true },
-            },
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
     });
 }
 
-// Create bar chart for topics by continent
-function createTagsByContinentChart(data) {
-    const ctx = document.getElementById('tagsByContinentChart').getContext('2d');
-    const continents = Object.keys(data);
-    const tags = [...new Set(continents.flatMap(continent => Object.keys(data[continent])))];
+// Update Topic Country Chart based on selected country
+function updateTopicCountryChart() {
+    const selectedCountry = document.getElementById('countryFilter').value;
+    const topics = countryData[selectedCountry] || {};
 
-    const datasets = tags.map(tag => ({
-        label: tag,
-        data: continents.map(continent => data[continent][tag] || 0),
-        backgroundColor: getRandomColor(),
-    }));
+    topicCountryChart.data.labels = Object.keys(topics);
+    topicCountryChart.data.datasets[0].data = Object.values(topics);
+    topicCountryChart.update();
+}
 
-    new Chart(ctx, {
+// Initialize Topic Year Chart
+function initializeTopicYearChart() {
+    const ctx = document.getElementById('topicYearChart').getContext('2d');
+    topicYearChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: continents,
-            datasets: datasets,
+            labels: [], // Filled in update function
+            datasets: [{
+                label: 'Topic Clusters by Year',
+                data: [],
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1
+            }]
         },
         options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Most Common Topic Tags by Continent'
-                },
-            },
-            responsive: true,
             scales: {
-                x: { stacked: true },
-                y: { beginAtZero: true, stacked: true },
-            },
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
     });
 }
 
-// Create line chart for environmental focus shift over time by continent
-function createFocusShiftOverTimeChart(data) {
-    const ctx = document.getElementById('focusShiftOverTimeChart').getContext('2d');
-    const continents = Object.keys(data);
-    const years = [...new Set(continents.flatMap(continent => Object.keys(data[continent])))];
-    const tags = [...new Set(
-        continents.flatMap(continent => 
-            Object.values(data[continent]).flatMap(yearData => Object.keys(yearData))
-        )
-    )];
+// Update Topic Year Chart based on selected year
+function updateTopicYearChart() {
+    const selectedYear = document.getElementById('yearFilter').value;
+    const topics = yearData[selectedYear] || {};
 
-    const datasets = tags.map(tag => ({
-        label: tag,
-        data: years.map(year => 
-            continents.reduce((sum, continent) => 
-                sum + (data[continent][year] ? (data[continent][year][tag] || 0) : 0), 0)
-        ),
-        borderColor: getRandomColor(),
-        fill: false,
-        tension: 0.1
-    }));
-
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: years,
-            datasets: datasets,
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Environmental Focus Shift Over Time by Continent'
-                },
-            },
-            responsive: true,
-            scales: {
-                y: { beginAtZero: true },
-            },
-        }
-    });
+    topicYearChart.data.labels = Object.keys(topics);
+    topicYearChart.data.datasets[0].data = Object.values(topics);
+    topicYearChart.update();
 }
-
-// Utility function to generate random colors for the chart
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
-// Load data and create charts
-loadData();
