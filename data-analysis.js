@@ -1,59 +1,105 @@
-// Initialize charts with empty datasets and options
-const continentCountryChart = new Chart(document.getElementById('continent-country-chart').getContext('2d'), {/* Chart config */});
-const continentTimelineChart = new Chart(document.getElementById('continent-timeline-chart').getContext('2d'), {/* Chart config */});
-const countryTimelineChart = new Chart(document.getElementById('country-timeline-chart').getContext('2d'), {/* Chart config */});
+import { continentMapping } from './continentMapping.js';
 
-// Populate continent and country filters from the data
-function populateFilters(data) {
-    const continents = [...new Set(data.map(item => item.continent))];
-    const countries = [...new Set(data.map(item => item.country))];
+let topicCountryChart, topicYearChart;
 
-    const continentFilter = document.getElementById('continent-filter');
-    const countryFilter = document.getElementById('country-filter');
-    const continentYearFilter = document.getElementById('continent-year-filter');
-    const countryYearFilter = document.getElementById('country-year-filter');
+async function fetchData() {
+    const response = await fetch('artwork-data.json');
+    const artworkData = await response.json();
 
-    continents.forEach(continent => {
-        continentFilter.add(new Option(continent, continent));
-        continentYearFilter.add(new Option(continent, continent));
+    const topicsByCountry = {};
+    const topicsByYear = {};
+
+    artworkData.features.forEach(feature => {
+        const country = feature.properties.location.split(', ').pop();
+        const year = feature.properties.year;
+        const topics = feature.properties.tags.topic;
+
+        if (!topicsByCountry[country]) topicsByCountry[country] = {};
+        topics.forEach(topic => {
+            topicsByCountry[country][topic] = (topicsByCountry[country][topic] || 0) + 1;
+        });
+
+        if (!topicsByYear[year]) topicsByYear[year] = {};
+        topics.forEach(topic => {
+            topicsByYear[year][topic] = (topicsByYear[year][topic] || 0) + 1;
+        });
     });
 
-    countries.forEach(country => {
-        countryFilter.add(new Option(country, country));
-        countryYearFilter.add(new Option(country, country));
+    return { topicsByCountry, topicsByYear };
+}
+
+function populateCountryFilter(topicsByCountry) {
+    const countryFilter = document.getElementById('countryFilter');
+    Object.keys(topicsByCountry).forEach(country => {
+        const option = document.createElement('option');
+        option.value = country;
+        option.textContent = country;
+        countryFilter.appendChild(option);
     });
 }
 
-// Filter and update charts based on user selections
-function updateCharts(data) {
-    const selectedContinent = document.getElementById('continent-filter').value;
-    const selectedCountry = document.getElementById('country-filter').value;
-    
-    // Apply continent and country filters to data for charts
-    const filteredData = data.filter(item =>
-        (selectedContinent === 'all' || item.continent === selectedContinent) &&
-        (selectedCountry === 'all' || item.country === selectedCountry)
-    );
-
-    // Update each chart with the filtered data
-    continentCountryChart.data = prepareDataForContinentCountryChart(filteredData);
-    continentCountryChart.update();
-
-    continentTimelineChart.data = prepareDataForTimelineChart(filteredData, 'continent');
-    continentTimelineChart.update();
-
-    countryTimelineChart.data = prepareDataForTimelineChart(filteredData, 'country');
-    countryTimelineChart.update();
+function showAnalysis(analysisType) {
+    document.getElementById('topicCountryAnalysis').style.display = (analysisType === 'topicCountry') ? 'block' : 'none';
+    document.getElementById('topicYearAnalysis').style.display = (analysisType === 'topicYear') ? 'block' : 'none';
 }
 
-// Add event listeners for filters
-document.getElementById('continent-filter').addEventListener('change', () => updateCharts(data));
-document.getElementById('country-filter').addEventListener('change', () => updateCharts(data));
-document.getElementById('continent-year-filter').addEventListener('change', () => updateCharts(data));
-document.getElementById('country-year-filter').addEventListener('change', () => updateCharts(data));
+function updateTopicCountryChart(topicsByCountry) {
+    const country = document.getElementById('countryFilter').value;
+    const continent = continentMapping[country] || "Unknown";
+    const data = topicsByCountry[country] || {};
 
-// Initial load of data and chart setup
-fetch('your-data-source.json').then(response => response.json()).then(data => {
-    populateFilters(data);
-    updateCharts(data); // Initial chart rendering
+    if (topicCountryChart) topicCountryChart.destroy();
+
+    topicCountryChart = new Chart(document.getElementById('topicCountryChart'), {
+        type: 'bar',
+        data: {
+            labels: Object.keys(data),
+            datasets: [{
+                label: `Topic Clusters in ${country} (${continent})`,
+                data: Object.values(data),
+                backgroundColor: 'rgba(75, 192, 192, 0.6)'
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+}
+
+function updateTopicYearChart(topicsByYear) {
+    const year = document.getElementById('yearFilter').value;
+    const data = topicsByYear[year] || {};
+
+    if (topicYearChart) topicYearChart.destroy();
+
+    topicYearChart = new Chart(document.getElementById('topicYearChart'), {
+        type: 'line',
+        data: {
+            labels: Object.keys(data),
+            datasets: [{
+                label: `Topic Clusters in ${year}`,
+                data: Object.values(data),
+                backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const { topicsByCountry, topicsByYear } = await fetchData();
+    populateCountryFilter(topicsByCountry);
+
+    document.getElementById('countryFilter').addEventListener('change', () => updateTopicCountryChart(topicsByCountry));
+    document.getElementById('yearFilter').addEventListener('input', () => updateTopicYearChart(topicsByYear));
 });
