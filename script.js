@@ -169,21 +169,22 @@ function applyFilters() {
 
     // Topic filter - checking if the selected topic is in tags.topic array
     if (selectedTopic) {
-        filter.push(['in', selectedTopic, ['get', 'topic', ['get', 'tags']]]);
+        filter.push(['in', selectedTopic, ['get', 'tags', 'topic']]);
     }
 
     // Artform filter - checking if the selected artform is in tags.artform array
     if (selectedArtForm) {
-        filter.push(['in', selectedArtForm, ['get', 'artform', ['get', 'tags']]]);
+        filter.push(['in', selectedArtForm, ['get', 'tags', 'artform']]);
     }
 
     console.log("Applying filter:", JSON.stringify(filter));
 
     // Apply filter to the unclustered-point layer to show only matching points
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
-    
-    // Hide clusters if any filter is applied, as they aggregate multiple points
+
+    // Apply filter to hide clusters when a filter is active
     map.setFilter('clusters', filter.length > 1 ? ['==', 'point_count', 0] : null);
 }
 
+document.getElementById('apply-filters').addEventListener('click', applyFilters);
 
