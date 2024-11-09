@@ -244,10 +244,5 @@ function createArtFormClusterChart(data) {
    });
 }
 
-// Utility function to generate random colors for the chart (not used anymore)
-function getRandomColor() { 
-   return '#000000'; // Placeholder since we are using predefined colors from clusters JSON.
-}
-
 // Initial load of data
 loadData().then(() => loadYearData()).then(() => loadArtFormData());
