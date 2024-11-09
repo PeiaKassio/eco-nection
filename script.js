@@ -5,7 +5,7 @@ const map = new mapboxgl.Map({
     style: 'mapbox://styles/mapbox/dark-v10',
     center: [0, 0],
     zoom: 1.5,
-     projection: 'globe'
+    projection: 'globe'
 });
 
 map.on('style.load', () => {
@@ -111,33 +111,32 @@ map.on('load', async () => {
     });
 
     // Popup for individual points
-  map.on('click', 'unclustered-point', (e) => {
-    const coordinates = e.features[0].geometry.coordinates.slice();
-    const properties = e.features[0].properties || {};
+    map.on('click', 'unclustered-point', (e) => {
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const properties = e.features[0].properties || {};
 
-    const title = properties.title || 'Untitled';
-    const description = properties.description || 'No Description';
-    const artist = properties.artist || 'Unknown';
-    const year = properties.year || 'Unknown';
+        const title = properties.title || 'Untitled';
+        const description = properties.description || 'No Description';
+        const artist = properties.artist || 'Unknown';
+        const year = properties.year || 'Unknown';
 
-    // Access topics and artforms from the tags object and join them as comma-separated strings
-    const topics = properties.tags?.topic ? properties.tags.topic.join(', ') : 'No Topics';
-    const artforms = properties.tags?.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
+        // Access topics and artforms from the tags object and join them as comma-separated strings
+        const topics = properties.tags?.topic ? properties.tags.topic.join(', ') : 'No Topics';
+        const artforms = properties.tags?.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
 
-    new mapboxgl.Popup()
-        .setLngLat(coordinates)
-        .setHTML(`
-            <h3>${title}</h3>
-            <p><strong>Artist:</strong> ${artist}</p>
-            <p><strong>Description:</strong> ${description}</p>
-            <p><strong>Year:</strong> ${year}</p>
-            <p><strong>Topics:</strong> ${topics}</p>
-            <p><strong>Art Forms:</strong> ${artforms}</p>
-        `)
-        .addTo(map);
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(`
+                <h3>${title}</h3>
+                <p><strong>Artist:</strong> ${artist}</p>
+                <p><strong>Description:</strong> ${description}</p>
+                <p><strong>Year:</strong> ${year}</p>
+                <p><strong>Topics:</strong> ${topics}</p>
+                <p><strong>Art Forms:</strong> ${artforms}</p>
+            `)
+            .addTo(map);
+    });
 });
-
-
 
 // Filter application function
 function applyFilters() {
@@ -155,12 +154,17 @@ function applyFilters() {
         ]);
     }
 
+    // Correct access to nested `tags.topic` and `tags.artform` for filtering
     if (selectedTopic) {
-        filter.push(['in', selectedTopic, ['get', ['get', 'tags'], 'topic']]);
+        filter.push([
+            'in', selectedTopic, ['get', 'topic', ['get', 'tags']]
+        ]);
     }
 
     if (selectedArtForm) {
-        filter.push(['in', selectedArtForm, ['get', ['get', 'tags'], 'artform']]);
+        filter.push([
+            'in', selectedArtForm, ['get', 'artform', ['get', 'tags']]
+        ]);
     }
 
     console.log("Applying filter:", JSON.stringify(filter));
@@ -168,4 +172,5 @@ function applyFilters() {
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 }
 
+// Apply button event listener for filters
 document.getElementById('apply-filters').addEventListener('click', applyFilters);
