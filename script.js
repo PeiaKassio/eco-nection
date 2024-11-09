@@ -13,7 +13,6 @@ map.on('style.load', () => {
         'range': [0.5, 10],
         'color': 'rgb(186, 210, 235)',
         'horizon-blend': 0.1,
-        'star-intensity': 0.15
     });
 });
 
