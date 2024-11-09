@@ -86,8 +86,11 @@ map.on('load', async () => {
         layout: {
             'text-field': '{point_count_abbreviated}',
             'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-            'text-size': 12
-        }
+             'text-size': 12
+    },
+    paint: {
+        'text-color': '#ffffff' // Set to white or another contrasting color
+    }
     });
 
     // Ungeclusterte Punkte für einzelne Kunstwerke
