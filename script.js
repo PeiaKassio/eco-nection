@@ -106,19 +106,31 @@ map.on('load', async () => {
 
     // Popup für einzelne Punkte
     map.on('click', 'unclustered-point', (e) => {
-        const coordinates = e.features[0].geometry.coordinates.slice();
-        const { title, description, artist, year } = e.features[0].properties;
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const properties = e.features[0].properties || {};
 
-        new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(`
-                <h3>${title}</h3>
-                <p><strong>Artist:</strong> ${artist}</p>
-                <p><strong>Description:</strong> ${description}</p>
-                <p><strong>Year:</strong> ${year}</p>
-            `)
-            .addTo(map);
-    });
+    // Extract individual properties
+    const title = properties.title || 'Untitled';
+    const description = properties.description || 'No Description';
+    const artist = properties.artist || 'Unknown';
+    const year = properties.year || 'Unknown';
+
+    // Format tags (topics and artforms)
+    const topics = properties.tags && properties.tags.topic ? properties.tags.topic.join(', ') : 'No Topics';
+    const artforms = properties.tags && properties.tags.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
+
+    new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(`
+            <h3>${title}</h3>
+            <p><strong>Artist:</strong> ${artist}</p>
+            <p><strong>Description:</strong> ${description}</p>
+            <p><strong>Year:</strong> ${year}</p>
+            <p><strong>Topics:</strong> ${topics}</p>
+            <p><strong>Art Forms:</strong> ${artforms}</p>
+        `)
+        .addTo(map);
+});
 
     // Klick auf Cluster zum Zoomen
     map.on('click', 'clusters', (e) => {
