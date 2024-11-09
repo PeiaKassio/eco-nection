@@ -4,7 +4,7 @@ async function loadData() {
     try {
         const response = await fetch('artwork-data.json');
         const data = await response.json();
-        console.log('Loaded data:', data); // Debugging log to confirm data load
+        console.log('Loaded data:', data); // Confirm data load
 
         const tagsByCountry = {};
         const tagsByContinent = {};
@@ -17,7 +17,6 @@ async function loadData() {
             const topics = feature.properties.tags.topic || [];
             const year = feature.properties.year || "Unknown";
 
-            // Check country and continent assignments
             console.log(`Processing ${country} in ${continent} for year ${year}`);
 
             // Count topics by country
@@ -41,7 +40,6 @@ async function loadData() {
             });
         });
 
-        // Debugging logs to check processed data
         console.log('Tags by Country:', tagsByCountry);
         console.log('Tags by Continent:', tagsByContinent);
         console.log('Focus Shift Over Time:', focusShiftByContinent);
@@ -54,3 +52,4 @@ async function loadData() {
         console.error('Error loading or processing data:', error);
     }
 }
+
