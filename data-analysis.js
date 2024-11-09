@@ -7,7 +7,7 @@ async function loadData() {
     const data = await response.json();
     
     // Populate country selection
-    countries = [...new Set(data.features.map(feature => feature.properties.location.split(', ').pop()))];
+    countries = [...new Set(data.features.map(feature => feature.properties.location.split(', ')[1]))]; // Extract country after first comma
     
     const countrySelect = document.getElementById('countrySelect');
     countries.forEach(country => {
@@ -44,10 +44,11 @@ async function loadCountryData() {
     });
 
     data.features.forEach((feature) => {
-        const country = feature.properties.location.split(', ').pop();
+        const locationParts = feature.properties.location.split(', ');
+        const country = locationParts.length > 1 ? locationParts[1] : locationParts[0]; // Extract country after first comma
         if (selectedCountries.includes(country)) {
             const topics = feature.properties.tags.topic || [];
-            const clusterName = topicToClusterMap[topics[0]];
+            const clusterName = topicToClusterMap[topics[0]]; // Use the first topic as the main cluster
 
             if (!tagsByCountry[country]) tagsByCountry[country] = {};
             if (clusterName) {
@@ -188,7 +189,7 @@ async function loadArtFormData() {
    data.features.forEach((feature) => {
        const artforms = feature.properties.tags.artform || [];
        const topics = feature.properties.tags.topic || [];
-       const clusterName = topicToClusterMap[topics[0]];
+       const clusterName = topicToClusterMap[topics[0]]; // Use the first topic as the main cluster
 
        artforms.forEach(artform => {
            if (!tagsByArtForm[artform]) tagsByArtForm[artform] = {};
