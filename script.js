@@ -159,7 +159,7 @@ map.on('load', async () => {
     document.getElementById('artform-filter').addEventListener('change', applyFilters);
 });
 
-// Filter-Funktion außerhalb des `map.on('load', ...)` Blocks
+// Function to apply filters
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopic = document.getElementById('tag-filter').value;
@@ -167,7 +167,7 @@ function applyFilters() {
 
     const filter = ['all'];
 
-    // Suche nach Titel oder Beschreibung
+    // Filter by search text in title or description
     if (searchText) {
         filter.push([
             'any',
@@ -176,16 +176,19 @@ function applyFilters() {
         ]);
     }
 
-    // Filtern nach Topic
+    // Filter by topic
     if (selectedTopic) {
         filter.push(['in', selectedTopic, ['get', 'tags', 'topic']]);
     }
 
-    // Filtern nach Artform
+    // Filter by art form
     if (selectedArtForm) {
         filter.push(['in', selectedArtForm, ['get', 'tags', 'artform']]);
     }
 
-    // Filter anwenden
+    // Apply the filter to the map layer
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 }
+
+// Add an event listener to the "Apply" button
+document.getElementById('apply-filters').addEventListener('click', applyFilters);
