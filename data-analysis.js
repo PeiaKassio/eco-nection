@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         initArtFormTopicChart();
 
         continentFilter.addEventListener('change', populateCountryFilter);
+        countryFilter.addEventListener('change', updateTopicCountryChart);
 
     } catch (error) {
         console.error("Error loading data:", error);
@@ -49,6 +50,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 countryFilter.appendChild(option);
             });
         }
+        updateTopicCountryChart();
     }
 
     // Initialize Topic Country Chart
@@ -61,12 +63,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateTopicCountryChart();
     }
 
-    // Initialize Topic Year Chart
+    // Initialize Topic Year Chart with a timeline by topics per year
     function initTopicYearChart() {
         topicYearChart = new Chart(topicYearChartCanvas, {
-            type: 'line',
+            type: 'bar',
             data: { labels: [], datasets: [] },
-            options: { responsive: true, scales: { x: { type: 'linear', position: 'bottom' }, y: { beginAtZero: true } } }
+            options: { responsive: true, scales: { x: { stacked: true, beginAtZero: true }, y: { beginAtZero: true } } }
         });
         updateTopicYearChart();
     }
@@ -107,28 +109,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         topicCountryChart.update();
     }
 
-    // Update Topic Year Chart
+    // Update Topic Year Chart to show topics across years in a timeline
     function updateTopicYearChart() {
-        const yearFilter = parseInt(document.getElementById('yearFilter').value, 10);
-
-        const filteredData = artworkData.features.filter(feature => {
-            const year = feature.properties.year;
-            return !yearFilter || year === yearFilter;
-        });
+        const minYear = Math.min(...artworkData.features.map(feature => feature.properties.year));
+        const maxYear = Math.max(...artworkData.features.map(feature => feature.properties.year));
 
         const yearlyTopicCounts = {};
-        filteredData.forEach(feature => {
+        artworkData.features.forEach(feature => {
             const year = feature.properties.year;
-            yearlyTopicCounts[year] = (yearlyTopicCounts[year] || 0) + 1;
+            const topic = feature.properties.tags.topic[0];
+            if (!yearlyTopicCounts[year]) yearlyTopicCounts[year] = {};
+            yearlyTopicCounts[year][topic] = (yearlyTopicCounts[year][topic] || 0) + 1;
         });
 
-        topicYearChart.data.labels = Object.keys(yearlyTopicCounts);
-        topicYearChart.data.datasets = [{
-            label: 'Topics by Year',
-            data: Object.values(yearlyTopicCounts),
-            borderColor: 'rgba(255, 99, 132, 0.6)',
-            fill: false
-        }];
+        const years = Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i);
+        const topics = [...new Set(artworkData.features.flatMap(feature => feature.properties.tags.topic[0]))];
+
+        topicYearChart.data.labels = years;
+        topicYearChart.data.datasets = topics.map((topic, index) => ({
+            label: topic,
+            data: years.map(year => (yearlyTopicCounts[year]?.[topic] || 0)),
+            backgroundColor: `hsl(${index * (360 / topics.length)}, 70%, 50%)`
+        }));
         topicYearChart.update();
     }
 
@@ -152,10 +154,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const topics = [...new Set(artForms.flatMap(artForm => Object.keys(topicArtFormCounts[artForm])))];
 
         artFormTopicChart.data.labels = topics;
-        artFormTopicChart.data.datasets = artForms.map(artForm => ({
+        artFormTopicChart.data.datasets = artForms.map((artForm, index) => ({
             label: artForm,
             data: topics.map(topic => topicArtFormCounts[artForm][topic] || 0),
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}` // Random color for each art form
+            backgroundColor: `hsl(${index * (360 / artForms.length)}, 70%, 50%)`
         }));
         artFormTopicChart.update();
     }
