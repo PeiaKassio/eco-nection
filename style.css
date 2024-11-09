@@ -1,11 +1,16 @@
+/* Ensure body and html take up full height for Flexbox layout */
 body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #0a1d0e; /* Dark green background */
     color: #ffffff;
+    height: 100%; /* Full height for Flexbox to work correctly */
+    display: flex;
+    flex-direction: column;
 }
 
+/* Header styling */
 header {
     padding: 15px;
     background-color: #333;
@@ -13,22 +18,33 @@ header {
     text-align: center;
 }
 
+/* Search filter container styling */
+.search-filter-container {
+    padding: 10px;
+    background-color: #444;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Map container to fill the remaining viewport space */
 #map {
+    flex-grow: 1; /* Expand to fill remaining space */
     width: 100%;
-    height: 80vh;
-    margin-top: 10px;
 }
 
+/* Popup content styling */
 .mapboxgl-popup-content {
-    color: #000; /* Setze hier die gewünschte Schriftfarbe ein */
-    background-color: #fff; /* Optional: Hintergrundfarbe für bessere Lesbarkeit */
+    color: #000; /* Text color for readability */
+    background-color: #fff; /* Background color for readability */
 }
 
+/* Section styling for general content */
 section {
     margin: 20px auto;
     max-width: 800px;
 }
 
+/* Canvas styling, in case you’re using canvas elements */
 canvas {
     width: 100%;
     height: 400px;
