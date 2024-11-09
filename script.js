@@ -118,13 +118,9 @@ map.on('load', async () => {
     const artist = properties.artist || 'Unknown';
     const year = properties.year || 'Unknown';
 
-    // Safely format tags (topics and artforms)
-    const topicTags = properties.tags && Array.isArray(properties.tags.topic) 
-        ? properties.tags.topic.join(', ') 
-        : 'No Topics';
-    const artformTags = properties.tags && Array.isArray(properties.tags.artform) 
-        ? properties.tags.artform.join(', ') 
-        : 'No Art Forms';
+    // Safely format topics and artforms from the tags object
+    const topics = properties.tags && properties.tags.topic ? properties.tags.topic.join(', ') : 'No Topics';
+    const artforms = properties.tags && properties.tags.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
 
     new mapboxgl.Popup()
         .setLngLat(coordinates)
@@ -133,11 +129,12 @@ map.on('load', async () => {
             <p><strong>Artist:</strong> ${artist}</p>
             <p><strong>Description:</strong> ${description}</p>
             <p><strong>Year:</strong> ${year}</p>
-            <p><strong>Topics:</strong> ${topicTags}</p>
-            <p><strong>Art Forms:</strong> ${artformTags}</p>
+            <p><strong>Topics:</strong> ${topics}</p>
+            <p><strong>Art Forms:</strong> ${artforms}</p>
         `)
         .addTo(map);
 });
+
 
 
     // Klick auf Cluster zum Zoomen
