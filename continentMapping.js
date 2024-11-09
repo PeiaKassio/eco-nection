@@ -53,3 +53,5 @@ const continentMapping = {
     // Default to "Other" if not found in the map
     "Other": "Other"
 };
+
+export default continentMapping;
