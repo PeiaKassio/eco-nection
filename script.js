@@ -30,7 +30,7 @@ map.on('load', async () => {
                     return data.color; // Rückgabe der Farbe aus topicClusters.json
                 }
             }
-            return '#000000'; // Standardfarbe, falls kein Cluster gefunden wird
+            return '#ffffff'; // Standardfarbe, falls kein Cluster gefunden wird
         }
 
         // Füge Farben zu den Kunstwerken basierend auf dem ersten Thema hinzu
@@ -168,6 +168,7 @@ function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopic = document.getElementById('tag-filter').value;
     const selectedArtForm = document.getElementById('artform-filter').value;
+    const selectedCluster = document.getElementById('cluster-filter').value;
 
     const filter = ['all'];
 
@@ -181,6 +182,11 @@ function applyFilters() {
 
     if (selectedTopic) {
         filter.push(['in', selectedTopic, ['get', 'tags', 'topic']]);
+    }
+
+    if (selectedCluster) {
+        // Filter auf die Clusterfarbe anwenden
+        filter.push(['==', ['get', 'mainClusterColor'], selectedCluster]);
     }
 
     if (selectedArtForm) {
@@ -197,3 +203,4 @@ function applyFilters() {
 document.getElementById('search-bar').addEventListener('input', applyFilters);
 document.getElementById('tag-filter').addEventListener('change', applyFilters);
 document.getElementById('artform-filter').addEventListener('change', applyFilters);
+document.getElementById('cluster-filter').addEventListener('change', applyFilters);
