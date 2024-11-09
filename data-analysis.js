@@ -31,74 +31,74 @@ function showTab(tabId) {
 
 // Load data for Topic Cluster by Country
 async function loadCountryData() {
-    const response = await fetch('artwork-data.json');
-    const data = await response.json();
+   const response = await fetch('artwork-data.json');
+   const data = await response.json();
 
-    const selectedCountries = Array.from(document.getElementById('countrySelect').selectedOptions).map(option => option.value);
-    
-    const tagsByCountry = {};
-    
-    data.features.forEach((feature) => {
-        const locationParts = feature.properties.location.split(', ');
-        const country = locationParts.length > 1 ? locationParts[1] : locationParts[0]; // Extract country after first comma
-        if (selectedCountries.includes(country)) {
-            const topics = feature.properties.tags.topic || [];
-            topics.forEach(topic => {
-                // Find the cluster for each topic
-                for (const [clusterName, clusterInfo] of Object.entries(topicClusters)) {
-                    if (clusterInfo.topics.includes(topic)) {
-                        if (!tagsByCountry[country]) tagsByCountry[country] = {};
-                        tagsByCountry[country][clusterName] = (tagsByCountry[country][clusterName] || 0) + 1; // Count occurrences of each cluster
-                    }
-                }
-            });
-        }
-    });
+   const selectedCountries = Array.from(document.getElementById('countrySelect').selectedOptions).map(option => option.value);
+   
+   const tagsByCountry = {};
+   
+   data.features.forEach((feature) => {
+       const locationParts = feature.properties.location.split(', ');
+       const country = locationParts.length > 1 ? locationParts[1] : locationParts[0]; // Extract country after first comma
+       if (selectedCountries.includes(country)) {
+           const topics = feature.properties.tags.topic || [];
+           topics.forEach(topic => {
+               // Find the cluster for each topic
+               for (const [clusterName, clusterInfo] of Object.entries(topicClusters)) {
+                   if (clusterInfo.topics.includes(topic)) {
+                       if (!tagsByCountry[country]) tagsByCountry[country] = {};
+                       tagsByCountry[country][clusterName] = (tagsByCountry[country][clusterName] || 0) + 1; // Count occurrences of each cluster
+                   }
+               }
+           });
+       }
+   });
 
-    createCountryClusterChart(tagsByCountry);
+   createCountryClusterChart(tagsByCountry);
 }
 
 // Create bar chart for topic clusters by country
 function createCountryClusterChart(data) {
-    const ctx = document.getElementById('countryChart').getContext('2d');
+   const ctx = document.getElementById('countryChart').getContext('2d');
 
-    const countries = Object.keys(data);
-    
-    // Prepare datasets
-    const datasets = [];
-    
-    countries.forEach(country => {
-        Object.keys(data[country]).forEach(cluster => {
-            if (!datasets.find(dataset => dataset.label === cluster)) { // Create a new dataset for each unique cluster
-                datasets.push({
-                    label: cluster,
-                    data: countries.map(c => (c === country ? data[country][cluster] : 0)),
-                    backgroundColor: topicClusters[cluster].color, // Use color from clusters JSON
-                });
-            }
-        });
-    });
+   const countries = Object.keys(data);
+   
+   // Prepare datasets
+   const datasets = [];
+   
+   countries.forEach(country => {
+       Object.keys(data[country]).forEach(cluster => {
+           if (!datasets.find(dataset => dataset.label === cluster)) { // Create a new dataset for each unique cluster
+               datasets.push({
+                   label: cluster,
+                   data: countries.map(c => (c === country ? data[country][cluster] : 0)),
+                   backgroundColor: topicClusters[cluster].color, // Use color from clusters JSON
+               });
+           }
+       });
+   });
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: countries,
-            datasets: datasets,
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Topic Clusters by Country'
-                },
-            },
-            responsive: true,
-            scales: {
-                x: { stacked: true },
-                y: { beginAtZero: true },
-            },
-        }
-    });
+   new Chart(ctx, {
+       type: 'bar',
+       data: {
+           labels: countries,
+           datasets: datasets,
+       },
+       options: {
+           plugins: {
+               title: {
+                   display: true,
+                   text: 'Topic Clusters by Country'
+               },
+           },
+           responsive: true,
+           scales: {
+               x: { stacked: true },
+               y: { beginAtZero: true },
+           },
+       }
+   });
 }
 
 // Load data for Topic Cluster by Year
