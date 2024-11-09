@@ -56,7 +56,12 @@ async function loadCountryData() {
         }
     });
 
-   createCountryClusterChart(tagsByCountry);
+   // Call function to create chart only if there is data for the selected countries
+   if (Object.keys(tagsByCountry).length > 0) {
+       createCountryClusterChart(tagsByCountry);
+   } else {
+       alert("Please select at least one country and ensure there is data available.");
+   }
 }
 
 // Create bar chart for topic clusters by country
@@ -213,41 +218,4 @@ function createArtFormClusterChart(data) {
    const artforms = Object.keys(data);
    
    // Prepare datasets
-   const datasets = [];
-   
-   artforms.forEach(artform => {
-       Object.keys(data[artform]).forEach(cluster => {
-           if (!datasets.find(dataset => dataset.label === cluster)) { // Create a new dataset for each unique cluster
-               datasets.push({
-                   label: cluster,
-                   data: artforms.map(a => (a === artform ? data[artform][cluster] : 0)),
-                   backgroundColor: topicClusters[cluster].color, // Use color from clusters JSON
-               });
-           }
-       });
-   });
-
-   new Chart(ctx, {
-       type: 'bar',
-       data: {
-           labels: artforms,
-           datasets: datasets,
-       },
-       options: {
-           plugins: {
-               title: {
-                   display: true,
-                   text: 'Topic Clusters by Art Form'
-               },
-           },
-           responsive: true,
-           scales: {
-               x: { stacked: true },
-               y: { beginAtZero: true },
-           },
-       }
-   });
-}
-
-// Initial load of data when the page loads
-loadData().then(() => loadYearData()).then(() => loadArtFormData());
+   const datasets
