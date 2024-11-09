@@ -205,3 +205,4 @@ function applyFilters() {
 document.getElementById('search-bar').addEventListener('input', applyFilters);
 document.getElementById('tag-filter').addEventListener('change', applyFilters);
 document.getElementById('artform-filter').addEventListener('change', applyFilters);
+
