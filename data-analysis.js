@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         const artworkResponse = await fetch('artwork-data.json');
         artworkData = await artworkResponse.json();
-        continentMapping = await loadContinentMapping();
+
+        // Assuming continentMapping is available globally or loaded in another file
+        continentMapping = window.continentMapping || {};  // Ensure continentMapping is loaded properly
         topicClusters = await fetch('topicClusters.json').then(res => res.json());
 
         // Initialize chart setup
@@ -135,7 +137,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         artFormTopicChart.update();
     }
 
-    // Get continent based on country
+    // Get continent for a country
     function getContinent(country) {
         for (const [continent, countries] of Object.entries(continentMapping)) {
             if (countries.includes(country)) {
@@ -151,4 +153,32 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('topicYearAnalysis').style.display = section === 'topicYear' ? 'block' : 'none';
         document.getElementById('artFormTopicAnalysis').style.display = section === 'artFormTopic' ? 'block' : 'none';
     };
+
+    // Initialize charts
+    function initTopicCountryChart() {
+        topicCountryChart = new Chart(topicCountryChartCanvas, {
+            type: 'bar',
+            data: { labels: [], datasets: [] },
+            options: { responsive: true, scales: { x: { stacked: true }, y: { beginAtZero: true, stacked: true } } }
+        });
+        updateTopicCountryChart();
+    }
+
+    function initTopicYearChart() {
+        topicYearChart = new Chart(topicYearChartCanvas, {
+            type: 'line',
+            data: { labels: [], datasets: [] },
+            options: { responsive: true, scales: { x: { type: 'linear', position: 'bottom' }, y: { beginAtZero: true } } }
+        });
+        updateTopicYearChart();
+    }
+
+    function initArtFormTopicChart() {
+        artFormTopicChart = new Chart(artFormTopicChartCanvas, {
+            type: 'bar',
+            data: { labels: [], datasets: [] },
+            options: { responsive: true, scales: { x: { stacked: true }, y: { beginAtZero: true, stacked: true } } }
+        });
+        updateArtFormTopicChart();
+    }
 });
