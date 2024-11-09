@@ -1,5 +1,6 @@
 // Global variables
 let countries = [];
+let topicClusters = {};
 
 // Load and analyze the data
 async function loadData() {
@@ -16,6 +17,10 @@ async function loadData() {
         option.textContent = country;
         countrySelect.appendChild(option);
     });
+
+    // Load topic clusters
+    const clusterResponse = await fetch('topicClusters.json');
+    topicClusters = await clusterResponse.json();
 }
 
 // Show selected tab
@@ -28,32 +33,25 @@ function showTab(tabId) {
 async function loadCountryData() {
     const response = await fetch('artwork-data.json');
     const data = await response.json();
-    const clustersResponse = await fetch('topicClusters.json');
-    const clustersData = await clustersResponse.json();
 
     const selectedCountries = Array.from(document.getElementById('countrySelect').selectedOptions).map(option => option.value);
     
     const tagsByCountry = {};
     
-    // Map topics to clusters
-    const topicToClusterMap = {};
-    clustersData.clusters.forEach(cluster => {
-        cluster.topics.forEach(topic => {
-            topicToClusterMap[topic] = cluster.name;
-        });
-    });
-
     data.features.forEach((feature) => {
         const locationParts = feature.properties.location.split(', ');
         const country = locationParts.length > 1 ? locationParts[1] : locationParts[0]; // Extract country after first comma
         if (selectedCountries.includes(country)) {
             const topics = feature.properties.tags.topic || [];
-            const clusterName = topicToClusterMap[topics[0]]; // Use the first topic as the main cluster
-
-            if (!tagsByCountry[country]) tagsByCountry[country] = {};
-            if (clusterName) {
-                tagsByCountry[country][clusterName] = (tagsByCountry[country][clusterName] || 0) + 1;
-            }
+            topics.forEach(topic => {
+                // Find the cluster for each topic
+                for (const [clusterName, clusterInfo] of Object.entries(topicClusters)) {
+                    if (clusterInfo.topics.includes(topic)) {
+                        if (!tagsByCountry[country]) tagsByCountry[country] = {};
+                        tagsByCountry[country][clusterName] = (tagsByCountry[country][clusterName] || 0) + 1; // Count occurrences of each cluster
+                    }
+                }
+            });
         }
     });
 
@@ -63,15 +61,23 @@ async function loadCountryData() {
 // Create bar chart for topic clusters by country
 function createCountryClusterChart(data) {
     const ctx = document.getElementById('countryChart').getContext('2d');
-    
-    const countries = Object.keys(data);
-    const clusters = [...new Set(countries.flatMap(country => Object.keys(data[country])))];
 
-    const datasets = clusters.map(cluster => ({
-        label: cluster,
-        data: countries.map(country => data[country][cluster] || 0),
-        backgroundColor: getRandomColor(),
-    }));
+    const countries = Object.keys(data);
+    
+    // Prepare datasets
+    const datasets = [];
+    
+    countries.forEach(country => {
+        Object.keys(data[country]).forEach(cluster => {
+            if (!datasets.find(dataset => dataset.label === cluster)) { // Create a new dataset for each unique cluster
+                datasets.push({
+                    label: cluster,
+                    data: countries.map(c => (c === country ? data[country][cluster] : 0)),
+                    backgroundColor: topicClusters[cluster].color, // Use color from clusters JSON
+                });
+            }
+        });
+    });
 
     new Chart(ctx, {
         type: 'bar',
@@ -89,13 +95,13 @@ function createCountryClusterChart(data) {
             responsive: true,
             scales: {
                 x: { stacked: true },
-                y: { beginAtZero: true, stacked: true },
+                y: { beginAtZero: true },
             },
         }
     });
 }
 
-// Load data for Topic by Year
+// Load data for Topic Cluster by Year
 async function loadYearData() {
     const response = await fetch('artwork-data.json');
     const data = await response.json();
@@ -109,35 +115,36 @@ async function loadYearData() {
             const topics = feature.properties.tags.topic || [];
             
             topics.forEach(topic => {
-                yearCounts[year][topic] = (yearCounts[year][topic] || 0) + 1;
+                // Find the cluster for each topic
+                for (const [clusterName, clusterInfo] of Object.entries(topicClusters)) {
+                    if (clusterInfo.topics.includes(topic)) {
+                        yearCounts[year][clusterName] = (yearCounts[year][clusterName] || 0) + 1; // Count occurrences of each cluster per year
+                    }
+                }
             });
         }
     });
 
-    createYearTopicChart(yearCounts);
+   createYearClusterChart(yearCounts);
 }
 
-// Create line chart for topics by year
-function createYearTopicChart(data) {
-    const ctx = document.getElementById('yearChart').getContext('2d');
+// Create line chart for topic clusters by year
+function createYearClusterChart(data) {
+   const ctx = document.getElementById('yearChart').getContext('2d');
 
-    const years = Object.keys(data).map(year => parseInt(year));
-    
-    // Get min and max year
-    const minYear = Math.min(...years);
-    const maxYear = Math.max(...years);
-
+   const years = Object.keys(data).map(year => parseInt(year));
+   
    // Prepare datasets
-   const topicsSet = new Set();
-    
+   const clustersSet = new Set();
+   
    years.forEach(year => {
-       Object.keys(data[year]).forEach(topic => topicsSet.add(topic));
+       Object.keys(data[year]).forEach(cluster => clustersSet.add(cluster));
    });
 
-   const datasets = Array.from(topicsSet).map(topic => ({
-       label: topic,
-       data: years.map(year => data[year][topic] || 0),
-       borderColor: getRandomColor(),
+   const datasets = Array.from(clustersSet).map(cluster => ({
+       label: cluster,
+       data: years.map(year => data[year][cluster] || 0),
+       borderColor: topicClusters[cluster].color, // Use color from clusters JSON
        fill: false,
        tension: 0.1,
      }));
@@ -152,7 +159,7 @@ function createYearTopicChart(data) {
              plugins: {
                  title: {
                      display: true,
-                     text: 'Topics by Year'
+                     text: 'Topic Clusters by Year'
                  },
              },
              responsive: true,
@@ -160,9 +167,7 @@ function createYearTopicChart(data) {
                  x: { 
                      type: 'linear',
                      position: 'bottom',
-                     min: minYear,
-                     max: maxYear
-                  },
+                 },
                  y: { beginAtZero: true },
              },
          }
@@ -173,29 +178,23 @@ function createYearTopicChart(data) {
 async function loadArtFormData() {
    const response = await fetch('artwork-data.json');
    const data = await response.json();
-   const clustersResponse = await fetch('topicClusters.json');
-   const clustersData = await clustersResponse.json();
 
    const tagsByArtForm = {};
    
-   // Map topics to clusters
-   const topicToClusterMap = {};
-   clustersData.clusters.forEach(cluster => {
-       cluster.topics.forEach(topic => {
-           topicToClusterMap[topic] = cluster.name;
-       });
-   });
-
    data.features.forEach((feature) => {
        const artforms = feature.properties.tags.artform || [];
        const topics = feature.properties.tags.topic || [];
-       const clusterName = topicToClusterMap[topics[0]]; // Use the first topic as the main cluster
 
        artforms.forEach(artform => {
            if (!tagsByArtForm[artform]) tagsByArtForm[artform] = {};
-           if (clusterName) {
-               tagsByArtForm[artform][clusterName] = (tagsByArtForm[artform][clusterName] || 0) + 1;
-           }
+           topics.forEach(topic => {
+               // Find the cluster for each topic
+               for (const [clusterName, clusterInfo] of Object.entries(topicClusters)) {
+                   if (clusterInfo.topics.includes(topic)) {
+                       tagsByArtForm[artform][clusterName] = (tagsByArtForm[artform][clusterName] || 0) + 1; // Count occurrences of each cluster per art form
+                   }
+               }
+           });
        });
    });
 
@@ -207,13 +206,21 @@ function createArtFormClusterChart(data) {
    const ctx = document.getElementById('artformChart').getContext('2d');
 
    const artforms = Object.keys(data);
-   const clustersSet = [...new Set(artforms.flatMap(artform => Object.keys(data[artform])))];
-
-   const datasets = clustersSet.map(cluster => ({
-       label: cluster,
-       data: artforms.map(artform => data[artform][cluster] || 0),
-       backgroundColor: getRandomColor(),
-   }));
+   
+   // Prepare datasets
+   const datasets = [];
+   
+   artforms.forEach(artform => {
+       Object.keys(data[artform]).forEach(cluster => {
+           if (!datasets.find(dataset => dataset.label === cluster)) { // Create a new dataset for each unique cluster
+               datasets.push({
+                   label: cluster,
+                   data: artforms.map(a => (a === artform ? data[artform][cluster] : 0)),
+                   backgroundColor: topicClusters[cluster].color, // Use color from clusters JSON
+               });
+           }
+       });
+   });
 
    new Chart(ctx, {
        type: 'bar',
@@ -231,20 +238,15 @@ function createArtFormClusterChart(data) {
            responsive: true,
            scales: {
                x: { stacked: true },
-               y: { beginAtZero: true, stacked: true },
+               y: { beginAtZero: true },
            },
        }
    });
 }
 
-// Utility function to generate random colors for the chart
-function getRandomColor() {
-   const letters = '0123456789ABCDEF';
-   let color = '#';
-   for (let i = 0; i < 6; i++) {
-       color += letters[Math.floor(Math.random() * 16)];
-   }
-   return color;
+// Utility function to generate random colors for the chart (not used anymore)
+function getRandomColor() { 
+   return '#000000'; // Placeholder since we are using predefined colors from clusters JSON.
 }
 
 // Initial load of data
