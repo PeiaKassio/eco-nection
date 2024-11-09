@@ -62,19 +62,23 @@ async function loadCountryData() {
 function createCountryClusterChart(data) {
    const ctx = document.getElementById('countryChart').getContext('2d');
 
-   const countries = Object.keys(data);
-   
-   // Prepare datasets
    const datasets = [];
-   
-   countries.forEach(country => {
+   const countriesArray = Object.keys(data);
+
+   countriesArray.forEach(country => {
        Object.keys(data[country]).forEach(cluster => {
            if (!datasets.find(dataset => dataset.label === cluster)) { // Create a new dataset for each unique cluster
                datasets.push({
                    label: cluster,
-                   data: countries.map(c => (c === country ? data[country][cluster] : 0)),
+                   data: countriesArray.map(c => (c === country ? data[country][cluster] : 0)),
                    backgroundColor: topicClusters[cluster].color, // Use color from clusters JSON
                });
+           } else {
+               // If dataset already exists, update its data
+               datasets.find(dataset => dataset.label === cluster).data =
+                   datasets.find(dataset => dataset.label === cluster).data.map((value, index) =>
+                       value + (countriesArray[index] === country ? data[country][cluster] : 0)
+                   );
            }
        });
    });
@@ -82,7 +86,7 @@ function createCountryClusterChart(data) {
    new Chart(ctx, {
        type: 'bar',
        data: {
-           labels: countries,
+           labels: countriesArray,
            datasets: datasets,
        },
        options: {
