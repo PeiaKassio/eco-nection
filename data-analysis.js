@@ -1,10 +1,66 @@
-import continentMapping from './continentMapping.js';
+// Define continent mapping directly in this file
+const continentMapping = {
+      // North America
+    "United States": "North America",
+    "Canada": "North America",
+    "Mexico": "North America",
 
+    // South America
+    "Brazil": "South America",
+    "Argentina": "South America",
+    "Colombia": "South America",
+    "Chile": "South America",
+    "Peru": "South America",
+
+    // Europe
+    "United Kingdom": "Europe",
+    "Germany": "Europe",
+    "France": "Europe",
+    "Netherlands": "Europe",
+    "Italy": "Europe",
+    "Spain": "Europe",
+    "Russia": "Europe",
+    "Sweden": "Europe",
+    "Switzerland": "Europe",
+    "Poland": "Europe",
+    "Norway": "Europe",
+
+    // Asia
+    "China": "Asia",
+    "Japan": "Asia",
+    "India": "Asia",
+    "South Korea": "Asia",
+    "Indonesia": "Asia",
+    "Turkey": "Asia",
+    "Saudi Arabia": "Asia",
+    "United Arab Emirates": "Asia",
+    "Thailand": "Asia",
+    "Malaysia": "Asia",
+    "Singapore": "Asia",
+
+    // Africa
+    "South Africa": "Africa",
+    "Nigeria": "Africa",
+    "Egypt": "Africa",
+    "Kenya": "Africa",
+    "Ethiopia": "Africa",
+    "Ghana": "Africa",
+    "Morocco": "Africa",
+
+    // Oceania
+    "Australia": "Oceania",
+    "New Zealand": "Oceania",
+
+    // Default to "Other" if not found in the map
+    "Other": "Other"
+};
+
+// Load and process the data
 async function loadData() {
     try {
         const response = await fetch('artwork-data.json');
         const data = await response.json();
-        console.log('Loaded data:', data); // Confirm data load
+        console.log('Loaded data:', data); // Debugging log to confirm data load
 
         const tagsByCountry = {};
         const tagsByContinent = {};
@@ -53,3 +109,126 @@ async function loadData() {
     }
 }
 
+// Create bar chart for topics by country
+function createTagsByCountryChart(data) {
+    const ctx = document.getElementById('tagsByCountryChart').getContext('2d');
+    const countries = Object.keys(data);
+    const tags = [...new Set(countries.flatMap(country => Object.keys(data[country])))];
+
+    const datasets = tags.map(tag => ({
+        label: tag,
+        data: countries.map(country => data[country][tag] || 0),
+        backgroundColor: getRandomColor(),
+    }));
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: countries,
+            datasets: datasets,
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Most Common Topic Tags by Country'
+                },
+            },
+            responsive: true,
+            scales: {
+                x: { stacked: true },
+                y: { beginAtZero: true, stacked: true },
+            },
+        }
+    });
+}
+
+// Create bar chart for topics by continent
+function createTagsByContinentChart(data) {
+    const ctx = document.getElementById('tagsByContinentChart').getContext('2d');
+    const continents = Object.keys(data);
+    const tags = [...new Set(continents.flatMap(continent => Object.keys(data[continent])))];
+
+    const datasets = tags.map(tag => ({
+        label: tag,
+        data: continents.map(continent => data[continent][tag] || 0),
+        backgroundColor: getRandomColor(),
+    }));
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: continents,
+            datasets: datasets,
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Most Common Topic Tags by Continent'
+                },
+            },
+            responsive: true,
+            scales: {
+                x: { stacked: true },
+                y: { beginAtZero: true, stacked: true },
+            },
+        }
+    });
+}
+
+// Create line chart for environmental focus shift over time by continent
+function createFocusShiftOverTimeChart(data) {
+    const ctx = document.getElementById('focusShiftOverTimeChart').getContext('2d');
+    const continents = Object.keys(data);
+    const years = [...new Set(continents.flatMap(continent => Object.keys(data[continent])))];
+    const tags = [...new Set(
+        continents.flatMap(continent => 
+            Object.values(data[continent]).flatMap(yearData => Object.keys(yearData))
+        )
+    )];
+
+    const datasets = tags.map(tag => ({
+        label: tag,
+        data: years.map(year => 
+            continents.reduce((sum, continent) => 
+                sum + (data[continent][year] ? (data[continent][year][tag] || 0) : 0), 0)
+        ),
+        borderColor: getRandomColor(),
+        fill: false,
+        tension: 0.1
+    }));
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: datasets,
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Environmental Focus Shift Over Time by Continent'
+                },
+            },
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true },
+            },
+        }
+    });
+}
+
+// Utility function to generate random colors for the chart
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Load data and create charts
+loadData();
