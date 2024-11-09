@@ -56,12 +56,7 @@ async function loadCountryData() {
         }
     });
 
-   // Call function to create chart only if there is data for the selected countries
-   if (Object.keys(tagsByCountry).length > 0) {
-       createCountryClusterChart(tagsByCountry);
-   } else {
-       alert("Please select at least one country and ensure there is data available.");
-   }
+   createCountryClusterChart(tagsByCountry);
 }
 
 // Create bar chart for topic clusters by country
