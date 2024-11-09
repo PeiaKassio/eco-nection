@@ -1,4 +1,3 @@
-// Load and analyze the data
 import continentMapping from './continentMapping.js';
 
 async function loadData() {
@@ -6,34 +5,43 @@ async function loadData() {
     const data = await response.json();
 
     const tagsByCountry = {};
-    const tagsByArtForm = {};
+    const tagsByContinent = {};
+    const focusShiftByContinent = {};
 
     data.features.forEach((feature) => {
-        const country = feature.properties.location.split(', ').pop(); // Extract country from location
+        const location = feature.properties.location;
+        const country = location.split(', ').pop();
+        const continent = continentMapping[country] || "Other";
         const topics = feature.properties.tags.topic || [];
-        const artforms = feature.properties.tags.artform || [];
+        const year = feature.properties.year || "Unknown";
 
-        // Count tags by country
+        // Count topics by country
         if (!tagsByCountry[country]) tagsByCountry[country] = {};
-        topics.forEach(tag => {
-            tagsByCountry[country][tag] = (tagsByCountry[country][tag] || 0) + 1;
+        topics.forEach(topic => {
+            tagsByCountry[country][topic] = (tagsByCountry[country][topic] || 0) + 1;
         });
 
-        // Count tags by art form
-        artforms.forEach(artform => {
-            if (!tagsByArtForm[artform]) tagsByArtForm[artform] = {};
-            topics.forEach(tag => {
-                tagsByArtForm[artform][tag] = (tagsByArtForm[artform][tag] || 0) + 1;
-            });
+        // Count topics by continent
+        if (!tagsByContinent[continent]) tagsByContinent[continent] = {};
+        topics.forEach(topic => {
+            tagsByContinent[continent][topic] = (tagsByContinent[continent][topic] || 0) + 1;
+        });
+
+        // Track environmental focus shift by continent over time
+        if (!focusShiftByContinent[continent]) focusShiftByContinent[continent] = {};
+        if (!focusShiftByContinent[continent][year]) focusShiftByContinent[continent][year] = {};
+        topics.forEach(topic => {
+            focusShiftByContinent[continent][year][topic] = 
+                (focusShiftByContinent[continent][year][topic] || 0) + 1;
         });
     });
 
-    // Generate the charts
     createTagsByCountryChart(tagsByCountry);
-    createTagsByArtFormChart(tagsByArtForm);
+    createTagsByContinentChart(tagsByContinent);
+    createFocusShiftOverTimeChart(focusShiftByContinent);
 }
 
-// Create bar chart for tags by country
+// Create bar chart for topics by country
 function createTagsByCountryChart(data) {
     const ctx = document.getElementById('tagsByCountryChart').getContext('2d');
     const countries = Object.keys(data);
@@ -55,7 +63,7 @@ function createTagsByCountryChart(data) {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Most Common Tags by Country'
+                    text: 'Most Common Topic Tags by Country'
                 },
             },
             responsive: true,
@@ -67,35 +75,78 @@ function createTagsByCountryChart(data) {
     });
 }
 
-// Create bar chart for tags by art form
-function createTagsByArtFormChart(data) {
-    const ctx = document.getElementById('tagsByArtFormChart').getContext('2d');
-    const artforms = Object.keys(data);
-    const tags = [...new Set(artforms.flatMap(artform => Object.keys(data[artform])))];
+// Create bar chart for topics by continent
+function createTagsByContinentChart(data) {
+    const ctx = document.getElementById('tagsByContinentChart').getContext('2d');
+    const continents = Object.keys(data);
+    const tags = [...new Set(continents.flatMap(continent => Object.keys(data[continent])))];
 
     const datasets = tags.map(tag => ({
         label: tag,
-        data: artforms.map(artform => data[artform][tag] || 0),
+        data: continents.map(continent => data[continent][tag] || 0),
         backgroundColor: getRandomColor(),
     }));
 
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: artforms,
+            labels: continents,
             datasets: datasets,
         },
         options: {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Most Common Tags by Art Form'
+                    text: 'Most Common Topic Tags by Continent'
                 },
             },
             responsive: true,
             scales: {
                 x: { stacked: true },
                 y: { beginAtZero: true, stacked: true },
+            },
+        }
+    });
+}
+
+// Create line chart for environmental focus shift over time by continent
+function createFocusShiftOverTimeChart(data) {
+    const ctx = document.getElementById('focusShiftOverTimeChart').getContext('2d');
+    const continents = Object.keys(data);
+    const years = [...new Set(continents.flatMap(continent => Object.keys(data[continent])))];
+    const tags = [...new Set(
+        continents.flatMap(continent => 
+            Object.values(data[continent]).flatMap(yearData => Object.keys(yearData))
+        )
+    )];
+
+    const datasets = tags.map(tag => ({
+        label: tag,
+        data: years.map(year => 
+            continents.reduce((sum, continent) => 
+                sum + (data[continent][year] ? (data[continent][year][tag] || 0) : 0), 0)
+        ),
+        borderColor: getRandomColor(),
+        fill: false,
+        tension: 0.1
+    }));
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: datasets,
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Environmental Focus Shift Over Time by Continent'
+                },
+            },
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true },
             },
         }
     });
