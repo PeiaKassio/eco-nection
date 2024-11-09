@@ -6,75 +6,73 @@
     <title>eco:nection</title>
     <!-- Mapbox GL CSS -->
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet" />
-
     <!-- Custom CSS for your map page -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
-        <h1>eco:nection</h1>
+        <h1>eco:nection Data Analysis</h1>
         <nav>
             <a href="index.html">Map</a>
-           <!-- <a href="blog.html">Blog</a> -->
-             <a href="data-analysis.html">Data Analysis</a>
+            <!-- <a href="blog.html">Blog</a> -->
+            <a href="data-analysis.html">Data Analysis</a>
         </nav>
-   </header>
+    </header>
 
-<h1>Artworks Data Analysis</h1>
+    <!-- Navigation Tabs -->
+    <div>
+        <button onclick="showTab('countryTab')">Topic Cluster by Country</button>
+        <button onclick="showTab('yearTab')">Topic Cluster by Year</button>
+        <button onclick="showTab('artformTab')">Topic Cluster by Art Form</button>
+    </div>
 
-<!-- Navigation Tabs -->
-<div>
-    <button onclick="showTab('countryTab')">Topic Cluster by Country</button>
-    <button onclick="showTab('yearTab')">Topic Cluster by Year</button>
-    <button onclick="showTab('artformTab')">Topic Cluster by Art Form</button>
-</div>
+    <!-- Tab 1: Topic Cluster by Country -->
+    <div id="countryTab" class="tab active">
+        <h2>Topic Cluster by Country</h2>
+        <input type="text" id="countrySearch" placeholder="Search countries..." onkeyup="filterCountries()">
+        <select id="countrySelect" multiple></select>
+        <button onclick="loadCountryData()">Show Data</button>
+        <canvas id="countryChart"></canvas>
+    </div>
 
-<!-- Tab 1: Topic Cluster by Country -->
-<div id="countryTab" class="tab active">
-    <h2>Topic Cluster by Country</h2>
-    <input type="text" id="countrySearch" placeholder="Search countries..." onkeyup="filterCountries()">
-    <select id="countrySelect" multiple></select>
-    <button onclick="loadCountryData()">Show Data</button>
-    <canvas id="countryChart"></canvas>
-</div>
+    <!-- Tab 2: Topic Cluster by Year -->
+    <div id="yearTab" class="tab">
+        <h2>Topic Cluster by Year</h2>
+        <canvas id="yearChart"></canvas>
+    </div>
 
-<!-- Tab 2: Topic Cluster by Year -->
-<div id="yearTab" class="tab">
-    <h2>Topic Cluster by Year</h2>
-    <canvas id="yearChart"></canvas>
-</div>
+    <!-- Tab 3: Topic Cluster by Art Form -->
+    <div id="artformTab" class="tab">
+        <h2>Topic Cluster by Art Form</h2>
+        <canvas id="artformChart"></canvas>
+    </div>
 
-<!-- Tab 3: Topic Cluster by Art Form -->
-<div id="artformTab" class="tab">
-    <h2>Topic Cluster by Art Form</h2>
-    <canvas id="artformChart"></canvas>
-</div>
+    <script src="data-analysis.js"></script> <!-- Link to the JavaScript file -->
 
-<script src="data-analysis.js"></script> <!-- Link to the JavaScript file -->
+    <script>
+    // Function to show the selected tab and hide others
+    function showTab(tabId) {
+        // Hide all tabs
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // Show the selected tab
+        document.getElementById(tabId).classList.add('active');
+    }
 
-<script>
-// Function to show the selected tab and hide others
-function showTab(tabId) {
-    // Hide all tabs
-    document.querySelectorAll('.tab').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    
-    // Show the selected tab
-    document.getElementById(tabId).classList.add('active');
-}
-
-// Function to filter countries based on search input
-function filterCountries() {
-    const input = document.getElementById('countrySearch').value.toLowerCase();
-    const select = document.getElementById('countrySelect');
-    
-    Array.from(select.options).forEach(option => {
-        const text = option.text.toLowerCase();
-        option.style.display = text.includes(input) ? '' : 'none'; // Show or hide based on search
-    });
-}
-</script>
+    // Function to filter countries based on search input
+    function filterCountries() {
+        const input = document.getElementById('countrySearch').value.toLowerCase();
+        const select = document.getElementById('countrySelect');
+        
+        Array.from(select.options).forEach(option => {
+            const text = option.text.toLowerCase();
+            option.style.display = text.includes(input) ? '' : 'none'; // Show or hide based on search
+        });
+    }
+    </script>
 
 </body>
 </html>
