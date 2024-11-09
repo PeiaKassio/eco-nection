@@ -154,7 +154,7 @@ function applyFilters() {
 
     const filter = ['all'];
 
-    // Apply search filter for title or description
+    // Search filter for title or description
     if (searchText) {
         filter.push([
             'any',
@@ -163,19 +163,19 @@ function applyFilters() {
         ]);
     }
 
-    // Apply topic filter by correctly accessing `tags.topic`
+    // Apply topic filter - correctly accessing `tags.topic` in nested structure
     if (selectedTopic) {
-        filter.push(['in', selectedTopic, ['get', ['get', 'tags'], 'topic']]);
+        filter.push(['in', selectedTopic, ['get', 'topic', ['get', 'tags']]]);
     }
 
-    // Apply artform filter by correctly accessing `tags.artform`
+    // Apply artform filter - correctly accessing `tags.artform` in nested structure
     if (selectedArtForm) {
-        filter.push(['in', selectedArtForm, ['get', ['get', 'tags'], 'artform']]);
+        filter.push(['in', selectedArtForm, ['get', 'artform', ['get', 'tags']]]);
     }
 
     console.log("Applying filter:", JSON.stringify(filter));
 
-    // Apply the filter to the unclustered-point layer
+    // Apply filter to the unclustered-point layer to show only matching points
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 
     // Check if the clusters layer exists before trying to filter it
@@ -183,7 +183,6 @@ function applyFilters() {
         map.setFilter('clusters', filter.length > 1 ? ['==', 'point_count', 0] : null);
     }
 }
-
 
 document.getElementById('apply-filters').addEventListener('click', applyFilters);
 
