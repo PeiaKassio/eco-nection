@@ -126,8 +126,8 @@ map.on('load', async () => {
             <p><strong>Artist:</strong> ${artist}</p>
             <p><strong>Description:</strong> ${description}</p>
             <p><strong>Year:</strong> ${year}</p>
-            <p><strong>Topics:</strong> ${topics}</p>
-            <p><strong>Art Forms:</strong> ${artforms}</p>
+            <p><strong>Topics:</strong> ${topic}</p>
+            <p><strong>Art Forms:</strong> ${artform}</p>
         `)
         .addTo(map);
 });
