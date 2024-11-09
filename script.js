@@ -164,7 +164,6 @@ map.on('load', async () => {
     document.getElementById('artform-filter').addEventListener('change', applyFilters);
 });
 
-// Function to apply filters
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopic = document.getElementById('tag-filter').value;
@@ -172,7 +171,7 @@ function applyFilters() {
 
     const filter = ['all'];
 
-    // Add search text filter
+    // Add search text filter if there's text in the search bar
     if (searchText) {
         filter.push([
             'any',
@@ -181,22 +180,22 @@ function applyFilters() {
         ]);
     }
 
-    // Add topic filter
+    // Apply topic filter by correctly accessing `tags.topic`
     if (selectedTopic) {
-        filter.push(['in', selectedTopic, ['get', 'tags', 'topic']]);
+        filter.push(['in', selectedTopic, ['get', ['get', 'tags'], 'topic']]);
     }
 
-    // Add artform filter
+    // Apply art form filter by correctly accessing `tags.artform`
     if (selectedArtForm) {
-        filter.push(['in', selectedArtForm, ['get', 'tags', 'artform']]);
+        filter.push(['in', selectedArtForm, ['get', ['get', 'tags'], 'artform']]);
     }
 
     // Log the constructed filter for debugging
     console.log("Applying filter:", JSON.stringify(filter));
 
-    // Apply the filter to the map
+    // Apply the filter to the map layer
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 }
 
-// Add event listener for Apply button
+// Add an event listener to the "Apply" button
 document.getElementById('apply-filters').addEventListener('click', applyFilters);
