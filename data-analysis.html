@@ -31,6 +31,7 @@
 <!-- Tab 1: Topic Cluster by Country -->
 <div id="countryTab" class="tab active">
     <h2>Topic Cluster by Country</h2>
+    <input type="text" id="countrySearch" placeholder="Search countries..." onkeyup="filterCountries()">
     <select id="countrySelect" multiple></select>
     <button onclick="loadCountryData()">Show Data</button>
     <canvas id="countryChart"></canvas>
