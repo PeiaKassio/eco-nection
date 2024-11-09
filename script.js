@@ -108,25 +108,23 @@ map.on('load', async () => {
     });
 
     // Popup für einzelne Punkte
-  map.on('click', 'unclustered-point', (e) => {
+ map.on('click', 'unclustered-point', (e) => {
     const coordinates = e.features[0].geometry.coordinates.slice();
     const properties = e.features[0].properties || {};
 
-    // Debugging logs
-    console.log("Properties:", properties);
-    console.log("Tags:", properties.tags);
-
+    // Extract individual properties
     const title = properties.title || 'Untitled';
     const description = properties.description || 'No Description';
     const artist = properties.artist || 'Unknown';
     const year = properties.year || 'Unknown';
 
-    // Safely access topics and artforms
+    // Safely access nested topics and artforms in the tags object
     const topics = properties.tags && properties.tags.topic ? properties.tags.topic.join(', ') : 'No Topics';
     const artforms = properties.tags && properties.tags.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
 
-    console.log("Topics:", topics);  // Should output actual topics if present
-    console.log("Art Forms:", artforms);  // Should output actual art forms if present
+    // Debugging logs to confirm correct data access
+    console.log("Topics:", topics);  // Should output the topics if present
+    console.log("Art Forms:", artforms);  // Should output the art forms if present
 
     new mapboxgl.Popup()
         .setLngLat(coordinates)
@@ -140,6 +138,7 @@ map.on('load', async () => {
         `)
         .addTo(map);
 });
+
 
 
     // Klick auf Cluster zum Zoomen
