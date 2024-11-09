@@ -111,34 +111,30 @@ map.on('load', async () => {
 
     // Popup for individual points
     map.on('click', 'unclustered-point', (e) => {
-        const coordinates = e.features[0].geometry.coordinates.slice();
-        const properties = e.features[0].properties || {};
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const properties = e.features[0].properties || {};
 
-        const title = properties.title || 'Untitled';
-        const description = properties.description || 'No Description';
-        const artist = properties.artist || 'Unknown';
-        const year = properties.year || 'Unknown';
+    console.log("Properties:", properties); // Should log all properties, including tags
 
-        // Access and format `tags.topic` and `tags.artform` as strings
-        const topics = Array.isArray(properties.tags?.topic) ? properties.tags.topic.join(', ') : 'No Topics';
-        const artforms = Array.isArray(properties.tags?.artform) ? properties.tags.artform.join(', ') : 'No Art Forms';
+    // Access topics and artforms as comma-separated strings
+    const topics = Array.isArray(properties.tags?.topic) ? properties.tags.topic.join(', ') : 'No Topics';
+    const artforms = Array.isArray(properties.tags?.artform) ? properties.tags.artform.join(', ') : 'No Art Forms';
 
-        console.log("Tags:", properties.tags);
-        console.log("Topics:", topics);
-        console.log("Art Forms:", artforms);
+    console.log("Topics:", topics); // Check if topics is a string or still undefined
+    console.log("Art Forms:", artforms); // Check if artforms is a string or still undefined
 
-        new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(`
-                <h3>${title}</h3>
-                <p><strong>Artist:</strong> ${artist}</p>
-                <p><strong>Description:</strong> ${description}</p>
-                <p><strong>Year:</strong> ${year}</p>
-                <p><strong>Topics:</strong> ${topics}</p>
-                <p><strong>Art Forms:</strong> ${artforms}</p>
-            `)
-            .addTo(map);
-    });
+    new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(`
+            <h3>${properties.title || 'Untitled'}</h3>
+            <p><strong>Artist:</strong> ${properties.artist || 'Unknown'}</p>
+            <p><strong>Description:</strong> ${properties.description || 'No Description'}</p>
+            <p><strong>Year:</strong> ${properties.year || 'Unknown'}</p>
+            <p><strong>Topics:</strong> ${topics}</p>
+            <p><strong>Art Forms:</strong> ${artforms}</p>
+        `)
+        .addTo(map);
+});
 });
 
 function applyFilters() {
