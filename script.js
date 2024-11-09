@@ -81,7 +81,7 @@ map.on('load', async () => {
         const clusterSelect = document.getElementById('cluster-filter');
         Object.entries(topicClusters).forEach(([clusterName, clusterData]) => {
             const option = document.createElement('option');
-            option.value = clusterData.color; // Der Farbwert wird als Wert verwendet
+            option.value = clusterName; // Setze den Cluster-Namen als Wert
             option.innerHTML = `<span style="color:${clusterData.color}; font-weight: bold;">●</span> ${clusterName}`;
             clusterSelect.appendChild(option);
         });
@@ -194,7 +194,9 @@ function applyFilters() {
     }
 
     if (selectedCluster) {
-        filter.push(['==', ['get', 'mainClusterColor'], selectedCluster]);
+        // Hole die Farbe für den ausgewählten Cluster-Namen aus topicClusters.json
+        const selectedClusterColor = topicClusters[selectedCluster]?.color || '#ffffff';
+        filter.push(['==', ['get', 'mainClusterColor'], selectedClusterColor]);
     }
 
     if (selectedArtForm) {
