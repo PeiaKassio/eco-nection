@@ -1,54 +1,43 @@
 // Global variables
+let countries = [];
 let topicClusters = {};
-let countryChart; // Variable to hold the chart instance
-
-// Define continents and their respective countries
-const continentCountries = {
-   "Africa": ["Nigeria", "Kenya", "South Africa", "Egypt", "Ghana", "Morocco", "Ethiopia"],
-   "Asia": ["China", "India", "Japan", "South Korea", "Indonesia", "Turkey", "Saudi Arabi", "United Arab Emirates","Thailand", "Malaysia","Singapore"],
-   "Europe": ["United Kingdom", "Germany", "France", "Netherlands", "Italy", "Spain", "Russia", "Sweden", "Switzerland", "Poland", "Norway"],
-   "North America": ["United States", "Canada", "Mexico"],
-   "Oceania": ["Australia", "New Zealand"],
-   "South America": ["Brazil", "Argentina", "Chile", "Colombia","Peru"]
-};
 
 // Load and analyze the data
 async function loadData() {
-   const response = await fetch('artwork-data.json');
-   const data = await response.json();
-   
-   // Populate continent selection
-   const continentSelect = document.getElementById('continentSelect');
-   Object.keys(continentCountries).forEach(continent => {
-       const option = document.createElement('option');
-       option.value = continent;
-       option.textContent = continent;
-       continentSelect.appendChild(option);
-   });
+    const response = await fetch('artwork-data.json');
+    const data = await response.json();
+    
+    // Populate country selection
+    countries = [...new Set(data.features.map(feature => feature.properties.location.split(', ')[1]))]; // Extract country after first comma
+    
+    const countrySelect = document.getElementById('countrySelect');
+    countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country;
+        option.textContent = country;
+        countrySelect.appendChild(option);
+    });
 
-   // Load topic clusters
-   const clusterResponse = await fetch('topicClusters.json');
-   topicClusters = await clusterResponse.json();
-
-   // Load initial countries for the first continent (if needed)
-   loadCountriesByContinent();
+    // Load topic clusters
+    const clusterResponse = await fetch('topicClusters.json');
+    topicClusters = await clusterResponse.json();
 }
 
 // Show selected tab
 function showTab(tabId) {
-   document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-   document.getElementById(tabId).classList.add('active');
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
 }
 
 // Load data for Topic Cluster by Country
 async function loadCountryData() {
+   const response = await fetch('artwork-data.json');
+   const data = await response.json();
+
    const selectedCountries = Array.from(document.getElementById('countrySelect').selectedOptions).map(option => option.value);
    
    const tagsByCountry = {};
    
-   const response = await fetch('artwork-data.json');
-   const data = await response.json();
-
    data.features.forEach((feature) => {
        const locationParts = feature.properties.location.split(', ');
        const country = locationParts.length > 1 ? locationParts[1] : locationParts[0]; // Extract country after first comma
@@ -73,11 +62,6 @@ async function loadCountryData() {
 function createCountryClusterChart(data) {
    const ctx = document.getElementById('countryChart').getContext('2d');
 
-   // If the chart already exists, destroy it before creating a new one
-   if (countryChart) {
-       countryChart.destroy();
-   }
-
    const datasets = [];
    const countriesArray = Object.keys(data);
 
@@ -89,12 +73,17 @@ function createCountryClusterChart(data) {
                    data: countriesArray.map(c => (c === country ? data[country][cluster] : 0)),
                    backgroundColor: topicClusters[cluster].color, // Use color from clusters JSON
                });
+           } else {
+               // If dataset already exists, update its data
+               datasets.find(dataset => dataset.label === cluster).data =
+                   datasets.find(dataset => dataset.label === cluster).data.map((value, index) =>
+                       value + (countriesArray[index] === country ? data[country][cluster] : 0)
+                   );
            }
        });
    });
 
-   // Create new chart instance
-   countryChart = new Chart(ctx, {
+   new Chart(ctx, {
        type: 'bar',
        data: {
            labels: countriesArray,
