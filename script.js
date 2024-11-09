@@ -164,6 +164,7 @@ map.on('load', async () => {
 });
 
 // Filterfunktion
+// Filterfunktion
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopic = document.getElementById('tag-filter').value;
@@ -181,7 +182,8 @@ function applyFilters() {
     }
 
     if (selectedTopic) {
-        filter.push(['in', selectedTopic, ['get', 'tags', 'topic']]);
+        // Überprüfe, ob selectedTopic im tags.topic-Array enthalten ist
+        filter.push(['in', selectedTopic, ['get', ['get', 'tags'], 'topic']]);
     }
 
     if (selectedCluster) {
@@ -190,7 +192,7 @@ function applyFilters() {
     }
 
     if (selectedArtForm) {
-        filter.push(['in', selectedArtForm, ['get', 'tags', 'artform']]);
+        filter.push(['in', selectedArtForm, ['get', ['get', 'tags'], 'artform']]);
     }
 
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
