@@ -103,27 +103,27 @@ function createCountryClusterChart(data) {
 
 // Load data for Topic Cluster by Year
 async function loadYearData() {
-    const response = await fetch('artwork-data.json');
-    const data = await response.json();
+   const response = await fetch('artwork-data.json');
+   const data = await response.json();
 
-    const yearCounts = {};
-    
-    data.features.forEach((feature) => {
-        const year = feature.properties.year; // Assuming year is available in properties
-        if (year) {
-            if (!yearCounts[year]) yearCounts[year] = {};
-            const topics = feature.properties.tags.topic || [];
-            
-            topics.forEach(topic => {
-                // Find the cluster for each topic
-                for (const [clusterName, clusterInfo] of Object.entries(topicClusters)) {
-                    if (clusterInfo.topics.includes(topic)) {
-                        yearCounts[year][clusterName] = (yearCounts[year][clusterName] || 0) + 1; // Count occurrences of each cluster per year
-                    }
-                }
-            });
-        }
-    });
+   const yearCounts = {};
+   
+   data.features.forEach((feature) => {
+       const year = feature.properties.year; // Assuming year is available in properties
+       if (year) {
+           if (!yearCounts[year]) yearCounts[year] = {};
+           const topics = feature.properties.tags.topic || [];
+           
+           topics.forEach(topic => {
+               // Find the cluster for each topic
+               for (const [clusterName, clusterInfo] of Object.entries(topicClusters)) {
+                   if (clusterInfo.topics.includes(topic)) {
+                       yearCounts[year][clusterName] = (yearCounts[year][clusterName] || 0) + 1; // Count occurrences of each cluster per year
+                   }
+               }
+           });
+       }
+   });
 
    createYearClusterChart(yearCounts);
 }
@@ -244,5 +244,5 @@ function createArtFormClusterChart(data) {
    });
 }
 
-// Initial load of data
+// Initial load of data when the page loads
 loadData().then(() => loadYearData()).then(() => loadArtFormData());
