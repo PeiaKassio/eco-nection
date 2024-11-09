@@ -22,6 +22,14 @@ async function loadData() {
     // Load topic clusters
     const clusterResponse = await fetch('topicClusters.json');
     topicClusters = await clusterResponse.json();
+
+    // Select all countries by default
+    Array.from(countrySelect.options).forEach(option => {
+        option.selected = true; // Select each option
+    });
+
+    // Load data for all selected countries
+    loadCountryData();
 }
 
 // Show selected tab
@@ -250,4 +258,4 @@ function createArtFormClusterChart(data) {
 }
 
 // Initial load of data when the page loads
-loadData().then(() => loadYearData()).then(() => loadArtFormData());
+loadData().then(() => loadCountryData()).then(() => loadYearData()).then(() => loadArtFormData());
