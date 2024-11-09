@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Analysis</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Include Chart.js from a stable CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
@@ -14,7 +13,7 @@
         <nav>
             <button onclick="showAnalysis('topicCountry')">Topic Cluster by Country</button>
             <button onclick="showAnalysis('topicYear')">Topic Cluster by Year</button>
-            <button onclick="showAnalysis('artformTopic')">Topic by Art Form</button>
+            <button onclick="showAnalysis('artFormTopic')">Topic by Artform</button>
         </nav>
     </header>
 
@@ -22,27 +21,21 @@
         <!-- Analysis Containers -->
         <div id="topicCountryAnalysis" class="analysis-section">
             <h2>Topic Cluster by Country</h2>
-            <select id="countryFilter" onchange="updateTopicCountryChart()">
-                <option value="">Select a Country</option>
-                <!-- Country options populated by JS -->
+            <select id="continentFilter">
+                <option value="">Select Continent</option>
+            </select>
+            <select id="countryFilter">
+                <option value="">Select Country</option>
             </select>
             <canvas id="topicCountryChart"></canvas>
         </div>
 
         <div id="topicYearAnalysis" class="analysis-section" style="display:none;">
             <h2>Topic Cluster by Year</h2>
-            <input type="number" id="yearFilter" placeholder="Enter Year" onchange="updateTopicYearChart()">
             <canvas id="topicYearChart"></canvas>
         </div>
 
-        <div id="artformTopicAnalysis" class="analysis-section" style="display:none;">
+        <div id="artFormTopicAnalysis" class="analysis-section" style="display:none;">
             <h2>Art Form by Topic</h2>
-            <canvas id="artformTopicChart"></canvas>
-        </div>
-    </main>
-
-    <!-- Load JS files as modules -->
-    <script type="module" src="continentMapping.js"></script>
-    <script type="module" src="data-analysis.js"></script>
-</body>
-</html>
+            <canvas id="artFormTopicChart"></canvas>
+        </div
