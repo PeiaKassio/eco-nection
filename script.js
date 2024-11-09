@@ -105,7 +105,7 @@ map.on('load', async () => {
     });
 
     // Popup für einzelne Punkte
-    map.on('click', 'unclustered-point', (e) => {
+   map.on('click', 'unclustered-point', (e) => {
     const coordinates = e.features[0].geometry.coordinates.slice();
     const properties = e.features[0].properties || {};
 
@@ -115,9 +115,13 @@ map.on('load', async () => {
     const artist = properties.artist || 'Unknown';
     const year = properties.year || 'Unknown';
 
-    // Format tags (topics and artforms)
-    const topics = properties.tags && properties.tags.topic ? properties.tags.topic.join(', ') : 'No Topics';
-    const artforms = properties.tags && properties.tags.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
+    // Safely format tags (topics and artforms)
+    const topicTags = properties.tags && Array.isArray(properties.tags.topic) 
+        ? properties.tags.topic.join(', ') 
+        : 'No Topics';
+    const artformTags = properties.tags && Array.isArray(properties.tags.artform) 
+        ? properties.tags.artform.join(', ') 
+        : 'No Art Forms';
 
     new mapboxgl.Popup()
         .setLngLat(coordinates)
@@ -126,11 +130,12 @@ map.on('load', async () => {
             <p><strong>Artist:</strong> ${artist}</p>
             <p><strong>Description:</strong> ${description}</p>
             <p><strong>Year:</strong> ${year}</p>
-            <p><strong>Topics:</strong> ${topic}</p>
-            <p><strong>Art Forms:</strong> ${artform}</p>
+            <p><strong>Topics:</strong> ${topicTags}</p>
+            <p><strong>Art Forms:</strong> ${artformTags}</p>
         `)
         .addTo(map);
 });
+
 
     // Klick auf Cluster zum Zoomen
     map.on('click', 'clusters', (e) => {
