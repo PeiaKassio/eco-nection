@@ -11,31 +11,34 @@
     <header>
         <h1>eco:nection Data Analysis</h1>
         <nav>
-            <button onclick="showAnalysis('topicCountry')">Topic Cluster by Country</button>
-            <button onclick="showAnalysis('topicYear')">Topic Cluster by Year</button>
+            <button onclick="showAnalysis('topicCountry')">Topic Clusters by Country</button>
+            <button onclick="showAnalysis('topicYear')">Topic Clusters by Year</button>
             <button onclick="showAnalysis('artFormTopic')">Art Form and Topic</button>
         </nav>
     </header>
 
     <main>
-        <!-- Topic Country Analysis -->
+        <!-- Page 1: Topic Clusters by Country -->
         <div id="topicCountryAnalysis" class="analysis-section">
-            <h2>Topic Cluster by Country</h2>
-            <select id="continentFilter"></select>
-            <select id="countryFilter"></select>
+            <h2>Topic Clusters by Country</h2>
+            <select id="continentFilter" onchange="updateTopicCountryChart()">
+                <option value="">Select Continent</option>
+            </select>
+            <select id="countryFilter" multiple onchange="updateTopicCountryChart()">
+                <option value="">Select Countries</option>
+            </select>
             <canvas id="topicCountryChart"></canvas>
         </div>
 
-        <!-- Topic Year Analysis -->
+        <!-- Page 2: Topic Clusters by Year -->
         <div id="topicYearAnalysis" class="analysis-section" style="display:none;">
-            <h2>Topic Cluster by Year</h2>
-            <input type="number" id="yearFilter" placeholder="Enter Year" onchange="updateTopicYearChart()">
+            <h2>Topic Clusters by Year</h2>
             <canvas id="topicYearChart"></canvas>
         </div>
 
-        <!-- Art Form and Topic Analysis -->
+        <!-- Page 3: Art Form and Topic Clusters -->
         <div id="artFormTopicAnalysis" class="analysis-section" style="display:none;">
-            <h2>Art Form and Topic</h2>
+            <h2>Art Form and Topic Clusters</h2>
             <canvas id="artFormTopicChart"></canvas>
         </div>
     </main>
