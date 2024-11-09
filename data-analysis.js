@@ -1,95 +1,97 @@
 // Global variables
-let countries = [];
 let topicClusters = {};
 let countryChart; // Variable to hold the chart instance
 
+// Define continents and their respective countries
+const continentCountries = {
+   "Africa": ["Nigeria", "Kenya", "South Africa", "Egypt", "Ghana", "Morocco", "Ethiopia"],
+   "Asia": ["China", "India", "Japan", "South Korea", "Indonesia", "Turkey", "Saudi Arabi", "United Arab Emirates","Thailand", "Malaysia","Singapore"],
+   "Europe": ["United Kingdom", "Germany", "France", "Netherlands", "Italy", "Spain", "Russia", "Sweden", "Switzerland", "Poland", "Norway"],
+   "North America": ["United States", "Canada", "Mexico"],
+   "Oceania": ["Australia", "New Zealand"],
+   "South America": ["Brazil", "Argentina", "Chile", "Colombia","Peru"]
+};
+
 // Load and analyze the data
 async function loadData() {
-    const response = await fetch('artwork-data.json');
-    const data = await response.json();
-    
-    // Populate country selection
-    countries = [...new Set(data.features.map(feature => feature.properties.location.split(', ')[1]))]; // Extract country after first comma
-    
-    const countrySelect = document.getElementById('countrySelect');
-    countries.forEach(country => {
-        const option = document.createElement('option');
-        option.value = country;
-        option.textContent = country;
-        countrySelect.appendChild(option);
-    });
+   const response = await fetch('artwork-data.json');
+   const data = await response.json();
+   
+   // Populate continent selection
+   const continentSelect = document.getElementById('continentSelect');
+   Object.keys(continentCountries).forEach(continent => {
+       const option = document.createElement('option');
+       option.value = continent;
+       option.textContent = continent;
+       continentSelect.appendChild(option);
+   });
 
-    // Load topic clusters
-    const clusterResponse = await fetch('topicClusters.json');
-    topicClusters = await clusterResponse.json();
+   // Load topic clusters
+   const clusterResponse = await fetch('topicClusters.json');
+   topicClusters = await clusterResponse.json();
 
-    // Select all countries by default
-    Array.from(countrySelect.options).forEach(option => {
-        option.selected = true; // Select each option
-    });
-
-    // Load data for all selected countries
-    loadCountryData();
+   // Load initial countries for the first continent (if needed)
+   loadCountriesByContinent();
 }
 
 // Show selected tab
 function showTab(tabId) {
-    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
+   document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+   document.getElementById(tabId).classList.add('active');
 }
 
 // Load data for Topic Cluster by Country
 async function loadCountryData() {
-    const response = await fetch('artwork-data.json');
-    const data = await response.json();
+   const selectedCountries = Array.from(document.getElementById('countrySelect').selectedOptions).map(option => option.value);
+   
+   const tagsByCountry = {};
+   
+   const response = await fetch('artwork-data.json');
+   const data = await response.json();
 
-    const selectedCountries = Array.from(document.getElementById('countrySelect').selectedOptions).map(option => option.value);
-    
-    const tagsByCountry = {};
-    
-    data.features.forEach((feature) => {
-        const locationParts = feature.properties.location.split(', ');
-        const country = locationParts.length > 1 ? locationParts[1] : locationParts[0]; // Extract country after first comma
-        if (selectedCountries.includes(country)) {
-            const topics = feature.properties.tags.topic || [];
-            topics.forEach(topic => {
-                // Find the cluster for each topic
-                for (const [clusterName, clusterInfo] of Object.entries(topicClusters)) {
-                    if (clusterInfo.topics.includes(topic)) {
-                        if (!tagsByCountry[country]) tagsByCountry[country] = {};
-                        tagsByCountry[country][clusterName] = (tagsByCountry[country][clusterName] || 0) + 1; // Count occurrences of each cluster
-                    }
-                }
-            });
-        }
-    });
+   data.features.forEach((feature) => {
+       const locationParts = feature.properties.location.split(', ');
+       const country = locationParts.length > 1 ? locationParts[1] : locationParts[0]; // Extract country after first comma
+       if (selectedCountries.includes(country)) {
+           const topics = feature.properties.tags.topic || [];
+           topics.forEach(topic => {
+               // Find the cluster for each topic
+               for (const [clusterName, clusterInfo] of Object.entries(topicClusters)) {
+                   if (clusterInfo.topics.includes(topic)) {
+                       if (!tagsByCountry[country]) tagsByCountry[country] = {};
+                       tagsByCountry[country][clusterName] = (tagsByCountry[country][clusterName] || 0) + 1; // Count occurrences of each cluster
+                   }
+               }
+           });
+       }
+   });
 
    createCountryClusterChart(tagsByCountry);
 }
 
 // Create bar chart for topic clusters by country
 function createCountryClusterChart(data) {
-    const ctx = document.getElementById('countryChart').getContext('2d');
+   const ctx = document.getElementById('countryChart').getContext('2d');
 
-    // If the chart already exists, destroy it before creating a new one
-    if (countryChart) {
-        countryChart.destroy();
-    }
+   // If the chart already exists, destroy it before creating a new one
+   if (countryChart) {
+       countryChart.destroy();
+   }
 
-    const datasets = [];
-    const countriesArray = Object.keys(data);
+   const datasets = [];
+   const countriesArray = Object.keys(data);
 
-    countriesArray.forEach(country => {
-        Object.keys(data[country]).forEach(cluster => {
-            if (!datasets.find(dataset => dataset.label === cluster)) { // Create a new dataset for each unique cluster
-                datasets.push({
-                    label: cluster,
-                    data: countriesArray.map(c => (c === country ? data[country][cluster] : 0)),
-                    backgroundColor: topicClusters[cluster].color, // Use color from clusters JSON
-                });
-            }
-        });
-    });
+   countriesArray.forEach(country => {
+       Object.keys(data[country]).forEach(cluster => {
+           if (!datasets.find(dataset => dataset.label === cluster)) { // Create a new dataset for each unique cluster
+               datasets.push({
+                   label: cluster,
+                   data: countriesArray.map(c => (c === country ? data[country][cluster] : 0)),
+                   backgroundColor: topicClusters[cluster].color, // Use color from clusters JSON
+               });
+           }
+       });
+   });
 
    // Create new chart instance
    countryChart = new Chart(ctx, {
@@ -258,4 +260,4 @@ function createArtFormClusterChart(data) {
 }
 
 // Initial load of data when the page loads
-loadData().then(() => loadCountryData()).then(() => loadYearData()).then(() => loadArtFormData());
+loadData().then(() => loadYearData()).then(() => loadArtFormData());
