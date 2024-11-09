@@ -2,33 +2,63 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicGVpc2thc3NpbyIsImEiOiJjbTM4eHB5NHIwd2M5Mmlxe
 
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re', //mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re
-    center: [0, 0], // Center coordinates [longitude, latitude]
-    zoom: 1.5, // Start at a zoom level appropriate for a globe view
-    projection: 'globe' // Enable globe projection
+    style: 'mapbox://styles/mapbox/dark-v10',
+    center: [0, 0],
+    zoom: 1.5,
+    projection: 'globe'
 });
 
 // Optional: Customize globe settings for atmospheric effects
 map.on('style.load', () => {
     map.setFog({
-        'range': [0.5, 10], // Fog intensity and range
-        'color': 'rgb(186, 210, 235)', // Light blue sky color
-        'horizon-blend': 0.1, // Smooths the horizon line
-        'star-intensity': 0.15 // Adjust star intensity for night view
+        'range': [0.5, 10],
+        'color': 'rgb(186, 210, 235)',
+        'horizon-blend': 0.1,
+        'star-intensity': 0.15
     });
 });
 
-map.on('load', () => {
-    // Add a new source from your GeoJSON data and enable clustering
-    map.addSource('artworks', {
-        type: 'geojson',
-        data: 'artwork-data.json', // Path to your GeoJSON file
-        cluster: true,
-        clusterMaxZoom: 14, // Max zoom to cluster points
-        clusterRadius: 50 // Radius of each cluster when clustering points (in pixels)
+map.on('load', async () => {
+    const response = await fetch('artwork-data.json');
+    const data = await response.json();
+
+    // Extrahiere einzigartige Tags für Topics und Artforms
+    const topics = new Set();
+    const artforms = new Set();
+
+    data.features.forEach(feature => {
+        feature.properties.tags.topic.forEach(tag => topics.add(tag));
+        feature.properties.tags.artform.forEach(tag => artforms.add(tag));
     });
 
-    // Create clustered circle layer
+    // Fülle die Topic-Filter-Dropdown
+    const topicSelect = document.getElementById('tag-filter');
+    topics.forEach(topic => {
+        const option = document.createElement('option');
+        option.value = topic;
+        option.textContent = topic;
+        topicSelect.appendChild(option);
+    });
+
+    // Fülle die Artform-Filter-Dropdown
+    const artformSelect = document.getElementById('artform-filter');
+    artforms.forEach(artform => {
+        const option = document.createElement('option');
+        option.value = artform;
+        option.textContent = artform;
+        artformSelect.appendChild(option);
+    });
+
+    // Map Source und Layer hinzufügen
+    map.addSource('artworks', {
+        type: 'geojson',
+        data: data,
+        cluster: true,
+        clusterMaxZoom: 14,
+        clusterRadius: 50
+    });
+
+    // Cluster-Layer
     map.addLayer({
         id: 'clusters',
         type: 'circle',
@@ -47,7 +77,7 @@ map.on('load', () => {
         }
     });
 
-    // Cluster count labels
+    // Cluster-Anzahl anzeigen
     map.addLayer({
         id: 'cluster-count',
         type: 'symbol',
@@ -60,7 +90,7 @@ map.on('load', () => {
         }
     });
 
-    // Individual artwork points
+    // Ungeclusterte Punkte für einzelne Kunstwerke
     map.addLayer({
         id: 'unclustered-point',
         type: 'circle',
@@ -73,76 +103,72 @@ map.on('load', () => {
             'circle-stroke-color': '#fff'
         }
     });
-});
 
-// Click event to display artwork details on individual points
-map.on('click', 'unclustered-point', (e) => {
-    const coordinates = e.features[0].geometry.coordinates.slice();
-    const { title, description, artist, year } = e.features[0].properties;
+    // Popup für einzelne Punkte
+    map.on('click', 'unclustered-point', (e) => {
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const { title, description, artist, year } = e.features[0].properties;
 
-    new mapboxgl.Popup()
-        .setLngLat(coordinates)
-        .setHTML(`
-            <h3>${title}</h3>
-            <p><strong>Artist:</strong> ${artist}</p>
-            <p><strong>Description:</strong> ${description}</p>
-            <p><strong>Year:</strong> ${year}</p>
-        `) // Close the backtick correctly here
-        .addTo(map);
-});
-
-// Zoom into cluster on click
-map.on('click', 'clusters', (e) => {
-    const features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
-    const clusterId = features[0].properties.cluster_id;
-    map.getSource('artworks').getClusterExpansionZoom(clusterId, (err, zoom) => {
-        if (err) return;
-        map.easeTo({ center: features[0].geometry.coordinates, zoom });
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(`
+                <h3>${title}</h3>
+                <p><strong>Artist:</strong> ${artist}</p>
+                <p><strong>Description:</strong> ${description}</p>
+                <p><strong>Year:</strong> ${year}</p>
+            `)
+            .addTo(map);
     });
+
+    // Klick auf Cluster zum Zoomen
+    map.on('click', 'clusters', (e) => {
+        const features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
+        const clusterId = features[0].properties.cluster_id;
+        map.getSource('artworks').getClusterExpansionZoom(clusterId, (err, zoom) => {
+            if (err) return;
+            map.easeTo({ center: features[0].geometry.coordinates, zoom });
+        });
+    });
+
+    // Mauszeiger ändern bei Hover
+    map.on('mouseenter', 'clusters', () => map.getCanvas().style.cursor = 'pointer');
+    map.on('mouseleave', 'clusters', () => map.getCanvas().style.cursor = '');
+    map.on('mouseenter', 'unclustered-point', () => map.getCanvas().style.cursor = 'pointer');
+    map.on('mouseleave', 'unclustered-point', () => map.getCanvas().style.cursor = '');
+
+    // Event Listener für Filter und Suche
+    document.getElementById('search-bar').addEventListener('input', applyFilters);
+    document.getElementById('tag-filter').addEventListener('change', applyFilters);
+    document.getElementById('artform-filter').addEventListener('change', applyFilters);
 });
 
-// Change cursor to pointer when hovering over clusters and points
-map.on('mouseenter', 'clusters', () => map.getCanvas().style.cursor = 'pointer');
-map.on('mouseleave', 'clusters', () => map.getCanvas().style.cursor = '');
-map.on('mouseenter', 'unclustered-point', () => map.getCanvas().style.cursor = 'pointer');
-map.on('mouseleave', 'unclustered-point', () => map.getCanvas().style.cursor = '');
+// Filter-Funktion außerhalb des `map.on('load', ...)` Blocks
+function applyFilters() {
+    const searchText = document.getElementById('search-bar').value.toLowerCase();
+    const selectedTopic = document.getElementById('tag-filter').value;
+    const selectedArtForm = document.getElementById('artform-filter').value;
 
-// Event Listener für den Tag-Filter
-document.getElementById('tag-filter').addEventListener('change', function (e) {
-    applyFilters(document.getElementById('search-bar').value.toLowerCase());
-});
-
-// Event Listener für den Art-Typ-Filter
-document.getElementById('type-filter').addEventListener('change', function (e) {
-    applyFilters(document.getElementById('search-bar').value.toLowerCase());
-});
-
-// Filter anwenden (nach Titel, Tags und Art-Typ)
-function applyFilters(searchText) {
-    const selectedTag = document.getElementById('tag-filter').value;
-    const selectedType = document.getElementById('type-filter').value;
-
-    // Erstelle den Filter für GeoJSON
     const filter = ['all'];
 
-    // Titel-Filter hinzufügen, wenn der Text in der Suchleiste eingegeben wurde
+    // Suche nach Titel oder Beschreibung
     if (searchText) {
-        filter.push(['match', ['toLowerCase', ['get', 'title']], searchText]);
+        filter.push([
+            'any',
+            ['match', ['to-lower', ['get', 'title']], [searchText], true, false],
+            ['match', ['to-lower', ['get', 'description']], [searchText], true, false]
+        ]);
     }
 
-    // Tag-Filter hinzufügen, wenn ein Tag ausgewählt wurde
-    if (selectedTag) {
-        filter.push(['in', 'tags.topic', selectedTag]);
-        filter.push(['in', 'tags.artform', selectedTag]); // Filtern nach Kunstform
+    // Filtern nach Topic
+    if (selectedTopic) {
+        filter.push(['in', selectedTopic, ['get', 'tags', 'topic']]);
     }
 
-    // Art-Typ-Filter hinzufügen, wenn ein Art-Typ ausgewählt wurde
-    if (selectedType) {
-        filter.push(['==', 'type', selectedType]);
+    // Filtern nach Artform
+    if (selectedArtForm) {
+        filter.push(['in', selectedArtForm, ['get', 'tags', 'artform']]);
     }
 
-    // Filter auf die Layer anwenden
+    // Filter anwenden
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
-    map.setFilter('clusters', filter.length > 1 ? filter : null);
 }
-

@@ -18,7 +18,25 @@
             <a href="blog.html">Blog</a> -->
         </nav>
     </header>
-
+    <div class="search-filter-container">
+        <!-- Suchfeld für Titel und Beschreibung -->
+        <input type="text" id="search-bar" placeholder="Search by title or description">
+    
+        <!-- Dropdown für Topic-Filter -->
+        <label for="tag-filter">Filter by Topic:</label>
+        <select id="tag-filter">
+            <option value="">All Topics</option>
+            <!-- Dynamische Optionen werden hier durch JavaScript hinzugefügt -->
+        </select>
+    
+        <!-- Dropdown für Artform-Filter -->
+        <label for="artform-filter">Filter by Art Form:</label>
+        <select id="artform-filter">
+            <option value="">All Art Forms</option>
+            <!-- Dynamische Optionen werden hier durch JavaScript hinzugefügt -->
+        </select>
+    </div>
+    
     <!-- Map container where the map will be displayed -->
     <div id="map"></div>
 
