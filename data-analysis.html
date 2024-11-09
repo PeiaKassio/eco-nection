@@ -5,25 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Analysis</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Include Chart.js library for creating charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
         <h1>Data Analysis of Artworks</h1>
+        <nav>
+            <a href="index.html">Map</a>
+            <a href="data-analysis.html">Data Analysis</a>
+        </nav>
     </header>
-    
+
     <section>
-        <h2>Most Common Tags by Country</h2>
+        <h2>Most Common Topic Tags by Country</h2>
         <canvas id="tagsByCountryChart"></canvas>
     </section>
 
     <section>
-        <h2>Most Common Tags by Art Form</h2>
-        <canvas id="tagsByArtFormChart"></canvas>
+        <h2>Most Common Topic Tags by Continent</h2>
+        <canvas id="tagsByContinentChart"></canvas>
     </section>
 
-    <!-- Custom script to load and analyze data -->
+    <section>
+        <h2>Environmental Focus Shift Over Time</h2>
+        <canvas id="focusShiftOverTimeChart"></canvas>
+    </section>
+
+    <script src="continentMapping.js"></script>
     <script src="data-analysis.js"></script>
 </body>
 </html>
