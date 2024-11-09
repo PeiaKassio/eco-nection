@@ -9,30 +9,31 @@
 </head>
 <body>
     <header>
-        <h1>Data Analysis of Artworks</h1>
+        <h1>eco:nection Data Analysis</h1>
         <nav>
-            <a href="index.html">Map</a>
-            <a href="data-analysis.html">Data Analysis</a>
+            <button onclick="showAnalysis('topicCountry')">Topic Cluster by Country</button>
+            <button onclick="showAnalysis('topicYear')">Topic Cluster by Year</button>
         </nav>
     </header>
 
-    <section>
-        <h2>Most Common Topic Tags by Country</h2>
-        <canvas id="tagsByCountryChart"></canvas>
-    </section>
+    <main>
+        <!-- Analysis Containers -->
+        <div id="topicCountryAnalysis" class="analysis-section">
+            <h2>Topic Cluster by Country</h2>
+            <select id="countryFilter" onchange="updateTopicCountryChart()">
+                <option value="">Select a Country</option>
+                <!-- Populate country options here -->
+            </select>
+            <canvas id="topicCountryChart"></canvas>
+        </div>
 
-    <section>
-        <h2>Most Common Topic Tags by Continent</h2>
-        <canvas id="tagsByContinentChart"></canvas>
-    </section>
+        <div id="topicYearAnalysis" class="analysis-section" style="display:none;">
+            <h2>Topic Cluster by Year</h2>
+            <input type="number" id="yearFilter" placeholder="Enter Year" onchange="updateTopicYearChart()">
+            <canvas id="topicYearChart"></canvas>
+        </div>
+    </main>
 
-    <section>
-        <h2>Environmental Focus Shift Over Time</h2>
-        <canvas id="focusShiftOverTimeChart"></canvas>
-    </section>
-
-    <!-- Add type="module" to enable ES6 imports -->
-    <script src="continentMapping.js" type="module"></script>
-    <script src="data-analysis.js" type="module"></script>
+    <script src="data-analysis.js"></script>
 </body>
 </html>
