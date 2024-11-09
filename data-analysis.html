@@ -20,6 +20,7 @@
         </nav>
    </header>
 
+<h1>Artworks Data Analysis</h1>
 
 <!-- Navigation Tabs -->
 <div>
@@ -61,6 +62,17 @@ function showTab(tabId) {
     
     // Show the selected tab
     document.getElementById(tabId).classList.add('active');
+}
+
+// Function to filter countries based on search input
+function filterCountries() {
+    const input = document.getElementById('countrySearch').value.toLowerCase();
+    const select = document.getElementById('countrySelect');
+    
+    Array.from(select.options).forEach(option => {
+        const text = option.text.toLowerCase();
+        option.style.display = text.includes(input) ? '' : 'none'; // Show or hide based on search
+    });
 }
 </script>
 
