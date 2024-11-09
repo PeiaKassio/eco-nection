@@ -1,184 +1,250 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    const continentFilter = document.getElementById('continentFilter');
-    const countryFilter = document.getElementById('countryFilter');
-    const topicCountryChartCanvas = document.getElementById('topicCountryChart').getContext('2d');
-    const topicYearChartCanvas = document.getElementById('topicYearChart').getContext('2d');
-    const artFormTopicChartCanvas = document.getElementById('artFormTopicChart').getContext('2d');
+// Global variables
+let countries = [];
 
-    let artworkData, continentMapping, topicClusters;
-    let topicCountryChart, topicYearChart, artFormTopicChart;
+// Load and analyze the data
+async function loadData() {
+    const response = await fetch('artwork-data.json');
+    const data = await response.json();
+    
+    // Populate country selection
+    countries = [...new Set(data.features.map(feature => feature.properties.location.split(', ').pop()))];
+    
+    const countrySelect = document.getElementById('countrySelect');
+    countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country;
+        option.textContent = country;
+        countrySelect.appendChild(option);
+    });
+}
 
-    // Load data
-    try {
-        const artworkResponse = await fetch('artwork-data.json');
-        artworkData = await artworkResponse.json();
+// Show selected tab
+function showTab(tabId) {
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+}
 
-        // Assuming continentMapping is available globally or loaded in another file
-        continentMapping = window.continentMapping || {};  // Ensure continentMapping is loaded properly
-        topicClusters = await fetch('topicClusters.json').then(res => res.json());
+// Load data for Topic Cluster by Country
+async function loadCountryData() {
+    const response = await fetch('artwork-data.json');
+    const data = await response.json();
+    const clustersResponse = await fetch('topicClusters.json');
+    const clustersData = await clustersResponse.json();
 
-        // Initialize chart setup
-        populateContinentFilter();
-        initTopicCountryChart();
-        initTopicYearChart();
-        initArtFormTopicChart();
-
-        continentFilter.addEventListener('change', populateCountryFilter);
-
-    } catch (error) {
-        console.error("Error loading data:", error);
-    }
-
-    // Populate continent filter options
-    function populateContinentFilter() {
-        const continents = Object.keys(continentMapping);
-        continents.forEach(continent => {
-            const option = document.createElement('option');
-            option.value = continent;
-            option.textContent = continent;
-            continentFilter.appendChild(option);
+    const selectedCountries = Array.from(document.getElementById('countrySelect').selectedOptions).map(option => option.value);
+    
+    const tagsByCountry = {};
+    
+    // Map topics to clusters
+    const topicToClusterMap = {};
+    clustersData.clusters.forEach(cluster => {
+        cluster.topics.forEach(topic => {
+            topicToClusterMap[topic] = cluster.name;
         });
-    }
+    });
 
-    // Populate country filter based on selected continent
-    function populateCountryFilter() {
-        const selectedContinent = continentFilter.value;
-        countryFilter.innerHTML = '';
-        if (selectedContinent && continentMapping[selectedContinent]) {
-            continentMapping[selectedContinent].forEach(country => {
-                const option = document.createElement('option');
-                option.value = country;
-                option.textContent = country;
-                countryFilter.appendChild(option);
-            });
-        }
-    }
+    data.features.forEach((feature) => {
+        const country = feature.properties.location.split(', ').pop();
+        if (selectedCountries.includes(country)) {
+            const topics = feature.properties.tags.topic || [];
+            const clusterName = topicToClusterMap[topics[0]];
 
-    // Page 1: Update Topic Cluster by Country chart
-    function updateTopicCountryChart() {
-        const selectedContinent = continentFilter.value;
-        const selectedCountries = Array.from(countryFilter.selectedOptions).map(option => option.value);
-
-        const filteredData = artworkData.features.filter(feature => {
-            const country = feature.properties.location.split(', ').pop();
-            const continent = getContinent(country);
-            return (!selectedContinent || continent === selectedContinent) && 
-                   (selectedCountries.length === 0 || selectedCountries.includes(country));
-        });
-
-        const topicCounts = {};
-        filteredData.forEach(feature => {
-            const topic = feature.properties.tags.topic[0];
-            topicCounts[topic] = (topicCounts[topic] || 0) + 1;
-        });
-
-        topicCountryChart.data.labels = Object.keys(topicCounts);
-        topicCountryChart.data.datasets = [{
-            label: 'Topic Frequency',
-            data: Object.values(topicCounts),
-            backgroundColor: 'rgba(54, 162, 235, 0.6)',
-        }];
-        topicCountryChart.update();
-    }
-
-    // Page 2: Topic Cluster by Year
-    function updateTopicYearChart() {
-        const minYear = Math.min(...artworkData.features.map(feature => feature.properties.year));
-        const maxYear = Math.max(...artworkData.features.map(feature => feature.properties.year));
-
-        const yearlyTopicCounts = {};
-        for (let year = minYear; year <= maxYear; year++) {
-            const yearData = artworkData.features.filter(feature => feature.properties.year === year);
-            const topicCounts = {};
-
-            yearData.forEach(feature => {
-                const topic = feature.properties.tags.topic[0];
-                topicCounts[topic] = (topicCounts[topic] || 0) + 1;
-            });
-
-            yearlyTopicCounts[year] = topicCounts;
-        }
-
-        topicYearChart.data.labels = Object.keys(yearlyTopicCounts);
-        topicYearChart.data.datasets = Object.keys(topicClusters).map(cluster => ({
-            label: cluster,
-            data: Object.keys(yearlyTopicCounts).map(year => yearlyTopicCounts[year][cluster] || 0),
-            backgroundColor: topicClusters[cluster].color
-        }));
-
-        topicYearChart.update();
-    }
-
-    // Page 3: Art Form vs Topic Clusters
-    function updateArtFormTopicChart() {
-        const artFormTopicCounts = {};
-
-        artworkData.features.forEach(feature => {
-            const artForms = feature.properties.tags.artform;
-            const topic = feature.properties.tags.topic[0];
-
-            artForms.forEach(artForm => {
-                if (!artFormTopicCounts[artForm]) {
-                    artFormTopicCounts[artForm] = {};
-                }
-                artFormTopicCounts[artForm][topic] = (artFormTopicCounts[artForm][topic] || 0) + 1;
-            });
-        });
-
-        const artForms = Object.keys(artFormTopicCounts);
-        const topics = [...new Set(artForms.flatMap(artForm => Object.keys(artFormTopicCounts[artForm])))];
-
-        artFormTopicChart.data.labels = topics;
-        artFormTopicChart.data.datasets = artForms.map(artForm => ({
-            label: artForm,
-            data: topics.map(topic => artFormTopicCounts[artForm][topic] || 0),
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-        }));
-        artFormTopicChart.update();
-    }
-
-    // Get continent for a country
-    function getContinent(country) {
-        for (const [continent, countries] of Object.entries(continentMapping)) {
-            if (countries.includes(country)) {
-                return continent;
+            if (!tagsByCountry[country]) tagsByCountry[country] = {};
+            if (clusterName) {
+                tagsByCountry[country][clusterName] = (tagsByCountry[country][clusterName] || 0) + 1;
             }
         }
-        return null;
-    }
+    });
 
-    // Toggle analysis sections
-    window.showAnalysis = function (section) {
-        document.getElementById('topicCountryAnalysis').style.display = section === 'topicCountry' ? 'block' : 'none';
-        document.getElementById('topicYearAnalysis').style.display = section === 'topicYear' ? 'block' : 'none';
-        document.getElementById('artFormTopicAnalysis').style.display = section === 'artFormTopic' ? 'block' : 'none';
-    };
+    createCountryClusterChart(tagsByCountry);
+}
 
-    // Initialize charts
-    function initTopicCountryChart() {
-        topicCountryChart = new Chart(topicCountryChartCanvas, {
-            type: 'bar',
-            data: { labels: [], datasets: [] },
-            options: { responsive: true, scales: { x: { stacked: true }, y: { beginAtZero: true, stacked: true } } }
-        });
-        updateTopicCountryChart();
-    }
+// Create bar chart for topic clusters by country
+function createCountryClusterChart(data) {
+    const ctx = document.getElementById('countryChart').getContext('2d');
+    
+    const countries = Object.keys(data);
+    const clusters = [...new Set(countries.flatMap(country => Object.keys(data[country])))];
 
-    function initTopicYearChart() {
-        topicYearChart = new Chart(topicYearChartCanvas, {
-            type: 'line',
-            data: { labels: [], datasets: [] },
-            options: { responsive: true, scales: { x: { type: 'linear', position: 'bottom' }, y: { beginAtZero: true } } }
-        });
-        updateTopicYearChart();
-    }
+    const datasets = clusters.map(cluster => ({
+        label: cluster,
+        data: countries.map(country => data[country][cluster] || 0),
+        backgroundColor: getRandomColor(),
+    }));
 
-    function initArtFormTopicChart() {
-        artFormTopicChart = new Chart(artFormTopicChartCanvas, {
-            type: 'bar',
-            data: { labels: [], datasets: [] },
-            options: { responsive: true, scales: { x: { stacked: true }, y: { beginAtZero: true, stacked: true } } }
-        });
-        updateArtFormTopicChart();
-    }
-});
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: countries,
+            datasets: datasets,
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Topic Clusters by Country'
+                },
+            },
+            responsive: true,
+            scales: {
+                x: { stacked: true },
+                y: { beginAtZero: true, stacked: true },
+            },
+        }
+    });
+}
+
+// Load data for Topic by Year
+async function loadYearData() {
+    const response = await fetch('artwork-data.json');
+    const data = await response.json();
+
+    const yearCounts = {};
+    
+    data.features.forEach((feature) => {
+        const year = feature.properties.year; // Assuming year is available in properties
+        if (year) {
+            if (!yearCounts[year]) yearCounts[year] = {};
+            const topics = feature.properties.tags.topic || [];
+            
+            topics.forEach(topic => {
+                yearCounts[year][topic] = (yearCounts[year][topic] || 0) + 1;
+            });
+        }
+    });
+
+    createYearTopicChart(yearCounts);
+}
+
+// Create line chart for topics by year
+function createYearTopicChart(data) {
+    const ctx = document.getElementById('yearChart').getContext('2d');
+
+    const years = Object.keys(data).map(year => parseInt(year));
+    
+    // Get min and max year
+    const minYear = Math.min(...years);
+    const maxYear = Math.max(...years);
+
+   // Prepare datasets
+   const topicsSet = new Set();
+    
+   years.forEach(year => {
+       Object.keys(data[year]).forEach(topic => topicsSet.add(topic));
+   });
+
+   const datasets = Array.from(topicsSet).map(topic => ({
+       label: topic,
+       data: years.map(year => data[year][topic] || 0),
+       borderColor: getRandomColor(),
+       fill: false,
+       tension: 0.1,
+     }));
+
+     new Chart(ctx, {
+         type: 'line',
+         data: {
+             labels: years,
+             datasets: datasets,
+         },
+         options: {
+             plugins: {
+                 title: {
+                     display: true,
+                     text: 'Topics by Year'
+                 },
+             },
+             responsive: true,
+             scales: {
+                 x: { 
+                     type: 'linear',
+                     position: 'bottom',
+                     min: minYear,
+                     max: maxYear
+                  },
+                 y: { beginAtZero: true },
+             },
+         }
+     });
+}
+
+// Load data for Topic Cluster by Art Form
+async function loadArtFormData() {
+   const response = await fetch('artwork-data.json');
+   const data = await response.json();
+   const clustersResponse = await fetch('topicClusters.json');
+   const clustersData = await clustersResponse.json();
+
+   const tagsByArtForm = {};
+   
+   // Map topics to clusters
+   const topicToClusterMap = {};
+   clustersData.clusters.forEach(cluster => {
+       cluster.topics.forEach(topic => {
+           topicToClusterMap[topic] = cluster.name;
+       });
+   });
+
+   data.features.forEach((feature) => {
+       const artforms = feature.properties.tags.artform || [];
+       const topics = feature.properties.tags.topic || [];
+       const clusterName = topicToClusterMap[topics[0]];
+
+       artforms.forEach(artform => {
+           if (!tagsByArtForm[artform]) tagsByArtForm[artform] = {};
+           if (clusterName) {
+               tagsByArtForm[artform][clusterName] = (tagsByArtForm[artform][clusterName] || 0) + 1;
+           }
+       });
+   });
+
+   createArtFormClusterChart(tagsByArtForm);
+}
+
+// Create bar chart for topic clusters by art form
+function createArtFormClusterChart(data) {
+   const ctx = document.getElementById('artformChart').getContext('2d');
+
+   const artforms = Object.keys(data);
+   const clustersSet = [...new Set(artforms.flatMap(artform => Object.keys(data[artform])))];
+
+   const datasets = clustersSet.map(cluster => ({
+       label: cluster,
+       data: artforms.map(artform => data[artform][cluster] || 0),
+       backgroundColor: getRandomColor(),
+   }));
+
+   new Chart(ctx, {
+       type: 'bar',
+       data: {
+           labels: artforms,
+           datasets: datasets,
+       },
+       options: {
+           plugins: {
+               title: {
+                   display: true,
+                   text: 'Topic Clusters by Art Form'
+               },
+           },
+           responsive: true,
+           scales: {
+               x: { stacked: true },
+               y: { beginAtZero: true, stacked: true },
+           },
+       }
+   });
+}
+
+// Utility function to generate random colors for the chart
+function getRandomColor() {
+   const letters = '0123456789ABCDEF';
+   let color = '#';
+   for (let i = 0; i < 6; i++) {
+       color += letters[Math.floor(Math.random() * 16)];
+   }
+   return color;
+}
+
+// Initial load of data
+loadData().then(() => loadYearData()).then(() => loadArtFormData());
