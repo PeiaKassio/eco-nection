@@ -1,26 +1,44 @@
-<div id="analysis-section">
-    <h2>Topic Cluster Analysis by Continent and Country</h2>
-    <select id="continent-filter">
-        <option value="all">All Continents</option>
-        <!-- Add continent options dynamically -->
-    </select>
-    <select id="country-filter">
-        <option value="all">All Countries</option>
-        <!-- Add country options dynamically -->
-    </select>
-    <canvas id="continent-country-chart"></canvas>
+<div class="container">
+    <h1>Data Analysis</h1>
 
-    <h2>Topic Cluster by Year - Timeline with Continents</h2>
-    <select id="continent-year-filter">
-        <option value="all">All Continents</option>
-        <!-- Add continent options dynamically -->
-    </select>
-    <canvas id="continent-timeline-chart"></canvas>
+    <!-- Analysis: Topic Cluster by Continent and Country -->
+    <section class="analysis-section">
+        <h2>Topic Cluster Analysis by Continent and Country</h2>
+        <div class="filters">
+            <label for="continent-filter">Select Continent:</label>
+            <select id="continent-filter">
+                <option value="all">All Continents</option>
+            </select>
 
-    <h2>Topic Cluster by Year - Timeline with Countries</h2>
-    <select id="country-year-filter">
-        <option value="all">All Countries</option>
-        <!-- Add country options dynamically -->
-    </select>
-    <canvas id="country-timeline-chart"></canvas>
+            <label for="country-filter">Select Country:</label>
+            <select id="country-filter">
+                <option value="all">All Countries</option>
+            </select>
+        </div>
+        <canvas id="continent-country-chart"></canvas>
+    </section>
+
+    <!-- Analysis: Topic Cluster by Year and Continent -->
+    <section class="analysis-section">
+        <h2>Topic Cluster by Year - Timeline with Continents</h2>
+        <div class="filters">
+            <label for="continent-year-filter">Select Continent:</label>
+            <select id="continent-year-filter">
+                <option value="all">All Continents</option>
+            </select>
+        </div>
+        <canvas id="continent-timeline-chart"></canvas>
+    </section>
+
+    <!-- Analysis: Topic Cluster by Year and Country -->
+    <section class="analysis-section">
+        <h2>Topic Cluster by Year - Timeline with Countries</h2>
+        <div class="filters">
+            <label for="country-year-filter">Select Country:</label>
+            <select id="country-year-filter">
+                <option value="all">All Countries</option>
+            </select>
+        </div>
+        <canvas id="country-timeline-chart"></canvas>
+    </section>
 </div>
