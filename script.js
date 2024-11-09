@@ -108,19 +108,25 @@ map.on('load', async () => {
     });
 
     // Popup für einzelne Punkte
-   map.on('click', 'unclustered-point', (e) => {
+  map.on('click', 'unclustered-point', (e) => {
     const coordinates = e.features[0].geometry.coordinates.slice();
     const properties = e.features[0].properties || {};
 
-    // Extract individual properties
+    // Debugging logs
+    console.log("Properties:", properties);
+    console.log("Tags:", properties.tags);
+
     const title = properties.title || 'Untitled';
     const description = properties.description || 'No Description';
     const artist = properties.artist || 'Unknown';
     const year = properties.year || 'Unknown';
 
-    // Safely format topics and artforms from the tags object
+    // Safely access topics and artforms
     const topics = properties.tags && properties.tags.topic ? properties.tags.topic.join(', ') : 'No Topics';
     const artforms = properties.tags && properties.tags.artform ? properties.tags.artform.join(', ') : 'No Art Forms';
+
+    console.log("Topics:", topics);  // Should output actual topics if present
+    console.log("Art Forms:", artforms);  // Should output actual art forms if present
 
     new mapboxgl.Popup()
         .setLngLat(coordinates)
@@ -134,7 +140,6 @@ map.on('load', async () => {
         `)
         .addTo(map);
 });
-
 
 
     // Klick auf Cluster zum Zoomen
@@ -160,7 +165,6 @@ map.on('load', async () => {
 });
 
 // Function to apply filters
-// Function to apply filters
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopic = document.getElementById('tag-filter').value;
@@ -168,7 +172,7 @@ function applyFilters() {
 
     const filter = ['all'];
 
-    // Filter by search text in title or description
+    // Add search text filter
     if (searchText) {
         filter.push([
             'any',
@@ -177,19 +181,22 @@ function applyFilters() {
         ]);
     }
 
-    // Filter by topic
+    // Add topic filter
     if (selectedTopic) {
         filter.push(['in', selectedTopic, ['get', 'tags', 'topic']]);
     }
 
-    // Filter by art form
+    // Add artform filter
     if (selectedArtForm) {
         filter.push(['in', selectedArtForm, ['get', 'tags', 'artform']]);
     }
 
-    // Apply the filter to the map layer
+    // Log the constructed filter for debugging
+    console.log("Applying filter:", JSON.stringify(filter));
+
+    // Apply the filter to the map
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 }
 
-// Add an event listener to the "Apply" button
+// Add event listener for Apply button
 document.getElementById('apply-filters').addEventListener('click', applyFilters);
