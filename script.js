@@ -106,3 +106,43 @@ map.on('mouseenter', 'clusters', () => map.getCanvas().style.cursor = 'pointer')
 map.on('mouseleave', 'clusters', () => map.getCanvas().style.cursor = '');
 map.on('mouseenter', 'unclustered-point', () => map.getCanvas().style.cursor = 'pointer');
 map.on('mouseleave', 'unclustered-point', () => map.getCanvas().style.cursor = '');
+
+// Event Listener für den Tag-Filter
+document.getElementById('tag-filter').addEventListener('change', function (e) {
+    applyFilters(document.getElementById('search-bar').value.toLowerCase());
+});
+
+// Event Listener für den Art-Typ-Filter
+document.getElementById('type-filter').addEventListener('change', function (e) {
+    applyFilters(document.getElementById('search-bar').value.toLowerCase());
+});
+
+// Filter anwenden (nach Titel, Tags und Art-Typ)
+function applyFilters(searchText) {
+    const selectedTag = document.getElementById('tag-filter').value;
+    const selectedType = document.getElementById('type-filter').value;
+
+    // Erstelle den Filter für GeoJSON
+    const filter = ['all'];
+
+    // Titel-Filter hinzufügen, wenn der Text in der Suchleiste eingegeben wurde
+    if (searchText) {
+        filter.push(['match', ['toLowerCase', ['get', 'title']], searchText]);
+    }
+
+    // Tag-Filter hinzufügen, wenn ein Tag ausgewählt wurde
+    if (selectedTag) {
+        filter.push(['in', 'tags.topic', selectedTag]);
+        filter.push(['in', 'tags.artform', selectedTag]); // Filtern nach Kunstform
+    }
+
+    // Art-Typ-Filter hinzufügen, wenn ein Art-Typ ausgewählt wurde
+    if (selectedType) {
+        filter.push(['==', 'type', selectedType]);
+    }
+
+    // Filter auf die Layer anwenden
+    map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
+    map.setFilter('clusters', filter.length > 1 ? filter : null);
+}
+
