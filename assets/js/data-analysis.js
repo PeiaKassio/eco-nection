@@ -5,7 +5,7 @@ let countryChart; // Variable to hold the chart instance
 
 // Load and analyze the data
 async function loadData() {
-    const response = await fetch('artwork-data.json');
+    const response = await fetch('data/artwork-data.json');
     const data = await response.json();
     
     // Populate country selection with countries that have data
@@ -35,7 +35,7 @@ function showTab(tabId) {
 
 // Load data for Topic Cluster by Country
 async function loadCountryData() {
-    const response = await fetch('artwork-data.json');
+    const response = await fetch('data/artwork-data.json');
     const data = await response.json();
 
     const selectedCountries = Array.from(document.getElementById('countrySelect').selectedOptions).map(option => option.value);
@@ -111,7 +111,7 @@ function createCountryClusterChart(data) {
 
 // Load data for Topic Cluster by Year
 async function loadYearData() {
-   const response = await fetch('artwork-data.json');
+   const response = await fetch('data/artwork-data.json');
    const data = await response.json();
 
    const yearCounts = {};
@@ -184,7 +184,7 @@ function createYearClusterChart(data) {
 
 // Load data for Topic Cluster by Art Form
 async function loadArtFormData() {
-   const response = await fetch('artwork-data.json');
+   const response = await fetch('data/artwork-data.json');
    const data = await response.json();
 
    const tagsByArtForm = {};

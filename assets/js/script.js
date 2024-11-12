@@ -18,7 +18,7 @@ map.on('style.load', () => {
 
 map.on('load', async () => {
     try {
-        const artworkResponse = await fetch('artwork-data.json');
+        const artworkResponse = await fetch('data/artwork-data.json');
         const artworkData = await artworkResponse.json();
         const topicClusterResponse = await fetch('topicClusters.json');
         const topicClusters = await topicClusterResponse.json();
