@@ -1,77 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="forest" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eco:nection Data Analysis</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <title>eco:nection</title>
+    <!-- Mapbox GL CSS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet" />
+    <!-- Custom CSS for your map page -->
+    <link rel="stylesheet" href="style.css">
+    <!-- DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <!-- ChartJS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-        <header>
-        <h1>eco:nection Data Analysis</h1>
-        <nav>
-            <a href="index.html">Map</a>
-            <!-- <a href="blog.html">Blog</a> -->
-            <a href="data-analysis.html">Data Analysis</a>
-        </nav>
-    </header>
-
-<h1>Artworks Data Analysis</h1>
-
-<!-- Navigation Tabs -->
-<div>
-    <button onclick="showTab('countryTab')">Topic Cluster by Country</button>
-    <button onclick="showTab('yearTab')">Topic Cluster by Year</button>
-    <button onclick="showTab('artformTab')">Topic Cluster by Art Form</button>
-</div>
-
-   <!-- Tab 1: Topic Cluster by Country -->
-    <div id="countryTab" class="tab active">
-        <h2>Topic Cluster by Country</h2>
-        <input type="text" id="countrySearch" placeholder="Search countries..." onkeyup="filterCountries()">
-        <select id="countrySelect" multiple></select>
-        <button onclick="loadCountryData()">Show Data</button>
-        <canvas id="countryChart"></canvas>
+<body class="flex flex-col">
+    <div class="navbar bg-base-300">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                    <i class="ti ti-menu text-xl"></i>
+                </div>
+                <ul
+                    tabindex="0"
+                    class="menu menu-sm dropdown-content gap-y-3 bg-base-300 rounded-box z-10 mt-3 w-44 shadow">
+                    <li>
+                        <a class="btn btn-primary" href="index.html">
+                            <i class="ti ti-map-2 text-xl"></i>
+                            <span>Map</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-primary" href="data-analysis.html">
+                            <i class="ti ti-chart-dots-2 text-xl"></i>
+                            <span>Data</span>
+                        </a>
+                    </li>
+                    <div class="divider my-0"></div>
+                    <li>
+                        <a href="https://github.com/PeiaKassio/eco-nection" class="btn btn-outline btn-secondary lg:hidden">
+                            <i class="ti ti-brand-github text-xl"></i>
+                            Contribute
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex mx-3 gap-3 justify-center hidden lg:flex">
+                <i class="ti ti-affiliate text-3xl text-primary"></i>
+                <span class="text-2xl subpixel-antialiased">eco:nection</span>
+            </div>
+        </div>
+        <div class="navbar-center">
+            <div class="flex mx-3 gap-3 justify-center lg:hidden">
+                <i class="ti ti-affiliate text-3xl text-primary"></i>
+                <span class="text-2xl subpixel-antialiased">eco:nection</span>
+            </div>
+            <ul class="hidden lg:flex menu menu-horizontal px-1 gap-x-12">
+                <li>
+                    <a class="btn btn-primary" href="index.html">
+                        <i class="ti ti-map-2 text-xl"></i>
+                        Map
+                    </a>
+                </li>
+                <li>
+                    <a class="btn btn-primary" href="data-analysis.html">
+                        <i class="ti ti-chart-dots-2 text-xl"></i>
+                        Data
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <a href="https://github.com/PeiaKassio/eco-nection" class="btn btn-outline btn-secondary hidden lg:flex">
+                <i class="ti ti-brand-github text-xl"></i>
+                Contribute
+            </a>
+        </div>
     </div>
 
-<!-- Tab 2: Topic Cluster by Year -->
-<div id="yearTab" class="tab">
-    <h2>Topic Cluster by Year</h2>
-    <canvas id="yearChart"></canvas>
-</div>
+    <main class="lg:container m-3 lg:mt-12 lg:mx-auto lg:px-32">
+        <div class="flex flex-col justify-between gap-6 prose prose-sm md:prose-base w-full">
+            <h1 class="text-3xl font-bold">Artworks Data Analysis</h1>
 
-<!-- Tab 3: Topic Cluster by Art Form -->
-<div id="artformTab" class="tab">
-    <h2>Topic Cluster by Art Form</h2>
-    <canvas id="artformChart"></canvas>
-</div>
+            <div role="tablist" class="tabs tabs-lifted">
+                <input type="radio" name="topic_cluster" role="tab" class="tab text-lg" aria-label="Country" checked="checked" />
+                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 pe-0">
+                    <h2 class="text-2xl">Topic Cluster by Country</h2>
+                    <input type="text" id="countrySearch" placeholder="Search countries..." onkeyup="filterCountries()">
+                    <select id="countrySelect" multiple></select>
+                    <button onclick="loadCountryData()">Show Data</button>
+                    <canvas id="countryChart"></canvas>
+                </div>
 
-<script src="data-analysis.js"></script> <!-- Link to the JavaScript file -->
+                <input type="radio" name="topic_cluster" role="tab" class="tab text-lg" aria-label="Year" />
+                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 pe-0">
+                    <h2 class="text-2xl">Topic Cluster by Year</h2>
+                    <canvas id="yearChart"></canvas>
+                </div>
 
-<script>
-// Function to show the selected tab and hide others
-function showTab(tabId) {
-    // Hide all tabs
-    document.querySelectorAll('.tab').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    
-    // Show the selected tab
-    document.getElementById(tabId).classList.add('active');
-}
+                <input type="radio" name="topic_cluster" role="tab" class="tab text-lg whitespace-nowrap" aria-label="Art Form" />
+                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 pe-0">
+                    <h2 class="text-2xl">Topic Cluster by Art Form</h2>
+                    <canvas id="artformChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
 
-// Function to filter countries based on search input
-function filterCountries() {
-    const input = document.getElementById('countrySearch').value.toLowerCase();
-    const select = document.getElementById('countrySelect');
-    
-    Array.from(select.options).forEach(option => {
-        const text = option.text.toLowerCase();
-        option.style.display = text.includes(input) ? '' : 'none'; // Show or hide based on search
-    });
-}
-</script>
+    <script src="data-analysis.js"></script> <!-- Link to the JavaScript file -->
+
+    <script>
+        // Function to filter countries based on search input
+        function filterCountries() {
+            const input = document.getElementById('countrySearch').value.toLowerCase();
+            const select = document.getElementById('countrySelect');
+            
+            Array.from(select.options).forEach(option => {
+                const text = option.text.toLowerCase();
+                option.style.display = text.includes(input) ? '' : 'none'; // Show or hide based on search
+            });
+        }
+    </script>
 
 </body>
 </html>
