@@ -17,7 +17,11 @@ map.on('style.load', () => {
         'color': 'rgb(186, 210, 235)',
         'horizon-blend': 0.1
     });
+
+    // Ensures the globe projection is activated if it’s not displaying properly initially
+    map.setProjection('globe');
 });
+
 
 map.on('load', async () => {
     try {
