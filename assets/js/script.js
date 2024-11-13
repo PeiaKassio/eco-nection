@@ -190,6 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('apply-filters').addEventListener('click', applyFilters);
 
 }); 
+
+// Apply Filters Function
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions).map(option => option.value);
@@ -228,10 +230,18 @@ function applyFilters() {
         ]);
     }
 
-    // Set filter on unclustered points layer
-    map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
+    // Apply filter to unclustered-point layer
+    if (map.getLayer('unclustered-point')) {
+        map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
+    }
 
+    // Reset clusters layer filter to show all clusters
     if (map.getLayer('clusters')) {
-        map.setFilter('clusters', null); // Clears any filtering for clusters
+        map.setFilter('clusters', null);
     }
 }
+
+// Add event listener to Apply button
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('apply-filters').addEventListener('click', applyFilters);
+});
