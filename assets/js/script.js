@@ -41,6 +41,9 @@ map.on('load', async () => {
             feature.properties.mainClusterColor = getClusterColor(firstTopic) || '#ffffff';
         });
 
+        // Populate filter dropdowns
+        populateFilterDropdowns(artworkData, topicClusters);
+
         // Add source with the artwork data
         map.addSource('artworks', {
             type: 'geojson',
@@ -157,6 +160,10 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     // Populate the Topic Filter Dropdown
     const topicSelect = document.getElementById('tag-filter');
     topicSelect.innerHTML = ''; // Clear existing options
+    const allTopicsOption = document.createElement('option');
+    allTopicsOption.value = '';
+    allTopicsOption.textContent = 'All Topics';
+    topicSelect.appendChild(allTopicsOption);
     topics.forEach(topic => {
         const option = document.createElement('option');
         option.value = topic;
@@ -167,6 +174,10 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     // Populate the Artform Filter Dropdown
     const artformSelect = document.getElementById('artform-filter');
     artformSelect.innerHTML = ''; // Clear existing options
+    const allArtformsOption = document.createElement('option');
+    allArtformsOption.value = '';
+    allArtformsOption.textContent = 'All Art Forms';
+    artformSelect.appendChild(allArtformsOption);
     artforms.forEach(artform => {
         const option = document.createElement('option');
         option.value = artform;
@@ -177,6 +188,10 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     // Populate the Cluster Filter Dropdown with colors
     const clusterSelect = document.getElementById('cluster-filter');
     clusterSelect.innerHTML = ''; // Clear existing options
+    const allClustersOption = document.createElement('option');
+    allClustersOption.value = '';
+    allClustersOption.textContent = 'All Clusters';
+    clusterSelect.appendChild(allClustersOption);
     Object.entries(topicClusters).forEach(([clusterName, clusterData]) => {
         const option = document.createElement('option');
         option.value = clusterName;
@@ -191,9 +206,9 @@ function populateFilterDropdowns(artworkData, topicClusters) {
 // Apply Filters Function
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
-    const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions).map(option => option.value);
-    const selectedArtForms = Array.from(document.getElementById('artform-filter').selectedOptions).map(option => option.value);
-    const selectedClusters = Array.from(document.getElementById('cluster-filter').selectedOptions).map(option => option.value);
+    const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions).map(option => option.value).filter(value => value);
+    const selectedArtForms = Array.from(document.getElementById('artform-filter').selectedOptions).map(option => option.value).filter(value => value);
+    const selectedClusters = Array.from(document.getElementById('cluster-filter').selectedOptions).map(option => option.value).filter(value => value);
 
     const filter = ['all'];
 
