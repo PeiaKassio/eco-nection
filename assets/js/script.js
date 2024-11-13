@@ -181,11 +181,12 @@ map.on('load', async () => {
 });
 
 // Filterfunktion
+document.getElementById('apply-filters').addEventListener('click', applyFilters);
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
-    const selectedTopic = document.getElementById('tag-filter').value;
-    const selectedArtForm = document.getElementById('artform-filter').value;
-    const selectedCluster = document.getElementById('cluster-filter').value;
+    const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions).map(option => option.value);
+    const selectedArtForms = Array.from(document.getElementById('artform-filter').selectedOptions).map(option => option.value);
+    const selectedClusters = Array.from(document.getElementById('cluster-filter').selectedOptions).map(option => option.value);
 
     const filter = ['all'];
 
@@ -197,18 +198,29 @@ function applyFilters() {
         ]);
     }
 
-    if (selectedTopic) {
-        filter.push(['in', selectedTopic, ['get', ['get', 'tags'], 'topic']]);
+      // Apply selected topics filter
+    if (selectedTopics.length > 0) {
+        filter.push([
+            'any',
+            ...selectedTopics.map(topic => ['in', topic, ['get', ['get', 'tags'], 'topic']])
+        ]);
     }
-
-    if (selectedCluster) {
+    
+    if (selectedClusters.length > 0) {
         // Hole die Farbe für den ausgewählten Cluster-Namen aus topicClusters
-        const selectedClusterColor = topicClusters[selectedCluster]?.color || '#ffffff';
-        filter.push(['==', ['get', 'mainClusterColor'], selectedClusterColor]);
+        const clusterColorConditions = selectedClusters.map(cluster => {
+            const color = topicClusters[cluster]?.color || '#ffffff';
+            return ['==', ['get', 'mainClusterColor'], color];
+        });
+        filter.push(['any', ...clusterColorConditions]);
     }
 
-    if (selectedArtForm) {
-        filter.push(['in', selectedArtForm, ['get', ['get', 'tags'], 'artform']]);
+   // Apply selected art forms filter
+    if (selectedArtForms.length > 0) {
+        filter.push([
+            'any',
+            ...selectedArtForms.map(artform => ['in', artform, ['get', ['get', 'tags'], 'artform']])
+        ]);
     }
 
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
@@ -218,7 +230,3 @@ function applyFilters() {
     }
 }
 
-document.getElementById('search-bar').addEventListener('input', applyFilters);
-document.getElementById('tag-filter').addEventListener('change', applyFilters);
-document.getElementById('artform-filter').addEventListener('change', applyFilters);
-document.getElementById('cluster-filter').addEventListener('change', applyFilters);
