@@ -96,10 +96,60 @@ map.on('load', async () => {
             }
         });
 
+        // Populate filter dropdowns
+        populateFilterDropdowns(artworkData, topicClusters);
+
     } catch (error) {
         console.error("Error loading data:", error);
     }
 });
+
+// Function to populate filter dropdowns with unique topics, artforms, and clusters
+function populateFilterDropdowns(artworkData, topicClusters) {
+    const topics = new Set();
+    const artforms = new Set();
+
+    // Extract topics and art forms from artwork data
+    artworkData.features.forEach(feature => {
+        if (feature.properties.tags) {
+            feature.properties.tags.topic?.forEach(tag => topics.add(tag));
+            feature.properties.tags.artform?.forEach(tag => artforms.add(tag));
+        }
+    });
+
+    // Populate the Topic Filter Dropdown
+    const topicSelect = document.getElementById('tag-filter');
+    topicSelect.innerHTML = ''; // Clear existing options
+    topics.forEach(topic => {
+        const option = document.createElement('option');
+        option.value = topic;
+        option.textContent = topic;
+        topicSelect.appendChild(option);
+    });
+
+    // Populate the Artform Filter Dropdown
+    const artformSelect = document.getElementById('artform-filter');
+    artformSelect.innerHTML = ''; // Clear existing options
+    artforms.forEach(artform => {
+        const option = document.createElement('option');
+        option.value = artform;
+        option.textContent = artform;
+        artformSelect.appendChild(option);
+    });
+
+    // Populate the Cluster Filter Dropdown with colors
+    const clusterSelect = document.getElementById('cluster-filter');
+    clusterSelect.innerHTML = ''; // Clear existing options
+    Object.entries(topicClusters).forEach(([clusterName, clusterData]) => {
+        const option = document.createElement('option');
+        option.value = clusterName;
+        option.textContent = clusterName;
+        option.style.color = clusterData.color;
+        clusterSelect.appendChild(option);
+    });
+
+    console.log("Filter dropdowns populated with topics, art forms, and clusters."); // Debug output
+}
 
 // Apply Filters Function
 function applyFilters() {
