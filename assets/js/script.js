@@ -81,8 +81,9 @@ map.on('load', async () => {
         const clusterSelect = document.getElementById('cluster-filter');
         Object.entries(topicClusters).forEach(([clusterName, clusterData]) => {
             const option = document.createElement('option');
-            option.value = clusterName; // Setze den Cluster-Namen als Wert
-            option.innerHTML = `<span style="color:${clusterData.color}; font-weight: bold;">●</span> ${clusterName}`;
+            option.value = clusterName;
+            option.textContent = clusterName;
+            option.style.color = clusterData.color; // Apply the color to the text instead of the background
             clusterSelect.appendChild(option);
         });
 
