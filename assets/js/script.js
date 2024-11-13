@@ -57,7 +57,7 @@ map.on('load', async () => {
             source: 'artworks',
             filter: ['has', 'point_count'],
             paint: {
-                'circle-color': '#51bbd6', // Color for clusters
+                'circle-color': '#51bbd6',
                 'circle-radius': [
                     'step',
                     ['get', 'point_count'],
@@ -96,8 +96,45 @@ map.on('load', async () => {
             }
         });
 
-        // Populate filter dropdowns
-        populateFilterDropdowns(artworkData, topicClusters);
+        // Add popup on click for unclustered-point layer
+        map.on('click', 'unclustered-point', (e) => {
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const properties = e.features[0].properties || {};
+
+            const title = properties.title || 'Untitled';
+            const description = properties.description || 'No Description';
+            const artist = properties.artist || 'Unknown';
+            const year = properties.year || 'Unknown';
+
+            let tags = properties.tags;
+            if (typeof tags === 'string') {
+                try {
+                    tags = JSON.parse(tags);
+                } catch (error) {
+                    console.error("Error parsing tags JSON:", error);
+                    tags = {};
+                }
+            }
+
+            const popupTopics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
+            const popupArtforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(`
+                    <div class="card bg-neutral shadow-xl -m-5">
+                        <div class="card-body">
+                            <h3 class="card-title">${title}</h3>
+                            <p><strong>Artist:</strong> ${artist}</p>
+                            <p><strong>Description:</strong> ${description}</p>
+                            <p><strong>Year:</strong> ${year}</p>
+                            <p><strong>Topics:</strong> ${popupTopics}</p>
+                            <p><strong>Art Forms:</strong> ${popupArtforms}</p>
+                        </div>
+                    </div>
+                `)
+                .addTo(map);
+        });
 
     } catch (error) {
         console.error("Error loading data:", error);
