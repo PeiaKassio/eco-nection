@@ -18,7 +18,7 @@ map.on('style.load', () => {
 
 map.on('load', async () => {
     try {
-        const artworkResponse = await fetch('artwork-data.json');
+        const artworkResponse = await fetch('data/artwork-data.json');
         const artworkData = await artworkResponse.json();
         const topicClusterResponse = await fetch('topicClusters.json');
         const topicClusters = await topicClusterResponse.json();
@@ -158,12 +158,16 @@ map.on('load', async () => {
             new mapboxgl.Popup()
                 .setLngLat(coordinates)
                 .setHTML(`
-                    <h3>${title}</h3>
-                    <p><strong>Artist:</strong> ${artist}</p>
-                    <p><strong>Description:</strong> ${description}</p>
-                    <p><strong>Year:</strong> ${year}</p>
-                    <p><strong>Topics:</strong> ${popupTopics}</p>
-                    <p><strong>Art Forms:</strong> ${popupArtforms}</p>
+                    <div class="card bg-neutral shadow-xl -m-5">
+                        <div class="card-body">
+                            <h3 class="card-title">${title}</h3>
+                            <p><strong>Artist:</strong> ${artist}</p>
+                            <p><strong>Description:</strong> ${description}</p>
+                            <p><strong>Year:</strong> ${year}</p>
+                            <p><strong>Topics:</strong> ${popupTopics}</p>
+                            <p><strong>Art Forms:</strong> ${popupArtforms}</p>
+                        </div>
+                    </div>
                 `)
                 .addTo(map);
         });
