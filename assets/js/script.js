@@ -185,10 +185,6 @@ map.on('load', async () => {
 });
 
 // Filterfunktion
-// Remove or comment out the apply button in HTML if you don't need it anymore
-// <button id="apply-filters" class="btn btn-outline btn-sm btn-primary">Apply</button>
-
-// Automatic Filter Application
 document.getElementById('search-bar').addEventListener('input', applyFilters);
 document.getElementById('tag-filter').addEventListener('change', applyFilters);
 document.getElementById('artform-filter').addEventListener('change', applyFilters);
