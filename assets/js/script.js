@@ -2,7 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicGVpc2thc3NpbyIsImEiOiJjbTM4eHB5NHIwd2M5Mmlxe
 
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/dark-v10',
+    style: 'mapbox://styles/mapbox/dark-v10', //mapbox://styles/peiskassio/cm38wege300j601pd4oe2f3re
     center: [0, 0],
     zoom: 1.5,
     projection: 'globe'
@@ -189,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add event listener to the Apply button
     document.getElementById('apply-filters').addEventListener('click', applyFilters);
 
+}); 
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions).map(option => option.value);
