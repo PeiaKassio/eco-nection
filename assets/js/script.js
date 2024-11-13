@@ -185,7 +185,15 @@ map.on('load', async () => {
 });
 
 // Filterfunktion
-document.getElementById('apply-filters').addEventListener('click', applyFilters);
+// Remove or comment out the apply button in HTML if you don't need it anymore
+// <button id="apply-filters" class="btn btn-outline btn-sm btn-primary">Apply</button>
+
+// Automatic Filter Application
+document.getElementById('search-bar').addEventListener('input', applyFilters);
+document.getElementById('tag-filter').addEventListener('change', applyFilters);
+document.getElementById('artform-filter').addEventListener('change', applyFilters);
+document.getElementById('cluster-filter').addEventListener('change', applyFilters);
+
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions).map(option => option.value);
@@ -197,21 +205,21 @@ function applyFilters() {
     if (searchText) {
         filter.push([
             'any',
-            ['match', ['downcase', ['get', 'title']], [searchText], true, false],
-            ['match', ['downcase', ['get', 'description']], [searchText], true, false]
+            ['match', ['downcase', ['get', 'title']], searchText, true, false],
+            ['match', ['downcase', ['get', 'description']], searchText, true, false]
         ]);
     }
 
-      // Apply selected topics filter
+    // Apply selected topics filter
     if (selectedTopics.length > 0) {
         filter.push([
             'any',
-            ...selectedTopics.map(topic => ['in', topic, ['get', ['get', 'tags'], 'topic']])
+            ...selectedTopics.map(topic => ['in', topic, ['get', 'topic']])  // Assuming 'topic' is now a direct property
         ]);
     }
-    
+
+    // Apply selected clusters filter based on color
     if (selectedClusters.length > 0) {
-        // Hole die Farbe für den ausgewählten Cluster-Namen aus topicClusters
         const clusterColorConditions = selectedClusters.map(cluster => {
             const color = topicClusters[cluster]?.color || '#ffffff';
             return ['==', ['get', 'mainClusterColor'], color];
@@ -219,18 +227,19 @@ function applyFilters() {
         filter.push(['any', ...clusterColorConditions]);
     }
 
-   // Apply selected art forms filter
+    // Apply selected art forms filter
     if (selectedArtForms.length > 0) {
         filter.push([
             'any',
-            ...selectedArtForms.map(artform => ['in', artform, ['get', ['get', 'tags'], 'artform']])
+            ...selectedArtForms.map(artform => ['in', artform, ['get', 'artform']])  // Assuming 'artform' is now a direct property
         ]);
     }
 
+    // Set filter on unclustered points layer
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 
+    // Clear filters on clusters if needed
     if (map.getLayer('clusters')) {
-        map.setFilter('clusters', filter.length > 1 ? ['==', 'point_count', 0] : null);
+        map.setFilter('clusters', null); // This shows all clusters
     }
 }
-
