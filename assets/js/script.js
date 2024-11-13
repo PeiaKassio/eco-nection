@@ -196,20 +196,18 @@ function applyFilters() {
     if (searchText) {
         filter.push([
             'any',
-            ['match', ['downcase', ['get', 'title']], searchText, true, false],
-            ['match', ['downcase', ['get', 'description']], searchText, true, false]
+            ['match', ['downcase', ['get', 'title']], [searchText], true, false],
+            ['match', ['downcase', ['get', 'description']], [searchText], true, false]
         ]);
     }
 
-    // Apply selected topics filter
     if (selectedTopics.length > 0) {
         filter.push([
             'any',
-            ...selectedTopics.map(topic => ['in', topic, ['get', 'topic']])  // Assuming 'topic' is now a direct property
+            ...selectedTopics.map(topic => ['in', topic, ['get', 'topic']])
         ]);
     }
 
-    // Apply selected clusters filter based on color
     if (selectedClusters.length > 0) {
         const clusterColorConditions = selectedClusters.map(cluster => {
             const color = topicClusters[cluster]?.color || '#ffffff';
@@ -218,22 +216,21 @@ function applyFilters() {
         filter.push(['any', ...clusterColorConditions]);
     }
 
-    // Apply selected art forms filter
     if (selectedArtForms.length > 0) {
         filter.push([
             'any',
-            ...selectedArtForms.map(artform => ['in', artform, ['get', 'artform']])  // Assuming 'artform' is now a direct property
+            ...selectedArtForms.map(artform => ['in', artform, ['get', 'artform']])
         ]);
     }
 
     // Set filter on unclustered points layer
     map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 
-    // Clear filters on clusters if needed
     if (map.getLayer('clusters')) {
-        map.setFilter('clusters', null); // This shows all clusters
+        map.setFilter('clusters', null); // Clears any filtering for clusters
     }
 }
+
 
 // Filterfunktion
 document.getElementById('search-bar').addEventListener('input', applyFilters);
