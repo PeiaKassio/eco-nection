@@ -19,7 +19,7 @@ map.on('style.load', () => {
     });
 
     // Ensures the globe projection is activated if it’s not displaying properly initially
-    map.setProjection('globe');
+   // map.setProjection('globe');
 });
 
 
