@@ -184,11 +184,6 @@ map.on('load', async () => {
     }
 });
 
-// Filterfunktion
-document.getElementById('search-bar').addEventListener('input', applyFilters);
-document.getElementById('tag-filter').addEventListener('change', applyFilters);
-document.getElementById('artform-filter').addEventListener('change', applyFilters);
-document.getElementById('cluster-filter').addEventListener('change', applyFilters);
 
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
@@ -239,3 +234,9 @@ function applyFilters() {
         map.setFilter('clusters', null); // This shows all clusters
     }
 }
+
+// Filterfunktion
+document.getElementById('search-bar').addEventListener('input', applyFilters);
+document.getElementById('tag-filter').addEventListener('change', applyFilters);
+document.getElementById('artform-filter').addEventListener('change', applyFilters);
+document.getElementById('cluster-filter').addEventListener('change', applyFilters);
