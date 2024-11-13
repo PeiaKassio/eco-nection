@@ -105,9 +105,9 @@ map.on('load', async () => {
                 'circle-radius': [
                     'step',
                     ['get', 'point_count'],
-                    20, 10,
-                    30, 20,
-                    40, 30
+                    20, 
+                    10, 30, 
+                    20, 40
                 ],
                 'circle-opacity': 0.6
             }
@@ -185,6 +185,10 @@ map.on('load', async () => {
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Add event listener to the Apply button
+    document.getElementById('apply-filters').addEventListener('click', applyFilters);
+
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions).map(option => option.value);
@@ -230,10 +234,3 @@ function applyFilters() {
         map.setFilter('clusters', null); // Clears any filtering for clusters
     }
 }
-
-
-// Filterfunktion
-document.getElementById('search-bar').addEventListener('input', applyFilters);
-document.getElementById('tag-filter').addEventListener('change', applyFilters);
-document.getElementById('artform-filter').addEventListener('change', applyFilters);
-document.getElementById('cluster-filter').addEventListener('change', applyFilters);
