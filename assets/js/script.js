@@ -8,6 +8,9 @@ const map = new mapboxgl.Map({
     projection: 'globe'
 });
 
+// Declare topicClusters in the global scope
+let topicClusters;
+
 map.on('style.load', () => {
     map.setFog({
         'range': [0.5, 10],
@@ -21,7 +24,7 @@ map.on('load', async () => {
         const artworkResponse = await fetch('data/artwork-data.json');
         const artworkData = await artworkResponse.json();
         const topicClusterResponse = await fetch('topicClusters.json');
-        const topicClusters = await topicClusterResponse.json();
+        topicClusters = await topicClusterResponse.json(); // Assign to global variable
 
         // Funktion, um die Farbe für ein Cluster basierend auf dem ersten Thema zu finden
         function getClusterColor(firstTopic) {
@@ -199,7 +202,7 @@ function applyFilters() {
     }
 
     if (selectedCluster) {
-        // Hole die Farbe für den ausgewählten Cluster-Namen aus topicClusters.json
+        // Hole die Farbe für den ausgewählten Cluster-Namen aus topicClusters
         const selectedClusterColor = topicClusters[selectedCluster]?.color || '#ffffff';
         filter.push(['==', ['get', 'mainClusterColor'], selectedClusterColor]);
     }
