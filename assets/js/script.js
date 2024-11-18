@@ -274,6 +274,8 @@ function applyFilters() {
 // Add event listener to Apply button
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('apply-filters').addEventListener('click', applyFilters);
+});
+    
 document.getElementById('reset-filters').addEventListener('click', () => {
     document.getElementById('search-bar').value = '';
     document.getElementById('tag-filter').selectedIndex = 0;
