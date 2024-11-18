@@ -482,10 +482,10 @@
       }
     },
 {      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [13.4115, 52.5134] },
+      "geometry": { "type": "Point", "coordinates": [16.1238, 78.9708] },
       "properties": {
-        "title": "Aurora Aksnes - The Seed",
-        "description": "The Norwegian singer Aurora released a song 'The Seed' addressing humanity's greed: 'When the last tree has fallen, and the rivers are poisoned, you cannot eat money, oh no.' She actively supports environmental movements and human rights, including an Arctic concert in collaboration with Greenpeace to protect the seas and the climate.",
+        "title": "Aurora Aksnes and Jacob Collier - The Seed",
+        "description": "The Norwegian singer Aurora released a song 'The Seed' addressing humanity's greed: 'When the last tree has fallen, and the rivers are poisoned, you cannot eat money, oh no.' She actively supports environmental movements and human rights, including an Arctic concert in collaboration with Jacob Collier to protect the seas and the climate.",
         "artist": "Aurora Aksnes",
         "type": "Performance",
         "location": "Norway",
