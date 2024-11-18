@@ -162,7 +162,6 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     topicSelect.innerHTML = ''; // Clear existing options
     const allTopicsOption = document.createElement('option');
     allTopicsOption.value = '';
-    allTopicsOption.textContent = 'All Topics';
     topicSelect.appendChild(allTopicsOption);
     topics.forEach(topic => {
         const option = document.createElement('option');
@@ -176,7 +175,6 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     artformSelect.innerHTML = ''; // Clear existing options
     const allArtformsOption = document.createElement('option');
     allArtformsOption.value = '';
-    allArtformsOption.textContent = 'All Art Forms';
     artformSelect.appendChild(allArtformsOption);
     artforms.forEach(artform => {
         const option = document.createElement('option');
@@ -190,7 +188,6 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     clusterSelect.innerHTML = ''; // Clear existing options
     const allClustersOption = document.createElement('option');
     allClustersOption.value = '';
-    allClustersOption.textContent = 'All Clusters';
     clusterSelect.appendChild(allClustersOption);
     Object.entries(topicClusters).forEach(([clusterName, clusterData]) => {
         const option = document.createElement('option');
@@ -277,4 +274,12 @@ function applyFilters() {
 // Add event listener to Apply button
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('apply-filters').addEventListener('click', applyFilters);
+document.getElementById('reset-filters').addEventListener('click', () => {
+    document.getElementById('search-bar').value = '';
+    document.getElementById('tag-filter').selectedIndex = 0;
+    document.getElementById('artform-filter').selectedIndex = 0;
+    document.getElementById('cluster-filter').selectedIndex = 0;
+    applyFilters(); // Call the function to reset the map
+});
+    
 });
