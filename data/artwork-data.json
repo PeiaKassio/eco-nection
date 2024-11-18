@@ -240,6 +240,289 @@
           "artform": ["Installation"]
         }
       }
+    },
+
+    erstelle datensätze für meine künsterdatenbank:
+
+
+"Aurora Aksnes (Norwegen)
+Die norwegische Sängerin Aurora hat ein Lied namens "The Seed" veröffentlicht, das sich mit der Gier der Menschheit auseinandersetzt: 
+"When the last tree has fallen
+And the rivers are poisoned
+You cannot eat money, oh no"
+Sie setzt sich für verschiedene Umweltbewegungen und Menschenrechte ein. In Kooperation mit Jacob Collier gab sie ein außergewöhnliches Konzert in der Arktis und ruft zum Schutz der Meere und des Klimas auf – im Rahmen einer Greenpeace Kampagne.
+" 
+
+"Bordalo II | Artur Bordalo (Portugal)
+Der portugiesische Kunstaktivist Artur Bordalo verwendet für seine großformatigen Installationen und Murals Plastikmüll und gefundene Objekte. Mit seinen außergewöhnlichen Skulpturen möchte er auf die Verschwendung und den übermäßigen Konsum in unserer heutigen Welt hinweisen.
+"
+
+"Christi Belcourt (Kanada)
+Christi Belcourt, eine kanadische Métis-Künstlerin, thematisiert in ihren Werken die indigene Verbindung zur Natur, Biodiversität und Umweltschutz. Ihre Gemälde, oft inspiriert von traditionellen Perlenstickereien, zeigen detaillierte Darstellungen von Pflanzen, Tieren und Ökosystemen. 
+"
+Ana Teresa Barboza (Peru)
+Die Multimedia-Künstlerin schafft mithilfe traditioneller Techniken, einheimischer Pflanzen und lokaler Kooperationen monumentale Wandteppiche. Ihre Werke fangen das Zusammenspiel von Vergänglichkeit der Natur, kulturellen Traditionen und den zyklischen Veränderungen der Region ein.
+"Nnenna Okore (Nigeria/USA)
+Okore setzt sich in ihrer Kunst mit ökologischen Themen wie Abfall, Kohlenstoffemissionen und Energieverbrauch auseinander. Sie verwendet pflanzliche Materialien, insbesondere Lebensmittelabfälle, die sie in Bioplastik umwandelt und zu großformatigen Skulpturen und Installationen verarbeitet.
+"
+"Eko Nugroho (Indonesien)
+Nughroho ist ein Künstler, der in seinen Gemälden und Installationen die Auswirkungen der Urbanisierung und des Konsums auf die Umwelt thematisiert. Seine Werke stellen oft die Zerstörung von Ressourcen und den Verlust von Natur durch die wachsende städtische Expansion in den Vordergrund, während sie gleichzeitig die Notwendigkeit für eine nachhaltigere Zukunft thematisieren.
+"
+Eko Nugroho (Indonesien)
+Nughroho ist ein Künstler, der in seinen Gemälden und Installationen die Auswirkungen der Urbanisierung und des Konsums auf die Umwelt thematisiert. Seine Werke stellen oft die Zerstörung von Ressourcen und den Verlust von Natur durch die wachsende städtische Expansion in den Vordergrund, während sie gleichzeitig die Notwendigkeit für eine nachhaltigere Zukunft thematisieren."
+
+
+
+Hier ist die künstlerdatenbank, erstelle die neuen künstler im gleichen format, ergänze fehlden metadaten (tags etc.)
+
+
+
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-74.006, 40.7128] },
+      "properties": {
+        "title": "The New York Earth Room",
+        "description": "An installation by Walter De Maria highlighting the relationship between humans and the environment.",
+        "artist": "Walter De Maria",
+        "type": "Installation",
+        "location": "New York, USA",
+        "year": 1977,
+        "tags": {
+          "topic": ["Urban Ecology", "Nature", "Environment"],
+          "artform": ["Land Art", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [13.4115, 52.5134] },
+      "properties": {
+        "title": "Plastic Waste Tower",
+        "description": "A sculpture made from plastic bottles symbolizing plastic pollution.",
+        "artist": "Verena Michelitsch",
+        "type": "Sculpture",
+        "location": "Berlin, Germany",
+        "year": 2018,
+        "tags": {
+          "topic": ["Plastic Pollution", "Recycling", "Eco-Art"],
+          "artform": ["Sculpture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-77.0365, 38.8977] },
+      "properties": {
+        "title": "The Water Table",
+        "description": "Interactive installation highlighting the vulnerability of freshwater resources.",
+        "artist": "Anne Percoco",
+        "type": "Installation",
+        "location": "Washington D.C., USA",
+        "year": 2017,
+        "tags": {
+          "topic": ["Water Conservation", "Freshwater Crisis"],
+          "artform": ["Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-118.2437, 34.0522] },
+      "properties": {
+        "title": "Trash Mountain",
+        "description": "A towering installation made from collected waste.",
+        "artist": "John Doe",
+        "type": "Installation",
+        "location": "Los Angeles, USA",
+        "year": 2021,
+        "tags": {
+          "topic": ["Waste Reduction", "Plastic Waste"],
+          "artform": ["Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-106.6504, 35.0844] },
+      "properties": {
+        "title": "Desert Bloom",
+        "description": "An art piece addressing water scarcity in the desert.",
+        "artist": "Anna Smith",
+        "type": "Installation",
+        "location": "Albuquerque, USA",
+        "year": 2022,
+        "tags": {
+          "topic": ["Water Conservation", "Sustainable Design"],
+          "artform": ["Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-58.3816, -34.6037] },
+      "properties": {
+        "title": "River of Plastic",
+        "description": "Sculpture representing the impact of plastic on rivers.",
+        "artist": "Mariana Lopez",
+        "type": "Sculpture",
+        "location": "Buenos Aires, Argentina",
+        "year": 2019,
+        "tags": {
+          "topic": ["Plastic Pollution", "Recycling"],
+          "artform": ["Sculpture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-74.0721, 4.7110] },
+      "properties": {
+        "title": "Forest Guardians",
+        "description": "Sculpture series advocating for forest conservation.",
+        "artist": "Carlos Perez",
+        "type": "Sculpture",
+        "location": "Bogotá, Colombia",
+        "year": 2020,
+        "tags": {
+          "topic": ["Forest Conservation", "Ecosystem Protection"],
+          "artform": ["Sculpture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [2.3522, 48.8566] },
+      "properties": {
+        "title": "Climate Wall",
+        "description": "A digital wall showcasing the carbon impact of daily activities.",
+        "artist": "Juliette Martin",
+        "type": "Installation",
+        "location": "Paris, France",
+        "year": 2021,
+        "tags": {
+          "topic": ["Carbon Emissions", "Climate Awareness"],
+          "artform": ["Digital Art", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [19.0402, 47.4979] },
+      "properties": {
+        "title": "Air Bubble",
+        "description": "An inflatable sculpture filled with fresh air to emphasize air quality.",
+        "artist": "Peter Szabo",
+        "type": "Sculpture",
+        "location": "Budapest, Hungary",
+        "year": 2019,
+        "tags": {
+          "topic": ["Air Quality", "Environmental Health"],
+          "artform": ["Sculpture", "Interactive Art"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [139.6917, 35.6895] },
+      "properties": {
+        "title": "Ocean Echo",
+        "description": "Installation mimicking ocean sounds to raise awareness of ocean pollution.",
+        "artist": "Yuki Tanaka",
+        "type": "Installation",
+        "location": "Tokyo, Japan",
+        "year": 2021,
+        "tags": {
+          "topic": ["Ocean Conservation", "Environmental Awareness"],
+          "artform": ["Sound Art", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [103.8198, 1.3521] },
+      "properties": {
+        "title": "Green Pulse",
+        "description": "A lighting installation showcasing the pulse of green spaces in urban areas.",
+        "artist": "Li Wei",
+        "type": "Installation",
+        "location": "Singapore",
+        "year": 2022,
+        "tags": {
+          "topic": ["Green Spaces", "Urban Ecology"],
+          "artform": ["Light Art", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [31.2336, 30.0444] },
+      "properties": {
+        "title": "Nile's Legacy",
+        "description": "Sculpture using river debris to symbolize the Nile’s challenges.",
+        "artist": "Ahmed Omar",
+        "type": "Sculpture",
+        "location": "Cairo, Egypt",
+        "year": 2020,
+        "tags": {
+          "topic": ["Water Pollution", "Recycling"],
+          "artform": ["Sculpture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [18.4241, -33.9249] },
+      "properties": {
+        "title": "The Last Breath",
+        "description": "Installation addressing air quality in urban areas.",
+        "artist": "Nandi Mbatha",
+        "type": "Installation",
+        "location": "Cape Town, South Africa",
+        "year": 2021,
+        "tags": {
+          "topic": ["Air Quality", "Environmental Health"],
+          "artform": ["Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [151.2093, -33.8688] },
+      "properties": {
+        "title": "Bleached Coral",
+        "description": "An installation addressing coral bleaching.",
+        "artist": "Emily Clark",
+        "type": "Installation",
+        "location": "Sydney, Australia",
+        "year": 2018,
+        "tags": {
+          "topic": ["Coral Reef", "Climate Change"],
+          "artform": ["Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [174.7633, -36.8485] },
+      "properties": {
+        "title": "Islands of Waste",
+        "description": "Installation representing the Pacific Garbage Patch.",
+        "artist": "Olivia Green",
+        "type": "Installation",
+        "location": "Auckland, New Zealand",
+        "year": 2019,
+        "tags": {
+          "topic": ["Ocean Conservation", "Plastic Pollution"],
+          "artform": ["Installation"]
+        }
+      }
     }
+  ]
+}
+
+    
   ]
 }
