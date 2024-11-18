@@ -257,3 +257,17 @@ document.getElementById('reset-filters').addEventListener('click', () => {
         applyFilters();
     });
 });
+
+console.log("Filter:", filter);
+console.log("Source Data:", map.getSource('artworks')._data);
+console.log("Layer Visibility:", map.getLayoutProperty('unclustered-point', 'visibility'));
+console.log("Applied Filter:", map.getFilter('unclustered-point'));
+console.log("Paint Properties:", {
+    color: map.getPaintProperty('unclustered-point', 'circle-color'),
+    radius: map.getPaintProperty('unclustered-point', 'circle-radius')
+});
+
+// Force data reload and visibility
+map.getSource('artworks').setData(artworkData);
+map.setLayoutProperty('unclustered-point', 'visibility', 'visible');
+map.setPaintProperty('unclustered-point', 'circle-radius', 10);
