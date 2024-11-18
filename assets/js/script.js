@@ -275,16 +275,12 @@ function applyFilters() {
 }
 
 // Add event listener to Apply button
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('apply-filters').addEventListener('click', applyFilters);
-});
-    
-document.getElementById('reset-filters').addEventListener('click', () => {
-    document.getElementById('search-bar').value = '';
-    document.getElementById('tag-filter').selectedIndex = 0;
-    document.getElementById('artform-filter').selectedIndex = 0;
-    document.getElementById('cluster-filter').selectedIndex = 0;
-    applyFilters(); // Call the function to reset the map
-});
-    
+applyButton.addEventListener('click', applyFilters);
+    resetButton.addEventListener('click', () => {
+        document.getElementById('search-bar').value = '';
+        document.getElementById('tag-filter').selectedIndex = 0;
+        document.getElementById('artform-filter').selectedIndex = 0;
+        document.getElementById('cluster-filter').selectedIndex = 0;
+        applyFilters(); // Call the function to reset the map
+    });
 });
