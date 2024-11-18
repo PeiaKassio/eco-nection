@@ -90,7 +90,7 @@ map.on('load', async () => {
             new mapboxgl.Popup()
                 .setLngLat(coordinates)
                 .setHTML(`
-                    <div class="card bg-neutral shadow-xl -m-5 test-white">
+                    <div class="card bg-neutral shadow-xl -m-5 text-white">
                         <div class="card-body">
                             <h3 class="card-title">${title}</h3>
                             <p><strong>Artist:</strong> ${artist}</p>
