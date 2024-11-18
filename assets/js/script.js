@@ -28,6 +28,7 @@ map.on('load', async () => {
         const topicClusterResponse = await fetch('topicClusters.json');
         topicClusters = await topicClusterResponse.json();
 
+        // Assign colors to artworks based on topics
         function getClusterColor(firstTopic) {
             for (const [cluster, data] of Object.entries(topicClusters)) {
                 if (data.topics.includes(firstTopic)) {
@@ -42,13 +43,16 @@ map.on('load', async () => {
             feature.properties.mainClusterColor = getClusterColor(firstTopic) || '#ffffff';
         });
 
+        // Populate filter dropdowns
         populateFilterDropdowns(artworkData, topicClusters);
 
+        // Add source for the map
         map.addSource('artworks', {
             type: 'geojson',
             data: artworkData
         });
 
+        // Add unclustered-point layer
         map.addLayer({
             id: 'unclustered-point',
             type: 'circle',
@@ -61,6 +65,7 @@ map.on('load', async () => {
             }
         });
 
+        // Add popup on click
         map.on('click', 'unclustered-point', (e) => {
             const coordinates = e.features[0].geometry.coordinates.slice();
             const properties = e.features[0].properties || {};
@@ -153,12 +158,12 @@ function applyFilters() {
 
     const searchText = document.getElementById('search-bar').value.toLowerCase();
     const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions)
-        .map(option => option.value)
-        .filter(value => value);
+                                .map(option => option.value)
+                                .filter(value => value);
     
     const selectedArtForms = Array.from(document.getElementById('artform-filter').selectedOptions)
-        .map(option => option.value)
-        .filter(value => value);
+                                   .map(option => option.value)
+                                   .filter(value => value);
     
     const selectedCluster = document.getElementById('cluster-filter').value;
 
@@ -174,7 +179,7 @@ function applyFilters() {
         filter.push([
             'any',
             ['>=', ['index-of', ['downcase', ['get', 'title']], searchText], 0],
-            ['>=', ['index-of', ['downcase', ['get', 'description']], searchText], 0]
+             ['>=', ['index-of', ['downcase', ['get', 'description']], searchText], 0]
             ]
         ]);
     }
@@ -203,14 +208,14 @@ function applyFilters() {
     console.log("Final Filter Array:", filter);
 
     if (map.getLayer('unclustered-point')) {
-        if (filter.length > 1) {
-            map.setFilter('unclustered-point', filter); // Apply the filter
-        } else {
-            map.setFilter('unclustered-point', null); // Show all points
-        }
-    } else {
-       console.error("Layer 'unclustered-point' not found on the map.");
-   }
+         if (filter.length > 1) {
+             map.setFilter('unclustered-point', filter); // Apply the filter
+         } else {
+             map.setFilter('unclustered-point', null); // Show all points
+         }
+     } else { 
+         console.error("Layer 'unclustered-point' not found on the map."); 
+     }
 }
 
 // Add event listeners for filter controls
