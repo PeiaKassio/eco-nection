@@ -9,6 +9,7 @@ const map = new mapboxgl.Map({
 });
 
 let topicClusters;
+let artworkData;
 
 map.on('style.load', () => {
     map.setFog({
