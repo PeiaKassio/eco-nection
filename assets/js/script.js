@@ -199,8 +199,29 @@ function applyFilters() {
         filter.push(['any', ...clusterColorConditions]);
     }
 
+    console.log("Applying filter:", filter);
+
     if (map.getLayer('unclustered-point')) {
         map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
+
+        // Query source for filtered features
+        const filteredArtworks = map.querySourceFeatures('artworks', {
+            filter: filter.length > 1 ? filter : null
+        });
+
+        // Debug: Log all filtered artworks
+        console.log("Filtered artworks:", filteredArtworks);
+
+        // Optional: Display the list in the console or in an HTML element
+        const listElement = document.getElementById('filtered-artworks-list');
+        if (listElement) {
+            listElement.innerHTML = ''; // Clear the current list
+            filteredArtworks.forEach(artwork => {
+                const listItem = document.createElement('li');
+                listItem.textContent = artwork.properties.title || 'Untitled';
+                listElement.appendChild(listItem);
+            });
+        }
     }
 
     if (map.getLayer('clusters')) {
