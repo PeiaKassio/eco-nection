@@ -89,7 +89,7 @@ map.on('load', async () => {
             new mapboxgl.Popup()
                 .setLngLat(coordinates)
                 .setHTML(`
-                    <div class="card bg-neutral shadow-xl -m-5">
+                    <div class="card bg-neutral shadow-xl -m-5 test-white">
                         <div class="card-body">
                             <h3 class="card-title">${title}</h3>
                             <p><strong>Artist:</strong> ${artist}</p>
@@ -167,12 +167,16 @@ function populateFilterDropdowns(artworkData, topicClusters) {
 // Apply Filters Function
 function applyFilters() {
     const searchText = document.getElementById('search-bar').value.toLowerCase();
-    const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions).map(option => option.value).filter(value => value);
-    const selectedArtForms = Array.from(document.getElementById('artform-filter').selectedOptions).map(option => option.value).filter(value => value);
-    const selectedClusters = Array.from(document.getElementById('cluster-filter').selectedOptions).map(option => option.value).filter(value => value);
+    const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions)
+        .map(option => option.value)
+        .filter(value => value);
+    const selectedArtForms = Array.from(document.getElementById('artform-filter').selectedOptions)
+        .map(option => option.value)
+        .filter(value => value);
 
     const filter = ['all'];
 
+    // Apply search text filter
     if (searchText) {
         filter.push([
             'any',
@@ -181,6 +185,7 @@ function applyFilters() {
         ]);
     }
 
+    // Apply topics filter
     if (selectedTopics.length > 0) {
         filter.push([
             'any',
@@ -188,6 +193,7 @@ function applyFilters() {
         ]);
     }
 
+    // Apply art forms filter
     if (selectedArtForms.length > 0) {
         filter.push([
             'any',
@@ -195,12 +201,17 @@ function applyFilters() {
         ]);
     }
 
+    // Debug filter
     console.log("Applying filter:", filter);
 
+    // Apply the filter
     if (map.getLayer('unclustered-point')) {
-        map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
+        if (filter.length > 1) {
+            map.setFilter('unclustered-point', filter); // Apply the filter
+        } else {
+            map.setFilter('unclustered-point', null); // Reset to show all points
+        }
     }
-}
 
 // Add event listeners for Apply and Reset buttons
 document.addEventListener('DOMContentLoaded', () => {
