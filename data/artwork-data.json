@@ -241,43 +241,7 @@
         }
       }
     },
-
-    erstelle datensätze für meine künsterdatenbank:
-
-
-"Aurora Aksnes (Norwegen)
-Die norwegische Sängerin Aurora hat ein Lied namens "The Seed" veröffentlicht, das sich mit der Gier der Menschheit auseinandersetzt: 
-"When the last tree has fallen
-And the rivers are poisoned
-You cannot eat money, oh no"
-Sie setzt sich für verschiedene Umweltbewegungen und Menschenrechte ein. In Kooperation mit Jacob Collier gab sie ein außergewöhnliches Konzert in der Arktis und ruft zum Schutz der Meere und des Klimas auf – im Rahmen einer Greenpeace Kampagne.
-" 
-
-"Bordalo II | Artur Bordalo (Portugal)
-Der portugiesische Kunstaktivist Artur Bordalo verwendet für seine großformatigen Installationen und Murals Plastikmüll und gefundene Objekte. Mit seinen außergewöhnlichen Skulpturen möchte er auf die Verschwendung und den übermäßigen Konsum in unserer heutigen Welt hinweisen.
-"
-
-"Christi Belcourt (Kanada)
-Christi Belcourt, eine kanadische Métis-Künstlerin, thematisiert in ihren Werken die indigene Verbindung zur Natur, Biodiversität und Umweltschutz. Ihre Gemälde, oft inspiriert von traditionellen Perlenstickereien, zeigen detaillierte Darstellungen von Pflanzen, Tieren und Ökosystemen. 
-"
-Ana Teresa Barboza (Peru)
-Die Multimedia-Künstlerin schafft mithilfe traditioneller Techniken, einheimischer Pflanzen und lokaler Kooperationen monumentale Wandteppiche. Ihre Werke fangen das Zusammenspiel von Vergänglichkeit der Natur, kulturellen Traditionen und den zyklischen Veränderungen der Region ein.
-"Nnenna Okore (Nigeria/USA)
-Okore setzt sich in ihrer Kunst mit ökologischen Themen wie Abfall, Kohlenstoffemissionen und Energieverbrauch auseinander. Sie verwendet pflanzliche Materialien, insbesondere Lebensmittelabfälle, die sie in Bioplastik umwandelt und zu großformatigen Skulpturen und Installationen verarbeitet.
-"
-"Eko Nugroho (Indonesien)
-Nughroho ist ein Künstler, der in seinen Gemälden und Installationen die Auswirkungen der Urbanisierung und des Konsums auf die Umwelt thematisiert. Seine Werke stellen oft die Zerstörung von Ressourcen und den Verlust von Natur durch die wachsende städtische Expansion in den Vordergrund, während sie gleichzeitig die Notwendigkeit für eine nachhaltigere Zukunft thematisieren.
-"
-Eko Nugroho (Indonesien)
-Nughroho ist ein Künstler, der in seinen Gemälden und Installationen die Auswirkungen der Urbanisierung und des Konsums auf die Umwelt thematisiert. Seine Werke stellen oft die Zerstörung von Ressourcen und den Verlust von Natur durch die wachsende städtische Expansion in den Vordergrund, während sie gleichzeitig die Notwendigkeit für eine nachhaltigere Zukunft thematisieren."
-
-
-
-Hier ist die künstlerdatenbank, erstelle die neuen künstler im gleichen format, ergänze fehlden metadaten (tags etc.)
-
-
-
-{
+  {
   "type": "FeatureCollection",
   "features": [
     {
