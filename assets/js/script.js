@@ -165,9 +165,16 @@ function applyFilters() {
     const selectedArtForms = Array.from(document.getElementById('artform-filter').selectedOptions)
         .map(option => option.value)
         .filter(value => value);
+    const selectedCluster = document.getElementById('cluster-filter').value;
+
+    console.log("Search Text:", searchText);
+    console.log("Selected Topics:", selectedTopics);
+    console.log("Selected Art Forms:", selectedArtForms);
+    console.log("Selected Cluster:", selectedCluster);
 
     const filter = ['all'];
 
+    // Text search filter
     if (searchText) {
         filter.push([
             'any',
@@ -176,46 +183,77 @@ function applyFilters() {
         ]);
     }
 
+    // Topic filter
     if (selectedTopics.length > 0) {
+        console.log("Adding Topic Filter:", selectedTopics);
         filter.push([
             'any',
             ...selectedTopics.map(topic => ['>=', ['index-of', topic, ['get', 'tags.topic']], 0])
         ]);
     }
 
-    // Add artform filter with null/undefined checks
+    // Artform filter
     if (selectedArtForms.length > 0) {
+        console.log("Adding Artform Filter:", selectedArtForms);
         filter.push([
             'any',
-            ...selectedArtForms.map(artform => [
-                'all',
-                ['has', 'tags'], // Ensure 'tags' exists
-                ['has', 'artform'], // Ensure 'artform' exists within 'tags'
-                ['>=', ['index-of', artform, ['get', 'tags.artform']], 0]
-            ])
+            ...selectedArtForms.map(artform => ['>=', ['index-of', artform, ['get', 'tags.artform']], 0])
         ]);
     }
 
-    console.log("Applying filter:", filter);
+    // Cluster filter
+    if (selectedCluster) {
+        const clusterTopics = topicClusters[selectedCluster]?.topics || [];
+        console.log("Cluster Topics for Selected Cluster:", clusterTopics);
 
+        if (clusterTopics.length > 0) {
+            filter.push([
+                'any',
+                ...clusterTopics.map(topic => ['>=', ['index-of', topic, ['get', 'tags.topic']], 0])
+            ]);
+        } else {
+            console.warn("No topics found for the selected cluster.");
+        }
+    }
+
+    console.log("Final Filter Array:", filter);
+
+    // Apply the filter to the map
     if (map.getLayer('unclustered-point')) {
         if (filter.length > 1) {
-            map.setFilter('unclustered-point', filter);
+            map.setFilter('unclustered-point', filter); // Apply the filter
         } else {
-            map.setFilter('unclustered-point', null);
+            map.setFilter('unclustered-point', null); // Show all points if no filter
         }
+    } else {
+        console.error("Layer 'unclustered-point' not found on the map.");
     }
 }
 
-// Event listeners for filters
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('apply-filters').addEventListener('click', applyFilters);
 
-    document.getElementById('reset-filters').addEventListener('click', () => {
-        document.getElementById('search-bar').value = '';
-        document.getElementById('tag-filter').selectedIndex = 0;
-        document.getElementById('artform-filter').selectedIndex = 0;
-        document.getElementById('cluster-filter').selectedIndex = 0;
-        applyFilters(); // Reset map to show all points
+// Add event listeners for filter controls
+document.getElementById('apply-filters').addEventListener('click', () => {
+    console.log("Applying filters...");
+    applyFilters();
+});
+
+document.getElementById('reset-filters').addEventListener('click', () => {
+    console.log("Resetting filters...");
+    
+    // Reset filter inputs
+    document.getElementById('search-bar').value = '';
+    document.getElementById('tag-filter').selectedIndex = 0;
+    document.getElementById('artform-filter').selectedIndex = 0;
+    document.getElementById('cluster-filter').selectedIndex = 0;
+    
+    // Apply default state (show all points)
+    applyFilters();
+});
+
+// Optional: Handle dropdown change events to apply filters automatically
+['tag-filter', 'artform-filter', 'cluster-filter'].forEach(filterId => {
+    document.getElementById(filterId).addEventListener('change', () => {
+        console.log(`${filterId} changed, applying filters...`);
+        applyFilters();
     });
 });
