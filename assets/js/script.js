@@ -225,3 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         applyFilters(); // Reset map to show all points
     });
 });
+
+console.log(artworkData.features);
+console.log("Filter applied:", filter);
+console.log(map.getLayer('unclustered-point'));
