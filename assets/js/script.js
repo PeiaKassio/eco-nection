@@ -84,30 +84,57 @@ map.on('load', async () => {
             }
         });
 
-        console.log("Layers added successfully.");
+ // Add popup on click for unclustered-point layer
+        map.on('click', 'unclustered-point', (e) => {
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const properties = e.features[0].properties || {};
+
+            const title = properties.title || 'Untitled';
+            const description = properties.description || 'No Description';
+            const artist = properties.artist || 'Unknown';
+            const year = properties.year || 'Unknown';
+
+            let tags = properties.tags;
+            if (typeof tags === 'string') {
+                try {
+                    tags = JSON.parse(tags);
+                } catch (error) {
+                    console.error("Error parsing tags JSON:", error);
+                    tags = {};
+                }
+            }
+
+            const popupTopics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
+            const popupArtforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(
+                    <div class="card bg-neutral shadow-xl -m-5">
+                        <div class="card-body">
+                            <h3 class="card-title">${title}</h3>
+                            <p><strong>Artist:</strong> ${artist}</p>
+                            <p><strong>Description:</strong> ${description}</p>
+                            <p><strong>Year:</strong> ${year}</p>
+                            <p><strong>Topics:</strong> ${popupTopics}</p>
+                            <p><strong>Art Forms:</strong> ${popupArtforms}</p>
+                        </div>
+                    </div>
+                )
+                .addTo(map);
+        });
+
     } catch (error) {
         console.error("Error loading data:", error);
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const applyButton = document.getElementById('apply-filters');
-    const resetButton = document.getElementById('reset-filters');
-
-    applyButton.addEventListener('click', applyFilters);
-    resetButton.addEventListener('click', () => {
-        document.getElementById('search-bar').value = '';
-        document.getElementById('tag-filter').selectedIndex = 0;
-        document.getElementById('artform-filter').selectedIndex = 0;
-        document.getElementById('cluster-filter').selectedIndex = 0;
-        applyFilters(); // Reset the map
-    });
-});
-
+// Function to populate filter dropdowns with unique topics, artforms, and clusters
 function populateFilterDropdowns(artworkData, topicClusters) {
     const topics = new Set();
     const artforms = new Set();
 
+    // Extract topics and art forms from artwork data
     artworkData.features.forEach(feature => {
         if (feature.properties.tags) {
             feature.properties.tags.topic?.forEach(tag => topics.add(tag));
@@ -115,13 +142,13 @@ function populateFilterDropdowns(artworkData, topicClusters) {
         }
     });
 
+    // Populate the Topic Filter Dropdown
     const topicSelect = document.getElementById('tag-filter');
-    topicSelect.innerHTML = '';
+    topicSelect.innerHTML = ''; // Clear existing options
     const allTopicsOption = document.createElement('option');
     allTopicsOption.value = '';
     allTopicsOption.textContent = 'All Topics';
     topicSelect.appendChild(allTopicsOption);
-
     topics.forEach(topic => {
         const option = document.createElement('option');
         option.value = topic;
@@ -129,13 +156,13 @@ function populateFilterDropdowns(artworkData, topicClusters) {
         topicSelect.appendChild(option);
     });
 
+    // Populate the Artform Filter Dropdown
     const artformSelect = document.getElementById('artform-filter');
-    artformSelect.innerHTML = '';
+    artformSelect.innerHTML = ''; // Clear existing options
     const allArtformsOption = document.createElement('option');
     allArtformsOption.value = '';
     allArtformsOption.textContent = 'All Art Forms';
     artformSelect.appendChild(allArtformsOption);
-
     artforms.forEach(artform => {
         const option = document.createElement('option');
         option.value = artform;
@@ -143,13 +170,13 @@ function populateFilterDropdowns(artworkData, topicClusters) {
         artformSelect.appendChild(option);
     });
 
+    // Populate the Cluster Filter Dropdown with colors
     const clusterSelect = document.getElementById('cluster-filter');
-    clusterSelect.innerHTML = '';
+    clusterSelect.innerHTML = ''; // Clear existing options
     const allClustersOption = document.createElement('option');
     allClustersOption.value = '';
     allClustersOption.textContent = 'All Clusters';
     clusterSelect.appendChild(allClustersOption);
-
     Object.entries(topicClusters).forEach(([clusterName, clusterData]) => {
         const option = document.createElement('option');
         option.value = clusterName;
@@ -158,7 +185,7 @@ function populateFilterDropdowns(artworkData, topicClusters) {
         clusterSelect.appendChild(option);
     });
 
-    console.log("Dropdowns populated.");
+    console.log("Filter dropdowns populated with topics, art forms, and clusters."); // Debug output
 }
 
 function applyFilters() {
@@ -204,27 +231,49 @@ function applyFilters() {
     if (map.getLayer('unclustered-point')) {
         map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
 
-        // Query source for filtered features
-        const filteredArtworks = map.querySourceFeatures('artworks', {
-            filter: filter.length > 1 ? filter : null
+        // Ensure popups are still active
+        map.on('click', 'unclustered-point', (e) => {
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const properties = e.features[0].properties || {};
+
+            const title = properties.title || 'Untitled';
+            const description = properties.description || 'No Description';
+            const artist = properties.artist || 'Unknown';
+            const year = properties.year || 'Unknown';
+
+            let tags = properties.tags;
+            if (typeof tags === 'string') {
+                try {
+                    tags = JSON.parse(tags);
+                } catch (error) {
+                    console.error("Error parsing tags JSON:", error);
+                    tags = {};
+                }
+            }
+
+            const popupTopics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
+            const popupArtforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(`
+                    <div class="card bg-neutral shadow-xl -m-5">
+                        <div class="card-body">
+                            <h3 class="card-title">${title}</h3>
+                            <p><strong>Artist:</strong> ${artist}</p>
+                            <p><strong>Description:</strong> ${description}</p>
+                            <p><strong>Year:</strong> ${year}</p>
+                            <p><strong>Topics:</strong> ${popupTopics}</p>
+                            <p><strong>Art Forms:</strong> ${popupArtforms}</p>
+                        </div>
+                    </div>
+                `)
+                .addTo(map);
         });
-
-        // Debug: Log all filtered artworks
-        console.log("Filtered artworks:", filteredArtworks);
-
-        // Optional: Display the list in the console or in an HTML element
-        const listElement = document.getElementById('filtered-artworks-list');
-        if (listElement) {
-            listElement.innerHTML = ''; // Clear the current list
-            filteredArtworks.forEach(artwork => {
-                const listItem = document.createElement('li');
-                listItem.textContent = artwork.properties.title || 'Untitled';
-                listElement.appendChild(listItem);
-            });
-        }
     }
 
     if (map.getLayer('clusters')) {
         map.setFilter('clusters', null);
     }
 }
+
