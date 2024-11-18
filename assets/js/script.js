@@ -162,6 +162,7 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     topicSelect.innerHTML = ''; // Clear existing options
     const allTopicsOption = document.createElement('option');
     allTopicsOption.value = '';
+    allTopicsOption.textContent = 'All Topics';
     topicSelect.appendChild(allTopicsOption);
     topics.forEach(topic => {
         const option = document.createElement('option');
@@ -175,6 +176,7 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     artformSelect.innerHTML = ''; // Clear existing options
     const allArtformsOption = document.createElement('option');
     allArtformsOption.value = '';
+    allArtformsOption.textContent = 'All Art Forms';
     artformSelect.appendChild(allArtformsOption);
     artforms.forEach(artform => {
         const option = document.createElement('option');
@@ -188,6 +190,7 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     clusterSelect.innerHTML = ''; // Clear existing options
     const allClustersOption = document.createElement('option');
     allClustersOption.value = '';
+    allClustersOption.textContent = 'All Clusters';
     clusterSelect.appendChild(allClustersOption);
     Object.entries(topicClusters).forEach(([clusterName, clusterData]) => {
         const option = document.createElement('option');
