@@ -181,7 +181,7 @@ function applyFilters() {
             ['>=', ['index-of', ['downcase', ['get', 'title']], searchText], 0],
              ['>=', ['index-of', ['downcase', ['get', 'description']], searchText], 0]
             ]
-        ]);
+        );
     }
 
     // Topic filter
