@@ -483,10 +483,103 @@
           "artform": ["Installation"]
         }
       }
-    }
-  ]
-}
-
-    
+    },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [13.4115, 52.5134] },
+      "properties": {
+        "title": "Aurora Aksnes - The Seed",
+        "description": "The Norwegian singer Aurora released a song 'The Seed' addressing humanity's greed: 'When the last tree has fallen, and the rivers are poisoned, you cannot eat money, oh no.' She actively supports environmental movements and human rights, including an Arctic concert in collaboration with Greenpeace to protect the seas and the climate.",
+        "artist": "Aurora Aksnes",
+        "type": "Performance",
+        "location": "Norway",
+        "year": 2019,
+        "tags": {
+          "topic": ["Climate Activism", "Environmentalism"],
+          "artform": ["Music", "Performance"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-9.1394, 38.7223] },
+      "properties": {
+        "title": "Bordalo II - Trash Art",
+        "description": "The Portuguese activist artist Artur Bordalo, known as Bordalo II, creates large-scale installations and murals from plastic waste and found objects. His sculptures aim to highlight the waste and overconsumption in today's world.",
+        "artist": "Artur Bordalo (Bordalo II)",
+        "type": "Installation",
+        "location": "Lisbon, Portugal",
+        "year": 2020,
+        "tags": {
+          "topic": ["Waste Reduction", "Overconsumption"],
+          "artform": ["Installation", "Sculpture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-113.4909, 53.5461] },
+      "properties": {
+        "title": "Christi Belcourt - Indigenous Nature",
+        "description": "Canadian Métis artist Christi Belcourt’s works explore the indigenous connection to nature, biodiversity, and environmental protection. Her paintings, inspired by traditional beadwork, portray detailed representations of ecosystems and natural elements.",
+        "artist": "Christi Belcourt",
+        "type": "Painting",
+        "location": "Canada",
+        "year": 2018,
+        "tags": {
+          "topic": ["Biodiversity", "Indigenous Knowledge"],
+          "artform": ["Painting"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-77.0282, -12.0432] },
+      "properties": {
+        "title": "Ana Teresa Barboza - Cyclical Nature",
+        "description": "Using traditional techniques, native plants, and local collaborations, Ana Teresa Barboza creates monumental tapestries. Her works capture the interplay between the transience of nature, cultural traditions, and cyclical regional changes.",
+        "artist": "Ana Teresa Barboza",
+        "type": "Textile Art",
+        "location": "Lima, Peru",
+        "year": 2021,
+        "tags": {
+          "topic": ["Cultural Heritage", "Nature Cycles"],
+          "artform": ["Textile Art", "Tapestry"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-97.3308, 37.6889] },
+      "properties": {
+        "title": "Nnenna Okore - Eco Sculptures",
+        "description": "Okore uses plant-based materials and food waste to create large-scale sculptures and installations addressing waste, carbon emissions, and energy use. She transforms materials into bioplastic to craft eco-artworks.",
+        "artist": "Nnenna Okore",
+        "type": "Sculpture",
+        "location": "Nigeria / USA",
+        "year": 2020,
+        "tags": {
+          "topic": ["Waste Management", "Eco-Art"],
+          "artform": ["Sculpture", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [106.8456, -6.2088] },
+      "properties": {
+        "title": "Eko Nugroho - Urban Ecology",
+        "description": "Indonesian artist Eko Nugroho focuses on the impacts of urbanization and consumerism on the environment. His works often highlight resource destruction and the loss of nature through urban expansion, while advocating for sustainable futures.",
+        "artist": "Eko Nugroho",
+        "type": "Painting / Installation",
+        "location": "Jakarta, Indonesia",
+        "year": 2018,
+        "tags": {
+          "topic": ["Urbanization", "Sustainability"],
+          "artform": ["Painting", "Installation"]
+        }
+      }
+    }    
   ]
 }
