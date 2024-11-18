@@ -44,30 +44,10 @@ map.on('load', async () => {
         // Populate filter dropdowns
         populateFilterDropdowns(artworkData, topicClusters);
 
-        // Add source with the artwork data
+        // Add source with the artwork data (clusters disabled)
         map.addSource('artworks', {
             type: 'geojson',
-            data: artworkData,
-            cluster: true,
-            clusterMaxZoom: 10,
-            clusterRadius: 20
-        });
-
-        // Define cluster layer
-        map.addLayer({
-            id: 'clusters',
-            type: 'circle',
-            source: 'artworks',
-            filter: ['has', 'point_count'], // Default filter
-            paint: {
-                'circle-color': '#51bbd6',
-                'circle-radius': [
-                    'step',
-                    ['get', 'point_count'],
-                    20, 10, 30, 20, 40
-                ],
-                'circle-opacity': 0.6
-            }
+            data: artworkData
         });
 
         // Define unclustered-point layer (uses mainClusterColor for color)
@@ -75,7 +55,6 @@ map.on('load', async () => {
             id: 'unclustered-point',
             type: 'circle',
             source: 'artworks',
-            filter: ['!', ['has', 'point_count']],
             paint: {
                 'circle-color': ['get', 'mainClusterColor'], // Use mainClusterColor property
                 'circle-radius': 10,
@@ -216,34 +195,10 @@ function applyFilters() {
         ]);
     }
 
-    if (selectedClusters.length > 0) {
-        const clusterColorConditions = selectedClusters.map(cluster => {
-            const color = topicClusters[cluster]?.color || '#ffffff';
-            return ['==', ['get', 'mainClusterColor'], color];
-        });
-        filter.push(['any', ...clusterColorConditions]);
-    }
-
     console.log("Applying filter:", filter);
 
     if (map.getLayer('unclustered-point')) {
         map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
-
-        // Recalculate visible clusters based on filtered points
-        const filteredPoints = map.querySourceFeatures('artworks', {
-            filter: filter.length > 1 ? filter : null
-        });
-
-        const clusterIdsToShow = new Set(
-            filteredPoints.map(f => f.properties.cluster_id).filter(Boolean)
-        );
-
-        if (map.getLayer('clusters')) {
-            map.setFilter('clusters', [
-                'any',
-                ...Array.from(clusterIdsToShow).map(id => ['==', ['get', 'cluster_id'], id])
-            ]);
-        }
     }
 }
 
@@ -256,6 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('tag-filter').selectedIndex = 0;
         document.getElementById('artform-filter').selectedIndex = 0;
         document.getElementById('cluster-filter').selectedIndex = 0;
-        applyFilters(); // Reset map to show all points and clusters
+        applyFilters(); // Reset map to show all points
     });
 });
