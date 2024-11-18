@@ -4,7 +4,7 @@
     "color": "#FF5733"
   },
   "Climate Change": {
-    "topics": ["Climate Change", "Global Warming", "Carbon Emissions", "Climate Crisis", "Climate Action", "Climate Awareness"],
+    "topics": ["Climate Change", "Global Warming", "Carbon Emissions", "Climate Crisis", "Climate Action", "Climate Awareness", "Climate Activism"],
     "color": "#33A1FF"
   },
   "Conservation": {
@@ -20,7 +20,7 @@
     "color": "#1E90FF"
   },
   "Urban Issues": {
-    "topics": ["Urban Ecology", "Urban Pollution", "Nature", "Green Spaces", "Environmental Impact"],
+    "topics": ["Urban Ecology", "Urban Pollution", "Nature", "Green Spaces", "Environmental Impact", "Urbanization"],
     "color": "#8B4513"
   },
   "Waste Management": {
@@ -36,7 +36,7 @@
     "color": "#FF69B4"
   },
   "Environmental Awareness": {
-    "topics": ["Environmental Awareness", "Eco-Art", "Urgency", "Time"],
+    "topics": ["Environmental Awareness", "Eco-Art", "Urgency", "Time", "Art Activism"],
     "color": "#FF8C00"
   }
 }
