@@ -186,7 +186,10 @@ function applyFilters() {
 
     // Topic filter
     if (selectedTopics.length > 0) {
-        filter.push(['any', ...selectedTopics.map(topic => ['in', topic, ['get', 'tags.topic']])]);
+        filter.push([
+            'any',
+            ...selectedTopics.map(topic => ['in', topic, ['get', 'tags.topic']])
+                    ]);
     }
 
     // Artform filter
