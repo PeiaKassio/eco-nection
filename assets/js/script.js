@@ -183,15 +183,27 @@ function applyFilters() {
         ]);
     }
 
+    // Add artform filter with null/undefined checks
     if (selectedArtForms.length > 0) {
         filter.push([
             'any',
-            ...selectedArtForms.map(artform => ['>=', ['index-of', artform, ['get', 'tags.artform']], 0])
+            ...selectedArtForms.map(artform => [
+                'all',
+                ['has', 'tags'], // Ensure 'tags' exists
+                ['has', 'artform'], // Ensure 'artform' exists within 'tags'
+                ['>=', ['index-of', artform, ['get', 'tags.artform']], 0]
+            ])
         ]);
     }
 
+    console.log("Applying filter:", filter);
+
     if (map.getLayer('unclustered-point')) {
-        map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
+        if (filter.length > 1) {
+            map.setFilter('unclustered-point', filter);
+        } else {
+            map.setFilter('unclustered-point', null);
+        }
     }
 }
 
