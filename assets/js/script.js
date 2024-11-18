@@ -180,25 +180,24 @@ function applyFilters() {
     if (searchText) {
         filter.push([
             'any',
-            ['match', ['downcase', ['get', 'title']], [searchText], true, false],
-            ['match', ['downcase', ['get', 'description']], [searchText], true, false]
+            ['>=', ['index-of', searchText, ['downcase', ['get', 'title']]], 0],
+            ['>=', ['index-of', searchText, ['downcase', ['get', 'description']]], 0]
         ]);
     }
 
     if (selectedTopics.length > 0) {
         filter.push([
             'any',
-            ...selectedTopics.map(topic => ['in', topic, ['get', 'tags.topic']])
-        ]);
+            ...selectedTopics.map(topic => ['>=', ['index-of', topic, ['get', 'tags.topic']], 0])
+          ]);
     }
 
     if (selectedArtForms.length > 0) {
         filter.push([
             'any',
-            ...selectedArtForms.map(artform => ['in', artform, ['get', 'tags.artform']])
+            ...selectedArtForms.map(artform => ['>=', ['index-of', artform, ['get', 'tags.artform']], 0])
         ]);
     }
-
     console.log("Applying filter:", filter);
 
     if (map.getLayer('unclustered-point')) {
