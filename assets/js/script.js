@@ -188,7 +188,7 @@ function applyFilters() {
         console.log("Adding Topic Filter:", selectedTopics);
         filter.push([
             'any',
-            ...selectedTopics.map(topic => ['in', topic, ['coalesce', ['get', 'tags.topic'], []]])
+            ...selectedTopics.map(topic => ['in', topic, ['coalesce', ['get', 'tags.topic'], ['literal', []]]])
         ]);
     }
 
@@ -197,7 +197,7 @@ function applyFilters() {
         console.log("Adding Artform Filter:", selectedArtForms);
         filter.push([
             'any',
-            ...selectedArtForms.map(artform => ['in', artform, ['coalesce', ['get', 'tags.artform'], []]])
+            ...selectedArtForms.map(artform => ['in', artform, ['coalesce', ['get', 'tags.artform'], ['literal', []]]])
         ]);
     }
 
@@ -209,7 +209,7 @@ function applyFilters() {
         if (clusterTopics.length > 0) {
             filter.push([
                 'any',
-                ...clusterTopics.map(topic => ['in', topic, ['coalesce', ['get', 'tags.topic'], []]])
+                ...clusterTopics.map(topic => ['in', topic, ['coalesce', ['get', 'tags.topic'], ['literal', []]]])
             ]);
         } else {
             console.warn("No topics found for the selected cluster.");
@@ -219,11 +219,15 @@ function applyFilters() {
     console.log("Final Filter:", JSON.stringify(filter, null, 2));
 
     if (map.getLayer('unclustered-point')) {
-        map.getSource('artworks').setData(artworkData); // Ensure source is updated
-        if (filter.length > 1) {
-            map.setFilter('unclustered-point', filter); // Apply the filter
-        } else {
-            map.setFilter('unclustered-point', null); // Show all points
+        try {
+            map.getSource('artworks').setData(artworkData); // Ensure source is updated
+            if (filter.length > 1) {
+                map.setFilter('unclustered-point', filter); // Apply the filter
+            } else {
+                map.setFilter('unclustered-point', null); // Show all points
+            }
+        } catch (error) {
+            console.error("Error applying filter:", error);
         }
     } else {
         console.error("Layer 'unclustered-point' not found on the map.");
@@ -259,4 +263,3 @@ document.getElementById('reset-filters').addEventListener('click', resetFilters)
         applyFilters();
     });
 });
-
