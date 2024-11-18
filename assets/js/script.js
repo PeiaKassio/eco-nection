@@ -176,7 +176,6 @@ function applyFilters() {
 
     const filter = ['all'];
 
-    // Apply search text filter
     if (searchText) {
         filter.push([
             'any',
@@ -185,31 +184,27 @@ function applyFilters() {
         ]);
     }
 
-    // Apply topics filter
     if (selectedTopics.length > 0) {
         filter.push([
             'any',
-            ...selectedTopics.map(topic => ['in', topic, ['get', 'topic']])
+            ...selectedTopics.map(topic => ['in', topic, ['get', 'tags.topic']])
         ]);
     }
 
-    // Apply art forms filter
     if (selectedArtForms.length > 0) {
         filter.push([
             'any',
-            ...selectedArtForms.map(artform => ['in', artform, ['get', 'artform']])
+            ...selectedArtForms.map(artform => ['in', artform, ['get', 'tags.artform']])
         ]);
     }
 
-    // Debug filter
     console.log("Applying filter:", filter);
 
-    // Apply the filter
     if (map.getLayer('unclustered-point')) {
         if (filter.length > 1) {
-            map.setFilter('unclustered-point', filter); // Apply the filter
+            map.setFilter('unclustered-point', filter);
         } else {
-            map.setFilter('unclustered-point', null); // Reset to show all points
+            map.setFilter('unclustered-point', null);
         }
     }
 }
@@ -229,3 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
 console.log(artworkData.features);
 console.log("Filter applied:", filter);
 console.log(map.getLayer('unclustered-point'));
+console.log("Topics:", selectedTopics);
+console.log("ArtForms:", selectedArtForms);
+console.log("Applying Filter:", filter);
