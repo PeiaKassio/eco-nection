@@ -217,7 +217,8 @@ function applyFilters() {
 
     if (noFilterSelected) {
         map.setFilter('unclustered-point', null); // Reset filter to show all points with color
-        console.log("Resetting filter to show all points."); // Debugging output
+        map.setFilter('clusters', null); // Reset clusters to show all
+        console.log("Resetting filter to show all points and clusters."); // Debugging output
         return;
     }
 
@@ -261,10 +262,21 @@ function applyFilters() {
     if (map.getLayer('unclustered-point')) {
         map.setFilter('unclustered-point', filter.length > 1 ? filter : null);
     }
-
-    // Ensure clusters layer shows all clusters (no filters applied)
+// Apply filter to clusters
     if (map.getLayer('clusters')) {
-        map.setFilter('clusters', null);
+        const filteredPoints = map.querySourceFeatures('artworks', {
+            filter: filter.length > 1 ? filter : null,
+        });
+
+// Get all clusters that have matching points
+        const clusterIdsToShow = new Set(filteredPoints.map(f => f.properties.cluster_id));
+
+        // Dynamically hide clusters without matches
+        map.setFilter('clusters', [
+            'any',
+            ...Array.from(clusterIdsToShow).map(id => ['==', ['get', 'cluster_id'], id]),
+        
+ ]);
     }
 }
 
