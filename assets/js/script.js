@@ -212,7 +212,7 @@ function applyFilters() {
             map.setFilter('unclustered-point', null); // Reset to show all points
         }
     }
-
+}
 // Add event listeners for Apply and Reset buttons
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('apply-filters').addEventListener('click', applyFilters);
