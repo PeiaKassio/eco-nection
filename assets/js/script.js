@@ -176,6 +176,7 @@ function applyFilters() {
 
     // Text search filter
     if (searchText) {
+        console.log("Search Text:", searchText);
         filter.push([
             'any',
             ['>=', ['index-of', searchText, ['downcase', ['get', 'title']]], 0],
@@ -188,7 +189,7 @@ function applyFilters() {
         console.log("Adding Topic Filter:", selectedTopics);
         filter.push([
             'any',
-            ...selectedTopics.map(topic => ['>=', ['index-of', topic, ['get', 'tags.topic']], 0])
+            ...selectedTopics.map(topic => ['in', topic, ['get', 'tags.topic']])
         ]);
     }
 
@@ -197,7 +198,7 @@ function applyFilters() {
         console.log("Adding Artform Filter:", selectedArtForms);
         filter.push([
             'any',
-            ...selectedArtForms.map(artform => ['>=', ['index-of', artform, ['get', 'tags.artform']], 0])
+            ...selectedArtForms.map(artform => ['in', artform, ['get', 'tags.artform']])
         ]);
     }
 
@@ -209,7 +210,7 @@ function applyFilters() {
         if (clusterTopics.length > 0) {
             filter.push([
                 'any',
-                ...clusterTopics.map(topic => ['>=', ['index-of', topic, ['get', 'tags.topic']], 0])
+                ...clusterTopics.map(topic => ['in', topic, ['get', 'tags.topic']])
             ]);
         } else {
             console.warn("No topics found for the selected cluster.");
@@ -218,12 +219,11 @@ function applyFilters() {
 
     console.log("Final Filter Array:", filter);
 
-    // Apply the filter to the map
     if (map.getLayer('unclustered-point')) {
         if (filter.length > 1) {
             map.setFilter('unclustered-point', filter); // Apply the filter
         } else {
-            map.setFilter('unclustered-point', null); // Show all points if no filter
+            map.setFilter('unclustered-point', null); // Show all points
         }
     } else {
         console.error("Layer 'unclustered-point' not found on the map.");
