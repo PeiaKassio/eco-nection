@@ -151,7 +151,6 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     });
 }
 
-// Apply Filters Function
 function applyFilters() {
     if (!artworkData) {
         console.error("Artwork data is not loaded yet.");
@@ -189,7 +188,7 @@ function applyFilters() {
         console.log("Adding Topic Filter:", selectedTopics);
         filter.push([
             'any',
-            ...selectedTopics.map(topic => ['in', topic, ['get', 'tags.topic']])
+            ...selectedTopics.map(topic => ['in', topic, ['coalesce', ['get', 'tags.topic'], []]])
         ]);
     }
 
@@ -198,7 +197,7 @@ function applyFilters() {
         console.log("Adding Artform Filter:", selectedArtForms);
         filter.push([
             'any',
-            ...selectedArtForms.map(artform => ['in', artform, ['get', 'tags.artform']])
+            ...selectedArtForms.map(artform => ['in', artform, ['coalesce', ['get', 'tags.artform'], []]])
         ]);
     }
 
@@ -210,16 +209,17 @@ function applyFilters() {
         if (clusterTopics.length > 0) {
             filter.push([
                 'any',
-                ...clusterTopics.map(topic => ['in', topic, ['get', 'tags.topic']])
+                ...clusterTopics.map(topic => ['in', topic, ['coalesce', ['get', 'tags.topic'], []]])
             ]);
         } else {
             console.warn("No topics found for the selected cluster.");
         }
     }
 
-    console.log("Final Filter Array:", filter);
+    console.log("Final Filter:", JSON.stringify(filter, null, 2));
 
     if (map.getLayer('unclustered-point')) {
+        map.getSource('artworks').setData(artworkData); // Ensure source is updated
         if (filter.length > 1) {
             map.setFilter('unclustered-point', filter); // Apply the filter
         } else {
@@ -230,6 +230,19 @@ function applyFilters() {
     }
 }
 
+// Reset Filters Functionality
+function resetFilters() {
+    console.log("Resetting filters...");
+
+    // Reset input fields and dropdowns
+    document.getElementById('search-bar').value = '';
+    document.getElementById('tag-filter').selectedIndex = 0;
+    document.getElementById('artform-filter').selectedIndex = 0;
+    document.getElementById('cluster-filter').selectedIndex = 0;
+
+    // Apply default state (show all points)
+    applyFilters();
+}
 
 // Add event listeners for filter controls
 document.getElementById('apply-filters').addEventListener('click', () => {
@@ -237,23 +250,13 @@ document.getElementById('apply-filters').addEventListener('click', () => {
     applyFilters();
 });
 
-document.getElementById('reset-filters').addEventListener('click', () => {
-    console.log("Resetting filters...");
-    
-    // Reset filter inputs
-    document.getElementById('search-bar').value = '';
-    document.getElementById('tag-filter').selectedIndex = 0;
-    document.getElementById('artform-filter').selectedIndex = 0;
-    document.getElementById('cluster-filter').selectedIndex = 0;
-    
-    // Apply default state (show all points)
-    applyFilters();
-});
+document.getElementById('reset-filters').addEventListener('click', resetFilters);
 
-// Optional: Handle dropdown change events to apply filters automatically
+// Optional: Automatically apply filters when dropdowns change
 ['tag-filter', 'artform-filter', 'cluster-filter'].forEach(filterId => {
     document.getElementById(filterId).addEventListener('change', () => {
         console.log(`${filterId} changed, applying filters...`);
         applyFilters();
     });
 });
+
