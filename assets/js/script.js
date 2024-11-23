@@ -246,13 +246,7 @@ function resetFilters() {
 
     // Apply default state (show all points)
     applyFilters();
-}
-
-// Add event listeners for filter controls
-document.getElementById('apply-filters').addEventListener('click', () => {
-    console.log("Applying filters...");
-    applyFilters();
-});
+};
 
 document.getElementById('reset-filters').addEventListener('click', resetFilters);
 
