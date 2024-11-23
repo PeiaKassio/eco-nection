@@ -279,7 +279,7 @@ function createCountryClusterChart(filteredData) {
             },
         },
     });
-
+}
 
 /**
  * Initialize "Change of Topic Clusters Over Time" chart
@@ -415,23 +415,6 @@ function initializeCoOccurrenceNetwork(filteredData) {
 
     new vis.Network(container, networkData, options);
 }
-
-
-/**
- * Filter countries based on search input
- */
-function filterCountries() {
-    const input = document.getElementById('countrySearch').value.toLowerCase();
-    const select = document.getElementById('countrySelect');
-
-    Array.from(select.options).forEach(option => {
-        const text = option.text.toLowerCase();
-        option.style.display = text.includes(input) ? '' : 'none';
-    });
-    console.log("Country Filter Applied");
-}
-
-
 
 /**
  * Filter countries based on search input
