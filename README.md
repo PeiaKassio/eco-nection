@@ -41,9 +41,9 @@
 
 We welcome contributions! Here's how you can help:
 
-Report Bugs: Open an issue describing the bug with steps to reproduce it.
-Feature Requests: Suggest new features or improvements.
-Code Contributions:
+- Report Bugs: Open an issue describing the bug with steps to reproduce it.
+- Feature Requests: Suggest new features or improvements.
+- Code Contributions:
 Fork the repository.
 Create a new branch for your feature or fix.
 Submit a pull request for review.
