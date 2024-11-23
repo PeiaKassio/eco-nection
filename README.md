@@ -32,8 +32,8 @@
    - Bar chart showing topic cluster distribution for selected countries.
 2. **Topic Clusters by Year**:
    - Line chart visualizing cluster trends over time.
-3. **Topic Clusters by Art Form**:
-   - Bar chart analyzing topic clusters across different art forms.
+3. **Co-Occurence of Topics**:
+   - Network chart showing which topics occure together.
 
 ---
 
