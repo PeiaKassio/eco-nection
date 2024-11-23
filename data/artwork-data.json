@@ -616,7 +616,7 @@
         "description": "Okore uses plant-based materials and food waste to create large-scale sculptures and installations addressing waste, carbon emissions, and energy use. She transforms materials into bioplastic to craft eco-artworks.",
         "artist": "Nnenna Okore",
         "type": "Sculpture",
-        "location": "Nigeria / USA",
+        "location": "Chicago, USA",
         "year": 2020,
         "tags": {
           "topic": ["Waste Management", "Eco-Art"],
@@ -639,6 +639,166 @@
           "artform": ["Painting", "Installation"]
         }
       }
-    }    
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-74.006, 40.7128] },
+      "properties": {
+        "title": "The New York Earth Room",
+        "description": "An installation by Walter De Maria highlighting the relationship between humans and the environment.",
+        "artist": "Walter De Maria",
+        "type": "Installation",
+        "location": "New York, USA",
+        "year": 1977,
+        "tags": {
+          "topic": ["Urban Ecology", "Nature", "Environment"],
+          "artform": ["Land Art", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [13.4115, 52.5134] },
+      "properties": {
+        "title": "Plastic Waste Tower",
+        "description": "A sculpture made from plastic bottles symbolizing plastic pollution.",
+        "artist": "Verena Michelitsch",
+        "type": "Sculpture",
+        "location": "Berlin, Germany",
+        "year": 2018,
+        "tags": {
+          "topic": ["Plastic Pollution", "Recycling", "Eco-Art"],
+          "artform": ["Sculpture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-80.1918, 25.7617] },
+      "properties": {
+        "title": "Underwater Museum of Art",
+        "description": "An underwater sculpture museum addressing coral reef restoration.",
+        "artist": "Jason deCaires Taylor",
+        "type": "Sculpture",
+        "location": "Miami, USA",
+        "year": 2016,
+        "tags": {
+          "topic": ["Coral Reef", "Ocean Conservation"],
+          "artform": ["Sculpture", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-79.3832, 43.6532] },
+      "properties": {
+        "title": "The Bentway",
+        "description": "A public art space under Toronto's Gardiner Expressway promoting urban green spaces.",
+        "artist": "Various Artists",
+        "type": "Public Art",
+        "location": "Toronto, Canada",
+        "year": 2018,
+        "tags": {
+          "topic": ["Urban Ecology", "Green Spaces"],
+          "artform": ["Public Art"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-46.6333, -23.5505] },
+      "properties": {
+        "title": "Vertical Garden of São Paulo",
+        "description": "A green wall installation addressing air pollution in urban areas.",
+        "artist": "Patrick Blanc",
+        "type": "Installation",
+        "location": "São Paulo, Brazil",
+        "year": 2013,
+        "tags": {
+          "topic": ["Air Pollution", "Urban Ecology"],
+          "artform": ["Vertical Garden", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [18.0686, 59.3293] },
+      "properties": {
+        "title": "Treehotel - Mirrorcube",
+        "description": "A camouflaged treehouse installation promoting sustainable tourism.",
+        "artist": "Tham & Videgård Architects",
+        "type": "Installation",
+        "location": "Harads, Sweden",
+        "year": 2010,
+        "tags": {
+          "topic": ["Sustainable Tourism", "Nature"],
+          "artform": ["Installation", "Architecture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [77.2090, 28.6139] },
+      "properties": {
+        "title": "Yamuna River Project",
+        "description": "A public art installation addressing the restoration of the Yamuna River.",
+        "artist": "Various Artists",
+        "type": "Public Art",
+        "location": "New Delhi, India",
+        "year": 2020,
+        "tags": {
+          "topic": ["Water Pollution", "Sustainability"],
+          "artform": ["Public Art", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [31.2489, -29.8587] },
+      "properties": {
+        "title": "Umkhumbane Cultural Park",
+        "description": "A cultural space reflecting environmental awareness and social justice.",
+        "artist": "Various Artists",
+        "type": "Public Art",
+        "location": "Durban, South Africa",
+        "year": 2018,
+        "tags": {
+          "topic": ["Environmental Awareness", "Cultural Heritage"],
+          "artform": ["Public Art"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [153.0260, -27.4705] },
+      "properties": {
+        "title": "The Whale Trail",
+        "description": "A trail of sculptures highlighting the impact of climate change on marine life.",
+        "artist": "Various Artists",
+        "type": "Public Art",
+        "location": "Brisbane, Australia",
+        "year": 2019,
+        "tags": {
+          "topic": ["Climate Change", "Marine Conservation"],
+          "artform": ["Sculpture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [31.2336, 30.0444] },
+      "properties": {
+        "title": "Nile's Legacy",
+        "description": "Sculpture using river debris to symbolize the Nile’s challenges.",
+        "artist": "Ahmed Omar",
+        "type": "Sculpture",
+        "location": "Cairo, Egypt",
+        "year": 2020,
+        "tags": {
+          "topic": ["Water Pollution", "Recycling"],
+          "artform": ["Sculpture"]
+        }
+      }
+    }      
   ]
 }

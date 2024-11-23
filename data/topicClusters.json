@@ -1,42 +1,118 @@
 {
   "Environmental Pollution": {
-    "topics": ["Plastic Pollution", "Air Pollution", "Water Pollution", "Plastic Waste", "Toxic Waste", "Pollution in Cities"],
+    "topics": [
+      "Plastic Pollution", 
+      "Air Pollution", 
+      "Water Pollution", 
+      "Plastic Waste", 
+      "Toxic Waste", 
+      "Pollution in Cities", 
+      "Industrial Emissions"
+    ],
     "color": "#FF5733"
   },
   "Climate Change": {
-    "topics": ["Climate Change", "Global Warming", "Carbon Emissions", "Climate Crisis", "Climate Action", "Climate Awareness", "Climate Activism"],
-    "color": "#33A1FF"
+    "topics": [
+      "Climate Change", 
+      "Global Warming", 
+      "Carbon Emissions", 
+      "Climate Crisis", 
+      "Climate Action", 
+      "Climate Awareness", 
+      "Climate Activism", 
+      "Sea Level Rise"
+    ],
+    "color": "#C70039"
   },
-  "Conservation": {
-    "topics": ["Marine Conservation", "Forest Conservation", "Wildlife Preservation", "Ecosystem Protection", "Natural Habitat", "Coral Reef"],
-    "color": "#28B463"
+  "Ecosystems": {
+    "topics": [
+      "Forest Conservation", 
+      "Wildlife Preservation", 
+      "Ecosystem Protection", 
+      "Natural Habitat", 
+      "Coral Reef", 
+      "Nature Cycles"
+    ],
+    "color": "#006400"
   },
   "Sustainable Practices": {
-    "topics": ["Recycling", "Eco-Art", "Sustainable Design", "Upcycling", "Green Architecture"],
-    "color": "#FFD700"
+    "topics": [
+      "Recycling", 
+      "Eco-Art", 
+      "Sustainable Design", 
+      "Upcycling", 
+      "Green Architecture", 
+      "Circular Economy"
+    ],
+    "color": "#90EE90"
   },
   "Water Issues": {
-    "topics": ["Water Conservation", "Freshwater Crisis", "Ocean Conservation", "Water Shortage"],
+    "topics": [
+      "Water Conservation", 
+      "Freshwater Crisis", 
+      "Ocean Conservation", 
+      "Water Shortage", 
+      "Drought Management",
+      "Marine Conservation"
+    ],
     "color": "#1E90FF"
   },
   "Urban Issues": {
-    "topics": ["Urban Ecology", "Urban Pollution", "Nature", "Green Spaces", "Environmental Impact", "Urbanization"],
-    "color": "#8B4513"
+    "topics": [
+      "Urban Ecology", 
+      "Urban Pollution", 
+      "Nature", 
+      "Green Spaces", 
+      "Environmental Impact", 
+      "Urbanization", 
+      "Smart Cities"
+    ],
+    "color": "#FFD700"
   },
   "Waste Management": {
-    "topics": ["Waste Reduction", "Plastic Waste", "Recycling", "Upcycling", "Landfill Diversion"],
-    "color": "#C70039"
+    "topics": [
+      "Waste Reduction", 
+      "Waste Management", 
+      "Plastic Waste", 
+      "Recycling", 
+      "Upcycling", 
+      "Landfill Diversion", 
+      "Composting"
+    ],
+    "color": "#808080"
   },
   "Biodiversity": {
-    "topics": ["Biodiversity Loss", "Ecosystem Protection", "Wildlife Preservation", "Natural Habitat"],
+    "topics": [
+      "Biodiversity", 
+      "Biodiversity Loss",  
+      "Wildlife Preservation", 
+      "Natural Habitat", 
+      "Invasive Species Management",
+      "Species Conservation"
+    ],
     "color": "#4B0082"
   },
   "Health and Environment": {
-    "topics": ["Air Quality", "Environmental Health", "Toxic Waste", "Pollution Effects"],
+    "topics": [
+      "Air Quality", 
+      "Environmental Health", 
+      "Toxic Waste", 
+      "Pollution Effects", 
+      "Public Health"
+    ],
     "color": "#FF69B4"
   },
   "Environmental Awareness": {
-    "topics": ["Environmental Awareness", "Eco-Art", "Urgency", "Time", "Art Activism"],
+    "topics": [
+      "Environmental Awareness", 
+      "Eco-Art", 
+      "Urgency", 
+      "Time", 
+      "Art Activism", 
+      "Indigenous Knowledge", 
+      "Cultural Heritage", 
+      "Educational Campaigns"
+    ],
     "color": "#FF8C00"
   }
 }
