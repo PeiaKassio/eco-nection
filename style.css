@@ -1,0 +1,35 @@
+/* Adjust only the country filter box size for desktop mode */
+.sidebar {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 25%; /* Make the sidebar occupy 25% of the width in desktop mode */
+    max-height: 80vh; /* Limit the height */
+    overflow-y: auto; /* Add scroll if content exceeds the height */
+  }
+}
+
+/* Ensure buttons and inputs inherit DaisyUI styles */
+input#countrySearch {
+  height: auto; /* Allow it to scale naturally */
+}
+
+select#countrySelect {
+  height: 300px; /* Set a taller height for better usability */
+  overflow-y: scroll;
+}
+
+/* Specific customizations for buttons */
+button#applyCountryFilter {
+  margin-top: 1rem; /* Space above the button */
+}
+
+/* Preserve DaisyUI styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: inherit; /* Use the default DaisyUI font family */
+  background-color: transparent; /* Retain the DaisyUI theme background */
+}

@@ -1,128 +1,165 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="forest" class="h-full">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eco:nection</title>
-    <!-- Mapbox GL CSS -->
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet" />
-    <!-- Custom CSS for your map page -->
-    <link rel="stylesheet" href="style.css">
-    <!-- DaisyUI -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tabler Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-    <!-- ChartJS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body class="flex flex-col">
-    <div class="navbar bg-base-300">
-        <div class="navbar-start">
-            <div class="dropdown">
-                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                    <i class="ti ti-menu text-xl"></i>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>eco:nection - Data Analysis</title>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="style.css">
+        <!-- DaisyUI -->
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Tabler Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+        <!-- ChartJS -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body class="flex flex-col">
+        <div class="navbar bg-base-300">
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <i class="ti ti-menu text-xl"></i>
+                    </div>
+                    <ul
+                        tabindex="0"
+                        class="menu menu-sm dropdown-content gap-y-3 bg-base-300 rounded-box z-10 mt-3 w-44 shadow">
+                        <li>
+                            <a class="btn btn-primary" href="index.html">
+                                <i class="ti ti-map-2 text-xl"></i>
+                                <span>Map</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary" href="data-analysis.html">
+                                <i class="ti ti-chart-dots-2 text-xl"></i>
+                                <span>Data</span>
+                            </a>
+                        </li>
+                        <div class="divider my-0"></div>
+                        <li>
+                            <a href="https://github.com/PeiaKassio/eco-nection" class="btn btn-outline btn-secondary lg:hidden">
+                                <i class="ti ti-brand-github text-xl"></i>
+                                Contribute
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <ul
-                    tabindex="0"
-                    class="menu menu-sm dropdown-content gap-y-3 bg-base-300 rounded-box z-10 mt-3 w-44 shadow">
+                <div class="flex mx-3 gap-3 justify-center hidden lg:flex">
+                    <i class="ti ti-affiliate text-3xl text-primary"></i>
+                    <span class="text-2xl subpixel-antialiased">eco:nection</span>
+                </div>
+            </div>
+            <div class="navbar-center">
+                <div class="flex mx-3 gap-3 justify-center lg:hidden">
+                    <i class="ti ti-affiliate text-3xl text-primary"></i>
+                    <span class="text-2xl subpixel-antialiased">eco:nection</span>
+                </div>
+                <ul class="hidden lg:flex menu menu-horizontal px-1 gap-x-12">
                     <li>
                         <a class="btn btn-primary" href="index.html">
                             <i class="ti ti-map-2 text-xl"></i>
-                            <span>Map</span>
+                            Map
                         </a>
                     </li>
                     <li>
                         <a class="btn btn-primary" href="data-analysis.html">
                             <i class="ti ti-chart-dots-2 text-xl"></i>
-                            <span>Data</span>
-                        </a>
-                    </li>
-                    <div class="divider my-0"></div>
-                    <li>
-                        <a href="https://github.com/PeiaKassio/eco-nection" class="btn btn-outline btn-secondary lg:hidden">
-                            <i class="ti ti-brand-github text-xl"></i>
-                            Contribute
+                            Data
                         </a>
                     </li>
                 </ul>
             </div>
-            <div class="flex mx-3 gap-3 justify-center hidden lg:flex">
-                <i class="ti ti-affiliate text-3xl text-primary"></i>
-                <span class="text-2xl subpixel-antialiased">eco:nection</span>
+            <div class="navbar-end">
+                <a href="https://github.com/PeiaKassio/eco-nection" class="btn btn-outline btn-secondary hidden lg:flex">
+                    <i class="ti ti-brand-github text-xl"></i>
+                    Contribute
+                </a>
             </div>
         </div>
-        <div class="navbar-center">
-            <div class="flex mx-3 gap-3 justify-center lg:hidden">
-                <i class="ti ti-affiliate text-3xl text-primary"></i>
-                <span class="text-2xl subpixel-antialiased">eco:nection</span>
-            </div>
-            <ul class="hidden lg:flex menu menu-horizontal px-1 gap-x-12">
-                <li>
-                    <a class="btn btn-primary" href="index.html">
-                        <i class="ti ti-map-2 text-xl"></i>
-                        Map
-                    </a>
-                </li>
-                <li>
-                    <a class="btn btn-primary" href="data-analysis.html">
-                        <i class="ti ti-chart-dots-2 text-xl"></i>
-                        Data
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="navbar-end">
-            <a href="https://github.com/PeiaKassio/eco-nection" class="btn btn-outline btn-secondary hidden lg:flex">
-                <i class="ti ti-brand-github text-xl"></i>
-                Contribute
-            </a>
-        </div>
-    </div>
-
-    <main class="lg:container m-3 lg:mt-12 lg:mx-auto lg:px-32">
-        <div class="flex flex-col justify-between gap-6 prose prose-sm md:prose-base w-full">
-            <h1 class="text-3xl font-bold">Artworks Data Analysis</h1>
-
-            <div role="tablist" class="tabs tabs-lifted">
-                <input type="radio" name="topic_cluster" role="tab" class="tab text-lg" aria-label="Country" checked="checked" />
-                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 pe-0">
-                    <h2 class="text-2xl">Topic Cluster by Country</h2>
-                    <input type="text" id="countrySearch" placeholder="Search countries..." onkeyup="filterCountries()">
-                    <select id="countrySelect" multiple></select>
-                    <button onclick="loadCountryData()">Show Data</button>
+    
+        <main class="lg:container m-3 lg:mt-12 lg:mx-auto lg:px-32">
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Sidebar for desktop -->
+                <div class="hidden lg:flex flex-col bg-base-200 p-4 rounded-box w-1/4 h-full">
+                    <h2 class="text-2xl font-bold mb-4">Filter by Country</h2>
+                    <input
+                        type="text"
+                        id="countrySearch"
+                        placeholder="Search countries..."
+                        class="input input-bordered w-full mb-4"
+                        onkeyup="filterCountries()"
+                    >
+                    <select
+                        id="countrySelect"
+                        multiple
+                        class="select select-bordered w-full h-60 overflow-y-scroll"
+                    ></select>
+                    <button
+                        id="applyCountryFilter"
+                        class="btn btn-primary w-full mt-4"
+                    >
+                        Apply Filter
+                    </button>
+                </div>
+    
+                <!-- Dropdown for mobile -->
+                <div class="lg:hidden">
+                    <button class="btn btn-outline btn-secondary w-full mb-4" onclick="toggleDropdown()">
+                        Select Countries
+                    </button>
+                    <div id="mobileDropdown" class="hidden bg-base-200 p-4 rounded-box">
+                        <input
+                            type="text"
+                            id="countrySearchMobile"
+                            placeholder="Search countries..."
+                            class="input input-bordered w-full mb-4"
+                            onkeyup="filterCountries('Mobile')"
+                        >
+                        <select
+                            id="countrySelectMobile"
+                            multiple
+                            class="select select-bordered w-full h-60 overflow-y-scroll"
+                        ></select>
+                        <button
+                            id="applyCountryFilterMobile"
+                            class="btn btn-primary w-full mt-4"
+                        >
+                            Apply Filter
+                        </button>
+                    </div>
+                </div>
+    
+                <!-- Chart Area -->
+                <div class="chart-area flex-grow bg-base-100 rounded-box p-6">
+                    <h2 class="text-2xl font-bold mb-4">Topics by Country</h2>
                     <canvas id="countryChart"></canvas>
                 </div>
-
-                <input type="radio" name="topic_cluster" role="tab" class="tab text-lg" aria-label="Year" />
-                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 pe-0">
-                    <h2 class="text-2xl">Topic Cluster by Year</h2>
-                    <canvas id="yearChart"></canvas>
-                </div>
-
-                <input type="radio" name="topic_cluster" role="tab" class="tab text-lg whitespace-nowrap" aria-label="Art Form" />
-                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 pe-0">
-                    <h2 class="text-2xl">Topic Cluster by Art Form</h2>
-                    <canvas id="artformChart"></canvas>
-                </div>
             </div>
-        </div>
-    </main>
-
-    <script src="assets/js/data-analysis.js"></script> <!-- Link to the JavaScript file -->
-
-    <script>
-        // Function to filter countries based on search input
-        function filterCountries() {
-            const input = document.getElementById('countrySearch').value.toLowerCase();
-            const select = document.getElementById('countrySelect');
-            
-            Array.from(select.options).forEach(option => {
-                const text = option.text.toLowerCase();
-                option.style.display = text.includes(input) ? '' : 'none'; // Show or hide based on search
-            });
-        }
-    </script>
-
-</body>
-</html>
+        </main>
+    
+        <script src="assets/js/data-analysis.js"></script> <!-- Link to the JavaScript file -->
+    
+        <script>
+            // Function to filter countries based on search input
+            function filterCountries(source = 'Desktop') {
+                const inputId = source === 'Mobile' ? 'countrySearchMobile' : 'countrySearch';
+                const selectId = source === 'Mobile' ? 'countrySelectMobile' : 'countrySelect';
+    
+                const input = document.getElementById(inputId).value.toLowerCase();
+                const select = document.getElementById(selectId);
+                
+                Array.from(select.options).forEach(option => {
+                    const text = option.text.toLowerCase();
+                    option.style.display = text.includes(input) ? '' : 'none'; // Show or hide based on search
+                });
+            }
+    
+            // Toggle dropdown visibility for mobile view
+            function toggleDropdown() {
+                const dropdown = document.getElementById('mobileDropdown');
+                dropdown.classList.toggle('hidden');
+            }
+        </script>
+    </body>
+    </html>

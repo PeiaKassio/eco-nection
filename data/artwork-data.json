@@ -163,20 +163,84 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [103.8198, 1.3521] },
+      "geometry": { "type": "Point", "coordinates": [103.8575, 1.2906] },
       "properties": {
-        "title": "Green Pulse",
-        "description": "A lighting installation showcasing the pulse of green spaces in urban areas.",
-        "artist": "Li Wei",
-        "type": "Installation",
-        "location": "Singapore",
-        "year": 2022,
-        "tags": {
-          "topic": ["Green Spaces", "Urban Ecology"],
-          "artform": ["Light Art", "Installation"]
-        }
+          "title": "Plastic Ocean",
+          "description": "An immersive installation highlighting the pervasive issue of plastic pollution in our oceans. Visitors are enveloped in a sea of plastic waste to reflect on human consumption and environmental impact.",
+          "artist": "Tan Zi Xi",
+          "type": "Installation",
+          "location": "Singapore",
+          "year": 2017,
+          "tags": {
+              "topic": ["Plastic Pollution", "Sustainability"],
+              "artform": ["Installation Art"]
+          }
       }
-    },
+  },
+  {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [103.8572, 1.2879] },
+      "properties": {
+          "title": "i Light Singapore Festival",
+          "description": "An annual sustainable light art festival at Marina Bay, showcasing energy-efficient and environmentally conscious light installations.",
+          "artist": "Various Artists",
+          "type": "Festival",
+          "location": "Marina Bay, Singapore",
+          "year": "Annually since 2010",
+          "tags": {
+              "topic": ["Sustainability", "Energy Efficiency"],
+              "artform": ["Light Art", "Installation"]
+          }
+      }
+  },
+  {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [103.8159, 1.3227] },
+      "properties": {
+          "title": "Aquatic Fauna No. 1",
+          "description": "A mural featuring paper-cut depictions of various animals and plants, emphasizing conservation in an urban transit environment.",
+          "artist": "Lam Hoi Lit and Chua Chye Teck",
+          "type": "Mural",
+          "location": "Botanic Gardens MRT Station, Singapore",
+          "year": 2011,
+          "tags": {
+              "topic": ["Conservation", "Urban Nature"],
+              "artform": ["Mural Art"]
+          }
+      }
+  },
+  {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [103.8159, 1.3227] },
+      "properties": {
+          "title": "What is a Tree?",
+          "description": "A mural depicting the iconic Tembusu tree with quotes about trees, encouraging reflection on the importance of nature in urban settings.",
+          "artist": "Shirley Soh",
+          "type": "Mural",
+          "location": "Botanic Gardens MRT Station, Singapore",
+          "year": 2011,
+          "tags": {
+              "topic": ["Urban Nature", "Conservation"],
+              "artform": ["Mural Art"]
+          }
+      }
+  },
+  {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [103.8605, 1.2819] },
+      "properties": {
+          "title": "Love the Last March",
+          "description": "The world's largest public sculpture, featuring a parade of 45 endangered animals, symbolizing the urgent need for wildlife conservation.",
+          "artist": "Various Artists",
+          "type": "Sculpture",
+          "location": "Singapore",
+          "year": 2023,
+          "tags": {
+              "topic": ["Wildlife Conservation", "Sustainability"],
+              "artform": ["Sculpture"]
+          }
+      }
+  },  
     {
       "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [31.2336, 30.0444] },
