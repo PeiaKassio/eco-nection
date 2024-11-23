@@ -26,7 +26,7 @@ map.on('load', async () => {
         artworkData = await artworkResponse.json(); // Initialize artworkData globally
         console.log("Artwork Data Loaded:", artworkData.features); // Log artworkData after it's loaded
 
-        const topicClusterResponse = await fetch('topicClusters.json');
+        const topicClusterResponse = await fetch('data/topicClusters.json');
         topicClusters = await topicClusterResponse.json();
 
         // Assign colors to artworks based on topics

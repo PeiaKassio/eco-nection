@@ -23,7 +23,7 @@ async function loadData() {
         populateCountryDropdown();
 
         // Load topic clusters
-        const clusterResponse = await fetch('topicClusters.json');
+        const clusterResponse = await fetch('data/topicClusters.json');
         topicClusters = await clusterResponse.json();
 
         // Automatically load data for all countries when page loads
