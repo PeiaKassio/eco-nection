@@ -66,12 +66,24 @@ canvas#countryChart {
 }
 .chart-container {
   overflow-x: auto;
+  position: relative;
   white-space: nowrap;
   width: 100%;
   max-width: 100%;
+  height: auto;
 }
 
 canvas#countryChart {
   min-width: 800px; /* Set a minimum width for horizontal scroll */
 }
 
+main {
+  width: 100%;
+  max-width: 100%;
+  margin: auto;
+}
+section.chart-container {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}

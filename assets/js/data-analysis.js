@@ -247,7 +247,6 @@ function createCountryClusterChart(filteredData) {
         backgroundColor: topicClusters[cluster]?.color || "#ccc",
     }));
 
-    // Create the chart
     countryChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -255,21 +254,31 @@ function createCountryClusterChart(filteredData) {
             datasets: datasets,
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 title: {
                     display: true,
                     text: 'Topic Clusters by Country',
                 },
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
             },
-            responsive: true,
-            maintainAspectRatio: false,
             scales: {
-                x: { stacked: true },
-                y: { stacked: true, beginAtZero: true },
+                x: { 
+                    stacked: true, 
+                    title: { display: true, text: 'Countries' } 
+                },
+                y: { 
+                    stacked: true, 
+                    beginAtZero: true, 
+                    title: { display: true, text: 'Frequency' } 
+                },
             },
         },
     });
-}
 
 
 /**
