@@ -8,6 +8,9 @@ let coOccurrenceNetwork; // For Network Graph
 /**
  * Load and analyze the data
  */
+/**
+ * Load and analyze the data
+ */
 async function loadData() {
     try {
         console.log("Fetching artwork data...");
@@ -32,8 +35,11 @@ async function loadData() {
         topicClusters = await clusterResponse.json();
         console.log("Topic Clusters Loaded:", topicClusters);
 
-        // Automatically load data for all countries when the page loads
-        loadCountryData("all");
+        // Populate topic cluster filter
+        populateClusterDropdown();
+
+        // Automatically load data for all countries and topics when the page loads
+        loadCountryData(["all"], false);
     } catch (error) {
         console.error("Error loading data:", error);
     }
@@ -61,21 +67,49 @@ function populateCountryDropdown() {
     });
     console.log("Country Dropdown Populated");
 }
+/**
+ * Populate topic cluster dropdown with "All Clusters" option
+ */
+function populateClusterDropdown(filteredTopics = null) {
+    const clusterSelect = document.getElementById('clusterSelect');
+    clusterSelect.innerHTML = ""; // Clear existing options
+
+    // Add "All Clusters" option
+    const allOption = document.createElement('option');
+    allOption.value = "all";
+    allOption.textContent = "All Clusters";
+    clusterSelect.appendChild(allOption);
+
+    // Populate with dynamically filtered topics or all topics
+    const topicsToDisplay = filteredTopics || Object.entries(topicClusters);
+    topicsToDisplay
+        .sort(([a], [b]) => a.localeCompare(b))
+        .forEach(([cluster, clusterInfo]) => {
+            const option = document.createElement('option');
+            option.value = cluster;
+            option.textContent = cluster;
+            option.style.backgroundColor = clusterInfo.color || "#ccc";
+            clusterSelect.appendChild(option);
+        });
+
+    console.log("Topic Dropdown Populated");
+}
 
 /**
  * Filter and load data for Topic Clusters by Country and Over Time
  */
-async function loadCountryData(selectedCountry = null) {
+async function loadCountryData(selectedCountries = ["all"], filterTopics = false) {
     try {
-        console.log("Fetching artwork data for country filtering...");
+        console.log("Fetching artwork data...");
         const artworkResponse = await fetch('data/artwork-data.json');
         const data = await artworkResponse.json();
 
-        const selectedCountries = selectedCountry
-            ? [selectedCountry]
-            : Array.from(document.getElementById('countrySelect').selectedOptions).map(option => option.value);
+        // Get selected topic clusters
+        const selectedClusters = Array.from(document.getElementById('clusterSelect').selectedOptions).map(option => option.value);
+        const allClustersSelected = selectedClusters.includes("all");
 
-        const filteredData = {
+        // Step 1: Filter data by selected countries
+        const countryFilteredData = {
             type: "FeatureCollection",
             features: data.features.filter((feature) => {
                 const location = feature.properties.location || "";
@@ -85,15 +119,55 @@ async function loadCountryData(selectedCountry = null) {
             }),
         };
 
-        console.log("Filtered Data for Selected Countries:", filteredData);
+        // Step 2: Filter data by selected topic clusters
+        const topicFilteredData = filterTopics && !allClustersSelected
+            ? {
+                type: "FeatureCollection",
+                features: countryFilteredData.features.filter((feature) => {
+                    const topics = feature.properties.tags?.topic || [];
+                    return topics.some(topic => 
+                        selectedClusters.some(cluster => 
+                            topicClusters[cluster]?.topics.includes(topic) // Match topics to cluster
+                        )
+                    );
+                }),
+            }
+            : countryFilteredData;
 
-        // Update all charts with filtered data
-        createCountryClusterChart(filteredData);
-        initializeTopicClustersOverTimeChart(filteredData);
-        initializeCoOccurrenceNetwork(filteredData);
+        console.log("Filtered Data for Selected Countries:", countryFilteredData);
+        if (filterTopics && !allClustersSelected) {
+            console.log("Filtered Data for Selected Topics:", topicFilteredData);
+        }
+
+        // Update charts with filtered data
+        createCountryClusterChart(topicFilteredData);
+        initializeTopicClustersOverTimeChart(topicFilteredData);
+
+        // Always update the co-occurrence network with broader data
+        initializeCoOccurrenceNetwork(topicFilteredData);
     } catch (error) {
         console.error("Error loading country data:", error);
     }
+}
+
+
+    
+function updateTopicDropdown(filteredData) {
+    const availableTopics = {};
+
+    filteredData.features.forEach(feature => {
+        const topics = feature.properties.tags?.topic || [];
+        topics.forEach(topic => {
+            for (const [clusterName, clusterInfo] of Object.entries(topicClusters)) {
+                if (clusterInfo.topics.includes(topic)) {
+                    availableTopics[clusterName] = clusterInfo;
+                }
+            }
+        });
+    });
+
+    // Populate the topic dropdown with available topics
+    populateClusterDropdown(Object.entries(availableTopics));
 }
 
 /**
@@ -102,7 +176,8 @@ async function loadCountryData(selectedCountry = null) {
 function createCountryClusterChart(filteredData) {
     const ctx = document.getElementById('countryChart').getContext('2d');
 
-    if (!filteredData || typeof filteredData !== "object") {
+    // Check for valid data
+    if (!filteredData || typeof filteredData !== "object" || !Array.isArray(filteredData.features)) {
         console.error("Invalid data passed to createCountryClusterChart:", filteredData);
         return;
     }
@@ -114,11 +189,31 @@ function createCountryClusterChart(filteredData) {
 
     const tagsByCountry = {};
 
+    // Use a Set to avoid counting duplicates
+    const processedFeatures = new Set();
+
     filteredData.features.forEach(feature => {
-        const location = feature.properties.location || "";
+        const location = feature.properties?.location || "";
         const locationParts = location.split(', ');
         const country = locationParts.length > 1 ? locationParts[1].trim() : locationParts[0].trim();
 
+        // Validate country data
+        if (!country) {
+            console.warn("Feature without valid country:", feature);
+            return;
+        }
+
+        // Create a unique identifier for the feature
+        const featureId = feature.properties?.id || JSON.stringify(feature.geometry);
+
+        // Skip duplicates
+        if (processedFeatures.has(featureId)) {
+            return;
+        }
+
+        processedFeatures.add(featureId);
+
+        // Extract topics and match them to clusters
         const topics = feature.properties.tags?.topic || [];
         topics.forEach(topic => {
             for (const [clusterName, clusterInfo] of Object.entries(topicClusters)) {
@@ -130,7 +225,14 @@ function createCountryClusterChart(filteredData) {
         });
     });
 
+    console.log("Tags by Country:", tagsByCountry);
+
     const countriesArray = Object.keys(tagsByCountry).sort(); // Sort countries alphabetically
+    if (!countriesArray.length) {
+        console.error("No valid countries found for chart data.");
+        return;
+    }
+
     const clusters = new Set();
 
     countriesArray.forEach(country => {
@@ -145,6 +247,7 @@ function createCountryClusterChart(filteredData) {
         backgroundColor: topicClusters[cluster]?.color || "#ccc",
     }));
 
+    // Create the chart
     countryChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -167,6 +270,7 @@ function createCountryClusterChart(filteredData) {
         },
     });
 }
+
 
 /**
  * Initialize "Change of Topic Clusters Over Time" chart
@@ -261,6 +365,8 @@ function initializeCoOccurrenceNetwork(filteredData) {
     const nodes = [];
     const edges = [];
 
+    console.log("Filtered Data for Co-Occurrence Network:", filteredData.features);
+
     Object.entries(coOccurrences).forEach(([pair, count]) => {
         const [clusterA, clusterB] = pair.split('-');
 
@@ -287,19 +393,36 @@ function initializeCoOccurrenceNetwork(filteredData) {
         nodes: {
             shape: 'dot',
             size: 20,
-            font: { size: 12 }
+            font: { size: 12 },
         },
         edges: {
             smooth: true,
         },
         physics: {
             barnesHut: { gravitationalConstant: -8000 },
-            stabilization: { iterations: 2500 }
+            stabilization: { iterations: 2500 },
         },
     };
 
     new vis.Network(container, networkData, options);
 }
+
+
+/**
+ * Filter countries based on search input
+ */
+function filterCountries() {
+    const input = document.getElementById('countrySearch').value.toLowerCase();
+    const select = document.getElementById('countrySelect');
+
+    Array.from(select.options).forEach(option => {
+        const text = option.text.toLowerCase();
+        option.style.display = text.includes(input) ? '' : 'none';
+    });
+    console.log("Country Filter Applied");
+}
+
+
 
 /**
  * Filter countries based on search input
@@ -318,11 +441,37 @@ function filterCountries() {
 /**
  * Event Listeners
  */
+
+
+// Event listener for applying the country filter
 document.getElementById('applyCountryFilter').addEventListener('click', () => {
-    const selectedValue = document.getElementById('countrySelect').value;
-    loadCountryData(selectedValue === "all" ? "all" : selectedValue);
+    const countrySelect = document.getElementById('countrySelect');
+    const selectedCountries = Array.from(countrySelect.selectedOptions).map(option => option.value);
+
+    console.log("Applying Country Filter with Countries:", selectedCountries);
+
+    // Apply country filter and refresh topics dynamically
+    loadCountryData(selectedCountries, false);
 });
+
+
+document.getElementById('applyTopicFilter').addEventListener('click', () => {
+    const countrySelect = document.getElementById('countrySelect');
+    const selectedCountries = Array.from(countrySelect.selectedOptions).map(option => option.value);
+
+    // Automatically set "All Countries" if no countries are selected
+    const countriesToApply = selectedCountries.length === 0 || selectedCountries.includes("all") ? ["all"] : selectedCountries;
+
+    console.log("Applying Topic Filter with Countries:", countriesToApply);
+
+    // Apply the topic filter without refreshing the countries
+    loadCountryData(countriesToApply, true);
+});
+
+
+// Event listener for the country search box
 document.getElementById('countrySearch').addEventListener('input', filterCountries);
+
 
 // Initial data load
 loadData();

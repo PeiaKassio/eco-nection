@@ -4,21 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eco:nection - Data Analysis</title>
-    <!-- DaisyUI -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tabler Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-    <!-- ChartJS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
-    <!-- Vis.js -->
-    <script src="https://cdn.jsdelivr.net/npm/vis-network/standalone/umd/vis-network.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network/styles/vis-network.min.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- Include vis.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/vis-network/styles/vis-network.min.css" />
+    <!-- Include vis.js Script -->
+    <script src="https://unpkg.com/vis-network/dist/vis-network.min.js"></script>
+    <style>
+        /* Add additional responsiveness */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+        }
 
+        canvas {
+            display: block;
+            max-height: 400px; /* Prevent overly tall charts */
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
 <body class="h-full flex flex-col">
     <nav class="navbar bg-base-300">
@@ -27,28 +41,11 @@
                 <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
                     <i class="ti ti-menu text-xl"></i>
                 </div>
-                <ul
-                    tabindex="0"
-                    class="menu menu-sm dropdown-content gap-y-3 bg-base-300 rounded-box z-10 mt-3 w-44 shadow">
-                    <li>
-                        <a class="btn btn-primary" href="index.html">
-                            <i class="ti ti-map-2 text-xl"></i>
-                            <span>Map</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn btn-primary" href="data-analysis.html">
-                            <i class="ti ti-chart-dots-2 text-xl"></i>
-                            <span>Data</span>
-                        </a>
-                    </li>
+                <ul class="menu menu-sm dropdown-content gap-y-3 bg-base-300 rounded-box z-10 mt-3 w-44 shadow">
+                    <li><a class="btn btn-primary" href="index.html"><i class="ti ti-map-2 text-xl"></i><span>Map</span></a></li>
+                    <li><a class="btn btn-primary" href="data-analysis.html"><i class="ti ti-chart-dots-2 text-xl"></i><span>Data</span></a></li>
                     <div class="divider my-0"></div>
-                    <li>
-                        <a href="https://github.com/PeiaKassio/eco-nection" class="btn btn-outline btn-secondary lg:hidden">
-                            <i class="ti ti-brand-github text-xl"></i>
-                            Contribute
-                        </a>
-                    </li>
+                    <li><a href="https://github.com/PeiaKassio/eco-nection" class="btn btn-outline btn-secondary lg:hidden"><i class="ti ti-brand-github text-xl"></i>Contribute</a></li>
                 </ul>
             </div>
             <div class="flex mx-3 gap-3 justify-center hidden lg:flex">
@@ -62,79 +59,50 @@
                 <span class="text-2xl subpixel-antialiased">eco:nection</span>
             </div>
             <ul class="hidden lg:flex menu menu-horizontal px-1 gap-x-12">
-                <li>
-                    <a class="btn btn-primary" href="index.html">
-                        <i class="ti ti-map-2 text-xl"></i>
-                        Map
-                    </a>
-                </li>
-                <li>
-                    <a class="btn btn-primary" href="data-analysis.html">
-                        <i class="ti ti-chart-dots-2 text-xl"></i>
-                        Data
-                    </a>
-                </li>
+                <li><a class="btn btn-primary" href="index.html"><i class="ti ti-map-2 text-xl"></i>Map</a></li>
+                <li><a class="btn btn-primary" href="data-analysis.html"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
             </ul>
         </div>
         <div class="navbar-end">
-            <a href="https://github.com/PeiaKassio/eco-nection" class="btn btn-outline btn-secondary hidden lg:flex">
-                <i class="ti ti-brand-github text-xl"></i>
-                Contribute
-            </a>
+            <a href="https://github.com/PeiaKassio/eco-nection" class="btn btn-outline btn-secondary hidden lg:flex"><i class="ti ti-brand-github text-xl"></i>Contribute</a>
         </div>
     </nav>
 
-    <main class="lg:container m-3 lg:mt-12 lg:mx-auto lg:px-32">
-        <div class="flex flex-col lg:flex-row gap-6">
-            <!-- Sidebar for desktop -->
-            <div class="hidden lg:flex flex-col bg-base-200 p-4 rounded-box w-1/4 h-full sidebar">
-                <h2 class="text-2xl font-bold mb-4">Filter by Country</h2>
-                <input
-                    type="text"
-                    id="countrySearch"
-                    placeholder="Search countries..."
-                    class="input input-bordered w-full mb-4"
-                    onkeyup="filterCountries()"
-                >
-                <select
-                    id="countrySelect"
-                    multiple
-                    class="select select-bordered w-full h-60 overflow-y-scroll"
-                ></select>
-                <button
-                    id="applyCountryFilter"
-                    class="btn btn-primary w-full mt-4"
-                >
-                    Apply Filter
-                </button>
+    <main class="container mx-auto mt-4 px-4 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:gap-6">
+            <!-- Filters Sidebar -->
+            <div class="bg-base-200 p-4 rounded-box w-full lg:w-1/4 sidebar">
+                <h2 class="text-2xl font-bold mb-4">Filters</h2>
+                <!-- Country Filter -->
+                <h3 class="text-xl font-semibold mb-2">By Country</h3>
+                <input id="countrySearch" type="text" placeholder="Search countries..." class="input input-bordered w-full mb-4">
+                <select id="countrySelect" multiple class="select select-bordered w-full h-40 mb-4 overflow-y-scroll"></select>
+                <button id="applyCountryFilter" class="btn btn-primary w-full mb-6">Apply Country Filter</button>
+
+                <!-- Topic Cluster Filter -->
+                <h3 class="text-xl font-semibold mb-2">By Topic Cluster</h3>
+                <select id="clusterSelect" multiple class="select select-bordered w-full h-40 mb-4 overflow-y-scroll"></select>
+                <button id="applyTopicFilter" class="btn btn-primary w-full mb-6">Apply Topic Filter</button>
             </div>
 
-            <!-- Main Content Area -->
-            <div class="flex-grow bg-base-100 rounded-box p-6">
-                <h2 class="text-2xl font-bold mb-4">Data Analysis</h2>
-                
-                <!-- Topics by Country -->
-                <section id="topics-by-country" class="mb-8">
-                    <h3 class="text-xl font-semibold mb-4">Topics by Country</h3>
-                    <div class="chart-container" style="overflow-x: auto; width: 100%; max-width: 100%;">
-                        <canvas id="countryChart" style="min-width: 800px;"></canvas>
-                    </div>
+            <!-- Charts Section -->
+            <div class="flex-grow flex flex-col gap-6">
+                <!-- Country Chart -->
+                <section id="topics-by-country" class="mb-8 chart-container">
+                    <h3 class="text-2xl font-semibold mb-4">Topics by Country</h3>
+                    <canvas id="countryChart"></canvas>
                 </section>
-                
-                <!-- Change of Topics Over Time -->
-                <section id="change-over-time" class="mb-8">
-                    <h3 class="text-xl font-semibold mb-4">Change of Topics Over Time</h3>
-                    <div class="chart-container" style="overflow-x: auto; width: 100%; max-width: 100%;">
-                        <canvas id="topicClustersOverTimeChart" style="min-width: 800px;"></canvas>
-                    </div>
+
+                <!-- Topic Clusters Over Time Chart -->
+                <section id="change-over-time" class="mb-8 chart-container">
+                    <h3 class="text-2xl font-semibold mb-4">Change of Topic Clusters Over Time</h3>
+                    <canvas id="topicClustersOverTimeChart"></canvas>
                 </section>
-                
-                <!-- Co-Occurrence of Topic Clusters -->
-                <section id="co-occurrence" class="mb-8">
-                    <h3 class="text-xl font-semibold mb-4">Co-Occurrence of Topic Clusters</h3>
-                    <div class="chart-container mt-8">
-                             <div id="coOccurrenceNetwork" style="height: 500px;"></div>
-                    </div>
+
+                <!-- Co-Occurrence Network -->
+                <section id="co-occurrence-network" class="mb-8">
+                    <h3 class="text-2xl font-semibold mb-4">Co-Occurrence Network</h3>
+                    <div id="coOccurrenceNetwork" class="h-80"></div>
                 </section>
             </div>
         </div>
