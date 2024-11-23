@@ -279,7 +279,7 @@ function createCountryClusterChart(filteredData) {
             },
         },
     });
-
+}
 
 /**
  * Initialize "Change of Topic Clusters Over Time" chart
