@@ -188,7 +188,7 @@ function applyFilters() {
         console.log("Adding Topic Filter:", selectedTopics);
         filter.push([
             'any',
-            ...selectedTopics.map(topic => ['in', topic, ['coalesce', ['get', 'tags.topic'], ['literal', []]]])
+            ...selectedTopics.map(topic => ['in', topic, ['coalesce', ['get', 'topic', ['get', 'tags']],['literal', []]]])
         ]);
     }
 
@@ -197,7 +197,7 @@ function applyFilters() {
         console.log("Adding Artform Filter:", selectedArtForms);
         filter.push([
             'any',
-            ...selectedArtForms.map(artform => ['in', artform, ['coalesce', ['get', 'tags.artform'], ['literal', []]]])
+            ...selectedArtForms.map(artform => ['in', artform, ['coalesce', ['get', 'artform', ['get', 'tags']], ['literal', []]]])
         ]);
     }
 
@@ -209,7 +209,7 @@ function applyFilters() {
         if (clusterTopics.length > 0) {
             filter.push([
                 'any',
-                ...clusterTopics.map(topic => ['in', topic, ['coalesce', ['get', 'tags.topic'], ['literal', []]]])
+                ...clusterTopics.map(topic => ['in', topic, ['coalesce', ['get', 'topic', ['get', 'tags']], ['literal', []]]])
             ]);
         } else {
             console.warn("No topics found for the selected cluster.");
