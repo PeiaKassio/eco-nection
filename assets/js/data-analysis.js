@@ -262,7 +262,7 @@ function createCountryClusterChart(filteredData) {
                     text: 'Topic Clusters by Country',
                 },
                 legend: {
-                    display: false,
+                    display: true,
                     position: 'top',
                 },
             },
@@ -326,6 +326,10 @@ function initializeTopicClustersOverTimeChart(filteredData) {
             },
             responsive: true,
             maintainAspectRatio: false,
+            legend: {
+                display: false,
+                position: 'top',
+            },
             scales: {
                 x: { title: { display: true, text: 'Year' } },
                 y: { title: { display: true, text: 'Frequency' } },

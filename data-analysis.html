@@ -72,18 +72,44 @@
         <div class="flex flex-col lg:flex-row lg:gap-6">
             <!-- Filters Sidebar -->
             <div class="bg-base-200 p-4 rounded-box w-full lg:w-1/4 sidebar">
-                <h2 class="text-2xl font-bold mb-4">Filters</h2>
-                <!-- Country Filter -->
-                <h3 class="text-xl font-semibold mb-2">By Country</h3>
-                <input id="countrySearch" type="text" placeholder="Search countries..." class="input input-bordered w-full mb-4">
-                <select id="countrySelect" multiple class="select select-bordered w-full h-40 mb-4 overflow-y-scroll"></select>
-                <button id="applyCountryFilter" class="btn btn-primary w-full mb-6">Apply Country Filter</button>
-
-                <!-- Topic Cluster Filter -->
-                <h3 class="text-xl font-semibold mb-2">By Topic Cluster</h3>
-                <select id="clusterSelect" multiple class="select select-bordered w-full h-40 mb-4 overflow-y-scroll"></select>
-                <button id="applyTopicFilter" class="btn btn-primary w-full mb-6">Apply Topic Filter</button>
+                <div id="map" class="flex grow relative">
+                    <div class="dropdown lg:static">
+                        <div tabindex="0" class="bg-base-200 p-4 rounded-box w-full lg:w-1/4 lg:block hidden">
+                            <h2 class="text-2xl font-bold mb-4">Filters</h2>
+                        </div>
+                        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 m-3 gap-y-2 shadow">
+                            <!-- Country Filter -->
+                            <h3 class="text-xl font-semibold mb-2">By Country</h3>
+                           <input id="countrySearch" type="text" placeholder="Search countries..." class="input input-bordered w-full mb-4">
+                            <select id="countrySelect" multiple class="select select-bordered w-full mb-4 h-64 lg:h-96 overflow-y-auto"></select>
+                            <button id="applyCountryFilter" class="btn btn-primary w-full mb-6">Apply Country Filter</button>
+                            <!-- Topic Cluster Filter -->
+                            <h3 class="text-xl font-semibold mb-2">By Topic Cluster</h3>
+                            <select id="clusterSelect" multiple class="select select-bordered w-full mb-4 h-64 lg:h-96 overflow-y-auto"></select>
+                            <button id="applyTopicFilter" class="btn btn-primary w-full mb-6">Apply Topic Filter</button>
+                            <!-- Reset Filters -->
+                            <button id="reset-filters" class="btn btn-outline btn-sm btn-primary">Reset Filters</button>
+                        </ul>
+                    </div>
+                </div>              
             </div>
+            <!-- Dropdown button for mobile -->
+    <div tabindex="0" class="btn btn-primary lg:hidden w-full">Open Filters</div>
+    <div class="dropdown-content bg-base-200 p-4 rounded-box w-full lg:hidden">
+        <h2 class="text-2xl font-bold mb-4">Filters</h2>
+
+        <!-- Country Filter -->
+        <h3 class="text-xl font-semibold mb-2">By Country</h3>
+        <input id="countrySearch" type="text" placeholder="Search countries..." class="input input-bordered w-full mb-4">
+        <select id="countrySelect" multiple class="select select-bordered w-full mb-4 h-64 overflow-y-auto"></select>
+        <button id="applyCountryFilter" class="btn btn-primary w-full mb-6">Apply Country Filter</button>
+
+        <!-- Topic Cluster Filter -->
+        <h3 class="text-xl font-semibold mb-2">By Topic Cluster</h3>
+        <select id="clusterSelect" multiple class="select select-bordered w-full mb-4 h-64 overflow-y-auto"></select>
+        <button id="applyTopicFilter" class="btn btn-primary w-full mb-6">Apply Topic Filter</button>
+    </div>
+</div>
 
             <!-- Charts Section -->
             <div class="flex-grow flex flex-col gap-6">

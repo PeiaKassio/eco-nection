@@ -10,15 +10,16 @@
     overflow-y: auto; /* Add scroll if content exceeds the height */
   }
 }
+@media (min-width: 1024px) {
+  .dropdown .dropdown-content {
+      display: block !important; /* Ensure filters are always visible in desktop mode */
+      position: static; /* Make static for proper layout */
+  }
+}
 
 /* Ensure buttons and inputs inherit DaisyUI styles */
 input#countrySearch {
   height: auto; /* Allow it to scale naturally */
-}
-
-select#countrySelect {
-  height: 300px; /* Set a taller height for better usability */
-  overflow-y: scroll;
 }
 
 /* Specific customizations for buttons */
@@ -34,17 +35,11 @@ body {
   background-color: transparent; /* Retain the DaisyUI theme background */
 }
 
-.chart-area {
-  width: 100%; /* Ensure the chart uses full width */
-  height: 500px; /* Adjust height as needed */
-  overflow-x: auto; /* Allow horizontal scrolling if content exceeds width */
-}
-
 @media (min-width: 1024px) {
   .chart-area {
       height: 600px; /* Increase height for larger screens */
   }
-},
+}
 .chart-container {
   overflow-x: auto;
   white-space: nowrap;
@@ -52,18 +47,9 @@ body {
   max-width: 100%;
 }
 
-canvas#countryChart {
-  min-width: 800px; /* Set a minimum width for horizontal scroll */
-}.chart-container {
-    overflow-x: auto;
-    white-space: nowrap;
-    width: 100%;
-    max-width: 100%;
-}
-
-canvas#countryChart {
-    min-width: 800px; /* Set a minimum width for horizontal scroll */
-}
+/*canvas#countryChart {
+    min-width: 800px; /* Set a minimum width for horizontal scroll 
+    } */
 .chart-container {
   overflow-x: auto;
   position: relative;
@@ -71,10 +57,6 @@ canvas#countryChart {
   width: 100%;
   max-width: 100%;
   height: auto;
-}
-
-canvas#countryChart {
-  min-width: 800px; /* Set a minimum width for horizontal scroll */
 }
 
 main {
@@ -87,3 +69,4 @@ section.chart-container {
   width: 100%;
   max-width: 100%;
 }
+
