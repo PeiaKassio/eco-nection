@@ -464,7 +464,6 @@ document.getElementById('applyTopicFilter').addEventListener('click', () => {
     loadCountryData(countriesToApply, true);
 });
 
-
 // Event listener for the country search box
 document.getElementById('countrySearch').addEventListener('input', filterCountries);
 

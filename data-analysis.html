@@ -73,7 +73,7 @@
             <!-- Filters Sidebar -->
             <div class="bg-base-200 p-4 rounded-box w-full lg:w-1/4 sidebar">
                 <div id="map" class="flex grow relative">
-                    <div class="dropdown lg:static">
+                    <div class="dropdown-open lg:static">
                         <div tabindex="0" class="bg-base-200 p-4 rounded-box w-full lg:w-1/4 lg:block hidden">
                             <h2 class="text-2xl font-bold mb-4">Filters</h2>
                         </div>
@@ -93,23 +93,6 @@
                     </div>
                 </div>              
             </div>
-            <!-- Dropdown button for mobile -->
-    <div tabindex="0" class="btn btn-primary lg:hidden w-full">Open Filters</div>
-    <div class="dropdown-content bg-base-200 p-4 rounded-box w-full lg:hidden">
-        <h2 class="text-2xl font-bold mb-4">Filters</h2>
-
-        <!-- Country Filter -->
-        <h3 class="text-xl font-semibold mb-2">By Country</h3>
-        <input id="countrySearch" type="text" placeholder="Search countries..." class="input input-bordered w-full mb-4">
-        <select id="countrySelect" multiple class="select select-bordered w-full mb-4 h-64 overflow-y-auto"></select>
-        <button id="applyCountryFilter" class="btn btn-primary w-full mb-6">Apply Country Filter</button>
-
-        <!-- Topic Cluster Filter -->
-        <h3 class="text-xl font-semibold mb-2">By Topic Cluster</h3>
-        <select id="clusterSelect" multiple class="select select-bordered w-full mb-4 h-64 overflow-y-auto"></select>
-        <button id="applyTopicFilter" class="btn btn-primary w-full mb-6">Apply Topic Filter</button>
-    </div>
-</div>
 
             <!-- Charts Section -->
             <div class="flex-grow flex flex-col gap-6">
