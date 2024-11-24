@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="forest" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Artwork</title>
+    <!-- DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-base-100">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="card w-full max-w-lg bg-base-200 shadow-xl">
+            <div class="card-body">
+                <h1 class="card-title text-2xl font-bold">Submit New Artwork</h1>
+                <form id="artworkForm" method="POST" action="/submit-artwork" onsubmit="validateForm(event)">
+                    <div class="form-control mb-4">
+                        <label class="label" for="title">
+                            <span class="label-text">Title</span>
+                        </label>
+                        <input type="text" id="title" name="title" class="input input-bordered w-full" required>
+                    </div>
+
+                    <div class="form-control mb-4">
+                        <label class="label" for="description">
+                            <span class="label-text">Description</span>
+                        </label>
+                        <textarea id="description" name="description" class="textarea textarea-bordered w-full" required></textarea>
+                    </div>
+
+                    <div class="form-control mb-4">
+                        <label class="label" for="artist">
+                            <span class="label-text">Artist</span>
+                        </label>
+                        <input type="text" id="artist" name="artist" class="input input-bordered w-full" required>
+                    </div>
+
+                    <div class="form-control mb-4">
+                        <label class="label" for="location">
+                            <span class="label-text">Location (City, Country)</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="location" 
+                            name="location" 
+                            class="input input-bordered w-full" 
+                            placeholder="e.g., Berlin, Germany" 
+                            required
+                        >
+                        <span class="text-sm text-gray-500">Format: City, Country</span>
+                    </div>
+
+                    <div class="form-control mb-4">
+                        <label class="label" for="year">
+                            <span class="label-text">Year</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="year" 
+                            name="year" 
+                            class="input input-bordered w-full" 
+                            placeholder="e.g., 2023" 
+                            required
+                        >
+                        <span class="text-sm text-gray-500">Enter a year between 1500 and 2050.</span>
+                    </div>
+
+                    <div class="form-control mb-4">
+                        <label class="label" for="searchTopics">
+                            <span class="label-text">Search and Select Topics</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="searchTopics" 
+                            class="input input-bordered w-full mb-2" 
+                            placeholder="Search topics..." 
+                            oninput="filterTopics()"
+                        >
+                        <div 
+                            id="topicList" 
+                            class="max-h-40 overflow-y-auto border border-gray-300 rounded bg-base-100 p-2 text-black"
+                        >
+                            <!-- Topics will be dynamically populated -->
+                        </div>
+                        <button 
+                            type="button" 
+                            class="text-sm text-gray-500 hover:underline mt-2" 
+                            onclick="addCustomTopic()"
+                        >
+                            Suggest a new topic (enter into search bar and click here)
+                        </button>
+                    </div>
+
+                    <div class="card-actions justify-end">
+                        <button type="submit" class="btn btn-primary w-full">Submit Artwork</button>
+                    </div>
+                    <div class="form-control mb-4">
+                        <label class="label" for="email">
+                            <span class="label-text">Your Email (optional)</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="input input-bordered w-full" 
+                            placeholder="e.g., yourname@example.com"
+                        >
+                        <span class="text-sm text-gray-500">
+                            We'll only use your email to contact you if we have questions about your submission.
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allTopics = []; // To store all topics
+        const selectedTopics = new Set(); // To track selected topics
+
+        // Fetch topics from topicClusters and populate the list
+        async function loadTopics() {
+            try {
+                const response = await fetch('/data/topicClusters.json'); // Adjust path as needed
+                const topicClusters = await response.json();
+
+                // Extract all topics
+                allTopics = Object.values(topicClusters).flatMap(cluster => cluster.topics);
+
+                // Populate the topic list
+                displayTopics(allTopics);
+            } catch (error) {
+                console.error("Error loading topics:", error);
+                alert("Failed to load topics. Please try again later.");
+            }
+        }
+
+        // Display the topics in the topic list
+        function displayTopics(topics) {
+            const topicList = document.getElementById('topicList');
+            topicList.innerHTML = ''; // Clear existing topics
+
+            topics.forEach(topic => {
+                const topicItem = document.createElement('div');
+                topicItem.className =
+                    'p-2 bg-base-100 text-white hover:bg-gray-800 hover:text-white cursor-pointer rounded transition-colors duration-200';
+                topicItem.textContent = topic;
+                topicItem.onclick = () => toggleTopicSelection(topic);
+                topicList.appendChild(topicItem);
+            });
+        }
+
+        // Filter topics based on search input
+        function filterTopics() {
+            const searchInput = document.getElementById('searchTopics').value.toLowerCase();
+            const filteredTopics = allTopics.filter(topic =>
+                topic.toLowerCase().includes(searchInput)
+            );
+            displayTopics(filteredTopics);
+        }
+
+        // Add or remove a topic from the selected list
+        function toggleTopicSelection(topic) {
+            if (selectedTopics.has(topic)) {
+                selectedTopics.delete(topic);
+            } else {
+                selectedTopics.add(topic);
+            }
+
+            // Update the input field with selected topics
+            const topicInput = document.getElementById('topics');
+            topicInput.value = Array.from(selectedTopics).join(', ');
+        }
+
+        // Allow users to add a custom topic
+        function addCustomTopic() {
+            const searchInput = document.getElementById('searchTopics').value.trim();
+            if (searchInput && !selectedTopics.has(searchInput)) {
+                selectedTopics.add(searchInput);
+                allTopics.push(searchInput); // Optionally, add to the list
+                displayTopics(allTopics); // Refresh the list with the new topic
+            }
+
+            // Clear the search field and update the topics input
+            document.getElementById('searchTopics').value = '';
+            const topicInput = document.getElementById('topics');
+            topicInput.value = Array.from(selectedTopics).join(', ');
+        }
+
+        // Validate the form
+        function validateForm(event) {
+            const locationInput = document.getElementById('location').value.trim();
+            const yearInput = document.getElementById('year').value.trim();
+            const locationRegex = /^[^,]+,\s*[^,]+$/; // Matches "City, Country"
+            const yearRegex = /^[0-9]{4}$/; // Matches a 4-digit number
+            const yearValue = parseInt(yearInput, 10);
+
+            // Validate location format
+            if (!locationRegex.test(locationInput)) {
+                event.preventDefault();
+                alert("Please enter the location in 'City, Country' format.");
+                return;
+            }
+
+            // Validate year format and range
+            if (!yearRegex.test(yearInput) || yearValue < 1500 || yearValue > 2050) {
+                event.preventDefault();
+                alert("Please enter a valid year between 1500 and 2050.");
+                return;
+            }
+
+            if (selectedTopics.size === 0) {
+                event.preventDefault();
+                alert("Please select at least one topic.");
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadTopics);
+    </script>
+</body>
+</html>

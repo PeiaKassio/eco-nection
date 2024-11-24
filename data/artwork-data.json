@@ -12,7 +12,7 @@
         "location": "New York, USA",
         "year": 1977,
         "tags": {
-          "topic": ["Urban Ecology", "Nature", "Environment"],
+          "topic": ["Urban Ecology", "Nature"],
           "artform": ["Land Art", "Installation"]
         }
       }
@@ -67,22 +67,6 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-106.6504, 35.0844] },
-      "properties": {
-        "title": "Desert Bloom",
-        "description": "An art piece addressing water scarcity in the desert.",
-        "artist": "Anna Smith",
-        "type": "Installation",
-        "location": "Albuquerque, USA",
-        "year": 2022,
-        "tags": {
-          "topic": ["Water Conservation", "Sustainable Design"],
-          "artform": ["Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [-58.3816, -34.6037] },
       "properties": {
         "title": "River of Plastic",
@@ -115,22 +99,6 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [2.3522, 48.8566] },
-      "properties": {
-        "title": "Climate Wall",
-        "description": "A digital wall showcasing the carbon impact of daily activities.",
-        "artist": "Juliette Martin",
-        "type": "Installation",
-        "location": "Paris, France",
-        "year": 2021,
-        "tags": {
-          "topic": ["Carbon Emissions", "Climate Awareness"],
-          "artform": ["Digital Art", "Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [19.0402, 47.4979] },
       "properties": {
         "title": "Air Bubble",
@@ -142,22 +110,6 @@
         "tags": {
           "topic": ["Air Quality", "Environmental Health"],
           "artform": ["Sculpture", "Interactive Art"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [139.6917, 35.6895] },
-      "properties": {
-        "title": "Ocean Echo",
-        "description": "Installation mimicking ocean sounds to raise awareness of ocean pollution.",
-        "artist": "Yuki Tanaka",
-        "type": "Installation",
-        "location": "Tokyo, Japan",
-        "year": 2021,
-        "tags": {
-          "topic": ["Ocean Conservation", "Environmental Awareness"],
-          "artform": ["Sound Art", "Installation"]
         }
       }
     },
@@ -186,7 +138,7 @@
           "artist": "Various Artists",
           "type": "Festival",
           "location": "Marina Bay, Singapore",
-          "year": "Annually since 2010",
+          "year": "2010",
           "tags": {
               "topic": ["Sustainability", "Energy Efficiency"],
               "artform": ["Light Art", "Installation"]
@@ -204,7 +156,7 @@
           "location": "Botanic Gardens MRT Station, Singapore",
           "year": 2011,
           "tags": {
-              "topic": ["Conservation", "Urban Nature"],
+              "topic": ["Ecosystem Protection", "Urban Nature"],
               "artform": ["Mural Art"]
           }
       }
@@ -243,38 +195,6 @@
   },  
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [31.2336, 30.0444] },
-      "properties": {
-        "title": "Nile's Legacy",
-        "description": "Sculpture using river debris to symbolize the Nile’s challenges.",
-        "artist": "Ahmed Omar",
-        "type": "Sculpture",
-        "location": "Cairo, Egypt",
-        "year": 2020,
-        "tags": {
-          "topic": ["Water Pollution", "Recycling"],
-          "artform": ["Sculpture"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [18.4241, -33.9249] },
-      "properties": {
-        "title": "The Last Breath",
-        "description": "Installation addressing air quality in urban areas.",
-        "artist": "Nandi Mbatha",
-        "type": "Installation",
-        "location": "Cape Town, South Africa",
-        "year": 2021,
-        "tags": {
-          "topic": ["Air Quality", "Environmental Health"],
-          "artform": ["Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [151.2093, -33.8688] },
       "properties": {
         "title": "Bleached Coral",
@@ -301,70 +221,6 @@
         "year": 2019,
         "tags": {
           "topic": ["Ocean Conservation", "Plastic Pollution"],
-          "artform": ["Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-74.006, 40.7128] },
-      "properties": {
-        "title": "The New York Earth Room",
-        "description": "An installation by Walter De Maria highlighting the relationship between humans and the environment.",
-        "artist": "Walter De Maria",
-        "type": "Installation",
-        "location": "New York, USA",
-        "year": 1977,
-        "tags": {
-          "topic": ["Urban Ecology", "Nature", "Environment"],
-          "artform": ["Land Art", "Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [13.4115, 52.5134] },
-      "properties": {
-        "title": "Plastic Waste Tower",
-        "description": "A sculpture made from plastic bottles symbolizing plastic pollution.",
-        "artist": "Verena Michelitsch",
-        "type": "Sculpture",
-        "location": "Berlin, Germany",
-        "year": 2018,
-        "tags": {
-          "topic": ["Plastic Pollution", "Recycling", "Eco-Art"],
-          "artform": ["Sculpture"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-77.0365, 38.8977] },
-      "properties": {
-        "title": "The Water Table",
-        "description": "Interactive installation highlighting the vulnerability of freshwater resources.",
-        "artist": "Anne Percoco",
-        "type": "Installation",
-        "location": "Washington D.C., USA",
-        "year": 2017,
-        "tags": {
-          "topic": ["Water Conservation", "Freshwater Crisis"],
-          "artform": ["Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-118.2437, 34.0522] },
-      "properties": {
-        "title": "Trash Mountain",
-        "description": "A towering installation made from collected waste.",
-        "artist": "John Doe",
-        "type": "Installation",
-        "location": "Los Angeles, USA",
-        "year": 2021,
-        "tags": {
-          "topic": ["Waste Reduction", "Plastic Waste"],
           "artform": ["Installation"]
         }
       }
@@ -387,38 +243,6 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-58.3816, -34.6037] },
-      "properties": {
-        "title": "River of Plastic",
-        "description": "Sculpture representing the impact of plastic on rivers.",
-        "artist": "Mariana Lopez",
-        "type": "Sculpture",
-        "location": "Buenos Aires, Argentina",
-        "year": 2019,
-        "tags": {
-          "topic": ["Plastic Pollution", "Recycling"],
-          "artform": ["Sculpture"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-74.0721, 4.7110] },
-      "properties": {
-        "title": "Forest Guardians",
-        "description": "Sculpture series advocating for forest conservation.",
-        "artist": "Carlos Perez",
-        "type": "Sculpture",
-        "location": "Bogotá, Colombia",
-        "year": 2020,
-        "tags": {
-          "topic": ["Forest Conservation", "Ecosystem Protection"],
-          "artform": ["Sculpture"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [2.3522, 48.8566] },
       "properties": {
         "title": "Climate Wall",
@@ -430,22 +254,6 @@
         "tags": {
           "topic": ["Carbon Emissions", "Climate Awareness"],
           "artform": ["Digital Art", "Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [19.0402, 47.4979] },
-      "properties": {
-        "title": "Air Bubble",
-        "description": "An inflatable sculpture filled with fresh air to emphasize air quality.",
-        "artist": "Peter Szabo",
-        "type": "Sculpture",
-        "location": "Budapest, Hungary",
-        "year": 2019,
-        "tags": {
-          "topic": ["Air Quality", "Environmental Health"],
-          "artform": ["Sculpture", "Interactive Art"]
         }
       }
     },
@@ -467,22 +275,6 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [31.2336, 30.0444] },
-      "properties": {
-        "title": "Nile's Legacy",
-        "description": "Sculpture using river debris to symbolize the Nile’s challenges.",
-        "artist": "Ahmed Omar",
-        "type": "Sculpture",
-        "location": "Cairo, Egypt",
-        "year": 2020,
-        "tags": {
-          "topic": ["Water Pollution", "Recycling"],
-          "artform": ["Sculpture"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [18.4241, -33.9249] },
       "properties": {
         "title": "The Last Breath",
@@ -493,38 +285,6 @@
         "year": 2021,
         "tags": {
           "topic": ["Air Quality", "Environmental Health"],
-          "artform": ["Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [151.2093, -33.8688] },
-      "properties": {
-        "title": "Bleached Coral",
-        "description": "An installation addressing coral bleaching.",
-        "artist": "Emily Clark",
-        "type": "Installation",
-        "location": "Sydney, Australia",
-        "year": 2018,
-        "tags": {
-          "topic": ["Coral Reef", "Climate Change"],
-          "artform": ["Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [174.7633, -36.8485] },
-      "properties": {
-        "title": "Islands of Waste",
-        "description": "Installation representing the Pacific Garbage Patch.",
-        "artist": "Olivia Green",
-        "type": "Installation",
-        "location": "Auckland, New Zealand",
-        "year": 2019,
-        "tags": {
-          "topic": ["Ocean Conservation", "Plastic Pollution"],
           "artform": ["Installation"]
         }
       }
@@ -578,22 +338,6 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-77.0282, -12.0432] },
-      "properties": {
-        "title": "Ana Teresa Barboza - Cyclical Nature",
-        "description": "Using traditional techniques, native plants, and local collaborations, Ana Teresa Barboza creates monumental tapestries. Her works capture the interplay between the transience of nature, cultural traditions, and cyclical regional changes.",
-        "artist": "Ana Teresa Barboza",
-        "type": "Textile Art",
-        "location": "Lima, Peru",
-        "year": 2021,
-        "tags": {
-          "topic": ["Cultural Heritage", "Nature Cycles"],
-          "artform": ["Textile Art", "Tapestry"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [-97.3308, 37.6889] },
       "properties": {
         "title": "Nnenna Okore - Eco Sculptures",
@@ -621,38 +365,6 @@
         "tags": {
           "topic": ["Urbanization", "Sustainability"],
           "artform": ["Painting", "Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-74.006, 40.7128] },
-      "properties": {
-        "title": "The New York Earth Room",
-        "description": "An installation by Walter De Maria highlighting the relationship between humans and the environment.",
-        "artist": "Walter De Maria",
-        "type": "Installation",
-        "location": "New York, USA",
-        "year": 1977,
-        "tags": {
-          "topic": ["Urban Ecology", "Nature", "Environment"],
-          "artform": ["Land Art", "Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [13.4115, 52.5134] },
-      "properties": {
-        "title": "Plastic Waste Tower",
-        "description": "A sculpture made from plastic bottles symbolizing plastic pollution.",
-        "artist": "Verena Michelitsch",
-        "type": "Sculpture",
-        "location": "Berlin, Germany",
-        "year": 2018,
-        "tags": {
-          "topic": ["Plastic Pollution", "Recycling", "Eco-Art"],
-          "artform": ["Sculpture"]
         }
       }
     },
@@ -701,22 +413,6 @@
         "tags": {
           "topic": ["Air Pollution", "Urban Ecology"],
           "artform": ["Vertical Garden", "Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [18.0686, 59.3293] },
-      "properties": {
-        "title": "Treehotel - Mirrorcube",
-        "description": "A camouflaged treehouse installation promoting sustainable tourism.",
-        "artist": "Tham & Videgård Architects",
-        "type": "Installation",
-        "location": "Harads, Sweden",
-        "year": 2010,
-        "tags": {
-          "topic": ["Sustainable Tourism", "Nature"],
-          "artform": ["Installation", "Architecture"]
         }
       }
     },
@@ -784,22 +480,6 @@
         }
       }
     },
-      {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-79.3832, 43.6532] },
-      "properties": {
-        "title": "The Bentway",
-        "description": "A public art space under Toronto's Gardiner Expressway promoting urban green spaces.",
-        "artist": "Various Artists",
-        "type": "Public Art",
-        "location": "Toronto, Canada",
-        "year": 2018,
-        "tags": {
-          "topic": ["Urban Ecology", "Green Spaces"],
-          "artform": ["Public Art"]
-        }
-      }
-    },
     {
       "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [-77.0282, -12.0432] },
@@ -845,22 +525,6 @@
         "tags": {
           "topic": ["Water Pollution", "River Conservation"],
           "artform": ["Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-46.6333, -23.5505] },
-      "properties": {
-        "title": "Vertical Garden of São Paulo",
-        "description": "A green wall installation addressing air pollution in urban areas.",
-        "artist": "Patrick Blanc",
-        "type": "Installation",
-        "location": "São Paulo, Brazil",
-        "year": 2013,
-        "tags": {
-          "topic": ["Air Pollution", "Urban Ecology"],
-          "artform": ["Vertical Garden", "Installation"]
         }
       }
     },
@@ -914,19 +578,371 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [153.026, -27.4705] },
+      "geometry": { "type": "Point", "coordinates": [-122.6765, 45.5231] },
       "properties": {
-        "title": "The Whale Trail",
-        "description": "A trail of sculptures highlighting the impact of climate change on marine life.",
-        "artist": "Various Artists",
-        "type": "Public Art",
-        "location": "Brisbane, Australia",
-        "year": 2019,
+        "title": "Forest Revival",
+        "description": "Interactive installations showcasing reforestation efforts.",
+        "artist": "Green Pulse Collective",
+        "type": "Installation",
+        "location": "Portland, USA",
+        "year": 2023,
         "tags": {
-          "topic": ["Climate Change", "Marine Conservation"],
+          "topic": ["Forest Conservation", "Recycling"],
+          "artform": ["Interactive Art"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-99.1332, 19.4326] },
+      "properties": {
+        "title": "Urban Roots",
+        "description": "Vertical gardens addressing air quality in Mexico City.",
+        "artist": "Vertical Green Team",
+        "type": "Installation",
+        "location": "Mexico City, Mexico",
+        "year": 2022,
+        "tags": {
+          "topic": ["Air Quality", "Urban Ecology"],
+          "artform": ["Vertical Garden"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-58.3816, -34.6037] },
+      "properties": {
+        "title": "Eco-Walls of Buenos Aires",
+        "description": "Murals created from recycled materials.",
+        "artist": "Ana Lopez",
+        "type": "Mural",
+        "location": "Buenos Aires, Argentina",
+        "year": 2021,
+        "tags": {
+          "topic": ["Waste Management", "Sustainability"],
+          "artform": ["Mural Art"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-75.5775, 6.2528] },
+      "properties": {
+        "title": "Andean Streams",
+        "description": "Sculptures addressing water issues in Medellin.",
+        "artist": "Luis Fernando",
+        "type": "Sculpture",
+        "location": "Medellin, Colombia",
+        "year": 2018,
+        "tags": {
+          "topic": ["Water Conservation", "Ecosystems"],
           "artform": ["Sculpture"]
         }
       }
-    }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [2.3522, 48.8566] },
+      "properties": {
+        "title": "Carbon Towers",
+        "description": "A digital exhibition on the impact of carbon footprints.",
+        "artist": "Pierre Dubois",
+        "type": "Digital Art",
+        "location": "Paris, France",
+        "year": 2022,
+        "tags": {
+          "topic": ["Carbon Emissions", "Climate Awareness"],
+          "artform": ["Digital Art"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [8.6821, 50.1109] },
+      "properties": {
+        "title": "Water Cycle Symphony",
+        "description": "An interactive sound installation about the water cycle.",
+        "artist": "Marta Kohler",
+        "type": "Sound Art",
+        "location": "Frankfurt, Germany",
+        "year": 2023,
+        "tags": {
+          "topic": ["Water Conservation", "Climate Awareness"],
+          "artform": ["Sound Art"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [34.8516, 31.0461] },
+      "properties": {
+        "title": "Dead Sea Revival",
+        "description": "Sculptures highlighting water loss in the Dead Sea.",
+        "artist": "Noam Levi",
+        "type": "Sculpture",
+        "location": "Jerusalem, Israel",
+        "year": 2021,
+        "tags": {
+          "topic": ["Water Shortage", "Sustainability"],
+          "artform": ["Sculpture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [77.2167, 28.6667] },
+      "properties": {
+        "title": "Green Delhi",
+        "description": "Vertical gardens in urban spaces.",
+        "artist": "Arun Mehta",
+        "type": "Installation",
+        "location": "Delhi, India",
+        "year": 2022,
+        "tags": {
+          "topic": ["Urban Ecology", "Green Spaces"],
+          "artform": ["Vertical Garden"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [151.2093, -33.8688] },
+      "properties": {
+        "title": "Ocean Mirror",
+        "description": "Interactive art emphasizing ocean pollution.",
+        "artist": "Sophie Clarke",
+        "type": "Installation",
+        "location": "Sydney, Australia",
+        "year": 2023,
+        "tags": {
+          "topic": ["Plastic Pollution", "Ocean Conservation"],
+          "artform": ["Interactive Art"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [30.0444, 31.2357] },
+      "properties": {
+        "title": "Sand Dunes of Cairo",
+        "description": "An installation on the fragility of desert ecosystems.",
+        "artist": "Samira Hassan",
+        "type": "Installation",
+        "location": "Cairo, Egypt",
+        "year": 2019,
+        "tags": {
+          "topic": ["Ecosystem Protection", "Climate Change"],
+          "artform": ["Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [37.6173, 55.7558] },
+      "properties": {
+        "title": "Palus Flores",
+        "description": "A project combining flower sculptures and soil samples to highlight human-induced changes to urban nature.",
+        "artist": "Alina Brovina",
+        "type": "Installation",
+        "location": "Moscow, Russia",
+        "year": 2021,
+        "tags": {
+          "topic": ["Urban Ecology", "Human-Nature Interaction"],
+          "artform": ["Sculpture", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [37.6173, 55.7558] },
+      "properties": {
+        "title": "Vaga",
+        "description": "An exhibition reflecting on environmental and cultural themes of the Russian village.",
+        "artist": "Evgenia Buravleva",
+        "type": "Painting",
+        "location": "Moscow Museum of Modern Art, Russia",
+        "year": 2022,
+        "tags": {
+          "topic": ["Cultural Heritage", "Environmental Reflection"],
+          "artform": ["Painting", "Exhibition"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [37.621, 55.757] },
+      "properties": {
+        "title": "Psychozoic Era",
+        "description": "A project examining industrial waste and landfill issues through paintings and films.",
+        "artist": "Pavel Otdelnov",
+        "type": "Painting / Film",
+        "location": "Moscow, Russia",
+        "year": 2020,
+        "tags": {
+          "topic": ["Industrial Waste", "Landfill Issues"],
+          "artform": ["Painting", "Film"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [37.6173, 55.7558] },
+      "properties": {
+        "title": "The Lost Planet",
+        "description": "A mixed-media series addressing global environmental concerns like climate change and pollution.",
+        "artist": "Natalia Kapchuk",
+        "type": "Mixed Media",
+        "location": "Moscow, Russia",
+        "year": 2021,
+        "tags": {
+          "topic": ["Climate Change", "Pollution"],
+          "artform": ["Mixed Media", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [37.6173, 55.7558] },
+      "properties": {
+        "title": "Floridas",
+        "description": "A photographic series capturing environmentalism and political scenarios, originally exhibited in The Met.",
+        "artist": "Anastasia Samoylova",
+        "type": "Photography",
+        "location": "Moscow, Russia (originally The Met, USA)",
+        "year": 2022,
+        "tags": {
+          "topic": ["Environmental Awareness", "Cultural Reflection"],
+          "artform": ["Photography"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [18.0632, 59.3346] },
+      "properties": {
+        "title": "Baltic Sea Rescue Project",
+        "description": "A public art installation addressing marine pollution in the Baltic Sea.",
+        "artist": "Anna Lundh",
+        "type": "Installation",
+        "location": "Stockholm, Sweden",
+        "year": 2021,
+        "tags": {
+          "topic": ["Marine Pollution", "Water Conservation"],
+          "artform": ["Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [13.1904, 58.3029] },
+      "properties": {
+        "title": "Green Futures",
+        "description": "A sculpture showcasing renewable energy innovation.",
+        "artist": "Olof Thorstensson",
+        "type": "Sculpture",
+        "location": "Gothenburg, Sweden",
+        "year": 2022,
+        "tags": {
+          "topic": ["Renewable Energy", "Sustainability"],
+          "artform": ["Sculpture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [121.4737, 31.2304] },
+      "properties": {
+        "title": "Yangtze River Plastic Wave",
+        "description": "A giant sculpture made from plastic collected along the Yangtze River.",
+        "artist": "Wang Wei",
+        "type": "Sculpture",
+        "location": "Shanghai, China",
+        "year": 2019,
+        "tags": {
+          "topic": ["Plastic Pollution", "Recycling"],
+          "artform": ["Sculpture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [116.4074, 39.9042] },
+      "properties": {
+        "title": "Smog Tower Art",
+        "description": "An innovative smog-absorbing tower doubling as an art installation.",
+        "artist": "Li Xiaodong",
+        "type": "Installation",
+        "location": "Beijing, China",
+        "year": 2020,
+        "tags": {
+          "topic": ["Air Pollution", "Urban Ecology"],
+          "artform": ["Installation", "Green Architecture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [31.2357, -17.8292] },
+      "properties": {
+        "title": "Wildlife Corridors",
+        "description": "An initiative using art installations to promote animal migration corridors.",
+        "artist": "Nadine Mwende",
+        "type": "Installation",
+        "location": "Harare, Zimbabwe",
+        "year": 2022,
+        "tags": {
+          "topic": ["Wildlife Preservation", "Ecosystem Protection"],
+          "artform": ["Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [15.5943, -4.4419] },
+      "properties": {
+        "title": "Kinshasa Green Mural",
+        "description": "A mural promoting urban reforestation.",
+        "artist": "Jacques Mbuyi",
+        "type": "Mural",
+        "location": "Kinshasa, Democratic Republic of the Congo",
+        "year": 2021,
+        "tags": {
+          "topic": ["Urban Ecology", "Green Spaces"],
+          "artform": ["Mural"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [17.8641, -31.1328] },
+      "properties": {
+        "title": "The Karoo Energy Project",
+        "description": "An art project exploring renewable energy potential in semi-arid regions.",
+        "artist": "Sarah van Zyl",
+        "type": "Installation",
+        "location": "Karoo, South Africa",
+        "year": 2023,
+        "tags": {
+          "topic": ["Renewable Energy", "Sustainable Practices"],
+          "artform": ["Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [18.642, -33.9301] },
+      "properties": {
+        "title": "Cape Coral Crisis",
+        "description": "A coral-shaped sculpture highlighting ocean acidification effects.",
+        "artist": "Tumi Dlamini",
+        "type": "Sculpture",
+        "location": "Cape Town, South Africa",
+        "year": 2021,
+        "tags": {
+          "topic": ["Coral Reef", "Ocean Conservation"],
+          "artform": ["Sculpture"]
+        }
+      }
+    }            
   ]
 }

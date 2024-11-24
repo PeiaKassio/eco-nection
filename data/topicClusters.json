@@ -7,7 +7,9 @@
       "Plastic Waste", 
       "Toxic Waste", 
       "Pollution in Cities", 
-      "Industrial Emissions"
+      "Industrial Emissions",
+      "Marine Pollution",
+      "Pollution"
     ],
     "color": "#808080"
   },
@@ -31,7 +33,10 @@
       "Natural Habitat", 
       "Coral Reef", 
       "Coral Bleaching", 
-      "Nature Cycles"
+      "Nature Cycles",
+      "Ecosystems",
+      "Ecosystem Protection",
+      "Conservation" 
     ],
     "color": "#006400"
   },
@@ -44,7 +49,10 @@
       "Green Architecture", 
       "Circular Economy", 
       "Sustainability", 
-      "Sustainable Tourism"
+      "Sustainable Tourism",
+      "Renewable Energy",
+      "Sustainable Practices",
+      "Energy Efficiency"
     ],
     "color": "#90EE90"
   },
@@ -70,7 +78,8 @@
       "Environmental Impact", 
       "Urbanization", 
       "Smart Cities", 
-      "Urban Farming"
+      "Urban Farming",
+      "Urban Nature"
     ],
     "color": "#FFD700"
   },
@@ -82,9 +91,11 @@
       "Recycling", 
       "Upcycling", 
       "Landfill Diversion", 
-      "Composting"
+      "Composting",
+      "Landfill Issues",
+      "Industrial Waste"
     ],
-    "color": "#808080"
+    "color": "#282828"
   },
   "Biodiversity": {
     "topics": [
@@ -117,8 +128,23 @@
       "Art Activism", 
       "Indigenous Knowledge", 
       "Cultural Heritage", 
-      "Educational Campaigns"
+      "Educational Campaigns",
+      "Environmental Reflection",
+      "Cultural Reflection",
+      "Human-Nature Interaction",
+      "Environmentalism"
     ],
     "color": "#FF8C00"
+  },
+  "Resource Depletion": {
+    "topics": [
+      "Overconsumption",
+      "Deforestation",
+      "Overfishing",
+      "Energy Overuse",
+      "Resource Scarcity",
+      "Non-Renewable Resources"
+    ],
+    "color": "#5B3A29"
   }
 }
