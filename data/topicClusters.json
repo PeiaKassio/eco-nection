@@ -26,8 +26,7 @@
   },
   "Ecosystems": {
     "topics": [
-      "Forest Conservation", 
-      "Wildlife Preservation", 
+      "Forest Conservation",
       "Ecosystem Protection", 
       "Natural Habitat", 
       "Coral Reef", 
@@ -54,7 +53,8 @@
       "Water Conservation", 
       "Freshwater Crisis", 
       "Ocean Conservation", 
-      "Water Shortage", 
+      "Water Shortage",
+      "Water Scarcity", 
       "Drought Management", 
       "Marine Conservation", 
       "River Conservation"
@@ -90,7 +90,8 @@
     "topics": [
       "Biodiversity", 
       "Biodiversity Loss",  
-      "Wildlife Preservation", 
+      "Wildlife Preservation",
+      "Wildlife Conservation", 
       "Natural Habitat", 
       "Invasive Species Management", 
       "Species Conservation"
