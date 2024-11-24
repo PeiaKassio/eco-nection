@@ -467,6 +467,12 @@ document.getElementById('applyTopicFilter').addEventListener('click', () => {
 // Event listener for the country search box
 document.getElementById('countrySearch').addEventListener('input', filterCountries);
 
+function resetFilters() {
+    document.getElementById('countrySearch').value = '';
+    document.getElementById('countrySelect').selectedIndex = 0;
+    document.getElementById('clusterSelect').selectedIndex = 0;
+    applyFilters();
+}
 
 // Initial data load
 loadData();
