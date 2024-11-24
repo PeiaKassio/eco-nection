@@ -434,11 +434,10 @@ function filterCountries() {
     console.log("Country Filter Applied");
 }
 
+
 /**
  * Event Listeners
  */
-
-
 // Event listener for applying the country filter
 document.getElementById('applyCountryFilter').addEventListener('click', () => {
     const countrySelect = document.getElementById('countrySelect');
@@ -464,35 +463,33 @@ document.getElementById('applyTopicFilter').addEventListener('click', () => {
     loadCountryData(countriesToApply, true);
 });
 
+function resetFilters() {
+    // Clear the country search box
+    document.getElementById('countrySearch').value = '';
+
+    // Reset country and topic selections to default ("All")
+    const countrySelect = document.getElementById('countrySelect');
+    const clusterSelect = document.getElementById('clusterSelect');
+
+    if (countrySelect) {
+        Array.from(countrySelect.options).forEach(option => option.selected = option.value === "all");
+    }
+    if (clusterSelect) {
+        Array.from(clusterSelect.options).forEach(option => option.selected = option.value === "all");
+    }
+
+    // Reload all data with no filters applied
+    loadCountryData(["all"], false);
+}
+
 // Event listener for the country search box
 document.getElementById('countrySearch').addEventListener('input', filterCountries);
 
-function resetFilters() {
-    // Clear search input
-    document.getElementById('countrySearch').value = '';
+// Add an event listener to the reset button
+document.getElementById('reset-filters').addEventListener('click', resetFilters);
 
-    // Deselect all options in country select
-    const countrySelect = document.getElementById('countrySelect');
-    Array.from(countrySelect.options).forEach(option => {
-        option.selected = false;
-    });
 
-    // Select the "All Countries" option
-    countrySelect.value = "all";
 
-    // Deselect all options in cluster select
-    const clusterSelect = document.getElementById('clusterSelect');
-    Array.from(clusterSelect.options).forEach(option => {
-        option.selected = false;
-    });
-
-    // Select the "All Clusters" option
-    clusterSelect.value = "all";
-
-    // Reapply filters with default values
-    applyCountryFilters();
-    applyTopicFilters()
-}
 
 // Initial data load
 loadData();
