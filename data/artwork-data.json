@@ -467,22 +467,6 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [103.8198, 1.3521] },
-      "properties": {
-        "title": "Green Pulse",
-        "description": "A lighting installation showcasing the pulse of green spaces in urban areas.",
-        "artist": "Li Wei",
-        "type": "Installation",
-        "location": "Singapore",
-        "year": 2022,
-        "tags": {
-          "topic": ["Green Spaces", "Urban Ecology"],
-          "artform": ["Light Art", "Installation"]
-        }
-      }
-    },
-    {
-      "type": "Feature",
       "geometry": { "type": "Point", "coordinates": [31.2336, 30.0444] },
       "properties": {
         "title": "Nile's Legacy",
@@ -799,6 +783,150 @@
           "artform": ["Sculpture"]
         }
       }
-    }      
+    },
+      {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-79.3832, 43.6532] },
+      "properties": {
+        "title": "The Bentway",
+        "description": "A public art space under Toronto's Gardiner Expressway promoting urban green spaces.",
+        "artist": "Various Artists",
+        "type": "Public Art",
+        "location": "Toronto, Canada",
+        "year": 2018,
+        "tags": {
+          "topic": ["Urban Ecology", "Green Spaces"],
+          "artform": ["Public Art"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-77.0282, -12.0432] },
+      "properties": {
+        "title": "Ana Teresa Barboza - Cyclical Nature",
+        "description": "Using traditional techniques, native plants, and local collaborations, Ana Teresa Barboza creates monumental tapestries.",
+        "artist": "Ana Teresa Barboza",
+        "type": "Textile Art",
+        "location": "Lima, Peru",
+        "year": 2021,
+        "tags": {
+          "topic": ["Cultural Heritage", "Nature Cycles"],
+          "artform": ["Textile Art", "Tapestry"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [13.405, 52.52] },
+      "properties": {
+        "title": "Urban Garden",
+        "description": "A collaborative project encouraging sustainable urban farming.",
+        "artist": "Collective Artists",
+        "type": "Public Art",
+        "location": "Berlin, Germany",
+        "year": 2020,
+        "tags": {
+          "topic": ["Urban Farming", "Sustainability"],
+          "artform": ["Public Art", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [77.1025, 28.7041] },
+      "properties": {
+        "title": "River of Life",
+        "description": "An installation addressing water pollution in the Yamuna River.",
+        "artist": "Amit Sharma",
+        "type": "Installation",
+        "location": "Delhi, India",
+        "year": 2020,
+        "tags": {
+          "topic": ["Water Pollution", "River Conservation"],
+          "artform": ["Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-46.6333, -23.5505] },
+      "properties": {
+        "title": "Vertical Garden of São Paulo",
+        "description": "A green wall installation addressing air pollution in urban areas.",
+        "artist": "Patrick Blanc",
+        "type": "Installation",
+        "location": "São Paulo, Brazil",
+        "year": 2013,
+        "tags": {
+          "topic": ["Air Pollution", "Urban Ecology"],
+          "artform": ["Vertical Garden", "Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [151.2093, -33.8688] },
+      "properties": {
+        "title": "Bleached Reef",
+        "description": "Art installation addressing coral bleaching in the Great Barrier Reef.",
+        "artist": "Emily Carter",
+        "type": "Installation",
+        "location": "Sydney, Australia",
+        "year": 2018,
+        "tags": {
+          "topic": ["Coral Bleaching", "Ocean Conservation"],
+          "artform": ["Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [31.2336, 30.0444] },
+      "properties": {
+        "title": "River Revival",
+        "description": "An art project using debris to highlight water scarcity issues.",
+        "artist": "Ahmed Khalid",
+        "type": "Installation",
+        "location": "Cairo, Egypt",
+        "year": 2020,
+        "tags": {
+          "topic": ["Water Scarcity", "Sustainability"],
+          "artform": ["Installation"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [18.0686, 59.3293] },
+      "properties": {
+        "title": "Treehotel - Mirrorcube",
+        "description": "A camouflaged treehouse installation promoting sustainable tourism.",
+        "artist": "Tham & Videgård Architects",
+        "type": "Installation",
+        "location": "Harads, Sweden",
+        "year": 2010,
+        "tags": {
+          "topic": ["Sustainable Tourism", "Nature"],
+          "artform": ["Installation", "Architecture"]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [153.026, -27.4705] },
+      "properties": {
+        "title": "The Whale Trail",
+        "description": "A trail of sculptures highlighting the impact of climate change on marine life.",
+        "artist": "Various Artists",
+        "type": "Public Art",
+        "location": "Brisbane, Australia",
+        "year": 2019,
+        "tags": {
+          "topic": ["Climate Change", "Marine Conservation"],
+          "artform": ["Sculpture"]
+        }
+      }
+    }
   ]
 }
