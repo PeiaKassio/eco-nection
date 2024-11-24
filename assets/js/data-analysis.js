@@ -262,7 +262,7 @@ function createCountryClusterChart(filteredData) {
                     text: 'Topic Clusters by Country',
                 },
                 legend: {
-                    display: true,
+                    display: false,
                     position: 'top',
                 },
             },
