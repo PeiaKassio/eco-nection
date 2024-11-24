@@ -32,6 +32,19 @@
                 margin-bottom: 1rem;
             }
         }
+        /* Default styles (for all screen sizes) */
+        select {
+            height: 150px; /* Default height */
+            overflow-y: auto; /* Enable scrolling for long lists */
+        }
+
+        /* Styles for desktop mode (min-width: 1024px) */
+        @media (min-width: 1024px) {
+            #countrySelect,
+            #clusterSelect {
+                height: 300px; /* Increased height for desktop mode */
+            }
+        }
     </style>
 </head>
 <body class="h-full flex flex-col">
