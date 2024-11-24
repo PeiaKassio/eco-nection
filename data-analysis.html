@@ -72,10 +72,10 @@
         <div class="flex flex-col lg:flex-row lg:gap-6">
             <!-- Filters Sidebar -->
             <div class="bg-base-200 p-4 rounded-box w-full lg:w-1/4 sidebar">
+                <h2 class="text-2xl font-bold mb-4">Filters</h2>
                 <div id="map" class="flex grow relative">
                     <div class="dropdown-open lg:static">
                         <div tabindex="0" class="bg-base-200 p-4 rounded-box w-full lg:w-1/4 lg:block hidden">
-                            <h2 class="text-2xl font-bold mb-4">Filters</h2>
                         </div>
                         <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 m-3 gap-y-2 shadow">
                             <!-- Country Filter -->
@@ -88,7 +88,7 @@
                             <select id="clusterSelect" multiple class="select select-bordered w-full mb-4 h-64 lg:h-96 overflow-y-auto"></select>
                             <button id="applyTopicFilter" class="btn btn-primary w-full mb-6">Apply Topic Filter</button>
                             <!-- Reset Filters -->
-                            <button id="reset-filters" class="btn btn-outline btn-sm btn-primary">Reset Filters</button>
+                            <button id="resetFilters" class="btn btn-outline btn-sm btn-primary">Reset Filters</button>
                         </ul>
                     </div>
                 </div>              
@@ -98,7 +98,7 @@
             <div class="flex-grow flex flex-col gap-6">
                 <!-- Country Chart -->
                 <section id="topics-by-country" class="mb-8 chart-container">
-                    <h3 class="text-2xl font-semibold mb-4">Topics by Country</h3>
+                    <h3 class="text-2xl font-semibold mb-4">Number of Topics by Country</h3>
                     <canvas id="countryChart"></canvas>
                 </section>
 

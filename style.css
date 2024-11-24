@@ -40,16 +40,8 @@ body {
       height: 600px; /* Increase height for larger screens */
   }
 }
-.chart-container {
-  overflow-x: auto;
-  white-space: nowrap;
-  width: 100%;
-  max-width: 100%;
-}
 
-/*canvas#countryChart {
-    min-width: 800px; /* Set a minimum width for horizontal scroll 
-    } */
+
 .chart-container {
   overflow-x: auto;
   position: relative;

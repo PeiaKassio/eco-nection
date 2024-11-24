@@ -468,10 +468,30 @@ document.getElementById('applyTopicFilter').addEventListener('click', () => {
 document.getElementById('countrySearch').addEventListener('input', filterCountries);
 
 function resetFilters() {
+    // Clear search input
     document.getElementById('countrySearch').value = '';
-    document.getElementById('countrySelect').selectedIndex = 0;
-    document.getElementById('clusterSelect').selectedIndex = 0;
-    applyFilters();
+
+    // Deselect all options in country select
+    const countrySelect = document.getElementById('countrySelect');
+    Array.from(countrySelect.options).forEach(option => {
+        option.selected = false;
+    });
+
+    // Select the "All Countries" option
+    countrySelect.value = "all";
+
+    // Deselect all options in cluster select
+    const clusterSelect = document.getElementById('clusterSelect');
+    Array.from(clusterSelect.options).forEach(option => {
+        option.selected = false;
+    });
+
+    // Select the "All Clusters" option
+    clusterSelect.value = "all";
+
+    // Reapply filters with default values
+    applyCountryFilters();
+    applyTopicFilters()
 }
 
 // Initial data load
