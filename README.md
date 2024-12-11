@@ -44,7 +44,7 @@ We welcome contributions! Here's how you can help:
 
 - Report Bugs: Open an issue describing the bug with steps to reproduce it.
 - Feature Requests: Suggest new features or improvements.
-- Add Artwork Data: Add Artwork to the [artwork-data](docs/artwork-data.json) file.
+- Add Artwork Data: Add Artwork to the [artwork-data](data/artwork-data.json) file.
 
 ---
 
