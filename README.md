@@ -1,6 +1,7 @@
 # eco-nection 🌍🎨
 
-**eco-nection** is an interactive platform that visualizes environmentalism through art. It maps artwork metadata, enables filtering by location, topics, and art forms, and provides insightful data analysis using interactive charts.
+**eco-nection** on is an interactive platform that visualizes environmentalism through art. It maps artwork metadata, enables filtering by location, topics, and art forms, and provides insightful data analysis using interactive charts.
+View here: https://peiakassio.github.io/eco-nection/
 
 ## 🚀 Features
 - **Interactive Map**: Explore artworks on a map with detailed pop-ups.
