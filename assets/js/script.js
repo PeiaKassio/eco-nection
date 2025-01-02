@@ -39,10 +39,13 @@ map.on('load', async () => {
         }
 
         artworkFeatures.forEach((feature, index) => {
+            // Check if feature is defined
             if (feature) {
+                // Check if properties exist
                 if (feature.properties) {
-                    const artworkTopics = feature.properties.tags?.topic;
+                    const artworkTopics = feature.properties.tags?.topic; // Use optional chaining
         
+                    // Only proceed if artworkTopics is an array
                     if (Array.isArray(artworkTopics)) {
                         artworkTopics.forEach(topic => {
                             if (!allTopics.includes(topic)) {
