@@ -1629,8 +1629,7 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -74.006,
-                    40.7128
+                    -73.9779, 40.5740
                 ]
             },
             "properties": {
@@ -1638,20 +1637,49 @@
                 "description": "A non-profit organization led by Angela Haseltine Pozzi that creates large-scale sculptures from marine debris to educate about ocean pollution.",
                 "artist": "Angela Haseltine Pozzi",
                 "type": "Installation",
-                "location": "Various exhibitions",
-                "year": "Ongoing project",
+                "location": "New York, USA",
+                "year": "2024",
                 "tags": {
                     "topic": [
                         "Ocean Conservation",
                         "Education"
                     ],
                     "artform": [
-                        "Installation"
+                        "Exhibition"
                     ]
                 },
                 "url": "https://washedashore.org/",
                 "thumbnail": ""
             }
-        }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                9.6273, 48.7213
+              ]
+            },
+            "properties": {
+              "title": "Spaceship: Earth",
+              "artist": "Mop Mop, Anthony Joseph",
+              "type": "Song",
+              "location": "Germany",
+              "year": 2016,
+              "tags": {
+                "topic": [
+                  "Environmental Awareness",
+                  "Human-Nature Interaction"
+                ],
+                "artform": [
+                  "Music"
+                ]
+              },
+              "url": "https://open.spotify.com/intl-de/track/4TshxTMDh3V49mZTzxVS9m",
+              "thumbnail": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAB8AOAMBEQACEQEDEQH/xAAaAAACAwEBAAAAAAAAAAAAAAAGBwADBQQB/8QALxAAAQQABAQEBAcAAAAAAAAAAQIDBBEABRIhBhMUMSIyQVEHcZGxFSMzYYGhwf/EABoBAAIDAQEAAAAAAAAAAAAAAAAFAwQGAgH/xAAvEQABAwMBBgUCBwAAAAAAAAABAAIDBBEhMRITUWFx8BRBkaHRIuEFFUJygbHB/9oADAMBAAIRAxEAPwBHYEIw+HVGRNQe6wgA1fvizBIImPkdoBf0Sf8AFInzPijZqTb1snbwvFYHKQhsJQST271jJmd9ZPvJfP2HBaqOmjpIRFHoPfmvW8pz5fFKZL0tScvafcIAd8LrKk7IUjtsTXa9rvDgvgNPs2ylgZUip2v0nvHNLz4hPPMcazITKkIjhpCwV6iAdIJHmAH3+uIadoiaXMuDywrUwEp2XgEcxdL7iCU5LjxVulBUHHB+WSUjZGwvDTO7FyTrqlsbGtnfsgDA0xxWLjhWVMCEafDII62WpZoJCP8AcErC+llaOCpTSBlZTk6X+AmDI4kzDL8wjQssipfWKUSELWVEq8vh8nvatvocZyjiY9m042N8fOdegWhqHva6wFxbPf8Aq3zxPnIjmSTA6fp+eF9OsA7Xp1a6CfXmdqN1WGm4z36/ZV7ushIyk53m0pGe5LC6kb8xyIUuJo1oJX5/mnb64X1LzCy8bzrnPvjS/DVTQDePIe0aY75IH+IkWLEkREwm22mVBatDaQAD4fbGiDXNp4w7W2Vn6eUSVU5Gl8dMoQxwrymBC1uG4juZTugblmOl2lGgTrKew2/k77YinnMEZda66jhbLIL6+SKovEasomyo2ctPMSnFsW+lCSVNou0Lo7pVYUauymiCNsRQMjLAYstypnvc1/16ruTkM4cTrlfiM4OjdU0lX6YNFR23TtVdvTti59GxtJt4Wg3PiM/tvm/XvjyWfK4hVnWYQ4+TMPOyGxISuQUpC+WtVhKbOyUC9JJHmIAA2xSnZG1hdLgYSmNz3PszVDHEjDsCWnLXJXUIi2EHSQUA14TfyH7YnhqDPEHEWVd9OyGV2zqdVkYkQpgQroqgh0KKQqt6N1/WBCP8rzVziDLVZU7NdalLSoJc0BSXRW4Xfz9PbvhLPTNpZN+1t2/10TGOUzM3ZOVavLeL15eYKpmX8otcor0jmFGnTWvRfl2vvW14l/M6bge/5XHhJrWuFRnWcPZJl/4TFnOOSW9KXXi2E8oUKCKr7evfEVNStqJN+9tm+Qvr1Xcsxibu2nPeiBJa2VBsMtcurve77YdkhLRdc+PF6v/Z"
+            }
+          }
+          
+        
     ]
 }
