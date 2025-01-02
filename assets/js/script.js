@@ -10,7 +10,6 @@ const map = new mapboxgl.Map({
 
 let topicClusters; // Declare topicClusters globally
 let artworkData; // Declare artworkData globally
-let artworkFeatures; // Declare the variable
 
 map.on('style.load', () => {
     map.setFog({
@@ -26,13 +25,10 @@ map.on('load', async () => {
         artworkData = await artworkResponse.json();
         console.log("Artwork Data Loaded:", artworkData.features);
 
-        // Assign features to artworkFeatures
-        artworkFeatures = artworkData.features; // Ensure this line is included
-
         const topicClusterResponse = await fetch('data/topicClusters.json');
         topicClusters = await topicClusterResponse.json();
 
-        // Function to get cluster color based on topic
+        // Assign colors to artworks based on topics
         function getClusterColor(firstTopic) {
             for (const [cluster, data] of Object.entries(topicClusters)) {
                 if (data.topics.includes(firstTopic)) {
@@ -42,32 +38,10 @@ map.on('load', async () => {
             return '#ffffff';
         }
 
-        // Check if artworkFeatures is defined and process it
-        if (Array.isArray(artworkFeatures)) {
-            artworkFeatures.forEach((feature, index) => {
-                if (feature && feature.properties) {
-                    const artworkTopics = feature.properties.tags?.topic;
-
-                    if (Array.isArray(artworkTopics)) {
-                        artworkTopics.forEach(topic => {
-                            if (!allTopics.includes(topic)) {
-                                missingTopics.push({ artwork: feature.properties.title, topic });
-                            }
-                        });
-                    } else {
-                        console.warn(`Feature at index ${index} ("${feature.properties.title}") does not have valid topics.`);
-                    }
-                } else {
-                    console.warn(`Feature at index ${index} is missing properties.`);
-                }
-            });
-        } else {
-            console.warn("No valid artwork features available.");
-        }
-    } catch (error) {
-        console.error("Error loading data:", error);
-    }
-});
+        artworkData.features.forEach(feature => {
+            const firstTopic = feature.properties.tags.topic?.[0];
+            feature.properties.mainClusterColor = getClusterColor(firstTopic) || '#ffffff';
+        });
 
         populateFilterDropdowns(artworkData, topicClusters);
 
@@ -108,11 +82,6 @@ map.on('load', async () => {
                 }
             }
 
-             // If tags is not an object or array, initialize it as an empty object
-             if (typeof tags !== 'object' || !tags) {
-             tags = {};
-            }
-            // Prepare topics and artforms for display
             const popupTopics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
             const popupArtforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
 
@@ -128,7 +97,7 @@ map.on('load', async () => {
                             <p><strong>Year:</strong> ${year}</p>
                             <p><strong>Topics:</strong> ${popupTopics}</p>
                             <p><strong>Art Forms:</strong> ${popupArtforms}</p>
-                            href="${url}" target="_blank" class="btn btn-primary">Learn More</a>
+                            <a href="${url}" target="_blank" class="btn btn-primary">Learn More</a>
                             <p class="mt-2"><small>Thumbnail Source: ${thumbnail}</small></p>
                         </div>
                     </div>
