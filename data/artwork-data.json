@@ -27,7 +27,7 @@
                       "Installation"
                   ]
               },
-              "url": "https://diaart.org/collection/collection/de-maria-walter-the-new-york-earth-room-1977-1980-135",
+              "url": "https://www.diaart.org/visit/visit-our-locations-sites/walter-de-maria-the-new-york-earth-room-new-york-united-states",
               "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Earth_Room.jpg/640px-Earth_Room.jpg"
           }
       },
@@ -36,29 +36,29 @@
           "geometry": {
               "type": "Point",
               "coordinates": [
-                  13.4115,
-                  52.5134
+                  36.8219,
+                  -1.2921
               ]
           },
           "properties": {
-              "title": "Plastic Waste Tower",
-              "description": "A sculpture made from plastic bottles symbolizing plastic pollution.",
-              "artist": "Verena Michelitsch",
-              "type": "Sculpture",
-              "location": "Berlin, Germany",
-              "year": 2018,
+              "title": "Giant Plastic Tap",
+              "description": "A 30-foot art installation depicting a giant faucet spewing plastic waste, symbolizing the continuous flow of plastic pollution into our environment.",
+              "artist": "Benjamin Von Wong",
+              "type": "Installation",
+              "location": "Nairobi, Kenya",
+              "year": 2022,
               "tags": {
                   "topic": [
                       "Plastic Pollution",
-                      "Recycling",
+                      "Environmental Awareness",
                       "Eco-Art"
                   ],
                   "artform": [
-                      "Sculpture"
+                      "Installation"
                   ]
               },
-              "url": "https://www.example.com/plastic-waste-tower",
-              "thumbnail": "https://example.com/thumbnails/plastic-waste-tower.jpg"
+              "url": "https://turnofftheplastictap.com/",
+              "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Giant_Plastic_Tap_-_Benjamin_Von_Wong_-_INC-4_Global_Plastic_Treaty_Negotiations%2C_Ottawa%2C_Canada_2024_02.jpg"
           }
       },
       {
@@ -86,8 +86,8 @@
                       "Installation"
                   ]
               },
-              "url": "https://www.example.com/the-water-table",
-              "thumbnail": "https://example.com/thumbnails/the-water-table.jpg"
+              "url": "https://www.rillitoriverproject.org/water-table",
+              "thumbnail": ""
           }
       },
       {
@@ -114,7 +114,9 @@
                   "artform": [
                       "Installation"
                   ]
-              }
+              },
+              "url": "",
+              "thumbnail": ""
           }
       },
       {
@@ -128,8 +130,8 @@
           },
           "properties": {
               "title": "River of Plastic",
-              "description": "Sculpture representing the impact of plastic on rivers.",
-              "artist": "Mariana Lopez",
+              "description": "An impactful installation by Monika Lin highlighting the prevalence of plastic pollution in rivers and its environmental consequences.",
+              "artist": "Monika Lin",
               "type": "Sculpture",
               "location": "Buenos Aires, Argentina",
               "year": 2019,
@@ -141,7 +143,9 @@
                   "artform": [
                       "Sculpture"
                   ]
-              }
+              },
+              "url": "https://whywhyart.org/artwork-showing/monika-lin-to-be-like-water/",
+              "thumbnail": "https://whywhyart.org/wp-content/uploads/2017/05/Monika-Lin-River-of-Plastic.jpg"
           }
       },
       {
@@ -168,7 +172,8 @@
                   "artform": [
                       "Sculpture"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -196,7 +201,8 @@
                       "Sculpture",
                       "Interactive Art"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -223,7 +229,8 @@
                   "artform": [
                       "Installation Art"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -359,7 +366,8 @@
                   "artform": [
                       "Installation"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -386,7 +394,8 @@
                   "artform": [
                       "Installation"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -413,7 +422,8 @@
                   "artform": [
                       "Installation"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -441,7 +451,8 @@
                       "Digital Art",
                       "Installation"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -469,7 +480,8 @@
                       "Sound Art",
                       "Installation"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -496,7 +508,8 @@
                   "artform": [
                       "Installation"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -524,7 +537,8 @@
                       "Music",
                       "Performance"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -552,7 +566,8 @@
                       "Installation",
                       "Sculpture"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -579,7 +594,8 @@
                   "artform": [
                       "Painting"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -607,7 +623,8 @@
                       "Sculpture",
                       "Installation"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -635,7 +652,8 @@
                       "Painting",
                       "Installation"
                   ]
-              }
+              },
+              "thumbnail": ""
           }
       },
       {
@@ -4368,6 +4386,218 @@
                   ]
               }
           }
+      },
+      {
+          "type": "Feature",
+          "geometry": {
+              "type": "Point",
+              "coordinates": [
+                  0,
+                  0
+              ]
+          },
+          "properties": {
+              "title": "The Plastic Wave",
+              "description": "Alejandro Dur\u00e1n's 'Washed Up' series uses plastic debris to create vibrant, thought-provoking installations on the shores of Sian Ka'an, Mexico.",
+              "artist": "Alejandro Dur\u00e1n",
+              "type": "Installation",
+              "location": "Sian Ka'an, Mexico",
+              "year": 2013,
+              "tags": {
+                  "topic": [
+                      "Plastic Pollution",
+                      "Recycling",
+                      "Eco-Art"
+                  ],
+                  "artform": [
+                      "Installation"
+                  ]
+              },
+              "url": "https://www.alejandroduran.com/washed-up",
+              "thumbnail": "https://www.alejandroduran.com/images/works/washed-up/plastic-wave.jpg"
+          }
+      },
+      {
+          "type": "Feature",
+          "geometry": {
+              "type": "Point",
+              "coordinates": [
+                  0,
+                  0
+              ]
+          },
+          "properties": {
+              "title": "Gyrecraft",
+              "description": "Studio Swine's project transforming ocean plastic waste into exquisite objects using a solar-powered machine aboard a sailing boat.",
+              "artist": "Studio Swine",
+              "type": "Installation",
+              "location": "At Sea",
+              "year": 2015,
+              "tags": {
+                  "topic": [
+                      "Plastic Pollution",
+                      "Recycling",
+                      "Sustainable Design"
+                  ],
+                  "artform": [
+                      "Installation",
+                      "Craft"
+                  ]
+              },
+              "url": "http://studioswine.com/projects/gyrecraft/",
+              "thumbnail": "http://studioswine.com/wp-content/uploads/2015/11/gyrecraft.jpg"
+          }
+      },
+      {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -74.0721,
+                4.711
+              ]
+            },
+            "properties": {
+              "title": "Plastic Reef",
+              "description": "A sculpture created from plastic waste collected from oceans worldwide, resembling a coral reef.",
+              "artist": "Maarten Vanden Eynde",
+              "type": "Sculpture",
+              "location": "Various exhibitions",
+              "year": "2008-2012",
+              "tags": {
+                "topic": [
+                  "Ocean Pollution",
+                  "Marine Ecosystems"
+                ],
+                "artform": [
+                  "Sculpture"
+                ]
+              },
+              "url": "http://www.maartenvandeneynde.com/plastic-reef/",
+              "thumbnail": ""
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -74.006,
+                40.7128
+              ]
+            },
+            "properties": {
+              "title": "The Great Plastic Garbage Patch",
+              "description": "'Drifters Project' addresses ocean plastic pollution through installations made from debris collected on beaches.",
+              "artist": "Pam Longobardi",
+              "type": "Installation",
+              "location": "Various exhibitions",
+              "year": "Ongoing project",
+              "tags": {
+                "topic": [
+                  "Ocean Pollution",
+                  "Environmental Awareness"
+                ],
+                "artform": [
+                  "Installation"
+                ]
+              },
+              "url": "http://www.pamlongobardi.com/drifters-project.html",
+              "thumbnail": ""
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -58.3816,
+                -34.6037
+              ]
+            },
+            "properties": {
+              "title": "Plastic Bag Jellyfish",
+              "description": "Delicate sculptures crafted from recycled plastic bottles, resembling ethereal jellyfish.",
+              "artist": "Miwa Koizumi",
+              "type": "Sculpture",
+              "location": "Various exhibitions",
+              "year": 2021,
+              "tags": {
+                "topic": [
+                  "Plastic Waste",
+                  "Marine Life"
+                ],
+                "artform": [
+                  "Sculpture"
+                ]
+              },
+              "url": "http://www.miwakoizumi.com/plastic-bag-jellyfish",
+              "thumbnail": ""
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -80.1918,
+                25.7617
+              ]
+            },
+            "properties": {
+              "title": "Plastic Bottle Village",
+              "description": "An eco-friendly community in Panama, constructing homes using recycled plastic bottles.",
+              "artist": "Robert Bezeau",
+              "type": "Architecture",
+              "location": "Bocas del Toro, Panama",
+              "year": 2016,
+              "tags": {
+                "topic": [
+                  "Sustainable Living",
+                  "Plastic Recycling"
+                ],
+                "artform": [
+                  "Architecture"
+                ]
+              },
+              "url": "https://www.plasticbottlevillage.com/",
+              "thumbnail": ""
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -74.0060,
+                40.7128
+              ]
+            },
+            "properties": {
+              "title": "Washed Ashore Project",
+              "description": "A non-profit organization led by Angela Haseltine Pozzi that creates large-scale sculptures from marine debris to educate about ocean pollution.",
+              "artist": "Angela Haseltine Pozzi",
+              "type": "Installation",
+              "location": "Various exhibitions",
+              "year": "Ongoing project",
+              "tags": {
+                "topic": [
+                  "Ocean Conservation",
+                  "Education"
+                ],
+                "artform": [
+                  "Installation"
+                ]
+              },
+              "url": "https://washedashore.org/",
+              "thumbnail": ""
+            }
+          }
+        ]
       }
+      
   ]
 }
