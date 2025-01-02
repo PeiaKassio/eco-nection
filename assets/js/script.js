@@ -10,6 +10,7 @@ const map = new mapboxgl.Map({
 
 let topicClusters; // Declare topicClusters globally
 let artworkData; // Declare artworkData globally
+let artworkFeatures; // Declare the variable
 
 map.on('style.load', () => {
     map.setFog({
@@ -25,10 +26,13 @@ map.on('load', async () => {
         artworkData = await artworkResponse.json();
         console.log("Artwork Data Loaded:", artworkData.features);
 
+        // Assign features to artworkFeatures
+        artworkFeatures = artworkData.features; // Ensure this line is included
+
         const topicClusterResponse = await fetch('data/topicClusters.json');
         topicClusters = await topicClusterResponse.json();
 
-        // Assign colors to artworks based on topics
+        // Function to get cluster color based on topic
         function getClusterColor(firstTopic) {
             for (const [cluster, data] of Object.entries(topicClusters)) {
                 if (data.topics.includes(firstTopic)) {
@@ -38,14 +42,12 @@ map.on('load', async () => {
             return '#ffffff';
         }
 
-        artworkFeatures.forEach((feature, index) => {
-            // Check if feature is defined
-            if (feature) {
-                // Check if properties exist
-                if (feature.properties) {
-                    const artworkTopics = feature.properties.tags?.topic; // Use optional chaining
-        
-                    // Only proceed if artworkTopics is an array
+        // Check if artworkFeatures is defined and process it
+        if (Array.isArray(artworkFeatures)) {
+            artworkFeatures.forEach((feature, index) => {
+                if (feature && feature.properties) {
+                    const artworkTopics = feature.properties.tags?.topic;
+
                     if (Array.isArray(artworkTopics)) {
                         artworkTopics.forEach(topic => {
                             if (!allTopics.includes(topic)) {
@@ -58,10 +60,14 @@ map.on('load', async () => {
                 } else {
                     console.warn(`Feature at index ${index} is missing properties.`);
                 }
-            } else {
-                console.warn(`Feature at index ${index} is undefined.`);
-            }
-        });
+            });
+        } else {
+            console.warn("No valid artwork features available.");
+        }
+    } catch (error) {
+        console.error("Error loading data:", error);
+    }
+});
 
         populateFilterDropdowns(artworkData, topicClusters);
 
