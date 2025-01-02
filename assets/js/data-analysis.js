@@ -382,13 +382,30 @@ function initializeCoOccurrenceNetwork(filteredData) {
 
     Object.entries(coOccurrences).forEach(([pair, count]) => {
         const [clusterA, clusterB] = pair.split('-');
+         // Define label color to be lighter for better contrast on black background
+         const labelColor = '#fff';  // White color for better visibility
 
         if (!nodes.find(node => node.id === clusterA)) {
-            nodes.push({ id: clusterA, label: clusterA, color: topicClusters[clusterA]?.color || '#ccc' });
+            nodes.push({
+                 id: clusterA, 
+                 label: clusterA, 
+                 color: topicClusters[clusterA]?.color || '#ccc',
+                 font: {
+                    color: labelColor,  // Set label color here
+                 }
+                
+            });
         }
 
         if (!nodes.find(node => node.id === clusterB)) {
-            nodes.push({ id: clusterB, label: clusterB, color: topicClusters[clusterB]?.color || '#ccc' });
+            nodes.push({ 
+                id: clusterB,
+                label: clusterB, 
+                color: topicClusters[clusterB]?.color || '#ccc',
+                font: {
+                    color: labelColor,  // Set label color here
+                }
+             });
         }
 
         edges.push({
