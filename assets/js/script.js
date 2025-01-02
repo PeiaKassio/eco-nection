@@ -39,14 +39,8 @@ map.on('load', async () => {
         }
 
         artworkData.features.forEach(feature => {
-            // Check if properties and tags exist
-            if (feature.properties && feature.properties.tags && Array.isArray(feature.properties.tags.topic)) {
-                const firstTopic = feature.properties.tags.topic[0]; // Safely access the first topic
-                feature.properties.mainClusterColor = getClusterColor(firstTopic) || '#ffffff';
-            } else {
-                console.warn(`Feature is missing properties or tags for artwork: ${feature.properties?.title || 'unknown'}`);
-                feature.properties.mainClusterColor = '#ffffff'; // Default color when no topic is found
-            }
+            const firstTopic = feature.properties.tags.topic?.[0];
+            feature.properties.mainClusterColor = getClusterColor(firstTopic) || '#ffffff';
         });
 
         populateFilterDropdowns(artworkData, topicClusters);
@@ -71,14 +65,12 @@ map.on('load', async () => {
         map.on('click', 'unclustered-point', (e) => {
             const coordinates = e.features[0].geometry.coordinates.slice();
             const properties = e.features[0].properties || {};
-
             const title = properties.title || 'Untitled';
             const description = properties.description || 'No Description';
             const artist = properties.artist || 'Unknown';
             const year = properties.year || 'Unknown';
             const url = properties.url || '#';
-            const thumbnail = properties.thumbnail || 'https://via.placeholder.com/150';
-            const thumbnailSource = properties.thumbnailSource || 'Unknown Source';
+            const thumbnail = properties.thumbnail || 'default-thumbnail.jpg';
 
             let tags = properties.tags;
             if (typeof tags === 'string') {
@@ -90,6 +82,11 @@ map.on('load', async () => {
                 }
             }
 
+             // If tags is not an object or array, initialize it as an empty object
+             if (typeof tags !== 'object' || !tags) {
+             tags = {};
+            }
+            // Prepare topics and artforms for display
             const popupTopics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
             const popupArtforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
 
@@ -97,7 +94,7 @@ map.on('load', async () => {
                 .setLngLat(coordinates)
                 .setHTML(`
                     <div class="card bg-neutral shadow-xl -m-5 text-white">
-                        <img src="${thumbnail}" alt="${title}" class="card-img-top">
+                    <img src="${thumbnail}" alt="${title}" class="card-img-top" style="max-height: 200px; object-fit: cover;">
                         <div class="card-body">
                             <h3 class="card-title">${title}</h3>
                             <p><strong>Artist:</strong> ${artist}</p>
@@ -105,8 +102,8 @@ map.on('load', async () => {
                             <p><strong>Year:</strong> ${year}</p>
                             <p><strong>Topics:</strong> ${popupTopics}</p>
                             <p><strong>Art Forms:</strong> ${popupArtforms}</p>
-                            <a href="${url}" target="_blank" class="btn btn-primary">Learn More</a>
-                            <p class="mt-2 text-sm">Thumbnail source: ${thumbnailSource}</p>
+                            href="${url}" target="_blank" class="btn btn-primary">Learn More</a>
+                            <p class="mt-2"><small>Thumbnail Source: ${thumbnail}</small></p>
                         </div>
                     </div>
                 `)
