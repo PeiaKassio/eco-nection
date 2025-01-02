@@ -382,30 +382,21 @@ function initializeCoOccurrenceNetwork(filteredData) {
 
     Object.entries(coOccurrences).forEach(([pair, count]) => {
         const [clusterA, clusterB] = pair.split('-');
-         // Define label color to be lighter for better contrast on black background
-         const labelColor = '#fff';  // White color for better visibility
 
         if (!nodes.find(node => node.id === clusterA)) {
             nodes.push({
-                 id: clusterA, 
-                 label: clusterA, 
-                 color: topicClusters[clusterA]?.color || '#ccc',
-                 font: {
-                    color: labelColor,  // Set label color here
-                 }
-                
+                id: clusterA,
+                label: clusterA,
+                color: topicClusters[clusterA]?.color || '#ccc',
             });
         }
 
         if (!nodes.find(node => node.id === clusterB)) {
-            nodes.push({ 
+            nodes.push({
                 id: clusterB,
-                label: clusterB, 
+                label: clusterB,
                 color: topicClusters[clusterB]?.color || '#ccc',
-                font: {
-                    color: labelColor,  // Set label color here
-                }
-             });
+            });
         }
 
         edges.push({
@@ -416,14 +407,15 @@ function initializeCoOccurrenceNetwork(filteredData) {
         });
     });
 
-    const container = document.getElementById('coOccurrenceNetwork');
-    const networkData = { nodes, edges };
-
+    // Network options to ensure the font color is white
     const options = {
         nodes: {
             shape: 'dot',
-            size: 20,
-            font: { size: 12 },
+            size: 25,
+            font: {
+                color: '#fff',  // Set label color here (white)
+                size: 16, // Adjust font size as needed
+            }
         },
         edges: {
             smooth: true,
@@ -434,7 +426,9 @@ function initializeCoOccurrenceNetwork(filteredData) {
         },
     };
 
-    new vis.Network(container, networkData, options);
+    const container = document.getElementById('coOccurrenceNetwork');
+    const data = { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) };
+    new vis.Network(container, data, options);
 }
 
 /**
