@@ -93,7 +93,7 @@ map.on('load', async () => {
                 .setLngLat(coordinates)
                 .setHTML(`
                     <div class="card bg-neutral shadow-xl -m-5 text-white">
-                     <a href="${url}" target="_blank">
+                     <a href="${thumbnail}" target="_blank">
                         <img src="${thumbnail}" alt="${title}" class="card-img-top" style="max-height: 200px; object-fit: cover;">
                         </a>
                             <h3 class="card-title">${title}</h3>
