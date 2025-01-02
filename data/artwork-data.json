@@ -4570,7 +4570,17 @@
                 "location": "Online",
                 "year": 2021,
                 "url": "https://clareceleste.com/the-garden",
-                "thumbnail_url": "https://clareceleste.com/the-garden-thumbnail.jpg"
+                "thumbnail_url": "https://clareceleste.com/the-garden-thumbnail.jpg",
+                "tags": {
+                    "topic": [
+                        "Environmental Awareness",
+                        "Sustainability"
+                    ],
+                    "artform": [
+                        "Installation",
+                        "Interactive Art"
+                    ]
+                }
             }
         },
         {
@@ -4590,7 +4600,17 @@
                 "location": "Toledo, Ohio, USA",
                 "year": 2018,
                 "url": "https://rebeccalouiselaw.com/community",
-                "thumbnail_url": "https://rebeccalouiselaw.com/community-thumbnail.jpg"
+                "thumbnail_url": "https://rebeccalouiselaw.com/community-thumbnail.jpg",
+                "tags": {
+                    "topic": [
+                        "Environmental Awareness",
+                        "Sustainability"
+                    ],
+                    "artform": [
+                        "Installation",
+                        "Interactive Art"
+                    ]
+                }
             }
         }
     ]

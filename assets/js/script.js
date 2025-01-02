@@ -39,6 +39,10 @@ map.on('load', async () => {
         }
 
         artworkData.features.forEach(feature => {
+            if (!feature.properties) {
+                console.error("Feature missing properties:", feature);
+                return; // Skip the feature
+            }
             const firstTopic = feature.properties.tags?.topic?.[0];
             feature.properties.mainClusterColor = getClusterColor(firstTopic) || '#ffffff';
         });
