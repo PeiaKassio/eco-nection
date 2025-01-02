@@ -28,7 +28,7 @@
                     ]
                 },
                 "url": "https://www.diaart.org/visit/visit-our-locations-sites/walter-de-maria-the-new-york-earth-room-new-york-united-states",
-                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Earth_Room.jpg/640px-Earth_Room.jpg"
+                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/New_York_Earth_Room_in_2024.jpg/320px-New_York_Earth_Room_in_2024.jpg"
             }
         },
         {
@@ -58,7 +58,7 @@
                     ]
                 },
                 "url": "https://turnofftheplastictap.com/",
-                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Giant_Plastic_Tap_-_Benjamin_Von_Wong_-_INC-4_Global_Plastic_Treaty_Negotiations%2C_Ottawa%2C_Canada_2024_02.jpg"
+                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Giant_Plastic_Tap_-_Benjamin_Von_Wong_-_INC-4_Global_Plastic_Treaty_Negotiations%2C_Ottawa%2C_Canada_2024_02.jpg/320px-Giant_Plastic_Tap_-_Benjamin_Von_Wong_-_INC-4_Global_Plastic_Treaty_Negotiations%2C_Ottawa%2C_Canada_2024_02.jpg"
             }
         },
         {
@@ -87,7 +87,7 @@
                     ]
                 },
                 "url": "https://www.rillitoriverproject.org/water-table",
-                "thumbnail": ""
+                "thumbnail": "https://i0.wp.com/artistsandclimatechange.com/wp-content/uploads/2019/10/unnamed-e1572039970367.jpg?resize=768%2C461&ssl=1"
             }
         },
         {
@@ -95,28 +95,29 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -118.2437,
-                    34.0522
+                    -73.9712,
+                    40.7829
                 ]
             },
             "properties": {
-                "title": "Trash Mountain",
-                "description": "A towering installation made from collected waste.",
-                "artist": "John Doe",
+                "title": "The Gates",
+                "description": "A temporary installation by Christo and Jeanne-Claude consisting of 7,503 gates with free-flowing fabric hanging down.",
+                "artist": "Christo and Jeanne-Claude",
                 "type": "Installation",
-                "location": "Los Angeles, USA",
-                "year": 2021,
+                "location": "Central Park, New York, USA",
+                "year": 2005,
                 "tags": {
                     "topic": [
-                        "Waste Reduction",
-                        "Plastic Waste"
+                        "Urban Art",
+                        "Public Art"
                     ],
                     "artform": [
+                        "Land Art",
                         "Installation"
                     ]
                 },
-                "url": "",
-                "thumbnail": ""
+                "url": "https://www.christojeanneclaude.net/the-gates",
+                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Christo_and_Jeanne-Claude%2C_The_Gates%2C_Central_Park%2C_New_York_City%2C_2005.jpg/640px-Christo_and_Jeanne-Claude%2C_The_Gates%2C_Central_Park%2C_New_York_City%2C_2005.jpg"
             }
         },
         {
@@ -145,7 +146,7 @@
                     ]
                 },
                 "url": "https://whywhyart.org/artwork-showing/monika-lin-to-be-like-water/",
-                "thumbnail": "https://whywhyart.org/wp-content/uploads/2017/05/Monika-Lin-River-of-Plastic.jpg"
+                "thumbnail": "http://monikalin.com/wp-content/uploads/2018/02/Monika_Lin-A1.jpg"
             }
         },
         {
@@ -158,24 +159,26 @@
                 ]
             },
             "properties": {
-                "title": "Forest Guardians",
-                "description": "Sculpture series advocating for forest conservation.",
-                "artist": "Carlos Perez",
-                "type": "Sculpture",
-                "location": "Bogot\u00e1, Colombia",
-                "year": 2020,
+                "title": "The Weather Project",
+                "description": "An installation by Olafur Eliasson, creating a giant artificial sun in the Tate Modern's Turbine Hall, which explores human perceptions of weather and climate change.",
+                "artist": "Olafur Eliasson",
+                "type": "Installation",
+                "location": "London, UK",
+                "year": 2003,
                 "tags": {
                     "topic": [
-                        "Forest Conservation",
-                        "Ecosystem Protection"
+                        "Climate Change",
+                        "Environmental Awareness",
+                        "Weather"
                     ],
                     "artform": [
-                        "Sculpture"
+                        "Installation"
                     ]
                 },
-                "thumbnail": ""
+                "url": "https://olafureliasson.net/artwork/the-weather-project-2003/",
+                "thumbnail": "https://res.cloudinary.com/olafureliasson-net/image/private/q_auto:eco,c_fit,h_320,w_320/img/the-weather-project_21881.webp"
             }
-        },
+        },        
         {
             "type": "Feature",
             "geometry": {
@@ -186,22 +189,24 @@
                 ]
             },
             "properties": {
-                "title": "Air Bubble",
-                "description": "An inflatable sculpture filled with fresh air to emphasize air quality.",
-                "artist": "Peter Szabo",
+                "title": "Breathe with Me",
+                "description": "An interactive installation by Jeppe Hein, part of ART2030, that encourages public engagement with the themes of mindfulness, air quality, and environmental responsibility.",
+                "artist": "Jeppe Hein",
                 "type": "Sculpture",
                 "location": "Budapest, Hungary",
-                "year": 2019,
+                "year": 2021,
                 "tags": {
                     "topic": [
+                        "Mindfulness",
                         "Air Quality",
-                        "Environmental Health"
+                        "Environmental Awareness"
                     ],
                     "artform": [
                         "Sculpture",
                         "Interactive Art"
                     ]
                 },
+                "url": "https://www.art2030.org/projects/breathewithme",
                 "thumbnail": ""
             }
         },
