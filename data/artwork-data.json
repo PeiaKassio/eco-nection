@@ -27,7 +27,8 @@
                       "Installation"
                   ]
               },
-              "url": "https://diaart.org/collection/collection/de-maria-walter-the-new-york-earth-room-1977-1980-135"
+              "url": "https://diaart.org/collection/collection/de-maria-walter-the-new-york-earth-room-1977-1980-135",
+              "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Earth_Room.jpg/640px-Earth_Room.jpg"
           }
       },
       {
@@ -56,7 +57,8 @@
                       "Sculpture"
                   ]
               },
-              "url": "https://example.com/plastic-waste-tower"
+              "url": "https://www.example.com/plastic-waste-tower",
+              "thumbnail": "https://example.com/thumbnails/plastic-waste-tower.jpg"
           }
       },
       {
@@ -84,7 +86,8 @@
                       "Installation"
                   ]
               },
-              "url": "https://example.com/the-water-table"
+              "url": "https://www.example.com/the-water-table",
+              "thumbnail": "https://example.com/thumbnails/the-water-table.jpg"
           }
       },
       {

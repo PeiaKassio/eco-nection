@@ -70,6 +70,9 @@ map.on('load', async () => {
             const description = properties.description || 'No Description';
             const artist = properties.artist || 'Unknown';
             const year = properties.year || 'Unknown';
+            const url = properties.url || '#';
+            const thumbnail = properties.thumbnail || 'https://via.placeholder.com/150';
+            const thumbnailSource = properties.thumbnailSource || 'Unknown Source';
 
             let tags = properties.tags;
             if (typeof tags === 'string') {
@@ -88,6 +91,7 @@ map.on('load', async () => {
                 .setLngLat(coordinates)
                 .setHTML(`
                     <div class="card bg-neutral shadow-xl -m-5 text-white">
+                        <img src="${thumbnail}" alt="${title}" class="card-img-top">
                         <div class="card-body">
                             <h3 class="card-title">${title}</h3>
                             <p><strong>Artist:</strong> ${artist}</p>
@@ -95,6 +99,8 @@ map.on('load', async () => {
                             <p><strong>Year:</strong> ${year}</p>
                             <p><strong>Topics:</strong> ${popupTopics}</p>
                             <p><strong>Art Forms:</strong> ${popupArtforms}</p>
+                            <a href="${url}" target="_blank" class="btn btn-primary">Learn More</a>
+                            <p class="mt-2 text-sm">Thumbnail source: ${thumbnailSource}</p>
                         </div>
                     </div>
                 `)
