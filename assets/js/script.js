@@ -38,19 +38,23 @@ map.on('load', async () => {
             return '#ffffff';
         }
 
-        artworkFeatures.forEach(artwork => {
-            // Check if properties and tags exist
-            const artworkTopics = artwork.properties?.tags?.topic; // Use optional chaining
+        artworkFeatures.forEach(feature => {
+            // Check if feature and properties exist
+            if (feature && feature.properties) {
+                const artworkTopics = feature.properties.tags?.topic; // Use optional chaining
         
-            // Only proceed if artworkTopics is an array
-            if (Array.isArray(artworkTopics)) {
-                artworkTopics.forEach(topic => {
-                    if (!allTopics.includes(topic)) {
-                        missingTopics.push({ artwork: artwork.properties.title, topic });
-                    }
-                });
+                // Only proceed if artworkTopics is an array
+                if (Array.isArray(artworkTopics)) {
+                    artworkTopics.forEach(topic => {
+                        if (!allTopics.includes(topic)) {
+                            missingTopics.push({ artwork: feature.properties.title, topic });
+                        }
+                    });
+                } else {
+                    console.warn(`Feature "${feature.properties.title}" does not have valid topics.`);
+                }
             } else {
-                console.warn(`Artwork "${artwork.properties.title}" does not have valid topics.`);
+                console.warn("Feature or properties are undefined.");
             }
         });
 
