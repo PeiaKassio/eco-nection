@@ -20,16 +20,24 @@ try {
 
     console.log("All Topics in Clusters:", allTopics);
 
-    // Check if artwork topics exist in topicClusters
-    const missingTopics = [];
-    artworkFeatures.forEach(artwork => {
-        const artworkTopics = artwork.properties.tags.topic; // Extract topics from artwork
+// Check if artwork topics exist in topicClusters
+const missingTopics = [];
+artworkFeatures.forEach(artwork => {
+    // Check if tags and topic exist
+    const artworkTopics = artwork.properties.tags?.topic; // Use optional chaining
+
+    // Only proceed if artworkTopics is an array
+    if (Array.isArray(artworkTopics)) {
         artworkTopics.forEach(topic => {
             if (!allTopics.includes(topic)) {
                 missingTopics.push({ artwork: artwork.properties.title, topic });
             }
         });
-    });
+    } else {
+        // Handle cases where topic is undefined or not an array
+        console.warn(`Artwork "${artwork.properties.title}" does not have valid topics.`);
+    }
+});
 
     // Output missing topics
     if (missingTopics.length > 0) {
