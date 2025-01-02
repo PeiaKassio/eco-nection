@@ -39,8 +39,14 @@ map.on('load', async () => {
         }
 
         artworkData.features.forEach(feature => {
-            const firstTopic = feature.properties.tags.topic?.[0];
-            feature.properties.mainClusterColor = getClusterColor(firstTopic) || '#ffffff';
+            // Check if properties and tags exist
+            if (feature.properties && feature.properties.tags && Array.isArray(feature.properties.tags.topic)) {
+                const firstTopic = feature.properties.tags.topic[0]; // Safely access the first topic
+                feature.properties.mainClusterColor = getClusterColor(firstTopic) || '#ffffff';
+            } else {
+                console.warn(`Feature is missing properties or tags for artwork: ${feature.properties?.title || 'unknown'}`);
+                feature.properties.mainClusterColor = '#ffffff'; // Default color when no topic is found
+            }
         });
 
         populateFilterDropdowns(artworkData, topicClusters);
