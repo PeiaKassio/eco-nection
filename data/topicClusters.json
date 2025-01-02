@@ -3,7 +3,8 @@
     "topics": [
       "Plastic Pollution", 
       "Air Pollution", 
-      "Water Pollution", 
+      "Water Pollution",
+      "Ocean Pollution", 
       "Plastic Waste", 
       "Toxic Waste", 
       "Pollution in Cities", 
@@ -35,6 +36,8 @@
       "Coral Bleaching", 
       "Nature Cycles",
       "Ecosystems",
+      "Marine Ecosystems",
+      "Marine Life",
       "Ecosystem Protection",
       "Conservation" 
     ],
@@ -52,7 +55,8 @@
       "Sustainable Tourism",
       "Renewable Energy",
       "Sustainable Practices",
-      "Energy Efficiency"
+      "Energy Efficiency",
+      "Sustainable Living"
     ],
     "color": "#90EE90"
   },
@@ -88,7 +92,8 @@
       "Waste Reduction", 
       "Waste Management", 
       "Plastic Waste", 
-      "Recycling", 
+      "Recycling",
+      "Plastic Recycling",
       "Upcycling", 
       "Landfill Diversion", 
       "Composting",

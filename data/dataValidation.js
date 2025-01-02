@@ -20,24 +20,39 @@ try {
 
     console.log("All Topics in Clusters:", allTopics);
 
-// Check if artwork topics exist in topicClusters
-const missingTopics = [];
-artworkFeatures.forEach(artwork => {
-    // Check if tags and topic exist
-    const artworkTopics = artwork.properties.tags?.topic; // Use optional chaining
+    // Check all entries have valid properties and tags
+    artworkFeatures.forEach((artwork, index) => {
+        const properties = artwork.properties;
+        const title = properties?.title || "Untitled";
+    
+        if (!properties || typeof properties !== 'object') {
+            console.error(`Invalid properties in artwork titled "${title}". Full data:`, artwork);
+            throw new Error(`Invalid properties in artwork titled "${title}". Each artwork must have a 'properties' object.`);
+        }
+    
+        if (!properties.tags || typeof properties.tags !== 'object') {
+            console.error(`Missing or invalid 'tags' in artwork titled "${title}". Full data:`, artwork);
+            throw new Error(`Missing or invalid 'tags' in artwork titled "${title}".`);
+        }
+    
+        if (!Array.isArray(properties.tags.topic)) {
+            console.error(`Missing or invalid 'topic' array in 'tags' for artwork titled "${title}". Full data:`, artwork);
+            throw new Error(`Missing or invalid 'topic' array in 'tags' for artwork titled "${title}".`);
+        }
+    });
 
-    // Only proceed if artworkTopics is an array
-    if (Array.isArray(artworkTopics)) {
+    // Check if artwork topics exist in topicClusters
+    const missingTopics = [];
+    artworkFeatures.forEach(artwork => {
+        const title = artwork.properties.title || "Untitled";
+        const artworkTopics = artwork.properties.tags.topic;
+
         artworkTopics.forEach(topic => {
             if (!allTopics.includes(topic)) {
-                missingTopics.push({ artwork: artwork.properties.title, topic });
+                missingTopics.push({ artwork: title, topic });
             }
         });
-    } else {
-        // Handle cases where topic is undefined or not an array
-        console.warn(`Artwork "${artwork.properties.title}" does not have valid topics.`);
-    }
-});
+    });
 
     // Output missing topics
     if (missingTopics.length > 0) {
@@ -45,6 +60,7 @@ artworkFeatures.forEach(artwork => {
         missingTopics.forEach(missing => {
             console.log(`- Artwork: "${missing.artwork}", Missing Topic: "${missing.topic}"`);
         });
+        throw new Error("Some topics in the artworks do not exist in topicClusters. Please fix the data.");
     } else {
         console.log("All topics are valid!");
     }
@@ -54,9 +70,11 @@ artworkFeatures.forEach(artwork => {
     const seenArtworks = new Set();
 
     artworkFeatures.forEach(artwork => {
-        const uniqueKey = `${artwork.properties.title}-${artwork.properties.location}-${artwork.properties.year}`;
+        const properties = artwork.properties;
+        const title = properties.title || "Untitled";
+        const uniqueKey = `${title}-${properties.location}-${properties.year}`;
         if (seenArtworks.has(uniqueKey)) {
-            duplicates.push(artwork.properties.title);
+            duplicates.push(title);
         } else {
             seenArtworks.add(uniqueKey);
         }
@@ -66,9 +84,13 @@ artworkFeatures.forEach(artwork => {
     if (duplicates.length > 0) {
         console.log("Duplicate Artworks Found:");
         duplicates.forEach(duplicate => console.log(`- ${duplicate}`));
+        throw new Error("Duplicate entries found in the artwork data. Please fix the data.");
     } else {
         console.log("No duplicate artworks found!");
     }
+
+    console.log("Validation completed successfully!");
 } catch (error) {
-    console.error("Error:", error.message);
+    console.error("Validation Error:", error.message);
+    process.exit(1); // Exit the process with a non-zero status code
 }

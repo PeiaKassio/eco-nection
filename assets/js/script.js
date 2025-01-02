@@ -39,7 +39,7 @@ map.on('load', async () => {
         }
 
         artworkData.features.forEach(feature => {
-            const firstTopic = feature.properties.tags.topic?.[0];
+            const firstTopic = feature.properties.tags?.topic?.[0];
             feature.properties.mainClusterColor = getClusterColor(firstTopic) || '#ffffff';
         });
 
@@ -82,8 +82,8 @@ map.on('load', async () => {
                 }
             }
 
-            const popupTopics = Array.isArray(tags.topic) ? tags.topic.join(', ') : 'No Topics';
-            const popupArtforms = Array.isArray(tags.artform) ? tags.artform.join(', ') : 'No Art Forms';
+            const popupTopics = Array.isArray(tags?.topic) ? tags.topic.join(', ') : 'No Topics';
+            const popupArtforms = Array.isArray(tags?.artform) ? tags.artform.join(', ') : 'No Art Forms';
 
             new mapboxgl.Popup()
                 .setLngLat(coordinates)
@@ -98,7 +98,6 @@ map.on('load', async () => {
                             <p><strong>Topics:</strong> ${popupTopics}</p>
                             <p><strong>Art Forms:</strong> ${popupArtforms}</p>
                             <a href="${url}" target="_blank" class="btn btn-primary">Learn More</a>
-                            <p class="mt-2"><small>Thumbnail Source: ${thumbnail}</small></p>
                         </div>
                     </div>
                 `)
@@ -109,6 +108,7 @@ map.on('load', async () => {
     }
 });
 
+// Populate dropdown filters
 function populateFilterDropdowns(artworkData, topicClusters) {
     const topics = new Set();
     const artforms = new Set();
