@@ -46,6 +46,7 @@
   "Sustainable Practices": {
     "topics": [
       "Recycling", 
+      "Environmental Justice",
       "Eco-Art", 
       "Sustainable Design", 
       "Upcycling", 
@@ -76,7 +77,8 @@
   "Urban Issues": {
     "topics": [
       "Urban Ecology", 
-      "Urban Pollution", 
+      "Urban Pollution",
+      "Urban Art",
       "Nature", 
       "Green Spaces", 
       "Environmental Impact", 
@@ -139,7 +141,8 @@
   "Socioeconomic": {
     "topics": [
       "Capitalism Critique",
-      "Environmental Awareness", 
+      "Environmental Awareness",
+      "Mindfulness",
       "Eco-Art", 
       "Urgency", 
       "Time", 
