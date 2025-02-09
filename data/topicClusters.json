@@ -1,0 +1,159 @@
+{
+  "Environmental Pollution": {
+    "topics": [
+      "Plastic Pollution", 
+      "Air Pollution", 
+      "Water Pollution",
+      "Ocean Pollution", 
+      "Plastic Waste", 
+      "Toxic Waste", 
+      "Pollution in Cities", 
+      "Industrial Emissions",
+      "Marine Pollution",
+      "Pollution"
+    ],
+    "color": "#808080"
+  },
+  "Climate Change": {
+    "topics": [
+      "Climate Change", 
+      "Global Warming", 
+      "Carbon Emissions", 
+      "Climate Crisis", 
+      "Climate Action", 
+      "Climate Awareness", 
+      "Climate Activism", 
+      "Sea Level Rise"
+    ],
+    "color": "#C70039"
+  },
+  "Ecosystems": {
+    "topics": [
+      "Forest Conservation",
+      "Ecosystem Protection", 
+      "Natural Habitat", 
+      "Coral Reef", 
+      "Coral Bleaching", 
+      "Nature Cycles",
+      "Ecosystems",
+      "Marine Ecosystems",
+      "Marine Life",
+      "Ecosystem Protection",
+      "Conservation" 
+    ],
+    "color": "#006400"
+  },
+  "Sustainable Practices": {
+    "topics": [
+      "Recycling", 
+      "Eco-Art", 
+      "Sustainable Design", 
+      "Upcycling", 
+      "Green Architecture", 
+      "Circular Economy", 
+      "Sustainability", 
+      "Sustainable Tourism",
+      "Renewable Energy",
+      "Sustainable Practices",
+      "Energy Efficiency",
+      "Sustainable Living"
+    ],
+    "color": "#90EE90"
+  },
+  "Water Issues": {
+    "topics": [
+      "Water Conservation", 
+      "Freshwater Crisis", 
+      "Ocean Conservation", 
+      "Water Shortage",
+      "Water Scarcity", 
+      "Drought Management", 
+      "Marine Conservation", 
+      "River Conservation"
+    ],
+    "color": "#1E90FF"
+  },
+  "Urban Issues": {
+    "topics": [
+      "Urban Ecology", 
+      "Urban Pollution", 
+      "Nature", 
+      "Green Spaces", 
+      "Environmental Impact", 
+      "Urbanization", 
+      "Smart Cities", 
+      "Urban Farming",
+      "Urban Nature"
+    ],
+    "color": "#FFD700"
+  },
+  "Waste Management": {
+    "topics": [
+      "Waste Reduction", 
+      "Waste Management", 
+      "Plastic Waste", 
+      "Recycling",
+      "Plastic Recycling",
+      "Upcycling", 
+      "Landfill Diversion", 
+      "Composting",
+      "Landfill Issues",
+      "Industrial Waste"
+    ],
+    "color": "#282828"
+  },
+  "Biodiversity": {
+    "topics": [
+      "Biodiversity", 
+      "Biodiversity Loss",  
+      "Wildlife Preservation",
+      "Wildlife Conservation", 
+      "Natural Habitat", 
+      "Invasive Species Management", 
+      "Species Conservation"
+    ],
+    "color": "#4B0082"
+  },
+  "Health and Environment": {
+    "topics": [
+      "Air Quality", 
+      "Environmental Health", 
+      "Toxic Waste", 
+      "Pollution Effects", 
+      "Public Health"
+    ],
+    "color": "#FF69B4"
+  },
+
+  "Resource Depletion": {
+    "topics": [
+      "Overconsumption",
+      "Deforestation",
+      "Overfishing",
+      "Energy Overuse",
+      "Resource Scarcity",
+      "Non-Renewable Resources"
+    ],
+    "color": "#5B3A29"
+  },
+  "Socioeconomic": {
+    "topics": [
+      "Capitalism Critique",
+      "Environmental Awareness", 
+      "Eco-Art", 
+      "Urgency", 
+      "Time", 
+      "Art Activism",
+      "System Critique",
+      "Indigenous Knowledge", 
+      "Cultural Heritage", 
+      "Educational Campaigns",
+      "Education",
+      "Environmental Reflection",
+      "Cultural Reflection",
+      "Human-Nature Interaction",
+      "Environmentalism"
+    ],
+    "color": "#FFFFFF"
+  }
+  }

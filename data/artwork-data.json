@@ -1,0 +1,1980 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.006,
+                    40.7128
+                ]
+            },
+            "properties": {
+                "title": "The New York Earth Room",
+                "description": "An installation by Walter De Maria highlighting the relationship between humans and the environment.",
+                "artist": "Walter De Maria",
+                "type": "Installation",
+                "location": "New York, USA",
+                "year": 1977,
+                "tags": {
+                    "topic": [
+                        "Urban Ecology",
+                        "Nature"
+                    ],
+                    "artform": [
+                        "Land Art",
+                        "Installation"
+                    ]
+                },
+                "url": "https://www.diaart.org/visit/visit-our-locations-sites/walter-de-maria-the-new-york-earth-room-new-york-united-states",
+                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/New_York_Earth_Room_in_2024.jpg/320px-New_York_Earth_Room_in_2024.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    36.8219,
+                    -1.2921
+                ]
+            },
+            "properties": {
+                "title": "Giant Plastic Tap",
+                "description": "A 30-foot art installation depicting a giant faucet spewing plastic waste, symbolizing the continuous flow of plastic pollution into our environment.",
+                "artist": "Benjamin Von Wong",
+                "type": "Installation",
+                "location": "Nairobi, Kenya",
+                "year": 2022,
+                "tags": {
+                    "topic": [
+                        "Plastic Pollution",
+                        "Environmental Awareness",
+                        "Eco-Art"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                },
+                "url": "https://turnofftheplastictap.com/",
+                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Giant_Plastic_Tap_-_Benjamin_Von_Wong_-_INC-4_Global_Plastic_Treaty_Negotiations%2C_Ottawa%2C_Canada_2024_02.jpg/320px-Giant_Plastic_Tap_-_Benjamin_Von_Wong_-_INC-4_Global_Plastic_Treaty_Negotiations%2C_Ottawa%2C_Canada_2024_02.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.0365,
+                    38.8977
+                ]
+            },
+            "properties": {
+                "title": "The Water Table",
+                "description": "Interactive installation highlighting the vulnerability of freshwater resources.",
+                "artist": "Anne Percoco",
+                "type": "Installation",
+                "location": "Washington D.C., USA",
+                "year": 2017,
+                "tags": {
+                    "topic": [
+                        "Water Conservation",
+                        "Freshwater Crisis"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                },
+                "url": "https://www.rillitoriverproject.org/water-table",
+                "thumbnail": "https://i0.wp.com/artistsandclimatechange.com/wp-content/uploads/2019/10/unnamed-e1572039970367.jpg?resize=768%2C461&ssl=1"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -73.9712,
+                    40.7829
+                ]
+            },
+            "properties": {
+                "title": "The Gates",
+                "description": "A temporary installation by Christo and Jeanne-Claude consisting of 7,503 gates with free-flowing fabric hanging down.",
+                "artist": "Christo and Jeanne-Claude",
+                "type": "Installation",
+                "location": "Central Park, New York",
+                "year": 2005,
+                "tags": {
+                    "topic": [
+                        "Urban Art",
+                        "Public Art"
+                    ],
+                    "artform": [
+                        "Land Art",
+                        "Installation"
+                    ]
+                },
+                "url": "https://www.christojeanneclaude.net/the-gates",
+                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Christo_and_Jeanne-Claude%2C_The_Gates%2C_Central_Park%2C_New_York_City%2C_2005.jpg/640px-Christo_and_Jeanne-Claude%2C_The_Gates%2C_Central_Park%2C_New_York_City%2C_2005.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -58.3816,
+                    -34.6037
+                ]
+            },
+            "properties": {
+                "title": "River of Plastic",
+                "description": "An impactful installation by Monika Lin highlighting the prevalence of plastic pollution in rivers and its environmental consequences.",
+                "artist": "Monika Lin",
+                "type": "Sculpture",
+                "location": "Buenos Aires, Argentina",
+                "year": 2019,
+                "tags": {
+                    "topic": [
+                        "Plastic Pollution",
+                        "Recycling"
+                    ],
+                    "artform": [
+                        "Sculpture"
+                    ]
+                },
+                "url": "https://whywhyart.org/artwork-showing/monika-lin-to-be-like-water/",
+                "thumbnail": "http://monikalin.com/wp-content/uploads/2018/02/Monika_Lin-A1.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.0721,
+                    4.711
+                ]
+            },
+            "properties": {
+                "title": "The Weather Project",
+                "description": "An installation by Olafur Eliasson, creating a giant artificial sun in the Tate Modern's Turbine Hall, which explores human perceptions of weather and climate change.",
+                "artist": "Olafur Eliasson",
+                "type": "Installation",
+                "location": "London, United Kingdom",
+                "year": 2003,
+                "tags": {
+                    "topic": [
+                        "Climate Change",
+                        "Environmental Awareness",
+                        "Weather"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                },
+                "url": "https://olafureliasson.net/artwork/the-weather-project-2003/",
+                "thumbnail": "https://res.cloudinary.com/olafureliasson-net/image/private/q_auto:eco,c_fit,h_320,w_320/img/the-weather-project_21881.webp"
+            }
+        },        
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    19.0402,
+                    47.4979
+                ]
+            },
+            "properties": {
+                "title": "Breathe with Me",
+                "description": "An interactive installation by Jeppe Hein, part of ART2030, that encourages public engagement with the themes of mindfulness, air quality, and environmental responsibility.",
+                "artist": "Jeppe Hein",
+                "type": "Sculpture",
+                "location": "Budapest, Hungary",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Mindfulness",
+                        "Air Quality",
+                        "Environmental Awareness"
+                    ],
+                    "artform": [
+                        "Sculpture",
+                        "Interactive Art"
+                    ]
+                },
+                "url": "https://www.art2030.org/projects/breathewithme",
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    103.8575,
+                    1.2906
+                ]
+            },
+            "properties": {
+                "title": "Plastic Ocean",
+                "description": "An immersive installation highlighting the pervasive issue of plastic pollution in our oceans. Visitors are enveloped in a sea of plastic waste to reflect on human consumption and environmental impact.",
+                "artist": "Tan Zi Xi",
+                "type": "Installation",
+                "location": "Singapore",
+                "year": 2017,
+                "tags": {
+                    "topic": [
+                        "Plastic Pollution",
+                        "Sustainability"
+                    ],
+                    "artform": [
+                        "Installation Art"
+                    ]
+                },
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    103.8159,
+                    1.3227
+                ]
+            },
+            "properties": {
+                "title": "Aquatic Fauna No. 1",
+                "description": "A mural featuring paper-cut depictions of various animals and plants, emphasizing conservation in an urban transit environment.",
+                "artist": "Lam Hoi Lit and Chua Chye Teck",
+                "type": "Mural",
+                "location": "Botanic Gardens MRT Station, Singapore",
+                "year": 2011,
+                "tags": {
+                    "topic": [
+                        "Ecosystem Protection",
+                        "Urban Nature"
+                    ],
+                    "artform": [
+                        "Mural Art"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    103.8159,
+                    1.3227
+                ]
+            },
+            "properties": {
+                "title": "What is a Tree?",
+                "description": "A mural depicting the iconic Tembusu tree with quotes about trees, encouraging reflection on the importance of nature in urban settings.",
+                "artist": "Shirley Soh",
+                "type": "Mural",
+                "location": "Botanic Gardens MRT Station, Singapore",
+                "year": 2011,
+                "tags": {
+                    "topic": [
+                        "Urban Nature",
+                        "Conservation"
+                    ],
+                    "artform": [
+                        "Mural Art"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    151.2093,
+                    -33.8688
+                ]
+            },
+            "properties": {
+                "title": "Bleached Coral",
+                "description": "An installation addressing coral bleaching.",
+                "artist": "Emily Clark",
+                "type": "Installation",
+                "location": "Sydney, Australia",
+                "year": 2018,
+                "tags": {
+                    "topic": [
+                        "Coral Reef",
+                        "Climate Change"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                },
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    174.7633,
+                    -36.8485
+                ]
+            },
+            "properties": {
+                "title": "Islands of Waste",
+                "description": "Installation representing the Pacific Garbage Patch.",
+                "artist": "Olivia Green",
+                "type": "Installation",
+                "location": "Auckland, New Zealand",
+                "year": 2019,
+                "tags": {
+                    "topic": [
+                        "Ocean Conservation",
+                        "Plastic Pollution"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                },
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -106.6504,
+                    35.0844
+                ]
+            },
+            "properties": {
+                "title": "Desert Bloom",
+                "description": "An art piece addressing water scarcity in the desert.",
+                "artist": "Anna Smith",
+                "type": "Installation",
+                "location": "Albuquerque, USA",
+                "year": 2022,
+                "tags": {
+                    "topic": [
+                        "Water Conservation",
+                        "Sustainable Design"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                },
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3522,
+                    48.8566
+                ]
+            },
+            "properties": {
+                "title": "Climate Wall",
+                "description": "A digital wall showcasing the carbon impact of daily activities.",
+                "artist": "Juliette Martin",
+                "type": "Installation",
+                "location": "Paris, France",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Carbon Emissions",
+                        "Climate Awareness"
+                    ],
+                    "artform": [
+                        "Digital Art",
+                        "Installation"
+                    ]
+                },
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.6917,
+                    35.6895
+                ]
+            },
+            "properties": {
+                "title": "Ocean Echo",
+                "description": "Installation mimicking ocean sounds to raise awareness of ocean pollution.",
+                "artist": "Yuki Tanaka",
+                "type": "Installation",
+                "location": "Tokyo, Japan",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Ocean Conservation",
+                        "Environmental Awareness"
+                    ],
+                    "artform": [
+                        "Sound Art",
+                        "Installation"
+                    ]
+                },
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    18.4241,
+                    -33.9249
+                ]
+            },
+            "properties": {
+                "title": "The Last Breath",
+                "description": "Installation addressing air quality in urban areas.",
+                "artist": "Nandi Mbatha",
+                "type": "Installation",
+                "location": "Cape Town, South Africa",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Air Quality",
+                        "Environmental Health"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                },
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    16.1238,
+                    78.9708
+                ]
+            },
+            "properties": {
+                "title": "Aurora Aksnes and Jacob Collier - The Seed",
+                "description": "The Norwegian singer Aurora released a song 'The Seed' addressing humanity's greed: 'When the last tree has fallen, and the rivers are poisoned, you cannot eat money, oh no.' She actively supports environmental movements and human rights, including an Arctic concert in collaboration with Jacob Collier to protect the seas and the climate.",
+                "artist": "Aurora Aksnes",
+                "type": "Performance",
+                "location": "Norway",
+                "year": 2019,
+                "tags": {
+                    "topic": [
+                        "Climate Activism",
+                        "Environmentalism"
+                    ],
+                    "artform": [
+                        "Music",
+                        "Performance"
+                    ]
+                },
+                "url": "https://open.spotify.com/intl-de/track/75KVxbugVg3andqLN5z8vu",
+                "thumbnail": "https://static.wikia.nocookie.net/aurora-aksnes/images/0/03/The_Seed.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -9.1394,
+                    38.7223
+                ]
+            },
+            "properties": {
+                "title": "Bordalo II - Trash Art",
+                "description": "The Portuguese activist artist Artur Bordalo, known as Bordalo II, creates large-scale installations and murals from plastic waste and found objects. His sculptures aim to highlight the waste and overconsumption in today's world.",
+                "artist": "Artur Bordalo (Bordalo II)",
+                "type": "Installation",
+                "location": "Lisbon, Portugal",
+                "year": 2020,
+                "tags": {
+                    "topic": [
+                        "Waste Reduction",
+                        "Overconsumption"
+                    ],
+                    "artform": [
+                        "Installation",
+                        "Sculpture"
+                    ]
+                },
+                "url":"https://www.isupportstreetart.com/interview/bordalo-ii-the-man-behind-trash-animals/",
+                "thumbnail": "data:image/jpeg;base64,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"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -113.4909,
+                    53.5461
+                ]
+            },
+            "properties": {
+                "title": "Christi Belcourt - Indigenous Nature",
+                "description": "Canadian M\u00e9tis artist Christi Belcourt\u2019s works explore the indigenous connection to nature, biodiversity, and environmental protection. Her paintings, inspired by traditional beadwork, portray detailed representations of ecosystems and natural elements.",
+                "artist": "Christi Belcourt",
+                "type": "Painting",
+                "location": "Canada",
+                "year": 2018,
+                "tags": {
+                    "topic": [
+                        "Biodiversity",
+                        "Indigenous Knowledge"
+                    ],
+                    "artform": [
+                        "Painting"
+                    ]
+                },
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -97.3308,
+                    37.6889
+                ]
+            },
+            "properties": {
+                "title": "Nnenna Okore - Eco Sculptures",
+                "description": "Okore uses plant-based materials and food waste to create large-scale sculptures and installations addressing waste, carbon emissions, and energy use. She transforms materials into bioplastic to craft eco-artworks.",
+                "artist": "Nnenna Okore",
+                "type": "Sculpture",
+                "location": "Chicago, USA",
+                "year": 2020,
+                "tags": {
+                    "topic": [
+                        "Waste Management",
+                        "Eco-Art"
+                    ],
+                    "artform": [
+                        "Sculpture",
+                        "Installation"
+                    ]
+                },
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.8456,
+                    -6.2088
+                ]
+            },
+            "properties": {
+                "title": "Eko Nugroho - Urban Ecology",
+                "description": "Indonesian artist Eko Nugroho focuses on the impacts of urbanization and consumerism on the environment. His works often highlight resource destruction and the loss of nature through urban expansion, while advocating for sustainable futures.",
+                "artist": "Eko Nugroho",
+                "type": "Painting / Installation",
+                "location": "Jakarta, Indonesia",
+                "year": 2018,
+                "tags": {
+                    "topic": [
+                        "Urbanization",
+                        "Sustainability"
+                    ],
+                    "artform": [
+                        "Painting",
+                        "Installation"
+                    ]
+                },
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -80.1918,
+                    25.7617
+                ]
+            },
+            "properties": {
+                "title": "Underwater Museum of Art",
+                "description": "An underwater sculpture museum addressing coral reef restoration.",
+                "artist": "Jason deCaires Taylor",
+                "type": "Sculpture",
+                "location": "Miami, USA",
+                "year": 2016,
+                "tags": {
+                    "topic": [
+                        "Coral Reef",
+                        "Ocean Conservation"
+                    ],
+                    "artform": [
+                        "Sculpture",
+                        "Installation"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -46.6333,
+                    -23.5505
+                ]
+            },
+            "properties": {
+                "title": "Vertical Garden of S\u00e3o Paulo",
+                "description": "A green wall installation addressing air pollution in urban areas.",
+                "artist": "Patrick Blanc",
+                "type": "Installation",
+                "location": "S\u00e3o Paulo, Brazil",
+                "year": 2013,
+                "tags": {
+                    "topic": [
+                        "Air Pollution",
+                        "Urban Ecology"
+                    ],
+                    "artform": [
+                        "Vertical Garden",
+                        "Installation"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.2336,
+                    30.0444
+                ]
+            },
+            "properties": {
+                "title": "Nile's Legacy",
+                "description": "Sculpture using river debris to symbolize the Nile\u2019s challenges.",
+                "artist": "Ahmed Omar",
+                "type": "Sculpture",
+                "location": "Cairo, Egypt",
+                "year": 2020,
+                "tags": {
+                    "topic": [
+                        "Water Pollution",
+                        "Recycling"
+                    ],
+                    "artform": [
+                        "Sculpture"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.0282,
+                    -12.0432
+                ]
+            },
+            "properties": {
+                "title": "Ana Teresa Barboza - Cyclical Nature",
+                "description": "Using traditional techniques, native plants, and local collaborations, Ana Teresa Barboza creates monumental tapestries.",
+                "artist": "Ana Teresa Barboza",
+                "type": "Textile Art",
+                "location": "Lima, Peru",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Cultural Heritage",
+                        "Nature Cycles"
+                    ],
+                    "artform": [
+                        "Textile Art",
+                        "Tapestry"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.1025,
+                    28.7041
+                ]
+            },
+            "properties": {
+                "title": "River of Life",
+                "description": "An installation addressing water pollution in the Yamuna River.",
+                "artist": "Amit Sharma",
+                "type": "Installation",
+                "location": "Delhi, India",
+                "year": 2020,
+                "tags": {
+                    "topic": [
+                        "Water Pollution",
+                        "River Conservation"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    151.2093,
+                    -33.8688
+                ]
+            },
+            "properties": {
+                "title": "Bleached Reef",
+                "description": "Art installation addressing coral bleaching in the Great Barrier Reef.",
+                "artist": "Emily Carter",
+                "type": "Installation",
+                "location": "Sydney, Australia",
+                "year": 2018,
+                "tags": {
+                    "topic": [
+                        "Coral Bleaching",
+                        "Ocean Conservation"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.2336,
+                    30.0444
+                ]
+            },
+            "properties": {
+                "title": "River Revival",
+                "description": "An art project using debris to highlight water scarcity issues.",
+                "artist": "Ahmed Khalid",
+                "type": "Installation",
+                "location": "Cairo, Egypt",
+                "year": 2020,
+                "tags": {
+                    "topic": [
+                        "Water Scarcity",
+                        "Sustainability"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    18.0686,
+                    59.3293
+                ]
+            },
+            "properties": {
+                "title": "Treehotel - Mirrorcube",
+                "description": "A camouflaged treehouse installation promoting sustainable tourism.",
+                "artist": "Tham & Videg\u00e5rd Architects",
+                "type": "Installation",
+                "location": "Harads, Sweden",
+                "year": 2010,
+                "tags": {
+                    "topic": [
+                        "Sustainable Tourism",
+                        "Nature"
+                    ],
+                    "artform": [
+                        "Installation",
+                        "Architecture"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.6765,
+                    45.5231
+                ]
+            },
+            "properties": {
+                "title": "Forest Revival",
+                "description": "Interactive installations showcasing reforestation efforts.",
+                "artist": "Green Pulse Collective",
+                "type": "Installation",
+                "location": "Portland, USA",
+                "year": 2023,
+                "tags": {
+                    "topic": [
+                        "Forest Conservation",
+                        "Recycling"
+                    ],
+                    "artform": [
+                        "Interactive Art"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -99.1332,
+                    19.4326
+                ]
+            },
+            "properties": {
+                "title": "Urban Roots",
+                "description": "Vertical gardens addressing air quality in Mexico City.",
+                "artist": "Vertical Green Team",
+                "type": "Installation",
+                "location": "Mexico City, Mexico",
+                "year": 2022,
+                "tags": {
+                    "topic": [
+                        "Air Quality",
+                        "Urban Ecology"
+                    ],
+                    "artform": [
+                        "Vertical Garden"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -58.3816,
+                    -34.6037
+                ]
+            },
+            "properties": {
+                "title": "Eco-Walls of Buenos Aires",
+                "description": "Murals created from recycled materials.",
+                "artist": "Ana Lopez",
+                "type": "Mural",
+                "location": "Buenos Aires, Argentina",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Waste Management",
+                        "Sustainability"
+                    ],
+                    "artform": [
+                        "Mural Art"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.5775,
+                    6.2528
+                ]
+            },
+            "properties": {
+                "title": "Andean Streams",
+                "description": "Sculptures addressing water issues in Medellin.",
+                "artist": "Luis Fernando",
+                "type": "Sculpture",
+                "location": "Medellin, Colombia",
+                "year": 2018,
+                "tags": {
+                    "topic": [
+                        "Water Conservation",
+                        "Ecosystems"
+                    ],
+                    "artform": [
+                        "Sculpture"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3522,
+                    48.8566
+                ]
+            },
+            "properties": {
+                "title": "Carbon Towers",
+                "description": "A digital exhibition on the impact of carbon footprints.",
+                "artist": "Pierre Dubois",
+                "type": "Digital Art",
+                "location": "Paris, France",
+                "year": 2022,
+                "tags": {
+                    "topic": [
+                        "Carbon Emissions",
+                        "Climate Awareness"
+                    ],
+                    "artform": [
+                        "Digital Art"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.6821,
+                    50.1109
+                ]
+            },
+            "properties": {
+                "title": "Water Cycle Symphony",
+                "description": "An interactive sound installation about the water cycle.",
+                "artist": "Marta Kohler",
+                "type": "Sound Art",
+                "location": "Frankfurt, Germany",
+                "year": 2023,
+                "tags": {
+                    "topic": [
+                        "Water Conservation",
+                        "Climate Awareness"
+                    ],
+                    "artform": [
+                        "Sound Art"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.8516,
+                    31.0461
+                ]
+            },
+            "properties": {
+                "title": "Dead Sea Revival",
+                "description": "Sculptures highlighting water loss in the Dead Sea.",
+                "artist": "Noam Levi",
+                "type": "Sculpture",
+                "location": "Jerusalem, Israel",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Water Shortage",
+                        "Sustainability"
+                    ],
+                    "artform": [
+                        "Sculpture"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.2167,
+                    28.6667
+                ]
+            },
+            "properties": {
+                "title": "Green Delhi",
+                "description": "Vertical gardens in urban spaces.",
+                "artist": "Arun Mehta",
+                "type": "Installation",
+                "location": "Delhi, India",
+                "year": 2022,
+                "tags": {
+                    "topic": [
+                        "Urban Ecology",
+                        "Green Spaces"
+                    ],
+                    "artform": [
+                        "Vertical Garden"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    151.2093,
+                    -33.8688
+                ]
+            },
+            "properties": {
+                "title": "Ocean Mirror",
+                "description": "Interactive art emphasizing ocean pollution.",
+                "artist": "Sophie Clarke",
+                "type": "Installation",
+                "location": "Sydney, Australia",
+                "year": 2023,
+                "tags": {
+                    "topic": [
+                        "Plastic Pollution",
+                        "Ocean Conservation"
+                    ],
+                    "artform": [
+                        "Interactive Art"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.0444,
+                    31.2357
+                ]
+            },
+            "properties": {
+                "title": "Sand Dunes of Cairo",
+                "description": "An installation on the fragility of desert ecosystems.",
+                "artist": "Samira Hassan",
+                "type": "Installation",
+                "location": "Cairo, Egypt",
+                "year": 2019,
+                "tags": {
+                    "topic": [
+                        "Ecosystem Protection",
+                        "Climate Change"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    37.6173,
+                    55.7558
+                ]
+            },
+            "properties": {
+                "title": "Palus Flores",
+                "description": "A project combining flower sculptures and soil samples to highlight human-induced changes to urban nature.",
+                "artist": "Alina Brovina",
+                "type": "Installation",
+                "location": "Moscow, Russia",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Urban Ecology",
+                        "Human-Nature Interaction"
+                    ],
+                    "artform": [
+                        "Sculpture",
+                        "Installation"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    37.6173,
+                    55.7558
+                ]
+            },
+            "properties": {
+                "title": "Vaga",
+                "description": "An exhibition reflecting on environmental and cultural themes of the Russian village.",
+                "artist": "Evgenia Buravleva",
+                "type": "Painting",
+                "location": "Moscow Museum of Modern Art, Russia",
+                "year": 2022,
+                "tags": {
+                    "topic": [
+                        "Cultural Heritage",
+                        "Environmental Reflection"
+                    ],
+                    "artform": [
+                        "Painting",
+                        "Exhibition"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    37.621,
+                    55.757
+                ]
+            },
+            "properties": {
+                "title": "Psychozoic Era",
+                "description": "A project examining industrial waste and landfill issues through paintings and films.",
+                "artist": "Pavel Otdelnov",
+                "type": "Painting / Film",
+                "location": "Moscow, Russia",
+                "year": 2020,
+                "tags": {
+                    "topic": [
+                        "Industrial Waste",
+                        "Landfill Issues"
+                    ],
+                    "artform": [
+                        "Painting",
+                        "Film"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    37.6173,
+                    55.7558
+                ]
+            },
+            "properties": {
+                "title": "The Lost Planet",
+                "description": "A mixed-media series addressing global environmental concerns like climate change and pollution.",
+                "artist": "Natalia Kapchuk",
+                "type": "Mixed Media",
+                "location": "Moscow, Russia",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Climate Change",
+                        "Pollution"
+                    ],
+                    "artform": [
+                        "Mixed Media",
+                        "Installation"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    37.6173,
+                    55.7558
+                ]
+            },
+            "properties": {
+                "title": "Floridas",
+                "description": "A photographic series capturing environmentalism and political scenarios, originally exhibited in The Met.",
+                "artist": "Anastasia Samoylova",
+                "type": "Photography",
+                "location": "Moscow (originally The Met - USA), Russia",
+                "year": 2022,
+                "tags": {
+                    "topic": [
+                        "Environmental Awareness",
+                        "Cultural Reflection"
+                    ],
+                    "artform": [
+                        "Photography"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    18.0632,
+                    59.3346
+                ]
+            },
+            "properties": {
+                "title": "Baltic Sea Rescue Project",
+                "description": "A public art installation addressing marine pollution in the Baltic Sea.",
+                "artist": "Anna Lundh",
+                "type": "Installation",
+                "location": "Stockholm, Sweden",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Marine Pollution",
+                        "Water Conservation"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    13.1904,
+                    58.3029
+                ]
+            },
+            "properties": {
+                "title": "Green Futures",
+                "description": "A sculpture showcasing renewable energy innovation.",
+                "artist": "Olof Thorstensson",
+                "type": "Sculpture",
+                "location": "Gothenburg, Sweden",
+                "year": 2022,
+                "tags": {
+                    "topic": [
+                        "Renewable Energy",
+                        "Sustainability"
+                    ],
+                    "artform": [
+                        "Sculpture"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    121.4737,
+                    31.2304
+                ]
+            },
+            "properties": {
+                "title": "Yangtze River Plastic Wave",
+                "description": "A giant sculpture made from plastic collected along the Yangtze River.",
+                "artist": "Wang Wei",
+                "type": "Sculpture",
+                "location": "Shanghai, China",
+                "year": 2019,
+                "tags": {
+                    "topic": [
+                        "Plastic Pollution",
+                        "Recycling"
+                    ],
+                    "artform": [
+                        "Sculpture"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    116.4074,
+                    39.9042
+                ]
+            },
+            "properties": {
+                "title": "Smog Tower Art",
+                "description": "An innovative smog-absorbing tower doubling as an art installation.",
+                "artist": "Li Xiaodong",
+                "type": "Installation",
+                "location": "Beijing, China",
+                "year": 2020,
+                "tags": {
+                    "topic": [
+                        "Air Pollution",
+                        "Urban Ecology"
+                    ],
+                    "artform": [
+                        "Installation",
+                        "Green Architecture"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.2357,
+                    -17.8292
+                ]
+            },
+            "properties": {
+                "title": "Wildlife Corridors",
+                "description": "An initiative using art installations to promote animal migration corridors.",
+                "artist": "Nadine Mwende",
+                "type": "Installation",
+                "location": "Harare, Zimbabwe",
+                "year": 2022,
+                "tags": {
+                    "topic": [
+                        "Wildlife Preservation",
+                        "Ecosystem Protection"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    15.5943,
+                    -4.4419
+                ]
+            },
+            "properties": {
+                "title": "Kinshasa Green Mural",
+                "description": "A mural promoting urban reforestation.",
+                "artist": "Jacques Mbuyi",
+                "type": "Mural",
+                "location": "Kinshasa, Democratic Republic of the Congo",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Urban Ecology",
+                        "Green Spaces"
+                    ],
+                    "artform": [
+                        "Mural"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.8641,
+                    -31.1328
+                ]
+            },
+            "properties": {
+                "title": "The Karoo Energy Project",
+                "description": "An art project exploring renewable energy potential in semi-arid regions.",
+                "artist": "Sarah van Zyl",
+                "type": "Installation",
+                "location": "Karoo, South Africa",
+                "year": 2023,
+                "tags": {
+                    "topic": [
+                        "Renewable Energy",
+                        "Sustainable Practices"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    18.642,
+                    -33.9301
+                ]
+            },
+            "properties": {
+                "title": "Cape Coral Crisis",
+                "description": "A coral-shaped sculpture highlighting ocean acidification effects.",
+                "artist": "Tumi Dlamini",
+                "type": "Sculpture",
+                "location": "Cape Town, South Africa",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Coral Reef",
+                        "Ocean Conservation"
+                    ],
+                    "artform": [
+                        "Sculpture"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0,
+                    0
+                ]
+            },
+            "properties": {
+                "title": "The Plastic Wave",
+                "description": "Alejandro Dur\u00e1n's 'Washed Up' series uses plastic debris to create vibrant, thought-provoking installations on the shores of Sian Ka'an, Mexico.",
+                "artist": "Alejandro Dur\u00e1n",
+                "type": "Installation",
+                "location": "Sian Ka'an, Mexico",
+                "year": 2013,
+                "tags": {
+                    "topic": [
+                        "Plastic Pollution",
+                        "Recycling",
+                        "Eco-Art"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                },
+                "url": "https://www.alejandroduran.com/washed-up",
+                "thumbnail": "https://www.alejandroduran.com/images/works/washed-up/plastic-wave.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0,
+                    0
+                ]
+            },
+            "properties": {
+                "title": "Gyrecraft",
+                "description": "Studio Swine's project transforming ocean plastic waste into exquisite objects using a solar-powered machine aboard a sailing boat.",
+                "artist": "Studio Swine",
+                "type": "Installation",
+                "location": "At Sea",
+                "year": 2015,
+                "tags": {
+                    "topic": [
+                        "Plastic Pollution",
+                        "Recycling",
+                        "Sustainable Design"
+                    ],
+                    "artform": [
+                        "Installation",
+                        "Craft"
+                    ]
+                },
+                "url": "http://studioswine.com/projects/gyrecraft/",
+                "thumbnail": "http://studioswine.com/wp-content/uploads/2015/11/gyrecraft.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.0721,
+                    4.711
+                ]
+            },
+            "properties": {
+                "title": "Plastic Reef",
+                "description": "A sculpture created from plastic waste collected from oceans worldwide, resembling a coral reef.",
+                "artist": "Maarten Vanden Eynde",
+                "type": "Sculpture",
+                "location": "Various exhibitions",
+                "year": "2008-2012",
+                "tags": {
+                    "topic": [
+                        "Ocean Pollution",
+                        "Marine Ecosystems"
+                    ],
+                    "artform": [
+                        "Sculpture"
+                    ]
+                },
+                "url": "http://www.maartenvandeneynde.com/plastic-reef/",
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.006,
+                    40.7128
+                ]
+            },
+            "properties": {
+                "title": "The Great Plastic Garbage Patch",
+                "description": "'Drifters Project' addresses ocean plastic pollution through installations made from debris collected on beaches.",
+                "artist": "Pam Longobardi",
+                "type": "Installation",
+                "location": "Various exhibitions",
+                "year": "Ongoing project",
+                "tags": {
+                    "topic": [
+                        "Ocean Pollution",
+                        "Environmental Awareness"
+                    ],
+                    "artform": [
+                        "Installation"
+                    ]
+                },
+                "url": "http://www.pamlongobardi.com/drifters-project.html",
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -58.3816,
+                    -34.6037
+                ]
+            },
+            "properties": {
+                "title": "Plastic Bag Jellyfish",
+                "description": "Delicate sculptures crafted from recycled plastic bottles, resembling ethereal jellyfish.",
+                "artist": "Miwa Koizumi",
+                "type": "Sculpture",
+                "location": "Various exhibitions",
+                "year": 2021,
+                "tags": {
+                    "topic": [
+                        "Plastic Waste",
+                        "Marine Life"
+                    ],
+                    "artform": [
+                        "Sculpture"
+                    ]
+                },
+                "url": "http://www.miwakoizumi.com/plastic-bag-jellyfish",
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -80.1918,
+                    25.7617
+                ]
+            },
+            "properties": {
+                "title": "Plastic Bottle Village",
+                "description": "An eco-friendly community in Panama, constructing homes using recycled plastic bottles.",
+                "artist": "Robert Bezeau",
+                "type": "Architecture",
+                "location": "Bocas del Toro - Panama, Central America",
+                "year": 2016,
+                "tags": {
+                    "topic": [
+                        "Sustainable Living",
+                        "Plastic Recycling"
+                    ],
+                    "artform": [
+                        "Architecture"
+                    ]
+                },
+                "url": "https://www.plasticbottlevillage.com/",
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -73.9779, 40.5740
+                ]
+            },
+            "properties": {
+                "title": "Washed Ashore Project",
+                "description": "A non-profit organization led by Angela Haseltine Pozzi that creates large-scale sculptures from marine debris to educate about ocean pollution.",
+                "artist": "Angela Haseltine Pozzi",
+                "type": "Installation",
+                "location": "New York, New York",
+                "year": "2024",
+                "tags": {
+                    "topic": [
+                        "Ocean Conservation",
+                        "Education"
+                    ],
+                    "artform": [
+                        "Exhibition"
+                    ]
+                },
+                "url": "https://washedashore.org/",
+                "thumbnail": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                9.6273, 48.7213
+              ]
+            },
+            "properties": {
+              "title": "Spaceship: Earth",
+              "artist": "Mop Mop, Anthony Joseph",
+              "type": "Song",
+              "location": "Germany",
+              "year": 2016,
+              "tags": {
+                "topic": [
+                  "Environmental Awareness",
+                  "Human-Nature Interaction"
+                ],
+                "artform": [
+                  "Music"
+                ]
+              },
+              "url": "https://open.spotify.com/intl-de/track/4TshxTMDh3V49mZTzxVS9m",
+              "thumbnail": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAB8AOAMBEQACEQEDEQH/xAAaAAACAwEBAAAAAAAAAAAAAAAGBwADBQQB/8QALxAAAQQABAQEBAcAAAAAAAAAAQIDBBEABRIhBhMUMSIyQVEHcZGxFSMzYYGhwf/EABoBAAIDAQEAAAAAAAAAAAAAAAAFAwQGAgH/xAAvEQABAwMBBgUCBwAAAAAAAAABAAIDBBEhMRITUWFx8BRBkaHRIuEFFUJygbHB/9oADAMBAAIRAxEAPwBHYEIw+HVGRNQe6wgA1fvizBIImPkdoBf0Sf8AFInzPijZqTb1snbwvFYHKQhsJQST271jJmd9ZPvJfP2HBaqOmjpIRFHoPfmvW8pz5fFKZL0tScvafcIAd8LrKk7IUjtsTXa9rvDgvgNPs2ylgZUip2v0nvHNLz4hPPMcazITKkIjhpCwV6iAdIJHmAH3+uIadoiaXMuDywrUwEp2XgEcxdL7iCU5LjxVulBUHHB+WSUjZGwvDTO7FyTrqlsbGtnfsgDA0xxWLjhWVMCEafDII62WpZoJCP8AcErC+llaOCpTSBlZTk6X+AmDI4kzDL8wjQssipfWKUSELWVEq8vh8nvatvocZyjiY9m042N8fOdegWhqHva6wFxbPf8Aq3zxPnIjmSTA6fp+eF9OsA7Xp1a6CfXmdqN1WGm4z36/ZV7ushIyk53m0pGe5LC6kb8xyIUuJo1oJX5/mnb64X1LzCy8bzrnPvjS/DVTQDePIe0aY75IH+IkWLEkREwm22mVBatDaQAD4fbGiDXNp4w7W2Vn6eUSVU5Gl8dMoQxwrymBC1uG4juZTugblmOl2lGgTrKew2/k77YinnMEZda66jhbLIL6+SKovEasomyo2ctPMSnFsW+lCSVNou0Lo7pVYUauymiCNsRQMjLAYstypnvc1/16ruTkM4cTrlfiM4OjdU0lX6YNFR23TtVdvTti59GxtJt4Wg3PiM/tvm/XvjyWfK4hVnWYQ4+TMPOyGxISuQUpC+WtVhKbOyUC9JJHmIAA2xSnZG1hdLgYSmNz3PszVDHEjDsCWnLXJXUIi2EHSQUA14TfyH7YnhqDPEHEWVd9OyGV2zqdVkYkQpgQroqgh0KKQqt6N1/WBCP8rzVziDLVZU7NdalLSoJc0BSXRW4Xfz9PbvhLPTNpZN+1t2/10TGOUzM3ZOVavLeL15eYKpmX8otcor0jmFGnTWvRfl2vvW14l/M6bge/5XHhJrWuFRnWcPZJl/4TFnOOSW9KXXi2E8oUKCKr7evfEVNStqJN+9tm+Qvr1Xcsxibu2nPeiBJa2VBsMtcurve77YdkhLRdc+PF6v/Z"
+            }
+          },
+
+                {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -0.1276, 51.5072
+        ]
+    },
+    "properties": {
+        "title": "Vampire Conspiracy",
+        "description":"A satirical and thought-provoking song that draws a parallel between capitalism and vampirism, highlighting how corporations extract wealth and resources in a way that mirrors the behavior of vampires. The song critiques economic exploitation and climate inaction with dark humor and catchy melodies.",
+        "artist": "Oli Frost",
+        "type": "Song",
+        "location": "London, United Kingdom",
+        "year": 2022,
+        "tags": {
+            "topic": [
+                "Climate Change",
+                "Capitalism Critique"
+            ],
+            "artform": [
+                "Music"
+            ]
+        },
+        "url": "https://open.spotify.com/intl-de/track/2HXZnOamuAUbwHAdSS42kr?autoplay=true", 
+        "thumbnail": "https://f4.bcbits.com/img/a4045171485_10.jpg"
+            }
+          },
+
+                        {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
+             18.9583, 47.7856
+        ]
+    },
+    "properties": {
+        "title": "Greetings from the Danube Bend!",
+        "description":"A graphic image in which a skull drifts down the river around Nagymaros. The Inconnu groups’ focus on environmental issues was deeply related to their critique of the state-socialist regime.",
+        "artist": "Inconnu",
+        "type": "Song",
+        "location": "Nagymaros, Hungary",
+        "year": 1985,
+        "tags": {
+            "topic": [
+                "River Conservation",
+                "System Critique"
+            ],
+            "artform": [
+                "Graphic Art"
+            ]
+        },
+        "url": "https://www.archivum.org/entries/blog/ecological-crisis-and-political-art-in-the-1980s-hungary", 
+        "thumbnail": "https://www.archivum.org/_next/image?url=https%3A%2F%2Fweb.osaarchivum.org%2Fuploads%2Flarge_Inconnu_kep0_6d20a7b419.png&w=640&q=75"
+            }
+          },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-112.6653, 41.2711]
+            },
+            "properties": {
+                "title": "Spiral Jetty",
+                "description": "A monumental earthwork forming a spiral-shaped pier made of basalt rocks and soil in the Great Salt Lake, Utah. The artwork explores the relationship between nature, time, and environmental changes.",
+                "artist": "Robert Smithson",
+                "type": "Land Art",
+                "location": "Utah, USA",
+                "year": 1970,
+                "tags": {
+                    "topic": ["Nature Cycles", "Ecosystem Protection"],
+                    "artform": ["Land Art", "Installation"]
+                },
+                "url": "https://en.wikipedia.org/wiki/Spiral_Jetty",
+                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Spiral-Jetty-from-rozel-point.png"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-74.0060, 40.7128]
+            },
+            "properties": {
+                "title": "Touch Sanitation",
+                "description": "A performance art project in which the artist shook hands with over 8,500 New York City sanitation workers, acknowledging their role in environmental maintenance and waste management.",
+                "artist": "Mierle Laderman Ukeles",
+                "type": "Performance",
+                "location": "New York City, New York",
+                "year": "1979-1980",
+                "tags": {
+                    "topic": ["Waste Management", "Public Health"],
+                    "artform": ["Performance", "Social Sculpture"]
+                },
+                "url": "https://en.wikipedia.org/wiki/Mierle_Laderman_Ukeles",
+                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Ukeles_Touch_Sanitation.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [34.8516, 31.0461]
+            },
+            "properties": {
+                "title": "The Drying Sea",
+                "description": "A series of salt crystal sculptures in the Dead Sea, highlighting the ecological crisis and water scarcity in the region.",
+                "artist": "Sigalit Landau",
+                "type": "Sculpture",
+                "location": "Dead Sea, Israel",
+                "year": 2019,
+                "tags": {
+                    "topic": ["Water Scarcity", "Climate Change"],
+                    "artform": ["Sculpture", "Installation"]
+                },
+                "url": "https://www.artsy.net/artist/sigalit-landau",
+                "thumbnail": "https://www.artsy.net/artwork/sigalit-landau-drying-sea.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-0.1276, 51.5072]
+            },
+            "properties": {
+                "title": "Breathe",
+                "description": "A light installation that changes color based on air pollution levels, making CO2 concentrations visible and raising awareness of environmental impact.",
+                "artist": "Jasmine Pradissitto",
+                "type": "Installation",
+                "location": "London, United Kingdom",
+                "year": 2022,
+                "tags": {
+                    "topic": ["Air Pollution", "Climate Awareness"],
+                    "artform": ["Installation", "Light Art"]
+                },
+                "url": "https://www.jasminepradissitto.com/",
+                "thumbnail": "https://www.jasminepradissitto.com/wp-content/uploads/2022/06/Breathe-Installation.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [18.0686, 59.3293]
+            },
+            "properties": {
+                "title": "Baltic Trash Waves",
+                "description": "A floating art installation made from plastic waste collected from the Baltic Sea, drawing attention to the issue of marine pollution.",
+                "artist": "Anna Lundh",
+                "type": "Installation",
+                "location": "Stockholm, Sweden",
+                "year": 2023,
+                "tags": {
+                    "topic": ["Marine Pollution", "Plastic Waste"],
+                    "artform": ["Installation", "Eco-Art"]
+                },
+                "url": "https://www.annalundh.com/projects/baltic-trash-waves",
+                "thumbnail": "https://www.annalundh.com/wp-content/uploads/2023/06/baltic-trash-waves.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [139.6917, 35.6895]
+            },
+            "properties": {
+                "title": "Tokyo’s Smog Dome",
+                "description": "An interactive digital projection mapping Tokyo’s air quality over a year, visualizing the hidden impact of pollution.",
+                "artist": "Ryoji Ikeda",
+                "type": "Digital Art",
+                "location": "Tokyo, Japan",
+                "year": 2022,
+                "tags": {
+                    "topic": ["Air Pollution", "Environmental Health"],
+                    "artform": ["Digital Art", "Projection Mapping"]
+                },
+                "url": "https://www.ryojiikeda.com/projects/smog-dome",
+                "thumbnail": "https://www.ryojiikeda.com/wp-content/uploads/2022/07/tokyo-smog-dome.jpg"
+            }
+        },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-79.3832, 43.6532]
+        },
+        "properties": {
+            "title": "Melting Ice",
+            "description": "A performance where an ice block is left to melt in the city, symbolizing the rapid disappearance of glaciers due to climate change.",
+            "artist": "Tania Bruguera",
+            "type": "Performance",
+            "location": "Toronto, Canada",
+            "year": 2019,
+            "tags": {
+                "topic": ["Climate Change", "Environmental Awareness"],
+                "artform": ["Performance"]
+            },
+            "url": "https://www.artsy.net/article/artsy-editorial-5-artists-confronting-climate-change",
+            "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Melting_Ice_Performance.jpg"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [144.9631, -37.8136]
+        },
+        "properties": {
+            "title": "The Plastic Whale",
+            "description": "A giant sculpture made entirely from plastic waste collected from the ocean, emphasizing the impact of pollution on marine life.",
+            "artist": "Pernille Pind",
+            "type": "Sculpture",
+            "location": "Melbourne, Australia",
+            "year": 2021,
+            "tags": {
+                "topic": ["Plastic Pollution", "Marine Conservation"],
+                "artform": ["Sculpture", "Recycled Art"]
+            },
+            "url": "https://www.unep.org/resources/report/plastic-pollution-art-awareness",
+            "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Plastic_Whale_Sculpture.jpg"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [2.3522, 48.8566]
+        },
+        "properties": {
+            "title": "Carbon Emissions Clock",
+            "description": "A real-time display showing global carbon emissions, raising awareness about the urgency of climate action.",
+            "artist": "Thijs Biersteker",
+            "type": "Digital Art",
+            "location": "Paris, France",
+            "year": 2022,
+            "tags": {
+                "topic": ["Carbon Emissions", "Climate Change"],
+                "artform": ["Digital Art", "Public Art"]
+            },
+            "url": "https://www.thijsbiersteker.com/",
+            "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Carbon_Emissions_Clock.jpg"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-43.1729, -22.9068]
+        },
+        "properties": {
+            "title": "Amazonian Warning",
+            "description": "A large-scale mural depicting the destruction of the Amazon rainforest, calling for action against deforestation.",
+            "artist": "Eduardo Kobra",
+            "type": "Mural",
+            "location": "Rio de Janeiro, Brazil ",
+            "year": 2020,
+            "tags": {
+                "topic": ["Deforestation", "Environmental Justice"],
+                "artform": ["Mural", "Street Art"]
+            },
+            "url": "https://kobrastreetart.com/",
+            "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Amazonian_Warning_Mural.jpg"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [77.2090, 28.6139]
+        },
+        "properties": {
+            "title": "The Smog Tower",
+            "description": "A giant air-purifying tower that doubles as a public art installation, tackling air pollution in urban spaces.",
+            "artist": "Daan Roosegaarde",
+            "type": "Installation",
+            "location": "New Delhi, India",
+            "year": 2018,
+            "tags": {
+                "topic": ["Air Pollution", "Sustainable Design"],
+                "artform": ["Installation", "Public Art"]
+            },
+            "url": "https://www.studioroosegaarde.net/",
+            "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Smog_Tower_Delhi.jpg"
+            }
+        }
+                 
+    ]
+}

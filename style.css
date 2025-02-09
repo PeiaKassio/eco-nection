@@ -1,0 +1,78 @@
+/* Adjust only the country filter box size for desktop mode */
+.sidebar {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 25%; /* Make the sidebar occupy 25% of the width in desktop mode */
+    max-height: 80vh; /* Limit the height */
+    overflow-y: auto; /* Add scroll if content exceeds the height */
+  }
+}
+@media (min-width: 1024px) {
+  .dropdown .dropdown-content {
+      display: block !important; /* Ensure filters are always visible in desktop mode */
+      position: static; /* Make static for proper layout */
+  }
+}
+
+/* Ensure buttons and inputs inherit DaisyUI styles */
+input#countrySearch {
+  height: auto; /* Allow it to scale naturally */
+}
+
+/* Specific customizations for buttons */
+button#applyCountryFilter {
+  margin-top: 1rem; /* Space above the button */
+}
+
+/* Preserve DaisyUI styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: inherit; /* Use the default DaisyUI font family */
+  background-color: transparent; /* Retain the DaisyUI theme background */
+}
+
+@media (min-width: 1024px) {
+  .chart-area {
+      height: 600px; /* Increase height for larger screens */
+  }
+}
+
+
+.chart-container {
+  overflow-x: auto;
+  position: relative;
+  white-space: nowrap;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+main {
+  width: 100%;
+  max-width: 100%;
+  margin: auto;
+}
+section.chart-container {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+#artwork-count {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2em;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+

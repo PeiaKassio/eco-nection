@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="forest" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eco:nection</title>
+    <!-- Mapbox GL CSS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet" />
+    <!-- Custom CSS for your map page -->
+    <link rel="stylesheet" href="style.css">
+    <!-- DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body class="h-full flex flex-col">
+    <nav class="navbar bg-base-300">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                    <i class="ti ti-menu text-xl"></i>
+                </div>
+                <ul
+                    tabindex="0"
+                    class="menu menu-sm dropdown-content gap-y-3 bg-base-300 rounded-box z-10 mt-3 w-44 shadow">
+                    <li>
+                        <a class="btn btn-primary" href="index.html">
+                            <i class="ti ti-map-2 text-xl"></i>
+                            <span>Map</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-primary" href="data-analysis.html">
+                            <i class="ti ti-chart-dots-2 text-xl"></i>
+                            <span>Data</span>
+                        </a>
+                    </li>
+                    <div class="divider my-0"></div>
+                    <li>
+                        <a href="https://github.com/PeiaKassio/eco-nection" class="btn btn-outline btn-secondary lg:hidden">
+                            <i class="ti ti-brand-github text-xl"></i>
+                            Contribute
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex mx-3 gap-3 justify-center hidden lg:flex">
+                <i class="ti ti-affiliate text-3xl text-primary"></i>
+                <span class="text-2xl subpixel-antialiased">eco:nection</span>
+            </div>
+        </div>
+        <div class="navbar-center">
+            <div class="flex mx-3 gap-3 justify-center lg:hidden">
+                <i class="ti ti-affiliate text-3xl text-primary"></i>
+                <span class="text-2xl subpixel-antialiased">eco:nection</span>
+            </div>
+            <ul class="hidden lg:flex menu menu-horizontal px-1 gap-x-12">
+                <li>
+                    <a class="btn btn-primary" href="index.html">
+                        <i class="ti ti-map-2 text-xl"></i>
+                        Map
+                    </a>
+                </li>
+                <li>
+                    <a class="btn btn-primary" href="data-analysis.html">
+                        <i class="ti ti-chart-dots-2 text-xl"></i>
+                        Data
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <a href="https://github.com/PeiaKassio/eco-nection" class="btn btn-outline btn-secondary hidden lg:flex">
+                <i class="ti ti-brand-github text-xl"></i>
+                Contribute
+            </a>
+        </div>
+    </nav>
+
+    <!-- Map container where the map will be displayed -->
+    <div id="map" class="flex grow relative">
+        <div class="absolute top-3 left-3 z-10 dropdown dropdown-start">
+            <div tabindex="0" role="button" class="btn btn-primary btn-circle">
+                <div class="w-10 rounded-full">
+                    <i class="ti ti-filter text-xl"></i>
+                </div>
+            </div>
+            <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 m-3 gap-y-2 shadow">
+                <li>
+                    <label class="input input-bordered input-sm flex items-center gap-2">
+                        <input type="text" id="search-bar" class="grow" placeholder="Search by title or description" />
+                        <i class="ti ti-search text-xl"></i>
+                    </label>
+                </li>
+                <li>
+                    <select id="tag-filter" class="select select-bordered select-sm w-full max-w-xs" multiple>
+                        <option selected value="">All Topics</option>
+                        <!-- Dynamische Optionen werden hier durch JavaScript hinzugefügt -->
+                    </select>
+                </li>
+                <li>
+                    <select id="cluster-filter" class="select select-bordered select-sm w-full max-w-xs" multiple>
+                        <option selected value="">All Clusters</option>
+                        <!-- Dynamische Optionen werden hier durch JavaScript hinzugefügt -->
+                    </select>
+                </li>
+                <li>
+                    <select id="artform-filter" class="select select-bordered select-sm w-full max-w-xs" multiple>
+                        <option value="">All Art Forms</option>
+                        <!-- Dynamische Optionen werden hier durch JavaScript hinzugefügt -->
+                    </select>
+                </li>
+                <li>
+                    <button id="reset-filters" class="btn btn-outline btn-sm btn-primary">Reset Filters</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Mapbox GL JS and Custom Script -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+    <script src="assets/js/script.js"></script>
+    <div id="artwork-count" style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;"></div>
+
+</body>
+
+</html>
