@@ -1,6 +1,3 @@
-// Import Continent Mapping
-import continentMapping from './continentMapping.js';
-
 // Global variables
 let countries = [];
 let continents = [];

@@ -1,17 +1,13 @@
 {
-    // North America
     "United States": "North America",
     "Canada": "North America",
     "Mexico": "North America",
-
-    // South America
     "Brazil": "South America",
     "Argentina": "South America",
     "Colombia": "South America",
     "Chile": "South America",
     "Peru": "South America",
 
-    // Europe
     "United Kingdom": "Europe",
     "Germany": "Europe",
     "France": "Europe",
@@ -28,7 +24,6 @@
     "Belgium": "Europe",
     "Austria": "Europe",
 
-    // Asia
     "China": "Asia",
     "Japan": "Asia",
     "India": "Asia",
@@ -42,7 +37,6 @@
     "Singapore": "Asia",
     "Israel": "Asia",
 
-    // Africa
     "South Africa": "Africa",
     "Nigeria": "Africa",
     "Egypt": "Africa",
@@ -53,10 +47,7 @@
     "Democratic Republic of the Congo": "Africa",
     "Zimbabwe": "Africa",
 
-    // Oceania
     "Australia": "Oceania",
     "New Zealand": "Oceania",
-
-    // Default to "Other" if not found in the map
     "Other": "Other"
 }
