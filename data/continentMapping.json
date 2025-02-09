@@ -1,13 +1,13 @@
 {
-    "United States": "North America",
+    "USA": "North America",
     "Canada": "North America",
     "Mexico": "North America",
     "Brazil": "South America",
     "Argentina": "South America",
     "Colombia": "South America",
+    "Panama" : "Central America",
     "Chile": "South America",
     "Peru": "South America",
-
     "United Kingdom": "Europe",
     "Germany": "Europe",
     "France": "Europe",
@@ -23,7 +23,6 @@
     "Portugal": "Europe",
     "Belgium": "Europe",
     "Austria": "Europe",
-
     "China": "Asia",
     "Japan": "Asia",
     "India": "Asia",
@@ -36,7 +35,6 @@
     "Malaysia": "Asia",
     "Singapore": "Asia",
     "Israel": "Asia",
-
     "South Africa": "Africa",
     "Nigeria": "Africa",
     "Egypt": "Africa",
@@ -46,7 +44,6 @@
     "Morocco": "Africa",
     "Democratic Republic of the Congo": "Africa",
     "Zimbabwe": "Africa",
-
     "Australia": "Oceania",
     "New Zealand": "Oceania",
     "Other": "Other"
