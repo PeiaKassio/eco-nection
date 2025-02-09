@@ -1,4 +1,4 @@
-const continentMapping = {
+{
     // North America
     "United States": "North America",
     "Canada": "North America",
@@ -59,6 +59,4 @@ const continentMapping = {
 
     // Default to "Other" if not found in the map
     "Other": "Other"
-};
-
-export default continentMapping;
+}
