@@ -6,8 +6,9 @@
 @media (min-width: 1024px) {
   .sidebar {
     width: 25%; /* Make the sidebar occupy 25% of the width in desktop mode */
-    max-height: 80vh; /* Limit the height */
+    max-height: 100vh; /* Limit the height */
     overflow-y: auto; /* Add scroll if content exceeds the height */
+    position: relative; /* Sidebar floatet jetzt mit dem Rest der Seite */
   }
 }
 @media (min-width: 1024px) {
