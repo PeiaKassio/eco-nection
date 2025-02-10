@@ -6,27 +6,22 @@
     <title>eco:nection - Data Analysis</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <!-- Include vis.js CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/vis-network/styles/vis-network.min.css" />
-    <!-- Include vis.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist"></script>
     <script src="https://unpkg.com/vis-network/dist/vis-network.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="h-full flex flex-col">
     <nav class="navbar bg-base-300">
         <div class="navbar-start">
             <ul class="menu menu-horizontal px-1 gap-x-12">
-                <li><a class="btn btn-primary" href="index.html"><i class="ti ti-map-2 text-xl"></i>Map</a></li>
-                <li><a class="btn btn-primary" href="data-analysis.html"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
+                <li><a class="btn btn-primary" href="index.html">Map</a></li>
+                <li><a class="btn btn-primary" href="data-analysis.html">Data</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="container mx-auto mt-4 px-4 lg:px-8">
         <div class="flex flex-col lg:flex-row lg:gap-6">
-            <!-- Filters Sidebar -->
             <div class="bg-base-200 p-4 rounded-box w-full lg:w-1/4 sidebar">
                 <h2 class="text-2xl font-bold mb-4">Filters</h2>
                 <h3 class="text-xl font-semibold mb-2">By Continent</h3>
@@ -36,24 +31,23 @@
                 <select id="countrySelect" multiple class="select select-bordered w-full mb-4"></select>
                 <h3 class="text-xl font-semibold mb-2">By Topic Cluster</h3>
                 <select id="topicClusterSelect" multiple class="select select-bordered w-full mb-4"></select>
-                <button id="applyFilters" class="btn btn-primary w-full mb-6">Apply Filters</button>
                 <button id="resetFilters" class="btn btn-outline btn-sm btn-primary">Reset Filters</button>
             </div>
 
             <div class="flex-grow flex flex-col gap-6">
                 <section id="topics-by-country" class="mb-8 chart-container">
-                    <h3 class="text-2xl font-semibold mb-4">Number of Topics by Country</h3>
-                    <canvas id="countryChart"></canvas>
+                    <h3 class="text-2xl font-semibold mb-4">Number of Topic Clusters by Country</h3>
+                    <div id="countryChart"></div>
                 </section>
 
                 <section id="change-over-time" class="mb-8 chart-container">
                     <h3 class="text-2xl font-semibold mb-4">Change of Topic Clusters Over Time</h3>
-                    <canvas id="topicClustersOverTimeChart"></canvas>
+                    <div id="topicClustersOverTimeChart"></div>
                 </section>
 
                 <section id="topics-by-continent" class="mb-8 chart-container">
-                    <h3 class="text-2xl font-semibold mb-4">Number of Topics by Continent</h3>
-                    <canvas id="topicsByContinentChart"></canvas>
+                    <h3 class="text-2xl font-semibold mb-4">Number of Topic Clusters by Continent</h3>
+                    <div id="topicsByContinentChart"></div>
                 </section>
 
                 <section id="co-occurrence-network" class="mb-8">
@@ -64,6 +58,6 @@
         </div>
     </main>
 
-    <script src="assets/js/data-analysis.js"></script>
+    <script src="assets/js/data-analysis_v2.js"></script>
 </body>
 </html>
