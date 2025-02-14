@@ -80,8 +80,7 @@
                 "tags": {
                     "topic": [
                         "Plastic Pollution",
-                        "Environmental Awareness",
-                        "Eco-Art"
+                        "Environmental Awareness"
                     ],
                     "artform": [
                         "Installation"
@@ -597,8 +596,7 @@
                 "year": 2020,
                 "tags": {
                     "topic": [
-                        "Waste Management",
-                        "Eco-Art"
+                        "Waste Management"
                     ],
                     "artform": [
                         "Sculpture",
@@ -1502,8 +1500,7 @@
                 "tags": {
                     "topic": [
                         "Plastic Pollution",
-                        "Recycling",
-                        "Eco-Art"
+                        "Recycling"
                     ],
                     "artform": [
                         "Installation"
@@ -1872,7 +1869,7 @@
                 "year": 2023,
                 "tags": {
                     "topic": ["Marine Pollution", "Plastic Waste"],
-                    "artform": ["Installation", "Eco-Art"]
+                    "artform": ["Installation"]
                 },
                 "url": "https://www.annalundh.com/projects/baltic-trash-waves",
                 "thumbnail": "https://www.annalundh.com/wp-content/uploads/2023/06/baltic-trash-waves.jpg"
