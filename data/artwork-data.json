@@ -2,6 +2,36 @@
     "type": "FeatureCollection",
     "features": [
         {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
+            11.5755, 48.1374
+        ]
+    },
+    "properties": {
+        "title": "Illustrations on Sustainability",
+        "description": "Susanne Krauss creates expressive illustrations addressing complex societal and environmental issues. Her work ranges from journalistic illustrations to sustainability-focused visual storytelling.",
+        "artist": "Susanne Krauss",
+        "type": "Illustration",
+        "location": "Munich, Germany",
+        "year": 2024,
+        "tags": {
+            "topic": [
+                "Environmental Awareness",
+                "Cultural Reflection",
+                "Sustainability"
+            ],
+            "artform": [
+                "Illustration",
+                "Graphic Art"
+            ]
+        },
+        "url": "https://www.susanne-krauss.com/illustration",
+        "thumbnail": "https://www.susanne-krauss.com/s/cc_images/teaserbox_2480122264.jpg?t=1682956613"
+    }
+},     
+        {
             "type": "Feature",
             "geometry": {
                 "type": "Point",
