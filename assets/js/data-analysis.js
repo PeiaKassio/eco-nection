@@ -29,6 +29,7 @@ async function loadData() {
 
         console.log("JSON files loaded successfully");
         initializeFilters();
+        applyFilters();
         updateCharts();
     } catch (error) {
         console.error("Error loading JSON data:", error);
@@ -46,35 +47,34 @@ function initializeFilters() {
     countrySelect.add(new Option('All Countries', 'all'));
     topicClusterSelect.add(new Option('All Topic Clusters', 'all'));
 
- // Kontinente füllen (alphabetisch sortiert)
+    // Kontinente füllen (alphabetisch sortiert)
     let uniqueContinents = new Set(Object.values(continentMapping));
-    let sortedContinents = Array.from(uniqueContinents).sort();  // Alphabetische Sortierung der Kontinente
+    let sortedContinents = Array.from(uniqueContinents).sort();
     sortedContinents.forEach(continent => {
         let option = new Option(continent, continent);
         continentSelect.add(option);
     });
 
     // Länder füllen (alphabetisch sortiert)
-    let sortedCountries = Object.keys(continentMapping).sort();  // Alphabetische Sortierung der Länder
+    let sortedCountries = Object.keys(continentMapping).sort();
     sortedCountries.forEach(country => {
         let option = new Option(country, country);
         countrySelect.add(option);
     });
 
     // Themencluster füllen (alphabetisch sortiert)
-    let sortedTopicClusters = Object.keys(topicClusters).sort();  // Alphabetische Sortierung der Themencluster
+    let sortedTopicClusters = Object.keys(topicClusters).sort();
     sortedTopicClusters.forEach(cluster => {
         let option = new Option(cluster, cluster);
         topicClusterSelect.add(option);
     });
 
-
     // EventListener für Änderungen an den Filtern
-continentSelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
-countrySelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
-topicClusterSelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
+    continentSelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
+    countrySelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
+    topicClusterSelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
 
-document.getElementById('resetFilters').addEventListener('click', resetFilters);
+    document.getElementById('resetFilters').addEventListener('click', resetFilters);
 }
 
 // Filter auf Daten anwenden
@@ -91,8 +91,7 @@ function resetFilters() {
     document.getElementById('continentSelect').selectedIndex = 0;
     document.getElementById('countrySelect').selectedIndex = 0;
     document.getElementById('topicClusterSelect').selectedIndex = 0;
-    
-    // Filter zurücksetzen und Charts aktualisieren
+
     selectedContinent = [];
     selectedCountry = [];
     selectedTopics = [];
@@ -101,12 +100,15 @@ function resetFilters() {
 
 // Diagramme aktualisieren
 function updateCharts() {
-    applyFilters(); // Filter anwenden
-
+    applyFilters();
     updateCountryChart();
-    updateTopicClustersOverTime(); // Diese Funktion wieder einfügen
+    updateTopicClustersOverTime();
     updateTopicsByContinent();
     updateCoOccurrenceNetwork();
+
+    document.querySelectorAll('.plotly-chart').forEach(chart => {
+        chart.style.minWidth = '800px';
+    });
 }
 
 // Hilfsfunktion für Farben
@@ -118,26 +120,40 @@ function getClusterColors() {
     return clusterColors;
 }
 
+// Zentrales Plotly-Layout für alle Diagramme
+const plotlyLayout = {
+    barmode: 'stack',
+    autosize: true,
+    responsive: true,
+    paper_bgcolor: '#333',
+    plot_bgcolor: '#333',
+    font: { color: 'white' },
+    xaxis: {
+        automargin: true,
+        tickangle: -45,
+        showgrid: true
+    },
+    yaxis: {
+        automargin: true,
+        showgrid: true
+    }
+};
+
 // Filter auf die Kunstwerke anwenden
 function filterArtworks(artworks) {
     return artworks.features.filter(artwork => {
-        // Filtern nach Kontinent
         const continent = continentMapping[artwork.properties.location] || "Other";
         if (selectedContinent.length > 0 && !selectedContinent.includes(continent) && !selectedContinent.includes('all')) {
             return false;
         }
 
-        // Filtern nach Land
-        const country = artwork.properties.location.split(", ").pop(); // Nur das Land extrahieren
+        const country = artwork.properties.location.split(", ").pop();
         if (selectedCountry.length > 0 && !selectedCountry.includes(country) && !selectedCountry.includes('all')) {
             return false;
         }
 
-        // Filtern nach Themencluster
         const topics = artwork.properties.tags.topic;
-        const clusters = topics.map(topic => {
-            return Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic));
-        }).filter(Boolean);
+        const clusters = topics.map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))).filter(Boolean);
         if (selectedTopics.length > 0 && !selectedTopics.some(cluster => clusters.includes(cluster)) && !selectedTopics.includes('all')) {
             return false;
         }
@@ -146,17 +162,15 @@ function filterArtworks(artworks) {
     });
 }
 
-// Themencluster nach Land (Balkendiagramm)
+// Themencluster nach Land
 function updateCountryChart() {
     let countryData = {};
     let clusterColors = getClusterColors();
     let filteredArtworks = filterArtworks(artworks);
 
     filteredArtworks.forEach(artwork => {
-        let country = artwork.properties.location.split(", ").pop(); // Nur das Land extrahieren
-        let cluster = artwork.properties.tags.topic.map(topic => {
-            return Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic));
-        }).filter(Boolean);
+        let country = artwork.properties.location.split(", ").pop();
+        let cluster = artwork.properties.tags.topic.map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))).filter(Boolean);
 
         if (!countryData[country]) countryData[country] = {};
         cluster.forEach(c => {
@@ -164,9 +178,6 @@ function updateCountryChart() {
             countryData[country][c]++;
         });
     });
-    // Sortiere die Länder alphabetisch
-    let sortedCountries = Object.keys(countryData).sort();
-
 
     let traces = Object.keys(clusterColors).map(cluster => ({
         x: Object.keys(countryData),
@@ -176,10 +187,10 @@ function updateCountryChart() {
         marker: { color: clusterColors[cluster] }
     }));
 
-    Plotly.newPlot('countryChart', traces, { barmode: 'stack', title: 'Number of Topic Clusters by Country', layout: {autosize: true, paper_bgcolor: '#000', plot_bgcolor: '#000', font: {color: 'white'} } });
+    Plotly.newPlot('countryChart', traces, plotlyLayout);
 }
 
-// Themencluster nach Kontinent (Balkendiagramm)
+// Themencluster nach Kontinent
 function updateTopicsByContinent() {
     let continentData = {};
     let clusterColors = getClusterColors();
@@ -188,9 +199,7 @@ function updateTopicsByContinent() {
     filteredArtworks.forEach(artwork => {
         let country = artwork.properties.location.split(", ").pop();
         let continent = continentMapping[country] || "Other";
-        let cluster = artwork.properties.tags.topic.map(topic => {
-            return Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic));
-        }).filter(Boolean);
+        let cluster = artwork.properties.tags.topic.map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))).filter(Boolean);
 
         if (!continentData[continent]) continentData[continent] = {};
         cluster.forEach(c => {
@@ -198,9 +207,6 @@ function updateTopicsByContinent() {
             continentData[continent][c]++;
         });
     });
-    
-    // Sortiere die Cluster alphabetisch
-    let sortedClusters = Object.keys(clusterColors).sort();
 
     let traces = Object.keys(clusterColors).map(cluster => ({
         x: Object.keys(continentData),
@@ -210,78 +216,7 @@ function updateTopicsByContinent() {
         marker: { color: clusterColors[cluster] }
     }));
 
-    Plotly.newPlot('topicsByContinentChart', traces, { barmode: 'stack', title: 'Number of Topic Clusters by Continent', layout: {autosize: true, paper_bgcolor: '#333', plot_bgcolor: '#333', font: {color: 'white'} } });
-}
-
-// Themencluster über die Zeit (Liniendiagramm)
-function updateTopicClustersOverTime() {
-    let timeData = {};
-    let clusterColors = getClusterColors();
-    let filteredArtworks = filterArtworks(artworks);
-
-    filteredArtworks.forEach(artwork => {
-        let year = artwork.properties.year;
-        let cluster = artwork.properties.tags.topic.map(topic => {
-            return Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic));
-        }).filter(Boolean);
-
-        if (!timeData[year]) timeData[year] = {};
-        cluster.forEach(c => {
-            if (!timeData[year][c]) timeData[year][c] = 0;
-            timeData[year][c]++;
-        });
-    });
-
-    let traces = Object.keys(clusterColors).map(cluster => ({
-        x: Object.keys(timeData),
-        y: Object.keys(timeData).map(year => timeData[year][cluster] || 0),
-        name: cluster,
-        type: 'scatter',
-        mode: 'lines+markers',
-        line: { color: clusterColors[cluster] }
-    }));
-
-    Plotly.newPlot('topicClustersOverTimeChart', traces, { title: 'Change of Topic Clusters Over Time', layout: {autosize: true, paper_bgcolor: '#333', plot_bgcolor: '#333', font: {color: 'white'} } });
-}
-
-// Co-Occurrence Network mit vis.js
-function updateCoOccurrenceNetwork() {
-    let nodes = [];
-    let edges = [];
-    let clusterColors = getClusterColors();
-    let filteredArtworks = filterArtworks(artworks);
-    let nodeSet = new Set();
-    
-    filteredArtworks.forEach(artwork => {
-        let clusterList = artwork.properties.tags.topic.map(topic => {
-            return Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic));
-        }).filter(Boolean);
-
-        clusterList.forEach(source => {
-            if (!nodeSet.has(source)) {
-                nodes.push({ id: source, label: source, color: clusterColors[source], font: { color: 'white' } });
-                nodeSet.add(source);
-            }
-            clusterList.forEach(target => {
-                if (source !== target) {
-                    let edge = edges.find(e => (e.from === source && e.to === target) || (e.from === target && e.to === source));
-                    if (edge) {
-                        edge.value++;  // Wenn Verbindung existiert, Anzahl erhöhen
-                    } else {
-                        edges.push({ from: source, to: target, value: 1 });
-                    }
-                }
-            });
-        });
-    });
-
-    let container = document.getElementById('coOccurrenceNetwork');
-    let data = { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) };
-    let options = {
-        nodes: { shape: 'dot', size: 10 },
-        edges: { width: 0.5, color: { color: '#999' }, smooth: { type: 'continuous' } }
-    };
-    new vis.Network(container, data, options);
+    Plotly.newPlot('topicsByContinentChart', traces, plotlyLayout);
 }
 
 // Lade die Daten
