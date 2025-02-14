@@ -46,20 +46,15 @@ body {
   }
 }
 
-/* Verbesserte Darstellung der Diagramme */
 .chart-container {
-  overflow-x: auto; /* Ermöglicht horizontales Scrollen */
-  white-space: nowrap;
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  padding-bottom: 10px; /* Abstand für besseres Scrollen */
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: calc(100vw - 25%); /* Stellt sicher, dass es nicht die Sidebar überlappt */
 }
 
-/* Mindestbreite für die Diagramme, damit sie nicht zu schmal werden */
 .plotly-chart {
-  min-width: 800px; /* Falls notwendig, anpassen */
-  max-width: 100%;
+    min-width: 800px; /* Falls notwendig, anpassen */
+    max-width: 100%;
 }
 
 /* Hauptbereich */
