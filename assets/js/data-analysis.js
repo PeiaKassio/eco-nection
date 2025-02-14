@@ -219,5 +219,110 @@ function updateTopicsByContinent() {
     Plotly.newPlot('topicsByContinentChart', traces, plotlyLayout);
 }
 
+    function updateTopicClustersOverTimeByContinent() {
+    let timeData = {};
+    let clusterColors = getClusterColors();
+    let filteredArtworks = filterArtworks(artworks);
+
+    filteredArtworks.forEach(artwork => {
+        let year = artwork.properties.year;
+        let country = artwork.properties.location.split(", ").pop();
+        let continent = continentMapping[country] || "Other";
+
+        let cluster = artwork.properties.tags.topic.map(topic => 
+            Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))
+        ).filter(Boolean);
+
+        if (!timeData[continent]) timeData[continent] = {};
+        if (!timeData[continent][year]) timeData[continent][year] = {};
+        
+        cluster.forEach(c => {
+            if (!timeData[continent][year][c]) timeData[continent][year][c] = 0;
+            timeData[continent][year][c]++;
+        });
+    });
+
+    let sortedContinents = Object.keys(timeData).sort();
+    let sortedYears = [...new Set(filteredArtworks.map(a => a.properties.year))].sort();
+
+    let traces = Object.keys(clusterColors).map(cluster => ({
+        x: sortedYears,
+        y: sortedYears.map(year => 
+            sortedContinents.map(continent => timeData[continent][year]?.[cluster] || 0).reduce((a, b) => a + b, 0)
+        ),
+        name: cluster,
+        type: 'scatter',
+        mode: 'lines+markers',
+        marker: { color: clusterColors[cluster] }
+    }));
+
+    let layout = {
+        title: "Change of Topic Clusters Over Time by Continent",
+        autosize: true,
+        responsive: true,
+        paper_bgcolor: "#333",
+        plot_bgcolor: "#333",
+        font: { color: "white" },
+        xaxis: {
+            automargin: true,
+            tickangle: -45,
+            showgrid: true
+        },
+        yaxis: {
+            automargin: true,
+            showgrid: true
+        }
+    };
+
+    Plotly.newPlot('topicClustersOverTimeByContinentChart', traces, layout);
+}
+
+
+        function updateCoOccurrenceNetwork() {
+    let nodes = [];
+    let edges = [];
+    let clusterColors = getClusterColors();
+    let filteredArtworks = filterArtworks(artworks);
+    let nodeSet = new Set();
+
+    filteredArtworks.forEach(artwork => {
+        let clusterList = artwork.properties.tags.topic.map(topic => 
+            Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))
+        ).filter(Boolean);
+
+        clusterList.forEach(source => {
+            if (!nodeSet.has(source)) {
+                nodes.push({ id: source, label: source, color: clusterColors[source] || "#FFFFFF", font: { color: 'white' } });
+                nodeSet.add(source);
+            }
+            clusterList.forEach(target => {
+                if (source !== target) {
+                    let edge = edges.find(e => (e.from === source && e.to === target) || (e.from === target && e.to === source));
+                    if (edge) {
+                        edge.value++;
+                    } else {
+                        edges.push({ from: source, to: target, value: 1 });
+                    }
+                }
+            });
+        });
+    });
+
+    let container = document.getElementById('coOccurrenceNetwork');
+    if (!container) {
+        console.error("coOccurrenceNetwork element not found!");
+        return;
+    }
+
+    let data = { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) };
+    let options = {
+        nodes: { shape: 'dot', size: 10 },
+        edges: { width: 0.5, color: { color: '#999' }, smooth: { type: 'continuous' } }
+    };
+
+    new vis.Network(container, data, options);
+}
+
+
 // Lade die Daten
 loadData();
