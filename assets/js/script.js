@@ -138,6 +138,11 @@ function populateFilterDropdowns(artworkData, topicClusters) {
         }
     });
 
+    // 🔹 Sortiere Topics, Artforms und Clusters alphabetisch
+    topics = new Set([...topics].sort((a, b) => a.localeCompare(b)));
+    artforms = new Set([...artforms].sort((a, b) => a.localeCompare(b)));
+    topicClusters = Object.fromEntries(Object.entries(topicClusters).sort(([a], [b]) => a.localeCompare(b)));
+
     const topicSelect = document.getElementById('tag-filter');
     topicSelect.innerHTML = '<option value="">All Topics</option>';
     topics.forEach(topic => {
