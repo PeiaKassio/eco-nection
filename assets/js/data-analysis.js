@@ -69,6 +69,14 @@ function initializeFilters() {
         topicClusterSelect.add(option);
     });
 
+    // Funktion zum Entfernen von "All", wenn eine andere Option gewählt wird
+    function deselectAllOption(selectElement) {
+    const allOption = selectElement.querySelector('option[value="all"]');
+    if (allOption && allOption.selected) {
+        allOption.selected = false;
+    }
+}
+
     /// EventListener für Änderungen an den Filtern
     continentSelect.addEventListener('change', () => { deselectAllOption(continentSelect); applyFilters(); updateCharts(); });
     countrySelect.addEventListener('change', () => { deselectAllOption(countrySelect); applyFilters(); updateCharts(); });
@@ -142,8 +150,9 @@ const plotlyLayout = {
 // Filter auf die Kunstwerke anwenden
 function filterArtworks(artworks) {
     return artworks.features.filter(artwork => {
-        const country = artwork.properties.location.split(", ").pop();
-        const continent = continentMapping[artwork.properties.location] || "Other";
+        const country = artwork.properties.location.split(", ").pop().trim();
+        const continent = continentMapping[country] || continentMapping[country.toLowerCase()] || "Other";
+
 
         console.log(`🔍 DEBUG: Country: ${country}, Continent: ${continent}, Selected Continent: ${selectedContinent}`);
         
