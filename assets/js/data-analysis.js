@@ -150,8 +150,9 @@ const plotlyLayout = {
 // Filter auf die Kunstwerke anwenden
 function filterArtworks(artworks) {
     return artworks.features.filter(artwork => {
-        const country = artwork.properties.location.split(", ").pop().trim();
-        const continent = continentMapping[country] || continentMapping[country.toLowerCase()] || "Other";
+        cconst country = artwork.properties.location.split(", ").pop().trim();
+        const continent = country in continentMapping ? continentMapping[country] : (country.toLowerCase() in continentMapping ? continentMapping[country.toLowerCase()] : "Other");
+
 
 
         console.log(`🔍 DEBUG: Country: ${country}, Continent: ${continent}, Selected Continent: ${selectedContinent}`);
