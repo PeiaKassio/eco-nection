@@ -36,6 +36,13 @@
                 <button id="resetFilters" class="btn btn-outline btn-sm btn-primary">Reset Filters</button>
             </div>
 
+                <section id="topics-by-continent" class="mb-8 chart-container">
+                    <h3 class="text-2xl font-semibold mb-4">Number of Topics by Continent</h3>
+                    <div class="w-[900px]">
+                        <div id="topicsByContinentChart" class="plotly-chart"></div>
+                    </div>
+                </section>
+
             <div class="flex-grow flex flex-col gap-6 lg:w-3/4">
                 <section id="topics-by-country" class="mb-8 chart-container">
                     <h3 class="text-2xl font-semibold mb-4">Number of Topic Clusters by Country</h3>
@@ -48,13 +55,6 @@
                     <h3 class="text-2xl font-semibold mb-4">Change of Topic Clusters Over Time</h3>
                     <div class="w-[900px]">
                         <div id="topicClustersOverTimeChart" class="plotly-chart"></div>
-                    </div>
-                </section>
-
-                <section id="topics-by-continent" class="mb-8 chart-container">
-                    <h3 class="text-2xl font-semibold mb-4">Number of Topics by Continent</h3>
-                    <div class="w-[900px]">
-                        <div id="topicsByContinentChart" class="plotly-chart"></div>
                     </div>
                 </section>
 
