@@ -70,11 +70,11 @@ function initializeFilters() {
 
 
     // EventListener für Änderungen an den Filtern
-    continentSelect.addEventListener('change', updateCharts);
-    countrySelect.addEventListener('change', updateCharts);
-    topicClusterSelect.addEventListener('change', updateCharts);
+continentSelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
+countrySelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
+topicClusterSelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
 
-    document.getElementById('resetFilters').addEventListener('click', resetFilters);
+document.getElementById('resetFilters').addEventListener('click', resetFilters);
 }
 
 // Filter auf Daten anwenden
