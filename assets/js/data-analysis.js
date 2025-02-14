@@ -142,6 +142,7 @@ const plotlyLayout = {
 // Filter auf die Kunstwerke anwenden
 function filterArtworks(artworks) {
     return artworks.features.filter(artwork => {
+        const country = artwork.properties.location.split(", ").pop();
         const continent = continentMapping[artwork.properties.location] || "Other";
 
         console.log(`🔍 DEBUG: Country: ${country}, Continent: ${continent}, Selected Continent: ${selectedContinent}`);
@@ -151,7 +152,7 @@ function filterArtworks(artworks) {
             return false;
         }
 
-        const country = artwork.properties.location.split(", ").pop();
+        
         if (selectedCountry.length > 0 && !selectedCountry.includes(country) && !selectedCountry.includes('all')) {
             console.log("🚀 DEBUG: Selected Continent:", selectedContinent); // 👉 Prüft, ob der Wert richtig gespeichert ist
             return false;
