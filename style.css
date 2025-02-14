@@ -10,6 +10,9 @@
     overflow-y: auto; /* Add scroll if content exceeds the height */
     position: relative; /* Sidebar floatet jetzt mit dem Rest der Seite */
   }
+    .flex-grow {
+        width: 75%;
+    }
 }
 
 @media (min-width: 1024px) {
