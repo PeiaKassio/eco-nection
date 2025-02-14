@@ -189,7 +189,36 @@ function updateCountryChart() {
 
     Plotly.newPlot('countryChart', traces, plotlyLayout);
 }
+// Themencluster über die Zeit (Liniendiagramm)
+function updateTopicClustersOverTime() {
+    let timeData = {};
+    let clusterColors = getClusterColors();
+    let filteredArtworks = filterArtworks(artworks);
 
+    filteredArtworks.forEach(artwork => {
+        let year = artwork.properties.year;
+        let cluster = artwork.properties.tags.topic.map(topic => {
+            return Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic));
+        }).filter(Boolean);
+
+        if (!timeData[year]) timeData[year] = {};
+        cluster.forEach(c => {
+            if (!timeData[year][c]) timeData[year][c] = 0;
+            timeData[year][c]++;
+        });
+    });
+
+    let traces = Object.keys(clusterColors).map(cluster => ({
+        x: Object.keys(timeData),
+        y: Object.keys(timeData).map(year => timeData[year][cluster] || 0),
+        name: cluster,
+        type: 'scatter',
+        mode: 'lines+markers',
+        line: { color: clusterColors[cluster] }
+    }));
+
+    Plotly.newPlot('topicClustersOverTimeChart', traces, { title: 'Change of Topic Clusters Over Time', layout: {autosize: true, paper_bgcolor: '#333', plot_bgcolor: '#333', font: {color: 'white'} } });
+}
 // Themencluster nach Kontinent
 function updateTopicsByContinent() {
     let continentData = {};
@@ -219,64 +248,7 @@ function updateTopicsByContinent() {
     Plotly.newPlot('topicsByContinentChart', traces, plotlyLayout);
 }
 
-    function updateTopicClustersOverTimeByContinent() {
-    let timeData = {};
-    let clusterColors = getClusterColors();
-    let filteredArtworks = filterArtworks(artworks);
-
-    filteredArtworks.forEach(artwork => {
-        let year = artwork.properties.year;
-        let country = artwork.properties.location.split(", ").pop();
-        let continent = continentMapping[country] || "Other";
-
-        let cluster = artwork.properties.tags.topic.map(topic => 
-            Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))
-        ).filter(Boolean);
-
-        if (!timeData[continent]) timeData[continent] = {};
-        if (!timeData[continent][year]) timeData[continent][year] = {};
-        
-        cluster.forEach(c => {
-            if (!timeData[continent][year][c]) timeData[continent][year][c] = 0;
-            timeData[continent][year][c]++;
-        });
-    });
-
-    let sortedContinents = Object.keys(timeData).sort();
-    let sortedYears = [...new Set(filteredArtworks.map(a => a.properties.year))].sort();
-
-    let traces = Object.keys(clusterColors).map(cluster => ({
-        x: sortedYears,
-        y: sortedYears.map(year => 
-            sortedContinents.map(continent => timeData[continent][year]?.[cluster] || 0).reduce((a, b) => a + b, 0)
-        ),
-        name: cluster,
-        type: 'scatter',
-        mode: 'lines+markers',
-        marker: { color: clusterColors[cluster] }
-    }));
-
-    let layout = {
-        title: "Change of Topic Clusters Over Time by Continent",
-        autosize: true,
-        responsive: true,
-        paper_bgcolor: "#333",
-        plot_bgcolor: "#333",
-        font: { color: "white" },
-        xaxis: {
-            automargin: true,
-            tickangle: -45,
-            showgrid: true
-        },
-        yaxis: {
-            automargin: true,
-            showgrid: true
-        }
-    };
-
-    Plotly.newPlot('topicClustersOverTimeByContinentChart', traces, layout);
-}
-
+ 
 
         function updateCoOccurrenceNetwork() {
     let nodes = [];
