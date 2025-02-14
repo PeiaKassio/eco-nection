@@ -11,9 +11,21 @@ let selectedTopics = [];
 // Daten laden
 async function loadData() {
     try {
-        artworks = await fetch('data/artwork-data.json').then(res => res.json());
-        topicClusters = await fetch('data/topicClusters.json').then(res => res.json());
-        continentMapping = await fetch('data/continentMapping.json').then(res => res.json());
+        // JSON-Dateien aus dem 'data'-Ordner laden
+        artworks = await fetch('data/artwork-data.json').then(res => {
+            if (!res.ok) throw new Error('Failed to load artwork-data.json');
+            return res.json();
+        });
+
+        topicClusters = await fetch('data/topicClusters.json').then(res => {
+            if (!res.ok) throw new Error('Failed to load topicClusters.json');
+            return res.json();
+        });
+
+        continentMapping = await fetch('data/continentMapping.json').then(res => {
+            if (!res.ok) throw new Error('Failed to load continentMapping.json');
+            return res.json();
+        });
 
         console.log("JSON files loaded successfully");
         initializeFilters();
@@ -30,25 +42,60 @@ function initializeFilters() {
     const countrySelect = document.getElementById('countrySelect');
     const topicClusterSelect = document.getElementById('topicClusterSelect');
 
+    // "Alle"-Option zu den Filtern hinzufügen
     continentSelect.add(new Option('All Continents', 'all'));
     countrySelect.add(new Option('All Countries', 'all'));
     topicClusterSelect.add(new Option('All Topic Clusters', 'all'));
 
+    // Kontinente füllen (alphabetisch sortiert)
     let uniqueContinents = new Set(Object.values(continentMapping));
     let sortedContinents = Array.from(uniqueContinents).sort();
-    sortedContinents.forEach(continent => continentSelect.add(new Option(continent, continent)));
+    sortedContinents.forEach(continent => {
+        let option = new Option(continent, continent);
+        continentSelect.add(option);
+    });
 
+    // Länder füllen (alphabetisch sortiert)
     let sortedCountries = Object.keys(continentMapping).sort();
-    sortedCountries.forEach(country => countrySelect.add(new Option(country, country)));
+    sortedCountries.forEach(country => {
+        let option = new Option(country, country);
+        countrySelect.add(option);
+    });
 
+    // Themencluster füllen (alphabetisch sortiert)
     let sortedTopicClusters = Object.keys(topicClusters).sort();
-    sortedTopicClusters.forEach(cluster => topicClusterSelect.add(new Option(cluster, cluster)));
+    sortedTopicClusters.forEach(cluster => {
+        let option = new Option(cluster, cluster);
+        topicClusterSelect.add(option);
+    });
 
+    // EventListener für Änderungen an den Filtern
     continentSelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
     countrySelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
     topicClusterSelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
 
     document.getElementById('resetFilters').addEventListener('click', resetFilters);
+}
+
+// Filter auf Daten anwenden
+function applyFilters() {
+    selectedContinent = Array.from(document.getElementById('continentSelect').selectedOptions).map(option => option.value);
+    selectedCountry = Array.from(document.getElementById('countrySelect').selectedOptions).map(option => option.value);
+    selectedTopics = Array.from(document.getElementById('topicClusterSelect').selectedOptions).map(option => option.value);
+
+    console.log("Selected Filters:", selectedContinent, selectedCountry, selectedTopics);
+}
+
+// Reset-Filter
+function resetFilters() {
+    document.getElementById('continentSelect').selectedIndex = 0;
+    document.getElementById('countrySelect').selectedIndex = 0;
+    document.getElementById('topicClusterSelect').selectedIndex = 0;
+
+    selectedContinent = [];
+    selectedCountry = [];
+    selectedTopics = [];
+    updateCharts();
 }
 
 // Diagramme aktualisieren
@@ -59,16 +106,21 @@ function updateCharts() {
     updateTopicsByContinent();
     updateCoOccurrenceNetwork();
 
-    document.querySelectorAll('.chart-container').forEach(container => {
-        container.classList.add('overflow-x-auto', 'whitespace-nowrap');
-    });
-
     document.querySelectorAll('.plotly-chart').forEach(chart => {
-        chart.classList.add('min-w-[900px]');
+        chart.style.minWidth = '800px';
     });
 }
 
-// Plotly Layout
+// Hilfsfunktion für Farben
+function getClusterColors() {
+    let clusterColors = {};
+    Object.keys(topicClusters).forEach(cluster => {
+        clusterColors[cluster] = topicClusters[cluster].color;
+    });
+    return clusterColors;
+}
+
+// Zentrales Plotly-Layout für alle Diagramme
 const plotlyLayout = {
     barmode: 'stack',
     autosize: true,
@@ -76,9 +128,67 @@ const plotlyLayout = {
     paper_bgcolor: '#333',
     plot_bgcolor: '#333',
     font: { color: 'white' },
-    xaxis: { automargin: true, tickangle: -45, showgrid: true },
-    yaxis: { automargin: true, showgrid: true }
+    xaxis: {
+        automargin: true,
+        tickangle: -45,
+        showgrid: true
+    },
+    yaxis: {
+        automargin: true,
+        showgrid: true
+    }
 };
+
+// Filter auf die Kunstwerke anwenden
+function filterArtworks(artworks) {
+    return artworks.features.filter(artwork => {
+        const continent = continentMapping[artwork.properties.location] || "Other";
+        if (selectedContinent.length > 0 && !selectedContinent.includes(continent) && !selectedContinent.includes('all')) {
+            return false;
+        }
+
+        const country = artwork.properties.location.split(", ").pop();
+        if (selectedCountry.length > 0 && !selectedCountry.includes(country) && !selectedCountry.includes('all')) {
+            return false;
+        }
+
+        const topics = artwork.properties.tags.topic;
+        const clusters = topics.map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))).filter(Boolean);
+        if (selectedTopics.length > 0 && !selectedTopics.some(cluster => clusters.includes(cluster)) && !selectedTopics.includes('all')) {
+            return false;
+        }
+
+        return true;
+    });
+}
+
+// Themencluster nach Land
+function updateCountryChart() {
+    let countryData = {};
+    let clusterColors = getClusterColors();
+    let filteredArtworks = filterArtworks(artworks);
+
+    filteredArtworks.forEach(artwork => {
+        let country = artwork.properties.location.split(", ").pop();
+        let cluster = artwork.properties.tags.topic.map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))).filter(Boolean);
+
+        if (!countryData[country]) countryData[country] = {};
+        cluster.forEach(c => {
+            if (!countryData[country][c]) countryData[country][c] = 0;
+            countryData[country][c]++;
+        });
+    });
+
+    let traces = Object.keys(clusterColors).map(cluster => ({
+        x: Object.keys(countryData),
+        y: Object.keys(countryData).map(country => countryData[country][cluster] || 0),
+        name: cluster,
+        type: 'bar',
+        marker: { color: clusterColors[cluster] }
+    }));
+
+    Plotly.newPlot('countryChart', traces, plotlyLayout);
+}
 
 // Themencluster nach Kontinent
 function updateTopicsByContinent() {
@@ -92,12 +202,15 @@ function updateTopicsByContinent() {
         let cluster = artwork.properties.tags.topic.map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))).filter(Boolean);
 
         if (!continentData[continent]) continentData[continent] = {};
-        cluster.forEach(c => continentData[continent][c] = (continentData[continent][c] || 0) + 1);
+        cluster.forEach(c => {
+            if (!continentData[continent][c]) continentData[continent][c] = 0;
+            continentData[continent][c]++;
+        });
     });
 
     let traces = Object.keys(clusterColors).map(cluster => ({
         x: Object.keys(continentData),
-        y: Object.values(continentData).map(data => data[cluster] || 0),
+        y: Object.keys(continentData).map(continent => continentData[continent][cluster] || 0),
         name: cluster,
         type: 'bar',
         marker: { color: clusterColors[cluster] }
