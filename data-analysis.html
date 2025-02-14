@@ -9,6 +9,18 @@
     <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist"></script>
     <script src="https://unpkg.com/vis-network/dist/vis-network.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .chart-container {
+            width: 100%;
+            overflow-x: auto; /* Aktiviert horizontales Scrollen */
+            white-space: nowrap;
+            padding-bottom: 10px;
+        }
+        .plotly-chart {
+            min-width: 800px; /* Mindestbreite, um Beschneidung zu verhindern */
+        }
+    </style>
 </head>
 <body class="h-full flex flex-col">
     <nav class="navbar bg-base-300">
@@ -35,21 +47,32 @@
             </div>
 
             <div class="flex-grow flex flex-col gap-6">
+                
+                <!-- Chart 1: Number of Topic Clusters by Country -->
                 <section id="topics-by-country" class="mb-8 chart-container">
                     <h3 class="text-2xl font-semibold mb-4">Number of Topic Clusters by Country</h3>
-                    <div id="countryChart"></div>
+                    <div class="w-[800px]">
+                        <div id="countryChart" class="plotly-chart"></div>
+                    </div>
                 </section>
 
+                <!-- Chart 2: Change of Topic Clusters Over Time -->
                 <section id="change-over-time" class="mb-8 chart-container">
                     <h3 class="text-2xl font-semibold mb-4">Change of Topic Clusters Over Time</h3>
-                    <div id="topicClustersOverTimeChart"></div>
+                    <div class="w-[800px]">
+                        <div id="topicClustersOverTimeChart" class="plotly-chart"></div>
+                    </div>
                 </section>
 
+                <!-- Chart 3: Number of Topics by Continent -->
                 <section id="topics-by-continent" class="mb-8 chart-container">
-                    <h3 class="text-2xl font-semibold mb-4">Number of Topic Clusters by Continent</h3>
-                    <div id="topicsByContinentChart"></div>
+                    <h3 class="text-2xl font-semibold mb-4">Number of Topics by Continent</h3>
+                    <div class="w-[800px]">
+                        <div id="topicsByContinentChart" class="plotly-chart"></div>
+                    </div>
                 </section>
 
+                <!-- Co-Occurrence Network -->
                 <section id="co-occurrence-network" class="mb-8">
                     <h3 class="text-2xl font-semibold mb-4">Co-Occurrence Network</h3>
                     <div id="coOccurrenceNetwork" class="h-80"></div>
