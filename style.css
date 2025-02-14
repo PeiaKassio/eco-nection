@@ -11,6 +11,7 @@
     position: relative; /* Sidebar floatet jetzt mit dem Rest der Seite */
   }
 }
+
 @media (min-width: 1024px) {
   .dropdown .dropdown-content {
       display: block !important; /* Ensure filters are always visible in desktop mode */
@@ -42,27 +43,37 @@ body {
   }
 }
 
-
+/* Verbesserte Darstellung der Diagramme */
 .chart-container {
-  overflow-x: auto;
-  position: relative;
+  overflow-x: auto; /* Ermöglicht horizontales Scrollen */
   white-space: nowrap;
   width: 100%;
   max-width: 100%;
   height: auto;
+  padding-bottom: 10px; /* Abstand für besseres Scrollen */
 }
 
+/* Mindestbreite für die Diagramme, damit sie nicht zu schmal werden */
+.plotly-chart {
+  min-width: 800px; /* Falls notwendig, anpassen */
+  max-width: 100%;
+}
+
+/* Hauptbereich */
 main {
   width: 100%;
   max-width: 100%;
   margin: auto;
 }
+
+/* Anpassung für alle Diagramm-Container */
 section.chart-container {
   display: block;
   width: 100%;
   max-width: 100%;
 }
 
+/* Fixierter Zähler für Kunstwerke */
 #artwork-count {
     position: fixed;
     bottom: 20px;
@@ -77,3 +88,14 @@ section.chart-container {
     text-align: center;
 }
 
+/* Verbesserung für mobile Darstellung */
+@media (max-width: 768px) {
+  .chart-container {
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+  }
+
+  .plotly-chart {
+      min-width: 600px; /* Kleinere Mindestbreite für mobile Screens */
+  }
+}
