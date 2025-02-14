@@ -69,10 +69,10 @@ function initializeFilters() {
         topicClusterSelect.add(option);
     });
 
-    // EventListener für Änderungen an den Filtern
-    continentSelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
-    countrySelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
-    topicClusterSelect.addEventListener('change', () => { applyFilters(); updateCharts(); });
+    /// EventListener für Änderungen an den Filtern
+    continentSelect.addEventListener('change', () => { deselectAllOption(continentSelect); applyFilters(); updateCharts(); });
+    countrySelect.addEventListener('change', () => { deselectAllOption(countrySelect); applyFilters(); updateCharts(); });
+    topicClusterSelect.addEventListener('change', () => { deselectAllOption(topicClusterSelect); applyFilters(); updateCharts(); });
 
     document.getElementById('resetFilters').addEventListener('click', resetFilters);
 }
