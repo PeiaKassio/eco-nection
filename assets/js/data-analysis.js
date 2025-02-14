@@ -153,18 +153,13 @@ function filterArtworks(artworks) {
         const country = artwork.properties.location.split(", ").pop().trim();
         const continent = country in continentMapping ? continentMapping[country] : (country.toLowerCase() in continentMapping ? continentMapping[country.toLowerCase()] : "Other");
 
-
-
-        console.log(`🔍 DEBUG: Country: ${country}, Continent: ${continent}, Selected Continent: ${selectedContinent}`);
         
         if (selectedContinent.length > 0 && !selectedContinent.includes(continent) && !selectedContinent.includes('all')) {
-            console.log(`🚨 Entfernt: ${country} gehört zu ${continent}, ist aber nicht in ${selectedContinent}`);
             return false;
         }
 
         
         if (selectedCountry.length > 0 && !selectedCountry.includes(country) && !selectedCountry.includes('all')) {
-            console.log("🚀 DEBUG: Selected Continent:", selectedContinent); // 👉 Prüft, ob der Wert richtig gespeichert ist
             return false;
         }
 
@@ -245,8 +240,6 @@ function updateTopicsByContinent() {
         let country = artwork.properties.location.split(", ").pop();
         let continent = continentMapping[country] || "Other";
         let cluster = artwork.properties.tags.topic.map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))).filter(Boolean);
-
-        console.log(`🌍 DEBUG: Update Continent Chart - Country: ${country}, Continent: ${continent}`);
         
         if (!continentData[continent]) continentData[continent] = {};
         cluster.forEach(c => {
@@ -254,10 +247,6 @@ function updateTopicsByContinent() {
             continentData[continent][c]++;
         });
     });
-
-
-    
-    console.log("📊 DEBUG: Continent Data:", continentData);
 
 
     let traces = Object.keys(clusterColors).map(cluster => ({
