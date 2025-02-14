@@ -143,12 +143,17 @@ const plotlyLayout = {
 function filterArtworks(artworks) {
     return artworks.features.filter(artwork => {
         const continent = continentMapping[artwork.properties.location] || "Other";
+
+        console.log(`🔍 DEBUG: Country: ${country}, Continent: ${continent}, Selected Continent: ${selectedContinent}`);
+        
         if (selectedContinent.length > 0 && !selectedContinent.includes(continent) && !selectedContinent.includes('all')) {
+            console.log(`🚨 Entfernt: ${country} gehört zu ${continent}, ist aber nicht in ${selectedContinent}`);
             return false;
         }
 
         const country = artwork.properties.location.split(", ").pop();
         if (selectedCountry.length > 0 && !selectedCountry.includes(country) && !selectedCountry.includes('all')) {
+            console.log("🚀 DEBUG: Selected Continent:", selectedContinent); // 👉 Prüft, ob der Wert richtig gespeichert ist
             return false;
         }
 
@@ -171,7 +176,7 @@ function updateCountryChart() {
     filteredArtworks.forEach(artwork => {
         let country = artwork.properties.location.split(", ").pop();
         let cluster = artwork.properties.tags.topic.map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))).filter(Boolean);
-
+        
         if (!countryData[country]) countryData[country] = {};
         cluster.forEach(c => {
             if (!countryData[country][c]) countryData[country][c] = 0;
@@ -230,12 +235,19 @@ function updateTopicsByContinent() {
         let continent = continentMapping[country] || "Other";
         let cluster = artwork.properties.tags.topic.map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))).filter(Boolean);
 
+        console.log(`🌍 DEBUG: Update Continent Chart - Country: ${country}, Continent: ${continent}`);
+        
         if (!continentData[continent]) continentData[continent] = {};
         cluster.forEach(c => {
             if (!continentData[continent][c]) continentData[continent][c] = 0;
             continentData[continent][c]++;
         });
     });
+
+
+    
+    console.log("📊 DEBUG: Continent Data:", continentData);
+
 
     let traces = Object.keys(clusterColors).map(cluster => ({
         x: Object.keys(continentData),
@@ -246,6 +258,7 @@ function updateTopicsByContinent() {
     }));
 
     Plotly.newPlot('topicsByContinentChart', traces, plotlyLayout);
+
 }
 
  
