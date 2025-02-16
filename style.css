@@ -53,7 +53,7 @@ body {
 }
 
 .plotly-chart {
-    min-width: 800px; /* Falls notwendig, anpassen */
+    min-width: 600px; /* Falls notwendig, anpassen */
     max-width: 100%;
 }
 
