@@ -338,6 +338,7 @@ function resetFilters() {
     document.getElementById('year-to').value = '';
 
     applyFilters();
+    updateArtworkCount();
 }
 
 document.getElementById('reset-filters').addEventListener('click', resetFilters);
