@@ -29,7 +29,7 @@ map.on('load', async () => {
         console.log("Artwork Data Loaded:", artworkData.features);
 
         const topicClusterResponse = await fetch('data/topicClusters.json');
-        const topicClusters = await topicClusterResponse.json();
+        topicClusters = await topicClusterResponse.json();
         console.log("Topic Clusters Loaded:", topicClusters);
 
         // Cluster-Farben definieren
