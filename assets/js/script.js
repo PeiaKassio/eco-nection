@@ -241,12 +241,12 @@ function applyFilters() {
         ]);
     }
 
-    if (selectedTopics.length > 0) {
-        filter.push([
-            'any',
-            ...selectedTopics.map(topic => ['in', topic, ['coalesce', ['get', 'topic', ['get', 'tags']], ['literal', []]]])
-        ]);
-    }
+    //if (selectedTopics.length > 0) {
+      //  filter.push([
+        //    'any',
+          //  ...selectedTopics.map(topic => ['in', topic, ['coalesce', ['get', 'topic', ['get', 'tags']], ['literal', []]]])
+        //]);
+    //}
 
     if (selectedArtForms.length > 0) {
         filter.push([
