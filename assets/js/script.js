@@ -28,7 +28,7 @@ map.on('load', async () => {
         artworkData = await artworkResponse.json();
         console.log("Artwork Data Loaded:", artworkData.features);
 
-        const artworkCount = artworkData?.features?.length || 0 ;
+        artworkCount = artworkData?.features?.length || 0 ;
         const countElement = document.getElementById('artwork-count');
         countElement.textContent = `Artwork Count: ${artworkCount}`;
 
