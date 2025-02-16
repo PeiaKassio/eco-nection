@@ -206,8 +206,11 @@ function updateTopicClustersOverTime() {
     let clusterColors = getClusterColors();
     let filteredArtworks = filterArtworks(artworks);
 
+    // 📌 Jahre sammeln & Themen zuordnen
     filteredArtworks.forEach(artwork => {
-        let year = artwork.properties.year;
+        let year = parseInt(artwork.properties.year, 10);
+        if (isNaN(year)) return;
+
         let cluster = artwork.properties.tags.topic.map(topic => {
             return Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic));
         }).filter(Boolean);
@@ -219,17 +222,45 @@ function updateTopicClustersOverTime() {
         });
     });
 
+    // 📌 Sortierte Jahre als X-Achse (damit kein Durcheinander entsteht)
+    let years = Object.keys(timeData).map(Number).sort((a, b) => a - b);
+
+    // 📌 Traces für jedes Cluster erstellen
     let traces = Object.keys(clusterColors).map(cluster => ({
-        x: Object.keys(timeData),
-        y: Object.keys(timeData).map(year => timeData[year][cluster] || 0),
+        x: years,
+        y: years.map(year => timeData[year]?.[cluster] || 0), // Fehlende Werte mit 0 füllen
         name: cluster,
         type: 'scatter',
         mode: 'lines+markers',
-        line: { color: clusterColors[cluster] }
+        line: { color: clusterColors[cluster] || "#ffffff" } // Fallback-Farbe
     }));
 
-    Plotly.newPlot('topicClustersOverTimeChart', traces, { title: 'Change of Topic Clusters Over Time', layout: {autosize: true, paper_bgcolor: '#333', plot_bgcolor: '#333', font: {color: 'white'} } });
+    // 📌 Layout optimieren
+    let layout = {
+        title: 'Change of Topic Clusters Over Time',
+        autosize: true,
+        paper_bgcolor: '#333',
+        plot_bgcolor: '#333',
+        font: { color: 'white' },
+        xaxis: {
+            title: 'Year',
+            tickmode: "linear",
+            dtick: 1, // 🔹 Nur Ganzzahlen anzeigen
+            showgrid: false,
+            showline: true,
+            zeroline: false
+        },
+        yaxis: {
+            title: 'Count',
+            showgrid: true,
+            zeroline: true
+        }
+    };
+
+    // 📌 Diagramm aktualisieren
+    Plotly.newPlot('topicClustersOverTimeChart', traces, layout);
 }
+
 // Themencluster nach Kontinent
 function updateTopicsByContinent() {
     let continentData = {};
