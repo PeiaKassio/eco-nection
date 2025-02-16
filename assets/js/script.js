@@ -43,10 +43,10 @@ map.on('load', async () => {
             feature.properties.mainCluster = Object.keys(topicClusters).find(cluster =>
                 topicClusters[cluster].topics.some(topic => feature.properties.tags?.topic?.includes(topic))
             ) || 'Uncategorized';
-        });
+        
 
         feature.properties.mainClusterColor = getClusterColor(feature.properties.mainCluster);
-
+    });
         populateFilterDropdowns(artworkData, topicClusters);
 
             map.addSource('artworks', {
