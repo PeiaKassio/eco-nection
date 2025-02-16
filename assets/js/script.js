@@ -48,13 +48,12 @@ map.on('load', async () => {
 
         populateFilterDropdowns(artworkData, topicClusters);
 
-        // ✅ Clustering aktivieren
-        map.addSource('artworks', {
+            map.addSource('artworks', {
             type: 'geojson',
             data: artworkData,
-            cluster: true,  // 🔹 Clustering aktivieren
-            clusterMaxZoom: 10, // 🔹 Bis zu welchem Zoom Clustering aktiv ist
-            clusterRadius: 50  // 🔹 Abstand der Punkte innerhalb eines Clusters
+            cluster: true,  // 🔹 Clustering aktivieren/deaktivieren
+            clusterMaxZoom: 2, // 🔹 Bis zu welchem Zoom Clustering aktiv ist
+            clusterRadius: 10  // 🔹 Abstand der Punkte innerhalb eines Clusters
         });
 
         // ✅ Cluster Layer (Zusammengefasste Punkte)
@@ -222,15 +221,16 @@ function applyFilters() {
     }
 
     const searchText = document.getElementById('search-bar').value.toLowerCase();
-    const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions)
-        .map(option => option.value)
-        .filter(value => value);
+ //  const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions)
+ //       .map(option => option.value)
+ //       .filter(value => value);
     const selectedArtForms = Array.from(document.getElementById('artform-filter').selectedOptions)
         .map(option => option.value)
         .filter(value => value);
     const selectedCluster = document.getElementById('cluster-filter').value;
-
-    const filter = ['all'];
+// 🔹 Werte aus den Jahresfeldern holen
+    const yearFrom = parseInt(document.getElementById('year-from').value, 10) || 1800;
+    const yearTo = parseInt(document.getElementById('year-to').value, 10) || 2025;
 
     if (searchText) {
         filter.push([
