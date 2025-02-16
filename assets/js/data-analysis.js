@@ -226,7 +226,7 @@ function updateTopicClustersOverTime() {
     let years = Object.keys(timeData).map(Number).sort((a, b) => a - b);
 
     // 📌 Intervalle für Jahre
-    let tickvals= year.filter(year => year % 5 === 0);
+    let tickvals = years.filter(year => year % 5 === 0);
 
 
     // 📌 Traces für jedes Cluster erstellen
