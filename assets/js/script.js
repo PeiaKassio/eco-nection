@@ -46,7 +46,6 @@ map.on('load', async () => {
         });
 
         feature.properties.mainClusterColor = getClusterColor(feature.properties.mainCluster);
-        });
 
         populateFilterDropdowns(artworkData, topicClusters);
 
@@ -280,8 +279,6 @@ function applyFilters() {
         }
     }
 }
-
-
 
 function resetFilters() {
     document.getElementById('search-bar').value = '';
