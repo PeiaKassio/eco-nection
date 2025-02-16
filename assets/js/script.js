@@ -30,58 +30,94 @@ map.on('load', async () => {
         const topicClusterResponse = await fetch('data/topicClusters.json');
         topicClusters = await topicClusterResponse.json();
 
-        // artwork-count
-        const countElement = document.getElementById('artwork-count');
-        if (countElement) {
-            const artworkCount = artworkData?.features?.length || 0;
-            countElement.textContent = `Total Artworks: ${artworkCount}`;
-            console.log(` Artwork count updated: ${artworkCount}`);
-        } else {
-            console.warn(" Element with ID 'artwork-count' not found.");
-        }
-
-        
-        // Assign colors to artworks based on topics
+        // Cluster-Farben definieren
         function getClusterColor(firstTopic) {
             for (const [cluster, data] of Object.entries(topicClusters)) {
                 if (data.topics.includes(firstTopic)) {
                     return data.color;
                 }
             }
-            return '#ffffff';
+            return '#ffffff'; // Standardfarbe, falls kein Topic gefunden wird
         }
 
         artworkData.features.forEach(feature => {
-            if (!feature.properties) {
-                console.error("Feature missing properties:", feature);
-                return; // Skip the feature
-            }
+            if (!feature.properties) return;
             const firstTopic = feature.properties.tags?.topic?.[0];
-            feature.properties.mainClusterColor = getClusterColor(firstTopic) || '#ffffff';
+            feature.properties.mainClusterColor = getClusterColor(firstTopic);
         });
 
         populateFilterDropdowns(artworkData, topicClusters);
 
+        // ✅ Clustering aktivieren
         map.addSource('artworks', {
             type: 'geojson',
-            data: artworkData
+            data: artworkData,
+            cluster: true,  // 🔹 Clustering aktivieren
+            clusterMaxZoom: 10, // 🔹 Bis zu welchem Zoom Clustering aktiv ist
+            clusterRadius: 50  // 🔹 Abstand der Punkte innerhalb eines Clusters
         });
 
+        // ✅ Cluster Layer (Zusammengefasste Punkte)
         map.addLayer({
-            id: 'unclustered-point',
+            id: 'clusters',
             type: 'circle',
             source: 'artworks',
+            filter: ['has', 'point_count'], // Zeige nur Cluster
             paint: {
-                'circle-color': ['get', 'mainClusterColor'],
-                'circle-radius': 10,
+                'circle-color': '#ff7300',
+                'circle-radius': ['step', ['get', 'point_count'], 15, 10, 25, 50, 35],
                 'circle-stroke-width': 1,
                 'circle-stroke-color': '#fff'
             }
         });
 
+        // ✅ Cluster-Label (Zeigt die Anzahl der Punkte)
+        map.addLayer({
+            id: 'cluster-count',
+            type: 'symbol',
+            source: 'artworks',
+            filter: ['has', 'point_count'],
+            layout: {
+                'text-field': '{point_count_abbreviated}',
+                'text-size': 14,
+                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold']
+            },
+            paint: {
+                'text-color': '#fff'
+            }
+        });
+
+        // ✅ Einzelne Punkte (die nicht mehr geclustert sind)
+        map.addLayer({
+            id: 'unclustered-point',
+            type: 'circle',
+            source: 'artworks',
+            filter: ['!', ['has', 'point_count']], // Zeige nur Einzelpunkte
+            paint: {
+                'circle-color': ['get', 'mainClusterColor'],
+                'circle-radius': 8,
+                'circle-stroke-width': 1,
+                'circle-stroke-color': '#fff'
+            }
+        });
+
+        // ✅ Klick-Event für Cluster: Zoom auf Cluster-Zentrum
+        map.on('click', 'clusters', (e) => {
+            const features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
+            const clusterId = features[0].properties.cluster_id;
+            map.getSource('artworks').getClusterExpansionZoom(clusterId, (err, zoom) => {
+                if (err) return;
+                map.easeTo({
+                    center: features[0].geometry.coordinates,
+                    zoom: zoom
+                });
+            });
+        });
+
+        // ✅ Klick-Event für Einzelpunkte: Details anzeigen
         map.on('click', 'unclustered-point', (e) => {
-            const coordinates = e.features[0].geometry.coordinates.slice();
             const properties = e.features[0].properties || {};
+            const coordinates = e.features[0].geometry.coordinates.slice();
             const title = properties.title || 'Untitled';
             const description = properties.description || 'No Description';
             const artist = properties.artist || 'Unknown';
@@ -121,10 +157,12 @@ map.on('load', async () => {
                 `)
                 .addTo(map);
         });
+
     } catch (error) {
         console.error("Error loading data:", error);
     }
 });
+
 
 // Populate dropdown filters
 function populateFilterDropdowns(artworkData, topicClusters) {
@@ -139,17 +177,17 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     });
 
     // 🔹 Sortiere Topics, Artforms und Clusters alphabetisch
-    const sortedTopics = [...topics].sort((a, b) => a.localeCompare(b));
+    //const sortedTopics = [...topics].sort((a, b) => a.localeCompare(b));
     const sortedArtforms = [...artforms].sort((a, b) => a.localeCompare(b));
     const sortedTopicClusters = Object.fromEntries(Object.entries(topicClusters).sort(([a], [b]) => a.localeCompare(b)));
 
-    const topicSelect = document.getElementById('tag-filter');
-    topicSelect.innerHTML = '<option value="">All Topics</option>';
-    sortedTopics.forEach(topic => {
-        const option = document.createElement('option');
-        option.value = topic;
-        option.textContent = topic;
-        topicSelect.appendChild(option);
+    //const topicSelect = document.getElementById('tag-filter');
+     //topicSelect.innerHTML = '<option value="">All Topics</option>';
+     //sortedTopics.forEach(topic => {
+        // const option = document.createElement('option');
+         //option.value = topic;
+         //option.textContent = topic;
+         //topicSelect.appendChild(option);
     });
 
     const artformSelect = document.getElementById('artform-filter');
