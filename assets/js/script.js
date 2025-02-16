@@ -198,7 +198,8 @@ function applyFilters() {
         filter.push([
             'any',
             ['>=', ['index-of', searchText, ['downcase', ['get', 'title']]], 0],
-            ['>=', ['index-of', searchText, ['downcase', ['get', 'description']]], 0]
+            ['>=', ['index-of', searchText, ['downcase', ['get', 'description']]], 0],
+            ['>=', ['index-of', searchText, ['downcase', ['get', 'artist']]], 0] // 🔹 NEU: Suche nach Künstlernamen
         ]);
     }
 
