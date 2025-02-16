@@ -93,12 +93,12 @@
                         <i class="ti ti-search text-xl"></i>
                     </label>
                 </li>
-                <li>
+                <!--<li>
                     <select id="tag-filter" class="select select-bordered select-sm w-full max-w-xs" multiple>
                         <option selected value="">All Topics</option>
-                        <!-- Dynamische Optionen werden hier durch JavaScript hinzugefügt -->
+                        <!-- Dynamische Optionen werden hier durch JavaScript hinzugefügt 
                     </select>
-                </li>
+                </li>-->
                 <li>
                     <select id="cluster-filter" class="select select-bordered select-sm w-full max-w-xs" multiple>
                         <option selected value="">All Clusters</option>
@@ -110,6 +110,13 @@
                         <option value="">All Art Forms</option>
                         <!-- Dynamische Optionen werden hier durch JavaScript hinzugefügt -->
                     </select>
+                </li>
+                <li>
+                    <h3 class="text-sm font-semibold">By Year</h3>
+                    <div class="flex space-x-2">
+                        <input id="year-from" type="number" placeholder="From" class="input input-bordered input-sm w-1/2" min="1800" max="2025">
+                        <input id="year-to" type="number" placeholder="To" class="input input-bordered input-sm w-1/2" min="1800" max="2025">
+                    </div>
                 </li>
                 <li>
                     <button id="reset-filters" class="btn btn-outline btn-sm btn-primary">Reset Filters</button>
