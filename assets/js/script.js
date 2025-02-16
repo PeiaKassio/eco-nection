@@ -283,9 +283,11 @@ function applyFilters() {
 
 function resetFilters() {
     document.getElementById('search-bar').value = '';
-    document.getElementById('tag-filter').selectedIndex = 0;
     document.getElementById('artform-filter').selectedIndex = 0;
-    document.getElementById('cluster-filter').selectedIndex = 0;
+    document.getElementById('cluster-filter').selectedIndex = 0
+    document.getElementById('year-from').addEventListener('input', applyFilters);
+    document.getElementById('year-to').addEventListener('input', applyFilters);
+
     applyFilters();
 }
 
