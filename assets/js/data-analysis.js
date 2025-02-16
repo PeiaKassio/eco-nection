@@ -252,7 +252,7 @@ function updateTopicClustersOverTime() {
         xaxis: {
             title: 'Year',
             tickmode: "array",
-            tickvals: years.filter(year => year % 5 === 0),
+            tickvals: years.filter(year => year % 2 === 0),
             showgrid: false,
             showline: true,
             zeroline: false
