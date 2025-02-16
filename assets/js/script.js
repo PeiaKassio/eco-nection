@@ -293,7 +293,7 @@ function resetFilters() {
 
 document.getElementById('reset-filters').addEventListener('click', resetFilters);
 
-['tag-filter', 'artform-filter', 'cluster-filter'].forEach(filterId => {
+['artform-filter', 'cluster-filter'].forEach(filterId => {
     document.getElementById(filterId).addEventListener('change', applyFilters);
 });
 
