@@ -251,10 +251,8 @@ function updateTopicClustersOverTime() {
         font: { color: 'white' },
         xaxis: {
             title: 'Year',
-            tickmode: "linear",
-            //tickformat: 'd',
-            tickvals: tickvals,
-            //dtick: 1, // 🔹 Nur Ganzzahlen anzeigen
+            tickmode: "array",
+            tickvals: tickvals: years.filter(year => year % 2 === 0),
             showgrid: false,
             showline: true,
             zeroline: false
