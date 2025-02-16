@@ -28,9 +28,9 @@ map.on('load', async () => {
         artworkData = await artworkResponse.json();
         console.log("Artwork Data Loaded:", artworkData.features);
 
-        const countElement = document.getElementById('artwork-count');
         const artworkCount = artworkData?.features?.length || 0 ;
-        countElement.text.Content = `Artwork Count: ${artworkCount}`;
+        const countElement = document.getElementById('artwork-count');
+        countElement.textContent = `Artwork Count: ${artworkCount}`;
 
         const topicClusterResponse = await fetch('data/topicClusters.json');
         topicClusters = await topicClusterResponse.json();
