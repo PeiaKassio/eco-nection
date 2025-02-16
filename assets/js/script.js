@@ -188,7 +188,7 @@ function populateFilterDropdowns(artworkData, topicClusters) {
          //option.value = topic;
          //option.textContent = topic;
          //topicSelect.appendChild(option);
-    });
+    //});
 
     const artformSelect = document.getElementById('artform-filter');
     artformSelect.innerHTML = '<option value="">All Art Forms</option>';
