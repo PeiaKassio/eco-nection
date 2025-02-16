@@ -361,7 +361,7 @@
                         "Sustainability"
                     ],
                     "artform": [
-                        "Installation Art"
+                        "Installation"
                     ]
                 },
                 "thumbnail": ""
@@ -1023,7 +1023,7 @@
                 "title": "Eco-Walls of Buenos Aires",
                 "description": "Murals created from recycled materials.",
                 "artist": "Ana Lopez",
-                "type": "Mural",
+                "type": "Mural Art",
                 "location": "Buenos Aires, Argentina",
                 "year": 2021,
                 "tags": {
@@ -1469,7 +1469,7 @@
                     ],
                     "artform": [
                         "Installation",
-                        "Green Architecture"
+                        "Architecture"
                     ]
                 }
             }
@@ -1514,7 +1514,7 @@
                 "title": "Kinshasa Green Mural",
                 "description": "A mural promoting urban reforestation.",
                 "artist": "Jacques Mbuyi",
-                "type": "Mural",
+                "type": "Mural Art",
                 "location": "Kinshasa, Democratic Republic of the Congo",
                 "year": 2021,
                 "tags": {
@@ -1523,7 +1523,7 @@
                         "Green Spaces"
                     ],
                     "artform": [
-                        "Mural"
+                        "Mural Art"
                     ]
                 }
             }
@@ -1907,7 +1907,7 @@
                 "year": "1979-1980",
                 "tags": {
                     "topic": ["Waste Management", "Public Health"],
-                    "artform": ["Performance", "Social Sculpture"]
+                    "artform": ["Performance"]
                 },
                 "url": "https://en.wikipedia.org/wiki/Mierle_Laderman_Ukeles",
                 "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Ukeles_Touch_Sanitation.jpg"
@@ -2075,7 +2075,7 @@
             "year": 2020,
             "tags": {
                 "topic": ["Deforestation", "Environmental Justice"],
-                "artform": ["Mural", "Street Art"]
+                "artform": ["Mural Art", "Street Art"]
             },
             "url": "https://kobrastreetart.com/",
             "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Amazonian_Warning_Mural.jpg"
