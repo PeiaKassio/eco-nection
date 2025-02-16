@@ -21,6 +21,10 @@ map.on('style.load', () => {
     });
 });
 
+// Cluster-Farben definieren
+    function getClusterColor(mainCluster) {
+             return topicClusters[mainCluster]?.color || '#ffffff';
+    }
 map.on('load', async () => {
     try {
         const artworkResponse = await fetch('data/artwork-data.json');
@@ -28,22 +32,20 @@ map.on('load', async () => {
         console.log("Artwork Data Loaded:", artworkData.features);
 
         const topicClusterResponse = await fetch('data/topicClusters.json');
-        topicClusters = await topicClusterResponse.json();
+        const topicClusters = await topicClusterResponse.json();
+        console.log("Topic Clusters Loaded:", topicClusters);
 
-        // Cluster-Farben definieren
-        function getClusterColor(firstTopic) {
-            for (const [cluster, data] of Object.entries(topicClusters)) {
-                if (data.topics.includes(firstTopic)) {
-                    return data.color;
-                }
-            }
-            return '#ffffff'; // Standardfarbe, falls kein Topic gefunden wird
-        }
-
+        // ✅ mainCluster basierend auf topicClusters zuweisen
         artworkData.features.forEach(feature => {
             if (!feature.properties) return;
-            const firstTopic = feature.properties.tags?.topic?.[0];
-            feature.properties.mainClusterColor = getClusterColor(firstTopic);
+
+            // Finde das passende Topic-Cluster basierend auf den vorhandenen Topics
+            feature.properties.mainCluster = Object.keys(topicClusters).find(cluster =>
+                topicClusters[cluster].topics.some(topic => feature.properties.tags?.topic?.includes(topic))
+            ) || 'Uncategorized';
+        });
+
+        feature.properties.mainClusterColor = getClusterColor(feature.properties.mainCluster);
         });
 
         populateFilterDropdowns(artworkData, topicClusters);
@@ -165,12 +167,9 @@ map.on('load', async () => {
 
 // Populate dropdown filters
 function populateFilterDropdowns(artworkData, topicClusters) {
-    let topics = new Set();
     let artforms = new Set();
-
     artworkData.features.forEach(feature => {
         if (feature.properties.tags) {
-            feature.properties.tags.topic?.forEach(tag => topics.add(tag));
             feature.properties.tags.artform?.forEach(tag => artforms.add(tag));
         }
     });
@@ -178,7 +177,7 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     // 🔹 Sortiere Topics, Artforms und Clusters alphabetisch
     //const sortedTopics = [...topics].sort((a, b) => a.localeCompare(b));
     const sortedArtforms = [...artforms].sort((a, b) => a.localeCompare(b));
-    const sortedTopicClusters = Object.fromEntries(Object.entries(topicClusters).sort(([a], [b]) => a.localeCompare(b)));
+    let sortedTopicClusters = Object.fromEntries(Object.entries(topicClusters).sort(([a], [b]) => a.localeCompare(b)));
 
     //const topicSelect = document.getElementById('tag-filter');
      //topicSelect.innerHTML = '<option value="">All Topics</option>';
@@ -219,7 +218,7 @@ function applyFilters() {
         console.error("Artwork data is not loaded yet.");
         return;
     }
-
+    let filter = ['all']; //Initialisiere Filter-Array
     const searchText = document.getElementById('search-bar').value.toLowerCase();
  //  const selectedTopics = Array.from(document.getElementById('tag-filter').selectedOptions)
  //       .map(option => option.value)
@@ -228,9 +227,10 @@ function applyFilters() {
         .map(option => option.value)
         .filter(value => value);
     const selectedCluster = document.getElementById('cluster-filter').value;
-// 🔹 Werte aus den Jahresfeldern holen
+// Werte aus den Jahresfeldern holen
     const yearFrom = parseInt(document.getElementById('year-from').value, 10) || 1800;
     const yearTo = parseInt(document.getElementById('year-to').value, 10) || 2100;
+
 
     if (searchText) {
         filter.push([
@@ -247,6 +247,8 @@ function applyFilters() {
           //  ...selectedTopics.map(topic => ['in', topic, ['coalesce', ['get', 'topic', ['get', 'tags']], ['literal', []]]])
         //]);
     //}
+
+    
 
     if (selectedArtForms.length > 0) {
         filter.push([
@@ -293,7 +295,7 @@ function resetFilters() {
 
 document.getElementById('reset-filters').addEventListener('click', resetFilters);
 
-['artform-filter', 'cluster-filter'].forEach(filterId => {
+['artform-filter', 'cluster-filter', 'year-from', 'year-to'].forEach(filterId => {
     document.getElementById(filterId).addEventListener('change', applyFilters);
 });
 
