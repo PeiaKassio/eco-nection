@@ -51,9 +51,9 @@ map.on('load', async () => {
             map.addSource('artworks', {
             type: 'geojson',
             data: artworkData,
-            cluster: true,  // 🔹 Clustering aktivieren/deaktivieren
-            clusterMaxZoom: 2, // 🔹 Bis zu welchem Zoom Clustering aktiv ist
-            clusterRadius: 10  // 🔹 Abstand der Punkte innerhalb eines Clusters
+            cluster: false,  // 🔹 Clustering aktivieren/deaktivieren
+            //clusterMaxZoom: 1, // 🔹 Bis zu welchem Zoom Clustering aktiv ist
+            //clusterRadius: 10  // 🔹 Abstand der Punkte innerhalb eines Clusters
         });
 
         // ✅ Cluster Layer (Zusammengefasste Punkte)
@@ -230,7 +230,7 @@ function applyFilters() {
     const selectedCluster = document.getElementById('cluster-filter').value;
 // 🔹 Werte aus den Jahresfeldern holen
     const yearFrom = parseInt(document.getElementById('year-from').value, 10) || 1800;
-    const yearTo = parseInt(document.getElementById('year-to').value, 10) || 2025;
+    const yearTo = parseInt(document.getElementById('year-to').value, 10) || 2100;
 
     if (searchText) {
         filter.push([
