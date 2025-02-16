@@ -336,9 +336,11 @@ function resetFilters() {
     document.getElementById('cluster-filter').selectedIndex = 0
     document.getElementById('year-from').value = '';
     document.getElementById('year-to').value = '';
-
+    console.log("Artwork Count before reset:", artworkData.features.length);
     applyFilters();
+    console.log("Filter after reset:", filter);
     updateArtworkCount();
+    console.log("Artwork Count after reset:", artworkData.features.length);
 }
 
 document.getElementById('reset-filters').addEventListener('click', resetFilters);
