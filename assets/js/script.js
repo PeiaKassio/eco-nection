@@ -219,13 +219,6 @@ document.getElementById('search-bar').addEventListener('input', () => {
 });
 
 
-
-function updateArtworkCount() {
-    if (!map.getSource('artworks')) {
-        console.warn("Artwork source not found!");
-        return;
-    }
-
     // 📌 Gefilterte Features abrufen
     let filteredFeatures = map.queryRenderedFeatures({ layers: ['unclustered-point'] });
 
@@ -325,7 +318,7 @@ function applyFilters() {
             console.error("Error applying filter:", error);
         }
     }
-    updateArtworkCount();
+    //updateArtworkCount();
 }
 
 
@@ -338,9 +331,7 @@ function resetFilters() {
     document.getElementById('year-to').value = '';
     console.log("Artwork Count before reset:", artworkData.features.length);
     applyFilters();
-    console.log("Filter after reset:", filter);
-    updateArtworkCount();
-    console.log("Artwork Count after reset:", artworkData.features.length);
+    //updateArtworkCount();
 }
 
 document.getElementById('reset-filters').addEventListener('click', resetFilters);
