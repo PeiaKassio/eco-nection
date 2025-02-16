@@ -218,6 +218,30 @@ document.getElementById('search-bar').addEventListener('input', () => {
     applyFilters();
 });
 
+
+
+function updateArtworkCount() {
+    if (!map.getSource('artworks')) {
+        console.warn("Artwork source not found!");
+        return;
+    }
+
+    // 📌 Gefilterte Features abrufen
+    let filteredFeatures = map.queryRenderedFeatures({ layers: ['unclustered-point'] });
+
+    // 📌 Anzahl der gefilterten Kunstwerke berechnen
+    let filteredCount = filteredFeatures.length;
+
+    // 📌 Aktualisieren der Anzeige
+    const countElement = document.getElementById('artwork-count');
+    if (countElement) {
+        countElement.textContent = `Filtered Artworks: ${filteredCount}`;
+    } else {
+        console.warn("Element mit ID 'artwork-count' nicht gefunden.");
+    }
+}
+
+
 function applyFilters() {
     if (!artworkData) {
         console.error("Artwork data is not loaded yet.");
@@ -301,7 +325,10 @@ function applyFilters() {
             console.error("Error applying filter:", error);
         }
     }
+    updateArtworkCount();
 }
+
+
 
 function resetFilters() {
     document.getElementById('search-bar').value = '';
