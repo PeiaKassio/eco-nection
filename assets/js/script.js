@@ -21,10 +21,7 @@ map.on('style.load', () => {
     });
 });
 
-// Cluster-Farben definieren
-    function getClusterColor(mainCluster) {
-             return topicClusters[mainCluster]?.color || '#ffffff';
-    }
+
 map.on('load', async () => {
     try {
         const artworkResponse = await fetch('data/artwork-data.json');
@@ -34,6 +31,11 @@ map.on('load', async () => {
         const topicClusterResponse = await fetch('data/topicClusters.json');
         const topicClusters = await topicClusterResponse.json();
         console.log("Topic Clusters Loaded:", topicClusters);
+
+        // Cluster-Farben definieren
+            function getClusterColor(mainCluster) {
+             return topicClusters[mainCluster]?.color || '#ffffff';
+            }
 
         // ✅ mainCluster basierend auf topicClusters zuweisen
         artworkData.features.forEach(feature => {
