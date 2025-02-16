@@ -232,15 +232,26 @@ function applyFilters() {
         .map(option => option.value)
         .filter(value => value);
     const selectedCluster = document.getElementById('cluster-filter').value;
+    
 // Werte aus den Jahresfeldern holen
-    const yearFrom = document.getElementById('year-from').value.trim() !== '' 
-    ? parseInt(document.getElementById('year-from').value, 10) || 1800
-    : 1800;
+    let yearFrom = document.getElementById('year-from').value.trim();
+    let yearTo = document.getElementById('year-to').value.trim();
 
-const yearTo = document.getElementById('year-to').value.trim() !== '' 
-    ? parseInt(document.getElementById('year-to').value, 10) || 2100
-    : 2100;
+// Standardwerte setzen, falls die Eingabe leer ist
+    yearFrom = yearFrom ? parseInt(yearFrom, 10) || 1800 : 1800;
+    yearTo = yearTo ? parseInt(yearTo, 10) || 2100 : 2100;
 
+// Sicherstellen, dass die Werte korrekt sind
+    console.log("Year filter applied:", yearFrom, yearTo);
+
+    // Filter anwenden
+    if (!isNaN(yearFrom) && !isNaN(yearTo)) {
+        filter.push([
+            'all',
+            ['>=', ['to-number', ['get', 'year']], yearFrom],
+            ['<=', ['to-number', ['get', 'year']], yearTo]
+        ]);
+    }
 
 
     if (searchText) {
