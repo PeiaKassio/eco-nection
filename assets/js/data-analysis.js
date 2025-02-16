@@ -225,9 +225,12 @@ function updateTopicClustersOverTime() {
     // 📌 Sortierte Jahre als X-Achse (damit kein Durcheinander entsteht)
     let years = Object.keys(timeData).map(Number).sort((a, b) => a - b);
 
-    // 📌 Intervalle für Jahre
-    //let tickvals = years.filter(year => year % 5 === 0);
+    // 📌 Intervalle für Jahre (automatisch angepasst)
+    let minYear = Math.min(...years);
+    let maxYear = Math.max(...years);
+    let yearInterval = Math.ceil((maxYear - minYear) / 10); // Automatische Intervallschritte (alle 5-10 Jahre)
 
+    let tickvals = years.filter(year => year % yearInterval === 0); // Nur sinnvolle Ticks anzeigen
 
     // 📌 Traces für jedes Cluster erstellen
     let traces = Object.keys(clusterColors).map(cluster => ({
@@ -248,9 +251,9 @@ function updateTopicClustersOverTime() {
         font: { color: 'white' },
         xaxis: {
             title: 'Year',
-            tickmode: "linear",
+            tickmode: "arrays",
             //tickformat: 'd',
-            //tickvals: tickvals,
+            tickvals: tickvals,
             //dtick: 1, // 🔹 Nur Ganzzahlen anzeigen
             showgrid: false,
             showline: true,
