@@ -229,8 +229,10 @@ function applyFilters() {
         .filter(value => value);
     const selectedCluster = document.getElementById('cluster-filter').value;
 // Werte aus den Jahresfeldern holen
-    const yearFrom = parseInt(document.getElementById('year-from').value, 10) || 1800;
-    const yearTo = parseInt(document.getElementById('year-to').value, 10) || 2100;
+    const yearFrom = document.getElementById('year-from').value.trim() !== '' ?
+        parseInt(document.getElementById('year-from').value, 10) || 1800;
+    const yearTo =  document.getElementById('year-to').value.trim() !== '' ? 
+        parseInt(document.getElementById('year-to').value, 10) || 2100;
 
 
     if (searchText) {
@@ -286,8 +288,8 @@ function resetFilters() {
     document.getElementById('search-bar').value = '';
     document.getElementById('artform-filter').selectedIndex = 0;
     document.getElementById('cluster-filter').selectedIndex = 0
-    document.getElementById('year-from').addEventListener('input', applyFilters);
-    document.getElementById('year-to').addEventListener('input', applyFilters);
+    document.getElementById('year-from').value = '';
+    document.getElementById('year-to').value = '';
 
     applyFilters();
 }
