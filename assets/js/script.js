@@ -234,7 +234,7 @@ function applyFilters() {
     const selectedCluster = document.getElementById('cluster-filter').value;
 // Werte aus den Jahresfeldern holen
     const yearFrom = document.getElementById('year-from').value.trim() !== '' 
-    ? parseInt(document,getElementById('year-from').value, 10) || 1800;
+    ? parseInt(document.getElementById('year-from').value, 10) || 1800;
     const yearTo =  document.getElementById('year-to').value.trim() !== '' 
     ? parseInt(document.getElementById('year-to').value, 10) || 2100;
 
