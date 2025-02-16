@@ -295,7 +295,7 @@ function resetFilters() {
 document.getElementById('reset-filters').addEventListener('click', resetFilters);
 
 ['artform-filter', 'cluster-filter', 'year-from', 'year-to'].forEach(filterId => {
-    document.getElementById(filterId).addEventListener('change', applyFilters);
+    document.getElementById(filterId).addEventListener('input', applyFilters);
 });
 
 
