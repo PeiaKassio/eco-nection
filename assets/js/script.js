@@ -28,6 +28,10 @@ map.on('load', async () => {
         artworkData = await artworkResponse.json();
         console.log("Artwork Data Loaded:", artworkData.features);
 
+        const countElement = document.getElementById('artwork-count');
+        const artworkCount = artworkData?.features?.length || 0 ;
+        countElement.text.Content = `Artwork Count: ${artworkCount}`;
+
         const topicClusterResponse = await fetch('data/topicClusters.json');
         topicClusters = await topicClusterResponse.json();
         console.log("Topic Clusters Loaded:", topicClusters);
