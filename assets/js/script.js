@@ -128,8 +128,8 @@ map.on('load', async () => {
 
 // Populate dropdown filters
 function populateFilterDropdowns(artworkData, topicClusters) {
-    const topics = new Set();
-    const artforms = new Set();
+    let topics = new Set();
+    let artforms = new Set();
 
     artworkData.features.forEach(feature => {
         if (feature.properties.tags) {
@@ -139,13 +139,13 @@ function populateFilterDropdowns(artworkData, topicClusters) {
     });
 
     // 🔹 Sortiere Topics, Artforms und Clusters alphabetisch
-    topics = new Set([...topics].sort((a, b) => a.localeCompare(b)));
-    artforms = new Set([...artforms].sort((a, b) => a.localeCompare(b)));
-    topicClusters = Object.fromEntries(Object.entries(topicClusters).sort(([a], [b]) => a.localeCompare(b)));
+    const sortedTopics = [...topics].sort((a, b) => a.localeCompare(b));
+    const sortedArtforms = [...artforms].sort((a, b) => a.localeCompare(b));
+    const sortedTopicClusters = Object.fromEntries(Object.entries(topicClusters).sort(([a], [b]) => a.localeCompare(b)));
 
     const topicSelect = document.getElementById('tag-filter');
     topicSelect.innerHTML = '<option value="">All Topics</option>';
-    topics.forEach(topic => {
+    sortedTopics.forEach(topic => {
         const option = document.createElement('option');
         option.value = topic;
         option.textContent = topic;
@@ -154,7 +154,7 @@ function populateFilterDropdowns(artworkData, topicClusters) {
 
     const artformSelect = document.getElementById('artform-filter');
     artformSelect.innerHTML = '<option value="">All Art Forms</option>';
-    artforms.forEach(artform => {
+    sortedArtforms.forEach(artform => {
         const option = document.createElement('option');
         option.value = artform;
         option.textContent = artform;
@@ -163,7 +163,7 @@ function populateFilterDropdowns(artworkData, topicClusters) {
 
     const clusterSelect = document.getElementById('cluster-filter');
     clusterSelect.innerHTML = '<option value="">All Clusters</option>';
-    Object.entries(topicClusters).forEach(([clusterName, clusterData]) => {
+    Object.entries(sortedTopicClusters).forEach(([clusterName, clusterData]) => {
         const option = document.createElement('option');
         option.value = clusterName;
         option.textContent = clusterName;
