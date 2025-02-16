@@ -250,8 +250,8 @@ function updateTopicClustersOverTime() {
             title: 'Year',
             tickmode: "linear",
             tickformat: 'd',
-            tickvals: tickvals,
-            dtick: 1, // 🔹 Nur Ganzzahlen anzeigen
+            //tickvals: tickvals,
+            //dtick: 1, // 🔹 Nur Ganzzahlen anzeigen
             showgrid: false,
             showline: true,
             zeroline: false
