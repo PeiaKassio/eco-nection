@@ -6,6 +6,107 @@
     "geometry": {
         "type": "Point",
         "coordinates": [
+            139.7101, 
+            35.6961
+        ]
+    },
+    "properties": {
+        "title": "Nausicaä of the Valley of the Wind",
+        "description": "A post-apocalyptic anime film exploring themes of environmental destruction, toxic landscapes, and the relationship between humans and nature.",
+        "artist": "Hayao Miyazaki",
+        "type": "Film",
+        "location": "Tokyo ,Japan",
+        "year": 1984,
+        "tags": {
+            "topic": [
+                "Environmental Awareness",
+                "Human-Nature Interaction",
+                "Ecosystem Protection",
+                "Sustainability"
+            ],
+            "artform": [
+                "Animation",
+                "Film"
+            ]
+        },
+        "url": "https://en.wikipedia.org/wiki/Nausica%C3%A4_of_the_Valley_of_the_Wind_(film)",
+        "thumbnail": "https://static.wikia.nocookie.net/studio-ghibli/images/e/ea/Nausicaa_Of_The_Valley_of_The_Wind.jpg/revision/latest?cb=20211031174237"
+    }
+},
+        {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
+            139.7101, 
+            35.6961
+        ]
+    },
+    "properties": {
+        "title": "Princess Mononoke",
+        "description": "A powerful film depicting the conflict between industrial expansion and the spirits of the forest, highlighting themes of deforestation, exploitation, and ecological balance.",
+        "artist": "Hayao Miyazaki",
+        "type": "Film",
+        "location": "Japan",
+        "year": 1997,
+        "tags": {
+            "topic": [
+                "Deforestation",
+                "Environmental Justice",
+                "Human-Nature Interaction",
+                "Sustainability"
+            ],
+            "artform": [
+                "Animation",
+                "Film"
+            ]
+        },
+        "url": "https://en.wikipedia.org/wiki/Princess_Mononoke",
+        "thumbnail": "https://en.wikipedia.org/wiki/File:Princess_Mononoke_Japanese_poster.png"
+    }
+},
+        {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
+            139.7101, 
+            35.6961
+        ]
+    },
+    "properties": {
+        "title": "Ponyo",
+        "description": "A heartwarming animated film about a magical fish girl, highlighting themes of ocean pollution, marine conservation, and the balance of nature.",
+        "artist": "Hayao Miyazaki",
+        "type": "Film",
+        "location": "Japan",
+        "year": 2008,
+        "tags": {
+            "topic": [
+                "Ocean Conservation",
+                "Marine Pollution",
+                "Sustainability",
+                "Human-Nature Interaction"
+            ],
+            "artform": [
+                "Animation",
+                "Film"
+            ]
+        },
+        "url": "https://en.wikipedia.org/wiki/Ponyo",
+        "thumbnail": "https://en.wikipedia.org/wiki/File:Ponyo.png"
+    }
+},
+
+
+
+
+        
+        {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
             11.5755, 48.1374
         ]
     },
