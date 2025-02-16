@@ -230,7 +230,7 @@ function updateTopicClustersOverTime() {
     let maxYear = Math.max(...years);
     let yearInterval = Math.ceil((maxYear - minYear) / 10); // Automatische Intervallschritte (alle 5-10 Jahre)
 
-    let tickvals = years.filter(year => year % yearInterval === 0); // Nur sinnvolle Ticks anzeigen
+    let tickvals = years.filter((year, index) => index % 2 === 0); // Nur sinnvolle Ticks anzeigen
 
     // 📌 Traces für jedes Cluster erstellen
     let traces = Object.keys(clusterColors).map(cluster => ({
@@ -252,7 +252,7 @@ function updateTopicClustersOverTime() {
         xaxis: {
             title: 'Year',
             tickmode: "array",
-            tickvals: years,
+            tickvals: tickvals,
             showgrid: false,
             showline: true,
             zeroline: false
