@@ -57,34 +57,34 @@ map.on('load', async () => {
         });
 
         // ✅ Cluster Layer (Zusammengefasste Punkte)
-        map.addLayer({
-            id: 'clusters',
-            type: 'circle',
-            source: 'artworks',
-            filter: ['has', 'point_count'], // Zeige nur Cluster
-            paint: {
-                'circle-color': '#ff7300',
-                'circle-radius': ['step', ['get', 'point_count'], 15, 10, 25, 50, 35],
-                'circle-stroke-width': 1,
-                'circle-stroke-color': '#fff'
-            }
-        });
+       // map.addLayer({
+         //   id: 'clusters',
+        // type: 'circle',
+            //source: 'artworks',
+            //filter: ['has', 'point_count'], // Zeige nur Cluster
+            //paint: {
+                //'circle-color': '#ff7300',
+                //'circle-radius': ['step', ['get', 'point_count'], 15, 10, 25, 50, 35],
+                //'circle-stroke-width': 1,
+                //'circle-stroke-color': '#fff'
+            //}
+        //});
 
         // ✅ Cluster-Label (Zeigt die Anzahl der Punkte)
-        map.addLayer({
-            id: 'cluster-count',
-            type: 'symbol',
-            source: 'artworks',
-            filter: ['has', 'point_count'],
-            layout: {
-                'text-field': '{point_count_abbreviated}',
-                'text-size': 14,
-                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold']
-            },
-            paint: {
-                'text-color': '#fff'
-            }
-        });
+        //map.addLayer({
+          //  id: 'cluster-count',
+            //type: 'symbol',
+            //source: 'artworks',
+            //filter: ['has', 'point_count'],
+            //layout: {
+              //  'text-field': '{point_count_abbreviated}',
+                //'text-size': 14,
+                //'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold']
+            //},
+            //paint: {
+              //  'text-color': '#fff'
+            //}
+        //});
 
         // ✅ Einzelne Punkte (die nicht mehr geclustert sind)
         map.addLayer({
