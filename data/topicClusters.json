@@ -99,7 +99,8 @@
       "Landfill Diversion", 
       "Composting",
       "Landfill Issues",
-      "Industrial Waste"
+      "Industrial Waste", 
+      "Waste" 
     ],
     "color": "#282828"
   },
@@ -142,6 +143,7 @@
       "Capitalism Critique",
       "Environmental Awareness",
       "Mindfulness",
+      "Consumerism", 
       "Eco-Art", 
       "Urgency", 
       "Time", 
