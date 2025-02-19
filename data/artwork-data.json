@@ -21,7 +21,7 @@
         }
     }
 }, 
-    "type": "Feature",
+  {  "type": "Feature",
     "geometry": {
         "type": "Point",
         "coordinates": [
