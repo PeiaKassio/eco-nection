@@ -5,6 +5,25 @@
     "type": "Feature",
     "geometry": {
         "type": "Point",
+        "coordinates": [-118.2437, 34.0522]  // Los Angeles, USA (example location)
+    },
+    "properties": {
+        "title": "7 Days of Garbage",
+        "artist": "Greg Segall",
+        "year": 2014,
+        "description": "A photographic project where individuals and families pose with a week's worth of their garbage to highlight waste consumption.",
+        "location": "Los Angeles, USA",
+        "url": "https://www.gregsegall.com/7-days-of-garbage",
+        "thumbnail": "https://example.com/7days-of-garbage.jpg",
+        "tags": {
+            "topic": ["Waste", "Consumerism", "Pollution"],
+            "artform": ["Photography", "Conceptual Art"]
+        }
+    }
+}, 
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
         "coordinates": [
             139.7101, 
             35.6961
