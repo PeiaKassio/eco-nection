@@ -1,12 +1,10 @@
 {
-  "Environmental Pollution": {
+  "Pollution": {
     "topics": [
       "Plastic Pollution", 
       "Air Pollution", 
       "Water Pollution",
       "Ocean Pollution", 
-      "Plastic Waste", 
-      "Toxic Waste", 
       "Pollution in Cities", 
       "Industrial Emissions",
       "Marine Pollution",
@@ -88,7 +86,7 @@
     ],
     "color": "#FFD700"
   },
-  "Waste Management": {
+  "Waste": {
     "topics": [
       "Waste Reduction", 
       "Waste Management", 
@@ -100,7 +98,9 @@
       "Composting",
       "Landfill Issues",
       "Industrial Waste", 
-      "Waste" 
+      "Waste",
+      "Plastic Waste", 
+      "Toxic Waste" 
     ],
     "color": "#282828"
   },
