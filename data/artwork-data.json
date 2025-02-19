@@ -5,7 +5,7 @@
     "type": "Feature",
     "geometry": {
         "type": "Point",
-        "coordinates": [-118.2437, 34.0522]  // Los Angeles, USA (example location)
+        "coordinates": [-118.2437, 34.0522] 
     },
     "properties": {
         "title": "7 Days of Garbage",
