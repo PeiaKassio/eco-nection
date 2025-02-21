@@ -1,8 +1,69 @@
 {
     "type": "FeatureCollection",
     "features": [
-        {
-    "type": "Feature",
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [104.8917, 11.5564]
+        },
+        "properties": {
+            "title": "New Trajectory",
+            "description": "A striking painting by Chhoeun Channy using vibrant colors to depict a giant monkey sitting on a green leaf, symbolizing humanity’s obliviousness to environmental destruction. A van followed by trucks cuts through a canyon, with Earth appearing among the stars.",
+            "artist": "Chhoeun Channy",
+            "type": "Painting",
+            "location": "Phnom Penh, Cambodia",
+            "year": 2023,
+            "tags": {
+                "topic": ["Climate Change", "Environmental Awareness", "Deforestation"],
+                "artform": ["Painting"]
+            },
+"url" :"https://cambodianess.com/article/an-artist-raises-awareness-of-environment-and-wildlife-through-his-paintings", 
+            "thumbnail": ""
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [104.8917, 11.5564]
+        },
+        "properties": {
+            "title": "Oxygen",
+            "description": "A painting by Van Chhovorn blending Cambodian tradition with nature. A figure inspired by classical Cambodian art is shown nurturing a plant, reinforcing the connection between heritage and the environment.",
+            "artist": "Van Chhovorn",
+            "type": "Painting",
+            "location": "Phnom Penh, Cambodia",
+            "year": 2023,
+            "tags": {
+                "topic": ["Traditional Knowledge", "Ecosystem Protection", "Biodiversity"],
+                "artform": ["Painting"]
+            },"url": "https://cambodianess.com/article/on-behalf-of-nature-three-artists-make-the-case-to-save-the-earth-and-all-living-things", 
+            "thumbnail": ""
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [104.8917, 11.5564]
+        },
+        "properties": {
+            "title": "100 Years of Friendship",
+            "description": "A relief sculpture on canvas by Sou Sophy featuring two hornbills passing fruit to each other, symbolizing love, cooperation, and the importance of preserving wildlife.",
+            "artist": "Sou Sophy",
+            "type": "Sculpture",
+            "location": "Phnom Penh, Cambodia",
+            "year": 2023,
+            "tags": {
+                "topic": ["Wildlife Conservation", "Biodiversity", "Sustainability"],
+                "artform": ["Sculpture", "Relief Art"]
+            },
+            "url": "https://cambodianess.com/article/on-behalf-of-nature-three-artists-make-the-case-to-save-the-earth-and-all-living-things", 
+            "thumbnail": ""
+        }
+    }, 
+   { "type": "Feature",
     "geometry": {
         "type": "Point",
         "coordinates": [-118.2437, 34.0522] 
