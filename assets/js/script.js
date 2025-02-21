@@ -119,6 +119,7 @@ artworkData.features.forEach((feature, i) => {
             paint: {
                 'circle-color': ['get', 'mainClusterColor'],
                 'circle-radius': 8,
+                'circle-opacity': 0.7,  // 🔹 Set transparency (0 = invisible, 1 = fully visible)
                 'circle-stroke-width': 1,
                 'circle-stroke-color': '#fff'
     }
