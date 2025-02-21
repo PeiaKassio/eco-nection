@@ -116,8 +116,8 @@ artworkData.features.forEach((feature, i) => {
                 'circle-translate': [
             'literal',
             [
-                ['get', 'index'] % 2 === 0 ? 1 : -1, // X-Verschiebung: Jeder zweite Punkt wird um 1px versetzt
-                ['get', 'index'] % 3 === 0 ? 1 : -1  // Y-Verschiebung: Jeder dritte Punkt wird um 1px versetzt
+                ['get', 'index'] % 2 === 0 ? 10 : -10, // X-Verschiebung: Jeder zweite Punkt wird um 10px versetzt
+                ['get', 'index'] % 3 === 0 ? 10 : -10  // Y-Verschiebung: Jeder dritte Punkt wird um 10px versetzt
             ]
         ]
     }
