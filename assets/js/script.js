@@ -32,8 +32,8 @@ map.on('load', async () => {
 artworkData.features.forEach((feature, i) => {
     if (!feature.geometry || !feature.geometry.coordinates) return;
 
-    let longitudeShift = (i % 2 === 0 ? 0.002 : -0.002);  
-    let latitudeShift = (i % 3 === 0 ? 0.001 : -0.001);
+    let longitudeShift = (i % 2 === 0 ? 0.003 : -0.003);  
+    let latitudeShift = (i % 3 === 0 ? 0.002 : -0.002);
 
     // Introduce slight randomness
     longitudeShift += (Math.random() - 0.5) * 0.001;
