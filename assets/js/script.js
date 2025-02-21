@@ -28,12 +28,20 @@ map.on('load', async () => {
         artworkData = await artworkResponse.json();
         console.log("Artwork Data Loaded:", artworkData.features);
 
-// Index hinzufügen
+//indexing to shift position of coordinates
 artworkData.features.forEach((feature, i) => {
-    if (!feature.properties) {
-        feature.properties = {};
-    }
-    feature.properties.index = i;
+    if (!feature.geometry || !feature.geometry.coordinates) return;
+
+    let longitudeShift = (i % 2 === 0 ? 0.002 : -0.002);  
+    let latitudeShift = (i % 3 === 0 ? 0.001 : -0.001);
+
+    // Introduce slight randomness
+    longitudeShift += (Math.random() - 0.5) * 0.001;
+    latitudeShift += (Math.random() - 0.5) * 0.001;
+
+    // Apply shift directly to coordinates
+    feature.geometry.coordinates[0] += longitudeShift;  
+    feature.geometry.coordinates[1] += latitudeShift;  
 });
 
 
@@ -112,14 +120,7 @@ artworkData.features.forEach((feature, i) => {
                 'circle-color': ['get', 'mainClusterColor'],
                 'circle-radius': 8,
                 'circle-stroke-width': 1,
-                'circle-stroke-color': '#fff', 
-                'circle-translate': [
-            'literal',
-            [
-                ['get', 'index'] % 2 === 0 ? 10 : -10, // X-Verschiebung: Jeder zweite Punkt wird um 10px versetzt
-                ['get', 'index'] % 3 === 0 ? 10 : -10  // Y-Verschiebung: Jeder dritte Punkt wird um 10px versetzt
-            ]
-        ]
+                'circle-stroke-color': '#fff'
     }
         });
 
