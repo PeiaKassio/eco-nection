@@ -28,6 +28,15 @@ map.on('load', async () => {
         artworkData = await artworkResponse.json();
         console.log("Artwork Data Loaded:", artworkData.features);
 
+// Index hinzufügen
+artworkData.features.forEach((feature, i) => {
+    if (!feature.properties) {
+        feature.properties = {};
+    }
+    feature.properties.index = i;
+});
+
+
         artworkCount = artworkData?.features?.length || 0 ;
         const countElement = document.getElementById('artwork-count');
         countElement.textContent = `Artwork Count: ${artworkCount}`;
@@ -104,7 +113,14 @@ map.on('load', async () => {
                 'circle-radius': 8,
                 'circle-stroke-width': 1,
                 'circle-stroke-color': '#fff'
-            }
+                'circle-translate': [
+            'literal',
+            [
+                ['get', 'index'] % 2 === 0 ? 1 : -1, // X-Verschiebung: Jeder zweite Punkt wird um 1px versetzt
+                ['get', 'index'] % 3 === 0 ? 1 : -1  // Y-Verschiebung: Jeder dritte Punkt wird um 1px versetzt
+            ]
+        ]
+    }
         });
 
         // ✅ Klick-Event für Cluster: Zoom auf Cluster-Zentrum
