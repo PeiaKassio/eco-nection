@@ -112,7 +112,7 @@ artworkData.features.forEach((feature, i) => {
                 'circle-color': ['get', 'mainClusterColor'],
                 'circle-radius': 8,
                 'circle-stroke-width': 1,
-                'circle-stroke-color': '#fff'
+                'circle-stroke-color': '#fff', 
                 'circle-translate': [
             'literal',
             [
