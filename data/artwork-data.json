@@ -5,6 +5,69 @@
         "type": "Feature",
         "geometry": {
             "type": "Point",
+            "coordinates": [-79.3832, 43.6532]
+        },
+        "properties": {
+            "title": "Big Yellow Taxi",
+            "description": "A song by Joni Mitchell highlighting the consequences of urban development and deforestation.",
+            "artist": "Joni Mitchell",
+            "type": "Music",
+            "location": "Toronto, Canada",
+            "year": 1970,
+            "tags": {
+                "topic": ["Urbanization", "Deforestation"],
+                "cluster": ["Urban Issues", "Resource Depletion"],
+                "artform": ["Music"]
+            },
+            "thumbnail": ""
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [13.4049, 52.5200]
+        },
+        "properties": {
+            "title": "Der traurige Gärtner",
+            "description": "A song criticizing the impact of oil corporations on the environment.",
+            "artist": "Unknown",
+            "type": "Music",
+            "location": "Berlin, Germany",
+            "year": 2019,
+            "tags": {
+                "topic": ["Oil Corporations"],
+                "cluster": ["Pollution", "Socioeconomic"],
+                "artform": ["Music"]
+            },
+            "thumbnail": ""
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [11.5761, 48.1372]
+        },
+        "properties": {
+            "title": "Bauer Karl und die Spanische Gurke",
+            "description": "A short story by Hans Cronau discussing the impact of economic structures on food production and labor conditions.",
+            "artist": "Hans Cronau",
+            "type": "Short Story",
+            "location": "Munich, Germany",
+            "year": 2020,
+            "tags": {
+                "topic": ["Food", "Economy", "Working Conditions"],
+                "cluster": ["Socioeconomic", "Sustainable Practices"],
+                "artform": ["Literature", "Short Story"]
+            },
+            "thumbnail": ""
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
             "coordinates": [104.8917, 11.5564]
         },
         "properties": {
