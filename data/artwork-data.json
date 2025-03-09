@@ -1,6 +1,58 @@
 {
     "type": "FeatureCollection",
     "features": [
+  {
+    "title": "Channel #23",
+    "artist": "Simryn Gill",
+    "year": 2014,
+    "location": "Port Dickson, Malaysia",
+    "tags": {
+      "topic": ["Marine Pollution", "Ecosystem Protection", "Pollution"],
+      "artform": ["Photography"]
+    },
+    "description": "A series capturing evidence of sea pollution in the mangrove forests of Malaysia, highlighting the impact of plastic waste on marine ecosystems.",
+    "url": "https://www.tate.org.uk/art/artworks/gill-channel-23-p82160",
+    "thumbnail": "https://media.tate.org.uk/image-placeholder.jpg"
+  },
+  {
+    "title": "Air Pollution of Iran",
+    "artist": "Mahmoud Bakhshi Moakhar",
+    "year": 2004,
+    "location": "Tehran, Iran",
+    "tags": {
+      "topic": ["Air Pollution", "Environmental Health", "Pollution Effects"],
+      "artform": ["Mixed Media"]
+    },
+    "description": "A work featuring faded Iranian flags, stained by the air pollution in Tehran, drawing parallels between environmental degradation and political struggles.",
+    "url": "https://www.tate.org.uk/art/artworks/bakhshi-moakhar-air-pollution-of-iran-t13191",
+    "thumbnail": "https://media.tate.org.uk/image-placeholder.jpg"
+  },
+  {
+    "title": "The Eye in the Sky",
+    "artist": "Gauri Gill, Rajesh Vangad",
+    "year": 2014,
+    "location": "Maharashtra, India",
+    "tags": {
+      "topic": ["Indigenous Knowledge", "Ecosystem Protection", "Cultural Heritage"],
+      "artform": ["Photography", "Drawing"]
+    },
+    "description": "A collaborative piece between photographer Gauri Gill and indigenous artist Rajesh Vangad, incorporating traditional iconography into a landscape photograph.",
+    "url": "https://www.tate.org.uk/art/artworks/gill-vangad-the-eye-in-the-sky-t14992",
+    "thumbnail": "https://media.tate.org.uk/image-placeholder.jpg"
+  },
+  {
+    "title": "Six Sculptures",
+    "artist": "Bruce McLean",
+    "year": 1967,
+    "location": "London, UK",
+    "tags": {
+      "topic": ["Sustainable Practices", "Nature Cycles", "Ecosystem Protection"],
+      "artform": ["Sculpture", "Environmental Art"]
+    },
+    "description": "A series of six temporary sculptures made from natural materials, reflecting on time, impermanence, and human interaction with the environment.",
+    "url": "https://www.tate.org.uk/art/artworks/mclean-six-sculptures-t01740",
+    "thumbnail": "https://media.tate.org.uk/image-placeholder.jpg"
+  }, 
     {
         "type": "Feature",
         "geometry": {
