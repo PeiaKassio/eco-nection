@@ -159,10 +159,10 @@
       "Environmentalism"
     ],
     "color": "#FFDD88"
-  }
-  "Technology, Digitalization": {
+  },
+  "Technology": {
     "topics": [
-      "Digital"
+      "Digital Technology"
     ],"color": "#D3D3D3"
   }
 }
