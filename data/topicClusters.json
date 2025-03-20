@@ -160,4 +160,9 @@
     ],
     "color": "#FFDD88"
   }
+  "Technology, Digitalization": {
+    "topics": [
+      "Digital"
+    ],"color": "#D3D3D3"
   }
+}
