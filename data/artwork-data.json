@@ -1,6 +1,36 @@
 {
     "type": "FeatureCollection",
     "features":  [
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [5.7999, 53.2012]
+  },
+  "properties": {
+    "title": "Your Ancestors",
+    "artist": "Nynke Laverman",
+    "year": 2021,
+    "type": "Performance / Music",
+    "description": "In 'Your Ancestors', Nynke Laverman invites us to think in generations instead of careers. The piece reconnects us with our ancestors and critiques modern extractivist relationships with nature. Through poetic vocals and powerful words, she builds an emotional bridge between past and future.",
+    "location": "Leeuwarden, Netherlands",
+    "tags": {
+      "topic": [
+        "Justice & Equity",
+        "Human-Nature Relationship",
+        "Colonial Histories",
+        "Alternative Economies"
+      ],
+      "artform": [
+        "Performance",
+        "Spoken Word",
+        "Music"
+      ]
+    },
+    "url": "https://nynkelaverman.nl/project/your-ancestors/",
+    "thumbnail": "https://nynkelaverman.nl/wp-content/uploads/2021/11/YOUR-ANCESTORS-FOTO-SARIS-WIGGERS-1.jpg"
+  }
+},
     {
         "type": "Feature",
         "geometry": {
