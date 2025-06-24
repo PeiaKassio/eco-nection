@@ -1,6 +1,96 @@
 {
     "type": "FeatureCollection",
     "features":  [
+
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-16.9170, 32.6470]
+  },
+  "properties": {
+    "title": "Seal Pup Mural",
+    "artist": "Bordalo II",
+    "year": 2019,
+    "type": "Mural / Installation",
+    "description": "A vibrant wall installation of a young seal, created from recycled waste materials. Raises awareness about threatened marine species and the human role in environmental degradation.",
+    "location": "Câmara de Lobos, Madeira, Portugal",
+    "tags": {
+      "topic": [
+        "Environmental Awareness",
+        "Pollution & Waste",
+        "Ocean Conservation",
+        "Ecological Art"
+      ],
+      "artform": [
+        "Mural",
+        "Trash Art"
+      ]
+    },
+    "url": "https://www.atlasobscura.com/places/bordalo-ii-plastic-mero",
+    "thumbnail": ""
+  }
+},
+
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-16.9170, 32.6470]
+  },
+  "properties": {
+    "title": "Seal Pup Mural",
+    "artist": "Bordalo II",
+    "year": 2019,
+    "type": "Mural / Installation",
+    "description": "A vibrant wall installation of a young seal, created from recycled waste materials. Raises awareness about threatened marine species and the human role in environmental degradation.",
+    "location": "Câmara de Lobos, Madeira, Portugal",
+    "tags": {
+      "topic": [
+        "Environmental Awareness",
+        "Pollution & Waste",
+        "Ocean Conservation",
+        "Ecological Art"
+      ],
+      "artform": [
+        "Mural",
+        "Trash Art"
+      ]
+    },
+    "url": "https://www.atlasobscura.com/places/bordalo-ii-plastic-mero",
+    "thumbnail": ""
+  }
+},
+
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-16.9072, 32.6492]
+  },
+  "properties": {
+    "title": "Half Turtle Door",
+    "artist": "Dina Pimenta",
+    "year": 2010,
+    "type": "Murals / Street Art",
+    "description": "Part of the 'Arte Portas Abertas' project in Funchal’s old town—a door painted with half a sea turtle, blending local heritage and ocean themes.",
+    "location": "Rua dos Barreiros No. 38, Funchal, Madeira, Portugal",
+    "tags": {
+      "topic": [
+        "Cultural Heritage",
+        "Ocean Conservation",
+        "Public Art"
+      ],
+      "artform": [
+        "Mural",
+        "Street Art"
+      ]
+    },
+    "url": "https://www.flickr.com/photos/mjwoerner/26069080784",
+    "thumbnail": ""
+  }
+},
+
 {
   "type": "Feature",
   "geometry": {
