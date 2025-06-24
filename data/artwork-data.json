@@ -1,35 +1,33 @@
 {
     "type": "FeatureCollection",
     "features":  [
-
 {
   "type": "Feature",
   "geometry": {
     "type": "Point",
-    "coordinates": [-16.9170, 32.6470]
+    "coordinates": [-16.9120, 32.6498]
   },
   "properties": {
-    "title": "Seal Pup Mural",
+    "title": "Plastic Mero",
     "artist": "Bordalo II",
     "year": 2019,
-    "type": "Mural / Installation",
-    "description": "A vibrant wall installation of a young seal, created from recycled waste materials. Raises awareness about threatened marine species and the human role in environmental degradation.",
-    "location":"Portugal",
+    "type": "Sculpture",
+    "description": "A large-scale fish sculpture made from tons of plastic waste collected in Madeira, highlighting marine pollution and the plight of the endangered Atlantic grouper ('mero'). Installed on the Funchal waterfront near the CR7 Museum.",
+    "location": "Funchal, Madeira, Portugal",
     "tags": {
       "topic": [
         "Waste",
         "Ocean Conservation"
       ],
       "artform": [
-        "Mural",
+        "Sculpture",
         "Trash Art"
       ]
     },
     "url": "https://www.atlasobscura.com/places/bordalo-ii-plastic-mero",
     "thumbnail": ""
   }
-},
-
+}'
 {
   "type": "Feature",
   "geometry": {
