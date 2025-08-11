@@ -1996,33 +1996,6 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    13.1904,
-                    58.3029
-                ]
-            },
-            "properties": {
-                "title": "Green Futures",
-                "description": "A sculpture showcasing renewable energy innovation.",
-                "artist": "Olof Thorstensson",
-                "type": "Sculpture",
-                "location": "Gothenburg, Sweden",
-                "year": 2022,
-                "tags": {
-                    "topic": [
-                        "Renewable Energy",
-                        "Sustainability"
-                    ],
-                    "artform": [
-                        "Sculpture"
-                    ]
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
                     121.4737,
                     31.2304
                 ]
