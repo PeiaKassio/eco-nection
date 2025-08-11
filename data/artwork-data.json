@@ -2,341 +2,134 @@
     "type": "FeatureCollection",
     "features":  [
         {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [8.8017, 53.0793] },
-            "properties": {
-            "title": "Jetzt fliegen sie wieder, die Kraniche",
-            "artist": "Bremer Philharmoniker, Vortrag: Sabrina Hüpperling",
-            "type": "Concert",
-            "location": "Bremen, Germany",
-            "description": "Vortrag zur Auswirkung des Klimawandels auf Kraniche (Biologische Station Osterholz) und Musik u. a. von Isang Yun.",
-            "tags": {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [8.8017, 53.0793] },
+    "properties": {
+        "title": "Now the Cranes Fly Again",
+        "artist": "Bremer Philharmoniker, Lecture: Sabrina Hüpperling",
+        "type": "Concert",
+        "location": "Bremen, Germany",
+        "description": "Lecture on the impact of climate change on cranes (Biological Station Osterholz) and music including works by Isang Yun.",
+        "tags": {
             "topic": ["Biodiversity", "Climate Change"],
             "artform": ["Music", "Performance"]
-                },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
         },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [11.5761, 48.1372] },
-            "properties": {
-            "title": "Studiosound: Spaziergang durch den Wald",
-            "artist": "Münchner Symphoniker, Lea Brückner (Klimabotschafterin), Ltg. Joseph Bastian",
-            "type": "Concert",
-            "location": "München, Germany",
-            "description": "Kammermusik-Reihe mit waldbezogenen Werken; moderiert von Waldexperten zu Zukunft des Waldes.",
-            "tags": {
+        "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+    }
+},
+{
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [11.5761, 48.1372] },
+    "properties": {
+        "title": "Studio Sound: Walk in the Forest",
+        "artist": "Münchner Symphoniker, Lea Brückner (Climate Ambassador), Conductor: Joseph Bastian",
+        "type": "Concert",
+        "location": "Munich, Germany",
+        "description": "Chamber music series with forest-related works; moderated by forest experts on the future of forests.",
+        "tags": {
             "topic": ["Forest Conservation", "Climate Awareness"],
             "artform": ["Music", "Performance"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
         },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [9.8730, 47.6560] },
-            "properties": {
-            "title": "Festival in Achberg: Workshops, Vorträge und Konzerte",
-            "artist": "Orchester des Wandels & Gäste, DJ/Ökologe Dominik Eulberg",
-            "type": "Concert",
-            "location": "Achberg, Germany",
-            "description": "Über 40 Mitwirkende, interaktive Formate zu Klima & Natur, Musik im Schlossgarten.",
-            "tags": {
+        "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+    }
+},
+{
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [9.8730, 47.6560] },
+    "properties": {
+        "title": "Festival in Achberg: Workshops, Lectures and Concerts",
+        "artist": "Orchester des Wandels & Guests, DJ/Ecologist Dominik Eulberg",
+        "type": "Concert",
+        "location": "Achberg, Germany",
+        "description": "Over 40 participants, interactive formats on climate and nature, music in the castle garden.",
+        "tags": {
             "topic": ["Climate Awareness", "Biodiversity"],
             "artform": ["Music", "Performance", "Workshop"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
         },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [9.1829, 48.7758] },
-            "properties": {
-            "title": "Impuls-Konzert Mehr Moor",
-            "artist": "Staatsorchester Stuttgart",
-            "type": "Concert",
-            "location": "Stuttgart, Germany",
-            "description": "Kammerkonzert zur Bedeutung von Mooren für den Klimaschutz mit Hintergrundinformationen.",
-            "tags": {
+        "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+    }
+},
+{
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [9.1829, 48.7758] },
+    "properties": {
+        "title": "Impulse Concert: More Peatlands",
+        "artist": "Staatsorchester Stuttgart",
+        "type": "Concert",
+        "location": "Stuttgart, Germany",
+        "description": "Chamber concert on the importance of peatlands for climate protection with background information.",
+        "tags": {
             "topic": ["Peatlands", "Carbon Sequestration", "Climate Change"],
             "artform": ["Music", "Performance", "Talk"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-            },
-            {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [7.0123, 51.4556] },
-            "properties": {
-            "title": "Recycling Concerto",
-            "artist": "Essener Philharmoniker, Gregor A. Mayrhofer (Komponist/Dirigent)",
-            "type": "Concert",
-            "location": "Essen, Germany",
-            "description": "Konzert für recycelte Perkussion und Orchester in ungewöhnlicher Saal-Topographie und Licht.",
-            "tags": {
+        },
+        "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+    }
+},
+{
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [7.0123, 51.4556] },
+    "properties": {
+        "title": "Recycling Concerto",
+        "artist": "Essener Philharmoniker, Gregor A. Mayrhofer (Composer/Conductor)",
+        "type": "Concert",
+        "location": "Essen, Germany",
+        "description": "Concert for recycled percussion and orchestra in an unusual hall topology with lighting effects.",
+        "tags": {
             "topic": ["Waste", "Sustainable Practices"],
             "artform": ["Music", "Performance", "Contemporary"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
         },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [6.9969, 49.2402] },
-            "properties": {
-            "title": "Sonderkammerkonzert: Musik-Snacks auf Radtour",
-            "artist": "Saarländisches Staatsorchester",
-            "type": "Concert",
-            "location": "Saarbrücken, Germany",
-            "description": "Geführte Radtour zum Erlebnisbergwerk Velsen mit musikalischen Stopps und Blechbläser-Ensemble.",
-            "tags": {
+        "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+    }
+},
+{
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [6.9969, 49.2402] },
+    "properties": {
+        "title": "Special Chamber Concert: Music Snacks on a Bike Tour",
+        "artist": "Saarländisches Staatsorchester",
+        "type": "Concert",
+        "location": "Saarbrücken, Germany",
+        "description": "Guided bike tour to Erlebnisbergwerk Velsen with musical stops and a brass ensemble.",
+        "tags": {
             "topic": ["Sustainable Mobility", "Climate Awareness"],
             "artform": ["Music", "Performance", "Outdoor"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-            },
-            {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [7.0123, 51.4556] },
-            "properties": {
-            "title": "Musik im Dialog: Sehnsucht Natur",
-            "artist": "Essener Philharmoniker",
-            "type": "Concert",
-            "location": "Essen, Germany",
-            "description": "Kammerkonzert mit Naturbezug (Milhaud u. a.) und neuen Texten von Jörg Hilbert.",
-            "tags": {
+        },
+        "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+    }
+},
+{
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [7.0123, 51.4556] },
+    "properties": {
+        "title": "Music in Dialogue: Longing for Nature",
+        "artist": "Essener Philharmoniker",
+        "type": "Concert",
+        "location": "Essen, Germany",
+        "description": "Chamber concert with a nature theme (Milhaud and others) and new texts by Jörg Hilbert.",
+        "tags": {
             "topic": ["Nature", "Culture"],
             "artform": ["Music", "Literature"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
         },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
-            "properties": {
-            "title": "Diskurs- und Konzertperformance zu Klima- und Umweltfragen",
-            "artist": "Staatskapelle Berlin & Gebrüder Teichmann",
-            "type": "Concert",
-            "location": "Berlin, Germany",
-            "description": "Installative Konzert-Performance mit Live-Elektronik und Diskursformat.",
-            "tags": {
+        "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+    }
+},
+{
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
+    "properties": {
+        "title": "Discourse and Concert Performance on Climate and Environmental Issues",
+        "artist": "Staatskapelle Berlin & Gebrüder Teichmann",
+        "type": "Concert",
+        "location": "Berlin, Germany",
+        "description": "Installative concert performance with live electronics and discussion format.",
+        "tags": {
             "topic": ["Climate Change", "Sustainability"],
             "artform": ["Music", "Performance", "Electronic"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-            },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [7.1497, 51.2562] },
-            "properties": {
-            "title": "Messiaen: Turangalîla-Sinfonie",
-            "artist": "Sinfonieorchester Wuppertal",
-            "type": "Concert",
-            "location": "Wuppertal, Germany",
-            "description": "Großbesetztes Konzertwerk mit Ondes Martenot; begleitende Klimabezüge in der Reihe.",
-            "tags": {
-            "topic": ["Culture", "Innovation"],
-            "artform": ["Music", "Orchestral"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-        }
         },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [10.5268, 52.2689] },
-            "properties": {
-            "title": "Recycling Concerto – Braunschweig",
-            "artist": "Staatsorchester Braunschweig, Gregor A. Mayrhofer",
-            "type": "Concert",
-            "location": "Braunschweig, Germany",
-            "description": "Konzert für recycelte Perkussion und Orchester, Fokus Abfall & Müllproblematik.",
-            "tags": {
-            "topic": ["Waste", "Circularity"],
-            "artform": ["Music", "Performance", "Contemporary"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [11.0775, 49.4521] },
-            "properties": {
-            "title": "Vox balaenae & Leoparden",
-            "artist": "Staatsphilharmonie Nürnberg",
-            "type": "Concert",
-            "location": "Nürnberg, Germany",
-            "description": "Kammermusik mit Tier- und Lebensraumbezug (George Crumb, Fazil Say) und Informationen zu gefährdeten Arten.",
-            "tags": {
-            "topic": ["Biodiversity", "Wildlife"],
-            "artform": ["Music", "Performance"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [9.7320, 52.3759] },
-            "properties": {
-            "title": "Wasser – Vortrag und Musik",
-            "artist": "NDR Radiophilharmonie (Ensemble) & Prof. Dr. Christiane Meyer",
-            "type": "Concert",
-            "location": "Hannover, Germany",
-            "description": "Vortrag zur nachhaltigen Wasserbewirtschaftung, begleitet von ausgewählten Musikstücken.",
-            "tags": {
-            "topic": ["Water", "Sustainability"],
-            "artform": ["Music", "Talk"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [13.7373, 51.0504] },
-            "properties": {
-            "title": "Green Box Kammerkonzert: Plastik",
-            "artist": "Ensembles der Staatsoperette Dresden",
-            "type": "Concert",
-            "location": "Dresden, Germany",
-            "description": "Kammermusik und Diskurs zum Umweltproblem Plastik in Kooperation mit der Heinrich-Böll-Stiftung.",
-            "tags": {
-            "topic": ["Plastic Pollution", "Climate Awareness"],
-            "artform": ["Music", "Performance", "Talk", "Exhibition"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [8.6821, 50.1109] },
-            "properties": {
-            "title": "Spotlight: Wetter, Klima und Recycling Concerto",
-            "artist": "hr-Sinfonieorchester, Vivi Vassileva, Gregor A. Mayrhofer",
-            "type": "Concert",
-            "location": "Frankfurt am Main, Germany",
-            "description": "Gesprächskonzert mit ARD-Meteorologe Sven Plöger; Fokus auf Wetter-/Klimakreisläufe und Recycling Concerto.",
-            "tags": {
-            "topic": ["Climate Change", "Waste"],
-            "artform": ["Music", "Talk", "Performance"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-            },
-            {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [9.4797, 51.3127] },
-            "properties": {
-            "title": "Kassel: Ozeane, CO2 und Wärme",
-            "artist": "Staatsorchester Kassel, Vortrag: Dr. Judith Hauck (AWI)",
-            "type": "Concert",
-            "location": "Kassel, Germany",
-            "description": "Musik von Debussy, Ligeti, Ravel, Telemann; Einführung zur Rolle der Ozeane im Klimasystem.",
-            "tags": {
-            "topic": ["Oceans", "Carbon Cycle", "Climate Change"],
-            "artform": ["Music", "Talk"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
-            "properties": {
-            "title": "Sustainable Listening – Klimakapsel",
-            "artist": "Staatsoper Unter den Linden, Gebrüder Teichmann",
-            "type": "Concert",
-            "location": "Berlin, Germany",
-            "description": "Begehbare Klimakapsel als Raum für Impulse, Austausch und Teilhabe; installatives Musikerlebnis.",
-            "tags": {
-            "topic": ["Sustainability", "Climate Change"],
-            "artform": ["Music", "Installation", "Performance", "Talk"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [7.2165, 51.4332] },
-            "properties": {
-            "title": "Klimawerkstatt: Wasser",
-            "artist": "Duisburger Philharmoniker",
-            "type": "Concert",
-            "location": "Duisburg, Germany",
-            "description": "Reihe verbindet Kammermusik mit Redebeiträgen zum Element Wasser und Klimawandel.",
-            "tags": {
-            "topic": ["Water", "Climate Change"],
-            "artform": ["Music", "Talk"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
-            "properties": {
-            "title": "Klima-Konzert im Kraftwerk Berlin",
-            "artist": "Staatskapelle Berlin",
-            "type": "Concert",
-            "location": "Berlin, Germany",
-            "description": "Konzert an einem Ort der Industriegeschichte, Fokus Naturzerbrechlichkeit mit Livemusik und Fotoprojektion.",
-            "tags": {
-            "topic": ["Climate Change", "Environmental Awareness"],
-            "artform": ["Music", "Performance", "Visuals", "Walk"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-            },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
-            "properties": {
-            "title": "Laudato si’ – Weltliches Oratorium (UA)",
-            "artist": "Tanja Tetzlaff, Staatskapelle Berlin, Gregor A. Mayrhofer",
-            "type": "Concert",
-            "location": "Berlin, Germany",
-            "description": "Uraufführung inspiriert von „Laudato si’“ mit Werken von Bach und Saint-Saëns.",
-            "tags": {
-            "topic": ["Climate Ethics", "Environmental Awareness"],
-            "artform": ["Music", "Oratorio", "Classical"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
-            "properties": {
-            "title": "Gustav Mahler: Das Lied von der Erde – Kontext Umweltzerstörung",
-            "artist": "Staatskapelle Berlin (Serie)",
-            "type": "Concert",
-            "location": "Berlin, Germany",
-            "description": "Aufführungsserie im Spannungsfeld globaler Umweltzerstörung und Krieg – Musik und Diskurs.",
-            "tags": {
-            "topic": ["Environmental Reflection", "Culture"],
-            "artform": ["Music", "Series", "Talk"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [10.5268, 52.2689] },
-            "properties": {
-            "title": "Klima-Sinfoniekonzert: Pastorale, Moldau und Klimabilder",
-            "artist": "Staatsorchester Braunschweig",
-            "type": "Concert",
-            "location": "Braunschweig, Germany",
-            "description": "Gegenüberstellung von Naturidylle (Beethoven, Smetana) und Klimawandel-Tatsachen (IPCC-Texte, ISS-Bilder).",
-            "tags": {
-            "topic": ["Climate Change", "Environmental Awareness"],
-            "artform": ["Music", "Projection", "Talk"]
-            },
-            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
-            }
-        },
+        "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+    }
+}
+
     {
       "type": "Feature",
       "geometry": {
