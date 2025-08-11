@@ -5,6 +5,91 @@
     "type": "Feature",
     "geometry": {
       "type": "Point",
+      "coordinates": [20.2253, 67.8558]
+    },
+    "properties": {
+      "title": "Solar Egg",
+      "description": "Gold-faceted sauna sculpture addressing energy, climate, and social change in Kiruna.",
+      "artist": "Bigert & Bergström",
+      "type": "Sculpture/Installation",
+      "location": "Kiruna, Sweden",
+      "year": 2017,
+      "tags": {
+        "topic": ["Renewable Energy", "Sustainability", "Environmental Awareness"],
+        "artform": ["Sculpture", "Installation", "Public Art"]
+      },
+      "url": "https://bigertbergstrom.com/projects/solar-egg",
+      "thumbnail": "https://bigertbergstrom.com/wp-content/uploads/solar-egg-kiruna.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [18.059, 59.366]
+    },
+    "properties": {
+      "title": "Future Island",
+      "description": "Living climate island with divided microclimate zones and sensors visualizing warming scenarios.",
+      "artist": "OOZE + Marjetica Potrč",
+      "type": "Landscape/Installation",
+      "location": "Albano campus, Stockholm, Sweden",
+      "year": 2023,
+      "tags": {
+        "topic": ["Climate Change", "Environmental Awareness", "Sustainability"],
+        "artform": ["Eco-Art", "Installation", "Public Art"]
+      },
+      "url": "https://publicartagencysweden.com/swedish-artwork-on-climate-change-at-the-17th-international-architecture-exhibition-la-biennale-di-venezia/",
+      "thumbnail": "https://publicartagencysweden.com/wp-content/uploads/2023/12/future-island-stockholm.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [10.5537, 63.4305]
+    },
+    "properties": {
+      "title": "Pollution Pods",
+      "description": "Five interconnected geodesic domes recreate urban air quality to make climate and air pollution physically tangible.",
+      "artist": "Michael Pinsky (Climart)",
+      "type": "Installation",
+      "location": "Trondheim, Norway",
+      "year": 2017,
+      "tags": {
+        "topic": ["Air Pollution", "Climate Change", "Environmental Awareness", "Public Health"],
+        "artform": ["Installation", "Public Art", "Eco-Art"]
+      },
+      "url": "https://www.climart.info",
+      "thumbnail": "https://landartgenerator.org/blagi/wp-content/uploads/2018/06/pollution-pods.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [15.626, 68.694]
+    },
+    "properties": {
+      "title": "The Sunken House",
+      "description": "Facade work in Vesterålen visualizing sea level rise (NASA worst-case) and sparking local climate debates.",
+      "artist": "Deana Kolencikova / GaiaVesterålen",
+      "type": "Public Art",
+      "location": "Sortland, Vesterålen, Norway",
+      "year": 2023,
+      "tags": {
+        "topic": ["Sea Level Rise", "Climate Change", "Environmental Awareness"],
+        "artform": ["Public Art", "Installation", "Eco-Art"]
+      },
+      "url": "https://climate-adapt.eea.europa.eu/en/mission/solutions/mission-stories/the-sunken-house-story28",
+      "thumbnail": "https://climate-adapt.eea.europa.eu/++theme++climateadaptv2/images/opengraph.png"
+    }
+  },
+        
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
       "coordinates": [-76.7936, 18.0179]
     },
     "properties": {
