@@ -1605,10 +1605,11 @@
                         "Exhibition",
                         "Installation"
                     ]
-                }
+                },
+                "url": "https://www.alejandroduran.com/washed-up"
             }
         },
-        "url": "https://www.alejandroduran.com/washed-up"
+        
         {
             "type": "Feature",
             "geometry": {
