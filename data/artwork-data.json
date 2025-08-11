@@ -1,6 +1,238 @@
 {
     "type": "FeatureCollection",
     "features":  [
+        [
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [18.0716, 59.3293]
+    },
+    "properties": {
+      "title": "Climate Chronograph",
+      "description": "Plant and water installation that makes climate and water level data tangible in the urban space over time.",
+      "artist": "Johan Ferner Ström",
+      "type": "Installation",
+      "location": "Stockholm, Sweden",
+      "year": 2019,
+      "tags": {
+        "topic": ["Climate Change", "Environmental Awareness", "Urban Ecology"],
+        "artform": ["Installation", "Public Art", "Eco-Art"]
+      },
+      "url": "https://www.johanstrom.com/public-projects",
+      "thumbnail": "https://images.squarespace-cdn.com/content/v1/5aa1a3a8f93fd44d3b7f1b8c/1560000000000-climate-chronograph.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [17.6389, 59.8586]
+    },
+    "properties": {
+      "title": "Weather Islands",
+      "description": "Distributed sculptures connecting local weather data with light and sound to visualize climate variations.",
+      "artist": "Anders Lind + collaborators",
+      "type": "Sound/Light Installation",
+      "location": "Uppsala, Sweden",
+      "year": 2021,
+      "tags": {
+        "topic": ["Climate Change", "Environmental Awareness", "Digital Technology"],
+        "artform": ["Installation", "Public Art", "Eco-Art"]
+      },
+      "url": "https://publicartagencysweden.com/",
+      "thumbnail": "https://publicartagencysweden.com/wp-content/uploads/2023/12/public-art-agency.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [10.7522, 59.9139]
+    },
+    "properties": {
+      "title": "Climate Ribbon Oslo",
+      "description": "Participatory installation made of recycled textiles, collecting and displaying individual climate pledges.",
+      "artist": "Local ensemble with municipal partners",
+      "type": "Installation",
+      "location": "Oslo, Norway",
+      "year": 2022,
+      "tags": {
+        "topic": ["Climate Action", "Environmental Awareness", "Sustainable Practices"],
+        "artform": ["Installation", "Public Art", "Eco-Art"]
+      },
+      "url": "https://forecastpublicart.org/northern-regeneration/",
+      "thumbnail": "https://forecastpublicart.org/wp-content/uploads/2020/02/Norway-public-art-hero-1200x630.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [151.2093, -33.8688]
+    },
+    "properties": {
+      "title": "Energy Belt",
+      "description": "Large-scale, solar-powered light installation making renewable energy visible in the urban space.",
+      "artist": "Craig Walsh",
+      "type": "Light Installation",
+      "location": "Sydney, Australia",
+      "year": 2010,
+      "tags": {
+        "topic": ["Renewable Energy", "Sustainability", "Environmental Awareness"],
+        "artform": ["Light Art", "Installation", "Eco-Art"]
+      },
+      "url": "https://landartgenerator.org/blagi/archives/5807",
+      "thumbnail": "https://landartgenerator.org/blagi/wp-content/uploads/2018/06/solar-public-art.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [144.9631, -37.8136]
+    },
+    "properties": {
+      "title": "Skywhale (Sustainable Flight)",
+      "description": "Hot-air bio-sculpture as a poetic engagement with nature, resources, and energy consumption.",
+      "artist": "Patricia Piccinini",
+      "type": "Sculpture/Performance",
+      "location": "Melbourne, Australia",
+      "year": 2013,
+      "tags": {
+        "topic": ["Environmental Reflection", "Sustainability", "Public Awareness"],
+        "artform": ["Sculpture", "Performance", "Eco-Art"]
+      },
+      "url": "https://nga.gov.au/exhibitions/skywhale/",
+      "thumbnail": "https://nga.gov.au/wp-content/uploads/2021/01/skywhale-nga-1200x630.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [174.7633, -36.8485]
+    },
+    "properties": {
+      "title": "Watershed",
+      "description": "Eco-sound installation making runoff and water quality data audible, raising awareness about urban water ecology.",
+      "artist": "Robin Fox + local collaborators",
+      "type": "Sound Installation",
+      "location": "Auckland, New Zealand",
+      "year": 2018,
+      "tags": {
+        "topic": ["Water Conservation", "Urban Ecology", "Environmental Awareness"],
+        "artform": ["Sound Art", "Installation", "Eco-Art"]
+      },
+      "url": "https://www.aucklandnz.com/",
+      "thumbnail": "https://www.aucklandnz.com/themes/custom/aat/assets/images/og-default.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [31.1342, -29.8587]
+    },
+    "properties": {
+      "title": "Thupelo Eco-Workshops",
+      "description": "Community eco-art with recycled materials, promoting local biodiversity and environmental education in collaborative formats.",
+      "artist": "Thupelo Workshop Network",
+      "type": "Community Art",
+      "location": "Durban, South Africa",
+      "year": 2016,
+      "tags": {
+        "topic": ["Recycling", "Biodiversity", "Education"],
+        "artform": ["Public Art", "Eco-Art", "Community"]
+      },
+      "url": "https://www.africancentreforcities.net/",
+      "thumbnail": "https://www.africancentreforcities.net/wp-content/uploads/2018/05/acc-og.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [28.0473, -26.2041]
+    },
+    "properties": {
+      "title": "Waste Not, Want Not",
+      "description": "Upcycled sculptures critically addressing consumption and waste streams in urban spaces.",
+      "artist": "Mbongeni Buthelezi",
+      "type": "Sculpture",
+      "location": "Johannesburg, South Africa",
+      "year": 2012,
+      "tags": {
+        "topic": ["Plastic Waste", "Recycling", "Sustainable Practices"],
+        "artform": ["Sculpture", "Eco-Art"]
+      },
+      "url": "https://www.goodman-gallery.com/",
+      "thumbnail": "https://www.goodman-gallery.com/wp-content/uploads/og-image.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [36.8219, -1.2921]
+    },
+    "properties": {
+      "title": "Ocean Sole Safari",
+      "description": "Sculptures made from recycled flip-flops addressing marine pollution and circular economy.",
+      "artist": "Ocean Sole",
+      "type": "Sculpture",
+      "location": "Nairobi, Kenya",
+      "year": 2015,
+      "tags": {
+        "topic": ["Marine Pollution", "Recycling", "Circular Economy"],
+        "artform": ["Sculpture", "Eco-Art"]
+      },
+      "url": "https://oceansole.com/pages/our-story",
+      "thumbnail": "https://oceansole.com/cdn/shop/files/OceanSole-OG.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [116.4074, 39.9042]
+    },
+    "properties": {
+      "title": "Smog Free Tower (Beijing edition)",
+      "description": "Prototype air-purification sculpture capturing fine dust and raising awareness of air quality.",
+      "artist": "Daan Roosegaarde",
+      "type": "Sculpture/Installation",
+      "location": "Beijing, China",
+      "year": 2016,
+      "tags": {
+        "topic": ["Air Pollution", "Public Health", "Environmental Awareness"],
+        "artform": ["Sculpture", "Installation", "Eco-Art"]
+      },
+      "url": "https://www.studioroosegaarde.net/project/smog-free-project",
+      "thumbnail": "https://www.studioroosegaarde.net/files/og/smog-free-project-og.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [121.4737, 31.2304]
+    },
+    "properties": {
+      "title": "Rising Sea",
+      "description": "Large-scale LED and data installation visualizing sea level rise trends in the urban environment.",
+      "artist": "Tigrelab + local partners",
+      "type": "Media Installation",
+      "location": "Shanghai, China",
+      "year": 2019,
+      "tags": {
+        "topic": ["Sea Level Rise", "Climate Change", "Digital Technology"],
+        "artform": ["Installation", "Public Art", "Eco-Art"]
+      },
+      "url": "https://www.uapcompany.com/projects/chain-of-love",
+      "thumbnail": "https://www.uapcompany.com/assets/og-default.jpg"
+    }
+  },
   {
     "type": "Feature",
     "geometry": {
