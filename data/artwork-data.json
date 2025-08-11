@@ -26,27 +26,6 @@
     "type": "Feature",
     "geometry": {
       "type": "Point",
-      "coordinates": [17.6389, 59.8586]
-    },
-    "properties": {
-      "title": "Weather Islands",
-      "description": "Distributed sculptures connecting local weather data with light and sound to visualize climate variations.",
-      "artist": "Anders Lind + collaborators",
-      "type": "Sound/Light Installation",
-      "location": "Uppsala, Sweden",
-      "year": 2021,
-      "tags": {
-        "topic": ["Climate Change", "Environmental Awareness", "Digital Technology"],
-        "artform": ["Installation", "Public Art", "Eco-Art"]
-      },
-      "url": "https://publicartagencysweden.com/",
-      "thumbnail": "https://publicartagencysweden.com/wp-content/uploads/2023/12/public-art-agency.jpg"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
       "coordinates": [10.7522, 59.9139]
     },
     "properties": {
@@ -165,8 +144,8 @@
         "topic": ["Plastic Waste", "Recycling", "Sustainable Practices"],
         "artform": ["Sculpture", "Eco-Art"]
       },
-      "url": "https://www.goodman-gallery.com/",
-      "thumbnail": "https://www.goodman-gallery.com/wp-content/uploads/og-image.jpg"
+      "url": "https://www.africamultiple.uni-bayreuth.de/en/Artists-in-Cluster-files/mbogeni/index.html",
+      "thumbnail": "https://www.africamultiple.uni-bayreuth.de/en/Artists-in-Cluster-files/mbogeni/3galerie/IMG_2148.jpg"
     }
   },
   {
@@ -359,27 +338,34 @@
       "thumbnail": "https://www.kariculture.net/wp-content/uploads/2020/06/ronald-cyrille-black-bird.jpg"
     }
   },
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [-61.0588, 16.2415]
-    },
-    "properties": {
-      "title": "Sargassum (Coastal Studies)",
-      "description": "Photography documenting invasive sargassum blooms and their impact on Caribbean shorelines.",
-      "artist": "Nicolas Derné",
-      "type": "Photography",
-      "location": "Guadeloupe",
-      "year": 2021,
-      "tags": {
-        "topic": ["Marine Pollution", "Biodiversity", "Climate Change"],
-        "artform": ["Photography"]
-      },
-      "url": "https://winthropking.fsu.edu/event/homo-sargassum-international-symposium",
-      "thumbnail": "https://winthropking.fsu.edu/themes/custom/fsu_wk/public/images/winthrop-king-logo.png"
-    }
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [0, 0]
   },
+  "properties": {
+    "title": "Pression en tropics",
+    "description": "A photographic and video project by Nicolas Derné exploring the environmental and social pressures in tropical regions, addressing waste, climate, and human impact on fragile ecosystems.",
+    "artist": "Nicolas Derné",
+    "type": "Photography / Video",
+    "location": "Tropical regions",
+    "year": "Ongoing",
+    "tags": {
+      "topic": [
+        "Climate Change",
+        "Pollution",
+        "Ecosystem Protection"
+      ],
+      "artform": [
+        "Photography",
+        "Video Art"
+      ]
+    },
+    "url": "https://nicolasderne.com/vhu",
+    "thumbnail": "https://images.squarespace-cdn.com/content/v1/5a8c38cdf09ca4bb727c4a90/1519931864842-7A0NJZ3PUP3M9TCTPL2L/_0133394.jpg?format=1000w"
+  }
+},
   {
     "type": "Feature",
     "geometry": {
@@ -1293,10 +1279,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [
-                    -74.0721,
-                    4.711
-                ]
+                "coordinates": [51.5074, -0.1278]
             },
             "properties": {
                 "title": "The Weather Project",
