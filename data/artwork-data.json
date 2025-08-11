@@ -1,6 +1,112 @@
 {
     "type": "FeatureCollection",
     "features":  [
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-76.7936, 18.0179]
+    },
+    "properties": {
+      "title": "CEMENTED",
+      "description": "Mixed-media series on precarity, debris, and environmental vulnerability using cement and repurposed materials.",
+      "artist": "Camille Chedda",
+      "type": "Mixed Media",
+      "location": "Kingston, Jamaica",
+      "year": 2019,
+      "tags": {
+        "topic": ["Waste", "Sustainable Practices", "Climate Change"],
+        "artform": ["Eco-Art", "Mixed Media"]
+      },
+      "url": "https://kingstoncreative.org/projects/a-feral-commons/",
+      "thumbnail": "https://kingstoncreative.org/wp-content/uploads/2024/11/A-Feral-Commons-Kingston-Creative-1024x576.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-61.5353, 16.2422]
+    },
+    "properties": {
+      "title": "Black Bird Street Interventions",
+      "description": "Murals and street artworks confronting environmental and social issues in urban Guadeloupe.",
+      "artist": "Ronald Cyrille",
+      "type": "Mural",
+      "location": "Pointe-à-Pitre, Guadeloupe",
+      "year": 2017,
+      "tags": {
+        "topic": ["Environmental Awareness", "Urban Ecology"],
+        "artform": ["Mural", "Public Art"]
+      },
+      "url": "https://www.kariculture.net/en/ronald-cyrille-an-ambassador-for-guadeloupean-art/",
+      "thumbnail": "https://www.kariculture.net/wp-content/uploads/2020/06/ronald-cyrille-black-bird.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-61.0588, 16.2415]
+    },
+    "properties": {
+      "title": "Sargassum (Coastal Studies)",
+      "description": "Photography documenting invasive sargassum blooms and their impact on Caribbean shorelines.",
+      "artist": "Nicolas Derné",
+      "type": "Photography",
+      "location": "Guadeloupe",
+      "year": 2021,
+      "tags": {
+        "topic": ["Marine Pollution", "Biodiversity", "Climate Change"],
+        "artform": ["Photography"]
+      },
+      "url": "https://winthropking.fsu.edu/event/homo-sargassum-international-symposium",
+      "thumbnail": "https://winthropking.fsu.edu/themes/custom/fsu_wk/public/images/winthrop-king-logo.png"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-80.1918, 25.7617]
+    },
+    "properties": {
+      "title": "The Ocean Dances Over Sun Buttered Mountains",
+      "description": "Immersive ceramic installation evoking coral reef forms, addressing climate change, coral bleaching, and sea level rise in Miami.",
+      "artist": "Morel Doucet",
+      "type": "Ceramic Installation",
+      "location": "Miami, USA",
+      "year": 2021,
+      "tags": {
+        "topic": ["Coral Reef", "Climate Change", "Environmental Reflection"],
+        "artform": ["Installation", "Ceramics", "Eco-Art"]
+      },
+      "url": "https://www.moreldoucet.com/facebook-installation",
+      "thumbnail": "https://images.squarespace-cdn.com/content/v1/50b3a6c4e4b05036d3b16d01/a4ebb5eb-f1f1-4f85-9631-063bb1782251/OpenArts-2021-MIA1818-MorelDoucet-Final-19.jpg"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-80.1918, 25.7617]
+    },
+    "properties": {
+      "title": "Imagined Landscapes",
+      "description": "Large-scale paintings blending environmental symbolism and Caribbean histories.",
+      "artist": "Edouard Duval-Carrié",
+      "type": "Painting",
+      "location": "Miami, USA",
+      "year": 2019,
+      "tags": {
+        "topic": ["Environmental Reflection", "Cultural Heritage", "Climate Change"],
+        "artform": ["Painting"]
+      },
+      "url": "https://www.pamm.org/en/event/conversation-imagined-landscapes-with-edouard-duval-carrie-and-tobias-ostrander",
+      "thumbnail": "https://i.ytimg.com/vi/vKI3V1eJnPk/hqdefault.jpg"
+    }
+  },
+        
         {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [8.8017, 53.0793] },
