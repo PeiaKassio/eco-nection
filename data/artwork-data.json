@@ -1157,14 +1157,17 @@
                 "year": 2020,
                 "tags": {
                     "topic": [
-                        "Waste Management"
+                        "Waste Management",
+                        "Carbon Emissions",
+                        "Energy overuse"
                     ],
                     "artform": [
                         "Sculpture",
                         "Installation"
                     ]
                 },
-                "thumbnail": ""
+                "url": "https://nnennaokore.com/statement/"
+                "thumbnail": "https://nnennaokore.com/wp-content/uploads/2019/04/Body-Language.jpg"
             }
         },
         {
@@ -1249,7 +1252,9 @@
                         "Vertical Garden",
                         "Installation"
                     ]
-                }
+                },
+                "url" = "https://www.verticalgardenpatrickblanc.com/realisations/sao-paulo/faap-chapada-do-araripe-exhibition",
+                "thumbnail" ="https://www.verticalgardenpatrickblanc.com/sites/default/files/styles/lists/public/medias/image/faapexhibitiononequaternarypanelsaopaulo.jpg?itok=pxCAEnLN"
             }
         },
         {
@@ -1289,7 +1294,7 @@
                 ]
             },
             "properties": {
-                "title": "Ana Teresa Barboza - Cyclical Nature",
+                "title": "Ana Teresa Barboza - Between Air and Sea",
                 "description": "Using traditional techniques, native plants, and local collaborations, Ana Teresa Barboza creates monumental tapestries.",
                 "artist": "Ana Teresa Barboza",
                 "type": "Textile Art",
@@ -1304,7 +1309,9 @@
                         "Textile Art",
                         "Tapestry"
                     ]
-                }
+                }, 
+                "url" ="https://www.anateresabarboza.com/",
+                "thumbnail" = "
             }
         },
         {
@@ -2127,8 +2134,8 @@
                         "Sculpture"
                     ]
                 },
-                "url": "http://www.maartenvandeneynde.com/plastic-reef/",
-                "thumbnail": ""
+                "url": "https://www.maartenvandeneynde.com/?rd_project=183&lang=en",
+                "thumbnail": "https://www.maartenvandeneynde.com/wp-content/uploads/2014/03/Maarten-Vanden-Eynde_Plastic-Reef_Overview_Manifesta9_Ghent_2012_photo-credit-c-Kristof-Vranken-300dpi-big-150x100.jpg"
             }
         },
         {
@@ -2185,8 +2192,8 @@
                         "Sculpture"
                     ]
                 },
-                "url": "http://www.miwakoizumi.com/plastic-bag-jellyfish",
-                "thumbnail": ""
+                "url": "https://nickybourdillon.wordpress.com/miwa-koizumi/",
+                "thumbnail": "https://i0.wp.com/www.dailyartfixx.com/wp-content/uploads/2009/06/updropdetail-Aurora-Robson.jpg.jpg"
             }
         },
         {
@@ -2349,7 +2356,7 @@
                     "artform": ["Land Art", "Installation"]
                 },
                 "url": "https://en.wikipedia.org/wiki/Spiral_Jetty",
-                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Spiral-Jetty-from-rozel-point.png"
+                "thumbnail": "https://holtsmithsonfoundation.org/sites/default/files/styles/featured_1x_715_x_y_/public/2022-06/RS-1200.jpg?itok=0KT7Bs3U"
             }
         },
         {
@@ -2461,21 +2468,21 @@
         "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [-79.3832, 43.6532]
+            "coordinates": [-87.6217, 41.8971]
         },
         "properties": {
-            "title": "Melting Ice",
-            "description": "A performance where an ice block is left to melt in the city, symbolizing the rapid disappearance of glaciers due to climate change.",
-            "artist": "Tania Bruguera",
-            "type": "Performance",
-            "location": "Toronto, Canada",
+            "title": "Exhibition: Climate Change",
+            "description": "´Science-fiction installations that imagines a future sculpted by ruinous climate crisis and the ordinary people destined to inhabit it´. (MOCA)",
+            "artist": "Josh Kline",
+            "type": "Various installations",
+            "location": "Chicago, USA",
             "year": 2019,
             "tags": {
                 "topic": ["Climate Change", "Environmental Awareness"],
-                "artform": ["Performance"]
+                "artform": ["Sculpture", "film", "photography"]
             },
-            "url": "https://www.artsy.net/article/artsy-editorial-5-artists-confronting-climate-change",
-            "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Melting_Ice_Performance.jpg"
+            "url": "https://www.moca.org/exhibition/josh-kline-climate-change",
+            "thumbnail": "https://www.moca.org/storage/app/uploads/public/665/a36/fb7/thumb_12904_1120_0_0_0_auto.jpg"
         }
     },
     {
