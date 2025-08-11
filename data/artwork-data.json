@@ -1590,7 +1590,7 @@
             },
             "properties": {
                 "title": "Museo de la Basura",
-                "description": "Environmental art project led by Alejandro Durán that aims to transform the international waste washing up along the coast of Sian Ka’an in Mexico into art and awareness.",
+                "description": "Environmental art project led by Alejandro Dur\u00e1n that aims to transform the international waste washing up along the coast of Sian Ka’an in Mexico into art and awareness.",
                 "artist": "Alejandro Dur\u00e1n",
                 "type": "Exhibitions",
                 "location": "Mexico City, Mexico",
@@ -1608,6 +1608,7 @@
                 }
             }
         },
+        "url": "https://www.alejandroduran.com/washed-up"
         {
             "type": "Feature",
             "geometry": {
