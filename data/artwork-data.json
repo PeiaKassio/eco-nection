@@ -2204,59 +2204,258 @@
             }
         },
         {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [31.1317, 29.5581] },
-            "properties": {
-            "title": "SEKEM – Greening the Desert (Cultural & Environmental Program)",
-            "description": "Langfristiges Wüstenbegrünungs- und Nachhaltigkeitsprojekt bei Belbeis/El Wahat mit künstlerischen und kulturellen Programmen (Musik, Tanz, Handwerk), das ökologische Wiederherstellung, Biodiversität und Gemeinschaftsbildung verbindet.",
-            "artist": "SEKEM Foundation (interdisziplinär)",
-            "type": "Cultural/Environmental Art Program",
-            "location": "Sharkia Governorate, Egypt",
-            "year": "Ongoing",
-            "tags": {
-            "topic": ["Desert Restoration", "Sustainability", "Agroecology"],
-            "artform": ["Community Art", "Cultural Program", "Eco-Art"]
-            },
-            "url": "https://pivot.sekem.com/en/",
-            "thumbnail": "https://pivot.sekem.com/wp-content/uploads/2023/08/sekem-greening-desert.jpg"
-            }
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [35.5, 31.4] },
+        "properties": {
+        "title": "DeadSee (Dead Sea Salt Works)",
+        "description": "A series of salt-crystal and floating-body works created in the Dead Sea, highlighting the ecological crisis, hypersalinity, and shrinking water levels.",
+        "artist": "Sigalit Landau",
+        "type": "Sculpture/Installation",
+        "location": "Dead Sea region (Israel/Jordan Rift)",
+        "year": "2005–ongoing",
+        "tags": {
+        "topic": ["Water Scarcity", "Climate Change", "Environmental Awareness"],
+        "artform": ["Sculpture", "Installation", "Eco-Art"]
         },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [35.5, 31.4] },
-            "properties": {
-            "title": "Dead Sea Salt Works",
-            "description": "Skulpturale Salzkristall-Arbeiten und Installationen, die den ökologischen Notstand und das Schrumpfen des Toten Meeres sichtbar machen. Die Künstlerin nutzt die extremen Umweltbedingungen für materialbasierte, prozessuale Kunst.",
-            "artist": "Sigalit Landau",
-            "type": "Sculpture/Installation",
-            "location": "Dead Sea region (Israel/Jordan Rift)",
-            "year": "2005–ongoing",
-            "tags": {
-            "topic": ["Water Scarcity", "Climate Change", "Environmental Awareness"],
-            "artform": ["Sculpture", "Installation", "Eco-Art"]
-            },
-            "url": "https://www.artsy.net/artist/sigalit-landau",
-            "thumbnail": "https://res.cloudinary.com/olafureliasson-net/image/private/q_auto:eco,c_fit,h_320,w_320/img/the-weather-project_21881.webp"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [37.291, 26.615] },
-            "properties": {
-            "title": "Desert X AlUla (Environmental Commissions)",
-            "description": "Kuratiertes Programm großmaßstäblicher Wüsteninstallationen, die Landschaft, Ressourcen, Klima und kulturelle Ökologien thematisieren; jährliche Ausgaben mit wechselnden Künstler:innen und ortsspezifischen Arbeiten.",
-            "artist": "Various Artists (curated program)",
-            "type": "Public Art/Installation",
-            "location": "AlUla, Saudi Arabia",
-            "year": "2020–ongoing",
-            "tags": {
-            "topic": ["Desert Ecology", "Sustainability", "Environmental Reflection"],
-            "artform": ["Installation", "Public Art", "Eco-Art"]
-            },
-            "url": "https://desertx.org/alula",
-            "thumbnail": "https://desertx.org/images/alula/og-image.jpg"
+        "url": "https://www.artsy.net/artist/sigalit-landau",
+        "thumbnail": "https://www.artsy.net/artwork/sigalit-landau-drying-sea.jpg"
         }
         },
+        {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [37.291, 26.615] },
+        "properties": {
+        "title": "Desert X AlUla (Environmental Commissions)",
+        "description": "Large-scale site-specific installations in the desert addressing landscape, resources, climate, and cultural ecologies; new editions commission works with environmental framing.",
+        "artist": "Various Artists (curated program)",
+        "type": "Public Art/Installation",
+        "location": "AlUla, Saudi Arabia",
+        "year": "2020–ongoing",
+        "tags": {
+        "topic": ["Desert Ecology", "Sustainability", "Environmental Reflection"],
+        "artform": ["Installation", "Public Art", "Eco-Art"]
+        },
+        "url": "https://desertx.org/alula",
+        "thumbnail": "https://desertx.org/images/alula/og-image.jpg"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [35.9147, 31.7767] },
+        "properties": {
+        "title": "Salt Bridge (Dead Sea Art Works)",
+        "description": "Collaborative Dead Sea project using salt’s material properties to create symbolic connections across a shrinking water body, drawing attention to regional water crises.",
+        "artist": "Sigalit Landau + collaborators",
+        "type": "Installation",
+        "location": "Dead Sea region (Jordan/Israel)",
+        "year": 2016,
+        "tags": {
+        "topic": ["Water Scarcity", "Climate Change", "Transboundary Environment"],
+        "artform": ["Installation", "Eco-Art"]
+        },
+        "url": "https://www.artsy.net/artist/sigalit-landau",
+        "thumbnail": ""
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [31.285, 30.0105] },
+        "properties": {
+        "title": "Perception (Zabbaleen Visibility Project)",
+        "description": "A monumental anamorphic mural across Manshiyat Nasr that brings visibility to Cairo’s informal recyclers (Zabbaleen); intersects with themes of waste ecosystems and urban sustainability.",
+        "artist": "eL Seed",
+        "type": "Mural/Urban Intervention",
+        "location": "Manshiyat Nasr, Cairo, Egypt",
+        "year": 2016,
+        "tags": {
+        "topic": ["Urban Ecology", "Waste", "Social-Environmental Justice"],
+        "artform": ["Mural", "Public Art"]
+        },
+        "url": "https://elseed-art.com/perception/",
+        "thumbnail": ""
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [46.7219, 24.6877] },
+        "properties": {
+        "title": "Riyadh Art – Urban Landscape and Eco-future Commissions",
+        "description": "Public art program commissioning large-scale works across the city, with multiple pieces addressing heat, shade, biodiversity, and water in arid urban environments.",
+        "artist": "Various Artists",
+        "type": "Public Art/Installation",
+        "location": "Riyadh, Saudi Arabia",
+        "year": "2021–ongoing",
+        "tags": {
+        "topic": ["Urban Heat", "Water Management", "Biodiversity"],
+        "artform": ["Installation", "Public Art", "Eco-Art"]
+        },
+        "url": "https://riyadhart.sa/",
+        "thumbnail": ""
+        }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [36.8219, -1.2921] },
+            "properties": {
+            "title": "Ocean Sole Safari",
+            "description": "Community-based sculptures made from recycled flip-flops addressing marine pollution and circular economy.",
+            "artist": "Ocean Sole",
+            "type": "Sculpture",
+            "location": "Nairobi, Kenya",
+            "year": 2015,
+            "tags": {
+            "topic": ["Marine Pollution", "Recycling", "Circular Economy"],
+            "artform": ["Sculpture", "Eco-Art"]
+            },
+            "url": "https://oceansole.com/pages/our-story",
+            "thumbnail": "https://oceansole.com/cdn/shop/files/OceanSole-OG.jpg"
+            }
+            },
+            {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [28.098, -26.103] },
+            "properties": {
+            "title": "Jukskei River Creature Series",
+            "description": "Trash-trap public artworks and nature-based climate adaptation along the Jukskei River; river waste turned into sculptural interventions with community participation.",
+            "artist": "Hannelie Coetzee + Alexandra Community (SUNCASA)",
+            "type": "Installation/Public Art",
+            "location": "Alexandra, Johannesburg, South Africa",
+            "year": 2025,
+            "tags": {
+            "topic": ["Urban Ecology", "Waste", "Climate Adaptation"],
+            "artform": ["Installation", "Public Art", "Community"]
+            },
+            "url": "https://www.iisd.org/articles/news/suncasa-turning-trash-treasures-along-jukskei-river-johannesburg",
+            "thumbnail": ""
+            }
+            },
+            {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [2.4183, 6.3703] },
+            "properties": {
+            "title": "Bidon-Masques (Jerrycan Masks)",
+            "description": "Masks and installations made from discarded plastic jerrycans; critiques consumption, oil economies, and waste streams in West Africa.",
+            "artist": "Romuald Hazoumè",
+            "type": "Sculpture/Installation",
+            "location": "Cotonou, Benin",
+            "year": "2000s–ongoing",
+            "tags": {
+            "topic": ["Waste", "Oil Economy", "Environmental Awareness"],
+            "artform": ["Sculpture", "Installation", "Eco-Art"]
+            },
+            "url": "https://en.wikipedia.org/wiki/Romuald_Hazoum%C3%A8",
+            "thumbnail": ""
+            }
+            },
+            {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [18.4241, -33.9249] },
+            "properties": {
+            "title": "Site-Specific Land Art (Western Cape)",
+            "description": "Ephemeral land art using natural materials to foreground landscape processes, erosion, water, and biodiversity.",
+            "artist": "Strijdom van der Merwe",
+            "type": "Land Art",
+            "location": "Western Cape, South Africa",
+            "year": "2000s–ongoing",
+            "tags": {
+            "topic": ["Nature Cycles", "Ecosystem Protection"],
+            "artform": ["Land Art", "Installation"]
+            },
+            "url": "https://www.strijdom.co.za/",
+            "thumbnail": ""
+            }
+            },
+            {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [18.4241, -33.9249] },
+            "properties": {
+            "title": "Walls 4 Water (IPAF)",
+            "description": "Murals on water scarcity and WASH awareness created with communities and NGOs to drive behavior change and education.",
+            "artist": "Baz-Art + invited artists",
+            "type": "Mural/Community Project",
+            "location": "Cape Town & Eastern Cape, South Africa",
+            "year": 2021,
+            "tags": {
+            "topic": ["Water Scarcity", "Climate Awareness"],
+            "artform": ["Mural", "Public Art", "Community"]
+            },
+            "url": "https://ipafest.co.za/",
+            "thumbnail": ""
+            }
+            },
+            {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [36.713, -1.313] },
+            "properties": {
+            "title": "Recycled Flip-Flop Sculptures",
+            "description": "Flip-flop waste transformed into animal sculptures; awareness-raising on ocean plastics and local livelihoods.",
+            "artist": "UniquEco / Ocean Sole artists",
+            "type": "Sculpture",
+            "location": "Karen, Nairobi, Kenya",
+            "year": "2010s–ongoing",
+            "tags": {
+            "topic": ["Marine Pollution", "Recycling"],
+            "artform": ["Sculpture", "Eco-Art"]
+            },
+            "url": "https://indigoarts.com/galleries/recycled-flip-flop-sculptures-kenya",
+            "thumbnail": ""
+            }
+            },
+            {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [31.2357, -17.8292] },
+            "properties": {
+            "title": "A Feral Commons (Harare node)",
+            "description": "Curated public art program addressing climate, waste, and biodiversity with site-specific and participatory works.",
+            "artist": "Multiple (local collectives)",
+            "type": "Public Art/Installation",
+            "location": "Harare, Zimbabwe",
+            "year": 2024,
+            "tags": {
+            "topic": ["Climate Change", "Biodiversity", "Urban Ecology"],
+            "artform": ["Installation", "Public Art", "Community"]
+            },
+            "url": "https://aferalcommons.com",
+            "thumbnail": ""
+            }
+            },
+            {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [39.446, -4.211] },
+            "properties": {
+            "title": "Functional Ocean Plastic Art",
+            "description": "Furniture and functional objects made from ocean plastic to support beach cleanups and community activation.",
+            "artist": "Joel Oenga",
+            "type": "Design/Installation",
+            "location": "Tiwi Beach, Kwale, Kenya",
+            "year": 2023,
+            "tags": {
+            "topic": ["Marine Pollution", "Recycling", "Community"],
+            "artform": ["Design", "Installation", "Eco-Art"]
+            },
+            "url": "https://www.africanews.com/2023/12/15/kenyan-artist-transforms-plastic-menace-into-functional-art/",
+            "thumbnail": ""
+            }
+            },
+            {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [15.2663, -4.325] },
+            "properties": {
+            "title": "The Herds (Mobile Public Artwork)",
+            "description": "Life-size roaming animal sculptures moving through cities as a call for climate and biodiversity action; participatory street performances.",
+            "artist": "Various (mobile collective)",
+            "type": "Public Art/Performance",
+            "location": "Kinshasa, DRC (Africa leg)",
+            "year": 2025,
+            "tags": {
+            "topic": ["Climate Action", "Biodiversity", "Migration"],
+            "artform": ["Public Art", "Performance", "Installation"]
+            },
+            "url": "https://www.theartnewspaper.com/2025/05/14/from-africa-to-the-arctic-circle-this-public-artwork-is-stampeding-into-cities-with-a-cry-for-climate-action",
+            "thumbnail": ""
+            }
+            },
+       
         {
             "type": "Feature",
             "geometry": {
