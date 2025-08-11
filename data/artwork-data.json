@@ -2205,30 +2205,57 @@
         },
         {
             "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    30.0444,
-                    31.2357
-                ]
-            },
+            "geometry": { "type": "Point", "coordinates": [31.1317, 29.5581] },
             "properties": {
-                "title": "Sand Dunes of Cairo",
-                "description": "An installation on the fragility of desert ecosystems.",
-                "artist": "Samira Hassan",
-                "type": "Installation",
-                "location": "Cairo, Egypt",
-                "year": 2019,
-                "tags": {
-                    "topic": [
-                        "Ecosystem Protection",
-                        "Climate Change"
-                    ],
-                    "artform": [
-                        "Installation"
-                    ]
-                }
+            "title": "SEKEM – Greening the Desert (Cultural & Environmental Program)",
+            "description": "Langfristiges Wüstenbegrünungs- und Nachhaltigkeitsprojekt bei Belbeis/El Wahat mit künstlerischen und kulturellen Programmen (Musik, Tanz, Handwerk), das ökologische Wiederherstellung, Biodiversität und Gemeinschaftsbildung verbindet.",
+            "artist": "SEKEM Foundation (interdisziplinär)",
+            "type": "Cultural/Environmental Art Program",
+            "location": "Sharkia Governorate, Egypt",
+            "year": "Ongoing",
+            "tags": {
+            "topic": ["Desert Restoration", "Sustainability", "Agroecology"],
+            "artform": ["Community Art", "Cultural Program", "Eco-Art"]
+            },
+            "url": "https://pivot.sekem.com/en/",
+            "thumbnail": "https://pivot.sekem.com/wp-content/uploads/2023/08/sekem-greening-desert.jpg"
             }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [35.5, 31.4] },
+            "properties": {
+            "title": "Dead Sea Salt Works",
+            "description": "Skulpturale Salzkristall-Arbeiten und Installationen, die den ökologischen Notstand und das Schrumpfen des Toten Meeres sichtbar machen. Die Künstlerin nutzt die extremen Umweltbedingungen für materialbasierte, prozessuale Kunst.",
+            "artist": "Sigalit Landau",
+            "type": "Sculpture/Installation",
+            "location": "Dead Sea region (Israel/Jordan Rift)",
+            "year": "2005–ongoing",
+            "tags": {
+            "topic": ["Water Scarcity", "Climate Change", "Environmental Awareness"],
+            "artform": ["Sculpture", "Installation", "Eco-Art"]
+            },
+            "url": "https://www.artsy.net/artist/sigalit-landau",
+            "thumbnail": "https://res.cloudinary.com/olafureliasson-net/image/private/q_auto:eco,c_fit,h_320,w_320/img/the-weather-project_21881.webp"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [37.291, 26.615] },
+            "properties": {
+            "title": "Desert X AlUla (Environmental Commissions)",
+            "description": "Kuratiertes Programm großmaßstäblicher Wüsteninstallationen, die Landschaft, Ressourcen, Klima und kulturelle Ökologien thematisieren; jährliche Ausgaben mit wechselnden Künstler:innen und ortsspezifischen Arbeiten.",
+            "artist": "Various Artists (curated program)",
+            "type": "Public Art/Installation",
+            "location": "AlUla, Saudi Arabia",
+            "year": "2020–ongoing",
+            "tags": {
+            "topic": ["Desert Ecology", "Sustainability", "Environmental Reflection"],
+            "artform": ["Installation", "Public Art", "Eco-Art"]
+            },
+            "url": "https://desertx.org/alula",
+            "thumbnail": "https://desertx.org/images/alula/og-image.jpg"
+        }
         },
         {
             "type": "Feature",
