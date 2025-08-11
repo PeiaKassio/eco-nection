@@ -292,7 +292,7 @@
         "artform": ["Public Art", "Installation", "Eco-Art"]
       },
       "url": "https://climate-adapt.eea.europa.eu/en/mission/solutions/mission-stories/the-sunken-house-story28",
-      "thumbnail": "https://climate-adapt.eea.europa.eu/++theme++climateadaptv2/images/opengraph.png"
+      "thumbnail": "https://climate-adapt.eea.europa.eu/en/mission/solutions/mission-stories/the-sunken-house_figure-1-min.png/@@images/image-800-fb0f15ffddffd63682d11bd8838517d0.png"
     }
   },
         
@@ -2366,7 +2366,9 @@
                     "artform": [
                         "Photography"
                     ]
-                }
+                },
+                "url":"https://www.museumsportal-berlin.de/de/ausstellungen/anastasia-samoylova-floridas/"
+                "thumbnail":"https://shop.co-berlin.org/wp-content/uploads/2023/01/Samoylova_Floridas.jpg"
             }
         },
         {
@@ -2617,7 +2619,7 @@
                     ]
                 },
                 "url": "http://studioswine.com/projects/gyrecraft/",
-                "thumbnail": "http://studioswine.com/wp-content/uploads/2015/11/gyrecraft.jpg"
+                "thumbnail": "https://static.dezeen.com/uploads/2015/07/Gyrecraft-by-Studio-Swine-Indian-Ocean_dezeen_468_2.jpg"
             }
         },
         {
