@@ -1589,19 +1589,21 @@
                 ]
             },
             "properties": {
-                "title": "Urban Roots",
-                "description": "Vertical gardens addressing air quality in Mexico City.",
-                "artist": "Vertical Green Team",
-                "type": "Installation",
+                "title": "Museo de la Basura",
+                "description": "Environmental art project led by Alejandro Durán that aims to transform the international waste washing up along the coast of Sian Ka’an in Mexico into art and awareness.",
+                "artist": "Alejandro Dur\u00e1n",
+                "type": "Exhibitions",
                 "location": "Mexico City, Mexico",
-                "year": 2022,
+                "year": 2010,
                 "tags": {
                     "topic": [
-                        "Air Quality",
-                        "Urban Ecology"
+                        "Waste",
+                        "Ocean Pollution"
                     ],
                     "artform": [
-                        "Vertical Garden"
+                        "Photography",
+                        "Exhibition",
+                        "Installation"
                     ]
                 }
             }
@@ -2188,7 +2190,7 @@
                 ]
             },
             "properties": {
-                "title": "The Plastic Wave",
+                "title": "Washed up",
                 "description": "Alejandro Dur\u00e1n's 'Washed Up' series uses plastic debris to create vibrant, thought-provoking installations on the shores of Sian Ka'an, Mexico.",
                 "artist": "Alejandro Dur\u00e1n",
                 "type": "Installation",
@@ -2197,7 +2199,9 @@
                 "tags": {
                     "topic": [
                         "Plastic Pollution",
-                        "Recycling"
+                        "Recycling",
+                        "Waste",
+                        "
                     ],
                     "artform": [
                         "Installation"
