@@ -152,27 +152,6 @@
     "type": "Feature",
     "geometry": {
       "type": "Point",
-      "coordinates": [36.8219, -1.2921]
-    },
-    "properties": {
-      "title": "Ocean Sole Safari",
-      "description": "Sculptures made from recycled flip-flops addressing marine pollution and circular economy.",
-      "artist": "Ocean Sole",
-      "type": "Sculpture",
-      "location": "Nairobi, Kenya",
-      "year": 2015,
-      "tags": {
-        "topic": ["Marine Pollution", "Recycling", "Circular Economy"],
-        "artform": ["Sculpture", "Eco-Art"]
-      },
-      "url": "https://oceansole.com/pages/our-story",
-      "thumbnail": "https://oceansole.com/cdn/shop/files/OceanSole-OG.jpg"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
       "coordinates": [116.4074, 39.9042]
     },
     "properties": {
@@ -2305,8 +2284,8 @@
             "topic": ["Marine Pollution", "Recycling", "Circular Economy"],
             "artform": ["Sculpture", "Eco-Art"]
             },
-            "url": "https://oceansole.com/pages/our-story",
-            "thumbnail": "https://oceansole.com/cdn/shop/files/OceanSole-OG.jpg"
+            "url": "https://oceansole.com/pages/our-impact",
+            "thumbnail": "https://oceansole.com/cdn/shop/collections/April_Social_Posts_21.png?v=1746184302&width=1200"
             }
             },
             {
