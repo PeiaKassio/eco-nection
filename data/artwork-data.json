@@ -398,7 +398,7 @@
                 "topic": ["Climate Change", "Environmental Awareness", "Deforestation"],
                 "artform": ["Painting"]
             },
-"url" :"https://cambodianess.com/article/an-artist-raises-awareness-of-environment-and-wildlife-through-his-paintings", 
+"url":"https://cambodianess.com/article/an-artist-raises-awareness-of-environment-and-wildlife-through-his-paintings", 
             "thumbnail": ""
         }
     },
@@ -1253,8 +1253,8 @@
                         "Installation"
                     ]
                 },
-                "url" = "https://www.verticalgardenpatrickblanc.com/realisations/sao-paulo/faap-chapada-do-araripe-exhibition",
-                "thumbnail" ="https://www.verticalgardenpatrickblanc.com/sites/default/files/styles/lists/public/medias/image/faapexhibitiononequaternarypanelsaopaulo.jpg?itok=pxCAEnLN"
+                "url": = "https://www.verticalgardenpatrickblanc.com/realisations/sao-paulo/faap-chapada-do-araripe-exhibition",
+                "thumbnail": ="https://www.verticalgardenpatrickblanc.com/sites/default/files/styles/lists/public/medias/image/faapexhibitiononequaternarypanelsaopaulo.jpg?itok=pxCAEnLN"
             }
         },
         {
@@ -1310,8 +1310,8 @@
                         "Tapestry"
                     ]
                 }, 
-                "url" ="https://www.anateresabarboza.com/",
-                "thumbnail" = "
+                "url": ="https://www.anateresabarboza.com/",
+                "thumbnail": = ""
             }
         },
         {
