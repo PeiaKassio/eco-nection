@@ -2113,8 +2113,7 @@
                 "year": 2023,
                 "tags": {
                     "topic": [
-                        "Water Conservation",
-                        "Climate Awareness"
+                        "Water Conservation"
                     ],
                     "artform": [
                         "Sound Art"
@@ -2140,8 +2139,7 @@
                 "year": 2021,
                 "tags": {
                     "topic": [
-                        "Water Shortage",
-                        "Sustainability"
+                        "Water Shortage"
                     ],
                     "artform": [
                         "Sculpture"
@@ -2214,7 +2212,7 @@
         "location": "Dead Sea region (Israel/Jordan Rift)",
         "year": "2005–ongoing",
         "tags": {
-        "topic": ["Water Scarcity", "Climate Change", "Environmental Awareness"],
+        "topic": ["Water Scarcity"],
         "artform": ["Sculpture", "Installation", "Eco-Art"]
         },
         "url": "https://www.artsy.net/artist/sigalit-landau",
@@ -3133,7 +3131,7 @@
                 "location": "Dead Sea, Israel",
                 "year": 2019,
                 "tags": {
-                    "topic": ["Water Scarcity", "Climate Change"],
+                    "topic": ["Water Scarcity"],
                     "artform": ["Sculpture", "Installation"]
                 },
                 "url": "https://www.artsy.net/artist/sigalit-landau",
