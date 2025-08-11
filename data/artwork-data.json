@@ -1,119 +1,455 @@
 {
     "type": "FeatureCollection",
     "features":  [
-{
-  "type": "Feature",
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-16.9120, 32.6498]
-  },
-  "properties": {
-    "title": "Plastic Mero",
-    "artist": "Bordalo II",
-    "year": 2019,
-    "type": "Sculpture",
-    "description": "A large-scale fish sculpture made from tons of plastic waste collected in Madeira, highlighting marine pollution and the plight of the endangered Atlantic grouper ('mero'). Installed on the Funchal waterfront near the CR7 Museum.",
-    "location": "Funchal, Madeira, Portugal",
-    "tags": {
-      "topic": [
-        "Waste",
-        "Ocean Conservation"
-      ],
-      "artform": [
-        "Sculpture",
-        "Trash Art"
-      ]
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [8.8017, 53.0793] },
+            "properties": {
+            "title": "Jetzt fliegen sie wieder, die Kraniche",
+            "artist": "Bremer Philharmoniker, Vortrag: Sabrina Hüpperling",
+            "type": "Concert",
+            "location": "Bremen, Germany",
+            "description": "Vortrag zur Auswirkung des Klimawandels auf Kraniche (Biologische Station Osterholz) und Musik u. a. von Isang Yun.",
+            "tags": {
+            "topic": ["Biodiversity", "Climate Change"],
+            "artform": ["Music", "Performance"]
+                },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [11.5761, 48.1372] },
+            "properties": {
+            "title": "Studiosound: Spaziergang durch den Wald",
+            "artist": "Münchner Symphoniker, Lea Brückner (Klimabotschafterin), Ltg. Joseph Bastian",
+            "type": "Concert",
+            "location": "München, Germany",
+            "description": "Kammermusik-Reihe mit waldbezogenen Werken; moderiert von Waldexperten zu Zukunft des Waldes.",
+            "tags": {
+            "topic": ["Forest Conservation", "Climate Awareness"],
+            "artform": ["Music", "Performance"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [9.8730, 47.6560] },
+            "properties": {
+            "title": "Festival in Achberg: Workshops, Vorträge und Konzerte",
+            "artist": "Orchester des Wandels & Gäste, DJ/Ökologe Dominik Eulberg",
+            "type": "Concert",
+            "location": "Achberg, Germany",
+            "description": "Über 40 Mitwirkende, interaktive Formate zu Klima & Natur, Musik im Schlossgarten.",
+            "tags": {
+            "topic": ["Climate Awareness", "Biodiversity"],
+            "artform": ["Music", "Performance", "Workshop"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [9.1829, 48.7758] },
+            "properties": {
+            "title": "Impuls-Konzert Mehr Moor",
+            "artist": "Staatsorchester Stuttgart",
+            "type": "Concert",
+            "location": "Stuttgart, Germany",
+            "description": "Kammerkonzert zur Bedeutung von Mooren für den Klimaschutz mit Hintergrundinformationen.",
+            "tags": {
+            "topic": ["Peatlands", "Carbon Sequestration", "Climate Change"],
+            "artform": ["Music", "Performance", "Talk"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+            },
+            {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [7.0123, 51.4556] },
+            "properties": {
+            "title": "Recycling Concerto",
+            "artist": "Essener Philharmoniker, Gregor A. Mayrhofer (Komponist/Dirigent)",
+            "type": "Concert",
+            "location": "Essen, Germany",
+            "description": "Konzert für recycelte Perkussion und Orchester in ungewöhnlicher Saal-Topographie und Licht.",
+            "tags": {
+            "topic": ["Waste", "Sustainable Practices"],
+            "artform": ["Music", "Performance", "Contemporary"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [6.9969, 49.2402] },
+            "properties": {
+            "title": "Sonderkammerkonzert: Musik-Snacks auf Radtour",
+            "artist": "Saarländisches Staatsorchester",
+            "type": "Concert",
+            "location": "Saarbrücken, Germany",
+            "description": "Geführte Radtour zum Erlebnisbergwerk Velsen mit musikalischen Stopps und Blechbläser-Ensemble.",
+            "tags": {
+            "topic": ["Sustainable Mobility", "Climate Awareness"],
+            "artform": ["Music", "Performance", "Outdoor"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+            },
+            {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [7.0123, 51.4556] },
+            "properties": {
+            "title": "Musik im Dialog: Sehnsucht Natur",
+            "artist": "Essener Philharmoniker",
+            "type": "Concert",
+            "location": "Essen, Germany",
+            "description": "Kammerkonzert mit Naturbezug (Milhaud u. a.) und neuen Texten von Jörg Hilbert.",
+            "tags": {
+            "topic": ["Nature", "Culture"],
+            "artform": ["Music", "Literature"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
+            "properties": {
+            "title": "Diskurs- und Konzertperformance zu Klima- und Umweltfragen",
+            "artist": "Staatskapelle Berlin & Gebrüder Teichmann",
+            "type": "Concert",
+            "location": "Berlin, Germany",
+            "description": "Installative Konzert-Performance mit Live-Elektronik und Diskursformat.",
+            "tags": {
+            "topic": ["Climate Change", "Sustainability"],
+            "artform": ["Music", "Performance", "Electronic"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+            },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [7.1497, 51.2562] },
+            "properties": {
+            "title": "Messiaen: Turangalîla-Sinfonie",
+            "artist": "Sinfonieorchester Wuppertal",
+            "type": "Concert",
+            "location": "Wuppertal, Germany",
+            "description": "Großbesetztes Konzertwerk mit Ondes Martenot; begleitende Klimabezüge in der Reihe.",
+            "tags": {
+            "topic": ["Culture", "Innovation"],
+            "artform": ["Music", "Orchestral"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+        }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [10.5268, 52.2689] },
+            "properties": {
+            "title": "Recycling Concerto – Braunschweig",
+            "artist": "Staatsorchester Braunschweig, Gregor A. Mayrhofer",
+            "type": "Concert",
+            "location": "Braunschweig, Germany",
+            "description": "Konzert für recycelte Perkussion und Orchester, Fokus Abfall & Müllproblematik.",
+            "tags": {
+            "topic": ["Waste", "Circularity"],
+            "artform": ["Music", "Performance", "Contemporary"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [11.0775, 49.4521] },
+            "properties": {
+            "title": "Vox balaenae & Leoparden",
+            "artist": "Staatsphilharmonie Nürnberg",
+            "type": "Concert",
+            "location": "Nürnberg, Germany",
+            "description": "Kammermusik mit Tier- und Lebensraumbezug (George Crumb, Fazil Say) und Informationen zu gefährdeten Arten.",
+            "tags": {
+            "topic": ["Biodiversity", "Wildlife"],
+            "artform": ["Music", "Performance"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [9.7320, 52.3759] },
+            "properties": {
+            "title": "Wasser – Vortrag und Musik",
+            "artist": "NDR Radiophilharmonie (Ensemble) & Prof. Dr. Christiane Meyer",
+            "type": "Concert",
+            "location": "Hannover, Germany",
+            "description": "Vortrag zur nachhaltigen Wasserbewirtschaftung, begleitet von ausgewählten Musikstücken.",
+            "tags": {
+            "topic": ["Water", "Sustainability"],
+            "artform": ["Music", "Talk"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [13.7373, 51.0504] },
+            "properties": {
+            "title": "Green Box Kammerkonzert: Plastik",
+            "artist": "Ensembles der Staatsoperette Dresden",
+            "type": "Concert",
+            "location": "Dresden, Germany",
+            "description": "Kammermusik und Diskurs zum Umweltproblem Plastik in Kooperation mit der Heinrich-Böll-Stiftung.",
+            "tags": {
+            "topic": ["Plastic Pollution", "Climate Awareness"],
+            "artform": ["Music", "Performance", "Talk", "Exhibition"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [8.6821, 50.1109] },
+            "properties": {
+            "title": "Spotlight: Wetter, Klima und Recycling Concerto",
+            "artist": "hr-Sinfonieorchester, Vivi Vassileva, Gregor A. Mayrhofer",
+            "type": "Concert",
+            "location": "Frankfurt am Main, Germany",
+            "description": "Gesprächskonzert mit ARD-Meteorologe Sven Plöger; Fokus auf Wetter-/Klimakreisläufe und Recycling Concerto.",
+            "tags": {
+            "topic": ["Climate Change", "Waste"],
+            "artform": ["Music", "Talk", "Performance"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+            },
+            {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [9.4797, 51.3127] },
+            "properties": {
+            "title": "Kassel: Ozeane, CO2 und Wärme",
+            "artist": "Staatsorchester Kassel, Vortrag: Dr. Judith Hauck (AWI)",
+            "type": "Concert",
+            "location": "Kassel, Germany",
+            "description": "Musik von Debussy, Ligeti, Ravel, Telemann; Einführung zur Rolle der Ozeane im Klimasystem.",
+            "tags": {
+            "topic": ["Oceans", "Carbon Cycle", "Climate Change"],
+            "artform": ["Music", "Talk"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
+            "properties": {
+            "title": "Sustainable Listening – Klimakapsel",
+            "artist": "Staatsoper Unter den Linden, Gebrüder Teichmann",
+            "type": "Concert",
+            "location": "Berlin, Germany",
+            "description": "Begehbare Klimakapsel als Raum für Impulse, Austausch und Teilhabe; installatives Musikerlebnis.",
+            "tags": {
+            "topic": ["Sustainability", "Climate Change"],
+            "artform": ["Music", "Installation", "Performance", "Talk"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [7.2165, 51.4332] },
+            "properties": {
+            "title": "Klimawerkstatt: Wasser",
+            "artist": "Duisburger Philharmoniker",
+            "type": "Concert",
+            "location": "Duisburg, Germany",
+            "description": "Reihe verbindet Kammermusik mit Redebeiträgen zum Element Wasser und Klimawandel.",
+            "tags": {
+            "topic": ["Water", "Climate Change"],
+            "artform": ["Music", "Talk"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
+            "properties": {
+            "title": "Klima-Konzert im Kraftwerk Berlin",
+            "artist": "Staatskapelle Berlin",
+            "type": "Concert",
+            "location": "Berlin, Germany",
+            "description": "Konzert an einem Ort der Industriegeschichte, Fokus Naturzerbrechlichkeit mit Livemusik und Fotoprojektion.",
+            "tags": {
+            "topic": ["Climate Change", "Environmental Awareness"],
+            "artform": ["Music", "Performance", "Visuals", "Walk"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+            },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
+            "properties": {
+            "title": "Laudato si’ – Weltliches Oratorium (UA)",
+            "artist": "Tanja Tetzlaff, Staatskapelle Berlin, Gregor A. Mayrhofer",
+            "type": "Concert",
+            "location": "Berlin, Germany",
+            "description": "Uraufführung inspiriert von „Laudato si’“ mit Werken von Bach und Saint-Saëns.",
+            "tags": {
+            "topic": ["Climate Ethics", "Environmental Awareness"],
+            "artform": ["Music", "Oratorio", "Classical"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
+            "properties": {
+            "title": "Gustav Mahler: Das Lied von der Erde – Kontext Umweltzerstörung",
+            "artist": "Staatskapelle Berlin (Serie)",
+            "type": "Concert",
+            "location": "Berlin, Germany",
+            "description": "Aufführungsserie im Spannungsfeld globaler Umweltzerstörung und Krieg – Musik und Diskurs.",
+            "tags": {
+            "topic": ["Environmental Reflection", "Culture"],
+            "artform": ["Music", "Series", "Talk"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [10.5268, 52.2689] },
+            "properties": {
+            "title": "Klima-Sinfoniekonzert: Pastorale, Moldau und Klimabilder",
+            "artist": "Staatsorchester Braunschweig",
+            "type": "Concert",
+            "location": "Braunschweig, Germany",
+            "description": "Gegenüberstellung von Naturidylle (Beethoven, Smetana) und Klimawandel-Tatsachen (IPCC-Texte, ISS-Bilder).",
+            "tags": {
+            "topic": ["Climate Change", "Environmental Awareness"],
+            "artform": ["Music", "Projection", "Talk"]
+            },
+            "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
+            }
+        },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-16.9120, 32.6498]
+      },
+      "properties": {
+        "title": "Plastic Mero",
+        "artist": "Bordalo II",
+        "year": 2019,
+        "type": "Sculpture",
+        "description": "A large-scale fish sculpture made from tons of plastic waste collected in Madeira, highlighting marine pollution and the plight of the endangered Atlantic grouper ('mero'). Installed on the Funchal waterfront near the CR7 Museum.",
+        "location": "Funchal, Madeira, Portugal",
+        "tags": {
+          "topic": [
+            "Waste",
+            "Ocean Conservation"
+          ],
+          "artform": [
+            "Sculpture",
+            "Trash Art"
+          ]
+        },
+        "url": "https://www.atlasobscura.com/places/bordalo-ii-plastic-mero",
+        "thumbnail": ""
+      }
     },
-    "url": "https://www.atlasobscura.com/places/bordalo-ii-plastic-mero",
-    "thumbnail": ""
-  }
-},
-{
-  "type": "Feature",
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-16.9170, 32.6470]
-  },
-  "properties": {
-    "title": "Seal Pup Mural",
-    "artist": "Bordalo II",
-    "year": 2019,
-    "type": "Mural / Installation",
-    "description": "A vibrant wall installation of a young seal, created from recycled waste materials. Raises awareness about threatened marine species and the human role in environmental degradation.",
-    "location": "Portugal",
-    "tags": {
-      "topic": [
-        "Waste",
-        "Ocean Conservation"
-      ],
-      "artform": [
-        "Mural",
-        "Trash Art"
-      ]
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-16.9170, 32.6470]
+      },
+      "properties": {
+        "title": "Seal Pup Mural",
+        "artist": "Bordalo II",
+        "year": 2019,
+        "type": "Mural / Installation",
+        "description": "A vibrant wall installation of a young seal, created from recycled waste materials. Raises awareness about threatened marine species and the human role in environmental degradation.",
+        "location": "Portugal",
+        "tags": {
+          "topic": [
+            "Waste",
+            "Ocean Conservation"
+          ],
+          "artform": [
+            "Mural",
+            "Trash Art"
+          ]
+        },
+        "url": "https://www.atlasobscura.com/places/bordalo-ii-plastic-mero",
+        "thumbnail": ""
+      }
     },
-    "url": "https://www.atlasobscura.com/places/bordalo-ii-plastic-mero",
-    "thumbnail": ""
-  }
-},
-
-{
-  "type": "Feature",
-  "geometry": {
-    "type": "Point",
-    "coordinates": [-16.9072, 32.6492]
-  },
-  "properties": {
-    "title": "Half Turtle Door",
-    "artist": "Dina Pimenta",
-    "year": 2010,
-    "type": "Murals / Street Art",
-    "description": "Part of the 'Arte Portas Abertas' project in Funchal’s old town—a door painted with half a sea turtle, blending local heritage and ocean themes.",
-    "location": "Portugal",
-    "tags": {
-      "topic": [
-        "Cultural Heritage",
-        "Ocean Conservation"
-      ],
-      "artform": [
-        "Mural",
-        "Street Art"
-      ]
+    
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-16.9072, 32.6492]
+      },
+      "properties": {
+        "title": "Half Turtle Door",
+        "artist": "Dina Pimenta",
+        "year": 2010,
+        "type": "Murals / Street Art",
+        "description": "Part of the 'Arte Portas Abertas' project in Funchal’s old town—a door painted with half a sea turtle, blending local heritage and ocean themes.",
+        "location": "Portugal",
+        "tags": {
+          "topic": [
+            "Cultural Heritage",
+            "Ocean Conservation"
+          ],
+          "artform": [
+            "Mural",
+            "Street Art"
+          ]
+        },
+        "url": "https://www.flickr.com/photos/mjwoerner/26069080784",
+        "thumbnail": ""
+      }
     },
-    "url": "https://www.flickr.com/photos/mjwoerner/26069080784",
-    "thumbnail": ""
-  }
-},
-
-{
-  "type": "Feature",
-  "geometry": {
-    "type": "Point",
-    "coordinates": [5.7999, 53.2012]
-  },
-  "properties": {
-    "title": "Your Ancestors",
-    "artist": "Nynke Laverman",
-    "year": 2021,
-    "type": "Performance / Music",
-    "description": "In 'Your Ancestors', Nynke Laverman invites us to think in generations instead of careers. The piece reconnects us with our ancestors and critiques modern extractivist relationships with nature. Through poetic vocals and powerful words, she builds an emotional bridge between past and future.",
-    "location": "Leeuwarden, Netherlands",
-    "tags": {
-      "topic": [
-        "Intergenerational Justice",
-        "Colonial Histories",
-        "Economy",
-        "Climate Change"
-      ],
-      "artform": [
-        "Performance",
-        "Spoken Word",
-        "Music"
-      ]
+    
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.7999, 53.2012]
+      },
+      "properties": {
+        "title": "Your Ancestors",
+        "artist": "Nynke Laverman",
+        "year": 2021,
+        "type": "Performance / Music",
+        "description": "In 'Your Ancestors', Nynke Laverman invites us to think in generations instead of careers. The piece reconnects us with our ancestors and critiques modern extractivist relationships with nature. Through poetic vocals and powerful words, she builds an emotional bridge between past and future.",
+        "location": "Leeuwarden, Netherlands",
+        "tags": {
+          "topic": [
+            "Intergenerational Justice",
+            "Colonial Histories",
+            "Economy",
+            "Climate Change"
+          ],
+          "artform": [
+            "Performance",
+            "Spoken Word",
+            "Music"
+          ]
+        },
+        "url": "https://nynkelaverman.nl/project/your-ancestors/",
+        "thumbnail": "https://nynkelaverman.nl/wp-content/uploads/2021/11/YOUR-ANCESTORS-FOTO-SARIS-WIGGERS-1.jpg"
+      }
     },
-    "url": "https://nynkelaverman.nl/project/your-ancestors/",
-    "thumbnail": "https://nynkelaverman.nl/wp-content/uploads/2021/11/YOUR-ANCESTORS-FOTO-SARIS-WIGGERS-1.jpg"
-  }
-},
     {
         "type": "Feature",
         "geometry": {
