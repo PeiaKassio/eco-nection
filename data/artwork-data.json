@@ -1,6 +1,458 @@
 {
     "type": "FeatureCollection",
-    "features":  [
+    "features":  [ 
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-105.5911, 41.3114] },
+    "properties": {
+      "title": "Carbon Sink",
+      "description": "A site-specific land art installation combining coal and beetle-killed pine logs to highlight the link between fossil fuel use and forest degradation.",
+      "artist": "Chris Drury",
+      "type": "Installation",
+      "location": "University of Wyoming, Laramie, USA",
+      "year": 2011,
+      "tags": {
+        "topic": ["Climate Change", "Forest Conservation", "Resource Extraction"],
+        "artform": ["Installation", "Public Art"]
+      },
+      "url": "https://artsandculture.google.com/asset/carbon-sink-chris-drury/IgE7lwKrV7-Wzw",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-73.9442, 40.6782] },
+    "properties": {
+      "title": "Manifest Destiny",
+      "description": "Panoramic painting envisioning a future Brooklyn coastline submerged by sea-level rise.",
+      "artist": "Alexis Rockman",
+      "type": "Painting",
+      "location": "Brooklyn, New York, USA",
+      "year": 2004,
+      "tags": {
+        "topic": ["Climate Change", "Sea Level Rise", "Urban Futures"],
+        "artform": ["Painting"]
+      },
+      "url": "https://artsandculture.google.com/asset/manifest-destiny-alexis-rockman/uQFn-2x7HYE7mA",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-73.9442, 40.6782] },
+    "properties": {
+      "title": "Beauty Shop",
+      "description": "Staged diorama photograph of a decayed urban salon as a metaphor for vulnerability to extreme weather.",
+      "artist": "Lori Nix",
+      "type": "Photograph",
+      "location": "Brooklyn, New York, USA",
+      "year": 2007,
+      "tags": {
+        "topic": ["Extreme Weather", "Urban Ecology", "Climate Resilience"],
+        "artform": ["Photography"]
+      },
+      "url": "https://artsandculture.google.com/asset/beauty-shop-lori-nix/qwHXLxnktiOhqg",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-118.2437, 34.0522] },
+    "properties": {
+      "title": "Highway #1, Los Angeles, California, USA",
+      "description": "Aerial photograph revealing the vast footprint of car culture and oil dependence in Los Angeles.",
+      "artist": "Edward Burtynsky",
+      "type": "Photograph",
+      "location": "Los Angeles, California, USA",
+      "year": 2003,
+      "tags": {
+        "topic": ["Fossil Fuels", "Urbanization", "Climate Change"],
+        "artform": ["Photography"]
+      },
+      "url": "https://artsandculture.google.com/asset/highway-1-los-angeles-california-usa-edward-burtynsky/fAH0LptHWu5pIQ",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-69.332, 77.466] },
+    "properties": {
+      "title": "Night in Qaanaaq (Greenland)",
+      "description": "Polar expedition photograph capturing fragile Arctic ice near the remote settlement of Qaanaaq.",
+      "artist": "Sebastian Copeland",
+      "type": "Photograph",
+      "location": "Qaanaaq, Greenland",
+      "year": 2010,
+      "tags": {
+        "topic": ["Climate Change", "Cryosphere", "Sea Level Rise"],
+        "artform": ["Photography"]
+      },
+      "url": "https://artsandculture.google.com/asset/night-in-qaanaaq-greenland-sebastian-copeland/zwGoIpb11ifBUw",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-117.1611, 32.7157] },
+    "properties": {
+      "title": "Growing Pains",
+      "description": "Watercolor composition weaving endangered and extinct species to comment on biodiversity loss.",
+      "artist": "Laura Ball",
+      "type": "Painting",
+      "location": "San Diego, California, USA",
+      "year": 2010,
+      "tags": {
+        "topic": ["Biodiversity", "Biodiversity Loss", "Climate Change"],
+        "artform": ["Painting"]
+      },
+      "url": "https://artsandculture.google.com/asset/growing-pains-laura-ball/pwF9FZMMV73X7g",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [9.1829, 48.7758] },
+    "properties": {
+      "title": "HygroSkin: A Meteorsensitive Pavilion",
+      "description": "Biomimetic wood pavilion that passively opens and closes in response to humidity and temperature.",
+      "artist": "Achim Menges (ICD/ITKE)",
+      "type": "Architectural Installation",
+      "location": "Stuttgart, Germany",
+      "year": 2013,
+      "tags": {
+        "topic": ["Sustainable Design", "Biomimicry", "Energy Efficiency"],
+        "artform": ["Architecture", "Installation"]
+      },
+      "url": "https://artsandculture.google.com/asset/hygroskin-a-meteorsensitive-pavilion-achim-menges/sgF-1AY0ZuJlMA",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-73.9352, 40.7306] },
+    "properties": {
+      "title": "Cricket Shelter: Modular Edible Insect Farm",
+      "description": "Modular architectural prototype integrating urban shelter with low-impact insect protein farming.",
+      "artist": "Mitchell Joachim / Terreform ONE",
+      "type": "Prototype / Installation",
+      "location": "New York City, USA",
+      "year": 2016,
+      "tags": {
+        "topic": ["Food Systems", "Alternative Proteins", "Sustainable Design"],
+        "artform": ["Design", "Architecture"]
+      },
+      "url": "https://artsandculture.google.com/asset/cricket-shelter-modular-edible-insect-farm-mitchell-joachim-and-terreform-one/LwETzcTuElqeGQ",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [2.3522, 48.8566] },
+    "properties": {
+      "title": "Lilypad: A Floating Ecopolis for Climate Refugees",
+      "description": "Visionary design for a self-sustaining floating city accommodating climate refugees in response to sea-level rise.",
+      "artist": "Vincent Callebaut",
+      "type": "Architectural Rendering",
+      "location": "Paris, France",
+      "year": 2008,
+      "tags": {
+        "topic": ["Sea Level Rise", "Climate Migration", "Sustainable Design"],
+        "artform": ["Architecture", "Digital Rendering"]
+      },
+      "url": "https://artsandculture.google.com/asset/lilypad-a-floating-ecopolis-for-climate-refugees-vincent-callebaut/9wHG4MotQkysZQ",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-74.006, 40.7128] },
+    "properties": {
+      "title": "Dry Season",
+      "description": "Photographic vision of a drought-affected urban environment, reflecting shifts in snowmelt and evaporation.",
+      "artist": "Mary Mattingly",
+      "type": "Photograph",
+      "location": "New York City, USA",
+      "year": 2007,
+      "tags": {
+        "topic": ["Drought", "Water Conservation", "Climate Change"],
+        "artform": ["Photography"]
+      },
+      "url": "https://artsandculture.google.com/story/resilience-in-the-age-of-climate-change-art-works-for-change/xwVRB32tdJHdLg?hl=en",
+      "thumbnail": ""
+    }
+  },
+
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-122.3321, 47.6062] },
+    "properties": {
+      "title": "Whale",
+      "description": "Digital image of a blue whale composed from 50,000 plastic bags, equal to the estimated number of plastic pieces per square mile of ocean.",
+      "artist": "Chris Jordan",
+      "type": "Digital Image",
+      "location": "Seattle, Washington, USA",
+      "year": 2011,
+      "tags": {
+        "topic": ["Plastic Pollution", "Ocean Pollution", "Marine Pollution"],
+        "artform": ["Digital Art"]
+      },
+      "url": "https://artsandculture.google.com/story/art-with-an-ocean-view-art-works-for-change/iwVRP5j8b2P7KA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-177.366, 28.2] },
+    "properties": {
+      "title": "CF000313: Unaltered stomach contents of a Laysan albatross fledgling, Midway Island, 2009",
+      "description": "Photograph documenting plastic debris ingested by an albatross on Midway Atoll.",
+      "artist": "Chris Jordan",
+      "type": "Photograph",
+      "location": "Midway Atoll, United States Minor Outlying Islands",
+      "year": 2009,
+      "tags": {
+        "topic": ["Plastic Pollution", "Marine Life", "Ocean Conservation"],
+        "artform": ["Photography"]
+      },
+      "url": "https://artsandculture.google.com/story/art-with-an-ocean-view-art-works-for-change/iwVRP5j8b2P7KA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-88.3658, 28.7367] },
+    "properties": {
+      "title": "Oil Spill #12",
+      "description": "Aerial photograph of the BP Deepwater Horizon spill aftermath in the Gulf of Mexico.",
+      "artist": "Daniel Beltrá",
+      "type": "Photograph",
+      "location": "Macondo Prospect, Gulf of Mexico, USA",
+      "year": 2010,
+      "tags": {
+        "topic": ["Oil Pollution", "Marine Pollution", "Environmental Disaster"],
+        "artform": ["Photography"]
+      },
+      "url": "https://artsandculture.google.com/story/art-with-an-ocean-view-art-works-for-change/iwVRP5j8b2P7KA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-88.3658, 28.7367] },
+    "properties": {
+      "title": "Oil Spill #20",
+      "description": "Aerial view of oil slick patterns from the Deepwater Horizon disaster in the Gulf.",
+      "artist": "Daniel Beltrá",
+      "type": "Photograph",
+      "location": "Macondo Prospect, Gulf of Mexico, USA",
+      "year": 2010,
+      "tags": {
+        "topic": ["Oil Pollution", "Marine Pollution", "Environmental Disaster"],
+        "artform": ["Photography"]
+      },
+      "url": "https://artsandculture.google.com/story/art-with-an-ocean-view-art-works-for-change/iwVRP5j8b2P7KA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-51.1, 69.2] },
+    "properties": {
+      "title": "Iceberg XVIII (Greenland)",
+      "description": "Photograph urging protection of vulnerable polar marine environments threatened by climate change.",
+      "artist": "Sebastian Copeland",
+      "type": "Photograph",
+      "location": "Near Ilulissat, Greenland",
+      "year": 2010,
+      "tags": {
+        "topic": ["Climate Change", "Cryosphere", "Ocean Conservation"],
+        "artform": ["Photography"]
+      },
+      "url": "https://artsandculture.google.com/story/art-with-an-ocean-view-art-works-for-change/iwVRP5j8b2P7KA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-74.01, 40.7] },
+    "properties": {
+      "title": "Mobro: High Seas Drifter",
+      "description": "Painting referencing the infamous Mobro 4000 garbage barge that wandered the seas in 1987.",
+      "artist": "Scott Greene",
+      "type": "Painting",
+      "location": "New York Harbor, USA",
+      "year": 2015,
+      "tags": {
+        "topic": ["Waste", "Consumerism", "Ocean Pollution"],
+        "artform": ["Painting"]
+      },
+      "url": "https://artsandculture.google.com/story/art-with-an-ocean-view-art-works-for-change/iwVRP5j8b2P7KA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-118.2437, 34.0522] },
+    "properties": {
+      "title": "Welcome Home",
+      "description": "Painting populated with figures adorned with beach trash, symbolizing our strained relationship with marine environments.",
+      "artist": "Wendell Gladstone",
+      "type": "Painting",
+      "location": "Los Angeles, California, USA",
+      "year": 2011,
+      "tags": {
+        "topic": ["Marine Pollution", "Consumerism", "Environmental Awareness"],
+        "artform": ["Painting"]
+      },
+      "url": "https://artsandculture.google.com/story/art-with-an-ocean-view-art-works-for-change/iwVRP5j8b2P7KA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-87.6298, 41.8781] },
+    "properties": {
+      "title": "Evanescent Encounter",
+      "description": "Painting on the devastating impact of oil spills on wildlife and coastal communities.",
+      "artist": "Jave Yoshimoto",
+      "type": "Painting",
+      "location": "Chicago, Illinois, USA",
+      "year": 2010,
+      "tags": {
+        "topic": ["Oil Pollution", "Marine Ecosystems", "Environmental Impact"],
+        "artform": ["Painting"]
+      },
+      "url": "https://artsandculture.google.com/story/art-with-an-ocean-view-art-works-for-change/iwVRP5j8b2P7KA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-118.2437, 34.0522] },
+    "properties": {
+      "title": "Fighting Over the Last Piece of Sushi",
+      "description": "Illustration referencing overfishing pressures on tuna populations and food security risks.",
+      "artist": "Al Grumet",
+      "type": "Illustration",
+      "location": "Los Angeles, California, USA",
+      "year": 2015,
+      "tags": {
+        "topic": ["Overfishing", "Food Systems", "Ocean Conservation"],
+        "artform": ["Illustration"]
+      },
+      "url": "https://artsandculture.google.com/story/art-with-an-ocean-view-art-works-for-change/iwVRP5j8b2P7KA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-74.006, 40.7128] },
+    "properties": {
+      "title": "Inflatable Home",
+      "description": "Photograph from a project imagining mobile, inflatable living as a response to environmental precarity.",
+      "artist": "Mary Mattingly",
+      "type": "Photograph",
+      "location": "New York City, USA",
+      "year": 2008,
+      "tags": {
+        "topic": ["Climate Resilience", "Urban Futures", "Sustainable Living"],
+        "artform": ["Photography"]
+      },
+      "url": "https://artsandculture.google.com/story/art-with-an-ocean-view-art-works-for-change/iwVRP5j8b2P7KA?hl=en",
+      "thumbnail": ""
+    }
+  },
+
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-84.388, 33.749] },
+    "properties": {
+      "title": "Cell phone chargers, Atlanta, 2004",
+      "description": "Photograph transforming mountains of discarded chargers into abstract evidence of e‑waste culture.",
+      "artist": "Chris Jordan",
+      "type": "Photograph",
+      "location": "Atlanta, Georgia, USA",
+      "year": 2004,
+      "tags": {
+        "topic": ["Electronic Waste", "Overconsumption", "Waste Management"],
+        "artform": ["Photography"]
+      },
+      "url": "https://artsandculture.google.com/story/beyond-the-waste-land-art-works-for-change/nQUB72ctwbOLJA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-122.3321, 47.6062] },
+    "properties": {
+      "title": "Recycling Yard #6, Seattle, 2004",
+      "description": "Photograph from a recycling facility series, revealing the material scale of consumer waste.",
+      "artist": "Chris Jordan",
+      "type": "Photograph",
+      "location": "Seattle, Washington, USA",
+      "year": 2004,
+      "tags": {
+        "topic": ["Waste Management", "Recycling", "Industrial Waste"],
+        "artform": ["Photography"]
+      },
+      "url": "https://artsandculture.google.com/story/beyond-the-waste-land-art-works-for-change/nQUB72ctwbOLJA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-123.1207, 49.2827] },
+    "properties": {
+      "title": "Maple Flapper Jumper",
+      "description": "Ephemeral couture garment crafted from compostable plant materials.",
+      "artist": "Nicole Dextras",
+      "type": "Wearable Sculpture",
+      "location": "Vancouver, Canada",
+      "year": 2011,
+      "tags": {
+        "topic": ["Sustainable Practices", "Composting", "Circular Economy"],
+        "artform": ["Fashion", "Sculpture"]
+      },
+      "url": "https://artsandculture.google.com/story/beyond-the-waste-land-art-works-for-change/nQUB72ctwbOLJA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-122.4194, 37.7749] },
+    "properties": {
+      "title": "Mycotecture",
+      "description": "Experimental building components grown from mycelium as a compostable, low-impact material.",
+      "artist": "Phil Ross",
+      "type": "Bio-material Installation",
+      "location": "San Francisco, California, USA",
+      "year": 2016,
+      "tags": {
+        "topic": ["Sustainable Design", "Circular Economy", "Resource Depletion"],
+        "artform": ["Sculpture", "Design"]
+      },
+      "url": "https://artsandculture.google.com/story/beyond-the-waste-land-art-works-for-change/nQUB72ctwbOLJA?hl=en",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-106.6504, 35.0844] },
+    "properties": {
+      "title": "Stars 'n Tarnation",
+      "description": "Painting that satirizes a culture of disposability, with plastic bags as a recurring motif.",
+      "artist": "Scott Greene",
+      "type": "Painting",
+      "location": "Albuquerque, New Mexico, USA",
+      "year": 2013,
+      "tags": {
+        "topic": ["Plastic Waste", "Consumerism", "Environmental Awareness"],
+        "artform": ["Painting"]
+      },
+      "url": "https://artsandculture.google.com/story/beyond-the-waste-land-art-works-for-change/nQUB72ctwbOLJA?hl=en",
+      "thumbnail": ""
+    }
+  },
   {
     "type": "Feature",
     "geometry": {
