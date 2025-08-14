@@ -21,7 +21,10 @@
       "Climate Action", 
       "Climate Awareness", 
       "Climate Activism", 
-      "Sea Level Rise"
+      "Sea Level Rise",
+      "Extreme Weather",
+      "Climate Resilience",
+      "Cryosphere"
     ],
     "color": "#C70039"
   },
@@ -54,7 +57,8 @@
       "Renewable Energy",
       "Sustainable Practices",
       "Energy Efficiency",
-      "Sustainable Living"
+      "Sustainable Living",
+      "Biomimicry"
     ],
     "color": "#90EE90"
   },
@@ -82,7 +86,8 @@
       "Urbanization", 
       "Smart Cities", 
       "Urban Farming",
-      "Urban Nature"
+      "Urban Nature",
+      "Urban Futures"
     ],
     "color": "#FFD700"
   },
@@ -126,7 +131,6 @@
     ],
     "color": "#FF69B4"
   },
-
   "Resource Depletion": {
     "topics": [
       "Overconsumption",
@@ -134,7 +138,9 @@
       "Overfishing",
       "Energy Overuse",
       "Resource Scarcity",
-      "Non-Renewable Resources"
+      "Non-Renewable Resources",
+      "Resource Extraction",
+      "Fossil Fuels"
     ],
     "color": "#5B3A29"
   },
@@ -160,13 +166,22 @@
       "Environmental Reflection",
       "Cultural Reflection",
       "Human-Nature Interaction",
-      "Environmentalism"
+      "Environmentalism",
+      "Climate Migration"
     ],
     "color": "#FFDD88"
   },
   "Technology": {
     "topics": [
       "Digital Technology"
-    ],"color": "#D3D3D3"
+    ],
+    "color": "#D3D3D3"
+  },
+  "Food and Agriculture": {
+    "topics": [
+      "Food Systems",
+      "Alternative Proteins"
+    ],
+    "color": "#8B4513"
   }
 }
