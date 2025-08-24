@@ -3,6 +3,69 @@
     "features":  [ 
   {
     "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-83.144, 39.507]
+    },
+    "properties": {
+      "title": "Golden Water",
+      "description": "Ceramic and steel faucet sculpture evoking water contamination and the preciousness of water.",
+      "artist": "Barrie Kaufman",
+      "type": "Sculpture",
+      "location": "Oxford, Ohio, USA",
+      "year": 2019,
+      "tags": {
+        "topic": ["Water Issues", "Environmental Pollution", "Environmental Awareness"],
+        "artform": ["Sculpture"]
+      },
+      "url": null,
+      "thumbnail": null
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-83.144, 39.507]
+    },
+    "properties": {
+      "title": "Aerial Chroma S1 2",
+      "description": "Abstract painting created with pigments sourced from acid mine drainage, reflecting on industrial waste and landscape impact.",
+      "artist": "John Sabraw",
+      "type": "Painting",
+      "location": "Oxford, Ohio, USA",
+      "year": 2022,
+      "tags": {
+        "topic": ["Pollution", "Environmental Reflection", "Climate Change"],
+        "artform": ["Painting"]
+      },
+      "url": null,
+      "thumbnail": null
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-83.144, 39.507]
+    },
+    "properties": {
+      "title": "East Stanley Glacier, Mt Stanley, Rwenzori Mountains, Uganda",
+      "description": "Ink print depicting a glacier in the Rwenzori Mountains, underscoring rapid environmental change and glacial retreat.",
+      "artist": "Ian van Coller",
+      "type": "Photography/Print",
+      "location": "Oxford, Ohio, USA",
+      "year": 2020,
+      "tags": {
+        "topic": ["Climate Change", "Environmental Awareness", "Ecosystems"],
+        "artform": ["Photography"]
+      },
+      "url": null,
+      "thumbnail": null
+    }
+  },
+  {
+    "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-105.5911, 41.3114] },
     "properties": {
       "title": "Carbon Sink",
