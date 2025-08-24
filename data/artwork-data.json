@@ -18,7 +18,7 @@
         "topic": ["Water Issues", "Environmental Pollution", "Environmental Awareness"],
         "artform": ["Sculpture"]
       },
-      "url": null,
+      "url": "https://miamioh.edu/cca/art-museum/exhibitions/past-exhibitions/2023-2024/24sp-the-world-in-which-we-live.html",
       "thumbnail": null
     }
   },
@@ -39,7 +39,28 @@
         "topic": ["Pollution", "Environmental Reflection", "Climate Change"],
         "artform": ["Painting"]
       },
-      "url": null,
+      "url": "https://miamioh.edu/cca/art-museum/exhibitions/past-exhibitions/2023-2024/24sp-the-world-in-which-we-live.html",
+      "thumbnail": null
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-83.144, 39.507]
+    },
+    "properties": {
+      "title": "East Stanley Glacier, Mt Stanley, Rwenzori Mountains, Uganda",
+      "description": "Ink print depicting a glacier in the Rwenzori Mountains, underscoring rapid environmental change and glacial retreat.",
+      "artist": "Ian van Coller",
+      "type": "Photography/Print",
+      "location": "Oxford, Ohio, USA",
+      "year": 2020,
+      "tags": {
+        "topic": ["Climate Change", "Environmental Awareness", "Ecosystems"],
+        "artform": ["Photography"]
+      },
+      "url": "https://miamioh.edu/cca/art-museum/exhibitions/past-exhibitions/2023-2024/24sp-the-world-in-which-we-live.html",
       "thumbnail": null
     }
   },
