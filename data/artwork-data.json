@@ -1,6 +1,36 @@
 {
     "type": "FeatureCollection",
     "features":  [ 
+
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-117.1611, 32.7157]
+  },
+  "properties": {
+    "title": "Cigarette Butt Ocean Wave",
+    "description": "An artwork created from cigarette butts collected on San Diego beaches to highlight plastic pollution affecting oceans and marine life.",
+    "artist": "Reyanne Mustafa",
+    "type": "Upcycled Sculpture",
+    "location": "San Diego, USA",
+    "year": 2021,
+    "tags": {
+      "topic": [
+        "Marine Pollution",
+        "Plastic Waste",
+        "Environmental Awareness"
+      ],
+      "artform": [
+        "Sculpture",
+        "Eco-Art",
+        "Upcycling"
+      ]
+    },
+    "url": "https://www.10news.com/positivelysandiego/san-diego-activist-creates-art-to-raise-awareness-about-cigarette-pollution-on-beaches",
+    "thumbnail": "https://i0.wp.com/magzoid.com/wp-content/uploads/2021/10/BeFunky-collage-1-scaled.jpg?fit=2560%2C1658&ssl=1" 
+  }
+},
   {
     "type": "Feature",
     "geometry": {
