@@ -1,7 +1,60 @@
 {
     "type": "FeatureCollection",
     "features":  [ 
-
+{
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-43.3629, -22.9106] },
+    "properties": {
+      "title": "Waste Land Series",
+      "description": "Portraits created from recyclable materials with landfill workers in Rio de Janeiro, transforming waste into art and dignity.",
+      "artist": "Vik Muniz",
+      "type": "Photography / Installation",
+      "location": "Jardim Gramacho Landfill, Rio de Janeiro, Brazil",
+      "year": 2010,
+      "tags": {
+        "topic": ["Waste Management", "Recycling", "Social-Environmental Justice"],
+        "artform": ["Photography", "Installation"]
+      },
+      "url": "https://artsandculture.google.com/asset/waste-land-vik-muniz/ewkS1qvRbpwV2A",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-0.1276, 51.5072] },
+    "properties": {
+      "title": "The Colour of the Climate Crisis",
+      "description": "A digital art exhibition exploring the intersection of racial justice and climate activism, amplifying underrepresented voices through creative storytelling.",
+      "artist": "Do The Green Thing Collective",
+      "type": "Digital Exhibition",
+      "location": "London, United Kingdom",
+      "year": 2021,
+      "tags": {
+        "topic": ["Climate Justice", "Racial Justice", "Environmental Awareness"],
+        "artform": ["Digital Art", "Curated Exhibition"]
+      },
+      "url": "https://dothegreenthing.com/projects/the-colour-of-the-climate-crisis/",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-0.1276, 51.5072] },
+    "properties": {
+      "title": "DesignKind",
+      "description": "A 2022 online exhibition by Do The Green Thing promoting inclusive, regenerative design as a response to the climate emergency.",
+      "artist": "Do The Green Thing Collective",
+      "type": "Digital Exhibition",
+      "location": "London, United Kingdom",
+      "year": 2022,
+      "tags": {
+        "topic": ["Sustainable Design", "Climate Action", "Inclusion"],
+        "artform": ["Digital Art", "Curated Exhibition"]
+      },
+      "url": "https://dothegreenthing.com/projects/designkind/",
+      "thumbnail": ""
+    }
+  },
 {
   "type": "Feature",
   "geometry": {
