@@ -1,6 +1,78 @@
 {
     "type": "FeatureCollection",
-    "features":  [ 
+    "features":  [
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [10.7522, 59.9139] },
+    "properties": {
+      "title": "The History of Bees",
+      "description": "A novel interweaving three timelines to explore pollinator collapse, human reliance on ecosystems, and possible futures shaped by biodiversity loss.",
+      "artist": "Maja Lunde",
+      "type": "Book",
+      "location": "Oslo, Norway",
+      "year": 2015,
+      "tags": {
+        "topic": ["Biodiversity Loss", "Food Systems", "Pollination", "Human-Nature Interaction"],
+        "artform": ["Literature"]
+      },
+      "url": "https://www.penguinrandomhouse.com/books/576941/the-history-of-bees-by-maja-lunde/",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [10.7522, 59.9139] },
+    "properties": {
+      "title": "The End of the Ocean",
+      "description": "A climate fiction novel linking past and future through the story of global water scarcity, melting glaciers, and the human cost of environmental change.",
+      "artist": "Maja Lunde",
+      "type": "Book",
+      "location": "Oslo, Norway",
+      "year": 2017,
+      "tags": {
+        "topic": ["Water Scarcity", "Climate Change", "Drought", "Environmental Awareness"],
+        "artform": ["Literature"]
+      },
+      "url": "https://www.penguinrandomhouse.com/books/607026/the-end-of-the-ocean-by-maja-lunde/",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [10.7522, 59.9139] },
+    "properties": {
+      "title": "The Last Wild Horses",
+      "description": "A novel examining species extinction, conservation efforts, and the fragile bond between humans and endangered wildlife.",
+      "artist": "Maja Lunde",
+      "type": "Book",
+      "location": "Oslo, Norway",
+      "year": 2019,
+      "tags": {
+        "topic": ["Biodiversity", "Species Conservation", "Ecosystem Protection", "Environmental Reflection"],
+        "artform": ["Literature"]
+      },
+      "url": "https://www.goodreads.com/book/show/56179398-the-last-wild-horses",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [10.7522, 59.9139] },
+    "properties": {
+      "title": "The Dream of a Blue Forest",
+      "description": "A climate narrative exploring deforestation, ecological grief, and humanity’s attempt to reconnect with damaged landscapes.",
+      "artist": "Maja Lunde",
+      "type": "Book",
+      "location": "Oslo, Norway",
+      "year": 2023,
+      "tags": {
+        "topic": ["Deforestation", "Climate Change", "Environmental Reflection", "Conservation"],
+        "artform": ["Literature"]
+      },
+      "url": "https://www.goodreads.com/book/show/60794364-dr-mmen-om-et-bl-tt-landskap",
+      "thumbnail": ""
+    }
+  },
 {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-43.3629, -22.9106] },
