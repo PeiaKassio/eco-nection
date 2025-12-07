@@ -1,6 +1,30 @@
 {
     "type": "FeatureCollection",
     "features":  [
+{
+  "type": "Feature",
+  "geometry": { "type": "Point", "coordinates": [16.3738, 48.2082] },
+  "properties": {
+    "title": "Am Samstag gehen die Mädchen in den Wald und jagen Sachen in die Luft",
+    "description": "A contemporary eco-fiction novel following a group of girls who retreat into the forest and rebel against a collapsing social and ecological world. It blends environmental anxiety, forest symbolism, and youth resistance.",
+    "artist": "Fiona Sroncek",
+    "type": "Book",
+    "location": "Vienna, Austria",
+    "year": 2022,
+    "tags": {
+      "topic": [
+        "Climate Change",
+        "Forest Conservation",
+        "Environmental Awareness",
+        "Socio-Environmental Justice",
+        "Human-Nature Interaction"
+      ],
+      "artform": ["Literature"]
+    },
+    "url": "",
+    "thumbnail": ""
+  }
+},
   {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-71.3128, 41.4901] },
