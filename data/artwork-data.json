@@ -3,6 +3,60 @@
     "features":  [
   {
     "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-71.3128, 41.4901] },
+    "properties": {
+      "title": "Plastic Ocean Portrait",
+      "description": "A sculptural collage made entirely from collected plastic debris, forming an image of an ocean wave to spotlight global marine pollution.",
+      "artist": "Thomas Deininger",
+      "type": "Mixed Media Sculpture",
+      "location": "Newport, Rhode Island, USA",
+      "year": 2019,
+      "tags": {
+        "topic": ["Plastic Pollution", "Marine Pollution", "Overconsumption", "Environmental Awareness"],
+        "artform": ["Sculpture", "Assemblage", "Mixed Media"]
+      },
+      "url": "https://www.thomasdeiningerart.com/",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-71.3128, 41.4901] },
+    "properties": {
+      "title": "Plastic Portrait Series",
+      "description": "A series of illusionistic portraits made from discarded plastic items, transforming waste into detailed faces that change when viewed from different angles.",
+      "artist": "Thomas Deininger",
+      "type": "Assemblage",
+      "location": "Newport, Rhode Island, USA",
+      "year": 2020,
+      "tags": {
+        "topic": ["Plastic Waste", "Consumerism", "Environmental Reflection", "Waste Management"],
+        "artform": ["Assemblage", "Mixed Media", "Sculpture"]
+      },
+      "url": "https://www.thomasdeiningerart.com/",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-71.3128, 41.4901] },
+    "properties": {
+      "title": "Environmental Illusion Series",
+      "description": "Three-dimensional installations constructed from trash that reveal environmental imagery only from a distance, challenging viewers’ perception and relationship to waste.",
+      "artist": "Thomas Deininger",
+      "type": "Installation",
+      "location": "Newport, Rhode Island, USA",
+      "year": 2021,
+      "tags": {
+        "topic": ["Waste Management", "Pollution", "Overconsumption", "Environmental Awareness"],
+        "artform": ["Installation", "Sculpture", "Assemblage"]
+      },
+      "url": "https://www.thomasdeiningerart.com/",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [10.7522, 59.9139] },
     "properties": {
       "title": "The History of Bees",
