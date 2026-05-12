@@ -1,6 +1,138 @@
 {
     "type": "FeatureCollection",
     "features":  [
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [6.7735, 51.2277] },
+    "properties": {
+      "title": "7000 Oaks",
+      "description": "A landmark social sculpture project in which 7,000 oak trees were planted throughout Kassel, each paired with a basalt stone. The work connected ecological restoration, urban transformation, and participatory environmental activism.",
+      "artist": "Joseph Beuys",
+      "type": "Social Sculpture",
+      "location": "Kassel, Germany",
+      "year": 1982,
+      "tags": {
+        "topic": [
+          "Forest Conservation",
+          "Urban Nature",
+          "Climate Action",
+          "Environmentalism",
+          "Human-Nature Interaction"
+        ],
+        "artform": [
+          "Social Sculpture",
+          "Public Art",
+          "Installation"
+        ]
+      },
+      "url": "https://artsandculture.google.com/asset/7000-oaks-joseph-beuys/QwG4E0M8Qh4V0A",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [7.6261, 51.9607] },
+    "properties": {
+      "title": "Grassello",
+      "description": "An environmental installation using organic materials and symbolic processes to explore regeneration, ecology, and cycles of transformation.",
+      "artist": "Joseph Beuys",
+      "type": "Installation",
+      "location": "Münster, Germany",
+      "year": 1961,
+      "tags": {
+        "topic": [
+          "Nature Cycles",
+          "Environmental Reflection",
+          "Ecosystems"
+        ],
+        "artform": [
+          "Installation",
+          "Mixed Media"
+        ]
+      },
+      "url": "https://artsandculture.google.com/entity/joseph-beuys/m01m4t",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
+    "properties": {
+      "title": "I Like America and America Likes Me",
+      "description": "Performance piece involving a live coyote, addressing human relationships with animals, colonial violence, and ecological imbalance.",
+      "artist": "Joseph Beuys",
+      "type": "Performance",
+      "location": "Berlin, Germany",
+      "year": 1974,
+      "tags": {
+        "topic": [
+          "Human-Nature Interaction",
+          "Environmental Reflection",
+          "Colonial Histories",
+          "Wildlife Conservation"
+        ],
+        "artform": [
+          "Performance Art"
+        ]
+      },
+      "url": "https://artsandculture.google.com/entity/joseph-beuys/m01m4t",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [6.9603, 50.9375] },
+    "properties": {
+      "title": "Honey Pump at the Workplace",
+      "description": "A large-scale installation circulating honey through transparent tubes during Documenta 6, symbolizing energy flow, cooperation, and ecological systems.",
+      "artist": "Joseph Beuys",
+      "type": "Installation",
+      "location": "Kassel, Germany",
+      "year": 1977,
+      "tags": {
+        "topic": [
+          "Ecosystems",
+          "Energy Efficiency",
+          "Human-Nature Interaction",
+          "Environmentalism"
+        ],
+        "artform": [
+          "Installation",
+          "Social Sculpture"
+        ]
+      },
+      "url": "https://artsandculture.google.com/entity/joseph-beuys/m01m4t",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [11.5820, 48.1351] },
+    "properties": {
+      "title": "Difesa della Natura",
+      "description": "A long-term ecological and pedagogical project combining environmental activism, agriculture, education, and artistic practice.",
+      "artist": "Joseph Beuys",
+      "type": "Social Sculpture",
+      "location": "Bolognano, Italy",
+      "year": 1982,
+      "tags": {
+        "topic": [
+          "Environmental Education",
+          "Forest Conservation",
+          "Sustainable Practices",
+          "Human-Nature Interaction"
+        ],
+        "artform": [
+          "Social Sculpture",
+          "Land Art",
+          "Participatory Art"
+        ]
+      },
+      "url": "https://artsandculture.google.com/entity/joseph-beuys/m01m4t",
+      "thumbnail": ""
+    }
+  },
+
 {
   "type": "Feature",
   "geometry": { "type": "Point", "coordinates": [16.3738, 48.2082] },
