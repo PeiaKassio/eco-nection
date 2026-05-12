@@ -3,6 +3,112 @@
     "features":  [
   {
     "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-0.1870, 5.6037] },
+    "properties": {
+      "title": "Fabric Assemblage Works",
+      "description": "Textile-based assemblages created from discarded fabrics and found materials, transforming waste into layered compositions addressing sustainability and consumption.",
+      "artist": "Michael Gah",
+      "type": "Mixed Media",
+      "location": "Accra, Ghana",
+      "year": 2024,
+      "tags": {
+        "topic": [
+          "Waste Management",
+          "Upcycling",
+          "Consumerism",
+          "Environmental Awareness"
+        ],
+        "artform": [
+          "Mixed Media",
+          "Assemblage",
+          "Textile Art"
+        ]
+      },
+      "url": "https://africanah.org/the-rise-of-eco-art-in-west-africa/",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-7.9922, 12.6392] },
+    "properties": {
+      "title": "Indigo Ecology Series",
+      "description": "Textile and installation works using traditional fermented indigo dyeing techniques to reconnect ecological knowledge, spirituality, and cultural heritage.",
+      "artist": "Aboubakar Fofana",
+      "type": "Textile Installation",
+      "location": "Bamako, Mali",
+      "year": 2020,
+      "tags": {
+        "topic": [
+          "Sustainable Practices",
+          "Cultural Heritage",
+          "Environmental Reflection",
+          "Conservation"
+        ],
+        "artform": [
+          "Textile Art",
+          "Installation",
+          "Natural Dye Art"
+        ]
+      },
+      "url": "https://africanah.org/the-rise-of-eco-art-in-west-africa/",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-17.4677, 14.7167] },
+    "properties": {
+      "title": "Marine Resource Paintings",
+      "description": "Paintings addressing ocean pollution, marine depletion, and the impact of global exploitation on West African fishing communities.",
+      "artist": "Alioune Diagne",
+      "type": "Painting",
+      "location": "Dakar, Senegal",
+      "year": 2023,
+      "tags": {
+        "topic": [
+          "Marine Ecosystems",
+          "Ocean Conservation",
+          "Overfishing",
+          "Environmental Justice"
+        ],
+        "artform": [
+          "Painting"
+        ]
+      },
+      "url": "https://africanah.org/the-rise-of-eco-art-in-west-africa/",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [7.3986, 9.0765] },
+    "properties": {
+      "title": "Bioplastic Earth Forms",
+      "description": "Organic sculptural installations made from food waste and biodegradable materials, emphasizing Earth's fragility and sustainable material practices.",
+      "artist": "Nnenna Okore",
+      "type": "Installation",
+      "location": "Nigeria",
+      "year": 2022,
+      "tags": {
+        "topic": [
+          "Waste Reduction",
+          "Sustainable Practices",
+          "Environmental Reflection",
+          "Human-Nature Interaction"
+        ],
+        "artform": [
+          "Installation",
+          "Bioplastic Art",
+          "Textile Art"
+        ]
+      },
+      "url": "https://africanah.org/the-rise-of-eco-art-in-west-africa/",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [6.7735, 51.2277] },
     "properties": {
       "title": "7000 Oaks",
@@ -117,7 +223,7 @@
       "year": 1982,
       "tags": {
         "topic": [
-          "Environmental Education",
+          "Education",
           "Forest Conservation",
           "Sustainable Practices",
           "Human-Nature Interaction"
