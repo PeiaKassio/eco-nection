@@ -180,6 +180,16 @@
     ],
     "color": "#D3D3D3"
   },
+
+"Textile Ecology": {
+  "topics": [
+    "Textile Waste",
+    "Slow Fashion",
+    "Natural Fibers",
+    "Textile Recycling"
+  ],
+  "color": "#B56576"
+},
   "Food and Agriculture": {
     "topics": [
       "Food Systems",
