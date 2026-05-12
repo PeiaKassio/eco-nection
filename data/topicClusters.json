@@ -47,22 +47,26 @@
   },
   "Sustainable Practices": {
     "topics": [
-      "Recycling", 
-      "Environmental Justice", 
       "Sustainable Design", 
       "Upcycling", 
-      "Green Architecture", 
-      "Circular Economy", 
+      "Green Architecture",
       "Sustainability", 
       "Sustainable Tourism",
-      "Renewable Energy",
       "Sustainable Practices",
-      "Energy Efficiency",
       "Sustainable Living",
       "Biomimicry"
     ],
     "color": "#90EE90"
   },
+"Energy": {
+  "topics": [
+    "Renewable Energy",
+    "Energy Efficiency",
+    "Energy Overuse",
+    "Fossil Fuels"
+  ],
+  "color": "#FFA500"
+},
   "Water Issues": {
     "topics": [
       "Water Conservation", 
@@ -99,15 +103,12 @@
       "Waste Reduction", 
       "Waste Management", 
       "Plastic Waste", 
-      "Recycling",
-      "Plastic Recycling",
       "Upcycling", 
       "Landfill Diversion", 
       "Composting",
       "Landfill Issues",
       "Industrial Waste", 
       "Waste",
-      "Plastic Waste", 
       "Toxic Waste",
       "Textile Waste"
     ],
@@ -135,7 +136,7 @@
     ],
     "color": "#FF69B4"
   },
-  "Resource Depletion": {
+  "Resource Use and Depletion": {
     "topics": [
       "Overconsumption",
       "Deforestation",
@@ -144,7 +145,9 @@
       "Resource Scarcity",
       "Non-Renewable Resources",
       "Resource Extraction",
-      "Fossil Fuels"
+      "Recycling",
+      "Plastic Recycling",
+      "Circular Economy"
     ],
     "color": "#5B3A29"
   },
@@ -171,7 +174,8 @@
       "Cultural Reflection",
       "Human-Nature Interaction",
       "Environmentalism",
-      "Climate Migration"
+      "Climate Migration",
+      "Environmental Justice"
     ],
     "color": "#FFDD88"
   },
