@@ -8,7 +8,6 @@
     "title": "Wire Portrait Series",
     "description": "Large-scale sculptural portraits constructed from recycled electrical cables and wire, transforming electronic and industrial waste into intricate human forms that reflect identity, consumption, and material reuse.",
     "artist": "Patience Adekunle",
-    "type": "Sculpture",
     "location": "Lagos, Nigeria",
     "year": 2023,
     "tags": {
@@ -37,7 +36,6 @@
       "title": "It's Just a Wildfire",
       "description": "A satirical climate-themed song reflecting the normalization of increasingly destructive wildfires and environmental collapse.",
       "artist": "Kerry Kerosene",
-      "type": "Song",
       "location": "Los Angeles, California, USA",
       "year": 2024,
       "tags": {
@@ -62,7 +60,6 @@
       "title": "Bang Bang Drilly Drilly Bomb",
       "description": "A parody song criticizing oil drilling culture, fossil fuel dependency, and extractive energy politics through exaggerated energy-industry imagery.",
       "artist": "Oilly Frost",
-      "type": "Song",
       "location": "Houston, Texas, USA",
       "year": 2024,
       "tags": {
@@ -348,7 +345,6 @@
       "title": "I Like America and America Likes Me",
       "description": "Performance piece involving a live coyote, addressing human relationships with animals, colonial violence, and ecological imbalance.",
       "artist": "Joseph Beuys",
-      "type": "Performance",
       "location": "Berlin, Germany",
       "year": 1974,
       "tags": {
@@ -359,7 +355,7 @@
           "Wildlife Conservation"
         ],
         "artform": [
-          "Performance Art"
+          "Performance"
         ]
       },
       "url": "https://artsandculture.google.com/entity/joseph-beuys/m01m4t",
@@ -1262,7 +1258,6 @@
       "title": "Skywhale (Sustainable Flight)",
       "description": "Hot-air bio-sculpture as a poetic engagement with nature, resources, and energy consumption.",
       "artist": "Patricia Piccinini",
-      "type": "Sculpture/Performance",
       "location": "Melbourne, Australia",
       "year": 2013,
       "tags": {
@@ -1564,7 +1559,6 @@
       "title": "Imagined Landscapes",
       "description": "Large-scale paintings blending environmental symbolism and Caribbean histories.",
       "artist": "Edouard Duval-Carrié",
-      "type": "Painting",
       "location": "Miami, USA",
       "year": 2019,
       "tags": {
@@ -1582,8 +1576,8 @@
     "properties": {
         "title": "Now the Cranes Fly Again",
         "artist": "Bremer Philharmoniker, Lecture: Sabrina Hüpperling",
-        "type": "Concert",
         "location": "Bremen, Germany",
+        "year": 2024,
         "description": "Lecture on the impact of climate change on cranes (Biological Station Osterholz) and music including works by Isang Yun.",
         "tags": {
             "topic": ["Biodiversity", "Climate Change"],
@@ -1598,8 +1592,8 @@
     "properties": {
         "title": "Studio Sound: Walk in the Forest",
         "artist": "Münchner Symphoniker, Lea Brückner (Climate Ambassador), Conductor: Joseph Bastian",
-        "type": "Concert",
         "location": "Munich, Germany",
+        "year": 2024,
         "description": "Chamber music series with forest-related works; moderated by forest experts on the future of forests.",
         "tags": {
             "topic": ["Forest Conservation", "Climate Awareness"],
@@ -1614,12 +1608,12 @@
     "properties": {
         "title": "Festival in Achberg: Workshops, Lectures and Concerts",
         "artist": "Orchester des Wandels & Guests, DJ/Ecologist Dominik Eulberg",
-        "type": "Concert",
         "location": "Achberg, Germany",
+        "year": 2024,
         "description": "Over 40 participants, interactive formats on climate and nature, music in the castle garden.",
         "tags": {
             "topic": ["Climate Awareness", "Biodiversity"],
-            "artform": ["Music", "Performance", "Workshop"]
+            "artform": ["Music", "Performance"]
         },
         "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
     }
@@ -1632,6 +1626,7 @@
         "artist": "Staatsorchester Stuttgart",
         "type": "Concert",
         "location": "Stuttgart, Germany",
+        "year": 2024,
         "description": "Chamber concert on the importance of peatlands for climate protection with background information.",
         "tags": {
             "topic": ["Peatlands", "Carbon Sequestration", "Climate Change"],
@@ -1648,6 +1643,7 @@
         "artist": "Essener Philharmoniker, Gregor A. Mayrhofer (Composer/Conductor)",
         "type": "Concert",
         "location": "Essen, Germany",
+        "year": 2024,
         "description": "Concert for recycled percussion and orchestra in an unusual hall topology with lighting effects.",
         "tags": {
             "topic": ["Waste", "Sustainable Practices"],
@@ -1664,6 +1660,7 @@
         "artist": "Saarländisches Staatsorchester",
         "type": "Concert",
         "location": "Saarbrücken, Germany",
+        "year": 2024,
         "description": "Guided bike tour to Erlebnisbergwerk Velsen with musical stops and a brass ensemble.",
         "tags": {
             "topic": ["Sustainable Mobility", "Climate Awareness"],
@@ -1680,6 +1677,7 @@
         "artist": "Essener Philharmoniker",
         "type": "Concert",
         "location": "Essen, Germany",
+        "year": 2024,
         "description": "Chamber concert with a nature theme (Milhaud and others) and new texts by Jörg Hilbert.",
         "tags": {
             "topic": ["Nature", "Culture"],
@@ -1696,6 +1694,7 @@
         "artist": "Staatskapelle Berlin & Gebrüder Teichmann",
         "type": "Concert",
         "location": "Berlin, Germany",
+        "year": 2024,
         "description": "Installative concert performance with live electronics and discussion format.",
         "tags": {
             "topic": ["Climate Change", "Sustainability"],
