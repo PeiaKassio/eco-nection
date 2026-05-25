@@ -2177,7 +2177,6 @@
         "title": "Nausicaä of the Valley of the Wind",
         "description": "A post-apocalyptic anime film exploring themes of environmental destruction, toxic landscapes, and the relationship between humans and nature.",
         "artist": "Hayao Miyazaki",
-        "type": "Film",
         "location": "Tokyo, Japan",
         "year": 1984,
         "tags": {
@@ -2209,7 +2208,6 @@
         "title": "Princess Mononoke",
         "description": "A powerful film depicting the conflict between industrial expansion and the spirits of the forest, highlighting themes of deforestation, exploitation, and ecological balance.",
         "artist": "Hayao Miyazaki",
-        "type": "Film",
         "location": "Japan",
         "year": 1997,
         "tags": {
@@ -2241,7 +2239,6 @@
         "title": "Ponyo",
         "description": "A heartwarming animated film about a magical fish girl, highlighting themes of ocean pollution, marine conservation, and the balance of nature.",
         "artist": "Hayao Miyazaki",
-        "type": "Film",
         "location": "Japan",
         "year": 2008,
         "tags": {
@@ -3690,7 +3687,6 @@
                 "title": "Psychozoic Era",
                 "description": "A project examining industrial waste and landfill issues through paintings and films.",
                 "artist": "Pavel Otdelnov",
-                "type": "Painting / Film",
                 "location": "Moscow, Russia",
                 "year": 2020,
                 "tags": {
@@ -4383,7 +4379,7 @@
             "year": 2019,
             "tags": {
                 "topic": ["Climate Change", "Environmental Awareness"],
-                "artform": ["Sculpture", "film", "photography"]
+                "artform": ["Sculpture", "Film", "photography"]
             },
             "url": "https://www.moca.org/exhibition/josh-kline-climate-change",
             "thumbnail": "https://www.moca.org/storage/app/uploads/public/665/a36/fb7/thumb_12904_1120_0_0_0_auto.jpg"
