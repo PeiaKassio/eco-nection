@@ -1,6 +1,197 @@
 {
     "type": "FeatureCollection",
     "features":  [
+{
+  "type": "Feature",
+  "geometry": { "type": "Point", "coordinates": [3.3792, 6.5244] },
+  "properties": {
+    "title": "Wire Portrait Series",
+    "description": "Large-scale sculptural portraits constructed from recycled electrical cables and wire, transforming electronic and industrial waste into intricate human forms that reflect identity, consumption, and material reuse.",
+    "artist": "Patience Adekunle",
+    "type": "Sculpture",
+    "location": "Lagos, Nigeria",
+    "year": 2023,
+    "tags": {
+      "topic": [
+        "Waste Management",
+        "Upcycling",
+        "Industrial Waste",
+        "Environmental Awareness",
+        "Consumerism"
+      ],
+      "artform": [
+        "Sculpture",
+        "Wire Art",
+        "Assemblage",
+        "Mixed Media"
+      ]
+    },
+    "url": "",
+    "thumbnail": ""
+  }
+},
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-118.2437, 34.0522] },
+    "properties": {
+      "title": "It's Just a Wildfire",
+      "description": "A satirical climate-themed song reflecting the normalization of increasingly destructive wildfires and environmental collapse.",
+      "artist": "Kerry Kerosene",
+      "type": "Song",
+      "location": "Los Angeles, California, USA",
+      "year": 2024,
+      "tags": {
+        "topic": [
+          "Climate Change",
+          "Extreme Weather",
+          "Climate Awareness",
+          "Environmental Satire"
+        ],
+        "artform": [
+          "Music",
+          "Satire",
+          "Climate Music"
+        ]
+      },
+      "url": "",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-95.3698, 29.7604] },
+    "properties": {
+      "title": "Bang Bang Drilly Drilly Bomb",
+      "description": "A parody song criticizing oil drilling culture, fossil fuel dependency, and extractive energy politics through exaggerated energy-industry imagery.",
+      "artist": "Oilly Frost",
+      "type": "Song",
+      "location": "Houston, Texas, USA",
+      "year": 2024,
+      "tags": {
+        "topic": [
+          "Fossil Fuels",
+          "Resource Extraction",
+          "Climate Crisis",
+          "Energy Overuse"
+        ],
+        "artform": [
+          "Music",
+          "Parody",
+          "Climate Music"
+        ]
+      },
+      "url": "",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [2.3522, 48.8566] },
+    "properties": {
+      "title": "Carbonne? C'est Bon",
+      "description": "A satirical electronic track mocking carbon offset culture and corporate greenwashing through ironic sustainability slogans.",
+      "artist": "Arthur Sadoun",
+      "type": "Song",
+      "location": "Paris, France",
+      "year": 2024,
+      "tags": {
+        "topic": [
+          "Carbon Emissions",
+          "Climate Action",
+          "Consumerism",
+          "System Critique"
+        ],
+        "artform": [
+          "Music",
+          "Satire",
+          "Electronic Music"
+        ]
+      },
+      "url": "",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-0.1276, 51.5072] },
+    "properties": {
+      "title": "Net Zero Meeting",
+      "description": "A humorous climate satire song portraying corporate sustainability meetings disconnected from real environmental action.",
+      "artist": "Susie and the Hydrocarbons",
+      "type": "Song",
+      "location": "London, United Kingdom",
+      "year": 2024,
+      "tags": {
+        "topic": [
+          "Climate Action",
+          "Climate Awareness",
+          "Capitalism Critique",
+          "Environmental Satire"
+        ],
+        "artform": [
+          "Music",
+          "Satire",
+          "Climate Music"
+        ]
+      },
+      "url": "",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-96.7970, 32.7767] },
+    "properties": {
+      "title": "Drill It Just Like That",
+      "description": "A parody track highlighting oil extraction, overconsumption, and fossil fuel dependency through exaggerated pop-cultural energy narratives.",
+      "artist": "Barrel Boyz",
+      "type": "Song",
+      "location": "Dallas, Texas, USA",
+      "year": 2024,
+      "tags": {
+        "topic": [
+          "Fossil Fuels",
+          "Overconsumption",
+          "Resource Extraction",
+          "Climate Change"
+        ],
+        "artform": [
+          "Music",
+          "Parody",
+          "Climate Music"
+        ]
+      },
+      "url": "",
+      "thumbnail": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": { "type": "Point", "coordinates": [-90.0715, 29.9511] },
+    "properties": {
+      "title": "Pump It Fast",
+      "description": "An ironic energy-themed hip-hop parody focusing on oil pumping culture, environmental destruction, and fossil-fuel excess.",
+      "artist": "Lil' Drilly and Big Spill",
+      "type": "Song",
+      "location": "New Orleans, Louisiana, USA",
+      "year": 2024,
+      "tags": {
+        "topic": [
+          "Fossil Fuels",
+          "Pollution",
+          "Energy Overuse",
+          "Climate Crisis"
+        ],
+        "artform": [
+          "Music",
+          "Hip-Hop",
+          "Parody"
+        ]
+      },
+      "url": "",
+      "thumbnail": ""
+    }
+  },
   {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-0.1870, 5.6037] },
