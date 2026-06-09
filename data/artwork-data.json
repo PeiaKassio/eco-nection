@@ -1,6 +1,62 @@
 {
     "type": "FeatureCollection",
     "features":  [
+
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [13.4050, 52.5200]
+  },
+  "properties": {
+    "title": "Klimawandel",
+    "description": "A German conscious rap track addressing climate change and humanity's impact on the environment. The song combines environmental awareness with social critique and reflects Meyah Don's long-standing engagement with ecological themes.",
+    "artist": "Meyah Don",
+    "type": "Song",
+    "location": "Berlin, Germany",
+    "year": 2006,
+    "tags": {
+      "topic": [
+        "Climate Change",
+        "Environmental Awareness",
+        "Environmentalism"
+      ],
+      "artform": [
+        "Music"
+      ]
+    },
+    "url": "https://open.spotify.com/track/1MIwpofJVJcppSjJHCIYdF",
+    "thumbnail": ""
+  }
+},
+
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [13.4050, 52.5200]
+  },
+  "properties": {
+    "title": "Immer der Gärtner",
+    "description": "A poignant song about a gardener mourning the loss of a beloved tree after it has been cut down. Through grief and remembrance, the song explores the emotional connection between people and nature, highlighting the ecological and personal consequences of environmental destruction.",
+    "artist": "Meyah Don",
+    "type": "Song",
+    "location": "Berlin, Germany",
+    "year": 2012,
+    "tags": {
+      "topic": [
+        "Deforestation",
+        "Human-Nature Interaction",
+        "Environmental Reflection"
+      ],
+      "artform": [
+        "Music"
+      ]
+    },
+    "url": "https://open.spotify.com/track/1MIwpofJVJcppSjJHCIYdF",
+    "thumbnail": ""
+  }
+},
 {
   "type": "Feature",
   "geometry": { "type": "Point", "coordinates": [3.3792, 6.5244] },
