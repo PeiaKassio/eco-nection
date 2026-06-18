@@ -5,8 +5,10 @@ View here: https://peiakassio.github.io/eco-nection/
 
 ## 🚀 Features
 - **Interactive Map**: Explore artworks on a map with detailed pop-ups.
+- **Globe View**: Explore artworks as a global view with topic-cluster colors, country rankings, and total/per-capita metrics.
 - **Dynamic Filters**: Filter artworks by topics, art forms, and clusters.
 - **Data Analysis**: Visualize topic clusters across countries, years, and art forms using interactive charts.
+- **Artwork Submissions**: Contributors can submit artworks through a form, run a duplicate check, and open a curator review issue without writing JSON by hand.
 - **Topic Clusters**: Group and analyze artworks based on predefined themes.
 - **Responsive Design**: Works across various devices and screen sizes.
 - **more to come!
@@ -45,6 +47,7 @@ We welcome contributions! Here's how you can help:
 - Report Bugs: Open an issue describing the bug with steps to reproduce it.
 - Feature Requests: Suggest new features or improvements.
 - Add Artwork Data: Add Artwork to the [artwork-data](data/artwork-data.json) file.
+- Submit Artwork: Use `submit-artwork.html` to create a structured artwork submission issue for curator review.
 
 ---
 

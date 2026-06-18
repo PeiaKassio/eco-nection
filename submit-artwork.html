@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="forest" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eco:nection - Submit Artwork</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-full flex flex-col bg-base-100">
+    <nav class="navbar bg-base-300">
+        <div class="navbar-start">
+            <div class="flex mx-3 gap-3 justify-center">
+                <i class="ti ti-affiliate text-3xl text-primary"></i>
+                <span class="text-2xl subpixel-antialiased">eco:nection</span>
+            </div>
+        </div>
+        <div class="navbar-center">
+            <ul class="menu menu-horizontal px-1 gap-x-4">
+                <li><a class="btn btn-primary" href="index.html"><i class="ti ti-map-2 text-xl"></i>Map</a></li>
+                <li><a class="btn btn-primary" href="globe.html"><i class="ti ti-world text-xl"></i>Globe</a></li>
+                <li><a class="btn btn-primary" href="data-analysis.html"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
+                <li><a class="btn btn-primary" href="submit-artwork.html"><i class="ti ti-upload text-xl"></i>Submit</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end"></div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-6 lg:px-8">
+        <div class="submit-layout">
+            <form id="artworkSubmissionForm" class="submit-panel bg-base-200 rounded-box p-5">
+                <h1 class="text-3xl font-bold mb-5">Submit Artwork</h1>
+
+                <div class="grid gap-4 md:grid-cols-2">
+                    <label class="form-control">
+                        <span class="label-text">Title *</span>
+                        <input id="title" name="title" type="text" class="input input-bordered" required>
+                    </label>
+                    <label class="form-control">
+                        <span class="label-text">Artist *</span>
+                        <input id="artist" name="artist" type="text" class="input input-bordered" required>
+                    </label>
+                    <label class="form-control">
+                        <span class="label-text">Year *</span>
+                        <input id="year" name="year" type="number" class="input input-bordered" min="1800" max="2100" required>
+                    </label>
+                    <div class="form-control md:col-span-2">
+                        <span class="label-text">Existing art forms *</span>
+                        <div id="artformOptions" class="submission-option-grid"></div>
+                        <label class="form-control mt-3">
+                            <span class="label-text">Suggest new art form</span>
+                            <input id="proposedArtforms" name="proposedArtforms" type="text" class="input input-bordered" placeholder="Separate multiple suggestions with commas">
+                        </label>
+                    </div>
+                    <label class="form-control md:col-span-2">
+                        <span class="label-text">Location *</span>
+                        <input id="location" name="location" type="text" class="input input-bordered" placeholder="City, Country" required>
+                    </label>
+                    <label class="form-control">
+                        <span class="label-text">Longitude</span>
+                        <input id="longitude" name="longitude" type="number" class="input input-bordered" step="any" min="-180" max="180" placeholder="13.4050">
+                    </label>
+                    <label class="form-control">
+                        <span class="label-text">Latitude</span>
+                        <input id="latitude" name="latitude" type="number" class="input input-bordered" step="any" min="-90" max="90" placeholder="52.5200">
+                    </label>
+                    <div class="form-control md:col-span-2">
+                        <span class="label-text">Existing topics *</span>
+                        <input id="topicSearch" type="search" class="input input-bordered mb-3" placeholder="Filter existing topics">
+                        <div id="topicOptions" class="submission-option-grid submission-option-grid-tall"></div>
+                        <label class="form-control mt-3">
+                            <span class="label-text">Suggest new topics</span>
+                            <input id="proposedTopics" name="proposedTopics" type="text" class="input input-bordered" placeholder="Separate multiple suggestions with commas">
+                        </label>
+                    </div>
+                    <label class="form-control md:col-span-2">
+                        <span class="label-text">Description *</span>
+                        <textarea id="description" name="description" class="textarea textarea-bordered min-h-28" required></textarea>
+                    </label>
+                    <label class="form-control">
+                        <span class="label-text">Source URL *</span>
+                        <input id="url" name="url" type="url" class="input input-bordered" required>
+                    </label>
+                    <label class="form-control">
+                        <span class="label-text">Thumbnail URL</span>
+                        <input id="thumbnail" name="thumbnail" type="url" class="input input-bordered">
+                    </label>
+                    <label class="form-control md:col-span-2">
+                        <span class="label-text">Your name or contact</span>
+                        <input id="submitter" name="submitter" type="text" class="input input-bordered">
+                    </label>
+                </div>
+
+                <div class="flex flex-wrap gap-3 mt-6">
+                    <button id="checkDuplicatesButton" type="button" class="btn btn-outline btn-primary">
+                        <i class="ti ti-copy-check text-xl"></i>
+                        Check duplicates
+                    </button>
+                    <button id="createIssueButton" type="button" class="btn btn-primary">
+                        <i class="ti ti-brand-github text-xl"></i>
+                        Open review issue
+                    </button>
+                    <button id="resetSubmissionButton" type="reset" class="btn btn-ghost">Reset</button>
+                </div>
+            </form>
+
+            <aside class="submit-panel bg-base-200 rounded-box p-5">
+                <h2 class="text-2xl font-bold mb-4">Review Check</h2>
+                <div id="duplicateStatus" class="alert mb-5">
+                    <i class="ti ti-info-circle text-xl"></i>
+                    <span>Fill in the form to check for similar existing artworks.</span>
+                </div>
+
+                <h3 class="text-xl font-semibold mb-2">Generated JSON</h3>
+                <pre id="jsonPreview" class="submission-preview"></pre>
+            </aside>
+        </div>
+    </main>
+
+    <script src="assets/js/submit-artwork.js"></script>
+</body>
+</html>
