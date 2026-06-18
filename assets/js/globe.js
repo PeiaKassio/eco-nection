@@ -1,10 +1,9 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoicGVpc2thc3NpbyIsImEiOiJjbTM4eHB5NHIwd2M5MmlxeGlsOTRqams5In0.hEmqLEzaR2kWC2s7Hgd-Ng';
-
 let artworkData = { type: 'FeatureCollection', features: [] };
 let topicClusters = {};
 let continentMapping = {};
 let countryPopulation = {};
 let enrichedFeatures = [];
+let globe;
 
 const COUNTRY_ALIASES = {
     "DRC (Africa leg)": "Democratic Republic of the Congo",
@@ -14,18 +13,6 @@ const COUNTRY_ALIASES = {
     "Various exhibitions": "Other",
     "United States Minor Outlying Islands": "Other"
 };
-
-const globe = new mapboxgl.Map({
-    container: 'globeMap',
-    style: 'mapbox://styles/mapbox/dark-v11',
-    center: [12, 18],
-    zoom: 1.25,
-    projection: 'globe',
-    attributionControl: false
-});
-
-globe.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
-globe.addControl(new mapboxgl.AttributionControl({ compact: true }), 'bottom-left');
 
 function normalizeText(value) {
     return (value || '')
@@ -359,19 +346,47 @@ async function loadGlobeData() {
     updateGlobe();
 }
 
-globe.on('style.load', () => {
-    globe.setFog({
-        color: 'rgb(22, 32, 45)',
-        'high-color': 'rgb(36, 92, 96)',
-        'horizon-blend': 0.18,
-        'space-color': 'rgb(7, 10, 18)',
-        'star-intensity': 0.35
-    });
-});
+async function loadMapboxToken() {
+    const response = await fetch('assets/js/script.js');
+    const scriptText = await response.text();
+    const match = scriptText.match(/mapboxgl\.accessToken\s*=\s*['"]([^'"]+)['"]/);
+    if (!match) throw new Error('Mapbox token not found in assets/js/script.js');
+    return match[1];
+}
 
-globe.on('load', () => {
-    addGlobeLayers();
-    loadGlobeData().catch(error => {
-        document.getElementById('globeCountryRanking').innerHTML = `<div class="alert alert-error">Could not load globe data: ${error.message}</div>`;
+async function initializeGlobe() {
+    mapboxgl.accessToken = await loadMapboxToken();
+
+    globe = new mapboxgl.Map({
+        container: 'globeMap',
+        style: 'mapbox://styles/mapbox/dark-v11',
+        center: [12, 18],
+        zoom: 1.25,
+        projection: 'globe',
+        attributionControl: false
     });
+
+    globe.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+    globe.addControl(new mapboxgl.AttributionControl({ compact: true }), 'bottom-left');
+
+    globe.on('style.load', () => {
+        globe.setFog({
+            color: 'rgb(22, 32, 45)',
+            'high-color': 'rgb(36, 92, 96)',
+            'horizon-blend': 0.18,
+            'space-color': 'rgb(7, 10, 18)',
+            'star-intensity': 0.35
+        });
+    });
+
+    globe.on('load', () => {
+        addGlobeLayers();
+        loadGlobeData().catch(error => {
+            document.getElementById('globeCountryRanking').innerHTML = `<div class="alert alert-error">Could not load globe data: ${error.message}</div>`;
+        });
+    });
+}
+
+initializeGlobe().catch(error => {
+    document.getElementById('globeCountryRanking').innerHTML = `<div class="alert alert-error">Could not initialize globe: ${error.message}</div>`;
 });

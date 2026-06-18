@@ -4523,7 +4523,330 @@
             "url": "https://www.studioroosegaarde.net/",
             "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Smog_Tower_Delhi.jpg"
             }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [-74.0170, 40.7033] },
+            "properties": {
+                "title": "Wheatfield - A Confrontation",
+                "description": "Agnes Denes planted and harvested a two-acre field of golden wheat on a rubble-strewn landfill in Lower Manhattan, steps from Wall Street and the World Trade Center. The living field confronted the surrounding financial district with questions of value, hunger and the misplaced priorities of urban land use.",
+                "artist": "Agnes Denes",
+                "type": "Land Art",
+                "location": "Battery Park Landfill, Manhattan, New York, USA",
+                "year": 1982,
+                "tags": {
+                    "topic": ["Urban Ecology", "Capitalism Critique", "Sustainable Practices", "Consumerism"],
+                    "artform": ["Land Art"]
+                },
+                "url": "https://www.agnesdenesstudio.com/works.html",
+                "thumbnail": "https://www.agnesdenesstudio.com/img/works1/works1.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [23.5966, 61.5504] },
+            "properties": {
+                "title": "Tree Mountain - A Living Time Capsule",
+                "description": "On a reclaimed gravel pit in Finland, Agnes Denes designed a vast elliptical mountain planted with 11,000 trees by 11,000 people in an intricate mathematical pattern. Conceived to endure for centuries, it is a monument to reforestation and to responsibility across generations.",
+                "artist": "Agnes Denes",
+                "type": "Land Art",
+                "location": "Ylojarvi, Pinsio, Finland",
+                "year": 1996,
+                "tags": {
+                    "topic": ["Forest Conservation", "Ecosystem Protection", "Intergenerational Justice", "Sustainable Practices"],
+                    "artform": ["Land Art"]
+                },
+                "url": "https://www.agnesdenesstudio.com/works4.html",
+                "thumbnail": "https://www.agnesdenesstudio.com/img/works4/works4-2.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [12.5683, 55.6761] },
+            "properties": {
+                "title": "Ice Watch",
+                "description": "Olafur Eliasson and geologist Minik Rosing brought huge blocks of ancient glacial ice, harvested from a fjord in Greenland, into city squares and left them to melt in public. Passers-by could touch and hear the disappearing ice, turning an abstract statistic into a physical encounter with the climate crisis.",
+                "artist": "Olafur Eliasson & Minik Rosing",
+                "type": "Installation",
+                "location": "Copenhagen, Denmark",
+                "year": 2014,
+                "tags": {
+                    "topic": ["Climate Change", "Global Warming", "Cryosphere", "Climate Awareness"],
+                    "artform": ["Installation"]
+                },
+                "url": "https://olafureliasson.net/artwork/ice-watch-2014/",
+                "thumbnail": "https://res.cloudinary.com/olafureliasson-net/image/private/q_auto:eco,c_fit,h_640,w_640/img/ice-watch_18019.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [-73.9880, 40.7423] },
+            "properties": {
+                "title": "Ghost Forest",
+                "description": "Maya Lin installed forty-nine dead Atlantic white cedar trees, killed by saltwater intrusion from rising seas, in the middle of Madison Square Park. The bleached grove stood as a stark warning about climate-driven forest die-off in the heart of a living city.",
+                "artist": "Maya Lin",
+                "type": "Installation",
+                "location": "Madison Square Park, New York, USA",
+                "year": 2021,
+                "tags": {
+                    "topic": ["Climate Change", "Deforestation", "Ecosystem Protection", "Sea Level Rise"],
+                    "artform": ["Installation"]
+                },
+                "url": "https://madisonsquarepark.org/art/exhibitions/maya-lin-ghost-forest/",
+                "thumbnail": "https://madisonsquarepark.org/wp-content/uploads/2021/02/MSPC_MLin_GhostForest_050621_0119.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [6.9603, 50.9375] },
+            "properties": {
+                "title": "Trash People",
+                "description": "HA Schult built an army of one thousand life-size human figures entirely from crushed cans, electronic scrap and industrial waste. The silent crowd has travelled to the Great Wall of China, the Pyramids of Giza and Red Square, holding a mirror up to a throwaway civilisation.",
+                "artist": "HA Schult",
+                "type": "Installation",
+                "location": "Cologne, Germany",
+                "year": 1996,
+                "tags": {
+                    "topic": ["Waste", "Consumerism", "Overconsumption", "Waste Management"],
+                    "artform": ["Installation"]
+                },
+                "url": "https://www.haschult.de/action/trashpeople",
+                "thumbnail": "https://www.haschult.de/img/thumbs/01Action/01Trash/56.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [13.3925, 52.5138] },
+            "properties": {
+                "title": "Minimum Monument (Melting Men)",
+                "description": "Nele Azevedo places thousands of small hand-cast ice figures on the steps of public monuments and lets them melt in the sun. Fragile, anonymous and quickly gone, the tiny bodies speak to human vulnerability in the face of a warming planet.",
+                "artist": "Nele Azevedo",
+                "type": "Performance",
+                "location": "Berlin, Germany",
+                "year": 2009,
+                "tags": {
+                    "topic": ["Climate Change", "Global Warming", "Climate Awareness", "Urgency"],
+                    "artform": ["Performance", "Installation"]
+                },
+                "url": "https://www.designboom.com/awareness/melting-men-by-nele-azevedo/",
+                "thumbnail": "https://static.designboom.com/wp-content/uploads/2009/09/melting-men-by-nele-azevedo-designboom-1800.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [-93.0426, 44.9098] },
+            "properties": {
+                "title": "Revival Field",
+                "description": "Working with a plant scientist, Mel Chin turned a fenced plot of a contaminated landfill into a living laboratory, planting hyperaccumulator species that draw heavy metals out of poisoned soil. The work reframes sculpture as the slow, invisible carving of the earth back to health.",
+                "artist": "Mel Chin",
+                "type": "Eco-Art",
+                "location": "Pig's Eye Landfill, Saint Paul, Minnesota, USA",
+                "year": 1991,
+                "tags": {
+                    "topic": ["Toxic Waste", "Environmental Health", "Sustainable Practices", "Pollution"],
+                    "artform": ["Eco-Art", "Land Art"]
+                },
+                "url": "https://walkerart.org/magazine/the-invisible-aesthetic-of-land-detoxification/",
+                "thumbnail": "https://walker-web.imgix.net/cms/Revival_Field.png?fm=png&w=1024&h=1024&fit=fit"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [12.3155, 45.4408] },
+            "properties": {
+                "title": "Vertigo Sea",
+                "description": "John Akomfrah weaves three screens of archival and original footage into an oceanic meditation on whaling, migration and the entangled histories of the sea. Beauty and violence surge together as the ocean becomes a witness to ecological and human exploitation.",
+                "artist": "John Akomfrah",
+                "type": "Film",
+                "location": "Venice, Italy",
+                "year": 2015,
+                "tags": {
+                    "topic": ["Ocean Conservation", "Marine Life", "Colonial Histories", "Climate Migration"],
+                    "artform": ["Film"]
+                },
+                "url": "https://www.lissongallery.com/news/arnolfini-to-host-uk-premier-of-john-akomfrah-s-vertigo-sea",
+                "thumbnail": "https://lisson-art.s3.amazonaws.com/uploads/attachment/image/body/7985/AKOM.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [-106.3257, 32.7872] },
+            "properties": {
+                "title": "Aerocene",
+                "description": "Tomas Saraceno's Aerocene lofts sculptures into the sky using only the heat of the sun and the air, with no fossil fuels, batteries or engines. The floating works imagine an era of movement freed from carbon and propose a lighter way of inhabiting the atmosphere.",
+                "artist": "Tomas Saraceno",
+                "type": "Installation",
+                "location": "White Sands, New Mexico, USA",
+                "year": 2020,
+                "tags": {
+                    "topic": ["Renewable Energy", "Fossil Fuels", "Sustainable Mobility", "Climate Action"],
+                    "artform": ["Installation", "Performance"]
+                },
+                "url": "https://paocweb.mit.edu/about/paoc-spotlights/at-cop21-finding-hope-for-climate-in-the-aerocene",
+                "thumbnail": "https://paocweb.mit.edu/images/uploads/medium/14USA_White-Sands_02484.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [12.5900, 55.6900] },
+            "properties": {
+                "title": "Flooded McDonald's",
+                "description": "The artist collective SUPERFLEX filmed a full-scale replica of a fast-food restaurant slowly filling with water until everything floats and submerges. The rising tide reads as both climate catastrophe and a quiet indictment of consumer culture.",
+                "artist": "SUPERFLEX",
+                "type": "Film",
+                "location": "Copenhagen, Denmark",
+                "year": 2009,
+                "tags": {
+                    "topic": ["Consumerism", "Sea Level Rise", "Capitalism Critique", "Climate Change"],
+                    "artform": ["Film"]
+                },
+                "url": "https://superflex.net/works/flooded_mcdonalds",
+                "thumbnail": "https://superflex.net/superfleximages/1240w_Flooded_mcdonalds_04_1608210401.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [-1.5536, 47.2184] },
+            "properties": {
+                "title": "Follow the Leaders (Waiting for Climate Change)",
+                "description": "Isaac Cordal scatters tiny grey cement businessmen through the cracks and puddles of the city, often half-submerged in water. The miniature suited figures, waiting passively as the water rises, became an unofficial emblem of political inaction on the climate.",
+                "artist": "Isaac Cordal",
+                "type": "Sculpture",
+                "location": "Nantes, France",
+                "year": 2011,
+                "tags": {
+                    "topic": ["Climate Change", "System Critique", "Capitalism Critique", "Sea Level Rise"],
+                    "artform": ["Sculpture", "Installation"]
+                },
+                "url": "https://cementeclipses.com/portfolio/follow-the-leaders/",
+                "thumbnail": "https://cementeclipses.com/wp-content/uploads/2013/11/Follow-the-leaders-berlin.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [-100.8507, 46.0975] },
+            "properties": {
+                "title": "Mirror Shield Project",
+                "description": "Cannupa Hanska Luger circulated instructions for building lightweight mirrored shields and brought them to the water protectors at Standing Rock. Held up in long lines, the mirrors reflected the land and the protectors themselves, turning protective gear into collective, ceremonial art in defence of clean water.",
+                "artist": "Cannupa Hanska Luger",
+                "type": "Social Sculpture",
+                "location": "Standing Rock, North Dakota, USA",
+                "year": 2016,
+                "tags": {
+                    "topic": ["Water Conservation", "Indigenous Knowledge", "Social-Environmental Justice", "Fossil Fuels"],
+                    "artform": ["Social Sculpture", "Performance"]
+                },
+                "url": "https://www.cannupahanska.com/social-engagement/mirror-shield-project",
+                "thumbnail": "https://images.squarespace-cdn.com/content/v1/63debd46d3ba8f71b9f866e0/3a89ac35-1139-40aa-8793-c5413f0b7c69/StandingRock01-1.jpg?format=1000w"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [10.7522, 59.9636] },
+            "properties": {
+                "title": "Future Library (Framtidsbiblioteket)",
+                "description": "Katie Paterson planted a forest of a thousand trees outside Oslo that will be felled in 2114 to print an anthology of books. Each year a writer contributes an unpublished manuscript, sealed and unread, entrusting words and woodland alike to readers not yet born.",
+                "artist": "Katie Paterson",
+                "type": "Social Sculpture",
+                "location": "Nordmarka Forest, Oslo, Norway",
+                "year": 2014,
+                "tags": {
+                    "topic": ["Forest Conservation", "Intergenerational Justice", "Sustainable Practices", "Cultural Heritage"],
+                    "artform": ["Land Art", "Literature"]
+                },
+                "url": "https://www.futurelibrary.no/",
+                "thumbnail": "https://www.futurelibrary.no/assets/share/facebook-share.png"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [-4.0435, 52.9829] },
+            "properties": {
+                "title": "Ash Dome",
+                "description": "In a secret location in the Welsh hills, David Nash planted twenty-two ash saplings in a ring and has spent a lifetime training them into a living, domed chamber. Begun as an act of faith in the future, the slow green architecture grows on nature's own timescale.",
+                "artist": "David Nash",
+                "type": "Land Art",
+                "location": "Snowdonia, Wales, United Kingdom",
+                "year": 1977,
+                "tags": {
+                    "topic": ["Forest Conservation", "Nature Cycles", "Ecosystem Protection", "Intergenerational Justice"],
+                    "artform": ["Land Art"]
+                },
+                "url": "https://www.theguardian.com/environment/2026/jun/20/country-diary-for-the-beloved-ash-dome-death-is-not-the-end",
+                "thumbnail": "https://i.guim.co.uk/img/media/f189367088a3c789b006f4b8a5fac7e27fc38729/195_0_1877_1502/master/1877.jpg?width=1200&height=630&quality=85&auto=format&fit=crop"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [7.4106, 6.8567] },
+            "properties": {
+                "title": "Earth's Skin",
+                "description": "El Anatsui stitches thousands of flattened bottle caps and strips of aluminium liquor-bottle wrapping into monumental metal cloths that drape and shimmer like tapestry. Woven from the discarded materials of trade and consumption, the works speak of recycling, colonial history and transformation.",
+                "artist": "El Anatsui",
+                "type": "Sculpture",
+                "location": "Nsukka, Nigeria",
+                "year": 2007,
+                "tags": {
+                    "topic": ["Recycling", "Upcycling", "Consumerism", "Colonial Histories"],
+                    "artform": ["Sculpture", "Assemblage"]
+                },
+                "url": "https://elanatsui.art/artworks/el-anatsui-earths-skin-2009",
+                "thumbnail": "https://dev.elanatsui.com/cms/2018/06/Earths-Skin-2009-Aluminium-liquor-bottle-caps-and-copper-wire-500-x-612cm-Photo-courtesy-Susan-Vogel-1440x1080.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [-16.1794, 64.0483] },
+            "properties": {
+                "title": "Vatnajokull (the sound of)",
+                "description": "Katie Paterson sank a microphone into a glacial lagoon in Iceland and connected it to a mobile phone number. For a season, anyone who called could listen live to the cracking and melting of the glacier, a direct line to a landscape in the act of disappearing.",
+                "artist": "Katie Paterson",
+                "type": "Sound Art",
+                "location": "Jokulsarlon, Iceland",
+                "year": 2007,
+                "tags": {
+                    "topic": ["Cryosphere", "Climate Change", "Global Warming", "Environmental Awareness"],
+                    "artform": ["Sound Art"]
+                },
+                "url": "https://katiepaterson.org/artwork/vatnajokull-the-sound-of/",
+                "thumbnail": "https://i0.wp.com/katiepaterson.org/wp-content/uploads/2022/02/Katie_Paterson_Vatnajokull_3-1.jpg?resize=1920%2C1442&ssl=1"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [-41.0669, -19.4886] },
+            "properties": {
+                "title": "Genesis",
+                "description": "Over eight years Sebastiao Salgado photographed the parts of the planet still untouched by industry, from Antarctic ice to Amazonian peoples. Shot in luminous black and white, the project is both an elegy and an argument for protecting what remains of the wild.",
+                "artist": "Sebastiao Salgado",
+                "type": "Photography",
+                "location": "Aimores, Minas Gerais, Brazil",
+                "year": 2013,
+                "tags": {
+                    "topic": ["Ecosystem Protection", "Biodiversity", "Conservation", "Environmental Reflection"],
+                    "artform": ["Photography"]
+                },
+                "url": "https://time.com/3798068/in-the-beginnings-sebastiao-salgados-genesis/",
+                "thumbnail": "https://static.time.com/v3/assets/bltea6093859af6183b/blt9d359176f8f019cc/6987a4520b72e33ca16e034f/09-7-19865.jpg?branch=production&width=1200&quality=75&auto=webp&crop=16:9"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [-71.1043, 42.3376] },
+            "properties": {
+                "title": "Fog x FLO",
+                "description": "Fujiko Nakaya, a pioneer of fog sculpture since 1970, released veils of pure water mist through a historic chain of city parks. The drifting fog reveals wind, temperature and terrain, making the invisible workings of the water cycle briefly, beautifully visible.",
+                "artist": "Fujiko Nakaya",
+                "type": "Installation",
+                "location": "Emerald Necklace, Boston, USA",
+                "year": 2018,
+                "tags": {
+                    "topic": ["Nature Cycles", "Water Conservation", "Environmental Reflection", "Human-Nature Interaction"],
+                    "artform": ["Installation", "Environmental Art"]
+                },
+                "url": "https://www.emeraldnecklace.org/20th/",
+                "thumbnail": "https://www.emeraldnecklace.org/wp-content/uploads/2018/08/Fens-71.jpg"
+            }
         }
-                 
     ]
 }
