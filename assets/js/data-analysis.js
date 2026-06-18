@@ -2,11 +2,22 @@
 let artworks = [];
 let topicClusters = {};
 let continentMapping = {};
+let countryPopulation = {};
 
 // Filterwerte
 let selectedContinent = [];
 let selectedCountry = [];
 let selectedTopics = [];
+let selectedMetric = 'total';
+
+const COUNTRY_ALIASES = {
+    "DRC (Africa leg)": "Democratic Republic of the Congo",
+    "Dead Sea region (Israel/Jordan Rift)": "Israel",
+    "Dead Sea region (Jordan/Israel)": "Israel",
+    "Tropical regions": "Other",
+    "Various exhibitions": "Other",
+    "United States Minor Outlying Islands": "Other"
+};
 
 // -----------------------------
 // Utils für Suche & Debounce
@@ -25,6 +36,56 @@ function debounce(fn, wait = 120) {
     clearTimeout(t);
     t = setTimeout(() => fn(...args), wait);
   };
+}
+
+function getCountryFromLocation(location) {
+    const rawLocation = (location || "").trim();
+
+    if (COUNTRY_ALIASES[rawLocation]) return COUNTRY_ALIASES[rawLocation];
+    if (continentMapping[rawLocation] || countryPopulation[rawLocation]) return rawLocation;
+
+    const lastPart = rawLocation.split(",").pop().trim();
+    return COUNTRY_ALIASES[lastPart] || lastPart || "Other";
+}
+
+function getContinentForCountry(country) {
+    return continentMapping[country] || continentMapping[country?.toLowerCase()] || "Other";
+}
+
+function getArtworkClusters(artwork) {
+    const topics = artwork.properties.tags?.topic || [];
+    return topics
+        .map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic)))
+        .filter(Boolean);
+}
+
+function getMetricLabel() {
+    return selectedMetric === 'perCapita' ? 'Artworks per 1M people' : 'Artwork count';
+}
+
+function updateChartTitles() {
+    const perCapita = selectedMetric === 'perCapita';
+    document.getElementById('topicsByContinentTitle').textContent = perCapita
+        ? 'Topic Clusters per 1M People by Continent'
+        : 'Number of Topics by Continent';
+    document.getElementById('countryChartTitle').textContent = perCapita
+        ? 'Topic Clusters per 1M People by Country'
+        : 'Number of Topic Clusters by Country';
+    document.getElementById('topicClustersOverTimeTitle').textContent = perCapita
+        ? 'Topic Clusters per 1M People Over Time'
+        : 'Change of Topic Clusters Over Time';
+}
+
+function normalizeValue(count, population) {
+    if (selectedMetric !== 'perCapita') return count;
+    if (!population || population <= 0) return null;
+    return (count / population) * 1000000;
+}
+
+function sumPopulation(countries) {
+    return Array.from(countries).reduce((sum, country) => {
+        return sum + (countryPopulation[country] || 0);
+    }, 0);
 }
 
 // Länder-Sichtbarkeit auf Basis von Kontinent-Filter + Textsuche
@@ -92,6 +153,11 @@ async function loadData() {
 
         continentMapping = await fetch('data/continentMapping.json').then(res => {
             if (!res.ok) throw new Error('Failed to load continentMapping.json');
+            return res.json();
+        });
+
+        countryPopulation = await fetch('data/countryPopulation.json').then(res => {
+            if (!res.ok) throw new Error('Failed to load countryPopulation.json');
             return res.json();
         });
 
@@ -165,6 +231,13 @@ function initializeFilters() {
         updateCharts(); 
     });
 
+    document.querySelectorAll('input[name="metricMode"]').forEach(input => {
+        input.addEventListener('change', () => {
+            selectedMetric = input.value;
+            updateCharts();
+        });
+    });
+
     document.getElementById('resetFilters').addEventListener('click', resetFilters);
 
     // NEU: Country-Suche initialisieren + initiale Sichtbarkeit setzen
@@ -177,6 +250,7 @@ function applyFilters() {
     selectedContinent = Array.from(document.getElementById('continentSelect').selectedOptions).map(option => option.value);
     selectedCountry = Array.from(document.getElementById('countrySelect').selectedOptions).map(option => option.value);
     selectedTopics = Array.from(document.getElementById('topicClusterSelect').selectedOptions).map(option => option.value);
+    selectedMetric = document.querySelector('input[name="metricMode"]:checked')?.value || 'total';
 
     console.log("Selected Filters:", selectedContinent, selectedCountry, selectedTopics);
 }
@@ -188,10 +262,13 @@ function resetFilters() {
     document.getElementById('topicClusterSelect').selectedIndex = 0;
     const cs = document.getElementById('countrySearch');
     if (cs) cs.value = ""; // neu: Suchfeld leeren
+    const totalMetric = document.querySelector('input[name="metricMode"][value="total"]');
+    if (totalMetric) totalMetric.checked = true;
 
     selectedContinent = [];
     selectedCountry = [];
     selectedTopics = [];
+    selectedMetric = 'total';
 
     refreshCountryListVisibility(); // neu: Sichtbarkeit nach Reset aktualisieren
     updateCharts();
@@ -200,6 +277,7 @@ function resetFilters() {
 // Diagramme aktualisieren
 function updateCharts() {
     applyFilters();
+    updateChartTitles();
     updateCountryChart();
     updateTopicClustersOverTime();
     updateTopicsByContinent();
@@ -241,8 +319,8 @@ const plotlyLayout = {
 // Filter auf die Kunstwerke anwenden
 function filterArtworks(artworks) {
     return artworks.features.filter(artwork => {
-        const country = artwork.properties.location.split(", ").pop().trim();
-        const continent = country in continentMapping ? continentMapping[country] : (country.toLowerCase() in continentMapping ? continentMapping[country.toLowerCase()] : "Other");
+        const country = getCountryFromLocation(artwork.properties.location);
+        const continent = getContinentForCountry(country);
 
         if (selectedContinent.length > 0 && !selectedContinent.includes(continent) && !selectedContinent.includes('all')) {
             return false;
@@ -252,8 +330,7 @@ function filterArtworks(artworks) {
             return false;
         }
 
-        const topics = artwork.properties.tags.topic;
-        const clusters = topics.map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))).filter(Boolean);
+        const clusters = getArtworkClusters(artwork);
         if (selectedTopics.length > 0 && !selectedTopics.some(cluster => clusters.includes(cluster)) && !selectedTopics.includes('all')) {
             return false;
         }
@@ -269,8 +346,8 @@ function updateCountryChart() {
     let filteredArtworks = filterArtworks(artworks);
 
     filteredArtworks.forEach(artwork => {
-        let country = artwork.properties.location.split(", ").pop();
-        let cluster = artwork.properties.tags.topic.map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))).filter(Boolean);
+        let country = getCountryFromLocation(artwork.properties.location);
+        let cluster = getArtworkClusters(artwork);
 
         if (!countryData[country]) countryData[country] = {};
         cluster.forEach(c => {
@@ -281,13 +358,17 @@ function updateCountryChart() {
 
     let traces = Object.keys(clusterColors).map(cluster => ({
         x: Object.keys(countryData),
-        y: Object.keys(countryData).map(country => countryData[country][cluster] || 0),
+        y: Object.keys(countryData).map(country => normalizeValue(countryData[country][cluster] || 0, countryPopulation[country])),
         name: cluster,
         type: 'bar',
-        marker: { color: clusterColors[cluster] }
+        marker: { color: clusterColors[cluster] },
+        hovertemplate: `%{x}<br>${cluster}: %{y:.3f}<extra></extra>`
     }));
 
-    Plotly.newPlot('countryChart', traces, plotlyLayout);
+    Plotly.newPlot('countryChart', traces, {
+        ...plotlyLayout,
+        yaxis: { ...plotlyLayout.yaxis, title: getMetricLabel() }
+    });
 }
 
 // Themencluster über die Zeit (Liniendiagramm)
@@ -295,15 +376,15 @@ function updateTopicClustersOverTime() {
     let timeData = {};
     let clusterColors = getClusterColors();
     let filteredArtworks = filterArtworks(artworks);
+    let filteredCountries = new Set(filteredArtworks.map(artwork => getCountryFromLocation(artwork.properties.location)));
+    let populationBase = sumPopulation(filteredCountries);
 
     // Jahre sammeln & Themen zuordnen
     filteredArtworks.forEach(artwork => {
         let year = parseInt(artwork.properties.year, 10);
         if (isNaN(year)) return;
 
-        let cluster = artwork.properties.tags.topic.map(topic => {
-            return Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic));
-        }).filter(Boolean);
+        let cluster = getArtworkClusters(artwork);
 
         if (!timeData[year]) timeData[year] = {};
         cluster.forEach(c => {
@@ -321,7 +402,7 @@ function updateTopicClustersOverTime() {
     // Traces für jedes Cluster
     let traces = Object.keys(clusterColors).map(cluster => ({
         x: years,
-        y: years.map(year => timeData[year]?.[cluster] || 0),
+        y: years.map(year => normalizeValue(timeData[year]?.[cluster] || 0, populationBase)),
         name: cluster,
         type: 'scatter',
         mode: 'lines+markers',
@@ -343,7 +424,7 @@ function updateTopicClustersOverTime() {
             zeroline: false
         },
         yaxis: {
-            title: 'Count',
+            title: getMetricLabel(),
             showgrid: true,
             zeroline: true
         }
@@ -359,11 +440,12 @@ function updateTopicsByContinent() {
     let filteredArtworks = filterArtworks(artworks);
 
     filteredArtworks.forEach(artwork => {
-        let country = artwork.properties.location.split(", ").pop();
-        let continent = continentMapping[country] || "Other";
-        let cluster = artwork.properties.tags.topic.map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))).filter(Boolean);
+        let country = getCountryFromLocation(artwork.properties.location);
+        let continent = getContinentForCountry(country);
+        let cluster = getArtworkClusters(artwork);
 
-        if (!continentData[continent]) continentData[continent] = {};
+        if (!continentData[continent]) continentData[continent] = { countries: new Set() };
+        continentData[continent].countries.add(country);
         cluster.forEach(c => {
             if (!continentData[continent][c]) continentData[continent][c] = 0;
             continentData[continent][c]++;
@@ -372,13 +454,20 @@ function updateTopicsByContinent() {
 
     let traces = Object.keys(clusterColors).map(cluster => ({
         x: Object.keys(continentData),
-        y: Object.keys(continentData).map(continent => continentData[continent][cluster] || 0),
+        y: Object.keys(continentData).map(continent => {
+            const population = sumPopulation(continentData[continent].countries);
+            return normalizeValue(continentData[continent][cluster] || 0, population);
+        }),
         name: cluster,
         type: 'bar',
-        marker: { color: clusterColors[cluster] }
+        marker: { color: clusterColors[cluster] },
+        hovertemplate: `%{x}<br>${cluster}: %{y:.3f}<extra></extra>`
     }));
 
-    Plotly.newPlot('topicsByContinentChart', traces, plotlyLayout);
+    Plotly.newPlot('topicsByContinentChart', traces, {
+        ...plotlyLayout,
+        yaxis: { ...plotlyLayout.yaxis, title: getMetricLabel() }
+    });
 }
 
 // Co-Occurrence-Netzwerk
@@ -390,9 +479,7 @@ function updateCoOccurrenceNetwork() {
     let nodeSet = new Set();
 
     filteredArtworks.forEach(artwork => {
-        let clusterList = artwork.properties.tags.topic.map(topic =>
-            Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic))
-        ).filter(Boolean);
+        let clusterList = getArtworkClusters(artwork);
 
         clusterList.forEach(source => {
             if (!nodeSet.has(source)) {
