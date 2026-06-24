@@ -40,7 +40,33 @@ function getThumbnailHtml(thumbnail) {
         return '';
     }
 
-    return `<img class="globe-popup-thumbnail" src="${escapeHtml(thumbnailUrl)}" alt="" loading="lazy">`;
+    return `<img class="globe-popup-thumbnail" src="${escapeHtml(thumbnailUrl)}" alt="" loading="lazy" decoding="async">`;
+}
+
+function getDescriptionExcerpt(description, maxLength = 180) {
+    const normalizedDescription = (description || '').toString().trim().replace(/\s+/g, ' ');
+
+    if (!normalizedDescription) {
+        return '';
+    }
+
+    if (normalizedDescription.length <= maxLength) {
+        return normalizedDescription;
+    }
+
+    const truncated = normalizedDescription.slice(0, maxLength).trimEnd();
+    const lastSpaceIndex = truncated.lastIndexOf(' ');
+    const excerpt = lastSpaceIndex > Math.floor(maxLength * 0.6)
+        ? truncated.slice(0, lastSpaceIndex).trimEnd()
+        : truncated;
+
+    return `${excerpt}…`;
+}
+
+function getValidUrl(value) {
+    const url = (value || '').toString().trim();
+
+    return /^https?:\/\/[^\s"'<>]+$/i.test(url) ? url : '';
 }
 
 function getCountryFromLocation(location) {
@@ -312,9 +338,16 @@ function addGlobeLayers() {
         const feature = event.features[0];
         const props = feature.properties || {};
         const coordinates = feature.geometry.coordinates.slice();
-        const metricValue = Number(props.countryMetric || 0);
-        const metricDisplay = getMetricMode() === 'perCapita' ? metricValue.toFixed(3) : metricValue.toFixed(0);
         const thumbnailHtml = getThumbnailHtml(props.thumbnail);
+        const descriptionExcerpt = getDescriptionExcerpt(props.description);
+        const descriptionHtml = descriptionExcerpt
+            ? `<p class="globe-popup-description">${escapeHtml(descriptionExcerpt)}</p>`
+            : '';
+        const artistText = props.year ? `${props.artist || 'Unknown'}, ${props.year}` : (props.artist || 'Unknown');
+        const moreInfoUrl = getValidUrl(props.url);
+        const moreInfoHtml = moreInfoUrl
+            ? `<a class="globe-popup-link" href="${escapeHtml(moreInfoUrl)}" target="_blank" rel="noopener noreferrer">More information</a>`
+            : '';
 
         new mapboxgl.Popup({ maxWidth: '320px' })
             .setLngLat(coordinates)
@@ -322,10 +355,13 @@ function addGlobeLayers() {
                 <div class="globe-popup">
                     ${thumbnailHtml}
                     <h3>${escapeHtml(props.title || 'Untitled')}</h3>
-                    <p><strong>Artist:</strong> ${escapeHtml(props.artist || 'Unknown')}</p>
-                    <p><strong>Location:</strong> ${escapeHtml(props.location || 'Unknown')}</p>
-                    <p><strong>Cluster:</strong> ${escapeHtml(props.mainCluster || 'Uncategorized')}</p>
-                    <p><strong>Country metric:</strong> ${metricDisplay} ${getMetricLabel()}</p>
+                    <div class="globe-popup-primary-meta">${escapeHtml(artistText)}</div>
+                    <div class="globe-popup-location">${escapeHtml(props.location || 'Unknown')}</div>
+                    ${descriptionHtml}
+                    <div class="globe-popup-meta">
+                        <p><strong>Cluster:</strong> ${escapeHtml(props.mainCluster || 'Uncategorized')}</p>
+                    </div>
+                    ${moreInfoHtml}
                 </div>
             `)
             .addTo(globe);
