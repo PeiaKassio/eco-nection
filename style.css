@@ -140,6 +140,15 @@
   color: #111827;
 }
 
+.globe-popup-thumbnail {
+  display: block;
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin: 0 0 0.75rem;
+}
+
 .globe-popup h3 {
   margin: 0 0 0.5rem;
   font-weight: 700;
