@@ -33,6 +33,15 @@ function escapeHtml(value) {
         .replace(/'/g, '&#039;');
 }
 
+function getThumbnailHtml(thumbnail) {
+    const thumbnailUrl = (thumbnail || '').toString().trim();
+
+    if (!/^https?:\/\/[^\s"'<>]+$/i.test(thumbnailUrl)) {
+        return '';
+    }
+
+    return `<img class="globe-popup-thumbnail" src="${escapeHtml(thumbnailUrl)}" alt="" loading="lazy">`;
+}
 
 function getCountryFromLocation(location) {
     return EcoData.getCountryFromLocation(location, continentMapping, countryPopulation);
@@ -296,11 +305,13 @@ function addGlobeLayers() {
         const coordinates = feature.geometry.coordinates.slice();
         const metricValue = Number(props.countryMetric || 0);
         const metricDisplay = getMetricMode() === 'perCapita' ? metricValue.toFixed(3) : metricValue.toFixed(0);
+        const thumbnailHtml = getThumbnailHtml(props.thumbnail);
 
         new mapboxgl.Popup({ maxWidth: '320px' })
             .setLngLat(coordinates)
             .setHTML(`
                 <div class="globe-popup">
+                    ${thumbnailHtml}
                     <h3>${escapeHtml(props.title || 'Untitled')}</h3>
                     <p><strong>Artist:</strong> ${escapeHtml(props.artist || 'Unknown')}</p>
                     <p><strong>Location:</strong> ${escapeHtml(props.location || 'Unknown')}</p>
