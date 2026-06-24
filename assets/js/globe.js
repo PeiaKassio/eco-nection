@@ -262,6 +262,13 @@ function attachEvents() {
         document.getElementById(id).addEventListener('change', updateGlobe);
     });
 
+    document.querySelectorAll('input[name="exploreView"]').forEach(input => {
+        input.addEventListener('change', event => {
+            const projection = event.target.value === 'map' ? 'mercator' : 'globe';
+            globe.setProjection(projection);
+        });
+    });
+
     document.querySelectorAll('input[name="globeMetric"]').forEach(input => {
         input.addEventListener('change', updateGlobe);
     });
@@ -272,6 +279,11 @@ function attachEvents() {
         document.getElementById('globeYearFrom').value = '';
         document.getElementById('globeYearTo').value = '';
         document.querySelector('input[name="globeMetric"][value="total"]').checked = true;
+        const globeView = document.querySelector('input[name="exploreView"][value="globe"]');
+        if (globeView) {
+            globeView.checked = true;
+            globe.setProjection('globe');
+        }
         updateGlobe();
     });
 }
