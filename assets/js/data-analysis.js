@@ -313,18 +313,34 @@ function updateCountryChart() {
 
     const visibleCountries = Object.keys(countryData).filter(shouldIncludeCountryInChart);
 
+    let maxDisplayedStackValue = 0;
+    const countryStackTotals = Object.fromEntries(visibleCountries.map(country => [country, 0]));
+
     let traces = Object.keys(clusterColors).map(cluster => ({
         x: visibleCountries,
-        y: visibleCountries.map(country => normalizeValue(countryData[country][cluster] || 0, countryPopulation[country])),
+        y: visibleCountries.map(country => {
+            const value = normalizeValue(countryData[country][cluster] || 0, countryPopulation[country]);
+            countryStackTotals[country] += value;
+            return value;
+        }),
         name: cluster,
         type: 'bar',
         marker: { color: clusterColors[cluster] },
         hovertemplate: `%{x}<br>${cluster}: %{y:.3f}<extra></extra>`
     }));
 
+    if (selectedMetric === 'perCapita') {
+        maxDisplayedStackValue = Math.max(0, ...Object.values(countryStackTotals));
+    }
+
+    const yaxis = { ...plotlyLayout.yaxis, title: getMetricLabel() };
+    if (selectedMetric === 'perCapita') {
+        yaxis.range = [0, maxDisplayedStackValue > 0 ? maxDisplayedStackValue * 1.2 : 1];
+    }
+
     Plotly.newPlot('countryChart', traces, {
         ...plotlyLayout,
-        yaxis: { ...plotlyLayout.yaxis, title: getMetricLabel() }
+        yaxis
     });
 }
 
