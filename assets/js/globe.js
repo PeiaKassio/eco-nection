@@ -338,8 +338,6 @@ function addGlobeLayers() {
         const feature = event.features[0];
         const props = feature.properties || {};
         const coordinates = feature.geometry.coordinates.slice();
-        const metricValue = Number(props.countryMetric || 0);
-        const metricDisplay = getMetricMode() === 'perCapita' ? metricValue.toFixed(3) : metricValue.toFixed(0);
         const thumbnailHtml = getThumbnailHtml(props.thumbnail);
         const descriptionExcerpt = getDescriptionExcerpt(props.description);
         const descriptionHtml = descriptionExcerpt
@@ -362,7 +360,6 @@ function addGlobeLayers() {
                     ${descriptionHtml}
                     <div class="globe-popup-meta">
                         <p><strong>Cluster:</strong> ${escapeHtml(props.mainCluster || 'Uncategorized')}</p>
-                        <p><strong>Country metric:</strong> ${metricDisplay} ${getMetricLabel()}</p>
                     </div>
                     ${moreInfoHtml}
                 </div>
