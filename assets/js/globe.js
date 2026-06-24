@@ -185,15 +185,24 @@ function renderRanking(containerId, items) {
     }).join('');
 }
 
+function getCountryRankingData(countryData) {
+    if (getMetricMode() !== 'perCapita') return countryData;
+
+    return Object.fromEntries(
+        Object.entries(countryData).filter(([, item]) => !EcoData.isSmallPopulationBase(item.population))
+    );
+}
+
 function updateGlobe() {
     const filtered = getFilteredFeatures();
     const countryData = aggregateByCountry(filtered);
     const continentData = aggregateByContinent(filtered);
+    const countryRankingData = getCountryRankingData(countryData);
     const displayFeatures = enrichMetricValues(filtered, countryData);
 
     document.getElementById('globeArtworkCount').textContent = filtered.length;
     document.getElementById('globeCountryCount').textContent = Object.keys(countryData).length;
-    renderRanking('globeCountryRanking', countryData);
+    renderRanking('globeCountryRanking', countryRankingData);
     renderRanking('globeContinentRanking', continentData);
 
     const source = globe.getSource('globeArtworks');

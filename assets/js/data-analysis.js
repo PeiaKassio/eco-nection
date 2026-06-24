@@ -49,10 +49,19 @@ function updateChartTitles() {
     document.getElementById('topicClustersOverTimeTitle').textContent = perCapita
         ? 'Topic Clusters per 1M People Over Time'
         : 'Change of Topic Clusters Over Time';
+
+    const countryChartPopulationNote = document.getElementById('countryChartPopulationNote');
+    if (countryChartPopulationNote) {
+        countryChartPopulationNote.classList.toggle('hidden', !perCapita);
+    }
 }
 
 function normalizeValue(count, population) {
     return EcoData.normalizePerCapita(count, population, selectedMetric);
+}
+
+function shouldIncludeCountryInChart(country) {
+    return selectedMetric !== 'perCapita' || !EcoData.isSmallPopulationBase(countryPopulation[country]);
 }
 
 function sumPopulation(countries) {
@@ -302,9 +311,11 @@ function updateCountryChart() {
         });
     });
 
+    const visibleCountries = Object.keys(countryData).filter(shouldIncludeCountryInChart);
+
     let traces = Object.keys(clusterColors).map(cluster => ({
-        x: Object.keys(countryData),
-        y: Object.keys(countryData).map(country => normalizeValue(countryData[country][cluster] || 0, countryPopulation[country])),
+        x: visibleCountries,
+        y: visibleCountries.map(country => normalizeValue(countryData[country][cluster] || 0, countryPopulation[country])),
         name: cluster,
         type: 'bar',
         marker: { color: clusterColors[cluster] },
