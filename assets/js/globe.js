@@ -5,15 +5,11 @@ let topicClusters = {};
 let continentMapping = {};
 let countryPopulation = {};
 let enrichedFeatures = [];
-
-const COUNTRY_ALIASES = {
-    "DRC (Africa leg)": "Democratic Republic of the Congo",
-    "Dead Sea region (Israel/Jordan Rift)": "Israel",
-    "Dead Sea region (Jordan/Israel)": "Israel",
-    "Tropical regions": "Other",
-    "Various exhibitions": "Other",
-    "United States Minor Outlying Islands": "Other"
-};
+const {
+    loadSharedData,
+    normalizeText,
+    parseYear
+} = EcoData;
 
 const globe = new mapboxgl.Map({
     container: 'globeMap',
@@ -27,14 +23,6 @@ const globe = new mapboxgl.Map({
 globe.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 globe.addControl(new mapboxgl.AttributionControl({ compact: true }), 'bottom-left');
 
-function normalizeText(value) {
-    return (value || '')
-        .toString()
-        .normalize('NFD')
-        .replace(/\p{Diacritic}/gu, '')
-        .toLowerCase();
-}
-
 function escapeHtml(value) {
     return (value || '')
         .toString()
@@ -45,32 +33,21 @@ function escapeHtml(value) {
         .replace(/'/g, '&#039;');
 }
 
-function getCountryFromLocation(location) {
-    const rawLocation = (location || '').trim();
-    if (COUNTRY_ALIASES[rawLocation]) return COUNTRY_ALIASES[rawLocation];
-    if (continentMapping[rawLocation] || countryPopulation[rawLocation]) return rawLocation;
 
-    const lastPart = rawLocation.split(',').pop().trim();
-    return COUNTRY_ALIASES[lastPart] || lastPart || 'Other';
+function getCountryFromLocation(location) {
+    return EcoData.getCountryFromLocation(location, continentMapping, countryPopulation);
 }
 
 function getContinentForCountry(country) {
-    return continentMapping[country] || continentMapping[country?.toLowerCase()] || 'Other';
+    return EcoData.getContinentForCountry(country, continentMapping);
 }
 
 function getArtworkClusters(feature) {
-    const topics = feature.properties?.tags?.topic || [];
-    return topics
-        .map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic)))
-        .filter(Boolean);
-}
-
-function getMainCluster(feature) {
-    return getArtworkClusters(feature)[0] || 'Uncategorized';
+    return EcoData.getArtworkClusters(feature, topicClusters);
 }
 
 function getClusterColor(cluster) {
-    return topicClusters[cluster]?.color || '#9ca3af';
+    return EcoData.getClusterColor(cluster, topicClusters);
 }
 
 function getMetricMode() {
@@ -82,9 +59,7 @@ function getMetricLabel() {
 }
 
 function normalizeValue(count, population) {
-    if (getMetricMode() !== 'perCapita') return count;
-    if (!population || population <= 0) return 0;
-    return (count / population) * 1000000;
+    return EcoData.normalizePerCapita(count, population, getMetricMode()) ?? 0;
 }
 
 function isValidPoint(feature) {
@@ -93,22 +68,7 @@ function isValidPoint(feature) {
 }
 
 function enrichFeature(feature) {
-    const country = getCountryFromLocation(feature.properties?.location);
-    const continent = getContinentForCountry(country);
-    const clusters = getArtworkClusters(feature);
-    const mainCluster = clusters[0] || 'Uncategorized';
-
-    return {
-        ...feature,
-        properties: {
-            ...feature.properties,
-            country,
-            continent,
-            clusters,
-            mainCluster,
-            mainClusterColor: getClusterColor(mainCluster)
-        }
-    };
+    return EcoData.enrichArtwork(feature, { topicClusters, continentMapping, countryPopulation });
 }
 
 function getFilteredFeatures() {
@@ -119,14 +79,14 @@ function getFilteredFeatures() {
 
     return enrichedFeatures.filter(feature => {
         const props = feature.properties || {};
-        const year = parseInt(props.year, 10);
+        const year = parseYear(props.year);
         const text = normalizeText(`${props.title} ${props.artist} ${props.location} ${props.description}`);
 
         if (!isValidPoint(feature)) return false;
         if (query && !text.includes(query)) return false;
         if (cluster && !(props.clusters || []).includes(cluster)) return false;
-        if (!Number.isNaN(fromYear) && year < fromYear) return false;
-        if (!Number.isNaN(toYear) && year > toYear) return false;
+        if (!Number.isNaN(fromYear) && year !== null && year < fromYear) return false;
+        if (!Number.isNaN(toYear) && year !== null && year > toYear) return false;
         return true;
     });
 }
@@ -353,17 +313,7 @@ function addGlobeLayers() {
 }
 
 async function loadGlobeData() {
-    const [artworkResponse, topicResponse, continentResponse, populationResponse] = await Promise.all([
-        fetch('data/artwork-data.json'),
-        fetch('data/topicClusters.json'),
-        fetch('data/continentMapping.json'),
-        fetch('data/countryPopulation.json')
-    ]);
-
-    artworkData = await artworkResponse.json();
-    topicClusters = await topicResponse.json();
-    continentMapping = await continentResponse.json();
-    countryPopulation = await populationResponse.json();
+    ({ artworkData, topicClusters, continentMapping, countryPopulation } = await loadSharedData());
     enrichedFeatures = (artworkData.features || []).map(enrichFeature);
 
     populateClusterFilter();
