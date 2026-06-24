@@ -262,6 +262,13 @@ function attachEvents() {
         document.getElementById(id).addEventListener('change', updateGlobe);
     });
 
+    document.querySelectorAll('input[name="exploreView"]').forEach(input => {
+        input.addEventListener('change', event => {
+            const projection = event.target.value === 'map' ? 'mercator' : 'globe';
+            globe.setProjection(projection);
+        });
+    });
+
     document.querySelectorAll('input[name="globeMetric"]').forEach(input => {
         input.addEventListener('change', updateGlobe);
     });
