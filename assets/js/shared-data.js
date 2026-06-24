@@ -6,6 +6,8 @@ const EcoData = (() => {
         countryPopulation: 'data/countryPopulation.json'
     };
 
+    const MIN_POPULATION_FOR_COUNTRY_PER_CAPITA = 1000000;
+
     const COUNTRY_ALIASES = {
         "DRC (Africa leg)": "Democratic Republic of the Congo",
         "Dead Sea region (Israel/Jordan Rift)": "Israel",
@@ -90,6 +92,10 @@ const EcoData = (() => {
         return (count / population) * 1000000;
     }
 
+    function isSmallPopulationBase(population) {
+        return !population || population < MIN_POPULATION_FOR_COUNTRY_PER_CAPITA;
+    }
+
     function enrichArtwork(artwork, { topicClusters = {}, continentMapping = {}, countryPopulation = {} } = {}) {
         const country = getCountryFromLocation(artwork.properties?.location, continentMapping, countryPopulation);
         const continent = getContinentForCountry(country, continentMapping);
@@ -111,6 +117,7 @@ const EcoData = (() => {
 
     return {
         COUNTRY_ALIASES,
+        MIN_POPULATION_FOR_COUNTRY_PER_CAPITA,
         loadSharedData,
         normalizeText,
         getCountryFromLocation,
@@ -121,6 +128,7 @@ const EcoData = (() => {
         getClusterColors,
         parseYear,
         normalizePerCapita,
+        isSmallPopulationBase,
         enrichArtwork
     };
 })();
