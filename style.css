@@ -138,6 +138,10 @@
 
 .globe-popup {
   color: #111827;
+  display: grid;
+  gap: 0.45rem;
+  max-width: min(320px, calc(100vw - 3rem));
+  line-height: 1.35;
 }
 
 .globe-popup-thumbnail {
@@ -145,17 +149,54 @@
   width: 100%;
   max-height: 160px;
   object-fit: cover;
-  border-radius: 0.5rem;
-  margin: 0 0 0.75rem;
+  border-radius: 0.625rem;
+  margin: 0 0 0.25rem;
+  background: #e5e7eb;
 }
 
 .globe-popup h3 {
-  margin: 0 0 0.5rem;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.25;
   font-weight: 700;
 }
 
 .globe-popup p {
-  margin: 0.25rem 0;
+  margin: 0.2rem 0;
+}
+
+.globe-popup-primary-meta,
+.globe-popup-location,
+.globe-popup-meta {
+  font-size: 0.82rem;
+}
+
+.globe-popup-primary-meta {
+  font-weight: 600;
+}
+
+.globe-popup-location,
+.globe-popup-description,
+.globe-popup-meta {
+  color: #4b5563;
+}
+
+.globe-popup-description {
+  font-size: 0.84rem;
+  border-top: 1px solid rgba(17, 24, 39, 0.08);
+  border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+  padding: 0.5rem 0;
+}
+
+.globe-popup-link {
+  color: #0f766e;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.globe-popup-link:hover {
+  text-decoration: underline;
 }
 
 @media (min-width: 1024px) {
