@@ -13,13 +13,29 @@
 <body class="h-full flex flex-col bg-base-100">
     <nav class="navbar bg-base-300">
         <div class="navbar-start">
-            <div class="flex mx-3 gap-3 justify-center">
+            <div class="dropdown lg:hidden">
+                <div tabindex="0" role="button" class="btn btn-ghost" aria-label="Open navigation menu">
+                    <i class="ti ti-menu-2 text-2xl"></i>
+                </div>
+                <ul
+                    tabindex="0"
+                    class="menu menu-sm dropdown-content gap-y-3 bg-base-300 rounded-box z-20 mt-3 w-48 shadow">
+                    <li><a class="btn btn-primary justify-start" href="index.html"><i class="ti ti-compass text-xl"></i>Explore</a></li>
+                    <li><a class="btn btn-primary justify-start" href="data-analysis.html"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
+                    <li><a class="btn btn-primary justify-start" href="submit-artwork.html"><i class="ti ti-upload text-xl"></i>Submit</a></li>
+                </ul>
+            </div>
+            <div class="hidden lg:flex mx-3 gap-3 justify-center">
                 <i class="ti ti-affiliate text-3xl text-primary"></i>
                 <span class="text-2xl subpixel-antialiased">eco:nection</span>
             </div>
         </div>
         <div class="navbar-center">
-            <ul class="menu menu-horizontal px-1 gap-x-4">
+            <div class="flex mx-3 gap-3 justify-center lg:hidden">
+                <i class="ti ti-affiliate text-3xl text-primary"></i>
+                <span class="text-2xl subpixel-antialiased">eco:nection</span>
+            </div>
+            <ul class="hidden lg:flex menu menu-horizontal px-1 gap-x-4">
                 <li><a class="btn btn-primary" href="index.html"><i class="ti ti-compass text-xl"></i>Explore</a></li>
                 <li><a class="btn btn-primary" href="data-analysis.html"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
                 <li><a class="btn btn-primary" href="submit-artwork.html"><i class="ti ti-upload text-xl"></i>Submit</a></li>
@@ -110,6 +126,10 @@
                     <li><i class="ti ti-tags text-primary"></i> Review topic tags</li>
                     <li><i class="ti ti-heart-handshake text-primary"></i> Help complete this archive</li>
                 </ul>
+                <a class="btn btn-primary btn-sm mt-4" href="submit-artwork.html">
+                    <i class="ti ti-upload text-lg"></i>
+                    Contribute an artwork
+                </a>
             </section>
         </aside>
     </main>

@@ -279,6 +279,11 @@ function attachEvents() {
         document.getElementById('globeYearFrom').value = '';
         document.getElementById('globeYearTo').value = '';
         document.querySelector('input[name="globeMetric"][value="total"]').checked = true;
+        const globeView = document.querySelector('input[name="exploreView"][value="globe"]');
+        if (globeView) {
+            globeView.checked = true;
+            globe.setProjection('globe');
+        }
         updateGlobe();
     });
 }
