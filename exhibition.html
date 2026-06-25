@@ -38,27 +38,21 @@
 
     <main class="exhibition-shell">
         <section class="exhibition-stage">
-            <div id="exhibitionCanvas" class="exhibition-canvas" aria-label="3D virtual exhibition"></div>
-            <div class="exhibition-help">Drag to look around • Scroll/pinch to zoom • Click a framed artwork for details</div>
+            <div id="exhibitionCanvas" class="exhibition-canvas" aria-label="3D museum-style virtual exhibition"></div>
+            <div class="exhibition-help">Use Previous / Next for a guided tour • Reset returns to the full gallery • Drag gently to adjust the view • Click framed artworks for details</div>
         </section>
 
         <aside class="exhibition-panel bg-base-200">
-            <h1 class="text-2xl font-bold">Virtual Exhibition Pavilion</h1>
-            <p class="mt-3 text-sm opacity-80">An experimental first exhibition space for eco:nection: framed artworks are arranged in an open-air environmental pavilion using archive thumbnails and lightweight 3D geometry.</p>
+            <h1 class="text-2xl font-bold">Virtual Museum Gallery</h1>
+            <p class="mt-3 text-sm opacity-80">A calm, curated room of framed eco:nection artworks with wall labels, gallery lighting, and simple guided navigation.</p>
 
             <label class="form-control mt-5">
                 <span class="label-text">Curatorial mode</span>
                 <select id="exhibitionMode" class="select select-bordered">
                     <option value="continent" selected>Continent</option>
-                    <option value="country">Country</option>
                     <option value="topic">Topic</option>
                     <option value="timeline">Timeline</option>
                 </select>
-            </label>
-
-            <label id="countryControl" class="form-control mt-4 hidden">
-                <span class="label-text">Country</span>
-                <select id="countrySelect" class="select select-bordered"></select>
             </label>
 
             <label id="topicControl" class="form-control mt-4 hidden">
@@ -66,14 +60,21 @@
                 <select id="topicSelect" class="select select-bordered"></select>
             </label>
 
+            <div class="exhibition-tour mt-5" aria-label="Guided artwork navigation">
+                <button id="previousArtwork" class="btn btn-outline btn-sm"><i class="ti ti-chevron-left"></i>Previous artwork</button>
+                <button id="nextArtwork" class="btn btn-primary btn-sm">Next artwork<i class="ti ti-chevron-right"></i></button>
+                <button id="overviewGallery" class="btn btn-ghost btn-sm"><i class="ti ti-home"></i>Reset / Overview</button>
+            </div>
+            <p class="mt-3 text-xs opacity-70">Tip: the guided buttons move between works in the current curatorial sequence. Orbit controls are available only for small adjustments.</p>
+
             <div class="stats stats-vertical shadow w-full mt-5">
                 <div class="stat"><div class="stat-title">Displayed artworks</div><div id="exhibitionCount" class="stat-value text-primary">0</div></div>
                 <div class="stat"><div class="stat-title">Mode</div><div id="exhibitionModeLabel" class="stat-value text-secondary text-lg">Continent</div></div>
             </div>
 
             <section id="artworkInfo" class="exhibition-info mt-5 rounded-box border border-base-300 bg-base-100 p-4">
-                <h2 class="text-xl font-semibold">Select an artwork</h2>
-                <p class="mt-2 text-sm opacity-75">Artwork details will appear here.</p>
+                <h2 class="text-xl font-semibold">Begin the guided tour</h2>
+                <p class="mt-2 text-sm opacity-75">Select Next artwork or click a framed work to view artwork details here.</p>
             </section>
         </aside>
     </main>
