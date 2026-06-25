@@ -132,3 +132,7 @@ const EcoData = (() => {
         enrichArtwork
     };
 })();
+
+if (typeof window !== 'undefined') {
+    window.EcoData = EcoData;
+}
