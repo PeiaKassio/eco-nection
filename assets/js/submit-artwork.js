@@ -30,14 +30,16 @@ function getCheckedValues(name) {
 function getFormData() {
     const longitude = document.getElementById('longitude').value;
     const latitude = document.getElementById('latitude').value;
+    const year = document.getElementById('year').value.trim();
 
     return {
         title: document.getElementById('title').value.trim(),
         artist: document.getElementById('artist').value.trim(),
         artform: getCheckedValues('artformOption'),
         proposedArtforms: splitList(document.getElementById('proposedArtforms').value),
-        year: parseInt(document.getElementById('year').value, 10),
+        year: year === '' ? '' : Number(year),
         location: document.getElementById('location').value.trim(),
+        country: document.getElementById('country').value.trim(),
         longitude: longitude === '' ? null : parseFloat(longitude),
         latitude: latitude === '' ? null : parseFloat(latitude),
         topics: getCheckedValues('topicOption'),
@@ -66,6 +68,7 @@ function buildArtworkFeature(data) {
             artist: data.artist,
             type: artforms[0] || '',
             location: data.location,
+            country: data.country,
             year: data.year || '',
             tags: {
                 topic: topics,
@@ -138,15 +141,30 @@ function updatePreview() {
     document.getElementById('jsonPreview').textContent = JSON.stringify(feature, null, 2);
 }
 
+function isHttpUrl(value) {
+    if (!value) return true;
+
+    try {
+        const url = new URL(value);
+        return url.protocol === 'http:' || url.protocol === 'https:';
+    } catch {
+        return false;
+    }
+}
+
 function validateSubmission(data) {
-    const required = ['title', 'artist', 'location', 'description', 'url'];
-    const missing = required.filter(field => !data[field]);
+    const messages = [];
 
-    if (!data.year) missing.push('year');
-    if (data.topics.length === 0 && data.proposedTopics.length === 0) missing.push('topics');
-    if (data.artform.length === 0 && data.proposedArtforms.length === 0) missing.push('artform');
+    if (!data.title) messages.push('title is required');
+    if (!data.artist) messages.push('artist is required');
+    if (!data.location) messages.push('location is required');
+    if (document.getElementById('year').value.trim() && !Number.isFinite(data.year)) {
+        messages.push('year should be numeric');
+    }
+    if (!isHttpUrl(data.url)) messages.push('source URL should start with http:// or https://');
+    if (!isHttpUrl(data.thumbnail)) messages.push('thumbnail URL should start with http:// or https://');
 
-    return missing;
+    return messages;
 }
 
 function buildIssueUrl(data, matches) {
@@ -173,6 +191,7 @@ function buildIssueUrl(data, matches) {
 **Artist:** ${data.artist}
 **Year:** ${data.year || 'Needs review'}
 **Location:** ${data.location}
+**Country:** ${data.country || 'Not provided'}
 **Submitter:** ${data.submitter || 'Not provided'}
 
 **Source URL:** ${data.url}
@@ -211,6 +230,20 @@ function handleDuplicateCheck() {
     setDuplicateStatus(matches);
 }
 
+async function handleCopyJson() {
+    const json = document.getElementById('jsonPreview').textContent;
+    const status = document.getElementById('duplicateStatus');
+
+    try {
+        await navigator.clipboard.writeText(json);
+        status.className = 'alert alert-success mb-5';
+        status.innerHTML = '<i class="ti ti-circle-check text-xl"></i><span>Generated JSON copied to clipboard.</span>';
+    } catch {
+        status.className = 'alert alert-warning mb-5';
+        status.innerHTML = '<i class="ti ti-alert-triangle text-xl"></i><span>Could not copy automatically. Select the generated JSON and copy it manually.</span>';
+    }
+}
+
 function handleCreateIssue() {
     const data = getFormData();
     const missing = validateSubmission(data);
@@ -218,7 +251,7 @@ function handleCreateIssue() {
     if (missing.length > 0) {
         const status = document.getElementById('duplicateStatus');
         status.className = 'alert alert-error mb-5';
-        status.innerHTML = `<i class="ti ti-alert-circle text-xl"></i><span>Missing required fields: ${missing.join(', ')}.</span>`;
+        status.innerHTML = `<i class="ti ti-alert-circle text-xl"></i><span>Please review: ${missing.join(', ')}.</span>`;
         return;
     }
 
@@ -301,6 +334,7 @@ document.getElementById('artworkSubmissionForm').addEventListener('reset', () =>
     }, 0);
 });
 document.getElementById('checkDuplicatesButton').addEventListener('click', handleDuplicateCheck);
+document.getElementById('copyJsonButton').addEventListener('click', handleCopyJson);
 document.getElementById('createIssueButton').addEventListener('click', handleCreateIssue);
 
 loadSubmissionData().catch(error => {

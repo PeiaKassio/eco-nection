@@ -42,20 +42,26 @@
                         <input id="artist" name="artist" type="text" class="input input-bordered" required>
                     </label>
                     <label class="form-control">
-                        <span class="label-text">Year *</span>
-                        <input id="year" name="year" type="number" class="input input-bordered" min="1800" max="2100" required>
+                        <span class="label-text">Year</span>
+                        <input id="year" name="year" type="text" inputmode="numeric" class="input input-bordered" placeholder="e.g. 2024">
+                        <span class="label-text-alt mt-1">Use a year if known; estimates can be noted in the description.</span>
                     </label>
                     <div class="form-control md:col-span-2">
-                        <span class="label-text">Existing art forms *</span>
+                        <span class="label-text">Art form / type</span>
                         <div id="artformOptions" class="submission-option-grid"></div>
                         <label class="form-control mt-3">
-                            <span class="label-text">Suggest new art form</span>
-                            <input id="proposedArtforms" name="proposedArtforms" type="text" class="input input-bordered" placeholder="Separate multiple suggestions with commas">
+                            <span class="label-text">Suggest new art form / type</span>
+                            <input id="proposedArtforms" name="proposedArtforms" type="text" class="input input-bordered" placeholder="Separate multiple suggestions with commas, e.g. mural, installation">
                         </label>
                     </div>
-                    <label class="form-control md:col-span-2">
+                    <label class="form-control">
                         <span class="label-text">Location *</span>
-                        <input id="location" name="location" type="text" class="input input-bordered" placeholder="City, Country" required>
+                        <input id="location" name="location" type="text" class="input input-bordered" placeholder="City, venue, or site" required>
+                        <span class="label-text-alt mt-1">Be as specific as possible, such as city, neighborhood, venue, or public site.</span>
+                    </label>
+                    <label class="form-control">
+                        <span class="label-text">Country</span>
+                        <input id="country" name="country" type="text" class="input input-bordered" placeholder="Country or region">
                     </label>
                     <label class="form-control">
                         <span class="label-text">Longitude</span>
@@ -66,25 +72,27 @@
                         <input id="latitude" name="latitude" type="number" class="input input-bordered" step="any" min="-90" max="90" placeholder="52.5200">
                     </label>
                     <div class="form-control md:col-span-2">
-                        <span class="label-text">Existing topics *</span>
+                        <span class="label-text">Topics</span>
                         <input id="topicSearch" type="search" class="input input-bordered mb-3" placeholder="Filter existing topics">
                         <div id="topicOptions" class="submission-option-grid submission-option-grid-tall"></div>
                         <label class="form-control mt-3">
                             <span class="label-text">Suggest new topics</span>
-                            <input id="proposedTopics" name="proposedTopics" type="text" class="input input-bordered" placeholder="Separate multiple suggestions with commas">
+                            <input id="proposedTopics" name="proposedTopics" type="text" class="input input-bordered" placeholder="Separate multiple suggestions with commas, e.g. climate justice, biodiversity">
                         </label>
                     </div>
                     <label class="form-control md:col-span-2">
-                        <span class="label-text">Description *</span>
-                        <textarea id="description" name="description" class="textarea textarea-bordered min-h-28" required></textarea>
+                        <span class="label-text">Short description</span>
+                        <textarea id="description" name="description" class="textarea textarea-bordered min-h-28" placeholder="Briefly describe the work, its environmental connection, and any review notes."></textarea>
                     </label>
                     <label class="form-control">
-                        <span class="label-text">Source URL *</span>
-                        <input id="url" name="url" type="url" class="input input-bordered" required>
+                        <span class="label-text">Artwork / source URL</span>
+                        <input id="url" name="url" type="url" class="input input-bordered" placeholder="https://example.org/artwork">
+                        <span class="label-text-alt mt-1">Please link to an official or reliable page about the artwork.</span>
                     </label>
                     <label class="form-control">
                         <span class="label-text">Thumbnail URL</span>
-                        <input id="thumbnail" name="thumbnail" type="url" class="input input-bordered">
+                        <input id="thumbnail" name="thumbnail" type="url" class="input input-bordered" placeholder="https://example.org/image.jpg">
+                        <span class="label-text-alt mt-1">Please use a stable image URL from Wikimedia Commons, an official artist/project page, museum, gallery, or another reliable source.</span>
                     </label>
                     <label class="form-control md:col-span-2">
                         <span class="label-text">Your name or contact</span>
@@ -112,7 +120,14 @@
                     <span>Fill in the form to check for similar existing artworks.</span>
                 </div>
 
-                <h3 class="text-xl font-semibold mb-2">Generated JSON</h3>
+                <div class="flex items-center justify-between gap-3 mb-2">
+                    <h3 class="text-xl font-semibold">Generated JSON</h3>
+                    <button id="copyJsonButton" type="button" class="btn btn-sm btn-outline">
+                        <i class="ti ti-copy text-lg"></i>
+                        Copy JSON
+                    </button>
+                </div>
+                <p class="text-sm opacity-80 mb-3">Review and copy this curator-ready data before opening an issue.</p>
                 <pre id="jsonPreview" class="submission-preview"></pre>
             </aside>
         </div>
