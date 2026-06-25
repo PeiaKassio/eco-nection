@@ -146,3 +146,8 @@
     border-left: 1px solid color-mix(in srgb, currentColor 12%, transparent);
   }
 }
+
+#rotationSeed {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  letter-spacing: 0.02em;
+}

@@ -39,7 +39,7 @@
     <main class="exhibition-shell">
         <section class="exhibition-stage">
             <div id="exhibitionCanvas" class="exhibition-canvas" aria-label="3D indoor museum virtual exhibition"></div>
-            <div class="exhibition-help">Use the room buttons and Previous / Next to move through the exhibition.</div>
+            <div class="exhibition-help">Use the gallery buttons and Previous / Next to move through the exhibition.</div>
         </section>
 
         <aside class="exhibition-panel bg-base-200">
@@ -72,6 +72,7 @@
                 <button id="overviewGallery" class="btn btn-ghost btn-sm"><i class="ti ti-home"></i>Back to entrance / Overview</button>
             </div>
             <p class="mt-3 text-xs opacity-70">Showing a monthly rotating selection from the archive. Orbit controls are constrained to gentle secondary adjustments so touch users can rely on buttons without getting lost.</p>
+            <p id="rotationSeed" class="mt-2 text-xs opacity-60"></p>
 
             <div class="stats stats-vertical shadow w-full mt-5">
                 <div class="stat"><div class="stat-title">Displayed artworks</div><div id="exhibitionCount" class="stat-value text-primary">0</div></div>
