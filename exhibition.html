@@ -38,16 +38,24 @@
 
     <main class="exhibition-shell">
         <section class="exhibition-stage">
-            <div id="exhibitionCanvas" class="exhibition-canvas" aria-label="3D museum-style virtual exhibition"></div>
-            <div class="exhibition-help">Use Previous / Next for a guided tour • Reset returns to the full gallery • Drag gently to adjust the view • Click framed artworks for details</div>
+            <div id="exhibitionCanvas" class="exhibition-canvas" aria-label="3D curated futuristic indoor museum exhibition"></div>
+            <div class="exhibition-help">Use the gallery buttons and Previous / Next to move through the exhibition.</div>
         </section>
 
         <aside class="exhibition-panel bg-base-200">
-            <h1 class="text-2xl font-bold">Virtual Museum Gallery</h1>
-            <p class="mt-3 text-sm opacity-80">A calm, curated room of framed eco:nection artworks with wall labels, gallery lighting, and simple guided navigation.</p>
+            <h1 class="text-2xl font-bold">Curated Museum Exhibition</h1>
+            <p class="mt-3 text-sm opacity-80">A guided indoor digital museum with architectural rooms, framed archive works, controlled lighting, and subtle futuristic materials.</p>
+            <p class="exhibition-rotation-note mt-3 text-xs">Showing a monthly rotating selection from the archive.</p>
+
+            <div class="exhibition-tour mt-5" aria-label="Guided gallery navigation">
+                <button id="enterContinents" class="btn btn-primary btn-sm"><i class="ti ti-door-enter"></i>Enter / View Continent Gallery</button>
+                <button id="enterTopics" class="btn btn-primary btn-sm"><i class="ti ti-door-enter"></i>Enter / View Topic Gallery</button>
+                <button id="enterTimeline" class="btn btn-primary btn-sm"><i class="ti ti-door-enter"></i>Enter / View Timeline Gallery</button>
+                <button id="overviewGallery" class="btn btn-ghost btn-sm"><i class="ti ti-home"></i>Back to Entrance / Overview</button>
+            </div>
 
             <label class="form-control mt-5">
-                <span class="label-text">Curatorial mode</span>
+                <span class="label-text">Gallery mode</span>
                 <select id="exhibitionMode" class="select select-bordered">
                     <option value="continent" selected>Continent</option>
                     <option value="topic">Topic</option>
@@ -63,18 +71,17 @@
             <div class="exhibition-tour mt-5" aria-label="Guided artwork navigation">
                 <button id="previousArtwork" class="btn btn-outline btn-sm"><i class="ti ti-chevron-left"></i>Previous artwork</button>
                 <button id="nextArtwork" class="btn btn-primary btn-sm">Next artwork<i class="ti ti-chevron-right"></i></button>
-                <button id="overviewGallery" class="btn btn-ghost btn-sm"><i class="ti ti-home"></i>Reset / Overview</button>
             </div>
-            <p class="mt-3 text-xs opacity-70">Tip: the guided buttons move between works in the current curatorial sequence. Orbit controls are available only for small adjustments.</p>
+            <p class="mt-3 text-xs opacity-70">Orbit controls are available only for small viewing adjustments; the gallery buttons provide the primary desktop and touch navigation.</p>
 
             <div class="stats stats-vertical shadow w-full mt-5">
                 <div class="stat"><div class="stat-title">Displayed artworks</div><div id="exhibitionCount" class="stat-value text-primary">0</div></div>
-                <div class="stat"><div class="stat-title">Mode</div><div id="exhibitionModeLabel" class="stat-value text-secondary text-lg">Continent</div></div>
+                <div class="stat"><div class="stat-title">Current gallery</div><div id="exhibitionModeLabel" class="stat-value text-secondary text-lg">Entrance</div></div>
             </div>
 
             <section id="artworkInfo" class="exhibition-info mt-5 rounded-box border border-base-300 bg-base-100 p-4">
-                <h2 class="text-xl font-semibold">Begin the guided tour</h2>
-                <p class="mt-2 text-sm opacity-75">Select Next artwork or click a framed work to view artwork details here.</p>
+                <h2 class="text-xl font-semibold">Entrance / Overview</h2>
+                <p class="mt-2 text-sm opacity-75">Choose a gallery or select Next artwork to begin the curated tour.</p>
             </section>
         </aside>
     </main>
