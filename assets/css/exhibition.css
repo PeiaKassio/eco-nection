@@ -1,18 +1,18 @@
 .exhibition-shell {
   display: grid;
-  grid-template-rows: minmax(28rem, 62vh) auto;
+  grid-template-rows: minmax(30rem, 62vh) auto;
   flex: 1;
   min-height: 0;
-  background: #efe8dc;
+  background: #e9dfd0;
 }
 
 .exhibition-stage {
   position: relative;
-  min-height: 28rem;
+  min-height: 30rem;
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 10%, rgba(255, 250, 238, 0.94), rgba(236, 225, 209, 0.82) 44%, rgba(167, 148, 126, 0.75) 100%),
-    linear-gradient(180deg, #f7f2e8 0%, #ded0bd 100%);
+    radial-gradient(circle at 50% 10%, rgba(255, 250, 238, 0.72), rgba(219, 205, 187, 0.88) 52%, rgba(96, 78, 60, 0.72) 100%),
+    linear-gradient(180deg, #eee3d4 0%, #d7c2a7 100%);
 }
 
 .exhibition-canvas,
@@ -20,21 +20,29 @@
   display: block;
   width: 100%;
   height: 100%;
+  touch-action: none;
+}
+
+.exhibition-canvas canvas {
+  position: relative;
+  z-index: 1;
 }
 
 .exhibition-help {
   position: absolute;
+  z-index: 3;
   left: 1rem;
   bottom: 1rem;
   max-width: calc(100% - 2rem);
   padding: 0.65rem 0.9rem;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 999px;
-  color: #fbf7ef;
-  background: rgba(36, 32, 28, 0.66);
+  color: #fff8ec;
+  background: rgba(36, 31, 27, 0.72);
   box-shadow: 0 18px 45px rgba(41, 32, 24, 0.24);
   font-size: 0.82rem;
   backdrop-filter: blur(8px);
+  pointer-events: none;
 }
 
 .exhibition-panel {
@@ -43,14 +51,17 @@
   border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent);
 }
 
+.room-buttons,
 .exhibition-tour {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.55rem;
 }
 
+.room-buttons .btn,
 .exhibition-tour .btn {
   justify-content: center;
+  min-height: 2.55rem;
 }
 
 .exhibition-info {
@@ -80,35 +91,39 @@
 
 .gallery-label {
   position: absolute;
+  z-index: 2;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  max-width: 13rem;
-  white-space: normal;
-  text-align: center;
-  color: #32281f;
-  background: rgba(255, 253, 246, 0.92);
-  border: 1px solid rgba(60, 47, 36, 0.16);
-  border-radius: 0.25rem;
+  max-width: 10rem;
+  white-space: pre-line;
+  text-align: left;
+  color: #34291f;
+  background: rgba(255, 252, 243, 0.94);
+  border: 1px solid rgba(66, 51, 38, 0.18);
+  border-radius: 0.18rem;
   box-shadow: 0 0.45rem 1.5rem rgba(60, 47, 36, 0.12);
-  padding: 0.35rem 0.5rem;
-  font-size: 0.72rem;
-  line-height: 1.18;
+  padding: 0.3rem 0.42rem;
+  font-size: 0.58rem;
+  line-height: 1.16;
 }
 
-.gallery-label--section {
-  max-width: 16rem;
-  padding: 0.45rem 0.8rem;
-  font-size: 0.95rem;
+.gallery-label--room {
+  max-width: 12rem;
+  padding: 0.35rem 0.7rem;
+  text-align: center;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 @media (min-width: 520px) {
+  .room-buttons,
   .exhibition-tour {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .room-buttons .btn:first-child,
   .exhibition-tour .btn:last-child {
     grid-column: 1 / -1;
   }

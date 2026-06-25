@@ -2,10 +2,19 @@ import * as THREE from 'three';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/controls/OrbitControls.js';
 
 const EcoData = window.EcoData;
-
-const MAX_ARTWORKS = 28;
-const MAX_PER_CONTINENT = 5;
+const MAX_ARTWORKS = 30;
+const MAX_PER_CONTINENT = 4;
+const MAX_TOPIC_ARTWORKS = 12;
+const MAX_TIMELINE_ARTWORKS = 18;
 const THUMBNAIL_TIMEOUT_MS = 8000;
+
+const ROOMS = {
+  entrance: { center: new THREE.Vector3(0, 1.8, 7.5), camera: new THREE.Vector3(0, 4.2, 17.5), target: new THREE.Vector3(0, 1.9, 2.6) },
+  continent: { center: new THREE.Vector3(-13, 1.8, -5.2), camera: new THREE.Vector3(-13, 4.1, 3.6), target: new THREE.Vector3(-13, 2, -7.5), label: 'Continents' },
+  topic: { center: new THREE.Vector3(0, 1.8, -5.2), camera: new THREE.Vector3(0, 4.1, 3.6), target: new THREE.Vector3(0, 2, -7.5), label: 'Topics' },
+  timeline: { center: new THREE.Vector3(13, 1.8, -5.2), camera: new THREE.Vector3(13, 4.1, 3.6), target: new THREE.Vector3(13, 2, -7.5), label: 'Timeline' }
+};
+
 const state = {
   artworks: [],
   topicClusters: {},
@@ -13,7 +22,8 @@ const state = {
   labels: [],
   displayed: [],
   selectedIndex: -1,
-  cameraGoal: null
+  cameraGoal: null,
+  currentRoom: 'continent'
 };
 
 const els = {
@@ -21,6 +31,9 @@ const els = {
   mode: document.getElementById('exhibitionMode'),
   topicControl: document.getElementById('topicControl'),
   topic: document.getElementById('topicSelect'),
+  enterContinents: document.getElementById('enterContinents'),
+  enterTopics: document.getElementById('enterTopics'),
+  enterTimeline: document.getElementById('enterTimeline'),
   previous: document.getElementById('previousArtwork'),
   next: document.getElementById('nextArtwork'),
   overview: document.getElementById('overviewGallery'),
@@ -29,33 +42,37 @@ const els = {
   info: document.getElementById('artworkInfo')
 };
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.shadowMap.enabled = true;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 els.mount.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xeee6da);
-scene.fog = new THREE.Fog(0xeee6da, 24, 58);
+scene.background = new THREE.Color(0xe6dbc9);
+scene.fog = new THREE.Fog(0xe6dbc9, 22, 54);
 
-const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 120);
-camera.position.set(0, 4.2, 15.5);
+const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 120);
+camera.position.copy(ROOMS.entrance.camera);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enablePan = false;
-controls.minPolarAngle = Math.PI * 0.28;
-controls.maxPolarAngle = Math.PI * 0.48;
-controls.minAzimuthAngle = -Math.PI * 0.45;
-controls.maxAzimuthAngle = Math.PI * 0.45;
-controls.minDistance = 6;
-controls.maxDistance = 19;
-controls.target.set(0, 1.8, -2.4);
+controls.enableZoom = true;
+controls.minPolarAngle = Math.PI * 0.32;
+controls.maxPolarAngle = Math.PI * 0.49;
+controls.minAzimuthAngle = -Math.PI * 0.22;
+controls.maxAzimuthAngle = Math.PI * 0.22;
+controls.minDistance = 3.2;
+controls.maxDistance = 10;
+controls.target.copy(ROOMS.entrance.target);
 
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 const clickable = [];
 
+function getTitle(artwork) { return artwork.properties?.title || 'Untitled'; }
+function topicsFor(artwork) { return artwork.properties?.tags?.topic || []; }
+function hasThumbnail(artwork) { return /^https?:\/\//i.test((artwork.properties?.thumbnail || '').trim()); }
 function byYearAscending(a, b) {
   const ay = EcoData.parseYear(a.properties?.year);
   const by = EcoData.parseYear(b.properties?.year);
@@ -65,67 +82,64 @@ function byYearAscending(a, b) {
   return ay - by || getTitle(a).localeCompare(getTitle(b));
 }
 
-function getTitle(artwork) { return artwork.properties?.title || 'Untitled'; }
-function hasThumbnail(artwork) { return /^https?:\/\//i.test((artwork.properties?.thumbnail || '').trim()); }
-function topicsFor(artwork) { return artwork.properties?.tags?.topic || []; }
-
 function initEnvironment() {
-  scene.add(new THREE.HemisphereLight(0xfffbef, 0x97836b, 1.4));
-  addSpotLight(-6.5, 7.5, 2, -4, 1.7, -7);
-  addSpotLight(0, 7.8, 1.5, 0, 1.7, -8);
-  addSpotLight(6.5, 7.5, 2, 4, 1.7, -7);
+  scene.add(new THREE.HemisphereLight(0xfff6e8, 0x7b6a58, 1.15));
+  const wallMaterial = new THREE.MeshStandardMaterial({ color: 0xf2eadf, roughness: 0.88 });
+  const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x8f7253, roughness: 0.72 });
+  const ceilingMaterial = new THREE.MeshStandardMaterial({ color: 0xe7dccd, roughness: 0.9 });
+  const trimMaterial = new THREE.MeshStandardMaterial({ color: 0x5b4939, roughness: 0.62 });
 
-  const wallMaterial = new THREE.MeshStandardMaterial({ color: 0xf4eee4, roughness: 0.86 });
-  const floorMaterial = new THREE.MeshStandardMaterial({ color: 0xb59a79, roughness: 0.78 });
-  const backWall = new THREE.Mesh(new THREE.BoxGeometry(36, 7.2, 0.28), wallMaterial);
-  backWall.position.set(0, 3.6, -10.5);
-  const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.28, 7.2, 24), wallMaterial);
-  leftWall.position.set(-18, 3.6, 1.2);
-  const rightWall = leftWall.clone();
-  rightWall.position.x = 18;
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(38, 28), floorMaterial);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(44, 31), floorMaterial);
   floor.rotation.x = -Math.PI / 2;
-  floor.position.z = 1.5;
-  [backWall, leftWall, rightWall, floor].forEach((object) => {
-    object.receiveShadow = true;
-    scene.add(object);
-  });
+  floor.position.set(0, 0, 0);
+  floor.receiveShadow = true;
+  scene.add(floor);
 
-  const ceilingGlow = new THREE.Mesh(new THREE.PlaneGeometry(34, 9), new THREE.MeshBasicMaterial({ color: 0xfff5df, transparent: true, opacity: 0.14 }));
-  ceilingGlow.rotation.x = Math.PI / 2;
-  ceilingGlow.position.set(0, 7.18, -3);
-  scene.add(ceilingGlow);
+  const ceiling = new THREE.Mesh(new THREE.PlaneGeometry(44, 31), ceilingMaterial);
+  ceiling.rotation.x = Math.PI / 2;
+  ceiling.position.set(0, 6.2, 0);
+  ceiling.receiveShadow = true;
+  scene.add(ceiling);
+
+  addWall(0, 3.1, -13.8, 44, 6.2, 0.25, wallMaterial);
+  addWall(-22, 3.1, 0, 0.25, 6.2, 31, wallMaterial);
+  addWall(22, 3.1, 0, 0.25, 6.2, 31, wallMaterial);
+  addWall(0, 3.1, 13.8, 44, 6.2, 0.25, wallMaterial);
+  [-6.7, 6.7].forEach((x) => addWall(x, 3.1, -5.2, 0.22, 6.2, 17.2, wallMaterial));
+  [-13, 0, 13].forEach((x) => {
+    addWall(x - 3.9, 3.1, 1.2, 4.2, 6.2, 0.24, wallMaterial);
+    addWall(x + 3.9, 3.1, 1.2, 4.2, 6.2, 0.24, wallMaterial);
+    addWall(x, 5.05, 1.2, 3.5, 2.3, 0.24, wallMaterial);
+    addWall(x, 0.08, 1.05, 3.5, 0.16, 0.36, trimMaterial);
+  });
+  [-13, 0, 13].forEach((x) => addRoomLights(x));
+  addRoomSign('Continents', -13, 3.6, 1.05);
+  addRoomSign('Topics', 0, 3.6, 1.05);
+  addRoomSign('Timeline', 13, 3.6, 1.05);
+  addRoomSign('Entrance Lobby', 0, 3.6, 10.8);
 }
 
-function addSpotLight(x, y, z, tx, ty, tz) {
-  const light = new THREE.SpotLight(0xffead0, 2.8, 26, Math.PI * 0.18, 0.6, 1.4);
-  light.position.set(x, y, z);
-  light.target.position.set(tx, ty, tz);
+function addWall(x, y, z, w, h, d, material) {
+  const wall = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), material);
+  wall.position.set(x, y, z);
+  wall.receiveShadow = true;
+  wall.castShadow = true;
+  scene.add(wall);
+}
+
+function addRoomLights(x) {
+  const light = new THREE.SpotLight(0xffead0, 2.6, 18, Math.PI * 0.21, 0.65, 1.2);
+  light.position.set(x, 5.85, -0.5);
+  light.target.position.set(x, 2.1, -9.6);
   light.castShadow = true;
   scene.add(light, light.target);
+  const glow = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.05, 0.55), new THREE.MeshBasicMaterial({ color: 0xfff1d6 }));
+  glow.position.set(x, 6.12, -1.5);
+  scene.add(glow);
 }
 
-function clearExhibition() {
-  clickable.length = 0;
-  state.sceneObjects.forEach((object) => scene.remove(object));
-  state.labels.forEach((label) => label.remove());
-  state.sceneObjects = [];
-  state.labels = [];
-  state.displayed = [];
-  state.selectedIndex = -1;
-}
-
+function addRoomSign(text, x, y, z) { createHtmlLabel(text, x, y, z, 'gallery-label--room'); }
 function addTracked(object) { state.sceneObjects.push(object); scene.add(object); return object; }
-
-function createWallSection(x, z, rotationY, width = 5.6, label = '') {
-  const panel = addTracked(new THREE.Mesh(new THREE.BoxGeometry(width, 3.75, 0.2), new THREE.MeshStandardMaterial({ color: 0xf8f4ec, roughness: 0.82 })));
-  panel.position.set(x, 2.28, z);
-  panel.rotation.y = rotationY;
-  panel.receiveShadow = true;
-  if (label) createHtmlLabel(label, x, 4.45, z, 'gallery-label--section');
-  return panel;
-}
-
 function createHtmlLabel(text, x, y, z, className = '') {
   const label = document.createElement('div');
   label.className = `gallery-label ${className}`.trim();
@@ -134,6 +148,16 @@ function createHtmlLabel(text, x, y, z, className = '') {
   state.labels.push(label);
   label.userData = { position: new THREE.Vector3(x, y, z) };
   return label;
+}
+
+function clearExhibition() {
+  clickable.length = 0;
+  state.sceneObjects.forEach((object) => scene.remove(object));
+  state.labels.filter((label) => !label.classList.contains('gallery-label--room')).forEach((label) => label.remove());
+  state.labels = state.labels.filter((label) => label.classList.contains('gallery-label--room'));
+  state.displayed = [];
+  state.sceneObjects = [];
+  state.selectedIndex = -1;
 }
 
 function textureFor(url) {
@@ -145,87 +169,81 @@ function textureFor(url) {
   });
 }
 
-async function addArtwork(artwork, x, z, rotationY, sectionLabel = '') {
-  createWallSection(x, z, rotationY, 4.6, sectionLabel);
+async function addArtwork(artwork, position, rotationY) {
   const normal = new THREE.Vector3(0, 0, 1).applyAxisAngle(new THREE.Vector3(0, 1, 0), rotationY);
-  const artPos = new THREE.Vector3(x, 2.35, z).addScaledVector(normal, 0.14);
+  const artPos = position.clone().addScaledVector(normal, 0.16);
   const texture = await textureFor(artwork.properties.thumbnail.trim());
-  if (!texture) return;
-
-  const frame = addTracked(new THREE.Mesh(new THREE.BoxGeometry(2.28, 1.76, 0.16), new THREE.MeshStandardMaterial({ color: 0x2e2822, metalness: 0.08, roughness: 0.48 })));
+  const selectedMaterial = new THREE.MeshStandardMaterial({ color: 0xd7b46a, emissive: 0x000000, roughness: 0.45 });
+  const frame = addTracked(new THREE.Mesh(new THREE.BoxGeometry(2.05, 1.55, 0.16), selectedMaterial));
   frame.position.copy(artPos);
   frame.rotation.y = rotationY;
   frame.castShadow = true;
-  const mat = addTracked(new THREE.Mesh(new THREE.BoxGeometry(2.06, 1.54, 0.06), new THREE.MeshStandardMaterial({ color: 0xf7f2e9, roughness: 0.9 })));
+  const mat = addTracked(new THREE.Mesh(new THREE.BoxGeometry(1.82, 1.34, 0.06), new THREE.MeshStandardMaterial({ color: 0xf8f2e8, roughness: 0.9 })));
   mat.position.copy(artPos).addScaledVector(normal, 0.06);
   mat.rotation.y = rotationY;
-  const image = addTracked(new THREE.Mesh(new THREE.PlaneGeometry(1.82, 1.3), new THREE.MeshBasicMaterial({ map: texture })));
+  const imageMaterial = texture ? new THREE.MeshBasicMaterial({ map: texture }) : new THREE.MeshBasicMaterial({ color: 0xb9aa96 });
+  const image = addTracked(new THREE.Mesh(new THREE.PlaneGeometry(1.6, 1.12), imageMaterial));
   image.position.copy(artPos).addScaledVector(normal, 0.105);
   image.rotation.y = rotationY;
-  image.userData.artwork = artwork;
-  image.userData.focus = artPos.clone().addScaledVector(normal, 4.6).setY(2.35);
-  image.userData.target = artPos.clone();
+  image.userData = { artwork, frame, focus: artPos.clone().addScaledVector(normal, 3.3).setY(2.15), target: artPos.clone().setY(2.05) };
   clickable.push(image);
-  state.displayed.push({ artwork, object: image });
-
+  state.displayed.push({ artwork, object: image, frame });
   const p = artwork.properties;
-  createHtmlLabel(`${p.title || 'Untitled'}\n${p.artist || 'Unknown'}${p.year ? `, ${p.year}` : ''}`, artPos.x, 0.82, artPos.z);
+  createHtmlLabel(`${p.title || 'Untitled'}\n${p.artist || 'Unknown'}${p.year ? `, ${p.year}` : ''}`, artPos.x, 1.05, artPos.z);
 }
 
-function galleryPositions(count) {
+function positionsForRoom(roomKey, count) {
+  const room = ROOMS[roomKey];
+  const left = room.center.x - 4.2;
+  const right = room.center.x + 4.2;
+  const xs = [-3.6, 0, 3.6].map((offset) => room.center.x + offset);
   const positions = [];
-  const perRow = Math.min(7, Math.max(3, Math.ceil(Math.sqrt(count))));
-  for (let index = 0; index < count; index += 1) {
-    const row = Math.floor(index / perRow);
-    const col = index % perRow;
-    positions.push({ x: (col - (perRow - 1) / 2) * 4.8, z: -10.2 + row * 4.7, rotationY: 0 });
-  }
-  return positions;
+  xs.forEach((x) => positions.push({ position: new THREE.Vector3(x, 2.35, -13.62), rotationY: 0 }));
+  [-9.4, -5.6, -1.9].forEach((z) => positions.push({ position: new THREE.Vector3(left, 2.35, z), rotationY: Math.PI / 2 }));
+  [-9.4, -5.6, -1.9].forEach((z) => positions.push({ position: new THREE.Vector3(right, 2.35, z), rotationY: -Math.PI / 2 }));
+  return positions.slice(0, count);
 }
 
-function layoutLine(artworks, heading) {
-  createHtmlLabel(heading, 0, 5.0, -10.2, 'gallery-label--section');
-  const selected = artworks.slice(0, MAX_ARTWORKS);
-  galleryPositions(selected.length).forEach((pos, index) => addArtwork(selected[index], pos.x, pos.z, pos.rotationY));
-  els.count.textContent = selected.length;
-}
-
-function layoutContinents() {
+async function layoutContinents() {
   const groups = state.artworks.reduce((acc, artwork) => {
     const continent = artwork.properties.continent || 'Other';
     if (!acc.has(continent)) acc.set(continent, []);
     acc.get(continent).push(artwork);
     return acc;
   }, new Map());
-  const continents = [...groups.keys()].sort();
-  const positions = galleryPositions(continents.length * MAX_PER_CONTINENT);
-  let used = 0;
-  continents.forEach((continent) => {
-    groups.get(continent).sort(byYearAscending).slice(0, MAX_PER_CONTINENT).forEach((artwork, index) => {
-      const pos = positions[used];
-      addArtwork(artwork, pos.x, pos.z, pos.rotationY, index === 0 ? continent : '');
-      used += 1;
-    });
-  });
-  els.count.textContent = used;
+  const selected = [...groups.keys()].sort().flatMap((continent) => groups.get(continent).sort(byYearAscending).slice(0, MAX_PER_CONTINENT)).slice(0, MAX_ARTWORKS);
+  const positions = positionsForRoom('continent', selected.length);
+  await Promise.all(selected.map((artwork, index) => addArtwork(artwork, positions[index].position, positions[index].rotationY)));
+  els.count.textContent = state.displayed.length;
 }
 
-function currentSelection() {
-  if (els.mode.value === 'continent') return null;
-  if (els.mode.value === 'topic') return state.artworks.filter((a) => a.properties.clusters.includes(els.topic.value) || topicsFor(a).includes(els.topic.value)).sort(byYearAscending);
-  return [...state.artworks].sort(byYearAscending);
+async function layoutTopic() {
+  const topic = els.topic.value;
+  const selected = state.artworks
+    .filter((a) => (a.properties.clusters || []).includes(topic) || topicsFor(a).includes(topic))
+    .sort(byYearAscending)
+    .slice(0, MAX_TOPIC_ARTWORKS);
+  const positions = positionsForRoom('topic', selected.length);
+  await Promise.all(selected.map((artwork, index) => addArtwork(artwork, positions[index].position, positions[index].rotationY)));
+  els.count.textContent = state.displayed.length;
 }
 
-function renderMode() {
+async function layoutTimeline() {
+  const selected = [...state.artworks].sort(byYearAscending).slice(0, MAX_TIMELINE_ARTWORKS);
+  const positions = positionsForRoom('timeline', selected.length);
+  await Promise.all(selected.map((artwork, index) => addArtwork(artwork, positions[index].position, positions[index].rotationY)));
+  els.count.textContent = state.displayed.length;
+}
+
+async function renderMode() {
   clearExhibition();
   els.topicControl.classList.toggle('hidden', els.mode.value !== 'topic');
   els.modeLabel.textContent = els.mode.selectedOptions[0].textContent;
-  if (els.mode.value === 'continent') layoutContinents();
-  else {
-    const selected = currentSelection();
-    layoutLine(selected, els.mode.value === 'timeline' ? 'Chronological gallery path' : els.topic.value);
-  }
-  focusOverview();
+  state.currentRoom = els.mode.value;
+  if (els.mode.value === 'continent') await layoutContinents();
+  if (els.mode.value === 'topic') await layoutTopic();
+  if (els.mode.value === 'timeline') await layoutTimeline();
+  focusRoom(els.mode.value);
 }
 
 function populateControls() {
@@ -247,26 +265,26 @@ function showInfo(artwork) {
   </dl>`;
 }
 
-function escapeHtml(value) {
-  return String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
+function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char])); }
+
+function focusRoom(roomKey) {
+  const room = ROOMS[roomKey] || ROOMS.entrance;
+  state.cameraGoal = { position: room.camera.clone(), target: room.target.clone() };
+}
+
+function focusOverview() {
+  state.currentRoom = 'entrance';
+  state.cameraGoal = { position: ROOMS.entrance.camera.clone(), target: ROOMS.entrance.target.clone() };
 }
 
 function focusArtwork(index) {
   if (!state.displayed.length) return;
   state.selectedIndex = (index + state.displayed.length) % state.displayed.length;
+  state.displayed.forEach((item) => item.frame.material.emissive.setHex(0x000000));
   const item = state.displayed[state.selectedIndex];
+  item.frame.material.emissive.setHex(0x332100);
   showInfo(item.artwork);
-  state.cameraGoal = {
-    position: item.object.userData.focus,
-    target: item.object.userData.target
-  };
-}
-
-function focusOverview() {
-  state.cameraGoal = {
-    position: new THREE.Vector3(0, 4.2, 15.5),
-    target: new THREE.Vector3(0, 1.85, -3.2)
-  };
+  state.cameraGoal = { position: item.object.userData.focus.clone(), target: item.object.userData.target.clone() };
 }
 
 function onPointerDown(event) {
@@ -275,10 +293,7 @@ function onPointerDown(event) {
   pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
   raycaster.setFromCamera(pointer, camera);
   const hit = raycaster.intersectObjects(clickable)[0];
-  if (hit?.object.userData.artwork) {
-    const index = state.displayed.findIndex((item) => item.object === hit.object);
-    focusArtwork(index);
-  }
+  if (hit?.object.userData.artwork) focusArtwork(state.displayed.findIndex((item) => item.object === hit.object));
 }
 
 function resize() {
@@ -302,9 +317,9 @@ function updateLabels() {
 function animate() {
   requestAnimationFrame(animate);
   if (state.cameraGoal) {
-    camera.position.lerp(state.cameraGoal.position, 0.075);
-    controls.target.lerp(state.cameraGoal.target, 0.075);
-    if (camera.position.distanceTo(state.cameraGoal.position) < 0.04 && controls.target.distanceTo(state.cameraGoal.target) < 0.04) state.cameraGoal = null;
+    camera.position.lerp(state.cameraGoal.position, 0.09);
+    controls.target.lerp(state.cameraGoal.target, 0.09);
+    if (camera.position.distanceTo(state.cameraGoal.position) < 0.035 && controls.target.distanceTo(state.cameraGoal.target) < 0.035) state.cameraGoal = null;
   }
   controls.update();
   updateLabels();
@@ -315,17 +330,24 @@ async function init() {
   initEnvironment();
   const data = await EcoData.loadSharedData();
   state.topicClusters = data.topicClusters;
-  state.artworks = data.artworkData.features
-    .map((artwork) => EcoData.enrichArtwork(artwork, data))
-    .filter(hasThumbnail);
+  state.artworks = data.artworkData.features.map((artwork) => EcoData.enrichArtwork(artwork, data)).filter(hasThumbnail);
   populateControls();
-  renderMode();
+  await renderMode();
   resize();
   animate();
+  focusOverview();
+}
+
+function setRoom(mode) {
+  els.mode.value = mode;
+  renderMode();
 }
 
 els.mode.addEventListener('change', renderMode);
 els.topic.addEventListener('change', renderMode);
+els.enterContinents.addEventListener('click', () => setRoom('continent'));
+els.enterTopics.addEventListener('click', () => setRoom('topic'));
+els.enterTimeline.addEventListener('click', () => setRoom('timeline'));
 els.previous.addEventListener('click', () => focusArtwork(state.selectedIndex - 1));
 els.next.addEventListener('click', () => focusArtwork(state.selectedIndex + 1));
 els.overview.addEventListener('click', focusOverview);
