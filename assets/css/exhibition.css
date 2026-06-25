@@ -3,7 +3,7 @@
   grid-template-rows: minmax(30rem, 62vh) auto;
   flex: 1;
   min-height: 0;
-  background: #e9dfd0;
+  background: #111820;
 }
 
 .exhibition-stage {
@@ -11,8 +11,8 @@
   min-height: 30rem;
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 10%, rgba(255, 250, 238, 0.72), rgba(219, 205, 187, 0.88) 52%, rgba(96, 78, 60, 0.72) 100%),
-    linear-gradient(180deg, #eee3d4 0%, #d7c2a7 100%);
+    radial-gradient(circle at 50% 0%, rgba(137, 220, 255, 0.28), rgba(25, 34, 46, 0.74) 48%, rgba(10, 14, 20, 0.88) 100%),
+    linear-gradient(180deg, #1b2530 0%, #111820 100%);
 }
 
 .exhibition-canvas,
@@ -97,11 +97,11 @@
   max-width: 10rem;
   white-space: pre-line;
   text-align: left;
-  color: #34291f;
-  background: rgba(255, 252, 243, 0.94);
-  border: 1px solid rgba(66, 51, 38, 0.18);
+  color: #19232d;
+  background: rgba(250, 252, 248, 0.94);
+  border: 1px solid rgba(93, 170, 204, 0.32);
   border-radius: 0.18rem;
-  box-shadow: 0 0.45rem 1.5rem rgba(60, 47, 36, 0.12);
+  box-shadow: 0 0.45rem 1.5rem rgba(0, 0, 0, 0.18);
   padding: 0.3rem 0.42rem;
   font-size: 0.58rem;
   line-height: 1.16;

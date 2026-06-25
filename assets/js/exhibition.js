@@ -2,11 +2,11 @@ import * as THREE from 'three';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/controls/OrbitControls.js';
 
 const EcoData = window.EcoData;
-const MAX_ARTWORKS = 30;
-const MAX_PER_CONTINENT = 4;
-const MAX_TOPIC_ARTWORKS = 12;
-const MAX_TIMELINE_ARTWORKS = 18;
-const THUMBNAIL_TIMEOUT_MS = 8000;
+const MAX_ARTWORKS = 60;
+const MAX_PER_CONTINENT = 10;
+const MAX_TOPIC_ARTWORKS = 60;
+const MAX_TIMELINE_ARTWORKS = 60;
+const THUMBNAIL_TIMEOUT_MS = 4500;
 
 const ROOMS = {
   entrance: { center: new THREE.Vector3(0, 1.8, 7.5), camera: new THREE.Vector3(0, 4.2, 17.5), target: new THREE.Vector3(0, 1.9, 2.6) },
@@ -49,8 +49,8 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 els.mount.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xe6dbc9);
-scene.fog = new THREE.Fog(0xe6dbc9, 22, 54);
+scene.background = new THREE.Color(0x111820);
+scene.fog = new THREE.Fog(0x111820, 24, 62);
 
 const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 120);
 camera.position.copy(ROOMS.entrance.camera);
@@ -82,12 +82,49 @@ function byYearAscending(a, b) {
   return ay - by || getTitle(a).localeCompare(getTitle(b));
 }
 
+function getMonthlySeed(date = new Date()) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+}
+
+function hashSeed(seed) {
+  let hash = 2166136261;
+  for (let index = 0; index < seed.length; index += 1) {
+    hash ^= seed.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function seededRandom(seed) {
+  let value = hashSeed(seed);
+  return () => {
+    value += 0x6d2b79f5;
+    let result = value;
+    result = Math.imul(result ^ (result >>> 15), result | 1);
+    result ^= result + Math.imul(result ^ (result >>> 7), result | 61);
+    return ((result ^ (result >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function monthlyShuffle(artworks, scope = 'archive', monthSeed = getMonthlySeed()) {
+  const random = seededRandom(`${monthSeed}:${scope}`);
+  return artworks
+    .map((artwork) => ({ artwork, rank: random() }))
+    .sort((a, b) => a.rank - b.rank || getTitle(a.artwork).localeCompare(getTitle(b.artwork)))
+    .map(({ artwork }) => artwork);
+}
+
+function rotateThenSort(artworks, limit, scope) {
+  return monthlyShuffle(artworks, scope).slice(0, limit).sort(byYearAscending);
+}
+
 function initEnvironment() {
-  scene.add(new THREE.HemisphereLight(0xfff6e8, 0x7b6a58, 1.15));
-  const wallMaterial = new THREE.MeshStandardMaterial({ color: 0xf2eadf, roughness: 0.88 });
-  const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x8f7253, roughness: 0.72 });
-  const ceilingMaterial = new THREE.MeshStandardMaterial({ color: 0xe7dccd, roughness: 0.9 });
-  const trimMaterial = new THREE.MeshStandardMaterial({ color: 0x5b4939, roughness: 0.62 });
+  scene.add(new THREE.HemisphereLight(0xeaf6ff, 0x192230, 0.95));
+  const wallMaterial = new THREE.MeshStandardMaterial({ color: 0xe9e4db, roughness: 0.74, metalness: 0.04 });
+  const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x2f3136, roughness: 0.38, metalness: 0.18 });
+  const ceilingMaterial = new THREE.MeshStandardMaterial({ color: 0xd8d7d2, roughness: 0.72, metalness: 0.08 });
+  const trimMaterial = new THREE.MeshStandardMaterial({ color: 0x18202a, roughness: 0.36, metalness: 0.35 });
+  const glassMaterial = new THREE.MeshStandardMaterial({ color: 0x9ad7ff, roughness: 0.18, metalness: 0.08, transparent: true, opacity: 0.22 });
 
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(44, 31), floorMaterial);
   floor.rotation.x = -Math.PI / 2;
@@ -111,8 +148,12 @@ function initEnvironment() {
     addWall(x + 3.9, 3.1, 1.2, 4.2, 6.2, 0.24, wallMaterial);
     addWall(x, 5.05, 1.2, 3.5, 2.3, 0.24, wallMaterial);
     addWall(x, 0.08, 1.05, 3.5, 0.16, 0.36, trimMaterial);
+    addDisplayFin(x - 2.75, -7.4, wallMaterial, trimMaterial);
+    addDisplayFin(x + 2.75, -7.4, wallMaterial, trimMaterial);
+    addWall(x, 0.03, -6.5, 10.4, 0.06, 12.2, glassMaterial);
   });
   [-13, 0, 13].forEach((x) => addRoomLights(x));
+  [-13, 0, 13].forEach((x) => addCeilingAccent(x, trimMaterial));
   addRoomSign('Continents', -13, 3.6, 1.05);
   addRoomSign('Topics', 0, 3.6, 1.05);
   addRoomSign('Timeline', 13, 3.6, 1.05);
@@ -127,13 +168,25 @@ function addWall(x, y, z, w, h, d, material) {
   scene.add(wall);
 }
 
+function addDisplayFin(x, z, wallMaterial, trimMaterial) {
+  addWall(x, 2.45, z, 0.22, 4.9, 5.4, wallMaterial);
+  addWall(x, 4.98, z, 0.34, 0.16, 5.75, trimMaterial);
+}
+
+function addCeilingAccent(x, trimMaterial) {
+  addWall(x, 6.08, -6.5, 0.16, 0.1, 13.5, trimMaterial);
+  const glow = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.04, 12.5), new THREE.MeshBasicMaterial({ color: 0x8bdcff }));
+  glow.position.set(x, 6.15, -6.5);
+  scene.add(glow);
+}
+
 function addRoomLights(x) {
-  const light = new THREE.SpotLight(0xffead0, 2.6, 18, Math.PI * 0.21, 0.65, 1.2);
+  const light = new THREE.SpotLight(0xfff0d6, 2.8, 20, Math.PI * 0.2, 0.68, 1.15);
   light.position.set(x, 5.85, -0.5);
   light.target.position.set(x, 2.1, -9.6);
   light.castShadow = true;
   scene.add(light, light.target);
-  const glow = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.05, 0.55), new THREE.MeshBasicMaterial({ color: 0xfff1d6 }));
+  const glow = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.05, 0.55), new THREE.MeshBasicMaterial({ color: 0xbdeaff }));
   glow.position.set(x, 6.12, -1.5);
   scene.add(glow);
 }
@@ -173,19 +226,19 @@ async function addArtwork(artwork, position, rotationY) {
   const normal = new THREE.Vector3(0, 0, 1).applyAxisAngle(new THREE.Vector3(0, 1, 0), rotationY);
   const artPos = position.clone().addScaledVector(normal, 0.16);
   const texture = await textureFor(artwork.properties.thumbnail.trim());
-  const selectedMaterial = new THREE.MeshStandardMaterial({ color: 0xd7b46a, emissive: 0x000000, roughness: 0.45 });
-  const frame = addTracked(new THREE.Mesh(new THREE.BoxGeometry(2.05, 1.55, 0.16), selectedMaterial));
+  const selectedMaterial = new THREE.MeshStandardMaterial({ color: 0x1d2630, emissive: 0x000000, roughness: 0.32, metalness: 0.38 });
+  const frame = addTracked(new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.14, 0.13), selectedMaterial));
   frame.position.copy(artPos);
   frame.rotation.y = rotationY;
   frame.castShadow = true;
-  const mat = addTracked(new THREE.Mesh(new THREE.BoxGeometry(1.82, 1.34, 0.06), new THREE.MeshStandardMaterial({ color: 0xf8f2e8, roughness: 0.9 })));
+  const mat = addTracked(new THREE.Mesh(new THREE.BoxGeometry(1.32, 0.98, 0.05), new THREE.MeshStandardMaterial({ color: 0xf8f2e8, roughness: 0.86 })));
   mat.position.copy(artPos).addScaledVector(normal, 0.06);
   mat.rotation.y = rotationY;
   const imageMaterial = texture ? new THREE.MeshBasicMaterial({ map: texture }) : new THREE.MeshBasicMaterial({ color: 0xb9aa96 });
-  const image = addTracked(new THREE.Mesh(new THREE.PlaneGeometry(1.6, 1.12), imageMaterial));
+  const image = addTracked(new THREE.Mesh(new THREE.PlaneGeometry(1.15, 0.78), imageMaterial));
   image.position.copy(artPos).addScaledVector(normal, 0.105);
   image.rotation.y = rotationY;
-  image.userData = { artwork, frame, focus: artPos.clone().addScaledVector(normal, 3.3).setY(2.15), target: artPos.clone().setY(2.05) };
+  image.userData = { artwork, frame, focus: artPos.clone().addScaledVector(normal, 2.6).setY(2.15), target: artPos.clone().setY(2.05) };
   clickable.push(image);
   state.displayed.push({ artwork, object: image, frame });
   const p = artwork.properties;
@@ -196,11 +249,18 @@ function positionsForRoom(roomKey, count) {
   const room = ROOMS[roomKey];
   const left = room.center.x - 4.2;
   const right = room.center.x + 4.2;
-  const xs = [-3.6, 0, 3.6].map((offset) => room.center.x + offset);
+  const xs = [-4.6, -2.3, 0, 2.3, 4.6].map((offset) => room.center.x + offset);
+  const rows = [1.45, 2.55, 3.65];
+  const wallZs = [-10.9, -8.7, -6.5, -4.3, -2.1];
+  const finZs = [-9.7, -8.2, -6.7, -5.2, -3.7];
   const positions = [];
-  xs.forEach((x) => positions.push({ position: new THREE.Vector3(x, 2.35, -13.62), rotationY: 0 }));
-  [-9.4, -5.6, -1.9].forEach((z) => positions.push({ position: new THREE.Vector3(left, 2.35, z), rotationY: Math.PI / 2 }));
-  [-9.4, -5.6, -1.9].forEach((z) => positions.push({ position: new THREE.Vector3(right, 2.35, z), rotationY: -Math.PI / 2 }));
+  rows.forEach((y) => xs.forEach((x) => positions.push({ position: new THREE.Vector3(x, y, -13.62), rotationY: 0 })));
+  rows.forEach((y) => wallZs.forEach((z) => positions.push({ position: new THREE.Vector3(left, y, z), rotationY: Math.PI / 2 })));
+  rows.forEach((y) => wallZs.forEach((z) => positions.push({ position: new THREE.Vector3(right, y, z), rotationY: -Math.PI / 2 })));
+  [-2.75, 2.75].forEach((offset) => {
+    const finX = room.center.x + offset;
+    rows.forEach((y) => finZs.forEach((z) => positions.push({ position: new THREE.Vector3(finX, y, z), rotationY: offset < 0 ? -Math.PI / 2 : Math.PI / 2 })));
+  });
   return positions.slice(0, count);
 }
 
@@ -211,7 +271,10 @@ async function layoutContinents() {
     acc.get(continent).push(artwork);
     return acc;
   }, new Map());
-  const selected = [...groups.keys()].sort().flatMap((continent) => groups.get(continent).sort(byYearAscending).slice(0, MAX_PER_CONTINENT)).slice(0, MAX_ARTWORKS);
+  const selected = [...groups.keys()]
+    .sort()
+    .flatMap((continent) => rotateThenSort(groups.get(continent), MAX_PER_CONTINENT, `continent:${continent}`))
+    .slice(0, MAX_ARTWORKS);
   const positions = positionsForRoom('continent', selected.length);
   await Promise.all(selected.map((artwork, index) => addArtwork(artwork, positions[index].position, positions[index].rotationY)));
   els.count.textContent = state.displayed.length;
@@ -219,17 +282,15 @@ async function layoutContinents() {
 
 async function layoutTopic() {
   const topic = els.topic.value;
-  const selected = state.artworks
-    .filter((a) => (a.properties.clusters || []).includes(topic) || topicsFor(a).includes(topic))
-    .sort(byYearAscending)
-    .slice(0, MAX_TOPIC_ARTWORKS);
+  const topicCandidates = state.artworks.filter((a) => (a.properties.clusters || []).includes(topic) || topicsFor(a).includes(topic));
+  const selected = rotateThenSort(topicCandidates, MAX_TOPIC_ARTWORKS, `topic:${topic}`);
   const positions = positionsForRoom('topic', selected.length);
   await Promise.all(selected.map((artwork, index) => addArtwork(artwork, positions[index].position, positions[index].rotationY)));
   els.count.textContent = state.displayed.length;
 }
 
 async function layoutTimeline() {
-  const selected = [...state.artworks].sort(byYearAscending).slice(0, MAX_TIMELINE_ARTWORKS);
+  const selected = rotateThenSort(state.artworks, MAX_TIMELINE_ARTWORKS, 'timeline');
   const positions = positionsForRoom('timeline', selected.length);
   await Promise.all(selected.map((artwork, index) => addArtwork(artwork, positions[index].position, positions[index].rotationY)));
   els.count.textContent = state.displayed.length;
