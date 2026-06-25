@@ -37,6 +37,7 @@ const els = {
   previous: document.getElementById('previousArtwork'),
   next: document.getElementById('nextArtwork'),
   overview: document.getElementById('overviewGallery'),
+  rotationSeed: document.getElementById('rotationSeed'),
   count: document.getElementById('exhibitionCount'),
   modeLabel: document.getElementById('exhibitionModeLabel'),
   info: document.getElementById('artworkInfo')
@@ -158,6 +159,22 @@ function initEnvironment() {
   addRoomSign('Topics', 0, 3.6, 1.05);
   addRoomSign('Timeline', 13, 3.6, 1.05);
   addRoomSign('Entrance Lobby', 0, 3.6, 10.8);
+  addEntranceFoyer(trimMaterial, glassMaterial);
+}
+
+function addEntranceFoyer(trimMaterial, glassMaterial) {
+  addWall(0, 0.22, 8.3, 7.4, 0.44, 1.1, trimMaterial);
+  addWall(-5.6, 2.1, 7.6, 0.18, 3.8, 5.4, glassMaterial);
+  addWall(5.6, 2.1, 7.6, 0.18, 3.8, 5.4, glassMaterial);
+  const benchMaterial = new THREE.MeshStandardMaterial({ color: 0x5c5148, roughness: 0.42, metalness: 0.18 });
+  const bench = new THREE.Mesh(new THREE.BoxGeometry(3.8, 0.32, 0.82), benchMaterial);
+  bench.position.set(0, 0.55, 6.2);
+  bench.castShadow = true;
+  bench.receiveShadow = true;
+  scene.add(bench);
+  const portalGlow = new THREE.Mesh(new THREE.BoxGeometry(8.4, 0.08, 0.08), new THREE.MeshBasicMaterial({ color: 0xc9f1ff }));
+  portalGlow.position.set(0, 4.9, 1.0);
+  scene.add(portalGlow);
 }
 
 function addWall(x, y, z, w, h, d, material) {
@@ -308,6 +325,7 @@ async function renderMode() {
 }
 
 function populateControls() {
+  if (els.rotationSeed) els.rotationSeed.textContent = `Current rotation seed: ${getMonthlySeed()}`;
   const topics = new Set(Object.keys(state.topicClusters));
   state.artworks.forEach((a) => topicsFor(a).forEach((topic) => topics.add(topic)));
   els.topic.innerHTML = [...topics].sort().map((topic) => `<option>${escapeHtml(topic)}</option>`).join('');
