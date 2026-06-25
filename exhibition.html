@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="forest" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eco:nection - Virtual Exhibition</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/exhibition.css">
+</head>
+<body class="h-full flex flex-col bg-base-100">
+    <nav class="navbar bg-base-300">
+        <div class="navbar-start">
+            <div class="dropdown lg:hidden">
+                <div tabindex="0" role="button" class="btn btn-ghost" aria-label="Open navigation menu"><i class="ti ti-menu-2 text-2xl"></i></div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content gap-y-3 bg-base-300 rounded-box z-20 mt-3 w-48 shadow">
+                    <li><a class="btn btn-primary justify-start" href="index.html"><i class="ti ti-compass text-xl"></i>Explore</a></li>
+                    <li><a class="btn btn-primary justify-start" href="data-analysis.html"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
+                    <li><a class="btn btn-primary justify-start" href="exhibition.html"><i class="ti ti-building-pavilion text-xl"></i>Exhibition</a></li>
+                    <li><a class="btn btn-primary justify-start" href="submit-artwork.html"><i class="ti ti-upload text-xl"></i>Submit</a></li>
+                </ul>
+            </div>
+            <div class="hidden lg:flex mx-3 gap-3 justify-center"><i class="ti ti-affiliate text-3xl text-primary"></i><span class="text-2xl subpixel-antialiased">eco:nection</span></div>
+        </div>
+        <div class="navbar-center">
+            <div class="flex mx-3 gap-3 justify-center lg:hidden"><i class="ti ti-affiliate text-3xl text-primary"></i><span class="text-2xl subpixel-antialiased">eco:nection</span></div>
+            <ul class="hidden lg:flex menu menu-horizontal px-1 gap-x-4">
+                <li><a class="btn btn-primary" href="index.html"><i class="ti ti-compass text-xl"></i>Explore</a></li>
+                <li><a class="btn btn-primary" href="data-analysis.html"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
+                <li><a class="btn btn-primary" href="exhibition.html"><i class="ti ti-building-pavilion text-xl"></i>Exhibition</a></li>
+                <li><a class="btn btn-primary" href="submit-artwork.html"><i class="ti ti-upload text-xl"></i>Submit</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end"></div>
+    </nav>
+
+    <main class="exhibition-shell">
+        <section class="exhibition-stage">
+            <div id="exhibitionCanvas" class="exhibition-canvas" aria-label="3D virtual exhibition"></div>
+            <div class="exhibition-help">Drag to look around • Scroll/pinch to zoom • Click a framed artwork for details</div>
+        </section>
+
+        <aside class="exhibition-panel bg-base-200">
+            <h1 class="text-2xl font-bold">Virtual Exhibition Pavilion</h1>
+            <p class="mt-3 text-sm opacity-80">An experimental first exhibition space for eco:nection: framed artworks are arranged in an open-air environmental pavilion using archive thumbnails and lightweight 3D geometry.</p>
+
+            <label class="form-control mt-5">
+                <span class="label-text">Curatorial mode</span>
+                <select id="exhibitionMode" class="select select-bordered">
+                    <option value="continent" selected>Continent</option>
+                    <option value="country">Country</option>
+                    <option value="topic">Topic</option>
+                    <option value="timeline">Timeline</option>
+                </select>
+            </label>
+
+            <label id="countryControl" class="form-control mt-4 hidden">
+                <span class="label-text">Country</span>
+                <select id="countrySelect" class="select select-bordered"></select>
+            </label>
+
+            <label id="topicControl" class="form-control mt-4 hidden">
+                <span class="label-text">Topic or cluster</span>
+                <select id="topicSelect" class="select select-bordered"></select>
+            </label>
+
+            <div class="stats stats-vertical shadow w-full mt-5">
+                <div class="stat"><div class="stat-title">Displayed artworks</div><div id="exhibitionCount" class="stat-value text-primary">0</div></div>
+                <div class="stat"><div class="stat-title">Mode</div><div id="exhibitionModeLabel" class="stat-value text-secondary text-lg">Continent</div></div>
+            </div>
+
+            <section id="artworkInfo" class="exhibition-info mt-5 rounded-box border border-base-300 bg-base-100 p-4">
+                <h2 class="text-xl font-semibold">Select an artwork</h2>
+                <p class="mt-2 text-sm opacity-75">Artwork details will appear here.</p>
+            </section>
+        </aside>
+    </main>
+
+    <script src="assets/js/shared-data.js"></script>
+    <script type="importmap">
+        { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js" } }
+    </script>
+    <script type="module" src="assets/js/exhibition.js"></script>
+</body>
+</html>
