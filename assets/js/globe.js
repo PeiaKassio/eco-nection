@@ -443,7 +443,7 @@ function addGlobeLayers() {
 
     function renderArtworkCard(feature) {
         const props = feature.properties || {};
-        const thumbnailHtml = getThumbnailHtml(props.thumbnail, 'globe-popup-item-thumbnail');
+        const thumbnailHtml = getThumbnailHtml(props.thumbnail, 'globe-popup-thumbnail');
         const cardClass = thumbnailHtml
             ? 'globe-popup-carousel-card'
             : 'globe-popup-carousel-card globe-popup-carousel-card--no-thumbnail';
@@ -463,7 +463,7 @@ function addGlobeLayers() {
             <article class="${cardClass}">
                 ${thumbnailHtml}
                 <div class="globe-popup-item-body">
-                    <h4>${escapeHtml(props.title || 'Untitled')}</h4>
+                    <h3>${escapeHtml(props.title || 'Untitled')}</h3>
                     <div class="globe-popup-primary-meta">${escapeHtml(artistText)}</div>
                     <div class="globe-popup-location">${escapeHtml(locationText)}</div>
                     <div class="globe-popup-card-cluster">${renderClusterChip(clusterText)}</div>
@@ -481,17 +481,6 @@ function addGlobeLayers() {
                 <span aria-hidden="true"></span>
                 ${escapeHtml(cluster)}
             </span>
-        `;
-    }
-
-    function renderClusterChips(features) {
-        const clusters = Array.from(new Set(features.map(feature => feature.properties?.mainCluster || 'Uncategorized')));
-        const clusterLabel = clusters.length > 1 ? 'Mixed clusters' : 'Cluster';
-        const chips = clusters.map(renderClusterChip).join('');
-        return `
-            <div class="globe-popup-cluster-summary" aria-label="${escapeHtml(clusterLabel)}">
-                ${chips}
-            </div>
         `;
     }
 
@@ -534,7 +523,6 @@ function addGlobeLayers() {
                 <div class="globe-popup-group-header">
                     <h3>${sortedFeatures.length} artworks at this point</h3>
                     <div class="globe-popup-location">${escapeHtml(location)}</div>
-                    ${renderClusterChips(sortedFeatures)}
                 </div>
                 <div class="globe-popup-carousel">
                     ${renderArtworkCard(activeFeature)}

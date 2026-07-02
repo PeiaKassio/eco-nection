@@ -1,5 +1,5 @@
 const EcoData = (() => {
-    const DATA_VERSION = '20260702-popup-fix';
+    const DATA_VERSION = '20260702-carousel-large';
     const DATA_PATHS = {
         artworkData: 'data/artwork-data.json',
         topicClusters: 'data/topicClusters.json',
