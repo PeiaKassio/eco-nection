@@ -600,7 +600,7 @@
         "topic": ["Biodiversity", "Species Conservation", "Ecosystem Protection", "Environmental Reflection"],
         "artform": ["Literature"]
       },
-      "url": "https://www.goodreads.com/book/show/56179398-the-last-wild-horses",
+      "url": "https://www.goodreads.com/book/show/58142533-the-last-wild-horses",
       "thumbnail": ""
     }
   },
@@ -1813,35 +1813,6 @@
         "thumbnail": ""
       }
     },
-    
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-16.9072, 32.6492]
-      },
-      "properties": {
-        "title": "Half Turtle Door",
-        "artist": "Dina Pimenta",
-        "year": 2010,
-        "type": "Murals / Street Art",
-        "description": "Part of the 'Arte Portas Abertas' project in Funchal’s old town—a door painted with half a sea turtle, blending local heritage and ocean themes.",
-        "location": "Portugal",
-        "tags": {
-          "topic": [
-            "Cultural Heritage",
-            "Ocean Conservation"
-          ],
-          "artform": [
-            "Mural",
-            "Street Art"
-          ]
-        },
-        "url": "https://www.flickr.com/photos/mjwoerner/26069080784",
-        "thumbnail": ""
-      }
-    },
-    
     {
       "type": "Feature",
       "geometry": {
@@ -2666,34 +2637,6 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    174.7633,
-                    -36.8485
-                ]
-            },
-            "properties": {
-                "title": "Islands of Waste",
-                "description": "Installation representing the Pacific Garbage Patch.",
-                "artist": "Olivia Green",
-                "type": "Installation",
-                "location": "Auckland, New Zealand",
-                "year": 2019,
-                "tags": {
-                    "topic": [
-                        "Ocean Conservation",
-                        "Plastic Pollution"
-                    ],
-                    "artform": [
-                        "Installation"
-                    ]
-                },
-                "thumbnail": ""
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
                     -106.6504,
                     35.0844
                 ]
@@ -2948,7 +2891,8 @@
                         "Installation"
                     ]
                 },
-                "thumbnail": ""
+                "url": "https://www.arariogallery.com/artworks/9437-eko-nugroho-unity-in-hiding-2018/",
+                "thumbnail": "https://static-assets.artlogic.net/w_1600%2Ch_1600%2Cc_limit%2Cf_auto%2Cfl_lossy%2Cq_auto/artlogicstorage/arario/images/view/ff0ec7d578bcf5dcc84f7da47839cc2c/arariogallery-eko-nugroho-unity-in-hiding-2018.jpg"
             }
         },
         {
@@ -3684,12 +3628,12 @@
                 ]
             },
             "properties": {
-                "title": "Palus Flores",
-                "description": "A project combining flower sculptures and soil samples to highlight human-induced changes to urban nature.",
+                "title": "Palus Florens",
+                "description": "A project combining flower sculptures and soil samples from a Moscow flowerbed to trace human-induced changes to urban nature through plants, memory and scientific observation.",
                 "artist": "Alina Brovina",
                 "type": "Installation",
                 "location": "Moscow, Russia",
-                "year": 2021,
+                "year": 2019,
                 "tags": {
                     "topic": [
                         "Urban Ecology",
@@ -3699,35 +3643,9 @@
                         "Sculpture",
                         "Installation"
                     ]
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    37.6173,
-                    55.7558
-                ]
-            },
-            "properties": {
-                "title": "Vaga",
-                "description": "An exhibition reflecting on environmental and cultural themes of the Russian village.",
-                "artist": "Evgenia Buravleva",
-                "type": "Painting",
-                "location": "Moscow Museum of Modern Art, Russia",
-                "year": 2022,
-                "tags": {
-                    "topic": [
-                        "Cultural Heritage",
-                        "Environmental Reflection"
-                    ],
-                    "artform": [
-                        "Painting",
-                        "Exhibition"
-                    ]
-                }
+                },
+                "url": "https://www.new-east-archive.org/alina-brovina-curated-russia-z",
+                "thumbnail": "https://www.new-east-archive.org/images/uploads/features/2020/Russia_Z/Curated/PalusFlorens2223.png"
             }
         },
         {
@@ -4851,6 +4769,132 @@
                 },
                 "url": "https://www.emeraldnecklace.org/20th/",
                 "thumbnail": "https://www.emeraldnecklace.org/wp-content/uploads/2018/08/Fens-71.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [41.4141, 37.7131] },
+            "properties": {
+                "title": "Gold Rivers",
+                "description": "A documentary photography project following communities and river landscapes threatened by Turkey's dam policies, especially the flooding of Hasankeyf by the Ilisu Dam. The series connects hydropower, displacement, cultural loss and the transformation of the Tigris and Euphrates into engineered reservoirs.",
+                "artist": "Mathias Depardon",
+                "type": "Photography",
+                "location": "Hasankeyf, Turkey",
+                "year": 2015,
+                "tags": {
+                    "topic": ["Water Management", "Hydropower", "Displacement", "Cultural Heritage", "Environmental Justice"],
+                    "artform": ["Photography", "Documentary"]
+                },
+                "url": "https://time.com/3679027/mathias-depardon-gold-rivers-ilisu-dam-turkey/",
+                "thumbnail": "https://static.time.com/v3/assets/bltea6093859af6183b/bltb24b98cd988a49da/69877b5ee20a8744aea84a8c/gold-rivers-turkey-12.jpg?branch=production&width=1200&quality=75&auto=webp&crop=16:9"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [29.1283, 40.8741] },
+            "properties": {
+                "title": "SALTWATER: A Theory of Thought Forms",
+                "description": "The 14th Istanbul Biennial unfolded across sites from the Black Sea to the Sea of Marmara, using saltwater, waves, currents and underwater depths as a framework for installations, films, drawings, research and collaborations. The exhibition linked artistic thinking with oceans, energy transfer and ecological interdependence.",
+                "artist": "14th Istanbul Biennial / Carolyn Christov-Bakargiev",
+                "type": "Exhibition",
+                "location": "Istanbul and Princes' Islands, Turkey",
+                "year": 2015,
+                "tags": {
+                    "topic": ["Water Conservation", "Marine Ecosystems", "Environmental Reflection", "Climate Change", "Human-Nature Interaction"],
+                    "artform": ["Exhibition", "Installation", "Research-based Art"]
+                },
+                "url": "https://south-south.art/biennale/14th-istanbul-biennial-saltwater-a-theory-of-thought-forms/",
+                "thumbnail": "https://south-south.art/wp-content/uploads/2021/01/Screenshot-2015-09-25-11.32.31.png"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [28.9784, 41.0082] },
+            "properties": {
+                "title": "The Seventh Continent",
+                "description": "The 16th Istanbul Biennial took its title from the oceanic mass of plastic waste often described as a seventh continent. Through contemporary artworks and research-driven projects, it addressed pollution, consumer culture, extractive systems and the ecological consequences of human-made debris.",
+                "artist": "16th Istanbul Biennial / Nicolas Bourriaud",
+                "type": "Exhibition",
+                "location": "Istanbul, Turkey",
+                "year": 2019,
+                "tags": {
+                    "topic": ["Plastic Pollution", "Waste Management", "Consumerism", "Marine Ecosystems", "Environmental Awareness"],
+                    "artform": ["Exhibition", "Installation", "Contemporary Art"]
+                },
+                "url": "https://www.behance.net/gallery/87354781/16th-Biennial-The-Seventh-Continent-Interface-design",
+                "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/16d1c187354781.5e64f7e32af9e.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [44.0065, 56.3269] },
+            "properties": {
+                "title": "The Phantom Causality of the Urban Landscape",
+                "description": "A photographic work from Andrey Druzhaev's landscape-based practice, where urban surroundings are approached through memory, emotion and traces of place rather than straightforward documentation.",
+                "artist": "Andrey Druzhaev",
+                "type": "Photography",
+                "location": "Nizhny Novgorod, Russia",
+                "year": 2017,
+                "tags": {
+                    "topic": ["Urban Ecology", "Landscape Change", "Human-Nature Interaction", "Environmental Reflection"],
+                    "artform": ["Photography", "Landscape Art"]
+                },
+                "url": "https://www.new-east-archive.org/andrey-druzhaev-curated-russia-z",
+                "thumbnail": "https://www.new-east-archive.org/images/uploads/galleries/druzhaev_12.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [142.8635, 43.2203] },
+            "properties": {
+                "title": "Snowiness",
+                "description": "A 2018 project based on Alexey Khamkin's journey around Hokkaido, dealing with the mutual influence of humans and nature within the island's landscape.",
+                "artist": "Alexey Khamkin",
+                "type": "Graphics / Installation",
+                "location": "Hokkaido, Japan",
+                "year": 2018,
+                "tags": {
+                    "topic": ["Human-Nature Interaction", "Landscape Change", "Ecological Interdependence", "Environmental Reflection"],
+                    "artform": ["Graphics", "Installation"]
+                },
+                "url": "https://www.new-east-archive.org/alexey-khamkin-curated-russia-z",
+                "thumbnail": "https://www.new-east-archive.org/images/uploads/galleries/khamkin_18.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [59.4842, 58.7057] },
+            "properties": {
+                "title": "Monastery",
+                "description": "Anna Marchenkova's documentary photography project follows a Buddhist monastery in Kachkanar whose community faced pressure from industrial interests seeking to exploit nearby natural resources, connecting landscape, protection and social conflict.",
+                "artist": "Anna Marchenkova",
+                "type": "Photography",
+                "location": "Kachkanar, Russia",
+                "year": 2017,
+                "tags": {
+                    "topic": ["Resource Extraction", "Protected Areas", "Environmental Justice", "Cultural Heritage", "Landscape Change"],
+                    "artform": ["Photography", "Documentary"]
+                },
+                "url": "https://www.new-east-archive.org/anna-marchenkova-curated-russia-z",
+                "thumbnail": "https://www.new-east-archive.org/images/uploads/galleries/marchenkova_2-min.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [37.6173, 55.7558] },
+            "properties": {
+                "title": "VIP Nature",
+                "description": "Maria Sviridova inserts lush natural landscapes into industrial zones, housing estates and gated urban spaces, staging the tension between private development, built environments and non-human life.",
+                "artist": "Maria Sviridova",
+                "type": "Installation / Photography",
+                "location": "Moscow, Russia",
+                "year": 2018,
+                "tags": {
+                    "topic": ["Urban Ecology", "Human-Nature Interaction", "Consumerism", "Environmental Reflection"],
+                    "artform": ["Installation", "Photography"]
+                },
+                "url": "https://www.new-east-archive.org/maria-sviridova-curated-russia-z",
+                "thumbnail": "https://www.new-east-archive.org/images/uploads/galleries/VIP_NATURE_(3).jpg"
             }
         }
     ]
