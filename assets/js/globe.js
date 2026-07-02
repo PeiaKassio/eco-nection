@@ -462,29 +462,28 @@ function addGlobeLayers() {
                     <h4>${escapeHtml(props.title || 'Untitled')}</h4>
                     <div class="globe-popup-primary-meta">${escapeHtml(artistText)}</div>
                     <div class="globe-popup-location">${escapeHtml(locationText)}</div>
+                    <div class="globe-popup-card-cluster">${renderClusterChip(clusterText)}</div>
                     ${descriptionHtml}
-                    <div class="globe-popup-meta">
-                        <p><strong>Cluster:</strong> ${escapeHtml(clusterText)}</p>
-                    </div>
                     ${moreInfoHtml}
                 </div>
             </article>
         `;
     }
 
+    function renderClusterChip(cluster) {
+        const color = getClusterColor(cluster);
+        return `
+            <span class="globe-popup-cluster-chip" style="--cluster-color: ${escapeHtml(color)}">
+                <span aria-hidden="true"></span>
+                ${escapeHtml(cluster)}
+            </span>
+        `;
+    }
+
     function renderClusterChips(features) {
         const clusters = Array.from(new Set(features.map(feature => feature.properties?.mainCluster || 'Uncategorized')));
         const clusterLabel = clusters.length > 1 ? 'Mixed clusters' : 'Cluster';
-        const chips = clusters.map(cluster => {
-            const color = getClusterColor(cluster);
-            return `
-                <span class="globe-popup-cluster-chip" style="--cluster-color: ${escapeHtml(color)}">
-                    <span aria-hidden="true"></span>
-                    ${escapeHtml(cluster)}
-                </span>
-            `;
-        }).join('');
-
+        const chips = clusters.map(renderClusterChip).join('');
         return `
             <div class="globe-popup-cluster-summary" aria-label="${escapeHtml(clusterLabel)}">
                 ${chips}

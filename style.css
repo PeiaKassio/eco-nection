@@ -362,6 +362,11 @@
   gap: 0.25rem;
 }
 
+.globe-popup-card-cluster {
+  display: flex;
+  min-width: 0;
+}
+
 .globe-popup-cluster-chip {
   display: inline-flex;
   align-items: center;
