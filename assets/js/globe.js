@@ -41,7 +41,7 @@ function getThumbnailHtml(thumbnail, className = 'globe-popup-thumbnail') {
         return '';
     }
 
-    return `<img class="${escapeHtml(className)}" src="${escapeHtml(thumbnailUrl)}" alt="" loading="lazy" decoding="async">`;
+    return `<img class="${escapeHtml(className)}" src="${escapeHtml(thumbnailUrl)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">`;
 }
 
 function getDescriptionExcerpt(description, maxLength = 180) {
@@ -221,12 +221,10 @@ function groupFeaturesByPoint(features) {
     return Array.from(groupedFeatureLookup.values()).map(group => {
         const representative = group.features[0];
         const artworkCount = group.features.length;
-        const pointRadius = artworkCount > 1
-            ? 9 + Math.min(8, Math.log2(artworkCount) * 3)
-            : 4;
+        const pointRadius = 4;
         const glowRadius = artworkCount > 1
-            ? Math.max(group.maxRadius, pointRadius + 10 + Math.min(12, Math.log2(artworkCount) * 5))
-            : Math.max(group.maxRadius, pointRadius + 8);
+            ? Math.max(group.maxRadius, pointRadius + 10 + Math.min(16, Math.log2(artworkCount) * 5))
+            : Math.max(group.maxRadius, pointRadius + 7);
 
         return {
             type: 'Feature',
@@ -400,12 +398,7 @@ function addGlobeLayers() {
                 0.98,
                 0.82
             ],
-            'circle-stroke-width': [
-                'case',
-                ['>', ['get', 'artworkCount'], 1],
-                2,
-                1
-            ],
+            'circle-stroke-width': 1,
             'circle-stroke-color': '#ffffff'
         }
     });
@@ -418,7 +411,7 @@ function addGlobeLayers() {
         layout: {
             'text-field': ['to-string', ['get', 'artworkCount']],
             'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
-            'text-size': 11,
+            'text-size': 9,
             'text-allow-overlap': true
         },
         paint: {
@@ -436,10 +429,21 @@ function addGlobeLayers() {
         });
     });
 
+    function getSortedGroupFeatures(group) {
+        return group.features
+            .slice()
+            .sort((a, b) => {
+                const yearA = parseYear(a.properties?.year) ?? 9999;
+                const yearB = parseYear(b.properties?.year) ?? 9999;
+                if (yearA !== yearB) return yearA - yearB;
+                return (a.properties?.title || '').localeCompare(b.properties?.title || '');
+            });
+    }
+
     function renderArtworkCard(feature) {
         const props = feature.properties || {};
         const thumbnailHtml = getThumbnailHtml(props.thumbnail, 'globe-popup-item-thumbnail');
-        const descriptionExcerpt = getDescriptionExcerpt(props.description, 95);
+        const descriptionExcerpt = getDescriptionExcerpt(props.description, 130);
         const descriptionHtml = descriptionExcerpt
             ? `<p class="globe-popup-item-description">${escapeHtml(descriptionExcerpt)}</p>`
             : '';
@@ -450,7 +454,7 @@ function addGlobeLayers() {
             : '';
 
         return `
-            <article class="globe-popup-item">
+            <article class="globe-popup-carousel-card">
                 ${thumbnailHtml}
                 <div class="globe-popup-item-body">
                     <h4>${escapeHtml(props.title || 'Untitled')}</h4>
@@ -490,16 +494,11 @@ function addGlobeLayers() {
         `;
     }
 
-    function renderGroupPopup(group) {
-        const sortedFeatures = group.features
-            .slice()
-            .sort((a, b) => {
-                const yearA = parseYear(a.properties?.year) ?? 9999;
-                const yearB = parseYear(b.properties?.year) ?? 9999;
-                if (yearA !== yearB) return yearA - yearB;
-                return (a.properties?.title || '').localeCompare(b.properties?.title || '');
-            });
+    function renderGroupPopup(group, activeIndex = 0) {
+        const sortedFeatures = getSortedGroupFeatures(group);
         const location = sortedFeatures[0]?.properties?.location || 'Shared location';
+        const safeIndex = ((activeIndex % sortedFeatures.length) + sortedFeatures.length) % sortedFeatures.length;
+        const activeFeature = sortedFeatures[safeIndex];
 
         return `
             <div class="globe-popup globe-popup-group">
@@ -507,8 +506,13 @@ function addGlobeLayers() {
                     <h3>${sortedFeatures.length} artworks at this point</h3>
                     <div class="globe-popup-location">${escapeHtml(location)}</div>
                 </div>
-                <div class="globe-popup-list">
-                    ${sortedFeatures.map(renderArtworkCard).join('')}
+                <div class="globe-popup-carousel">
+                    ${renderArtworkCard(activeFeature)}
+                    <div class="globe-popup-carousel-controls">
+                        <button type="button" class="globe-popup-carousel-button" data-carousel-step="-1" aria-label="Previous artwork">&lt;</button>
+                        <span class="globe-popup-carousel-count">${safeIndex + 1} / ${sortedFeatures.length}</span>
+                        <button type="button" class="globe-popup-carousel-button" data-carousel-step="1" aria-label="Next artwork">&gt;</button>
+                    </div>
                 </div>
             </div>
         `;
@@ -519,14 +523,29 @@ function addGlobeLayers() {
         const props = feature.properties || {};
         const group = groupedFeatureLookup.get(props.groupKey);
         const coordinates = feature.geometry.coordinates.slice();
-        const popupHtml = group && group.features.length > 1
-            ? renderGroupPopup(group)
-            : renderSingleArtworkPopup(group?.features[0] || feature);
-
-        new mapboxgl.Popup({ maxWidth: '360px' })
+        const popup = new mapboxgl.Popup({ maxWidth: '360px' })
             .setLngLat(coordinates)
-            .setHTML(popupHtml)
             .addTo(globe);
+
+        if (!group || group.features.length <= 1) {
+            popup.setHTML(renderSingleArtworkPopup(group?.features[0] || feature));
+            return;
+        }
+
+        let activeIndex = 0;
+
+        function renderCarousel() {
+            popup.setHTML(renderGroupPopup(group, activeIndex));
+            const popupElement = popup.getElement();
+            popupElement.querySelectorAll('[data-carousel-step]').forEach(button => {
+                button.addEventListener('click', () => {
+                    activeIndex += Number(button.dataset.carouselStep || 0);
+                    renderCarousel();
+                });
+            });
+        }
+
+        renderCarousel();
     }
 
     globe.on('click', 'globe-artwork-point', openArtworkPopup);
