@@ -1,4 +1,5 @@
 const EcoData = (() => {
+    const DATA_VERSION = '20260702-firefox-cache';
     const DATA_PATHS = {
         artworkData: 'data/artwork-data.json',
         topicClusters: 'data/topicClusters.json',
@@ -18,7 +19,8 @@ const EcoData = (() => {
     };
 
     async function fetchJson(path, label) {
-        const response = await fetch(path);
+        const separator = path.includes('?') ? '&' : '?';
+        const response = await fetch(`${path}${separator}v=${DATA_VERSION}`, { cache: 'no-store' });
         if (!response.ok) throw new Error(`Failed to load ${label}`);
         return response.json();
     }
