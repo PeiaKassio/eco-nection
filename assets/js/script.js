@@ -13,6 +13,14 @@ map.addControl(new mapboxgl.NavigationControl()); // Fügt die Zoomsteuerung hin
 let topicClusters; // Declare topicClusters globally
 let artworkData; // Declare artworkData globally
 
+function getCenteredRandomOffset(scale) {
+    if (!globalThis.crypto?.getRandomValues) return 0;
+
+    const values = new Uint32Array(1);
+    globalThis.crypto.getRandomValues(values);
+    return ((values[0] / 0xffffffff) - 0.5) * scale;
+}
+
 map.on('style.load', () => {
     map.setFog({
         'range': [0.5, 10],
@@ -36,8 +44,8 @@ artworkData.features.forEach((feature, i) => {
     let latitudeShift = (i % 3 === 0 ? 0.002 : -0.002);
 
     // Introduce slight randomness
-    longitudeShift += (Math.random() - 0.5) * 0.001;
-    latitudeShift += (Math.random() - 0.5) * 0.001;
+    longitudeShift += getCenteredRandomOffset(0.001);
+    latitudeShift += getCenteredRandomOffset(0.001);
 
     // Apply shift directly to coordinates
     feature.geometry.coordinates[0] += longitudeShift;  
