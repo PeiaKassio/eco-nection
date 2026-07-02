@@ -221,7 +221,12 @@ function groupFeaturesByPoint(features) {
     return Array.from(groupedFeatureLookup.values()).map(group => {
         const representative = group.features[0];
         const artworkCount = group.features.length;
-        const groupRadius = Math.max(group.maxRadius, 4 + Math.min(12, Math.log2(artworkCount) * 4));
+        const pointRadius = artworkCount > 1
+            ? 9 + Math.min(8, Math.log2(artworkCount) * 3)
+            : 4;
+        const glowRadius = artworkCount > 1
+            ? Math.max(group.maxRadius, pointRadius + 10 + Math.min(12, Math.log2(artworkCount) * 5))
+            : Math.max(group.maxRadius, pointRadius + 8);
 
         return {
             type: 'Feature',
@@ -233,7 +238,8 @@ function groupFeaturesByPoint(features) {
                 ...representative.properties,
                 groupKey: group.groupKey,
                 artworkCount,
-                globeRadius: groupRadius
+                pointRadius,
+                glowRadius
             }
         };
     });
@@ -355,23 +361,28 @@ function addGlobeLayers() {
         source: 'globeArtworks',
         paint: {
             'circle-color': ['get', 'mainClusterColor'],
-            'circle-radius': ['get', 'globeRadius'],
+            'circle-radius': ['get', 'glowRadius'],
             'circle-opacity': [
                 'interpolate',
                 ['linear'],
                 ['get', 'artworkCount'],
                 1,
-                0.18,
+                0.11,
                 4,
                 0.34,
                 10,
-                0.52
+                0.58
             ],
             'circle-blur': [
-                'case',
-                ['>', ['get', 'artworkCount'], 1],
-                0.55,
-                0.9
+                'interpolate',
+                ['linear'],
+                ['get', 'artworkCount'],
+                1,
+                0.95,
+                4,
+                0.72,
+                10,
+                0.48
             ]
         }
     });
@@ -382,12 +393,7 @@ function addGlobeLayers() {
         source: 'globeArtworks',
         paint: {
             'circle-color': ['get', 'mainClusterColor'],
-            'circle-radius': [
-                'case',
-                ['>', ['get', 'artworkCount'], 1],
-                11,
-                4
-            ],
+            'circle-radius': ['get', 'pointRadius'],
             'circle-opacity': [
                 'case',
                 ['>', ['get', 'artworkCount'], 1],
