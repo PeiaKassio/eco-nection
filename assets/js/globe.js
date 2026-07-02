@@ -6,6 +6,7 @@ let continentMapping = {};
 let countryPopulation = {};
 let enrichedFeatures = [];
 let groupedFeatureLookup = new Map();
+let activeArtworkPopup = null;
 const {
     loadSharedData,
     normalizeText,
@@ -443,6 +444,9 @@ function addGlobeLayers() {
     function renderArtworkCard(feature) {
         const props = feature.properties || {};
         const thumbnailHtml = getThumbnailHtml(props.thumbnail, 'globe-popup-item-thumbnail');
+        const cardClass = thumbnailHtml
+            ? 'globe-popup-carousel-card'
+            : 'globe-popup-carousel-card globe-popup-carousel-card--no-thumbnail';
         const descriptionExcerpt = getDescriptionExcerpt(props.description, 130);
         const descriptionHtml = descriptionExcerpt
             ? `<p class="globe-popup-item-description">${escapeHtml(descriptionExcerpt)}</p>`
@@ -456,7 +460,7 @@ function addGlobeLayers() {
             : '';
 
         return `
-            <article class="globe-popup-carousel-card">
+            <article class="${cardClass}">
                 ${thumbnailHtml}
                 <div class="globe-popup-item-body">
                     <h4>${escapeHtml(props.title || 'Untitled')}</h4>
@@ -549,9 +553,16 @@ function addGlobeLayers() {
         const props = feature.properties || {};
         const group = groupedFeatureLookup.get(props.groupKey);
         const coordinates = feature.geometry.coordinates.slice();
+        activeArtworkPopup?.remove();
         const popup = new mapboxgl.Popup({ maxWidth: '360px' })
             .setLngLat(coordinates)
             .addTo(globe);
+        activeArtworkPopup = popup;
+        popup.on('close', () => {
+            if (activeArtworkPopup === popup) {
+                activeArtworkPopup = null;
+            }
+        });
 
         if (!group || group.features.length <= 1) {
             popup.setHTML(renderSingleArtworkPopup(group?.features[0] || feature));

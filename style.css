@@ -403,6 +403,10 @@
   align-items: start;
 }
 
+.globe-popup-carousel-card--no-thumbnail {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .globe-popup-item-thumbnail {
   display: block;
   width: 5rem;
