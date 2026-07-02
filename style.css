@@ -313,6 +313,7 @@
 
 .globe-popup-primary-meta,
 .globe-popup-location,
+.globe-popup-artform,
 .globe-popup-meta {
   font-size: 0.82rem;
 }
@@ -322,6 +323,7 @@
 }
 
 .globe-popup-location,
+.globe-popup-artform,
 .globe-popup-description,
 .globe-popup-meta {
   color: #4b5563;

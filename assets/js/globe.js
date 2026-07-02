@@ -71,6 +71,16 @@ function getValidUrl(value) {
     return /^https?:\/\/[^\s"'<>]+$/i.test(url) ? url : '';
 }
 
+function getPrimaryArtform(props = {}) {
+    const artforms = props.tags?.artform;
+
+    if (Array.isArray(artforms)) {
+        return (artforms[0] || '').toString().trim();
+    }
+
+    return (artforms || '').toString().split(',')[0].trim();
+}
+
 function getCountryFromLocation(location) {
     return EcoData.getCountryFromLocation(location, continentMapping, countryPopulation);
 }
@@ -454,6 +464,10 @@ function addGlobeLayers() {
         const artistText = props.year ? `${props.artist || 'Unknown'}, ${props.year}` : (props.artist || 'Unknown');
         const locationText = props.location || 'Unknown';
         const clusterText = props.mainCluster || 'Uncategorized';
+        const artformText = getPrimaryArtform(props);
+        const artformHtml = artformText
+            ? `<div class="globe-popup-artform"><strong>Art form:</strong> ${escapeHtml(artformText)}</div>`
+            : '';
         const moreInfoUrl = getValidUrl(props.url);
         const moreInfoHtml = moreInfoUrl
             ? `<a class="globe-popup-link" href="${escapeHtml(moreInfoUrl)}" target="_blank" rel="noopener noreferrer">More information</a>`
@@ -466,6 +480,7 @@ function addGlobeLayers() {
                     <h3>${escapeHtml(props.title || 'Untitled')}</h3>
                     <div class="globe-popup-primary-meta">${escapeHtml(artistText)}</div>
                     <div class="globe-popup-location">${escapeHtml(locationText)}</div>
+                    ${artformHtml}
                     <div class="globe-popup-card-cluster">${renderClusterChip(clusterText)}</div>
                     ${descriptionHtml}
                     ${moreInfoHtml}
@@ -492,6 +507,10 @@ function addGlobeLayers() {
             ? `<p class="globe-popup-description">${escapeHtml(descriptionExcerpt)}</p>`
             : '';
         const artistText = props.year ? `${props.artist || 'Unknown'}, ${props.year}` : (props.artist || 'Unknown');
+        const artformText = getPrimaryArtform(props);
+        const artformHtml = artformText
+            ? `<p><strong>Art form:</strong> ${escapeHtml(artformText)}</p>`
+            : '';
         const moreInfoUrl = getValidUrl(props.url);
         const moreInfoHtml = moreInfoUrl
             ? `<a class="globe-popup-link" href="${escapeHtml(moreInfoUrl)}" target="_blank" rel="noopener noreferrer">More information</a>`
@@ -505,6 +524,7 @@ function addGlobeLayers() {
                 <div class="globe-popup-location">${escapeHtml(props.location || 'Unknown')}</div>
                 ${descriptionHtml}
                 <div class="globe-popup-meta">
+                    ${artformHtml}
                     <p><strong>Cluster:</strong> ${escapeHtml(props.mainCluster || 'Uncategorized')}</p>
                 </div>
                 ${moreInfoHtml}
