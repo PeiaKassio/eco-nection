@@ -356,8 +356,23 @@ function addGlobeLayers() {
         paint: {
             'circle-color': ['get', 'mainClusterColor'],
             'circle-radius': ['get', 'globeRadius'],
-            'circle-opacity': 0.18,
-            'circle-blur': 0.9
+            'circle-opacity': [
+                'interpolate',
+                ['linear'],
+                ['get', 'artworkCount'],
+                1,
+                0.18,
+                4,
+                0.34,
+                10,
+                0.52
+            ],
+            'circle-blur': [
+                'case',
+                ['>', ['get', 'artworkCount'], 1],
+                0.55,
+                0.9
+            ]
         }
     });
 
@@ -373,8 +388,18 @@ function addGlobeLayers() {
                 11,
                 4
             ],
-            'circle-opacity': 0.82,
-            'circle-stroke-width': 1,
+            'circle-opacity': [
+                'case',
+                ['>', ['get', 'artworkCount'], 1],
+                0.98,
+                0.82
+            ],
+            'circle-stroke-width': [
+                'case',
+                ['>', ['get', 'artworkCount'], 1],
+                2,
+                1
+            ],
             'circle-stroke-color': '#ffffff'
         }
     });
