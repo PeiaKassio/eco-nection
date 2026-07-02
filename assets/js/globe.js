@@ -472,6 +472,26 @@ function addGlobeLayers() {
         `;
     }
 
+    function renderClusterChips(features) {
+        const clusters = Array.from(new Set(features.map(feature => feature.properties?.mainCluster || 'Uncategorized')));
+        const clusterLabel = clusters.length > 1 ? 'Mixed clusters' : 'Cluster';
+        const chips = clusters.map(cluster => {
+            const color = getClusterColor(cluster);
+            return `
+                <span class="globe-popup-cluster-chip" style="--cluster-color: ${escapeHtml(color)}">
+                    <span aria-hidden="true"></span>
+                    ${escapeHtml(cluster)}
+                </span>
+            `;
+        }).join('');
+
+        return `
+            <div class="globe-popup-cluster-summary" aria-label="${escapeHtml(clusterLabel)}">
+                ${chips}
+            </div>
+        `;
+    }
+
     function renderSingleArtworkPopup(feature) {
         const props = feature.properties || {};
         const thumbnailHtml = getThumbnailHtml(props.thumbnail);
@@ -503,10 +523,6 @@ function addGlobeLayers() {
     function renderGroupPopup(group, activeIndex = 0) {
         const sortedFeatures = getSortedGroupFeatures(group);
         const location = sortedFeatures[0]?.properties?.location || 'Shared location';
-        const clusters = new Set(sortedFeatures.map(feature => feature.properties?.mainCluster || 'Uncategorized'));
-        const clusterSummary = clusters.size > 1
-            ? `${clusters.size} clusters`
-            : Array.from(clusters)[0];
         const safeIndex = ((activeIndex % sortedFeatures.length) + sortedFeatures.length) % sortedFeatures.length;
         const activeFeature = sortedFeatures[safeIndex];
 
@@ -515,7 +531,7 @@ function addGlobeLayers() {
                 <div class="globe-popup-group-header">
                     <h3>${sortedFeatures.length} artworks at this point</h3>
                     <div class="globe-popup-location">${escapeHtml(location)}</div>
-                    <div class="globe-popup-meta">${escapeHtml(clusterSummary)}</div>
+                    ${renderClusterChips(sortedFeatures)}
                 </div>
                 <div class="globe-popup-carousel">
                     ${renderArtworkCard(activeFeature)}
