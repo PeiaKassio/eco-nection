@@ -5,6 +5,7 @@ let topicClusters = {};
 let continentMapping = {};
 let countryPopulation = {};
 let enrichedFeatures = [];
+let groupedFeatureLookup = new Map();
 const {
     loadSharedData,
     normalizeText,
@@ -33,14 +34,14 @@ function escapeHtml(value) {
         .replace(/'/g, '&#039;');
 }
 
-function getThumbnailHtml(thumbnail) {
+function getThumbnailHtml(thumbnail, className = 'globe-popup-thumbnail') {
     const thumbnailUrl = (thumbnail || '').toString().trim();
 
     if (!/^https?:\/\/[^\s"'<>]+$/i.test(thumbnailUrl)) {
         return '';
     }
 
-    return `<img class="globe-popup-thumbnail" src="${escapeHtml(thumbnailUrl)}" alt="" loading="lazy" decoding="async">`;
+    return `<img class="${escapeHtml(className)}" src="${escapeHtml(thumbnailUrl)}" alt="" loading="lazy" decoding="async">`;
 }
 
 function getDescriptionExcerpt(description, maxLength = 180) {
@@ -60,7 +61,7 @@ function getDescriptionExcerpt(description, maxLength = 180) {
         ? truncated.slice(0, lastSpaceIndex).trimEnd()
         : truncated;
 
-    return `${excerpt}…`;
+    return `${excerpt}...`;
 }
 
 function getValidUrl(value) {
@@ -191,6 +192,53 @@ function enrichMetricValues(features, countryData) {
     });
 }
 
+function getPointKey(feature) {
+    const [lng, lat] = feature.geometry.coordinates;
+    return `${lng.toFixed(5)},${lat.toFixed(5)}`;
+}
+
+function groupFeaturesByPoint(features) {
+    groupedFeatureLookup = new Map();
+
+    features.forEach(feature => {
+        const groupKey = getPointKey(feature);
+        const existingGroup = groupedFeatureLookup.get(groupKey);
+
+        if (existingGroup) {
+            existingGroup.features.push(feature);
+            existingGroup.maxRadius = Math.max(existingGroup.maxRadius, feature.properties.globeRadius || 4);
+            return;
+        }
+
+        groupedFeatureLookup.set(groupKey, {
+            groupKey,
+            coordinates: feature.geometry.coordinates.slice(),
+            maxRadius: feature.properties.globeRadius || 4,
+            features: [feature]
+        });
+    });
+
+    return Array.from(groupedFeatureLookup.values()).map(group => {
+        const representative = group.features[0];
+        const artworkCount = group.features.length;
+        const groupRadius = Math.max(group.maxRadius, 4 + Math.min(12, Math.log2(artworkCount) * 4));
+
+        return {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: group.coordinates
+            },
+            properties: {
+                ...representative.properties,
+                groupKey: group.groupKey,
+                artworkCount,
+                globeRadius: groupRadius
+            }
+        };
+    });
+}
+
 function renderRanking(containerId, items) {
     const container = document.getElementById(containerId);
     const sorted = Object.values(items)
@@ -233,7 +281,7 @@ function updateGlobe() {
     const countryData = aggregateByCountry(filtered);
     const continentData = aggregateByContinent(filtered);
     const countryRankingData = getCountryRankingData(countryData);
-    const displayFeatures = enrichMetricValues(filtered, countryData);
+    const displayFeatures = groupFeaturesByPoint(enrichMetricValues(filtered, countryData));
 
     document.getElementById('globeArtworkCount').textContent = filtered.length;
     document.getElementById('globeCountryCount').textContent = Object.keys(countryData).length;
@@ -319,25 +367,72 @@ function addGlobeLayers() {
         source: 'globeArtworks',
         paint: {
             'circle-color': ['get', 'mainClusterColor'],
-            'circle-radius': 4,
+            'circle-radius': [
+                'case',
+                ['>', ['get', 'artworkCount'], 1],
+                11,
+                4
+            ],
             'circle-opacity': 0.82,
             'circle-stroke-width': 1,
             'circle-stroke-color': '#ffffff'
         }
     });
 
-    globe.on('mouseenter', 'globe-artwork-point', () => {
-        globe.getCanvas().style.cursor = 'pointer';
+    globe.addLayer({
+        id: 'globe-artwork-count',
+        type: 'symbol',
+        source: 'globeArtworks',
+        filter: ['>', ['get', 'artworkCount'], 1],
+        layout: {
+            'text-field': ['to-string', ['get', 'artworkCount']],
+            'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+            'text-size': 11,
+            'text-allow-overlap': true
+        },
+        paint: {
+            'text-color': '#ffffff'
+        }
     });
 
-    globe.on('mouseleave', 'globe-artwork-point', () => {
-        globe.getCanvas().style.cursor = '';
+    ['globe-artwork-point', 'globe-artwork-count'].forEach(layerId => {
+        globe.on('mouseenter', layerId, () => {
+            globe.getCanvas().style.cursor = 'pointer';
+        });
+
+        globe.on('mouseleave', layerId, () => {
+            globe.getCanvas().style.cursor = '';
+        });
     });
 
-    globe.on('click', 'globe-artwork-point', event => {
-        const feature = event.features[0];
+    function renderArtworkCard(feature) {
         const props = feature.properties || {};
-        const coordinates = feature.geometry.coordinates.slice();
+        const thumbnailHtml = getThumbnailHtml(props.thumbnail, 'globe-popup-item-thumbnail');
+        const descriptionExcerpt = getDescriptionExcerpt(props.description, 95);
+        const descriptionHtml = descriptionExcerpt
+            ? `<p class="globe-popup-item-description">${escapeHtml(descriptionExcerpt)}</p>`
+            : '';
+        const artistText = props.year ? `${props.artist || 'Unknown'}, ${props.year}` : (props.artist || 'Unknown');
+        const moreInfoUrl = getValidUrl(props.url);
+        const moreInfoHtml = moreInfoUrl
+            ? `<a class="globe-popup-link" href="${escapeHtml(moreInfoUrl)}" target="_blank" rel="noopener noreferrer">More information</a>`
+            : '';
+
+        return `
+            <article class="globe-popup-item">
+                ${thumbnailHtml}
+                <div class="globe-popup-item-body">
+                    <h4>${escapeHtml(props.title || 'Untitled')}</h4>
+                    <div class="globe-popup-primary-meta">${escapeHtml(artistText)}</div>
+                    ${descriptionHtml}
+                    ${moreInfoHtml}
+                </div>
+            </article>
+        `;
+    }
+
+    function renderSingleArtworkPopup(feature) {
+        const props = feature.properties || {};
         const thumbnailHtml = getThumbnailHtml(props.thumbnail);
         const descriptionExcerpt = getDescriptionExcerpt(props.description);
         const descriptionHtml = descriptionExcerpt
@@ -349,23 +444,62 @@ function addGlobeLayers() {
             ? `<a class="globe-popup-link" href="${escapeHtml(moreInfoUrl)}" target="_blank" rel="noopener noreferrer">More information</a>`
             : '';
 
-        new mapboxgl.Popup({ maxWidth: '320px' })
-            .setLngLat(coordinates)
-            .setHTML(`
-                <div class="globe-popup">
-                    ${thumbnailHtml}
-                    <h3>${escapeHtml(props.title || 'Untitled')}</h3>
-                    <div class="globe-popup-primary-meta">${escapeHtml(artistText)}</div>
-                    <div class="globe-popup-location">${escapeHtml(props.location || 'Unknown')}</div>
-                    ${descriptionHtml}
-                    <div class="globe-popup-meta">
-                        <p><strong>Cluster:</strong> ${escapeHtml(props.mainCluster || 'Uncategorized')}</p>
-                    </div>
-                    ${moreInfoHtml}
+        return `
+            <div class="globe-popup">
+                ${thumbnailHtml}
+                <h3>${escapeHtml(props.title || 'Untitled')}</h3>
+                <div class="globe-popup-primary-meta">${escapeHtml(artistText)}</div>
+                <div class="globe-popup-location">${escapeHtml(props.location || 'Unknown')}</div>
+                ${descriptionHtml}
+                <div class="globe-popup-meta">
+                    <p><strong>Cluster:</strong> ${escapeHtml(props.mainCluster || 'Uncategorized')}</p>
                 </div>
-            `)
+                ${moreInfoHtml}
+            </div>
+        `;
+    }
+
+    function renderGroupPopup(group) {
+        const sortedFeatures = group.features
+            .slice()
+            .sort((a, b) => {
+                const yearA = parseYear(a.properties?.year) ?? 9999;
+                const yearB = parseYear(b.properties?.year) ?? 9999;
+                if (yearA !== yearB) return yearA - yearB;
+                return (a.properties?.title || '').localeCompare(b.properties?.title || '');
+            });
+        const location = sortedFeatures[0]?.properties?.location || 'Shared location';
+
+        return `
+            <div class="globe-popup globe-popup-group">
+                <div class="globe-popup-group-header">
+                    <h3>${sortedFeatures.length} artworks at this point</h3>
+                    <div class="globe-popup-location">${escapeHtml(location)}</div>
+                </div>
+                <div class="globe-popup-list">
+                    ${sortedFeatures.map(renderArtworkCard).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    function openArtworkPopup(event) {
+        const feature = event.features[0];
+        const props = feature.properties || {};
+        const group = groupedFeatureLookup.get(props.groupKey);
+        const coordinates = feature.geometry.coordinates.slice();
+        const popupHtml = group && group.features.length > 1
+            ? renderGroupPopup(group)
+            : renderSingleArtworkPopup(group?.features[0] || feature);
+
+        new mapboxgl.Popup({ maxWidth: '360px' })
+            .setLngLat(coordinates)
+            .setHTML(popupHtml)
             .addTo(globe);
-    });
+    }
+
+    globe.on('click', 'globe-artwork-point', openArtworkPopup);
+    globe.on('click', 'globe-artwork-count', openArtworkPopup);
 }
 
 async function loadGlobeData() {

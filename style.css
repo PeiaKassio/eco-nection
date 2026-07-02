@@ -345,6 +345,67 @@
   text-decoration: underline;
 }
 
+.globe-popup-group {
+  width: min(340px, calc(100vw - 3rem));
+}
+
+.globe-popup-group-header {
+  display: grid;
+  gap: 0.2rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(17, 24, 39, 0.1);
+}
+
+.globe-popup-list {
+  display: grid;
+  gap: 0.65rem;
+  max-height: min(360px, 58vh);
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.globe-popup-item {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: start;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+.globe-popup-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.globe-popup-item-thumbnail {
+  display: block;
+  width: 4.5rem;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  background: #e5e7eb;
+}
+
+.globe-popup-item-body {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.globe-popup-item h4 {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.22;
+  font-weight: 700;
+}
+
+.globe-popup-item-description {
+  color: #4b5563;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
 @media (min-width: 1024px) {
   .sidebar {
     width: 25%; /* Make the sidebar occupy 25% of the width in desktop mode */
