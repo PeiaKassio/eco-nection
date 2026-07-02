@@ -1,26 +1,27 @@
+mapboxgl.accessToken = 'pk.eyJ1IjoicGVpc2thc3NpbyIsImEiOiJjbTM4eHB5NHIwd2M5MmlxeGlsOTRqams5In0.hEmqLEzaR2kWC2s7Hgd-Ng';
+
 let artworkData = { type: 'FeatureCollection', features: [] };
 let topicClusters = {};
 let continentMapping = {};
 let countryPopulation = {};
 let enrichedFeatures = [];
-let globe;
+const {
+    loadSharedData,
+    normalizeText,
+    parseYear
+} = EcoData;
 
-const COUNTRY_ALIASES = {
-    "DRC (Africa leg)": "Democratic Republic of the Congo",
-    "Dead Sea region (Israel/Jordan Rift)": "Israel",
-    "Dead Sea region (Jordan/Israel)": "Israel",
-    "Tropical regions": "Other",
-    "Various exhibitions": "Other",
-    "United States Minor Outlying Islands": "Other"
-};
+const globe = new mapboxgl.Map({
+    container: 'globeMap',
+    style: 'mapbox://styles/mapbox/dark-v11',
+    center: [12, 18],
+    zoom: 1.25,
+    projection: 'globe',
+    attributionControl: false
+});
 
-function normalizeText(value) {
-    return (value || '')
-        .toString()
-        .normalize('NFD')
-        .replace(/\p{Diacritic}/gu, '')
-        .toLowerCase();
-}
+globe.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+globe.addControl(new mapboxgl.AttributionControl({ compact: true }), 'bottom-left');
 
 function escapeHtml(value) {
     return (value || '')
@@ -32,32 +33,56 @@ function escapeHtml(value) {
         .replace(/'/g, '&#039;');
 }
 
-function getCountryFromLocation(location) {
-    const rawLocation = (location || '').trim();
-    if (COUNTRY_ALIASES[rawLocation]) return COUNTRY_ALIASES[rawLocation];
-    if (continentMapping[rawLocation] || countryPopulation[rawLocation]) return rawLocation;
+function getThumbnailHtml(thumbnail) {
+    const thumbnailUrl = (thumbnail || '').toString().trim();
 
-    const lastPart = rawLocation.split(',').pop().trim();
-    return COUNTRY_ALIASES[lastPart] || lastPart || 'Other';
+    if (!/^https?:\/\/[^\s"'<>]+$/i.test(thumbnailUrl)) {
+        return '';
+    }
+
+    return `<img class="globe-popup-thumbnail" src="${escapeHtml(thumbnailUrl)}" alt="" loading="lazy" decoding="async">`;
+}
+
+function getDescriptionExcerpt(description, maxLength = 180) {
+    const normalizedDescription = (description || '').toString().trim().replace(/\s+/g, ' ');
+
+    if (!normalizedDescription) {
+        return '';
+    }
+
+    if (normalizedDescription.length <= maxLength) {
+        return normalizedDescription;
+    }
+
+    const truncated = normalizedDescription.slice(0, maxLength).trimEnd();
+    const lastSpaceIndex = truncated.lastIndexOf(' ');
+    const excerpt = lastSpaceIndex > Math.floor(maxLength * 0.6)
+        ? truncated.slice(0, lastSpaceIndex).trimEnd()
+        : truncated;
+
+    return `${excerpt}…`;
+}
+
+function getValidUrl(value) {
+    const url = (value || '').toString().trim();
+
+    return /^https?:\/\/[^\s"'<>]+$/i.test(url) ? url : '';
+}
+
+function getCountryFromLocation(location) {
+    return EcoData.getCountryFromLocation(location, continentMapping, countryPopulation);
 }
 
 function getContinentForCountry(country) {
-    return continentMapping[country] || continentMapping[country?.toLowerCase()] || 'Other';
+    return EcoData.getContinentForCountry(country, continentMapping);
 }
 
 function getArtworkClusters(feature) {
-    const topics = feature.properties?.tags?.topic || [];
-    return topics
-        .map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic)))
-        .filter(Boolean);
-}
-
-function getMainCluster(feature) {
-    return getArtworkClusters(feature)[0] || 'Uncategorized';
+    return EcoData.getArtworkClusters(feature, topicClusters);
 }
 
 function getClusterColor(cluster) {
-    return topicClusters[cluster]?.color || '#9ca3af';
+    return EcoData.getClusterColor(cluster, topicClusters);
 }
 
 function getMetricMode() {
@@ -69,9 +94,7 @@ function getMetricLabel() {
 }
 
 function normalizeValue(count, population) {
-    if (getMetricMode() !== 'perCapita') return count;
-    if (!population || population <= 0) return 0;
-    return (count / population) * 1000000;
+    return EcoData.normalizePerCapita(count, population, getMetricMode()) ?? 0;
 }
 
 function isValidPoint(feature) {
@@ -80,22 +103,7 @@ function isValidPoint(feature) {
 }
 
 function enrichFeature(feature) {
-    const country = getCountryFromLocation(feature.properties?.location);
-    const continent = getContinentForCountry(country);
-    const clusters = getArtworkClusters(feature);
-    const mainCluster = clusters[0] || 'Uncategorized';
-
-    return {
-        ...feature,
-        properties: {
-            ...feature.properties,
-            country,
-            continent,
-            clusters,
-            mainCluster,
-            mainClusterColor: getClusterColor(mainCluster)
-        }
-    };
+    return EcoData.enrichArtwork(feature, { topicClusters, continentMapping, countryPopulation });
 }
 
 function getFilteredFeatures() {
@@ -106,14 +114,14 @@ function getFilteredFeatures() {
 
     return enrichedFeatures.filter(feature => {
         const props = feature.properties || {};
-        const year = parseInt(props.year, 10);
+        const year = parseYear(props.year);
         const text = normalizeText(`${props.title} ${props.artist} ${props.location} ${props.description}`);
 
         if (!isValidPoint(feature)) return false;
         if (query && !text.includes(query)) return false;
         if (cluster && !(props.clusters || []).includes(cluster)) return false;
-        if (!Number.isNaN(fromYear) && year < fromYear) return false;
-        if (!Number.isNaN(toYear) && year > toYear) return false;
+        if (!Number.isNaN(fromYear) && year !== null && year < fromYear) return false;
+        if (!Number.isNaN(toYear) && year !== null && year > toYear) return false;
         return true;
     });
 }
@@ -212,15 +220,24 @@ function renderRanking(containerId, items) {
     }).join('');
 }
 
+function getCountryRankingData(countryData) {
+    if (getMetricMode() !== 'perCapita') return countryData;
+
+    return Object.fromEntries(
+        Object.entries(countryData).filter(([, item]) => !EcoData.isSmallPopulationBase(item.population))
+    );
+}
+
 function updateGlobe() {
     const filtered = getFilteredFeatures();
     const countryData = aggregateByCountry(filtered);
     const continentData = aggregateByContinent(filtered);
+    const countryRankingData = getCountryRankingData(countryData);
     const displayFeatures = enrichMetricValues(filtered, countryData);
 
     document.getElementById('globeArtworkCount').textContent = filtered.length;
     document.getElementById('globeCountryCount').textContent = Object.keys(countryData).length;
-    renderRanking('globeCountryRanking', countryData);
+    renderRanking('globeCountryRanking', countryRankingData);
     renderRanking('globeContinentRanking', continentData);
 
     const source = globe.getSource('globeArtworks');
@@ -249,6 +266,13 @@ function attachEvents() {
         document.getElementById(id).addEventListener('change', updateGlobe);
     });
 
+    document.querySelectorAll('input[name="exploreView"]').forEach(input => {
+        input.addEventListener('change', event => {
+            const projection = event.target.value === 'map' ? 'mercator' : 'globe';
+            globe.setProjection(projection);
+        });
+    });
+
     document.querySelectorAll('input[name="globeMetric"]').forEach(input => {
         input.addEventListener('change', updateGlobe);
     });
@@ -259,6 +283,11 @@ function attachEvents() {
         document.getElementById('globeYearFrom').value = '';
         document.getElementById('globeYearTo').value = '';
         document.querySelector('input[name="globeMetric"][value="total"]').checked = true;
+        const globeView = document.querySelector('input[name="exploreView"][value="globe"]');
+        if (globeView) {
+            globeView.checked = true;
+            globe.setProjection('globe');
+        }
         updateGlobe();
     });
 }
@@ -309,18 +338,30 @@ function addGlobeLayers() {
         const feature = event.features[0];
         const props = feature.properties || {};
         const coordinates = feature.geometry.coordinates.slice();
-        const metricValue = Number(props.countryMetric || 0);
-        const metricDisplay = getMetricMode() === 'perCapita' ? metricValue.toFixed(3) : metricValue.toFixed(0);
+        const thumbnailHtml = getThumbnailHtml(props.thumbnail);
+        const descriptionExcerpt = getDescriptionExcerpt(props.description);
+        const descriptionHtml = descriptionExcerpt
+            ? `<p class="globe-popup-description">${escapeHtml(descriptionExcerpt)}</p>`
+            : '';
+        const artistText = props.year ? `${props.artist || 'Unknown'}, ${props.year}` : (props.artist || 'Unknown');
+        const moreInfoUrl = getValidUrl(props.url);
+        const moreInfoHtml = moreInfoUrl
+            ? `<a class="globe-popup-link" href="${escapeHtml(moreInfoUrl)}" target="_blank" rel="noopener noreferrer">More information</a>`
+            : '';
 
         new mapboxgl.Popup({ maxWidth: '320px' })
             .setLngLat(coordinates)
             .setHTML(`
                 <div class="globe-popup">
+                    ${thumbnailHtml}
                     <h3>${escapeHtml(props.title || 'Untitled')}</h3>
-                    <p><strong>Artist:</strong> ${escapeHtml(props.artist || 'Unknown')}</p>
-                    <p><strong>Location:</strong> ${escapeHtml(props.location || 'Unknown')}</p>
-                    <p><strong>Cluster:</strong> ${escapeHtml(props.mainCluster || 'Uncategorized')}</p>
-                    <p><strong>Country metric:</strong> ${metricDisplay} ${getMetricLabel()}</p>
+                    <div class="globe-popup-primary-meta">${escapeHtml(artistText)}</div>
+                    <div class="globe-popup-location">${escapeHtml(props.location || 'Unknown')}</div>
+                    ${descriptionHtml}
+                    <div class="globe-popup-meta">
+                        <p><strong>Cluster:</strong> ${escapeHtml(props.mainCluster || 'Uncategorized')}</p>
+                    </div>
+                    ${moreInfoHtml}
                 </div>
             `)
             .addTo(globe);
@@ -328,17 +369,7 @@ function addGlobeLayers() {
 }
 
 async function loadGlobeData() {
-    const [artworkResponse, topicResponse, continentResponse, populationResponse] = await Promise.all([
-        fetch('data/artwork-data.json'),
-        fetch('data/topicClusters.json'),
-        fetch('data/continentMapping.json'),
-        fetch('data/countryPopulation.json')
-    ]);
-
-    artworkData = await artworkResponse.json();
-    topicClusters = await topicResponse.json();
-    continentMapping = await continentResponse.json();
-    countryPopulation = await populationResponse.json();
+    ({ artworkData, topicClusters, continentMapping, countryPopulation } = await loadSharedData());
     enrichedFeatures = (artworkData.features || []).map(enrichFeature);
 
     populateClusterFilter();
@@ -346,47 +377,19 @@ async function loadGlobeData() {
     updateGlobe();
 }
 
-async function loadMapboxToken() {
-    const response = await fetch('assets/js/script.js');
-    const scriptText = await response.text();
-    const match = scriptText.match(/mapboxgl\.accessToken\s*=\s*['"]([^'"]+)['"]/);
-    if (!match) throw new Error('Mapbox token not found in assets/js/script.js');
-    return match[1];
-}
-
-async function initializeGlobe() {
-    mapboxgl.accessToken = await loadMapboxToken();
-
-    globe = new mapboxgl.Map({
-        container: 'globeMap',
-        style: 'mapbox://styles/mapbox/dark-v11',
-        center: [12, 18],
-        zoom: 1.25,
-        projection: 'globe',
-        attributionControl: false
+globe.on('style.load', () => {
+    globe.setFog({
+        color: 'rgb(22, 32, 45)',
+        'high-color': 'rgb(36, 92, 96)',
+        'horizon-blend': 0.18,
+        'space-color': 'rgb(7, 10, 18)',
+        'star-intensity': 0.35
     });
+});
 
-    globe.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
-    globe.addControl(new mapboxgl.AttributionControl({ compact: true }), 'bottom-left');
-
-    globe.on('style.load', () => {
-        globe.setFog({
-            color: 'rgb(22, 32, 45)',
-            'high-color': 'rgb(36, 92, 96)',
-            'horizon-blend': 0.18,
-            'space-color': 'rgb(7, 10, 18)',
-            'star-intensity': 0.35
-        });
+globe.on('load', () => {
+    addGlobeLayers();
+    loadGlobeData().catch(error => {
+        document.getElementById('globeCountryRanking').innerHTML = `<div class="alert alert-error">Could not load globe data: ${error.message}</div>`;
     });
-
-    globe.on('load', () => {
-        addGlobeLayers();
-        loadGlobeData().catch(error => {
-            document.getElementById('globeCountryRanking').innerHTML = `<div class="alert alert-error">Could not load globe data: ${error.message}</div>`;
-        });
-    });
-}
-
-initializeGlobe().catch(error => {
-    document.getElementById('globeCountryRanking').innerHTML = `<div class="alert alert-error">Could not initialize globe: ${error.message}</div>`;
 });

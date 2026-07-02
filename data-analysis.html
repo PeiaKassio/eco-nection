@@ -14,8 +14,7 @@
     <nav class="navbar bg-base-300">
         <div class="navbar-start">
             <ul class="menu menu-horizontal px-1 gap-x-12">
-                <li><a class="btn btn-primary" href="index.html">Map</a></li>
-                <li><a class="btn btn-primary" href="globe.html">Globe</a></li>
+                <li><a class="btn btn-primary" href="index.html">Explore</a></li>
                 <li><a class="btn btn-primary" href="data-analysis.html">Data</a></li>
                 <li><a class="btn btn-primary" href="submit-artwork.html">Submit</a></li>
             </ul>
@@ -52,7 +51,8 @@
                 </section>
 
                 <section id="topics-by-country" class="mb-8 chart-container">
-                    <h3 id="countryChartTitle" class="text-2xl font-semibold mb-4">Number of Topic Clusters by Country</h3>
+                    <h3 id="countryChartTitle" class="text-2xl font-semibold mb-2">Number of Topic Clusters by Country</h3>
+                    <p id="countryChartPopulationNote" class="text-sm opacity-75 mb-4 hidden">Countries/territories below 1M population are excluded from this per-capita chart to keep the visualization readable.</p>
                     <div class="w-[800px]">
                         <div id="countryChart" class="plotly-chart"></div>
                     </div>
@@ -73,6 +73,7 @@
         </div>
     </main>
 
+    <script src="assets/js/shared-data.js"></script>
     <script src="assets/js/data-analysis.js"></script>
 </body>
 </html>

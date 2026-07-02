@@ -9,27 +9,11 @@ let selectedContinent = [];
 let selectedCountry = [];
 let selectedTopics = [];
 let selectedMetric = 'total';
-
-const COUNTRY_ALIASES = {
-    "DRC (Africa leg)": "Democratic Republic of the Congo",
-    "Dead Sea region (Israel/Jordan Rift)": "Israel",
-    "Dead Sea region (Jordan/Israel)": "Israel",
-    "Tropical regions": "Other",
-    "Various exhibitions": "Other",
-    "United States Minor Outlying Islands": "Other"
-};
+const { loadSharedData, normalizeText, parseYear } = EcoData;
 
 // -----------------------------
 // Utils für Suche & Debounce
 // -----------------------------
-function normalizeStr(s) {
-  return (s || "")
-    .toString()
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    .toLowerCase();
-}
-
 function debounce(fn, wait = 120) {
   let t;
   return (...args) => {
@@ -39,24 +23,15 @@ function debounce(fn, wait = 120) {
 }
 
 function getCountryFromLocation(location) {
-    const rawLocation = (location || "").trim();
-
-    if (COUNTRY_ALIASES[rawLocation]) return COUNTRY_ALIASES[rawLocation];
-    if (continentMapping[rawLocation] || countryPopulation[rawLocation]) return rawLocation;
-
-    const lastPart = rawLocation.split(",").pop().trim();
-    return COUNTRY_ALIASES[lastPart] || lastPart || "Other";
+    return EcoData.getCountryFromLocation(location, continentMapping, countryPopulation);
 }
 
 function getContinentForCountry(country) {
-    return continentMapping[country] || continentMapping[country?.toLowerCase()] || "Other";
+    return EcoData.getContinentForCountry(country, continentMapping);
 }
 
 function getArtworkClusters(artwork) {
-    const topics = artwork.properties.tags?.topic || [];
-    return topics
-        .map(topic => Object.keys(topicClusters).find(cluster => topicClusters[cluster].topics.includes(topic)))
-        .filter(Boolean);
+    return EcoData.getArtworkClusters(artwork, topicClusters);
 }
 
 function getMetricLabel() {
@@ -74,12 +49,19 @@ function updateChartTitles() {
     document.getElementById('topicClustersOverTimeTitle').textContent = perCapita
         ? 'Topic Clusters per 1M People Over Time'
         : 'Change of Topic Clusters Over Time';
+
+    const countryChartPopulationNote = document.getElementById('countryChartPopulationNote');
+    if (countryChartPopulationNote) {
+        countryChartPopulationNote.classList.toggle('hidden', !perCapita);
+    }
 }
 
 function normalizeValue(count, population) {
-    if (selectedMetric !== 'perCapita') return count;
-    if (!population || population <= 0) return null;
-    return (count / population) * 1000000;
+    return EcoData.normalizePerCapita(count, population, selectedMetric);
+}
+
+function shouldIncludeCountryInChart(country) {
+    return selectedMetric !== 'perCapita' || !EcoData.isSmallPopulationBase(countryPopulation[country]);
 }
 
 function sumPopulation(countries) {
@@ -93,7 +75,7 @@ function refreshCountryListVisibility() {
   const countrySelect = document.getElementById('countrySelect');
   if (!countrySelect) return;
 
-  const query = normalizeStr(document.getElementById('countrySearch')?.value?.trim() || "");
+  const query = normalizeText(document.getElementById('countrySearch')?.value?.trim() || "");
 
   // aktuell gewählte Kontinente (inkl. "all")
   const continents = Array.from(document.getElementById('continentSelect').selectedOptions)
@@ -116,7 +98,7 @@ function refreshCountryListVisibility() {
       continents.includes('all') ||
       continents.includes(continent);
 
-    const matchesQuery = query === "" || normalizeStr(opt.text).includes(query);
+    const matchesQuery = query === "" || normalizeText(opt.text).includes(query);
 
     const visible = matchesContinent && matchesQuery;
 
@@ -140,26 +122,7 @@ function setupCountrySearch() {
 // Daten laden
 async function loadData() {
     try {
-        // JSON-Dateien aus dem 'data'-Ordner laden
-        artworks = await fetch('data/artwork-data.json').then(res => {
-            if (!res.ok) throw new Error('Failed to load artwork-data.json');
-            return res.json();
-        });
-
-        topicClusters = await fetch('data/topicClusters.json').then(res => {
-            if (!res.ok) throw new Error('Failed to load topicClusters.json');
-            return res.json();
-        });
-
-        continentMapping = await fetch('data/continentMapping.json').then(res => {
-            if (!res.ok) throw new Error('Failed to load continentMapping.json');
-            return res.json();
-        });
-
-        countryPopulation = await fetch('data/countryPopulation.json').then(res => {
-            if (!res.ok) throw new Error('Failed to load countryPopulation.json');
-            return res.json();
-        });
+        ({ artworkData: artworks, topicClusters, continentMapping, countryPopulation } = await loadSharedData());
 
         console.log("JSON files loaded successfully");
         initializeFilters();
@@ -219,16 +182,16 @@ function initializeFilters() {
         updateCharts();
     });
 
-    countrySelect.addEventListener('change', () => { 
-        deselectAllOption(countrySelect); 
-        applyFilters(); 
-        updateCharts(); 
+    countrySelect.addEventListener('change', () => {
+        deselectAllOption(countrySelect);
+        applyFilters();
+        updateCharts();
     });
 
-    topicClusterSelect.addEventListener('change', () => { 
-        deselectAllOption(topicClusterSelect); 
-        applyFilters(); 
-        updateCharts(); 
+    topicClusterSelect.addEventListener('change', () => {
+        deselectAllOption(topicClusterSelect);
+        applyFilters();
+        updateCharts();
     });
 
     document.querySelectorAll('input[name="metricMode"]').forEach(input => {
@@ -289,14 +252,6 @@ function updateCharts() {
 }
 
 // Hilfsfunktion für Farben
-function getClusterColors() {
-    let clusterColors = {};
-    Object.keys(topicClusters).forEach(cluster => {
-        clusterColors[cluster] = topicClusters[cluster].color;
-    });
-    return clusterColors;
-}
-
 // Zentrales Plotly-Layout für alle Diagramme
 const plotlyLayout = {
     barmode: 'stack',
@@ -342,7 +297,7 @@ function filterArtworks(artworks) {
 // Themencluster nach Land
 function updateCountryChart() {
     let countryData = {};
-    let clusterColors = getClusterColors();
+    let clusterColors = EcoData.getClusterColors(topicClusters);
     let filteredArtworks = filterArtworks(artworks);
 
     filteredArtworks.forEach(artwork => {
@@ -356,33 +311,51 @@ function updateCountryChart() {
         });
     });
 
+    const visibleCountries = Object.keys(countryData).filter(shouldIncludeCountryInChart);
+
+    let maxDisplayedStackValue = 0;
+    const countryStackTotals = Object.fromEntries(visibleCountries.map(country => [country, 0]));
+
     let traces = Object.keys(clusterColors).map(cluster => ({
-        x: Object.keys(countryData),
-        y: Object.keys(countryData).map(country => normalizeValue(countryData[country][cluster] || 0, countryPopulation[country])),
+        x: visibleCountries,
+        y: visibleCountries.map(country => {
+            const value = normalizeValue(countryData[country][cluster] || 0, countryPopulation[country]);
+            countryStackTotals[country] += value;
+            return value;
+        }),
         name: cluster,
         type: 'bar',
         marker: { color: clusterColors[cluster] },
         hovertemplate: `%{x}<br>${cluster}: %{y:.3f}<extra></extra>`
     }));
 
+    if (selectedMetric === 'perCapita') {
+        maxDisplayedStackValue = Math.max(0, ...Object.values(countryStackTotals));
+    }
+
+    const yaxis = { ...plotlyLayout.yaxis, title: getMetricLabel() };
+    if (selectedMetric === 'perCapita') {
+        yaxis.range = [0, maxDisplayedStackValue > 0 ? maxDisplayedStackValue * 1.2 : 1];
+    }
+
     Plotly.newPlot('countryChart', traces, {
         ...plotlyLayout,
-        yaxis: { ...plotlyLayout.yaxis, title: getMetricLabel() }
+        yaxis
     });
 }
 
 // Themencluster über die Zeit (Liniendiagramm)
 function updateTopicClustersOverTime() {
     let timeData = {};
-    let clusterColors = getClusterColors();
+    let clusterColors = EcoData.getClusterColors(topicClusters);
     let filteredArtworks = filterArtworks(artworks);
     let filteredCountries = new Set(filteredArtworks.map(artwork => getCountryFromLocation(artwork.properties.location)));
     let populationBase = sumPopulation(filteredCountries);
 
     // Jahre sammeln & Themen zuordnen
     filteredArtworks.forEach(artwork => {
-        let year = parseInt(artwork.properties.year, 10);
-        if (isNaN(year)) return;
+        let year = parseYear(artwork.properties.year);
+        if (year === null) return;
 
         let cluster = getArtworkClusters(artwork);
 
@@ -436,7 +409,7 @@ function updateTopicClustersOverTime() {
 // Themencluster nach Kontinent
 function updateTopicsByContinent() {
     let continentData = {};
-    let clusterColors = getClusterColors();
+    let clusterColors = EcoData.getClusterColors(topicClusters);
     let filteredArtworks = filterArtworks(artworks);
 
     filteredArtworks.forEach(artwork => {
@@ -474,7 +447,7 @@ function updateTopicsByContinent() {
 function updateCoOccurrenceNetwork() {
     let nodes = [];
     let edges = [];
-    let clusterColors = getClusterColors();
+    let clusterColors = EcoData.getClusterColors(topicClusters);
     let filteredArtworks = filterArtworks(artworks);
     let nodeSet = new Set();
 
