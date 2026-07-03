@@ -1245,69 +1245,6 @@
     "type": "Feature",
     "geometry": {
       "type": "Point",
-      "coordinates": [18.0716, 59.3293]
-    },
-    "properties": {
-      "title": "Climate Chronograph",
-      "description": "Plant and water installation that makes climate and water level data tangible in the urban space over time.",
-      "artist": "Johan Ferner Ström",
-      "type": "Installation",
-      "location": "Stockholm, Sweden",
-      "year": 2019,
-      "tags": {
-        "topic": ["Climate Change", "Environmental Awareness", "Urban Ecology"],
-        "artform": ["Installation", "Public Art", "Eco-Art"]
-      },
-      "url": "https://www.johanstrom.com/public-projects",
-      "thumbnail": "https://images.squarespace-cdn.com/content/v1/5aa1a3a8f93fd44d3b7f1b8c/1560000000000-climate-chronograph.jpg"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [10.7522, 59.9139]
-    },
-    "properties": {
-      "title": "Climate Ribbon Oslo",
-      "description": "Participatory installation made of recycled textiles, collecting and displaying individual climate pledges.",
-      "artist": "Local ensemble with municipal partners",
-      "type": "Installation",
-      "location": "Oslo, Norway",
-      "year": 2022,
-      "tags": {
-        "topic": ["Climate Action", "Environmental Awareness", "Sustainable Practices"],
-        "artform": ["Installation", "Public Art", "Eco-Art"]
-      },
-      "url": "https://forecastpublicart.org/northern-regeneration/",
-      "thumbnail": "https://forecastpublicart.org/wp-content/uploads/2020/02/Norway-public-art-hero-1200x630.jpg"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [151.2093, -33.8688]
-    },
-    "properties": {
-      "title": "Energy Belt",
-      "description": "Large-scale, solar-powered light installation making renewable energy visible in the urban space.",
-      "artist": "Craig Walsh",
-      "type": "Light Installation",
-      "location": "Sydney, Australia",
-      "year": 2010,
-      "tags": {
-        "topic": ["Renewable Energy", "Sustainability", "Environmental Awareness"],
-        "artform": ["Light Art", "Installation", "Eco-Art"]
-      },
-      "url": "https://landartgenerator.org/blagi/archives/5807",
-      "thumbnail": "https://landartgenerator.org/blagi/wp-content/uploads/2018/06/solar-public-art.jpg"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
       "coordinates": [144.9631, -37.8136]
     },
     "properties": {
@@ -1341,8 +1278,8 @@
         "topic": ["Recycling", "Biodiversity", "Education"],
         "artform": ["Public Art", "Eco-Art", "Community"]
       },
-      "url": "https://www.africancentreforcities.net/",
-      "thumbnail": "https://www.africancentreforcities.net/wp-content/uploads/2018/05/acc-og.jpg"
+      "url": "https://journals.openedition.org/anthrovision/538",
+      "thumbnail": "https://journals.openedition.org/anthrovision/docannexe/image/538/img-18.jpg"
     }
   },
   {
@@ -1385,27 +1322,6 @@
       },
       "url": "https://www.studioroosegaarde.net/project/smog-free-project",
       "thumbnail": "https://www.studioroosegaarde.net/files/og/smog-free-project-og.jpg"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [121.4737, 31.2304]
-    },
-    "properties": {
-      "title": "Rising Sea",
-      "description": "Large-scale LED and data installation visualizing sea level rise trends in the urban environment.",
-      "artist": "Tigrelab + local partners",
-      "type": "Media Installation",
-      "location": "Shanghai, China",
-      "year": 2019,
-      "tags": {
-        "topic": ["Sea Level Rise", "Climate Change", "Digital Technology"],
-        "artform": ["Installation", "Public Art", "Eco-Art"]
-      },
-      "url": "https://www.uapcompany.com/projects/chain-of-love",
-      "thumbnail": "https://www.uapcompany.com/assets/og-default.jpg"
     }
   },
   {
@@ -1467,7 +1383,7 @@
         "topic": ["Air Pollution", "Climate Change", "Environmental Awareness", "Public Health"],
         "artform": ["Installation", "Public Art", "Eco-Art"]
       },
-      "url": "https://www.climart.info",
+      "url": "https://landartgenerator.org/blagi/archives/5807",
       "thumbnail": "https://landartgenerator.org/blagi/wp-content/uploads/2018/06/pollution-pods.jpg"
     }
   },
@@ -2602,34 +2518,6 @@
                         "Mural Art"
                     ]
                 }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    151.2093,
-                    -33.8688
-                ]
-            },
-            "properties": {
-                "title": "Bleached Coral",
-                "description": "An installation addressing coral bleaching.",
-                "artist": "Emily Clark",
-                "type": "Installation",
-                "location": "Sydney, Australia",
-                "year": 2018,
-                "tags": {
-                    "topic": [
-                        "Coral Reef",
-                        "Climate Change"
-                    ],
-                    "artform": [
-                        "Installation"
-                    ]
-                },
-                "thumbnail": ""
             }
         },
         {
