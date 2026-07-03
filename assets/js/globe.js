@@ -73,12 +73,13 @@ function getValidUrl(value) {
 
 function getPrimaryArtform(props = {}) {
     const artforms = props.tags?.artform;
+    const fallbackType = (props.type || '').toString().split('/')[0].trim();
 
     if (Array.isArray(artforms)) {
-        return (artforms[0] || '').toString().trim();
+        return (artforms[0] || '').toString().trim() || fallbackType;
     }
 
-    return (artforms || '').toString().split(',')[0].trim();
+    return (artforms || '').toString().split(',')[0].trim() || fallbackType;
 }
 
 function getCountryFromLocation(location) {
@@ -466,7 +467,7 @@ function addGlobeLayers() {
         const clusterText = props.mainCluster || 'Uncategorized';
         const artformText = getPrimaryArtform(props);
         const artformHtml = artformText
-            ? `<div class="globe-popup-artform"><strong>Art form:</strong> ${escapeHtml(artformText)}</div>`
+            ? `<div class="globe-popup-artform"><strong>Type:</strong> ${escapeHtml(artformText)}</div>`
             : '';
         const moreInfoUrl = getValidUrl(props.url);
         const moreInfoHtml = moreInfoUrl
@@ -509,7 +510,7 @@ function addGlobeLayers() {
         const artistText = props.year ? `${props.artist || 'Unknown'}, ${props.year}` : (props.artist || 'Unknown');
         const artformText = getPrimaryArtform(props);
         const artformHtml = artformText
-            ? `<p><strong>Art form:</strong> ${escapeHtml(artformText)}</p>`
+            ? `<div class="globe-popup-artform"><strong>Type:</strong> ${escapeHtml(artformText)}</div>`
             : '';
         const moreInfoUrl = getValidUrl(props.url);
         const moreInfoHtml = moreInfoUrl
@@ -522,9 +523,9 @@ function addGlobeLayers() {
                 <h3>${escapeHtml(props.title || 'Untitled')}</h3>
                 <div class="globe-popup-primary-meta">${escapeHtml(artistText)}</div>
                 <div class="globe-popup-location">${escapeHtml(props.location || 'Unknown')}</div>
+                ${artformHtml}
                 ${descriptionHtml}
                 <div class="globe-popup-meta">
-                    ${artformHtml}
                     <p><strong>Cluster:</strong> ${escapeHtml(props.mainCluster || 'Uncategorized')}</p>
                 </div>
                 ${moreInfoHtml}
