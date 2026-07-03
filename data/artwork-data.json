@@ -1328,27 +1328,6 @@
     "type": "Feature",
     "geometry": {
       "type": "Point",
-      "coordinates": [174.7633, -36.8485]
-    },
-    "properties": {
-      "title": "Watershed",
-      "description": "Eco-sound installation making runoff and water quality data audible, raising awareness about urban water ecology.",
-      "artist": "Robin Fox + local collaborators",
-      "type": "Sound Installation",
-      "location": "Auckland, New Zealand",
-      "year": 2018,
-      "tags": {
-        "topic": ["Water Conservation", "Urban Ecology", "Environmental Awareness"],
-        "artform": ["Sound Art", "Installation", "Eco-Art"]
-      },
-      "url": "https://www.aucklandnz.com/",
-      "thumbnail": "https://www.aucklandnz.com/themes/custom/aat/assets/images/og-default.jpg"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
       "coordinates": [31.1342, -29.8587]
     },
     "properties": {
@@ -2170,6 +2149,27 @@
             },
             "url": "https://cambodianess.com/article/on-behalf-of-nature-three-artists-make-the-case-to-save-the-earth-and-all-living-things", 
             "thumbnail": ""
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [104.8917, 11.5564]
+        },
+        "properties": {
+            "title": "Moon",
+            "description": "A mixed-media artwork by Cambodian artist Sou Sophy, combining plant forms, insects, a cactus and surrounding social-media symbols to reflect on nature, attention and contemporary environmental awareness.",
+            "artist": "Sou Sophy",
+            "type": "Mixed Media",
+            "location": "Phnom Penh, Cambodia",
+            "year": 2024,
+            "tags": {
+                "topic": ["Environmental Awareness", "Human-Nature Interaction", "Sustainability"],
+                "artform": ["Mixed Media", "Relief Art"]
+            },
+            "url": "https://whitecanvas.pro/artwork/moon_sou-sophy/",
+            "thumbnail": "https://whitecanvas.pro/wp-content/uploads/2025/01/7.-%E1%9E%9F%E1%9F%8A%E1%9E%BC%E2%80%8B-%E1%9E%9F%E1%9E%BB%E1%9E%97%E1%9E%B8_Sou-Sophy-600x338.png"
         }
     }, 
    { "type": "Feature",
