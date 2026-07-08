@@ -4784,6 +4784,66 @@
                 "url": "https://www.new-east-archive.org/maria-sviridova-curated-russia-z",
                 "thumbnail": "https://www.new-east-archive.org/images/uploads/galleries/VIP_NATURE_(3).jpg"
             }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [16.36, 48.2038]
+            },
+            "properties": {
+                "title": "Das Ende der Welt",
+                "description": "Singer-songwriter piece written in response to the climate crisis, encouraging a hopeful vision of ecological transformation rather than climate pessimism. First presented at the ERDgespräche 2024.",
+                "artist": "Laura Braun",
+                "type": "Song",
+                "location": "MuseumsQuartier, Vienna, Austria",
+                "year": 2024,
+                "tags": {
+                    "topic": [
+                        "Climate Change",
+                        "Climate Action",
+                        "Environmental Awareness",
+                        "Environmental Reflection",
+                        "Sustainability"
+                    ],
+                    "artform": [
+                        "Music"
+                    ]
+                },
+                "url": "https://laurabraunmusic.de/erdgespraeche-2024-das-ende-der-welt",
+                "thumbnail": "https://laurabraunmusic.de/_cms/media/erdgesprche-abschluss.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [12.5683, 55.6761]
+            },
+            "properties": {
+                "title": "Envirowoman",
+                "description": "Spoken-word performance addressing environmental protection, climate action, and social justice. Through poetry and performance, the artist encourages audiences to engage in conversations about sustainability and inspire collective action.",
+                "artist": "Freja Refning Hansen",
+                "type": "Performance",
+                "location": "Copenhagen, Denmark",
+                "year": 2024,
+                "tags": {
+                    "topic": [
+                        "Climate Change",
+                        "Climate Action",
+                        "Environmental Awareness",
+                        "Sustainability",
+                        "Social Justice"
+                    ],
+                    "artform": [
+                        "Performance",
+                        "Poetry",
+                        "Spoken Word"
+                    ]
+                },
+                "url": "https://erdgespraeche.net/",
+                "thumbnail": "https://erdgespraeche.net/wp-content/uploads/2025/08/freja.png"
+            }
         }
     ]
 }
