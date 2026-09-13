@@ -4679,20 +4679,32 @@
         },
         {
             "type": "Feature",
-            "geometry": { "type": "Point", "coordinates": [29.1283, 40.8741] },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [30.0817969, 37.7188067]
+            },
             "properties": {
-                "title": "SALTWATER: A Theory of Thought Forms",
-                "description": "The 14th Istanbul Biennial unfolded across sites from the Black Sea to the Sea of Marmara, using saltwater, waves, currents and underwater depths as a framework for installations, films, drawings, research and collaborations. The exhibition linked artistic thinking with oceans, energy transfer and ecological interdependence.",
-                "artist": "14th Istanbul Biennial / Carolyn Christov-Bakargiev",
-                "type": "Exhibition",
-                "location": "Istanbul and Princes' Islands, Turkey",
-                "year": 2015,
+                "title": "Wooden Wildlife Sculptures at Lisinia Nature",
+                "description": "A series of large wooden animal sculptures created for the Lisinia Nature Project, including an eagle, bull, wolf, lynx, horse and shark. Constructed from pieces of wood and carved timber, the works draw attention to wildlife, nature conservation and the relationship between humans and the natural environment.",
+                "artist": "Durul Bakan",
+                "type": "Sculpture",
+                "location": "Lisinia Nature Project, Karakent, Burdur, Turkey",
+                "year": null,
                 "tags": {
-                    "topic": ["Water Conservation", "Marine Ecosystems", "Environmental Reflection", "Climate Change", "Human-Nature Interaction"],
-                    "artform": ["Exhibition", "Installation", "Research-based Art"]
+                    "topic": [
+                        "Biodiversity",
+                        "Wildlife",
+                        "Conservation",
+                        "Environmental Awareness"
+                    ],
+                    "artform": [
+                        "Sculpture",
+                        "Eco-Art",
+                        "Public Art"
+                    ]
                 },
-                "url": "https://south-south.art/biennale/14th-istanbul-biennial-saltwater-a-theory-of-thought-forms/",
-                "thumbnail": "https://south-south.art/wp-content/uploads/2021/01/Screenshot-2015-09-25-11.32.31.png"
+                "url": "https://okuldisiogrenme.eba.gov.tr/mekan-detay/burdur-lisinia-doga-tabiat-parki-198",
+                "thumbnail": ""
             }
         },
         {
@@ -4714,6 +4726,167 @@
             }
         },
         {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [28.9784, 41.0082] },
+            "properties": {
+                "title": "Monochrome",
+                "description": "An installation commissioned for the 16th Istanbul Biennial that responds to the destruction of water buffalo habitat in Istanbul, linking airport construction, bridge building and northern forest development to habitat loss and the displacement of endemic water buffaloes.",
+                "artist": "Ozan Atalan",
+                "type": "Installation",
+                "location": "Istanbul, Turkey",
+                "year": 2019,
+                "tags": {
+                    "topic": ["Habitat Loss", "Urbanization", "Biodiversity", "Environmental Justice"],
+                    "artform": ["Installation", "Video Art", "Sculpture"]
+                },
+                "url": "https://bienal.iksv.org/en/bienal-artists/ozan-atalan",
+                "thumbnail": "https://bienal.iksv.org/i/content/11236_1_Ozan-Atalan-2.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [28.9784, 41.0082] },
+            "properties": {
+                "title": "Lost waters",
+                "description": "A three-dimensional wooden relief by Elmas Deniz marking disappeared rivers and creeks across Istanbul. The work connects urban development, ecological memory and the human-driven transformation of water systems and landscapes.",
+                "artist": "Elmas Deniz",
+                "type": "Relief / Installation",
+                "location": "Istanbul, Turkey",
+                "year": 2019,
+                "tags": {
+                    "topic": ["Water Management", "Urban Ecology", "Landscape Change", "Environmental Memory"],
+                    "artform": ["Relief Art", "Installation", "Mixed Media"]
+                },
+                "url": "https://bienal.iksv.org/en/bienal-artists/elmas-deniz",
+                "thumbnail": "https://bienal.iksv.org/i/content/11264_1_Elmas-Deniz.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [28.9784, 41.0082] },
+            "properties": {
+                "title": "Wallowland / Çamuralem",
+                "description": "A site-responsive project for the 17th Istanbul Biennial tracing the relationships between Istanbul's water buffaloes, herders and threatened wetland ecologies. Developed with local collaborators, it combines installation, tastings, sound and a Water Buffalo Festival to support ecological and cultural heritage.",
+                "artist": "Cooking Sections",
+                "type": "Installation / Performance",
+                "location": "Istanbul, Turkey",
+                "year": 2022,
+                "tags": {
+                    "topic": ["Wetlands", "Biodiversity", "Urbanization", "Food Systems", "Environmental Awareness"],
+                    "artform": ["Installation", "Performance", "Public Art"]
+                },
+                "url": "https://bienal.iksv.org/en/17b-artists/cooking-sections",
+                "thumbnail": "https://bienal.iksv.org/i/content/21937_1_Cooking Section.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [28.9784, 41.0082] },
+            "properties": {
+                "title": "The Tipping Hall",
+                "description": "A multimedia installation and video sculpture examining waste handling, recycling infrastructures and the social dimensions of what is designated as waste, including footage shot in one of Turkey's largest waste recycling facilities.",
+                "artist": "Eloise Hawser",
+                "type": "Video Sculpture / Installation",
+                "location": "Istanbul, Turkey",
+                "year": 2019,
+                "tags": {
+                    "topic": ["Waste Management", "Recycling", "Consumerism", "Industrial Ecology"],
+                    "artform": ["Video Art", "Installation", "Sculpture"]
+                },
+                "url": "https://bienal.iksv.org/en/bienal-artists/eloise-hawser",
+                "thumbnail": "https://bienal.iksv.org/i/content/11286_1_still_eloise_hawser.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [29.1283, 40.8741] },
+            "properties": {
+                "title": "The Most Beautiful of All Mothers (I)",
+                "description": "A site-specific installation made for Büyükada during the 14th Istanbul Biennial. Life-size fiberglass animals carried forms made from organic waste and inert materials weathered by seawater, connecting the Anthropocene, waste, ecological fragility and the shoreline landscape of Istanbul.",
+                "artist": "Adrián Villar Rojas",
+                "type": "Sculpture / Installation",
+                "location": "Büyükada, Istanbul, Turkey",
+                "year": 2015,
+                "tags": {
+                    "topic": ["Anthropocene", "Waste Management", "Marine Ecosystems", "Environmental Reflection", "Human-Nature Interaction"],
+                    "artform": ["Sculpture", "Installation", "Site-specific Art"]
+                },
+                "url": "https://www.istanbulmodern.org/en/collection/the-most-beautiful-of-all-mothers-i",
+                "thumbnail": "https://www.istanbulmodern.org/contents/piclib/collection/adrian-villar-rojas-43378-6846182.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [28.9784, 41.0082] },
+            "properties": {
+                "title": "The Persistent Weeds of Istanbul / Resilient Marine Life of Istanbul",
+                "description": "A cabinet-based installation presenting plant species that survive Istanbul's intense urbanization alongside sea creatures still inhabiting the Bosphorus. The work uses natural-history display methods to foreground urban ecology, biodiversity and environmental resistance.",
+                "artist": "Mark Dion",
+                "type": "Installation / Watercolour Drawings",
+                "location": "Istanbul, Turkey",
+                "year": 2017,
+                "tags": {
+                    "topic": ["Urban Ecology", "Biodiversity", "Marine Ecosystems", "Urbanization", "Environmental Awareness"],
+                    "artform": ["Installation", "Drawing", "Research-based Art"]
+                },
+                "url": "https://artsandculture.google.com/asset/the-persistent-weeds-of-istanbul-resilient-marine-life-of-istanbul-mark-dion/mwEzM2283Oircg",
+                "thumbnail": "https://tohumagazine.com/sites/default/files/IKSV_15B_Sahirugureren_002.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [28.9784, 41.0082] },
+            "properties": {
+                "title": "Eleven suns",
+                "description": "An installation by Müge Yılmaz reflecting on human, plant and animal life, devotion, scarcity and the Anthropocene after capitalism, culture and nature have expired. The work brings together cave, temple and shrine references with hybrid plant-human-animal drawings and speculative future ruins.",
+                "artist": "Müge Yılmaz",
+                "type": "Installation",
+                "location": "Istanbul, Turkey",
+                "year": 2019,
+                "tags": {
+                    "topic": ["Anthropocene", "Scarcity", "Biodiversity", "Human-Nature Interaction", "Environmental Reflection"],
+                    "artform": ["Installation", "Sculpture", "Drawing"]
+                },
+                "url": "https://bienal.iksv.org/en/bienal-artists/muge-yilmaz",
+                "thumbnail": "https://bienal.iksv.org/i/content/11195_1_Muge-Yilmaz.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [28.9784, 41.0082] },
+            "properties": {
+                "title": "Regeneration / Earth Cycle Trance, led by Starhawk",
+                "description": "A rug and film installation by Suzanne Husky for the 16th Istanbul Biennial. The works present the earth as a sacred site, depict the web of life and regenerative land-management practices, and channel cycles of growth, death and regeneration through an ecofeminist lens.",
+                "artist": "Suzanne Husky",
+                "type": "Textile / Video Installation",
+                "location": "Istanbul, Turkey",
+                "year": 2019,
+                "tags": {
+                    "topic": ["Regenerative Land Management", "Sustainability", "Soil", "Ecofeminism", "Human-Nature Interaction"],
+                    "artform": ["Textile Art", "Video Art", "Installation"]
+                },
+                "url": "https://bienal.iksv.org/en/bienal-artists/suzanne-husky",
+                "thumbnail": "https://bienal.iksv.org/i/content/11290_1_Suzanne-Husky.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": { "type": "Point", "coordinates": [29.1283, 40.8741] },
+            "properties": {
+                "title": "Appearance",
+                "description": "A mixed-media and sound installation by Hale Tenger inspired by the botanical technique of girdling, which can be used either to enhance fruit growth or to kill trees. The work combines water, obsidian mirrors and sound to reflect on agency, greed, introspection and regeneration.",
+                "artist": "Hale Tenger",
+                "type": "Mixed Media / Sound Installation",
+                "location": "Taş Mektep, Büyükada, Istanbul, Turkey",
+                "year": 2019,
+                "tags": {
+                    "topic": ["Plant Life", "Forestry", "Regeneration", "Human-Nature Interaction", "Environmental Reflection"],
+                    "artform": ["Mixed Media", "Sound Installation", "Installation"]
+                },
+                "url": "https://bienal.iksv.org/en/bienal-artists/hale-tenger",
+                "thumbnail": "https://bienal.iksv.org/i/content/11001_1_Hale-Tenger.jpg"
+            }
+        },        {
             "type": "Feature",
             "geometry": { "type": "Point", "coordinates": [44.0065, 56.3269] },
             "properties": {
@@ -4787,3 +4960,4 @@
         }
     ]
 }
+
