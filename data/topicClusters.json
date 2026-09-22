@@ -38,10 +38,13 @@
       "Natural Habitat", 
       "Coral Reef", 
       "Coral Bleaching", 
+      "Desert Ecology",
       "Nature Cycles",
       "Ecosystems",
       "Marine Ecosystems",
       "Marine Life",
+      "Landscape Change",
+      "Wetlands",
       "Conservation" 
     ],
     "color": "#006400"
@@ -56,7 +59,8 @@
       "Sustainable Practices",
       "Sustainable Living",
       "Biomimicry",
-      "Sustainable Mobility"
+      "Sustainable Mobility",
+      "Regenerative Land Management"
     ],
     "color": "#90EE90"
   },
@@ -65,7 +69,8 @@
     "Renewable Energy",
     "Energy Efficiency",
     "Energy Overuse",
-    "Fossil Fuels"
+    "Fossil Fuels",
+    "Hydropower"
   ],
   "color": "#FFA500"
 },
@@ -77,6 +82,7 @@
       "Water Shortage",
       "Water Scarcity", 
       "Drought Management", 
+      "Water Management",
       "Marine Conservation",
       "Conservation",
       "Drought",
@@ -96,7 +102,8 @@
       "Smart Cities", 
       "Urban Farming",
       "Urban Nature",
-      "Urban Futures"
+      "Urban Futures",
+      "Urban Heat"
     ],
     "color": "#FFD700"
   },
@@ -112,7 +119,8 @@
       "Industrial Waste", 
       "Waste",
       "Toxic Waste",
-      "Textile Waste"
+      "Textile Waste",
+      "Electronic Waste"
     ],
     "color": "#282828"
   },
@@ -124,7 +132,8 @@
       "Wildlife Conservation", 
       "Natural Habitat", 
       "Invasive Species Management", 
-      "Species Conservation"
+      "Species Conservation",
+      "Habitat Loss"
     ],
     "color": "#4B0082"
   },
@@ -147,6 +156,7 @@
       "Resource Scarcity",
       "Non-Renewable Resources",
       "Resource Extraction",
+      "Resource Depletion",
       "Recycling",
       "Plastic Recycling",
       "Circular Economy"
@@ -178,7 +188,9 @@
       "Environmentalism",
       "Climate Migration",
       "Environmental Justice",
-      "Culture"
+      "Culture",
+      "Anthropocene",
+      "Ecofeminism"
     ],
     "color": "#FFDD88"
   },
@@ -191,7 +203,8 @@
   "Food and Agriculture": {
     "topics": [
       "Food Systems",
-      "Alternative Proteins"
+      "Alternative Proteins",
+      "Soil"
     ],
     "color": "#8B4513"
   }

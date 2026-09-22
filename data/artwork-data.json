@@ -100,8 +100,7 @@
         "topic": [
           "Climate Change",
           "Extreme Weather",
-          "Climate Awareness",
-          "Environmental Satire"
+          "Climate Awareness"
         ],
         "artform": [
           "Music"
@@ -175,8 +174,7 @@
         "topic": [
           "Climate Action",
           "Climate Awareness",
-          "Capitalism Critique",
-          "Environmental Satire"
+          "Capitalism Critique"
         ],
         "artform": [
           "Music"
@@ -491,7 +489,7 @@
         "Climate Change",
         "Forest Conservation",
         "Environmental Awareness",
-        "Socio-Environmental Justice",
+        "Social-Environmental Justice",
         "Human-Nature Interaction"
       ],
       "artform": ["Literature"]
@@ -655,7 +653,7 @@
       "location": "London, United Kingdom",
       "year": 2021,
       "tags": {
-        "topic": ["Climate Justice", "Racial Justice", "Environmental Awareness"],
+        "topic": ["Social-Environmental Justice", "Environmental Awareness"],
         "artform": ["Digital Art", "Curated Exhibition"]
       },
       "url": "https://dothegreenthing.com/projects/the-colour-of-the-climate-crisis/",
@@ -673,7 +671,7 @@
       "location": "London, United Kingdom",
       "year": 2022,
       "tags": {
-        "topic": ["Sustainable Design", "Climate Action", "Inclusion"],
+        "topic": ["Sustainable Design", "Climate Action", "Social-Environmental Justice"],
         "artform": ["Digital Art", "Curated Exhibition"]
       },
       "url": "https://dothegreenthing.com/projects/designkind/",
@@ -723,7 +721,7 @@
       "location": "Oxford, Ohio, USA",
       "year": 2019,
       "tags": {
-        "topic": ["Water Issues", "Environmental Pollution", "Environmental Awareness"],
+        "topic": ["Water Pollution", "Environmental Awareness"],
         "artform": ["Sculpture"]
       },
       "url": "https://miamioh.edu/cca/art-museum/exhibitions/past-exhibitions/2023-2024/24sp-the-world-in-which-we-live.html",
@@ -1000,7 +998,7 @@
       "location": "Macondo Prospect, Gulf of Mexico, USA",
       "year": 2010,
       "tags": {
-        "topic": ["Oil Pollution", "Marine Pollution", "Environmental Disaster"],
+        "topic": ["Oil Pollution", "Marine Pollution"],
         "artform": ["Photography"]
       },
       "url": "https://artsandculture.google.com/story/art-with-an-ocean-view-art-works-for-change/iwVRP5j8b2P7KA?hl=en",
@@ -1018,7 +1016,7 @@
       "location": "Macondo Prospect, Gulf of Mexico, USA",
       "year": 2010,
       "tags": {
-        "topic": ["Oil Pollution", "Marine Pollution", "Environmental Disaster"],
+        "topic": ["Oil Pollution", "Marine Pollution"],
         "artform": ["Photography"]
       },
       "url": "https://artsandculture.google.com/story/art-with-an-ocean-view-art-works-for-change/iwVRP5j8b2P7KA?hl=en",
@@ -1238,7 +1236,7 @@
       "location": "Melbourne, Australia",
       "year": 2013,
       "tags": {
-        "topic": ["Environmental Reflection", "Sustainability", "Public Awareness"],
+        "topic": ["Environmental Reflection", "Sustainability", "Environmental Awareness"],
         "artform": ["Sculpture", "Performance", "Eco-Art"]
       },
       "url": "https://nga.gov.au/exhibitions/skywhale/",
@@ -1447,7 +1445,7 @@
     "artist": "Nicolas Derné",
     "type": "Photography / Video",
     "location": "Tropical regions",
-    "year": "Ongoing",
+    "year": 2016,
     "tags": {
       "topic": [
         "Climate Change",
@@ -1974,7 +1972,7 @@
             "location": "Berlin, Germany",
             "year": 2019,
             "tags": {
-                "topic": ["Oil Corporations"],
+                "topic": ["Fossil Fuels", "Capitalism Critique"],
                 "cluster": ["Pollution", "Socioeconomic"],
                 "artform": ["Music"]
             },
@@ -1996,7 +1994,7 @@
             "location": "Munich, Germany",
             "year": 2020,
             "tags": {
-                "topic": ["Food", "Economy", "Working Conditions"],
+                "topic": ["Food Systems", "Economy", "Social-Environmental Justice"],
                 "cluster": ["Socioeconomic", "Sustainable Practices"],
                 "artform": ["Literature", "Short Story"]
             },
@@ -2039,7 +2037,7 @@
             "location": "Phnom Penh, Cambodia",
             "year": 2023,
             "tags": {
-                "topic": ["Traditional Knowledge", "Ecosystem Protection", "Biodiversity"],
+                "topic": ["Indigenous Knowledge", "Ecosystem Protection", "Biodiversity"],
                 "artform": ["Painting"]
             },"url": "https://cambodianess.com/article/on-behalf-of-nature-three-artists-make-the-case-to-save-the-earth-and-all-living-things", 
             "thumbnail": ""
@@ -2749,7 +2747,7 @@
                     "topic": [
                         "Waste Management",
                         "Carbon Emissions",
-                        "Energy overuse"
+                        "Energy Overuse"
                     ],
                     "artform": [
                         "Sculpture",
@@ -3271,7 +3269,7 @@
         "artist": "Sigalit Landau",
         "type": "Sculpture/Installation",
         "location": "Dead Sea region (Israel/Jordan Rift)",
-        "year": "2005–ongoing",
+        "year": 2005,
         "tags": {
         "topic": ["Water Scarcity"],
         "artform": ["Sculpture", "Installation", "Eco-Art"]
@@ -3289,7 +3287,7 @@
         "artist": "Various Artists (curated program)",
         "type": "Public Art/Installation",
         "location": "AlUla, Saudi Arabia",
-        "year": "2020",
+        "year": 2020,
         "tags": {
         "topic": ["Desert Ecology", "Sustainability", "Environmental Reflection"],
         "artform": ["Installation", "Public Art", "Eco-Art"]
@@ -3343,7 +3341,7 @@
         "artist": "Various Artists",
         "type": "Public Art/Installation",
         "location": "Riyadh, Saudi Arabia",
-        "year": "2021–ongoing",
+        "year": 2021,
         "tags": {
         "topic": ["Urban Heat", "Water Management", "Biodiversity"],
         "artform": ["Installation", "Public Art", "Eco-Art"]
@@ -3381,7 +3379,7 @@
             "location": "Alexandra, Johannesburg, South Africa",
             "year": 2025,
             "tags": {
-            "topic": ["Urban Ecology", "Waste", "Climate Adaptation"],
+            "topic": ["Urban Ecology", "Waste", "Climate Resilience"],
             "artform": ["Installation", "Public Art", "Community"]
             },
             "url": "https://www.iisd.org/articles/news/suncasa-turning-trash-treasures-along-jukskei-river-johannesburg",
@@ -3397,9 +3395,9 @@
             "artist": "Romuald Hazoumè",
             "type": "Sculpture/Installation",
             "location": "Cotonou, Benin",
-            "year": "2000s–ongoing",
+            "year": 2000,
             "tags": {
-            "topic": ["Waste", "Oil Economy", "Environmental Awareness"],
+            "topic": ["Waste", "Fossil Fuels", "Environmental Awareness"],
             "artform": ["Sculpture", "Installation", "Eco-Art"]
             },
             "url": "https://en.wikipedia.org/wiki/Romuald_Hazoum%C3%A8",
@@ -3415,7 +3413,7 @@
             "artist": "Strijdom van der Merwe",
             "type": "Land Art",
             "location": "Western Cape, South Africa",
-            "year": "2000s–ongoing",
+            "year": 2000,
             "tags": {
             "topic": ["Nature Cycles", "Ecosystem Protection"],
             "artform": ["Land Art", "Installation"]
@@ -3451,7 +3449,7 @@
             "artist": "UniquEco / Ocean Sole artists",
             "type": "Sculpture",
             "location": "Karen, Nairobi, Kenya",
-            "year": "2010s–ongoing",
+            "year": 2010,
             "tags": {
             "topic": ["Marine Pollution", "Recycling"],
             "artform": ["Sculpture", "Eco-Art"]
@@ -3489,7 +3487,7 @@
             "location": "Tiwi Beach, Kwale, Kenya",
             "year": 2023,
             "tags": {
-            "topic": ["Marine Pollution", "Recycling", "Community"],
+            "topic": ["Marine Pollution", "Recycling", "Environmental Awareness"],
             "artform": ["Design", "Installation", "Eco-Art"]
             },
             "url": "https://www.africanews.com/2023/12/15/kenyan-artist-transforms-plastic-menace-into-functional-art/",
@@ -3507,7 +3505,7 @@
             "location": "Kinshasa, DRC (Africa leg)",
             "year": 2025,
             "tags": {
-            "topic": ["Climate Action", "Biodiversity", "Migration"],
+            "topic": ["Climate Action", "Biodiversity", "Climate Migration"],
             "artform": ["Public Art", "Performance", "Installation"]
             },
             "url": "https://www.theartnewspaper.com/2025/05/14/from-africa-to-the-arctic-circle-this-public-artwork-is-stampeding-into-cities-with-a-cry-for-climate-action",
@@ -3900,7 +3898,7 @@
                 "artist": "Maarten Vanden Eynde",
                 "type": "Sculpture",
                 "location": "Various exhibitions, Other",
-                "year": "2008-2012",
+                "year": 2008,
                 "tags": {
                     "topic": [
                         "Ocean Pollution",
@@ -3929,7 +3927,7 @@
                 "artist": "Pam Longobardi",
                 "type": "Installation",
                 "location": "Various exhibitions",
-                "year": "Ongoing project",
+                "year": 2006,
                 "tags": {
                     "topic": [
                         "Ocean Pollution",
@@ -4015,7 +4013,7 @@
                 "artist": "Angela Haseltine Pozzi",
                 "type": "Installation",
                 "location": "New York, USA",
-                "year": "2024",
+                "year": 2024,
                 "tags": {
                     "topic": [
                         "Ocean Conservation",
@@ -4148,7 +4146,7 @@
                 "artist": "Mierle Laderman Ukeles",
                 "type": "Performance",
                 "location": "New York, USA",
-                "year": "1979-1980",
+                "year": 1979,
                 "tags": {
                     "topic": ["Waste Management", "Public Health"],
                     "artform": ["Performance"]
@@ -4681,7 +4679,7 @@
                 "location": "Hasankeyf, Turkey",
                 "year": 2015,
                 "tags": {
-                    "topic": ["Water Management", "Hydropower", "Displacement", "Cultural Heritage", "Environmental Justice"],
+                    "topic": ["Water Management", "Hydropower", "Cultural Heritage", "Environmental Justice"],
                     "artform": ["Photography", "Documentary"]
                 },
                 "url": "https://time.com/3679027/mathias-depardon-gold-rivers-ilisu-dam-turkey/",
@@ -4704,7 +4702,7 @@
                 "tags": {
                     "topic": [
                         "Biodiversity",
-                        "Wildlife",
+                        "Wildlife Conservation",
                         "Conservation",
                         "Environmental Awareness"
                     ],
@@ -4765,7 +4763,7 @@
                 "location": "Istanbul, Turkey",
                 "year": 2019,
                 "tags": {
-                    "topic": ["Water Management", "Urban Ecology", "Landscape Change", "Environmental Memory"],
+                    "topic": ["Water Management", "Urban Ecology", "Landscape Change", "Environmental Reflection"],
                     "artform": ["Relief Art", "Installation", "Mixed Media"]
                 },
                 "url": "https://bienal.iksv.org/en/bienal-artists/elmas-deniz",
@@ -4801,7 +4799,7 @@
                 "location": "Istanbul, Turkey",
                 "year": 2019,
                 "tags": {
-                    "topic": ["Waste Management", "Recycling", "Consumerism", "Industrial Ecology"],
+                    "topic": ["Waste Management", "Recycling", "Consumerism", "Circular Economy"],
                     "artform": ["Video Art", "Installation", "Sculpture"]
                 },
                 "url": "https://bienal.iksv.org/en/bienal-artists/eloise-hawser",
@@ -4855,7 +4853,7 @@
                 "location": "Istanbul, Turkey",
                 "year": 2019,
                 "tags": {
-                    "topic": ["Anthropocene", "Scarcity", "Biodiversity", "Human-Nature Interaction", "Environmental Reflection"],
+                    "topic": ["Anthropocene", "Resource Scarcity", "Biodiversity", "Human-Nature Interaction", "Environmental Reflection"],
                     "artform": ["Installation", "Sculpture", "Drawing"]
                 },
                 "url": "https://bienal.iksv.org/en/bienal-artists/muge-yilmaz",
@@ -4891,7 +4889,7 @@
                 "location": "Taş Mektep, Büyükada, Istanbul, Turkey",
                 "year": 2019,
                 "tags": {
-                    "topic": ["Plant Life", "Forestry", "Regeneration", "Human-Nature Interaction", "Environmental Reflection"],
+                    "topic": ["Biodiversity", "Forest Conservation", "Nature Cycles", "Human-Nature Interaction", "Environmental Reflection"],
                     "artform": ["Mixed Media", "Sound Installation", "Installation"]
                 },
                 "url": "https://bienal.iksv.org/en/bienal-artists/hale-tenger",
@@ -4926,7 +4924,7 @@
                 "location": "Hokkaido, Japan",
                 "year": 2018,
                 "tags": {
-                    "topic": ["Human-Nature Interaction", "Landscape Change", "Ecological Interdependence", "Environmental Reflection"],
+                    "topic": ["Human-Nature Interaction", "Landscape Change", "Ecosystems", "Environmental Reflection"],
                     "artform": ["Graphics", "Installation"]
                 },
                 "url": "https://www.new-east-archive.org/alexey-khamkin-curated-russia-z",
@@ -4944,7 +4942,7 @@
                 "location": "Kachkanar, Russia",
                 "year": 2017,
                 "tags": {
-                    "topic": ["Resource Extraction", "Protected Areas", "Environmental Justice", "Cultural Heritage", "Landscape Change"],
+                    "topic": ["Resource Extraction", "Conservation", "Environmental Justice", "Cultural Heritage", "Landscape Change"],
                     "artform": ["Photography", "Documentary"]
                 },
                 "url": "https://www.new-east-archive.org/anna-marchenkova-curated-russia-z",
@@ -5017,7 +5015,7 @@
                         "Climate Action",
                         "Environmental Awareness",
                         "Sustainability",
-                        "Social Justice"
+                        "Social-Environmental Justice"
                     ],
                     "artform": [
                         "Performance",
