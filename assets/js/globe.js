@@ -27,6 +27,10 @@ const SCIENCE_NEUTRAL_CORE_COLOR = '#0f766e';
 const SCIENCE_NEUTRAL_STROKE_COLOR = '#ccfbf1';
 const SCIENCE_SELECTED_STROKE_WIDTH = 4;
 const SCIENCE_DEFAULT_STROKE_WIDTH = 2;
+const SCIENCE_RING_IMAGE_SIZE = 96;
+const SCIENCE_RING_VISIBLE_DIAMETER = 86;
+const SCIENCE_RING_RADIUS = 38;
+const SCIENCE_RING_WIDTH = 10;
 
 let selectedScienceGroupKey = null;
 
@@ -375,6 +379,103 @@ function getScienceClusterBreakdown(records) {
         .sort((a, b) => b.count - a.count || a.cluster.localeCompare(b.cluster));
 }
 
+function getScienceClusterShares(records, selectedClusters = getSelectedClusters()) {
+    const selectedClusterSet = new Set(selectedClusters);
+    const publicationClusters = new Map();
+
+    records.forEach(record => {
+        if (record.publicationId == null) return;
+
+        const clusters = (record.topicClusters || [])
+            .filter(cluster => selectedClusterSet.size === 0 || selectedClusterSet.has(cluster));
+
+        if (clusters.length === 0) return;
+        if (!publicationClusters.has(record.publicationId)) {
+            publicationClusters.set(record.publicationId, new Set());
+        }
+
+        clusters.forEach(cluster => publicationClusters.get(record.publicationId).add(cluster));
+    });
+
+    const weightedClusters = new Map();
+
+    publicationClusters.forEach(clusterSet => {
+        const clusters = Array.from(clusterSet).sort();
+        const clusterWeight = 1 / clusters.length;
+
+        clusters.forEach(cluster => {
+            weightedClusters.set(cluster, (weightedClusters.get(cluster) || 0) + clusterWeight);
+        });
+    });
+
+    const totalWeight = Array.from(weightedClusters.values()).reduce((sum, weight) => sum + weight, 0);
+
+    return Array.from(weightedClusters.entries())
+        .map(([cluster, value]) => ({
+            cluster,
+            value,
+            share: totalWeight > 0 ? value / totalWeight : 0,
+            color: getClusterColor(cluster)
+        }))
+        .sort((a, b) => b.value - a.value || a.cluster.localeCompare(b.cluster));
+}
+
+function getScienceRingIconId(clusterShares) {
+    if (!clusterShares.length) {
+        return 'science-ring-neutral';
+    }
+
+    return `science-ring-${clusterShares
+        .map(({ cluster, share }) => {
+            const clusterKey = cluster
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-|-$/g, '');
+            return `${clusterKey || 'cluster'}-${Math.round(share * 100)}`;
+        })
+        .join('_')}`;
+}
+
+function registerScienceRingIcon(iconId, clusterShares) {
+    if (!globe || globe.hasImage(iconId)) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = SCIENCE_RING_IMAGE_SIZE;
+    canvas.height = SCIENCE_RING_IMAGE_SIZE;
+    const context = canvas.getContext('2d');
+    const center = SCIENCE_RING_IMAGE_SIZE / 2;
+    const segments = clusterShares.length
+        ? clusterShares
+        : [{ share: 1, color: SCIENCE_NEUTRAL_COLOR }];
+
+    context.clearRect(0, 0, SCIENCE_RING_IMAGE_SIZE, SCIENCE_RING_IMAGE_SIZE);
+    context.lineWidth = SCIENCE_RING_WIDTH;
+    context.lineCap = 'butt';
+    context.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+    context.beginPath();
+    context.arc(center, center, SCIENCE_RING_RADIUS, 0, Math.PI * 2);
+    context.stroke();
+
+    let startAngle = -Math.PI / 2;
+    segments.forEach(segment => {
+        const endAngle = startAngle + (Math.PI * 2 * segment.share);
+        context.strokeStyle = segment.color || SCIENCE_NEUTRAL_COLOR;
+        context.beginPath();
+        context.arc(center, center, SCIENCE_RING_RADIUS, startAngle, endAngle);
+        context.stroke();
+        startAngle = endAngle;
+    });
+
+    globe.addImage(iconId, context.getImageData(0, 0, SCIENCE_RING_IMAGE_SIZE, SCIENCE_RING_IMAGE_SIZE));
+}
+
+function prepareScienceRingIcons(features) {
+    features.forEach(feature => {
+        const properties = feature.properties || {};
+        registerScienceRingIcon(properties.scienceRingIcon, properties.scienceRingShares || []);
+    });
+}
+
 function getScienceTopicBreakdown(records, limit = 5) {
     const breakdown = new Map();
 
@@ -432,6 +533,8 @@ function groupScienceRecords(records, countryData) {
         const radius = getScienceCircleRadius(scienceCount, maxCount);
         const topicClustersForGroup = Array.from(new Set(group.records.flatMap(record => record.topicClusters || []))).sort();
         const scienceColor = getScienceClusterColor(topicClustersForGroup, selectedClusters);
+        const scienceRingShares = getScienceClusterShares(group.records, selectedClusters);
+        const scienceRingIcon = getScienceRingIconId(scienceRingShares);
 
         return {
             type: 'Feature',
@@ -451,8 +554,11 @@ function groupScienceRecords(records, countryData) {
                 countryMetric,
                 radius,
                 scienceColor,
-                scienceCoreColor: scienceColor,
+                scienceCoreColor: SCIENCE_NEUTRAL_CORE_COLOR,
                 scienceStrokeColor: SCIENCE_NEUTRAL_STROKE_COLOR,
+                scienceRingIcon,
+                scienceRingIconSize: ((radius * 2) + 12) / SCIENCE_RING_VISIBLE_DIAMETER,
+                scienceRingShares,
                 strokeWidth: selectedScienceGroupKey === group.groupKey ? SCIENCE_SELECTED_STROKE_WIDTH : SCIENCE_DEFAULT_STROKE_WIDTH,
                 selected: selectedScienceGroupKey === group.groupKey,
                 topicClusters: topicClustersForGroup.join(', ')
@@ -731,9 +837,10 @@ function renderMapLegend(displayScienceFeatures = []) {
             <span>Research circle: country-level activity; size = unique matching publications.</span>
         </div>
         <div class="globe-legend-row">
-            <span class="globe-legend-swatch" style="--legend-color: ${escapeHtml(selectedClusters.length === 1 ? getClusterColor(selectedClusters[0]) : SCIENCE_NEUTRAL_COLOR)}"></span>
-            <span>Science color: ${escapeHtml(selectedClusterText)}.</span>
+            <span class="globe-legend-science-ring"></span>
+            <span>Outer ring: fractional topic-cluster mix of matching publications.</span>
         </div>
+        <div class="globe-card-subtle">Inner color stays neutral; ${escapeHtml(selectedClusterText)} appears in the ring.</div>
         <div class="globe-card-subtle">Circle scale uses sqrt(count), bounded ${SCIENCE_CIRCLE_MIN_RADIUS}-${SCIENCE_CIRCLE_MAX_RADIUS}px${maxScienceCount ? `; current max ${maxScienceCount}.` : '.'}</div>
     ` : '';
 
@@ -807,6 +914,7 @@ function updateGlobe() {
 
     const scienceSource = globe.getSource('globeScience');
     if (scienceSource) {
+        prepareScienceRingIcons(displayScienceFeatures);
         scienceSource.setData({
             type: 'FeatureCollection',
             features: displayScienceFeatures
@@ -814,7 +922,7 @@ function updateGlobe() {
     }
 
     setLayerVisibility(['globe-artwork-halo', 'globe-artwork-point', 'globe-artwork-count'], mode === 'art' || mode === 'both');
-    setLayerVisibility(['globe-science-area', 'globe-science-core'], mode === 'science' || mode === 'both');
+    setLayerVisibility(['globe-science-area', 'globe-science-ring', 'globe-science-core'], mode === 'science' || mode === 'both');
     setLayerVisibility(['globe-science-count'], false);
 }
 
@@ -966,6 +1074,21 @@ function addGlobeLayers() {
     });
 
     globe.addLayer({
+        id: 'globe-science-ring',
+        type: 'symbol',
+        source: 'globeScience',
+        layout: {
+            visibility: 'none',
+            'icon-image': ['get', 'scienceRingIcon'],
+            'icon-size': ['get', 'scienceRingIconSize'],
+            'icon-allow-overlap': true,
+            'icon-ignore-placement': true,
+            'icon-pitch-alignment': 'viewport',
+            'icon-rotation-alignment': 'viewport'
+        }
+    });
+
+    globe.addLayer({
         id: 'globe-science-count',
         type: 'symbol',
         source: 'globeScience',
@@ -1065,7 +1188,7 @@ function addGlobeLayers() {
         });
     });
 
-    ['globe-science-area', 'globe-science-core', 'globe-science-count'].forEach(layerId => {
+    ['globe-science-area', 'globe-science-ring', 'globe-science-core', 'globe-science-count'].forEach(layerId => {
         globe.on('mouseenter', layerId, () => {
             globe.getCanvas().style.cursor = 'pointer';
         });
@@ -1296,6 +1419,7 @@ function addGlobeLayers() {
     globe.on('click', 'globe-artwork-point', openArtworkPopup);
     globe.on('click', 'globe-artwork-count', openArtworkPopup);
     globe.on('click', 'globe-science-area', openSciencePopup);
+    globe.on('click', 'globe-science-ring', openSciencePopup);
     globe.on('click', 'globe-science-core', openSciencePopup);
     globe.on('click', 'globe-science-count', openSciencePopup);
 }

@@ -38,6 +38,12 @@ Import candidate publications from OpenAlex:
 python data/science/science_pipeline.py ingest-openalex --query "climate change Germany" --from-year 2015 --to-year 2025 --max-pages 1
 ```
 
+Import curated insight/basic-research candidates from OpenAlex:
+
+```bash
+python data/science/science_pipeline.py ingest-curated-openalex --from-year 2018 --to-year 2026 --country Germany --country Kenya --max-pages 1
+```
+
 Enrich DOI-backed publications from Crossref:
 
 ```bash
@@ -75,6 +81,13 @@ python data/science/science_pipeline.py validate
 - Raw API records are preserved in `raw_imports` before normalization.
 - Deduplication prefers DOI, then source identifier, then normalized title plus
   year.
+- Curated OpenAlex imports score for findings-oriented language such as impacts,
+  mechanisms, resilience, vulnerability, evidence, and synthesis, while
+  downranking method-first records such as datasets, benchmarks, software,
+  algorithm, remote-sensing-method, or validation papers.
+- Automatic topic and study-area labels are conservative metadata scaffolding.
+  They should be treated as reviewable classifications, not as final scholarly
+  interpretation.
 
 ## API Notes
 

@@ -3,77 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>eco:nection - Data Analysis</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist"></script>
     <script src="https://unpkg.com/vis-network/dist/vis-network.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="style.css?v=20260922-data-comparison">
 </head>
-<body class="h-full flex flex-col">
+<body class="h-full flex flex-col bg-base-100">
     <nav class="navbar bg-base-300">
         <div class="navbar-start">
-            <ul class="menu menu-horizontal px-1 gap-x-12">
-                <li><a class="btn btn-primary" href="index.html">Explore</a></li>
-                <li><a class="btn btn-primary" href="data-analysis.html">Data</a></li>
-                <li><a class="btn btn-primary" href="submit-artwork.html">Submit</a></li>
+            <div class="dropdown lg:hidden">
+                <div tabindex="0" role="button" class="btn btn-ghost" aria-label="Open navigation menu">
+                    <i class="ti ti-menu-2 text-2xl"></i>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content gap-y-3 bg-base-300 rounded-box z-20 mt-3 w-48 shadow">
+                    <li><a class="btn btn-primary justify-start" href="index.html"><i class="ti ti-compass text-xl"></i>Explore</a></li>
+                    <li><a class="btn btn-primary justify-start" href="data-analysis.html"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
+                    <li><a class="btn btn-primary justify-start" href="submit-artwork.html"><i class="ti ti-upload text-xl"></i>Submit</a></li>
+                </ul>
+            </div>
+            <div class="hidden lg:flex mx-3 gap-3 justify-center">
+                <i class="ti ti-affiliate text-3xl text-primary"></i>
+                <span class="text-2xl subpixel-antialiased">eco:nection</span>
+            </div>
+        </div>
+        <div class="navbar-center">
+            <div class="flex mx-3 gap-3 justify-center lg:hidden">
+                <i class="ti ti-affiliate text-3xl text-primary"></i>
+                <span class="text-2xl subpixel-antialiased">eco:nection</span>
+            </div>
+            <ul class="hidden lg:flex menu menu-horizontal px-1 gap-x-4">
+                <li><a class="btn btn-primary" href="index.html"><i class="ti ti-compass text-xl"></i>Explore</a></li>
+                <li><a class="btn btn-primary" href="data-analysis.html"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
+                <li><a class="btn btn-primary" href="submit-artwork.html"><i class="ti ti-upload text-xl"></i>Submit</a></li>
             </ul>
         </div>
+        <div class="navbar-end"></div>
     </nav>
 
-    <main class="container mx-auto mt-4 px-4 lg:px-8">
-        <div class="flex flex-col lg:flex-row lg:gap-6">
-            <!-- Sidebar -->
-            <div class="bg-base-200 p-4 rounded-box w-full lg:w-1/4 sidebar">
-                <h2 class="text-2xl font-bold mb-4">Filters</h2>
-                <h3 class="text-xl font-semibold mb-2">By Continent</h3>
-                <select id="continentSelect" multiple class="select select-bordered w-full mb-4"></select>
-                <h3 class="text-xl font-semibold mb-2">By Country</h3>
-                <input id="countrySearch" type="text" placeholder="Search countries..." class="input input-bordered w-full mb-4">
-                <select id="countrySelect" multiple class="select select-bordered w-full mb-4"></select>
-                <h3 class="text-xl font-semibold mb-2">By Topic Cluster</h3>
-                <select id="topicClusterSelect" multiple class="select select-bordered w-full mb-4"></select>
-                <h3 class="text-xl font-semibold mb-2">Metric</h3>
-                <div class="join w-full mb-4">
-                    <input class="join-item btn btn-sm flex-1" type="radio" name="metricMode" value="total" aria-label="Total" checked>
-                    <input class="join-item btn btn-sm flex-1" type="radio" name="metricMode" value="perCapita" aria-label="Per 1M people">
+    <main class="data-analysis-page">
+        <section class="data-analysis-hero">
+            <div>
+                <p class="uppercase tracking-wide text-sm opacity-70">Data</p>
+                <h1 class="text-3xl md:text-4xl font-bold mt-1">Art and Science comparison</h1>
+                <p class="mt-2 max-w-3xl opacity-80">
+                    Explore how environmental topic representation differs across topic, place, and time.
+                </p>
+            </div>
+            <button id="methodologyButton" class="btn btn-outline btn-sm btn-primary" type="button">
+                <i class="ti ti-info-circle text-lg"></i>
+                How is this calculated?
+            </button>
+        </section>
+
+        <section class="analysis-filter-bar bg-base-200 border border-base-300">
+            <div class="analysis-control">
+                <span class="label-text">Mode</span>
+                <div class="join w-full" role="group" aria-label="Choose analysis mode">
+                    <input class="join-item btn btn-sm flex-1" type="radio" name="analysisMode" value="art" aria-label="ART">
+                    <input class="join-item btn btn-sm flex-1" type="radio" name="analysisMode" value="science" aria-label="SCIENCE">
+                    <input class="join-item btn btn-sm flex-1" type="radio" name="analysisMode" value="compare" aria-label="COMPARE" checked>
                 </div>
-                <button id="resetFilters" class="btn btn-outline btn-sm btn-primary">Reset Filters</button>
             </div>
 
-            <!-- Haupt-Chart-Bereich -->
-            <div class="flex-grow flex flex-col gap-6 lg:w-3/4">
-                <section id="topics-by-continent" class="mb-8 chart-container">
-                    <h3 id="topicsByContinentTitle" class="text-2xl font-semibold mb-4">Number of Topics by Continent</h3>
-                    <div class="w-[800px]">
-                        <div id="topicsByContinentChart" class="plotly-chart"></div>
-                    </div>
-                </section>
+            <label class="analysis-control">
+                <span class="label-text">Continent</span>
+                <select id="continentSelect" class="select select-bordered select-sm">
+                    <option value="">All continents</option>
+                </select>
+            </label>
 
-                <section id="topics-by-country" class="mb-8 chart-container">
-                    <h3 id="countryChartTitle" class="text-2xl font-semibold mb-2">Number of Topic Clusters by Country</h3>
-                    <p id="countryChartPopulationNote" class="text-sm opacity-75 mb-4 hidden">Countries/territories below 1M population are excluded from this per-capita chart to keep the visualization readable.</p>
-                    <div class="w-[800px]">
-                        <div id="countryChart" class="plotly-chart"></div>
-                    </div>
-                </section>
+            <label class="analysis-control">
+                <span class="label-text">Country</span>
+                <select id="countrySelect" class="select select-bordered select-sm">
+                    <option value="">All countries</option>
+                </select>
+            </label>
 
-                <section id="change-over-time" class="mb-8 chart-container">
-                    <h3 id="topicClustersOverTimeTitle" class="text-2xl font-semibold mb-4">Change of Topic Clusters Over Time</h3>
-                    <div class="w-[800px]">
-                        <div id="topicClustersOverTimeChart" class="plotly-chart"></div>
-                    </div>
-                </section>
+            <label class="analysis-control analysis-control-wide">
+                <span class="label-text">Topic Cluster</span>
+                <select id="topicClusterSelect" class="select select-bordered select-sm" multiple size="4">
+                    <option value="">All topic clusters</option>
+                </select>
+            </label>
 
-                <section id="co-occurrence-network" class="mb-8">
-                    <h3 class="text-2xl font-semibold mb-4">Co-Occurrence Network</h3>
-                    <div id="coOccurrenceNetwork" class="h-80"></div>
-                </section>
+            <div class="analysis-control analysis-years">
+                <span class="label-text">Years</span>
+                <div class="grid grid-cols-2 gap-2">
+                    <input id="yearFrom" type="number" min="1600" max="2100" class="input input-bordered input-sm" placeholder="From">
+                    <input id="yearTo" type="number" min="1600" max="2100" class="input input-bordered input-sm" placeholder="To">
+                </div>
             </div>
-        </div>
+
+            <div class="analysis-control analysis-control-wide">
+                <span class="label-text">Metric</span>
+                <div class="join w-full" role="group" aria-label="Choose metric">
+                    <input class="join-item btn btn-sm flex-1" type="radio" name="metricMode" value="share" aria-label="SHARE" checked>
+                    <input class="join-item btn btn-sm flex-1" type="radio" name="metricMode" value="absolute" aria-label="ABSOLUTE">
+                    <input class="join-item btn btn-sm flex-1" type="radio" name="metricMode" value="perPopulation" aria-label="PER POPULATION">
+                </div>
+            </div>
+
+            <button id="resetFilters" class="btn btn-outline btn-sm btn-primary analysis-reset" type="button">
+                <i class="ti ti-refresh text-lg"></i>
+                Reset
+            </button>
+        </section>
+
+        <div id="scienceStatus" class="alert alert-info hidden"></div>
+
+        <section id="selectionSummary" class="analysis-section"></section>
+
+        <section class="analysis-section">
+            <div class="analysis-section-heading">
+                <div>
+                    <h2>Attention over time</h2>
+                    <p>Yearly share uses each dataset's records in that year as the denominator.</p>
+                </div>
+                <div class="join" role="group" aria-label="Choose time series smoothing">
+                    <input class="join-item btn btn-xs" type="radio" name="timeSeriesMode" value="raw" aria-label="RAW" checked>
+                    <input class="join-item btn btn-xs" type="radio" name="timeSeriesMode" value="smoothed" aria-label="SMOOTHED">
+                </div>
+            </div>
+            <div id="attentionOverTimeEmpty" class="analysis-empty hidden"></div>
+            <div id="attentionOverTimeChart" class="analysis-plot"></div>
+        </section>
+
+        <section class="analysis-grid-2">
+            <article class="analysis-section">
+                <div class="analysis-section-heading">
+                    <div>
+                        <h2>Temporal shift</h2>
+                        <p>Attention centers compare timing, not causal response.</p>
+                    </div>
+                </div>
+                <div id="temporalShiftEmpty" class="analysis-empty hidden"></div>
+                <div id="temporalShiftChart" class="analysis-plot analysis-plot-compact"></div>
+            </article>
+
+            <article class="analysis-section">
+                <div class="analysis-section-heading">
+                    <div>
+                        <h2>Topic representation</h2>
+                        <p>Topic shares are multi-label and may sum above 100%.</p>
+                    </div>
+                </div>
+                <div id="topicRepresentationEmpty" class="analysis-empty hidden"></div>
+                <div id="topicRepresentationChart" class="analysis-plot analysis-plot-compact"></div>
+            </article>
+        </section>
+
+        <section class="analysis-section">
+            <div class="analysis-section-heading">
+                <div>
+                    <h2>Topic difference</h2>
+                    <p>Positive values indicate a higher share in Art; negative values indicate a higher share in Science.</p>
+                </div>
+            </div>
+            <div id="topicDifferenceEmpty" class="analysis-empty hidden"></div>
+            <div id="topicDifferenceChart" class="analysis-plot analysis-plot-compact"></div>
+        </section>
+
+        <section class="analysis-section">
+            <div class="analysis-section-heading">
+                <div>
+                    <h2>Geographic difference</h2>
+                    <p>Ranked representation difference for the focused topic cluster.</p>
+                </div>
+                <div class="join" role="group" aria-label="Choose geographic level">
+                    <input class="join-item btn btn-xs" type="radio" name="geographyMode" value="countries" aria-label="COUNTRIES" checked>
+                    <input class="join-item btn btn-xs" type="radio" name="geographyMode" value="continents" aria-label="CONTINENTS">
+                </div>
+            </div>
+            <div id="geographicDifferenceEmpty" class="analysis-empty hidden"></div>
+            <div id="geographicDifferenceChart" class="analysis-plot analysis-plot-compact"></div>
+        </section>
+
+        <section class="analysis-section">
+            <div class="analysis-section-heading">
+                <div>
+                    <h2>Interesting patterns</h2>
+                    <p>Rule-based prompts for further inspection.</p>
+                </div>
+            </div>
+            <div id="interestingPatterns" class="analysis-patterns"></div>
+        </section>
+
+        <section class="analysis-section">
+            <div class="analysis-section-heading">
+                <div>
+                    <h2>Theme relationships</h2>
+                    <p>Topic co-occurrence within the selected records.</p>
+                </div>
+                <div class="join" role="group" aria-label="Choose relationship dataset">
+                    <input class="join-item btn btn-xs" type="radio" name="relationshipMode" value="art" aria-label="ART" checked>
+                    <input class="join-item btn btn-xs" type="radio" name="relationshipMode" value="science" aria-label="SCIENCE">
+                </div>
+            </div>
+            <div id="themeRelationshipsEmpty" class="analysis-empty hidden"></div>
+            <div id="coOccurrenceNetwork" class="analysis-network"></div>
+        </section>
+
+        <section class="analysis-section">
+            <div class="analysis-section-heading">
+                <div>
+                    <h2>Evidence</h2>
+                    <p>Source records behind the active selection.</p>
+                </div>
+                <div class="join" role="group" aria-label="Choose evidence dataset">
+                    <input class="join-item btn btn-xs" type="radio" name="evidenceMode" value="art" aria-label="ARTWORKS" checked>
+                    <input class="join-item btn btn-xs" type="radio" name="evidenceMode" value="science" aria-label="PUBLICATIONS">
+                </div>
+            </div>
+            <div id="evidenceList" class="analysis-evidence"></div>
+        </section>
     </main>
 
+    <dialog id="methodologyDialog" class="modal">
+        <div class="modal-box max-w-3xl">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" aria-label="Close">x</button>
+            </form>
+            <h3 class="font-bold text-xl">How the comparison is calculated</h3>
+            <div class="analysis-methodology mt-4">
+                <p>Artworks and scientific publications come from different corpora, so the default comparison uses each dataset's internal share rather than raw counts.</p>
+                <p><strong>Topic share:</strong> unique matching records for a topic cluster divided by all unique records in the current geography and time base. The selected topic changes the numerator, not the denominator.</p>
+                <p><strong>Yearly share:</strong> unique topic records in a year divided by all unique records in that same year, geography, and dataset.</p>
+                <p><strong>Topic difference:</strong> Art share minus Science share, shown in percentage points.</p>
+                <p><strong>Attention center:</strong> the weighted median year of the yearly share series. Temporal shift is Art attention center minus Science attention center.</p>
+                <p>Records may belong to several topic clusters. They count once per cluster and once in the denominator, so cluster shares can sum above 100%.</p>
+                <p>Science geography means study area, not author affiliation. Sparse data can prevent reliable temporal-shift estimates.</p>
+                <p>Per-population mode uses country population values where available and reports records per 1 million inhabitants. Missing population is shown as unavailable.</p>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop"><button>close</button></form>
+    </dialog>
+
     <script src="assets/js/shared-data.js"></script>
-    <script src="assets/js/data-analysis.js"></script>
+    <script src="assets/js/data-analysis.js?v=20260922-data-comparison"></script>
 </body>
 </html>

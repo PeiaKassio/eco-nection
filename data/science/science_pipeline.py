@@ -32,6 +32,86 @@ DEFAULT_CONTINENT_MAPPING = DATA_DIR / "continentMapping.json"
 DEFAULT_DISPLAY_ANCHORS = SCIENCE_DIR / "countryDisplayAnchors.json"
 DEFAULT_EXPORT = SCIENCE_DIR / "exports" / "science-map.json"
 USER_AGENT = "eco-nection-science-pipeline/0.1 (https://github.com/PeiaKassio/eco-nection)"
+CURATION_VERSION = "science-curation-v1"
+FOUNDATION_RESEARCH_QUERIES = [
+    "climate change impacts biodiversity",
+    "climate change ecosystem resilience",
+    "biodiversity loss ecosystem functioning",
+    "plastic pollution marine ecosystems impacts",
+    "air pollution environmental health",
+    "water scarcity ecosystem resilience",
+    "urban heat green space public health",
+    "deforestation biodiversity loss",
+    "carbon sequestration peatlands ecosystem",
+    "environmental justice climate change",
+    "indigenous knowledge biodiversity conservation",
+    "coral bleaching ecosystem resilience",
+    "soil carbon biodiversity agriculture",
+    "renewable energy transition environmental impacts",
+]
+FOUNDATION_POSITIVE_TERMS = [
+    "impact",
+    "impacts",
+    "effect",
+    "effects",
+    "driver",
+    "drivers",
+    "pattern",
+    "patterns",
+    "relationship",
+    "relationships",
+    "mechanism",
+    "mechanisms",
+    "feedback",
+    "feedbacks",
+    "response",
+    "responses",
+    "dynamics",
+    "vulnerability",
+    "resilience",
+    "risk",
+    "consequence",
+    "consequences",
+    "evidence",
+    "loss",
+    "change",
+    "adaptation",
+    "justice",
+]
+FOUNDATION_SYNTHESIS_TERMS = [
+    "synthesis",
+    "assessment",
+    "meta analysis",
+    "meta-analysis",
+    "systematic review",
+]
+METHOD_NOISE_TERMS = [
+    "algorithm",
+    "benchmark",
+    "bibliometric",
+    "classification method",
+    "data set",
+    "database",
+    "dataset",
+    "deep learning",
+    "framework for",
+    "machine learning",
+    "mapping method",
+    "method development",
+    "methodological",
+    "protocol",
+    "remote sensing method",
+    "software",
+    "toolkit",
+    "validation of",
+]
+GLOBAL_SCOPE_TERMS = [
+    "global",
+    "globally",
+    "worldwide",
+    "planetary",
+    "earth system",
+]
 
 
 def utc_now() -> str:
@@ -265,8 +345,7 @@ def normalize_openalex_work(work: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def ingest_openalex(args: argparse.Namespace) -> None:
-    init_db(args.db, DEFAULT_SCHEMA, args.topic_clusters)
+def build_openalex_params(args: argparse.Namespace, query: str) -> dict[str, Any]:
     filters = []
     if args.from_year:
         filters.append(f"from_publication_date:{args.from_year:04d}-01-01")
@@ -274,7 +353,7 @@ def ingest_openalex(args: argparse.Namespace) -> None:
         filters.append(f"to_publication_date:{args.to_year:04d}-12-31")
 
     params = {
-        "search": args.query,
+        "search": query,
         "per_page": min(args.per_page, 100),
         "page": 1,
         "select": ",".join([
@@ -293,6 +372,12 @@ def ingest_openalex(args: argparse.Namespace) -> None:
         params["filter"] = ",".join(filters)
     if args.openalex_api_key:
         params["api_key"] = args.openalex_api_key
+    return params
+
+
+def ingest_openalex(args: argparse.Namespace) -> None:
+    init_db(args.db, DEFAULT_SCHEMA, args.topic_clusters)
+    params = build_openalex_params(args, args.query)
 
     imported = 0
     with closing(connect(args.db)) as conn:
@@ -315,6 +400,237 @@ def ingest_openalex(args: argparse.Namespace) -> None:
                 imported += 1
             conn.commit()
     print(f"Imported or matched {imported} OpenAlex work(s).")
+
+
+def phrase_in_text(text: str, phrase: str) -> bool:
+    return normalize_text(phrase) in text
+
+
+def score_research_foundation(metadata: dict[str, Any], topic_clusters: dict[str, Any]) -> tuple[int, list[str]]:
+    text = normalize_text(f"{metadata.get('title')} {metadata.get('abstract')} {metadata.get('journal')}")
+    reasons: list[str] = []
+    score = 0
+
+    matched_topics = [
+        topic
+        for cluster in topic_clusters.values()
+        for topic in cluster.get("topics", [])
+        if phrase_in_text(text, topic)
+    ]
+    if matched_topics:
+        score += min(8, len(matched_topics) * 2)
+        reasons.append(f"eco-topic-match:{len(matched_topics)}")
+
+    positive_matches = [term for term in FOUNDATION_POSITIVE_TERMS if phrase_in_text(text, term)]
+    if positive_matches:
+        score += min(6, len(positive_matches))
+        reasons.append(f"insight-language:{len(positive_matches)}")
+
+    synthesis_matches = [term for term in FOUNDATION_SYNTHESIS_TERMS if phrase_in_text(text, term)]
+    if synthesis_matches:
+        score += 2
+        reasons.append("synthesis")
+
+    method_matches = [term for term in METHOD_NOISE_TERMS if phrase_in_text(text, term)]
+    if method_matches:
+        score -= min(8, len(method_matches) * 3)
+        reasons.append(f"method-noise:{len(method_matches)}")
+
+    publication_type = normalize_text(metadata.get("publication_type"))
+    if publication_type in {"article", "review", "book chapter", "book"}:
+        score += 1
+    elif publication_type:
+        score -= 1
+
+    return score, reasons
+
+
+def classify_publication_topics(
+    conn: sqlite3.Connection,
+    publication_id: int,
+    metadata: dict[str, Any],
+    topic_clusters: dict[str, Any],
+    confidence: float,
+) -> int:
+    text = normalize_text(f"{metadata.get('title')} {metadata.get('abstract')} {metadata.get('journal')}")
+    inserted = 0
+
+    for cluster_name, cluster in topic_clusters.items():
+        for topic in cluster.get("topics", []):
+            if not phrase_in_text(text, topic):
+                continue
+            topic_row = conn.execute(
+                """
+                SELECT topics.id
+                FROM topics
+                JOIN topic_clusters ON topic_clusters.id = topics.topic_cluster_id
+                WHERE topics.name = ? AND topic_clusters.name = ?
+                """,
+                (topic, cluster_name),
+            ).fetchone()
+            if not topic_row:
+                continue
+            conn.execute(
+                """
+                INSERT OR REPLACE INTO publication_topics(
+                    publication_id, topic_id, raw_term, confidence, classification_method, classification_version, classified_at
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    publication_id,
+                    int(topic_row["id"]),
+                    topic,
+                    confidence,
+                    "auto-keyword",
+                    CURATION_VERSION,
+                    utc_now(),
+                ),
+            )
+            inserted += 1
+    return inserted
+
+
+def infer_study_areas(
+    conn: sqlite3.Connection,
+    publication_id: int,
+    metadata: dict[str, Any],
+    continent_mapping: dict[str, str],
+    max_countries: int,
+    confidence: float,
+) -> int:
+    text = normalize_text(f"{metadata.get('title')} {metadata.get('abstract')}")
+    matched_countries = [
+        country
+        for country in sorted(continent_mapping)
+        if phrase_in_text(text, country)
+    ]
+    inserted = 0
+
+    if matched_countries:
+        scope = "national" if len(matched_countries) == 1 else "multi-country"
+        for country in matched_countries[:max_countries]:
+            existing = conn.execute(
+                """
+                SELECT id
+                FROM study_areas
+                WHERE publication_id = ? AND country = ? AND geographic_scope = ?
+                """,
+                (publication_id, country, scope),
+            ).fetchone()
+            if existing:
+                continue
+            conn.execute(
+                """
+                INSERT INTO study_areas(
+                    publication_id, country, geographic_scope, confidence, extraction_method, classification_version, extracted_at
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+                (publication_id, country, scope, confidence, "auto-text", CURATION_VERSION, utc_now()),
+            )
+            inserted += 1
+        return inserted
+
+    if any(phrase_in_text(text, term) for term in GLOBAL_SCOPE_TERMS):
+        existing = conn.execute(
+            """
+            SELECT id
+            FROM study_areas
+            WHERE publication_id = ? AND geographic_scope = 'global'
+            """,
+            (publication_id,),
+        ).fetchone()
+        if not existing:
+            conn.execute(
+                """
+                INSERT INTO study_areas(
+                    publication_id, geographic_scope, confidence, extraction_method, classification_version, extracted_at
+                )
+                VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (publication_id, "global", confidence, "auto-text", CURATION_VERSION, utc_now()),
+            )
+            inserted += 1
+
+    return inserted
+
+
+def build_curated_queries(args: argparse.Namespace) -> list[str]:
+    base_queries = args.query or FOUNDATION_RESEARCH_QUERIES
+    countries = args.country or []
+    if not countries:
+        return base_queries
+
+    queries = []
+    for query in base_queries:
+        queries.append(query)
+        queries.extend(f"{query} {country}" for country in countries)
+    return queries
+
+
+def ingest_curated_openalex(args: argparse.Namespace) -> None:
+    init_db(args.db, DEFAULT_SCHEMA, args.topic_clusters)
+    topic_clusters = read_json(args.topic_clusters)
+    continent_mapping = load_continent_mapping(args.continent_mapping)
+    queries = build_curated_queries(args)
+    imported = 0
+    skipped = 0
+    topic_links = 0
+    study_areas = 0
+
+    with closing(connect(args.db)) as conn:
+        for query in queries:
+            params = build_openalex_params(args, query)
+            for page in range(1, args.max_pages + 1):
+                params["page"] = page
+                url = f"https://api.openalex.org/works?{urlencode(params)}"
+                payload = http_json(url)
+                results = payload.get("results", [])
+                if not results:
+                    break
+
+                for work in results:
+                    source_record_id = str(work.get("id") or "")
+                    if not source_record_id:
+                        continue
+                    metadata = normalize_openalex_work(work)
+                    if not metadata.get("title"):
+                        continue
+                    score, reasons = score_research_foundation(metadata, topic_clusters)
+                    if score < args.min_score:
+                        skipped += 1
+                        continue
+
+                    raw_import = {
+                        **work,
+                        "_ecoCuration": {
+                            "query": query,
+                            "score": score,
+                            "reasons": reasons,
+                            "version": CURATION_VERSION,
+                        },
+                    }
+                    raw_import_id = insert_raw_import(conn, "OpenAlex", source_record_id, raw_import)
+                    publication_id = upsert_publication(conn, metadata, "OpenAlex", source_record_id, raw_import_id)
+                    confidence = min(0.95, max(0.55, 0.55 + (score / 20)))
+                    topic_links += classify_publication_topics(conn, publication_id, metadata, topic_clusters, confidence)
+                    study_areas += infer_study_areas(
+                        conn,
+                        publication_id,
+                        metadata,
+                        continent_mapping,
+                        args.max_countries_per_work,
+                        max(0.5, confidence - 0.1),
+                    )
+                    imported += 1
+                conn.commit()
+
+    print(
+        "Curated OpenAlex import: "
+        f"{imported} imported/matched, {skipped} skipped, "
+        f"{topic_links} topic link(s), {study_areas} study area(s)."
+    )
 
 
 def normalize_crossref_work(message: dict[str, Any]) -> dict[str, Any]:
@@ -526,6 +842,12 @@ def export_map(args: argparse.Namespace) -> None:
             """
             SELECT
                 publications.id AS publication_id,
+                publications.title,
+                publications.doi,
+                publications.journal,
+                publications.publisher,
+                publications.url,
+                publications.publication_type,
                 publications.year,
                 study_areas.id AS study_area_id,
                 study_areas.country,
@@ -534,7 +856,12 @@ def export_map(args: argparse.Namespace) -> None:
                 study_areas.latitude,
                 study_areas.longitude,
                 study_areas.geographic_scope,
-                study_areas.confidence
+                study_areas.confidence,
+                (
+                    SELECT GROUP_CONCAT(DISTINCT sources.source_name)
+                    FROM sources
+                    WHERE sources.publication_id = publications.id
+                ) AS source_names
             FROM publications
             JOIN study_areas ON study_areas.publication_id = publications.id
             ORDER BY publications.id, study_areas.id
@@ -560,6 +887,13 @@ def export_map(args: argparse.Namespace) -> None:
         record = {
             "publicationId": row["publication_id"],
             "studyAreaId": row["study_area_id"],
+            "title": row["title"],
+            "doi": row["doi"],
+            "journal": row["journal"],
+            "publisher": row["publisher"],
+            "url": row["url"],
+            "publicationType": row["publication_type"],
+            "sourceName": row["source_names"],
             "year": row["year"],
             "country": country,
             "continent": continent or "Other",
@@ -618,6 +952,21 @@ def build_parser() -> argparse.ArgumentParser:
     openalex_parser.add_argument("--max-pages", type=int, default=1)
     openalex_parser.add_argument("--openalex-api-key")
 
+    curated_parser = subparsers.add_parser(
+        "ingest-curated-openalex",
+        help="Import insight/basic-research-oriented OpenAlex candidates and auto-classify safe metadata.",
+    )
+    curated_parser.add_argument("--query", action="append", help="Curated search query. Defaults to built-in foundation profiles.")
+    curated_parser.add_argument("--country", action="append", help="Also run each query with this country appended.")
+    curated_parser.add_argument("--from-year", type=int)
+    curated_parser.add_argument("--to-year", type=int)
+    curated_parser.add_argument("--per-page", type=int, default=25)
+    curated_parser.add_argument("--max-pages", type=int, default=1)
+    curated_parser.add_argument("--min-score", type=int, default=5)
+    curated_parser.add_argument("--max-countries-per-work", type=int, default=4)
+    curated_parser.add_argument("--continent-mapping", type=Path, default=DEFAULT_CONTINENT_MAPPING)
+    curated_parser.add_argument("--openalex-api-key")
+
     subparsers.add_parser("enrich-crossref", help="Enrich DOI-backed publications from Crossref.")
 
     topic_parser = subparsers.add_parser("add-topic", help="Attach a verified eco:nection topic to a publication.")
@@ -662,6 +1011,8 @@ def main(argv: list[str] | None = None) -> int:
             print(f"Initialized {args.db}")
         elif args.command == "ingest-openalex":
             ingest_openalex(args)
+        elif args.command == "ingest-curated-openalex":
+            ingest_curated_openalex(args)
         elif args.command == "enrich-crossref":
             enrich_crossref(args)
         elif args.command == "add-topic":

@@ -222,6 +222,16 @@
   border: 2px solid #ccfbf1;
 }
 
+.globe-legend-science-ring {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, #0f766e 0 34%, transparent 36%),
+    conic-gradient(#38bdf8 0 38%, #22c55e 38% 70%, #f59e0b 70% 100%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+}
+
 .globe-popup {
   color: #111827;
 }
@@ -647,5 +657,265 @@ section.chart-container {
 
   .plotly-chart {
       min-width: 600px; /* Kleinere Mindestbreite für mobile Screens */
+  }
+}
+
+/* Data Analysis comparison page */
+.data-analysis-page {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+.data-analysis-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.analysis-filter-bar {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) repeat(2, minmax(160px, 0.75fr)) minmax(240px, 1fr) minmax(190px, 0.85fr) minmax(260px, 1fr) auto;
+  gap: 0.85rem;
+  align-items: end;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.18);
+}
+
+.analysis-control {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.analysis-control-wide {
+  min-width: 220px;
+}
+
+.analysis-reset {
+  align-self: end;
+}
+
+.analysis-section,
+.analysis-summary {
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.analysis-section {
+  background: rgba(31, 41, 51, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.analysis-section-heading,
+.analysis-summary-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.analysis-section-heading h2,
+.analysis-summary-heading h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.analysis-section-heading p,
+.analysis-summary-heading p {
+  margin: 0.2rem 0 0;
+  color: rgba(248, 250, 252, 0.72);
+  font-size: 0.9rem;
+}
+
+.analysis-summary-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.analysis-summary-card {
+  border-radius: 0.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(15, 23, 42, 0.35);
+  padding: 1rem;
+}
+
+.analysis-summary-card span,
+.analysis-pattern span {
+  display: block;
+  color: rgba(248, 250, 252, 0.62);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.analysis-summary-card strong {
+  display: block;
+  margin-top: 0.3rem;
+  color: #f8fafc;
+  font-size: clamp(1.5rem, 4vw, 2.35rem);
+  line-height: 1.05;
+}
+
+.analysis-summary-card small,
+.analysis-pattern small {
+  display: block;
+  margin-top: 0.45rem;
+  color: rgba(248, 250, 252, 0.72);
+}
+
+.analysis-difference {
+  margin: 0.9rem 0 0;
+  color: rgba(248, 250, 252, 0.82);
+}
+
+.analysis-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.analysis-plot {
+  width: 100%;
+  min-height: 390px;
+}
+
+.analysis-plot-compact {
+  min-height: 330px;
+}
+
+.analysis-network {
+  width: 100%;
+  min-height: 340px;
+  border-radius: 0.5rem;
+  background: rgba(15, 23, 42, 0.32);
+}
+
+.analysis-empty {
+  border-radius: 0.5rem;
+  border: 1px dashed rgba(148, 163, 184, 0.34);
+  color: rgba(248, 250, 252, 0.72);
+  padding: 1rem;
+}
+
+.analysis-patterns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.analysis-pattern {
+  min-height: 8.5rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: left;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.analysis-pattern:hover {
+  border-color: rgba(45, 212, 191, 0.72);
+  transform: translateY(-1px);
+}
+
+.analysis-pattern strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: #f8fafc;
+  font-size: 1rem;
+}
+
+.analysis-evidence {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.analysis-evidence-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.9rem;
+}
+
+.analysis-evidence-item h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.analysis-evidence-item p {
+  margin: 0.25rem 0;
+  color: rgba(248, 250, 252, 0.76);
+}
+
+.analysis-evidence-item small {
+  color: rgba(248, 250, 252, 0.64);
+}
+
+.analysis-methodology {
+  display: grid;
+  gap: 0.75rem;
+  color: rgba(248, 250, 252, 0.82);
+}
+
+body:has(.data-analysis-page) .chart-container,
+body:has(.data-analysis-page) .plotly-chart {
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  overflow-x: visible;
+}
+
+@media (max-width: 1180px) {
+  .analysis-filter-bar {
+    position: static;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1380px) {
+  .analysis-filter-bar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .data-analysis-page {
+    padding: 0.85rem;
+  }
+
+  .data-analysis-hero,
+  .analysis-section-heading,
+  .analysis-summary-heading,
+  .analysis-evidence-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .analysis-filter-bar,
+  .analysis-grid-2,
+  .analysis-summary-cards,
+  .analysis-patterns {
+    grid-template-columns: 1fr;
+  }
+
+  .analysis-control-wide {
+    min-width: 0;
+  }
+
+  .analysis-plot,
+  .analysis-plot-compact {
+    min-height: 320px;
   }
 }

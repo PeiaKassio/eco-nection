@@ -151,6 +151,95 @@ class SciencePipelineTests(unittest.TestCase):
         self.assertEqual(record["displayGeometrySource"], "display-anchor-country-centroid")
         self.assertIsInstance(record["displayLatitude"], float)
         self.assertIsInstance(record["displayLongitude"], float)
+        self.assertEqual(record["title"], "Climate Change in Germany")
+        self.assertEqual(record["doi"], "10.1234/anchor")
+        self.assertEqual(record["sourceName"], "OpenAlex")
+
+    def test_foundation_scoring_downranks_method_noise(self):
+        topic_clusters = science_pipeline.read_json(ROOT / "data" / "topicClusters.json")
+        insight_score, insight_reasons = science_pipeline.score_research_foundation(
+            {
+                "title": "Climate Change Impacts on Biodiversity and Ecosystem Resilience",
+                "abstract": "Evidence shows long-term effects, mechanisms, and adaptation responses.",
+                "publication_type": "article",
+            },
+            topic_clusters,
+        )
+        method_score, method_reasons = science_pipeline.score_research_foundation(
+            {
+                "title": "A Deep Learning Benchmark Dataset for Remote Sensing Method Validation",
+                "abstract": "This software toolkit describes an algorithm and database.",
+                "publication_type": "article",
+            },
+            topic_clusters,
+        )
+
+        self.assertGreaterEqual(insight_score, 5)
+        self.assertLess(method_score, insight_score)
+        self.assertTrue(any(reason.startswith("method-noise") for reason in method_reasons))
+        self.assertTrue(any(reason.startswith("eco-topic-match") for reason in insight_reasons))
+
+    def test_auto_classification_links_topics_and_country_study_area(self):
+        publication_id = science_pipeline.upsert_publication(
+            self.conn,
+            {
+                "doi": "10.1234/curated",
+                "title": "Biodiversity Loss and Ecosystem Resilience in Kenya",
+                "abstract": "Evidence from Kenya shows impacts on biodiversity and conservation.",
+                "year": 2024,
+            },
+            "OpenAlex",
+            "W5",
+        )
+        topic_clusters = science_pipeline.read_json(ROOT / "data" / "topicClusters.json")
+        continent_mapping = science_pipeline.load_continent_mapping(ROOT / "data" / "continentMapping.json")
+        topic_links = science_pipeline.classify_publication_topics(
+            self.conn,
+            publication_id,
+            {
+                "title": "Biodiversity Loss and Ecosystem Resilience in Kenya",
+                "abstract": "Evidence from Kenya shows impacts on biodiversity and conservation.",
+            },
+            topic_clusters,
+            0.8,
+        )
+        study_areas = science_pipeline.infer_study_areas(
+            self.conn,
+            publication_id,
+            {
+                "title": "Biodiversity Loss and Ecosystem Resilience in Kenya",
+                "abstract": "Evidence from Kenya shows impacts on biodiversity and conservation.",
+            },
+            continent_mapping,
+            4,
+            0.7,
+        )
+        self.conn.commit()
+
+        clusters = {
+            row[0]
+            for row in self.conn.execute(
+                """
+                SELECT DISTINCT topic_clusters.name
+                FROM publication_topics
+                JOIN topics ON topics.id = publication_topics.topic_id
+                JOIN topic_clusters ON topic_clusters.id = topics.topic_cluster_id
+                WHERE publication_topics.publication_id = ?
+                """,
+                (publication_id,),
+            )
+        }
+        area = self.conn.execute(
+            "SELECT country, geographic_scope FROM study_areas WHERE publication_id = ?",
+            (publication_id,),
+        ).fetchone()
+
+        self.assertGreaterEqual(topic_links, 2)
+        self.assertGreaterEqual(study_areas, 1)
+        self.assertIn("Biodiversity", clusters)
+        self.assertIn("Ecosystems", clusters)
+        self.assertEqual(area["country"], "Kenya")
+        self.assertEqual(area["geographic_scope"], "national")
 
 
 if __name__ == "__main__":
