@@ -152,3 +152,18 @@ Data changes should be made in small commits that explain:
 - what data changed,
 - why it changed,
 - what source or review decision supports it.
+
+## Quality Reports
+
+Run the data validation with report output to create review lists:
+
+```bash
+node data/dataValidation.js --report
+```
+
+This writes:
+
+- `data/reports/data-quality-findings.json`
+- `data/reports/data-quality-findings.md`
+
+The reports are review aids. They should not automatically rewrite artwork records.

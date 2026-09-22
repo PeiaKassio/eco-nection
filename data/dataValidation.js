@@ -4,8 +4,12 @@ const path = require('path');
 const dataDir = __dirname;
 const artworkPath = path.join(dataDir, 'artwork-data.json');
 const topicClustersPath = path.join(dataDir, 'topicClusters.json');
+const reportsDir = path.join(dataDir, 'reports');
+const reportJsonPath = path.join(reportsDir, 'data-quality-findings.json');
+const reportMarkdownPath = path.join(reportsDir, 'data-quality-findings.md');
 
 const STRICT_DATA_QUALITY = process.env.STRICT_DATA_QUALITY === '1';
+const WRITE_REPORT = process.argv.includes('--report');
 
 function readJson(filePath) {
     return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
@@ -47,7 +51,9 @@ function buildTopicIndex(topicClusters) {
     Object.entries(topicClusters).forEach(([clusterName, cluster]) => {
         (cluster.topics || []).forEach(topic => {
             if (!topicIndex.has(topic)) topicIndex.set(topic, []);
-            topicIndex.get(topic).push(clusterName);
+            if (!topicIndex.get(topic).includes(clusterName)) {
+                topicIndex.get(topic).push(clusterName);
+            }
         });
     });
 
@@ -239,6 +245,74 @@ function printSummary(findings) {
         });
 }
 
+function groupFindings(findings) {
+    return findings.reduce((groups, finding) => {
+        groups[finding.code] = groups[finding.code] || [];
+        groups[finding.code].push(finding);
+        return groups;
+    }, {});
+}
+
+function writeReports(findings) {
+    const errors = findings.filter(finding => finding.severity === 'error');
+    const warnings = findings.filter(finding => finding.severity === 'warning');
+    const grouped = groupFindings(findings);
+    const generatedAt = new Date().toISOString();
+
+    fs.mkdirSync(reportsDir, { recursive: true });
+
+    fs.writeFileSync(reportJsonPath, JSON.stringify({
+        generated_at: generatedAt,
+        summary: {
+            errors: errors.length,
+            warnings: warnings.length,
+            total: findings.length
+        },
+        groups: Object.fromEntries(
+            Object.entries(grouped)
+                .sort(([codeA], [codeB]) => codeA.localeCompare(codeB))
+                .map(([code, items]) => [code, {
+                    count: items.length,
+                    severity: items[0]?.severity || null,
+                    findings: items
+                }])
+        )
+    }, null, 2));
+
+    const lines = [
+        '# Eco:nection Data Quality Findings',
+        '',
+        `Generated at: ${generatedAt}`,
+        '',
+        '## Summary',
+        '',
+        `- Errors: ${errors.length}`,
+        `- Warnings: ${warnings.length}`,
+        `- Total findings: ${findings.length}`,
+        ''
+    ];
+
+    Object.entries(grouped)
+        .sort(([codeA], [codeB]) => codeA.localeCompare(codeB))
+        .forEach(([code, items]) => {
+            lines.push(`## ${code}`);
+            lines.push('');
+            lines.push(`Count: ${items.length}`);
+            lines.push('');
+            items.forEach(item => {
+                const artwork = item.artwork ? ` (${item.artwork})` : '';
+                lines.push(`- [${item.severity}]${artwork} ${item.message}`);
+            });
+            lines.push('');
+        });
+
+    fs.writeFileSync(reportMarkdownPath, `${lines.join('\n')}\n`);
+
+    console.log(`\nReports written:`);
+    console.log(`- ${reportJsonPath}`);
+    console.log(`- ${reportMarkdownPath}`);
+}
+
 try {
     const topicClusters = readJson(topicClustersPath);
     const artworkData = readJson(artworkPath);
@@ -247,6 +321,10 @@ try {
     const hasWarnings = findings.some(finding => finding.severity === 'warning');
 
     printSummary(findings);
+
+    if (WRITE_REPORT) {
+        writeReports(findings);
+    }
 
     if (hasErrors || (STRICT_DATA_QUALITY && hasWarnings)) {
         process.exit(1);

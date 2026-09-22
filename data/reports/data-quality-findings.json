@@ -1,0 +1,898 @@
+{
+  "generated_at": "2026-09-22T19:26:56.151Z",
+  "summary": {
+    "errors": 0,
+    "warnings": 137,
+    "total": 137
+  },
+  "groups": {
+    "duplicate-topic-within-cluster": {
+      "count": 1,
+      "severity": "warning",
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "duplicate-topic-within-cluster",
+          "message": "Topic \"Ecosystem Protection\" appears more than once in cluster \"Ecosystems\".",
+          "artwork": null
+        }
+      ]
+    },
+    "highly-reused-coordinates": {
+      "count": 1,
+      "severity": "warning",
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "highly-reused-coordinates",
+          "message": "Coordinates [28.9784,41.0082] are used by 8 artworks. This may be intentional for exhibitions/cities or may need review.",
+          "artwork": null
+        }
+      ]
+    },
+    "invalid-thumbnail-url": {
+      "count": 1,
+      "severity": "warning",
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "invalid-thumbnail-url",
+          "message": "Feature #174 thumbnail should use http:// or https://.",
+          "artwork": "Spaceship: Earth"
+        }
+      ]
+    },
+    "missing-description": {
+      "count": 1,
+      "severity": "warning",
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "missing-description",
+          "message": "Feature #174 is missing a description.",
+          "artwork": "Spaceship: Earth"
+        }
+      ]
+    },
+    "missing-display-type": {
+      "count": 24,
+      "severity": "warning",
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #3 is missing properties.type display text.",
+          "artwork": "Wire Portrait Series"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #4 is missing properties.type display text.",
+          "artwork": "It's Just a Wildfire"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #5 is missing properties.type display text.",
+          "artwork": "Bang Bang Drilly Drilly Bomb"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #16 is missing properties.type display text.",
+          "artwork": "I Like America and America Likes Me"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #60 is missing properties.type display text.",
+          "artwork": "Skywhale (Sustainable Flight)"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #72 is missing properties.type display text.",
+          "artwork": "Imagined Landscapes"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #73 is missing properties.type display text.",
+          "artwork": "Now the Cranes Fly Again"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #74 is missing properties.type display text.",
+          "artwork": "Studio Sound: Walk in the Forest"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #75 is missing properties.type display text.",
+          "artwork": "Festival in Achberg: Workshops, Lectures and Concerts"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #84 is missing properties.type display text.",
+          "artwork": "Tracing Trees"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #85 is missing properties.type display text.",
+          "artwork": "Coding into the Forest"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #86 is missing properties.type display text.",
+          "artwork": "The Forest of Brotonne"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #87 is missing properties.type display text.",
+          "artwork": "Solar"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #88 is missing properties.type display text.",
+          "artwork": "The Child in Time"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #89 is missing properties.type display text.",
+          "artwork": "Enduring Love"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #90 is missing properties.type display text.",
+          "artwork": "Channel #23"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #91 is missing properties.type display text.",
+          "artwork": "Air Pollution of Iran"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #92 is missing properties.type display text.",
+          "artwork": "The Eye in the Sky"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #93 is missing properties.type display text.",
+          "artwork": "Six Sculptures"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #101 is missing properties.type display text.",
+          "artwork": "7 Days of Garbage"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #102 is missing properties.type display text.",
+          "artwork": "Nausicaä of the Valley of the Wind"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #103 is missing properties.type display text.",
+          "artwork": "Princess Mononoke"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #104 is missing properties.type display text.",
+          "artwork": "Ponyo"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-display-type",
+          "message": "Feature #157 is missing properties.type display text.",
+          "artwork": "Psychozoic Era"
+        }
+      ]
+    },
+    "missing-source-url": {
+      "count": 39,
+      "severity": "warning",
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #3 is published without a source URL.",
+          "artwork": "Wire Portrait Series"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #4 is published without a source URL.",
+          "artwork": "It's Just a Wildfire"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #5 is published without a source URL.",
+          "artwork": "Bang Bang Drilly Drilly Bomb"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #6 is published without a source URL.",
+          "artwork": "Carbonne? C'est Bon"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #7 is published without a source URL.",
+          "artwork": "Net Zero Meeting"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #8 is published without a source URL.",
+          "artwork": "Drill It Just Like That"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #9 is published without a source URL.",
+          "artwork": "Pump It Fast"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #19 is published without a source URL.",
+          "artwork": "Am Samstag gehen die Mädchen in den Wald und jagen Sachen in die Luft"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #34 is published without a source URL.",
+          "artwork": "East Stanley Glacier, Mt Stanley, Rwenzori Mountains, Uganda"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #94 is published without a source URL.",
+          "artwork": "Big Yellow Taxi"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #113 is published without a source URL.",
+          "artwork": "Plastic Ocean"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #114 is published without a source URL.",
+          "artwork": "Aquatic Fauna No. 1"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #115 is published without a source URL.",
+          "artwork": "What is a Tree?"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #116 is published without a source URL.",
+          "artwork": "Desert Bloom"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #117 is published without a source URL.",
+          "artwork": "Climate Wall"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #118 is published without a source URL.",
+          "artwork": "Ocean Echo"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #119 is published without a source URL.",
+          "artwork": "The Last Breath"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #122 is published without a source URL.",
+          "artwork": "Christi Belcourt - Indigenous Nature"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #125 is published without a source URL.",
+          "artwork": "Underwater Museum of Art"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #127 is published without a source URL.",
+          "artwork": "Nile's Legacy"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #129 is published without a source URL.",
+          "artwork": "River of Life"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #130 is published without a source URL.",
+          "artwork": "Bleached Reef"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #131 is published without a source URL.",
+          "artwork": "River Revival"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #132 is published without a source URL.",
+          "artwork": "Treehotel - Mirrorcube"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #133 is published without a source URL.",
+          "artwork": "Forest Revival"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #135 is published without a source URL.",
+          "artwork": "Eco-Walls of Buenos Aires"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #136 is published without a source URL.",
+          "artwork": "Andean Streams"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #137 is published without a source URL.",
+          "artwork": "Carbon Towers"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #138 is published without a source URL.",
+          "artwork": "Water Cycle Symphony"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #139 is published without a source URL.",
+          "artwork": "Dead Sea Revival"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #140 is published without a source URL.",
+          "artwork": "Green Delhi"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #141 is published without a source URL.",
+          "artwork": "Ocean Mirror"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #160 is published without a source URL.",
+          "artwork": "Baltic Sea Rescue Project"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #161 is published without a source URL.",
+          "artwork": "Yangtze River Plastic Wave"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #162 is published without a source URL.",
+          "artwork": "Smog Tower Art"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #163 is published without a source URL.",
+          "artwork": "Wildlife Corridors"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #164 is published without a source URL.",
+          "artwork": "Kinshasa Green Mural"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #165 is published without a source URL.",
+          "artwork": "The Karoo Energy Project"
+        },
+        {
+          "severity": "warning",
+          "code": "missing-source-url",
+          "message": "Feature #166 is published without a source URL.",
+          "artwork": "Cape Coral Crisis"
+        }
+      ]
+    },
+    "possible-duplicate-artwork": {
+      "count": 1,
+      "severity": "warning",
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "possible-duplicate-artwork",
+          "message": "Feature #34 duplicates title/location/year with \"East Stanley Glacier, Mt Stanley, Rwenzori Mountains, Uganda\".",
+          "artwork": "East Stanley Glacier, Mt Stanley, Rwenzori Mountains, Uganda"
+        }
+      ]
+    },
+    "possible-placeholder-coordinates": {
+      "count": 3,
+      "severity": "warning",
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "possible-placeholder-coordinates",
+          "message": "Feature #70 uses [0, 0], which may be a placeholder.",
+          "artwork": "Pression en tropics"
+        },
+        {
+          "severity": "warning",
+          "code": "possible-placeholder-coordinates",
+          "message": "Feature #167 uses [0, 0], which may be a placeholder.",
+          "artwork": "Washed up"
+        },
+        {
+          "severity": "warning",
+          "code": "possible-placeholder-coordinates",
+          "message": "Feature #168 uses [0, 0], which may be a placeholder.",
+          "artwork": "Gyrecraft"
+        }
+      ]
+    },
+    "topic-in-multiple-clusters": {
+      "count": 5,
+      "severity": "warning",
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "topic-in-multiple-clusters",
+          "message": "Topic \"Natural Habitat\" appears in multiple clusters: Ecosystems, Biodiversity.",
+          "artwork": null
+        },
+        {
+          "severity": "warning",
+          "code": "topic-in-multiple-clusters",
+          "message": "Topic \"Conservation\" appears in multiple clusters: Ecosystems, Water Issues.",
+          "artwork": null
+        },
+        {
+          "severity": "warning",
+          "code": "topic-in-multiple-clusters",
+          "message": "Topic \"Upcycling\" appears in multiple clusters: Sustainable Practices, Waste.",
+          "artwork": null
+        },
+        {
+          "severity": "warning",
+          "code": "topic-in-multiple-clusters",
+          "message": "Topic \"Energy Overuse\" appears in multiple clusters: Energy, Resource Use and Depletion.",
+          "artwork": null
+        },
+        {
+          "severity": "warning",
+          "code": "topic-in-multiple-clusters",
+          "message": "Topic \"Toxic Waste\" appears in multiple clusters: Waste, Health and Environment.",
+          "artwork": null
+        }
+      ]
+    },
+    "topic-not-in-taxonomy": {
+      "count": 50,
+      "severity": "warning",
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Environmental Satire\" is used but not defined in topicClusters.json.",
+          "artwork": "It's Just a Wildfire"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Environmental Satire\" is used but not defined in topicClusters.json.",
+          "artwork": "Net Zero Meeting"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Socio-Environmental Justice\" is used but not defined in topicClusters.json.",
+          "artwork": "Am Samstag gehen die Mädchen in den Wald und jagen Sachen in die Luft"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Climate Justice\" is used but not defined in topicClusters.json.",
+          "artwork": "The Colour of the Climate Crisis"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Racial Justice\" is used but not defined in topicClusters.json.",
+          "artwork": "The Colour of the Climate Crisis"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Inclusion\" is used but not defined in topicClusters.json.",
+          "artwork": "DesignKind"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Water Issues\" is used but not defined in topicClusters.json.",
+          "artwork": "Golden Water"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Environmental Pollution\" is used but not defined in topicClusters.json.",
+          "artwork": "Golden Water"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Environmental Disaster\" is used but not defined in topicClusters.json.",
+          "artwork": "Oil Spill #12"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Environmental Disaster\" is used but not defined in topicClusters.json.",
+          "artwork": "Oil Spill #20"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Electronic Waste\" is used but not defined in topicClusters.json.",
+          "artwork": "Cell phone chargers, Atlanta, 2004"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Resource Depletion\" is used but not defined in topicClusters.json.",
+          "artwork": "Mycotecture"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Public Awareness\" is used but not defined in topicClusters.json.",
+          "artwork": "Skywhale (Sustainable Flight)"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Oil Corporations\" is used but not defined in topicClusters.json.",
+          "artwork": "Der traurige Gärtner"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Food\" is used but not defined in topicClusters.json.",
+          "artwork": "Bauer Karl und die Spanische Gurke"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Working Conditions\" is used but not defined in topicClusters.json.",
+          "artwork": "Bauer Karl und die Spanische Gurke"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Traditional Knowledge\" is used but not defined in topicClusters.json.",
+          "artwork": "Oxygen"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Energy overuse\" is used but not defined in topicClusters.json.",
+          "artwork": "Nnenna Okore - Eco Sculptures"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Desert Ecology\" is used but not defined in topicClusters.json.",
+          "artwork": "Desert X AlUla (Environmental Commissions)"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Urban Heat\" is used but not defined in topicClusters.json.",
+          "artwork": "Riyadh Art – Urban Landscape and Eco-future Commissions"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Water Management\" is used but not defined in topicClusters.json.",
+          "artwork": "Riyadh Art – Urban Landscape and Eco-future Commissions"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Climate Adaptation\" is used but not defined in topicClusters.json.",
+          "artwork": "Jukskei River Creature Series"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Oil Economy\" is used but not defined in topicClusters.json.",
+          "artwork": "Bidon-Masques (Jerrycan Masks)"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Community\" is used but not defined in topicClusters.json.",
+          "artwork": "Functional Ocean Plastic Art"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Migration\" is used but not defined in topicClusters.json.",
+          "artwork": "The Herds (Mobile Public Artwork)"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Water Management\" is used but not defined in topicClusters.json.",
+          "artwork": "Gold Rivers"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Hydropower\" is used but not defined in topicClusters.json.",
+          "artwork": "Gold Rivers"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Displacement\" is used but not defined in topicClusters.json.",
+          "artwork": "Gold Rivers"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Wildlife\" is used but not defined in topicClusters.json.",
+          "artwork": "Wooden Wildlife Sculptures at Lisinia Nature"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Habitat Loss\" is used but not defined in topicClusters.json.",
+          "artwork": "Monochrome"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Water Management\" is used but not defined in topicClusters.json.",
+          "artwork": "Lost waters"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Landscape Change\" is used but not defined in topicClusters.json.",
+          "artwork": "Lost waters"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Environmental Memory\" is used but not defined in topicClusters.json.",
+          "artwork": "Lost waters"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Wetlands\" is used but not defined in topicClusters.json.",
+          "artwork": "Wallowland / Çamuralem"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Industrial Ecology\" is used but not defined in topicClusters.json.",
+          "artwork": "The Tipping Hall"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Anthropocene\" is used but not defined in topicClusters.json.",
+          "artwork": "The Most Beautiful of All Mothers (I)"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Anthropocene\" is used but not defined in topicClusters.json.",
+          "artwork": "Eleven suns"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Scarcity\" is used but not defined in topicClusters.json.",
+          "artwork": "Eleven suns"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Regenerative Land Management\" is used but not defined in topicClusters.json.",
+          "artwork": "Regeneration / Earth Cycle Trance, led by Starhawk"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Soil\" is used but not defined in topicClusters.json.",
+          "artwork": "Regeneration / Earth Cycle Trance, led by Starhawk"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Ecofeminism\" is used but not defined in topicClusters.json.",
+          "artwork": "Regeneration / Earth Cycle Trance, led by Starhawk"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Plant Life\" is used but not defined in topicClusters.json.",
+          "artwork": "Appearance"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Forestry\" is used but not defined in topicClusters.json.",
+          "artwork": "Appearance"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Regeneration\" is used but not defined in topicClusters.json.",
+          "artwork": "Appearance"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Landscape Change\" is used but not defined in topicClusters.json.",
+          "artwork": "The Phantom Causality of the Urban Landscape"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Landscape Change\" is used but not defined in topicClusters.json.",
+          "artwork": "Snowiness"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Ecological Interdependence\" is used but not defined in topicClusters.json.",
+          "artwork": "Snowiness"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Protected Areas\" is used but not defined in topicClusters.json.",
+          "artwork": "Monastery"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Landscape Change\" is used but not defined in topicClusters.json.",
+          "artwork": "Monastery"
+        },
+        {
+          "severity": "warning",
+          "code": "topic-not-in-taxonomy",
+          "message": "Topic \"Social Justice\" is used but not defined in topicClusters.json.",
+          "artwork": "Envirowoman"
+        }
+      ]
+    },
+    "year-string": {
+      "count": 11,
+      "severity": "warning",
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "year-string",
+          "message": "Feature #70 has a string year \"Ongoing\". Use the numeric start year for future records.",
+          "artwork": "Pression en tropics"
+        },
+        {
+          "severity": "warning",
+          "code": "year-string",
+          "message": "Feature #142 has a string year \"2005–ongoing\". Use the numeric start year for future records.",
+          "artwork": "DeadSee (Dead Sea Salt Works)"
+        },
+        {
+          "severity": "warning",
+          "code": "year-string",
+          "message": "Feature #143 has a string year \"2020\". Use the numeric start year for future records.",
+          "artwork": "Desert X AlUla (Environmental Commissions)"
+        },
+        {
+          "severity": "warning",
+          "code": "year-string",
+          "message": "Feature #146 has a string year \"2021–ongoing\". Use the numeric start year for future records.",
+          "artwork": "Riyadh Art – Urban Landscape and Eco-future Commissions"
+        },
+        {
+          "severity": "warning",
+          "code": "year-string",
+          "message": "Feature #149 has a string year \"2000s–ongoing\". Use the numeric start year for future records.",
+          "artwork": "Bidon-Masques (Jerrycan Masks)"
+        },
+        {
+          "severity": "warning",
+          "code": "year-string",
+          "message": "Feature #150 has a string year \"2000s–ongoing\". Use the numeric start year for future records.",
+          "artwork": "Site-Specific Land Art (Western Cape)"
+        },
+        {
+          "severity": "warning",
+          "code": "year-string",
+          "message": "Feature #152 has a string year \"2010s–ongoing\". Use the numeric start year for future records.",
+          "artwork": "Recycled Flip-Flop Sculptures"
+        },
+        {
+          "severity": "warning",
+          "code": "year-string",
+          "message": "Feature #169 has a string year \"2008-2012\". Use the numeric start year for future records.",
+          "artwork": "Plastic Reef"
+        },
+        {
+          "severity": "warning",
+          "code": "year-string",
+          "message": "Feature #170 has a string year \"Ongoing project\". Use the numeric start year for future records.",
+          "artwork": "The Great Plastic Garbage Patch"
+        },
+        {
+          "severity": "warning",
+          "code": "year-string",
+          "message": "Feature #173 has a string year \"2024\". Use the numeric start year for future records.",
+          "artwork": "Washed Ashore Project"
+        },
+        {
+          "severity": "warning",
+          "code": "year-string",
+          "message": "Feature #178 has a string year \"1979-1980\". Use the numeric start year for future records.",
+          "artwork": "Touch Sanitation"
+        }
+      ]
+    }
+  }
+}
