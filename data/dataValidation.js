@@ -11,7 +11,9 @@ const reportMarkdownPath = path.join(reportsDir, 'data-quality-findings.md');
 const STRICT_DATA_QUALITY = process.env.STRICT_DATA_QUALITY === '1';
 const WRITE_REPORT = process.argv.includes('--report');
 const IGNORED_HIGHLY_REUSED_COORDINATES = new Set([
-    '[28.9784,41.0082]' // Istanbul has several intentionally city-level records.
+    '[28.9784,41.0082]', // Istanbul has several intentionally city-level records.
+    '[-74.006,40.7128]', // New York has several intentionally city-level records.
+    '[-0.1276,51.5072]' // London has several intentionally city-level records.
 ]);
 
 function readJson(filePath) {

@@ -133,6 +133,8 @@ function enrichFeature(feature) {
 function getFilteredFeatures() {
     const query = normalizeText(document.getElementById('globeSearch').value.trim());
     const cluster = document.getElementById('globeCluster').value;
+    const continent = document.getElementById('globeContinent').value;
+    const country = document.getElementById('globeCountry').value;
     const fromYear = parseInt(document.getElementById('globeYearFrom').value, 10);
     const toYear = parseInt(document.getElementById('globeYearTo').value, 10);
 
@@ -144,6 +146,32 @@ function getFilteredFeatures() {
         if (!isValidPoint(feature)) return false;
         if (query && !text.includes(query)) return false;
         if (cluster && !(props.clusters || []).includes(cluster)) return false;
+        if (continent && props.continent !== continent) return false;
+        if (country && props.country !== country) return false;
+        if (!Number.isNaN(fromYear) && year !== null && year < fromYear) return false;
+        if (!Number.isNaN(toYear) && year !== null && year > toYear) return false;
+        return true;
+    });
+}
+
+function getFilteredScienceRecords(records = scienceRecords) {
+    const query = normalizeText(document.getElementById('globeSearch').value.trim());
+    const cluster = document.getElementById('globeCluster').value;
+    const continent = document.getElementById('globeContinent').value;
+    const country = document.getElementById('globeCountry').value;
+    const fromYear = parseInt(document.getElementById('globeYearFrom').value, 10);
+    const toYear = parseInt(document.getElementById('globeYearTo').value, 10);
+
+    return records.filter(record => {
+        const year = parseYear(record.year);
+        const topics = Array.isArray(record.topics) ? record.topics : [];
+        const clusters = Array.isArray(record.topicClusters) ? record.topicClusters : [];
+        const text = normalizeText(`${record.country} ${record.region} ${record.city} ${topics.join(' ')} ${clusters.join(' ')}`);
+
+        if (query && !text.includes(query)) return false;
+        if (cluster && !clusters.includes(cluster)) return false;
+        if (continent && record.continent !== continent) return false;
+        if (country && record.country !== country) return false;
         if (!Number.isNaN(fromYear) && year !== null && year < fromYear) return false;
         if (!Number.isNaN(toYear) && year !== null && year > toYear) return false;
         return true;
@@ -195,6 +223,126 @@ function aggregateByContinent(features) {
     });
 
     return data;
+}
+
+function aggregateScienceByCountry(records) {
+    const data = {};
+
+    records.forEach(record => {
+        const country = record.country || 'Other';
+        if (!data[country]) {
+            data[country] = {
+                label: country,
+                count: 0,
+                publicationIds: new Set(),
+                population: countryPopulation[country] || 0
+            };
+        }
+        if (record.publicationId != null) {
+            data[country].publicationIds.add(record.publicationId);
+        }
+    });
+
+    Object.values(data).forEach(item => {
+        item.count = item.publicationIds.size;
+        item.value = normalizeValue(item.count, item.population);
+    });
+
+    return data;
+}
+
+function aggregateScienceByContinent(records) {
+    const data = {};
+
+    records.forEach(record => {
+        const country = record.country || 'Other';
+        const continent = record.continent || 'Other';
+        if (!data[continent]) {
+            data[continent] = {
+                label: continent,
+                count: 0,
+                publicationIds: new Set(),
+                countries: new Set()
+            };
+        }
+        if (record.publicationId != null) {
+            data[continent].publicationIds.add(record.publicationId);
+        }
+        if (country !== 'Other') data[continent].countries.add(country);
+    });
+
+    Object.values(data).forEach(item => {
+        const population = Array.from(item.countries).reduce((sum, country) => sum + (countryPopulation[country] || 0), 0);
+        item.count = item.publicationIds.size;
+        item.value = normalizeValue(item.count, population);
+    });
+
+    return data;
+}
+
+function getUniquePublicationCount(records) {
+    return new Set(records.map(record => record.publicationId).filter(id => id != null)).size;
+}
+
+function groupScienceRecords(records, countryData) {
+    groupedScienceLookup = new Map();
+
+    records.forEach(record => {
+        if (!Number.isFinite(record.longitude) || !Number.isFinite(record.latitude)) return;
+        const groupKey = record.country
+            ? `country:${record.country}`
+            : `point:${record.longitude.toFixed(5)},${record.latitude.toFixed(5)}`;
+        const existingGroup = groupedScienceLookup.get(groupKey);
+
+        if (existingGroup) {
+            existingGroup.records.push(record);
+            existingGroup.longitudeSum += record.longitude;
+            existingGroup.latitudeSum += record.latitude;
+            return;
+        }
+
+        groupedScienceLookup.set(groupKey, {
+            groupKey,
+            records: [record],
+            longitudeSum: record.longitude,
+            latitudeSum: record.latitude
+        });
+    });
+
+    const maxCount = Math.max(1, ...Array.from(groupedScienceLookup.values()).map(group => {
+        const publicationIds = new Set(group.records.map(record => record.publicationId).filter(id => id != null));
+        return publicationIds.size;
+    }));
+
+    return Array.from(groupedScienceLookup.values()).map(group => {
+        const publicationIds = new Set(group.records.map(record => record.publicationId).filter(id => id != null));
+        const firstRecord = group.records[0];
+        const scienceCount = publicationIds.size;
+        const countryMetric = countryData[firstRecord.country]?.value || scienceCount;
+        const radius = 8 + ((scienceCount / maxCount) * 22);
+        const topicClustersForGroup = Array.from(new Set(group.records.flatMap(record => record.topicClusters || []))).sort();
+
+        return {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [
+                    group.longitudeSum / group.records.length,
+                    group.latitudeSum / group.records.length
+                ]
+            },
+            properties: {
+                groupKey: group.groupKey,
+                label: firstRecord.country || firstRecord.region || firstRecord.city || 'Study area',
+                country: firstRecord.country || 'Other',
+                continent: firstRecord.continent || 'Other',
+                scienceCount,
+                countryMetric,
+                radius,
+                topicClusters: topicClustersForGroup.join(', ')
+            }
+        };
+    });
 }
 
 function enrichMetricValues(features, countryData) {
@@ -303,17 +451,130 @@ function getCountryRankingData(countryData) {
     );
 }
 
+function mergeCountryData(artCountryData, scienceCountryData) {
+    const countries = new Set([...Object.keys(artCountryData), ...Object.keys(scienceCountryData)]);
+    return Object.fromEntries(Array.from(countries).map(country => {
+        const artCount = artCountryData[country]?.count || 0;
+        const scienceCount = scienceCountryData[country]?.count || 0;
+        const population = countryPopulation[country] || 0;
+        const count = artCount + scienceCount;
+        return [country, {
+            label: country,
+            count,
+            artCount,
+            scienceCount,
+            population,
+            value: normalizeValue(count, population)
+        }];
+    }));
+}
+
+function mergeContinentData(artContinentData, scienceContinentData) {
+    const continents = new Set([...Object.keys(artContinentData), ...Object.keys(scienceContinentData)]);
+    return Object.fromEntries(Array.from(continents).map(continent => {
+        const artCount = artContinentData[continent]?.count || 0;
+        const scienceCount = scienceContinentData[continent]?.count || 0;
+        const count = artCount + scienceCount;
+        return [continent, {
+            label: continent,
+            count,
+            artCount,
+            scienceCount,
+            value: count
+        }];
+    }));
+}
+
+function setLayerVisibility(layerIds, visible) {
+    layerIds.forEach(layerId => {
+        if (globe.getLayer(layerId)) {
+            globe.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
+        }
+    });
+}
+
+function updateScienceStatus(filteredPlaceableRecords, filteredNonPlaceableRecords, filteredGlobalRecords) {
+    const status = document.getElementById('globeScienceStatus');
+    if (!status) return;
+
+    const mode = getMapMode();
+    const scienceModeActive = mode === 'science' || mode === 'both';
+    const hasAnyScienceExport = scienceMapData && (
+        scienceRecords.length > 0 ||
+        nonPlaceableScienceRecords.length > 0 ||
+        globalScienceRecords.length > 0
+    );
+
+    if (!scienceModeActive) {
+        status.classList.add('hidden');
+        status.textContent = '';
+        return;
+    }
+
+    if (!scienceMapData || !hasAnyScienceExport) {
+        status.textContent = 'Science data not available yet. Art data remains fully available.';
+        status.classList.remove('hidden');
+        return;
+    }
+
+    const notes = [];
+    if (filteredNonPlaceableRecords.length > 0) {
+        notes.push(`${getUniquePublicationCount(filteredNonPlaceableRecords)} publication(s) match the filters but have no safe map coordinates yet.`);
+    }
+    if (filteredGlobalRecords.length > 0) {
+        notes.push(`${getUniquePublicationCount(filteredGlobalRecords)} global publication(s) are kept out of the point layer.`);
+    }
+
+    if (notes.length === 0) {
+        status.classList.add('hidden');
+        status.textContent = '';
+        return;
+    }
+
+    status.textContent = notes.join(' ');
+    status.classList.remove('hidden');
+}
+
 function updateGlobe() {
+    const mode = getMapMode();
     const filtered = getFilteredFeatures();
     const countryData = aggregateByCountry(filtered);
     const continentData = aggregateByContinent(filtered);
-    const countryRankingData = getCountryRankingData(countryData);
+    const filteredScience = getFilteredScienceRecords(scienceRecords);
+    const filteredNonPlaceableScience = getFilteredScienceRecords(nonPlaceableScienceRecords);
+    const filteredGlobalScience = getFilteredScienceRecords(globalScienceRecords);
+    const scienceCountryData = aggregateScienceByCountry([
+        ...filteredScience,
+        ...filteredNonPlaceableScience
+    ]);
+    const scienceContinentData = aggregateScienceByContinent([
+        ...filteredScience,
+        ...filteredNonPlaceableScience
+    ]);
+    const rankingCountryData = mode === 'science'
+        ? scienceCountryData
+        : mode === 'both'
+            ? mergeCountryData(countryData, scienceCountryData)
+            : countryData;
+    const rankingContinentData = mode === 'science'
+        ? scienceContinentData
+        : mode === 'both'
+            ? mergeContinentData(continentData, scienceContinentData)
+            : continentData;
+    const countryRankingData = getCountryRankingData(rankingCountryData);
     const displayFeatures = groupFeaturesByPoint(enrichMetricValues(filtered, countryData));
+    const displayScienceFeatures = groupScienceRecords(filteredScience, scienceCountryData);
 
     document.getElementById('globeArtworkCount').textContent = filtered.length;
-    document.getElementById('globeCountryCount').textContent = Object.keys(countryData).length;
+    document.getElementById('globeScienceCount').textContent = getUniquePublicationCount([
+        ...filteredScience,
+        ...filteredNonPlaceableScience,
+        ...filteredGlobalScience
+    ]);
+    document.getElementById('globeCountryCount').textContent = Object.keys(rankingCountryData).length;
     renderRanking('globeCountryRanking', countryRankingData);
-    renderRanking('globeContinentRanking', continentData);
+    renderRanking('globeContinentRanking', rankingContinentData);
+    updateScienceStatus(filteredScience, filteredNonPlaceableScience, filteredGlobalScience);
 
     const source = globe.getSource('globeArtworks');
     if (source) {
@@ -322,6 +583,17 @@ function updateGlobe() {
             features: displayFeatures
         });
     }
+
+    const scienceSource = globe.getSource('globeScience');
+    if (scienceSource) {
+        scienceSource.setData({
+            type: 'FeatureCollection',
+            features: displayScienceFeatures
+        });
+    }
+
+    setLayerVisibility(['globe-artwork-halo', 'globe-artwork-point', 'globe-artwork-count'], mode === 'art' || mode === 'both');
+    setLayerVisibility(['globe-science-area', 'globe-science-core', 'globe-science-count'], mode === 'science' || mode === 'both');
 }
 
 function populateClusterFilter() {
@@ -335,10 +607,49 @@ function populateClusterFilter() {
         });
 }
 
+function populatePlaceFilters() {
+    const continentSelect = document.getElementById('globeContinent');
+    const countrySelect = document.getElementById('globeCountry');
+    const continents = Array.from(new Set(Object.values(continentMapping))).sort();
+    const countries = Object.keys(continentMapping).sort();
+
+    continents.forEach(continent => {
+        continentSelect.add(new Option(continent, continent));
+    });
+
+    countries.forEach(country => {
+        const option = new Option(country, country);
+        option.dataset.continent = continentMapping[country] || 'Other';
+        countrySelect.add(option);
+    });
+}
+
+function refreshCountryOptions() {
+    const continent = document.getElementById('globeContinent').value;
+    const countrySelect = document.getElementById('globeCountry');
+
+    Array.from(countrySelect.options).forEach(option => {
+        if (!option.value) {
+            option.hidden = false;
+            return;
+        }
+        const visible = !continent || option.dataset.continent === continent;
+        option.hidden = !visible;
+        if (!visible && option.selected) {
+            option.selected = false;
+        }
+    });
+}
+
 function attachEvents() {
-    ['globeSearch', 'globeCluster', 'globeYearFrom', 'globeYearTo'].forEach(id => {
+    ['globeSearch', 'globeCluster', 'globeCountry', 'globeYearFrom', 'globeYearTo'].forEach(id => {
         document.getElementById(id).addEventListener('input', updateGlobe);
         document.getElementById(id).addEventListener('change', updateGlobe);
+    });
+
+    document.getElementById('globeContinent').addEventListener('change', () => {
+        refreshCountryOptions();
+        updateGlobe();
     });
 
     document.querySelectorAll('input[name="exploreView"]').forEach(input => {
@@ -352,17 +663,25 @@ function attachEvents() {
         input.addEventListener('change', updateGlobe);
     });
 
+    document.querySelectorAll('input[name="globeMode"]').forEach(input => {
+        input.addEventListener('change', updateGlobe);
+    });
+
     document.getElementById('resetGlobeFilters').addEventListener('click', () => {
         document.getElementById('globeSearch').value = '';
         document.getElementById('globeCluster').value = '';
+        document.getElementById('globeContinent').value = '';
+        document.getElementById('globeCountry').value = '';
         document.getElementById('globeYearFrom').value = '';
         document.getElementById('globeYearTo').value = '';
         document.querySelector('input[name="globeMetric"][value="total"]').checked = true;
+        document.querySelector('input[name="globeMode"][value="art"]').checked = true;
         const globeView = document.querySelector('input[name="exploreView"][value="globe"]');
         if (globeView) {
             globeView.checked = true;
             globe.setProjection('globe');
         }
+        refreshCountryOptions();
         updateGlobe();
     });
 }
