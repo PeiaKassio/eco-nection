@@ -182,9 +182,16 @@ function validateArtworkData(artworkData, topicClusters) {
             addFinding(findings, 'error', 'missing-artform-tags', `${label} must have at least one artform tag.`, artwork);
         }
 
-        if (properties.url == null || properties.url === '') {
-            addFinding(findings, 'warning', 'missing-source-url', `${label} is published without a source URL.`, artwork);
-        } else if (!isHttpUrl(properties.url)) {
+        const reviewStatus = properties.review && properties.review.status;
+        const isPublished = reviewStatus !== 'needs_review';
+        const hasSourceUrl = properties.url != null && properties.url !== '';
+        if (!hasSourceUrl) {
+            if (isPublished) {
+                addFinding(findings, 'warning', 'missing-source-url', `${label} is published without a source URL.`, artwork);
+            } else {
+                addFinding(findings, 'warning', 'needs-review-missing-source-url', `${label} is marked needs_review and is missing a source URL.`, artwork);
+            }
+        } else if (hasSourceUrl && !isHttpUrl(properties.url)) {
             addFinding(findings, 'warning', 'invalid-source-url', `${label} source URL should use http:// or https://.`, artwork);
         }
 

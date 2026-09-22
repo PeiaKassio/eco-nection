@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-22T19:47:25.176Z",
+  "generated_at": "2026-09-22T19:56:01.717Z",
   "summary": {
     "errors": 0,
-    "warnings": 32,
-    "total": 32
+    "warnings": 24,
+    "total": 24
   },
   "groups": {
     "highly-reused-coordinates": {
@@ -18,207 +18,147 @@
         }
       ]
     },
-    "missing-source-url": {
+    "needs-review-missing-source-url": {
       "count": 23,
       "severity": "warning",
       "findings": [
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #115 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #115 is marked needs_review and is missing a source URL.",
           "artwork": "Desert Bloom"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #116 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #116 is marked needs_review and is missing a source URL.",
           "artwork": "Climate Wall"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #117 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #117 is marked needs_review and is missing a source URL.",
           "artwork": "Ocean Echo"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #118 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #118 is marked needs_review and is missing a source URL.",
           "artwork": "The Last Breath"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #126 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #126 is marked needs_review and is missing a source URL.",
           "artwork": "Nile's Legacy"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #128 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #128 is marked needs_review and is missing a source URL.",
           "artwork": "River of Life"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #129 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #129 is marked needs_review and is missing a source URL.",
           "artwork": "Bleached Reef"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #130 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #130 is marked needs_review and is missing a source URL.",
           "artwork": "River Revival"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #132 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #132 is marked needs_review and is missing a source URL.",
           "artwork": "Forest Revival"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #134 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #134 is marked needs_review and is missing a source URL.",
           "artwork": "Eco-Walls of Buenos Aires"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #135 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #135 is marked needs_review and is missing a source URL.",
           "artwork": "Andean Streams"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #136 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #136 is marked needs_review and is missing a source URL.",
           "artwork": "Carbon Towers"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #137 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #137 is marked needs_review and is missing a source URL.",
           "artwork": "Water Cycle Symphony"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #138 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #138 is marked needs_review and is missing a source URL.",
           "artwork": "Dead Sea Revival"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #139 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #139 is marked needs_review and is missing a source URL.",
           "artwork": "Green Delhi"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #140 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #140 is marked needs_review and is missing a source URL.",
           "artwork": "Ocean Mirror"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #159 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #159 is marked needs_review and is missing a source URL.",
           "artwork": "Baltic Sea Rescue Project"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #160 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #160 is marked needs_review and is missing a source URL.",
           "artwork": "Yangtze River Plastic Wave"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #161 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #161 is marked needs_review and is missing a source URL.",
           "artwork": "Smog Tower Art"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #162 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #162 is marked needs_review and is missing a source URL.",
           "artwork": "Wildlife Corridors"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #163 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #163 is marked needs_review and is missing a source URL.",
           "artwork": "Kinshasa Green Mural"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #164 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #164 is marked needs_review and is missing a source URL.",
           "artwork": "The Karoo Energy Project"
         },
         {
           "severity": "warning",
-          "code": "missing-source-url",
-          "message": "Feature #165 is published without a source URL.",
+          "code": "needs-review-missing-source-url",
+          "message": "Feature #165 is marked needs_review and is missing a source URL.",
           "artwork": "Cape Coral Crisis"
-        }
-      ]
-    },
-    "possible-placeholder-coordinates": {
-      "count": 3,
-      "severity": "warning",
-      "findings": [
-        {
-          "severity": "warning",
-          "code": "possible-placeholder-coordinates",
-          "message": "Feature #69 uses [0, 0], which may be a placeholder.",
-          "artwork": "Pression en tropics"
-        },
-        {
-          "severity": "warning",
-          "code": "possible-placeholder-coordinates",
-          "message": "Feature #166 uses [0, 0], which may be a placeholder.",
-          "artwork": "Washed up"
-        },
-        {
-          "severity": "warning",
-          "code": "possible-placeholder-coordinates",
-          "message": "Feature #167 uses [0, 0], which may be a placeholder.",
-          "artwork": "Gyrecraft"
-        }
-      ]
-    },
-    "topic-in-multiple-clusters": {
-      "count": 5,
-      "severity": "warning",
-      "findings": [
-        {
-          "severity": "warning",
-          "code": "topic-in-multiple-clusters",
-          "message": "Topic \"Natural Habitat\" appears in multiple clusters: Ecosystems, Biodiversity.",
-          "artwork": null
-        },
-        {
-          "severity": "warning",
-          "code": "topic-in-multiple-clusters",
-          "message": "Topic \"Conservation\" appears in multiple clusters: Ecosystems, Water Issues.",
-          "artwork": null
-        },
-        {
-          "severity": "warning",
-          "code": "topic-in-multiple-clusters",
-          "message": "Topic \"Upcycling\" appears in multiple clusters: Sustainable Practices, Waste.",
-          "artwork": null
-        },
-        {
-          "severity": "warning",
-          "code": "topic-in-multiple-clusters",
-          "message": "Topic \"Energy Overuse\" appears in multiple clusters: Energy, Resource Use and Depletion.",
-          "artwork": null
-        },
-        {
-          "severity": "warning",
-          "code": "topic-in-multiple-clusters",
-          "message": "Topic \"Toxic Waste\" appears in multiple clusters: Waste, Health and Environment.",
-          "artwork": null
         }
       ]
     }

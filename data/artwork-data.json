@@ -1437,14 +1437,14 @@
   "type": "Feature",
   "geometry": {
     "type": "Point",
-    "coordinates": [0, 0]
+    "coordinates": [-61.0694, 14.6037]
   },
   "properties": {
     "title": "Pression en tropics",
     "description": "A photographic and video project by Nicolas Derné exploring the environmental and social pressures in tropical regions, addressing waste, climate, and human impact on fragile ecosystems.",
     "artist": "Nicolas Derné",
     "type": "Photography / Video",
-    "location": "Tropical regions",
+    "location": "Fort-de-France, Martinique",
     "year": 2016,
     "tags": {
       "topic": [
@@ -2549,7 +2549,11 @@
                         "Installation"
                     ]
                 },
-                "thumbnail": ""
+                "thumbnail": "",
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
+                }
             }
         },
         {
@@ -2578,7 +2582,11 @@
                         "Installation"
                     ]
                 },
-                "thumbnail": ""
+                "thumbnail": "",
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
+                }
             }
         },
         {
@@ -2607,7 +2615,11 @@
                         "Installation"
                     ]
                 },
-                "thumbnail": ""
+                "thumbnail": "",
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
+                }
             }
         },
         {
@@ -2635,7 +2647,11 @@
                         "Installation"
                     ]
                 },
-                "thumbnail": ""
+                "thumbnail": "",
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
+                }
             }
         },
         {
@@ -2871,6 +2887,10 @@
                     "artform": [
                         "Sculpture"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -2928,6 +2948,10 @@
                     "artform": [
                         "Installation"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -2955,6 +2979,10 @@
                     "artform": [
                         "Installation"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -2982,6 +3010,10 @@
                     "artform": [
                         "Installation"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3038,6 +3070,10 @@
                     "artform": [
                         "Interactive Art"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3097,6 +3133,10 @@
                     "artform": [
                         "Mural Art"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3124,6 +3164,10 @@
                     "artform": [
                         "Sculpture"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3151,6 +3195,10 @@
                     "artform": [
                         "Digital Art"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3177,6 +3225,10 @@
                     "artform": [
                         "Sound Art"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3203,6 +3255,10 @@
                     "artform": [
                         "Sculpture"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3230,6 +3286,10 @@
                     "artform": [
                         "Vertical Garden"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3257,6 +3317,10 @@
                     "artform": [
                         "Interactive Art"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3656,6 +3720,10 @@
                     "artform": [
                         "Installation"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3683,6 +3751,10 @@
                     "artform": [
                         "Sculpture"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3711,6 +3783,10 @@
                         "Installation",
                         "Architecture"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3738,6 +3814,10 @@
                     "artform": [
                         "Installation"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3765,6 +3845,10 @@
                     "artform": [
                         "Mural Art"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3792,6 +3876,10 @@
                     "artform": [
                         "Installation"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3819,6 +3907,10 @@
                     "artform": [
                         "Sculpture"
                     ]
+                },
+                "review": {
+                    "status": "needs_review",
+                    "human_verified": false
                 }
             }
         },
@@ -3827,8 +3919,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    0,
-                    0
+                    -87.44624,
+                    19.91035
                 ]
             },
             "properties": {
@@ -3857,8 +3949,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    0,
-                    0
+                    -40,
+                    30
                 ]
             },
             "properties": {
@@ -3866,7 +3958,7 @@
                 "description": "Studio Swine's project transforming ocean plastic waste into exquisite objects using a solar-powered machine aboard a sailing boat.",
                 "artist": "Studio Swine",
                 "type": "Installation",
-                "location": "At Sea, Other",
+                "location": "North Atlantic Gyre, Atlantic Ocean",
                 "year": 2015,
                 "tags": {
                     "topic": [
