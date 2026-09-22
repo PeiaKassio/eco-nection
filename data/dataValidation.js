@@ -303,6 +303,8 @@ function validateScienceMapExport(scienceMap, topicClusters, continentMapping) {
 
         const hasLatitude = record.latitude !== null && record.latitude !== undefined;
         const hasLongitude = record.longitude !== null && record.longitude !== undefined;
+        const hasDisplayLatitude = record.displayLatitude !== null && record.displayLatitude !== undefined;
+        const hasDisplayLongitude = record.displayLongitude !== null && record.displayLongitude !== undefined;
         if (hasLatitude !== hasLongitude) {
             findings.push({
                 severity: 'error',
@@ -334,6 +336,34 @@ function validateScienceMapExport(scienceMap, topicClusters, continentMapping) {
                     severity: 'warning',
                     code: 'science-export-possible-placeholder-coordinates',
                     message: `${label} uses [0, 0], which must not be used for global or unknown geography.`,
+                    artwork: null
+                });
+            }
+        }
+
+        if (hasDisplayLatitude !== hasDisplayLongitude) {
+            findings.push({
+                severity: 'error',
+                code: 'science-export-partial-display-coordinates',
+                message: `${label} must provide both displayLatitude and displayLongitude or neither.`,
+                artwork: null
+            });
+        }
+
+        if (hasDisplayLatitude && hasDisplayLongitude) {
+            if (!Number.isFinite(record.displayLongitude) || record.displayLongitude < -180 || record.displayLongitude > 180) {
+                findings.push({
+                    severity: 'error',
+                    code: 'science-export-invalid-display-longitude',
+                    message: `${label} displayLongitude must be between -180 and 180.`,
+                    artwork: null
+                });
+            }
+            if (!Number.isFinite(record.displayLatitude) || record.displayLatitude < -90 || record.displayLatitude > 90) {
+                findings.push({
+                    severity: 'error',
+                    code: 'science-export-invalid-display-latitude',
+                    message: `${label} displayLatitude must be between -90 and 90.`,
                     artwork: null
                 });
             }

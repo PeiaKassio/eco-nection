@@ -1,0 +1,20 @@
+{
+  "Germany": {
+    "latitude": 51.1657,
+    "longitude": 10.4515,
+    "label": "Germany",
+    "source": "display-anchor-country-centroid"
+  },
+  "Kenya": {
+    "latitude": -0.0236,
+    "longitude": 37.9062,
+    "label": "Kenya",
+    "source": "display-anchor-country-centroid"
+  },
+  "France": {
+    "latitude": 46.2276,
+    "longitude": 2.2137,
+    "label": "France",
+    "source": "display-anchor-country-centroid"
+  }
+}

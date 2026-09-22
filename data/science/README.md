@@ -68,6 +68,8 @@ python data/science/science_pipeline.py validate
 - Author affiliation is stored only as bibliographic metadata and must not be
   treated as study geography.
 - Country-only or global studies do not receive invented coordinates.
+- Country-only studies may use `countryDisplayAnchors.json` for frontend
+  aggregate display only; these anchors are not stored as study-area precision.
 - Global studies are exported separately in `globalRecords`.
 - Publications may have many topics, many topic clusters, and many study areas.
 - Raw API records are preserved in `raw_imports` before normalization.

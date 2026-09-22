@@ -2,6 +2,7 @@ import sqlite3
 import sys
 import tempfile
 import unittest
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -99,6 +100,57 @@ class SciencePipelineTests(unittest.TestCase):
                 """,
                 (publication_id, 0, 0, "global", "manual", "test"),
             )
+
+    def test_country_display_anchor_does_not_become_study_coordinates(self):
+        publication_id = science_pipeline.upsert_publication(
+            self.conn,
+            {"doi": "10.1234/anchor", "title": "Climate Change in Germany", "year": 2023},
+            "OpenAlex",
+            "W4",
+        )
+        topic_id = self.conn.execute(
+            "SELECT id FROM topics WHERE name = ? ORDER BY id LIMIT 1",
+            ("Climate Change",),
+        ).fetchone()[0]
+        self.conn.execute(
+            """
+            INSERT INTO publication_topics(
+                publication_id, topic_id, raw_term, confidence, classification_method, classification_version
+            )
+            VALUES (?, ?, ?, ?, ?, ?)
+            """,
+            (publication_id, topic_id, "climate change", 1.0, "manual", "test"),
+        )
+        self.conn.execute(
+            """
+            INSERT INTO study_areas(
+                publication_id, country, geographic_scope, extraction_method, classification_version
+            )
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (publication_id, "Germany", "national", "manual", "test"),
+        )
+        self.conn.commit()
+
+        output = Path(self.tmp.name) / "science-map.json"
+        args = type("Args", (), {
+            "db": self.db,
+            "topic_clusters": ROOT / "data" / "topicClusters.json",
+            "continent_mapping": ROOT / "data" / "continentMapping.json",
+            "display_anchors": ROOT / "data" / "science" / "countryDisplayAnchors.json",
+            "output": output,
+        })()
+        science_pipeline.export_map(args)
+        payload = json.loads(output.read_text(encoding="utf-8"))
+
+        self.assertEqual(len(payload["records"]), 1)
+        record = payload["records"][0]
+        self.assertIsNone(record["latitude"])
+        self.assertIsNone(record["longitude"])
+        self.assertFalse(record["hasStudyCoordinates"])
+        self.assertEqual(record["displayGeometrySource"], "display-anchor-country-centroid")
+        self.assertIsInstance(record["displayLatitude"], float)
+        self.assertIsInstance(record["displayLongitude"], float)
 
 
 if __name__ == "__main__":

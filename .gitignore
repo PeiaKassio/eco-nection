@@ -1,4 +1,3 @@
 *.sublime-*
-data/science/science.db
 __pycache__/
 *.py[cod]

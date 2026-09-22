@@ -133,6 +133,8 @@ function enrichFeature(feature) {
 function normalizeScienceRecord(record = {}) {
     const latitude = record.latitude == null || record.latitude === '' ? null : Number(record.latitude);
     const longitude = record.longitude == null || record.longitude === '' ? null : Number(record.longitude);
+    const displayLatitude = record.displayLatitude == null || record.displayLatitude === '' ? null : Number(record.displayLatitude);
+    const displayLongitude = record.displayLongitude == null || record.displayLongitude === '' ? null : Number(record.displayLongitude);
 
     return {
         ...record,
@@ -143,6 +145,8 @@ function normalizeScienceRecord(record = {}) {
         continent: record.continent || getContinentForCountry(record.country || 'Other'),
         latitude: Number.isFinite(latitude) ? latitude : null,
         longitude: Number.isFinite(longitude) ? longitude : null,
+        displayLatitude: Number.isFinite(displayLatitude) ? displayLatitude : null,
+        displayLongitude: Number.isFinite(displayLongitude) ? displayLongitude : null,
         topicClusters: Array.isArray(record.topicClusters) ? record.topicClusters : [],
         topics: Array.isArray(record.topics) ? record.topics : []
     };
@@ -306,24 +310,26 @@ function groupScienceRecords(records, countryData) {
     groupedScienceLookup = new Map();
 
     records.forEach(record => {
-        if (!Number.isFinite(record.longitude) || !Number.isFinite(record.latitude)) return;
+        const longitude = Number.isFinite(record.displayLongitude) ? record.displayLongitude : record.longitude;
+        const latitude = Number.isFinite(record.displayLatitude) ? record.displayLatitude : record.latitude;
+        if (!Number.isFinite(longitude) || !Number.isFinite(latitude)) return;
         const groupKey = record.country
             ? `country:${record.country}`
-            : `point:${record.longitude.toFixed(5)},${record.latitude.toFixed(5)}`;
+            : `point:${longitude.toFixed(5)},${latitude.toFixed(5)}`;
         const existingGroup = groupedScienceLookup.get(groupKey);
 
         if (existingGroup) {
             existingGroup.records.push(record);
-            existingGroup.longitudeSum += record.longitude;
-            existingGroup.latitudeSum += record.latitude;
+            existingGroup.longitudeSum += longitude;
+            existingGroup.latitudeSum += latitude;
             return;
         }
 
         groupedScienceLookup.set(groupKey, {
             groupKey,
             records: [record],
-            longitudeSum: record.longitude,
-            latitudeSum: record.latitude
+            longitudeSum: longitude,
+            latitudeSum: latitude
         });
     });
 

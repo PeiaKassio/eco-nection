@@ -29,6 +29,7 @@ DEFAULT_DB = SCIENCE_DIR / "science.db"
 DEFAULT_SCHEMA = SCIENCE_DIR / "schema.sql"
 DEFAULT_TOPIC_CLUSTERS = DATA_DIR / "topicClusters.json"
 DEFAULT_CONTINENT_MAPPING = DATA_DIR / "continentMapping.json"
+DEFAULT_DISPLAY_ANCHORS = SCIENCE_DIR / "countryDisplayAnchors.json"
 DEFAULT_EXPORT = SCIENCE_DIR / "exports" / "science-map.json"
 USER_AGENT = "eco-nection-science-pipeline/0.1 (https://github.com/PeiaKassio/eco-nection)"
 
@@ -451,6 +452,10 @@ def load_continent_mapping(path: Path) -> dict[str, str]:
     return read_json(path)
 
 
+def load_display_anchors(path: Path) -> dict[str, dict[str, Any]]:
+    return read_json(path) if path.exists() else {}
+
+
 def validate_science(args: argparse.Namespace) -> int:
     findings: list[dict[str, Any]] = []
     continent_mapping = load_continent_mapping(args.continent_mapping)
@@ -514,6 +519,7 @@ def collect_publication_topics(conn: sqlite3.Connection) -> dict[int, dict[str, 
 def export_map(args: argparse.Namespace) -> None:
     init_db(args.db, DEFAULT_SCHEMA, args.topic_clusters)
     continent_mapping = load_continent_mapping(args.continent_mapping)
+    display_anchors = load_display_anchors(args.display_anchors)
     with closing(connect(args.db)) as conn:
         topic_lookup = collect_publication_topics(conn)
         rows = conn.execute(
@@ -546,6 +552,11 @@ def export_map(args: argparse.Namespace) -> None:
         if country and not continent:
             missing_continent_countries.add(country)
         topic_entry = topic_lookup.get(int(row["publication_id"]), {"topics": set(), "clusters": set()})
+        display_anchor = display_anchors.get(country or "")
+        has_study_coordinates = row["latitude"] is not None and row["longitude"] is not None
+        display_latitude = row["latitude"] if has_study_coordinates else display_anchor.get("latitude") if display_anchor else None
+        display_longitude = row["longitude"] if has_study_coordinates else display_anchor.get("longitude") if display_anchor else None
+        display_geometry_source = "study-area-coordinates" if has_study_coordinates else display_anchor.get("source") if display_anchor else None
         record = {
             "publicationId": row["publication_id"],
             "studyAreaId": row["study_area_id"],
@@ -556,6 +567,10 @@ def export_map(args: argparse.Namespace) -> None:
             "city": row["city"],
             "latitude": row["latitude"],
             "longitude": row["longitude"],
+            "displayLatitude": display_latitude,
+            "displayLongitude": display_longitude,
+            "displayGeometrySource": display_geometry_source,
+            "hasStudyCoordinates": has_study_coordinates,
             "geographicScope": row["geographic_scope"],
             "confidence": row["confidence"],
             "topics": sorted(topic_entry["topics"]),
@@ -563,7 +578,7 @@ def export_map(args: argparse.Namespace) -> None:
         }
         if row["geographic_scope"] == "global":
             global_records.append(record)
-        elif row["latitude"] is not None and row["longitude"] is not None:
+        elif display_latitude is not None and display_longitude is not None:
             records.append(record)
         else:
             non_placeable_records.append(record)
@@ -630,6 +645,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     export_parser = subparsers.add_parser("export-map", help="Generate the lightweight frontend science map export.")
     export_parser.add_argument("--continent-mapping", type=Path, default=DEFAULT_CONTINENT_MAPPING)
+    export_parser.add_argument("--display-anchors", type=Path, default=DEFAULT_DISPLAY_ANCHORS)
     export_parser.add_argument("--output", type=Path, default=DEFAULT_EXPORT)
 
     validate_parser = subparsers.add_parser("validate", help="Validate normalized science data.")

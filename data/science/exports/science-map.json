@@ -1,8 +1,335 @@
 {
   "schemaVersion": "science-map-v1",
-  "generatedAt": "2026-09-22T21:00:48+00:00",
-  "records": [],
+  "generatedAt": "2026-09-22T21:13:44+00:00",
+  "records": [
+    {
+      "publicationId": 2,
+      "studyAreaId": 1,
+      "year": 2022,
+      "country": "Germany",
+      "continent": "Europe",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": 51.1657,
+      "displayLongitude": 10.4515,
+      "displayGeometrySource": "display-anchor-country-centroid",
+      "hasStudyCoordinates": false,
+      "geographicScope": "national",
+      "confidence": 0.95,
+      "topics": [
+        "Climate Change",
+        "Water Management"
+      ],
+      "topicClusters": [
+        "Climate Change",
+        "Water Issues"
+      ]
+    },
+    {
+      "publicationId": 4,
+      "studyAreaId": 2,
+      "year": 2022,
+      "country": "Germany",
+      "continent": "Europe",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": 51.1657,
+      "displayLongitude": 10.4515,
+      "displayGeometrySource": "display-anchor-country-centroid",
+      "hasStudyCoordinates": false,
+      "geographicScope": "national",
+      "confidence": 0.95,
+      "topics": [
+        "Climate Change",
+        "Environmental Awareness"
+      ],
+      "topicClusters": [
+        "Climate Change",
+        "Socioeconomic"
+      ]
+    },
+    {
+      "publicationId": 5,
+      "studyAreaId": 3,
+      "year": 2020,
+      "country": "Germany",
+      "continent": "Europe",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": 51.1657,
+      "displayLongitude": 10.4515,
+      "displayGeometrySource": "display-anchor-country-centroid",
+      "hasStudyCoordinates": false,
+      "geographicScope": "national",
+      "confidence": 0.85,
+      "topics": [
+        "Climate Activism",
+        "Climate Change",
+        "Intergenerational Justice"
+      ],
+      "topicClusters": [
+        "Climate Change",
+        "Socioeconomic"
+      ]
+    },
+    {
+      "publicationId": 6,
+      "studyAreaId": 4,
+      "year": 2020,
+      "country": "Kenya",
+      "continent": "Africa",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": -0.0236,
+      "displayLongitude": 37.9062,
+      "displayGeometrySource": "display-anchor-country-centroid",
+      "hasStudyCoordinates": false,
+      "geographicScope": "national",
+      "confidence": 0.95,
+      "topics": [
+        "Biodiversity",
+        "Climate Change",
+        "Food Systems"
+      ],
+      "topicClusters": [
+        "Biodiversity",
+        "Climate Change",
+        "Food and Agriculture"
+      ]
+    },
+    {
+      "publicationId": 7,
+      "studyAreaId": 5,
+      "year": 2022,
+      "country": "Kenya",
+      "continent": "Africa",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": -0.0236,
+      "displayLongitude": 37.9062,
+      "displayGeometrySource": "display-anchor-country-centroid",
+      "hasStudyCoordinates": false,
+      "geographicScope": "national",
+      "confidence": 0.9,
+      "topics": [
+        "Biodiversity",
+        "Species Conservation"
+      ],
+      "topicClusters": [
+        "Biodiversity"
+      ]
+    },
+    {
+      "publicationId": 8,
+      "studyAreaId": 6,
+      "year": 2020,
+      "country": "Kenya",
+      "continent": "Africa",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": -0.0236,
+      "displayLongitude": 37.9062,
+      "displayGeometrySource": "display-anchor-country-centroid",
+      "hasStudyCoordinates": false,
+      "geographicScope": "regional",
+      "confidence": 0.9,
+      "topics": [
+        "Biodiversity",
+        "Human-Nature Interaction"
+      ],
+      "topicClusters": [
+        "Biodiversity",
+        "Socioeconomic"
+      ]
+    },
+    {
+      "publicationId": 16,
+      "studyAreaId": 7,
+      "year": 2021,
+      "country": "France",
+      "continent": "Europe",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": 46.2276,
+      "displayLongitude": 2.2137,
+      "displayGeometrySource": "display-anchor-country-centroid",
+      "hasStudyCoordinates": false,
+      "geographicScope": "national",
+      "confidence": 0.9,
+      "topics": [
+        "Biodiversity",
+        "Economy"
+      ],
+      "topicClusters": [
+        "Biodiversity",
+        "Socioeconomic"
+      ]
+    },
+    {
+      "publicationId": 19,
+      "studyAreaId": 8,
+      "year": 2020,
+      "country": "France",
+      "continent": "Europe",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": 46.2276,
+      "displayLongitude": 2.2137,
+      "displayGeometrySource": "display-anchor-country-centroid",
+      "hasStudyCoordinates": false,
+      "geographicScope": "city",
+      "confidence": 0.8,
+      "topics": [
+        "Biodiversity",
+        "Green Spaces",
+        "Urban Ecology"
+      ],
+      "topicClusters": [
+        "Biodiversity",
+        "Urban Issues"
+      ]
+    },
+    {
+      "publicationId": 20,
+      "studyAreaId": 9,
+      "year": 2024,
+      "country": "France",
+      "continent": "Europe",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": 46.2276,
+      "displayLongitude": 2.2137,
+      "displayGeometrySource": "display-anchor-country-centroid",
+      "hasStudyCoordinates": false,
+      "geographicScope": "national",
+      "confidence": 0.9,
+      "topics": [
+        "Biodiversity Loss",
+        "Economy"
+      ],
+      "topicClusters": [
+        "Biodiversity",
+        "Socioeconomic"
+      ]
+    }
+  ],
   "nonPlaceableRecords": [],
-  "globalRecords": [],
+  "globalRecords": [
+    {
+      "publicationId": 3,
+      "studyAreaId": 10,
+      "year": 2021,
+      "country": null,
+      "continent": "Other",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": null,
+      "displayLongitude": null,
+      "displayGeometrySource": null,
+      "hasStudyCoordinates": false,
+      "geographicScope": "global",
+      "confidence": 0.8,
+      "topics": [
+        "Climate Change"
+      ],
+      "topicClusters": [
+        "Climate Change"
+      ]
+    },
+    {
+      "publicationId": 9,
+      "studyAreaId": 11,
+      "year": 2022,
+      "country": null,
+      "continent": "Other",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": null,
+      "displayLongitude": null,
+      "displayGeometrySource": null,
+      "hasStudyCoordinates": false,
+      "geographicScope": "global",
+      "confidence": 0.75,
+      "topics": [
+        "Biodiversity",
+        "Ecosystem Protection"
+      ],
+      "topicClusters": [
+        "Biodiversity",
+        "Ecosystems"
+      ]
+    },
+    {
+      "publicationId": 12,
+      "studyAreaId": 12,
+      "year": 2020,
+      "country": null,
+      "continent": "Other",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": null,
+      "displayLongitude": null,
+      "displayGeometrySource": null,
+      "hasStudyCoordinates": false,
+      "geographicScope": "global",
+      "confidence": 0.75,
+      "topics": [
+        "Marine Pollution",
+        "Plastic Pollution"
+      ],
+      "topicClusters": [
+        "Pollution"
+      ]
+    },
+    {
+      "publicationId": 14,
+      "studyAreaId": 13,
+      "year": 2022,
+      "country": null,
+      "continent": "Other",
+      "region": null,
+      "city": null,
+      "latitude": null,
+      "longitude": null,
+      "displayLatitude": null,
+      "displayLongitude": null,
+      "displayGeometrySource": null,
+      "hasStudyCoordinates": false,
+      "geographicScope": "global",
+      "confidence": 0.8,
+      "topics": [
+        "Freshwater Crisis",
+        "Water Pollution"
+      ],
+      "topicClusters": [
+        "Pollution",
+        "Water Issues"
+      ]
+    }
+  ],
   "warnings": []
 }
