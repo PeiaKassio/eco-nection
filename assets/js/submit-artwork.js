@@ -55,6 +55,13 @@ function buildArtworkFeature(data) {
     const hasCoordinates = Number.isFinite(data.longitude) && Number.isFinite(data.latitude);
     const artforms = [...data.artform, ...data.proposedArtforms];
     const topics = [...data.topics, ...data.proposedTopics];
+    const sources = data.url
+        ? [{
+            url: data.url,
+            type: 'source',
+            accessed_at: new Date().toISOString().slice(0, 10)
+        }]
+        : [];
 
     return {
         type: 'Feature',
@@ -75,7 +82,12 @@ function buildArtworkFeature(data) {
                 artform: artforms
             },
             url: data.url,
-            thumbnail: data.thumbnail
+            thumbnail: data.thumbnail,
+            sources,
+            review: {
+                status: 'needs_review',
+                human_verified: false
+            }
         }
     };
 }
@@ -197,6 +209,7 @@ function buildIssueUrl(data, matches) {
 **Source URL:** ${data.url}
 **Thumbnail URL:** ${data.thumbnail || 'Not provided'}
 
+**Review status:** needs_review
 **Coordinate status:** ${coordinateNote}
 
 ## Duplicate check

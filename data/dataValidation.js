@@ -1,96 +1,257 @@
 const fs = require('fs');
+const path = require('path');
 
-try {
-    // Load JSON files
-    const topicClusters = JSON.parse(fs.readFileSync('topicClusters.json', 'utf-8'));
-    const artworkData = JSON.parse(fs.readFileSync('artwork-data.json', 'utf-8'));
+const dataDir = __dirname;
+const artworkPath = path.join(dataDir, 'artwork-data.json');
+const topicClustersPath = path.join(dataDir, 'topicClusters.json');
 
-    console.log("Artwork Data Loaded:", artworkData);
+const STRICT_DATA_QUALITY = process.env.STRICT_DATA_QUALITY === '1';
 
-    // Extract the features array from the FeatureCollection
-    const artworkFeatures = artworkData.features;
+function readJson(filePath) {
+    return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+}
 
-    if (!Array.isArray(artworkFeatures)) {
-        throw new Error("artworkData.features is not an array!");
+function isHttpUrl(value) {
+    if (!value) return false;
+
+    try {
+        const url = new URL(value);
+        return url.protocol === 'http:' || url.protocol === 'https:';
+    } catch {
+        return false;
     }
+}
 
-    // Extract all topics from topicClusters
-    const allTopics = Object.values(topicClusters)
-        .flatMap(cluster => cluster.topics); // Combine topics arrays from all clusters
+function normalizeKey(value) {
+    return (value || '')
+        .toString()
+        .normalize('NFD')
+        .replace(/\p{Diacritic}/gu, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim();
+}
 
-    console.log("All Topics in Clusters:", allTopics);
+function addFinding(findings, severity, code, message, artwork) {
+    findings.push({
+        severity,
+        code,
+        message,
+        artwork: artwork?.properties?.title || artwork?.title || null
+    });
+}
 
-    // Check all entries have valid properties and tags
-    artworkFeatures.forEach((artwork, index) => {
-        const properties = artwork.properties;
-        const title = properties?.title || "Untitled";
-    
-        if (!properties || typeof properties !== 'object') {
-            console.error(`Invalid properties in artwork titled "${title}". Full data:`, artwork);
-            throw new Error(`Invalid properties in artwork titled "${title}". Each artwork must have a 'properties' object.`);
-        }
-    
-        if (!properties.tags || typeof properties.tags !== 'object') {
-            console.error(`Missing or invalid 'tags' in artwork titled "${title}". Full data:`, artwork);
-            throw new Error(`Missing or invalid 'tags' in artwork titled "${title}".`);
-        }
-    
-        if (!Array.isArray(properties.tags.topic)) {
-            console.error(`Missing or invalid 'topic' array in 'tags' for artwork titled "${title}". Full data:`, artwork);
-            throw new Error(`Missing or invalid 'topic' array in 'tags' for artwork titled "${title}".`);
-        }
+function buildTopicIndex(topicClusters) {
+    const topicIndex = new Map();
+
+    Object.entries(topicClusters).forEach(([clusterName, cluster]) => {
+        (cluster.topics || []).forEach(topic => {
+            if (!topicIndex.has(topic)) topicIndex.set(topic, []);
+            topicIndex.get(topic).push(clusterName);
+        });
     });
 
-    // Check if artwork topics exist in topicClusters
-    const missingTopics = [];
-    artworkFeatures.forEach(artwork => {
-        const title = artwork.properties.title || "Untitled";
-        const artworkTopics = artwork.properties.tags.topic;
+    return topicIndex;
+}
 
-        artworkTopics.forEach(topic => {
-            if (!allTopics.includes(topic)) {
-                missingTopics.push({ artwork: title, topic });
+function validateArtworkData(artworkData, topicClusters) {
+    const findings = [];
+    const topicIndex = buildTopicIndex(topicClusters);
+    const seenArtworkKeys = new Map();
+    const seenTopicsWithinCluster = new Set();
+    const coordinateCounts = new Map();
+
+    if (artworkData.type !== 'FeatureCollection') {
+        addFinding(findings, 'error', 'invalid-feature-collection', 'Root `type` must be `FeatureCollection`.', artworkData);
+    }
+
+    if (!Array.isArray(artworkData.features)) {
+        addFinding(findings, 'error', 'missing-features', '`features` must be an array.', artworkData);
+        return findings;
+    }
+
+    Object.entries(topicClusters).forEach(([clusterName, cluster]) => {
+        const clusterTopics = new Set();
+
+        (cluster.topics || []).forEach(topic => {
+            const clusterTopicKey = `${clusterName}::${topic}`;
+            if (seenTopicsWithinCluster.has(clusterTopicKey) || clusterTopics.has(topic)) {
+                findings.push({
+                    severity: 'warning',
+                    code: 'duplicate-topic-within-cluster',
+                    message: `Topic "${topic}" appears more than once in cluster "${clusterName}".`,
+                    artwork: null
+                });
+            }
+            clusterTopics.add(topic);
+            seenTopicsWithinCluster.add(clusterTopicKey);
+        });
+    });
+
+    Array.from(topicIndex.entries())
+        .filter(([, clusters]) => clusters.length > 1)
+        .forEach(([topic, clusters]) => {
+            findings.push({
+                severity: 'warning',
+                code: 'topic-in-multiple-clusters',
+                message: `Topic "${topic}" appears in multiple clusters: ${clusters.join(', ')}.`,
+                artwork: null
+            });
+        });
+
+    artworkData.features.forEach((artwork, index) => {
+        const label = `Feature #${index + 1}`;
+        const properties = artwork.properties;
+
+        if (artwork.type !== 'Feature') {
+            addFinding(findings, 'error', 'invalid-feature-type', `${label} must have type "Feature".`, artwork);
+        }
+
+        if (!artwork.geometry || artwork.geometry.type !== 'Point') {
+            addFinding(findings, 'error', 'invalid-geometry', `${label} must have Point geometry.`, artwork);
+        }
+
+        const coordinates = artwork.geometry?.coordinates;
+        if (!Array.isArray(coordinates) || coordinates.length !== 2) {
+            addFinding(findings, 'error', 'invalid-coordinates', `${label} must have [longitude, latitude] coordinates.`, artwork);
+        } else {
+            const [longitude, latitude] = coordinates;
+            const coordinateKey = JSON.stringify(coordinates);
+            coordinateCounts.set(coordinateKey, (coordinateCounts.get(coordinateKey) || 0) + 1);
+
+            if (!Number.isFinite(longitude) || longitude < -180 || longitude > 180) {
+                addFinding(findings, 'error', 'invalid-longitude', `${label} longitude must be between -180 and 180.`, artwork);
+            }
+
+            if (!Number.isFinite(latitude) || latitude < -90 || latitude > 90) {
+                addFinding(findings, 'error', 'invalid-latitude', `${label} latitude must be between -90 and 90.`, artwork);
+            }
+
+            if (longitude === 0 && latitude === 0) {
+                addFinding(findings, 'warning', 'possible-placeholder-coordinates', `${label} uses [0, 0], which may be a placeholder.`, artwork);
+            }
+        }
+
+        if (!properties || typeof properties !== 'object') {
+            addFinding(findings, 'error', 'missing-properties', `${label} must have a properties object.`, artwork);
+            return;
+        }
+
+        ['title', 'artist', 'location'].forEach(field => {
+            if (!properties[field] || typeof properties[field] !== 'string') {
+                addFinding(findings, 'error', `missing-${field}`, `${label} must have a non-empty properties.${field} string.`, artwork);
             }
         });
-    });
 
-    // Output missing topics
-    if (missingTopics.length > 0) {
-        console.log("Missing Topics Found:");
-        missingTopics.forEach(missing => {
-            console.log(`- Artwork: "${missing.artwork}", Missing Topic: "${missing.topic}"`);
-        });
-        throw new Error("Some topics in the artworks do not exist in topicClusters. Please fix the data.");
-    } else {
-        console.log("All topics are valid!");
-    }
+        if (!properties.description || typeof properties.description !== 'string') {
+            addFinding(findings, 'warning', 'missing-description', `${label} is missing a description.`, artwork);
+        }
 
-    // Check for duplicates
-    const duplicates = [];
-    const seenArtworks = new Set();
+        if (!properties.type || typeof properties.type !== 'string') {
+            addFinding(findings, 'warning', 'missing-display-type', `${label} is missing properties.type display text.`, artwork);
+        }
 
-    artworkFeatures.forEach(artwork => {
-        const properties = artwork.properties;
-        const title = properties.title || "Untitled";
-        const uniqueKey = `${title}-${properties.location}-${properties.year}`;
-        if (seenArtworks.has(uniqueKey)) {
-            duplicates.push(title);
+        if (typeof properties.year === 'string') {
+            addFinding(findings, 'warning', 'year-string', `${label} has a string year "${properties.year}". Use the numeric start year for future records.`, artwork);
+        } else if (properties.year !== null && typeof properties.year !== 'number') {
+            addFinding(findings, 'warning', 'year-invalid-type', `${label} has a year that is not a number, string, or null.`, artwork);
+        }
+
+        if (!properties.tags || typeof properties.tags !== 'object') {
+            addFinding(findings, 'error', 'missing-tags', `${label} must have a properties.tags object.`, artwork);
+            return;
+        }
+
+        if (!Array.isArray(properties.tags.topic) || properties.tags.topic.length === 0) {
+            addFinding(findings, 'error', 'missing-topic-tags', `${label} must have at least one topic tag.`, artwork);
         } else {
-            seenArtworks.add(uniqueKey);
+            properties.tags.topic.forEach(topic => {
+                if (!topicIndex.has(topic)) {
+                    addFinding(findings, 'warning', 'topic-not-in-taxonomy', `Topic "${topic}" is used but not defined in topicClusters.json.`, artwork);
+                }
+            });
+        }
+
+        if (!Array.isArray(properties.tags.artform) || properties.tags.artform.length === 0) {
+            addFinding(findings, 'error', 'missing-artform-tags', `${label} must have at least one artform tag.`, artwork);
+        }
+
+        if (properties.url == null || properties.url === '') {
+            addFinding(findings, 'warning', 'missing-source-url', `${label} is published without a source URL.`, artwork);
+        } else if (!isHttpUrl(properties.url)) {
+            addFinding(findings, 'warning', 'invalid-source-url', `${label} source URL should use http:// or https://.`, artwork);
+        }
+
+        if (properties.thumbnail && !isHttpUrl(properties.thumbnail)) {
+            addFinding(findings, 'warning', 'invalid-thumbnail-url', `${label} thumbnail should use http:// or https://.`, artwork);
+        }
+
+        const duplicateKey = [
+            normalizeKey(properties.title),
+            normalizeKey(properties.location),
+            properties.year == null ? '' : normalizeKey(properties.year)
+        ].join('|');
+
+        if (seenArtworkKeys.has(duplicateKey)) {
+            addFinding(findings, 'warning', 'possible-duplicate-artwork', `${label} duplicates title/location/year with "${seenArtworkKeys.get(duplicateKey)}".`, artwork);
+        } else {
+            seenArtworkKeys.set(duplicateKey, properties.title || label);
         }
     });
 
-    // Output duplicates
-    if (duplicates.length > 0) {
-        console.log("Duplicate Artworks Found:");
-        duplicates.forEach(duplicate => console.log(`- ${duplicate}`));
-        throw new Error("Duplicate entries found in the artwork data. Please fix the data.");
-    } else {
-        console.log("No duplicate artworks found!");
-    }
+    Array.from(coordinateCounts.entries())
+        .filter(([, count]) => count > 5)
+        .forEach(([coordinates, count]) => {
+            findings.push({
+                severity: 'warning',
+                code: 'highly-reused-coordinates',
+                message: `Coordinates ${coordinates} are used by ${count} artworks. This may be intentional for exhibitions/cities or may need review.`,
+                artwork: null
+            });
+        });
 
-    console.log("Validation completed successfully!");
+    return findings;
+}
+
+function printSummary(findings) {
+    const errors = findings.filter(finding => finding.severity === 'error');
+    const warnings = findings.filter(finding => finding.severity === 'warning');
+
+    console.log(`Validation completed with ${errors.length} error(s) and ${warnings.length} warning(s).`);
+
+    const grouped = findings.reduce((groups, finding) => {
+        groups[finding.code] = groups[finding.code] || [];
+        groups[finding.code].push(finding);
+        return groups;
+    }, {});
+
+    Object.entries(grouped)
+        .sort(([codeA], [codeB]) => codeA.localeCompare(codeB))
+        .forEach(([code, items]) => {
+            console.log(`\n${code}: ${items.length}`);
+            items.slice(0, 20).forEach(item => {
+                const artwork = item.artwork ? ` (${item.artwork})` : '';
+                console.log(`- [${item.severity}]${artwork} ${item.message}`);
+            });
+            if (items.length > 20) {
+                console.log(`- ... ${items.length - 20} more`);
+            }
+        });
+}
+
+try {
+    const topicClusters = readJson(topicClustersPath);
+    const artworkData = readJson(artworkPath);
+    const findings = validateArtworkData(artworkData, topicClusters);
+    const hasErrors = findings.some(finding => finding.severity === 'error');
+    const hasWarnings = findings.some(finding => finding.severity === 'warning');
+
+    printSummary(findings);
+
+    if (hasErrors || (STRICT_DATA_QUALITY && hasWarnings)) {
+        process.exit(1);
+    }
 } catch (error) {
-    console.error("Validation Error:", error.message);
-    process.exit(1); // Exit the process with a non-zero status code
+    console.error('Validation Error:', error.message);
+    process.exit(1);
 }

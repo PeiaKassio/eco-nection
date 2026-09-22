@@ -48,6 +48,7 @@ We welcome contributions! Here's how you can help:
 - Feature Requests: Suggest new features or improvements.
 - Add Artwork Data: Add Artwork to the [artwork-data](data/artwork-data.json) file.
 - Submit Artwork: Use `submit-artwork.html` to create a structured artwork submission issue for curator review.
+- Data Rules: Review the [canonical data model](docs/CANONICAL_DATA_MODEL.md) and [data governance notes](docs/DATA_GOVERNANCE.md).
 
 ---
 

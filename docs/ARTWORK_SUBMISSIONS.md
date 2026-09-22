@@ -18,7 +18,7 @@ We welcome contributions to our artwork data collection! If you have an idea for
 
 3. **Add Your Artwork to the JSON File**  
    - Open the `data/artwork-data.json` file in your favorite code editor.
-   - Add your proposed artwork following this format:
+   - Add your proposed artwork following the GeoJSON-compatible Eco:nection format:
      ```json
      {
        "type": "Feature",
@@ -32,11 +32,26 @@ We welcome contributions to our artwork data collection! If you have an idea for
          "tags": {
            "topic": ["Topic 1", "Topic 2"],
            "artform": ["Artform 1", "Artform 2"]
+         },
+         "url": "https://example.org/source",
+         "thumbnail": "https://example.org/image.jpg",
+         "sources": [
+           {
+             "url": "https://example.org/source",
+             "type": "source",
+             "accessed_at": "YYYY-MM-DD"
+           }
+         ],
+         "review": {
+           "status": "needs_review",
+           "human_verified": false
          }
        }
      }
      ```
    - Make sure your entry is valid JSON and follows the same structure as existing entries.
+   - `url` is treated as the primary source URL. Missing source URLs are allowed for publication, but they will be listed for later provenance review.
+   - New submissions should use the numeric start year in `year`. For ongoing works, use the start year only.
 
 4. **Commit Your Changes**  
    - After adding your entry, commit the changes:
