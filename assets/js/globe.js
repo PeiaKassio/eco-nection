@@ -5,10 +5,17 @@ let topicClusters = {};
 let continentMapping = {};
 let countryPopulation = {};
 let enrichedFeatures = [];
+let scienceMapData = null;
+let scienceRecords = [];
+let nonPlaceableScienceRecords = [];
+let globalScienceRecords = [];
 let groupedFeatureLookup = new Map();
+let groupedScienceLookup = new Map();
 let activeArtworkPopup = null;
+let activeSciencePopup = null;
 const {
     loadSharedData,
+    loadScienceMapData,
     normalizeText,
     parseYear
 } = EcoData;
@@ -100,6 +107,10 @@ function getClusterColor(cluster) {
 
 function getMetricMode() {
     return document.querySelector('input[name="globeMetric"]:checked')?.value || 'total';
+}
+
+function getMapMode() {
+    return document.querySelector('input[name="globeMode"]:checked')?.value || 'art';
 }
 
 function getMetricLabel() {

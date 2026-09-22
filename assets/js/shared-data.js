@@ -1,10 +1,11 @@
 const EcoData = (() => {
-    const DATA_VERSION = '20260702-pages-rebuild';
+    const DATA_VERSION = '20260922-science-map-modes';
     const DATA_PATHS = {
         artworkData: 'data/artwork-data.json',
         topicClusters: 'data/topicClusters.json',
         continentMapping: 'data/continentMapping.json',
-        countryPopulation: 'data/countryPopulation.json'
+        countryPopulation: 'data/countryPopulation.json',
+        scienceMap: 'data/science/exports/science-map.json'
     };
 
     const MIN_POPULATION_FOR_COUNTRY_PER_CAPITA = 1000000;
@@ -39,6 +40,23 @@ const EcoData = (() => {
             continentMapping,
             countryPopulation
         };
+    }
+
+    async function loadScienceMapData() {
+        try {
+            const scienceMap = await fetchJson(DATA_PATHS.scienceMap, 'science-map.json');
+            return {
+                schemaVersion: scienceMap.schemaVersion || 'science-map-v1',
+                generatedAt: scienceMap.generatedAt || null,
+                records: Array.isArray(scienceMap.records) ? scienceMap.records : [],
+                nonPlaceableRecords: Array.isArray(scienceMap.nonPlaceableRecords) ? scienceMap.nonPlaceableRecords : [],
+                globalRecords: Array.isArray(scienceMap.globalRecords) ? scienceMap.globalRecords : [],
+                warnings: Array.isArray(scienceMap.warnings) ? scienceMap.warnings : []
+            };
+        } catch (error) {
+            console.warn('Science map export unavailable:', error.message);
+            return null;
+        }
     }
 
     function isPublishedArtwork(artwork) {
@@ -132,6 +150,7 @@ const EcoData = (() => {
         COUNTRY_ALIASES,
         MIN_POPULATION_FOR_COUNTRY_PER_CAPITA,
         loadSharedData,
+        loadScienceMapData,
         isPublishedArtwork,
         getPublishedArtworkData,
         normalizeText,

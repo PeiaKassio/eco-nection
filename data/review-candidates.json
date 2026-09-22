@@ -1,0 +1,557 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "purpose": "Curatorial review candidates for replacing removed synthetic legacy records.",
+    "created_at": "2026-09-22",
+    "visibility": "Not loaded by the public app. Review before moving records into artwork-data.json.",
+    "candidate_count": 21
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.4194, 37.7749]
+      },
+      "properties": {
+        "title": "What Is Missing?",
+        "description": "A multi-sited memorial by Maya Lin addressing biodiversity loss, habitat degradation, extinction, and ecological restoration through science-based media installations and an online archive.",
+        "artist": "Maya Lin",
+        "type": "Media Installation / Memorial",
+        "location": "San Francisco, USA",
+        "year": 2009,
+        "tags": {
+          "topic": ["Biodiversity Loss", "Habitat Loss", "Species Conservation"],
+          "artform": ["Digital Art", "Installation", "Public Art"]
+        },
+        "url": "https://www.whatismissing.org/about",
+        "thumbnail": "https://images.ctfassets.net/9833dwig2thk/5wWBDGqh9orCo7V2sxHQbs/a143ff526ff5f91a4b45e8325f672be3/WYCD___Greenprint_Key_Infographics_for_PNG81.png?w=1200&q=65&fm=webp",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-74.006, 40.7128]
+      },
+      "properties": {
+        "title": "HighWaterLine NYC",
+        "description": "A public artwork in which Eve Mosher marked projected storm-surge and flood-risk lines around New York City to make climate vulnerability visible in everyday urban space.",
+        "artist": "Eve Mosher",
+        "type": "Public Art / Performance",
+        "location": "New York, USA",
+        "year": 2007,
+        "tags": {
+          "topic": ["Climate Change", "Water Management", "Urban Ecology"],
+          "artform": ["Public Art", "Performance", "Installation"]
+        },
+        "url": "https://www.evemosher.com/highwaterline-newyorkcity",
+        "thumbnail": "https://static.wixstatic.com/media/8119b5_3978b529c0b549a7bd0eaf6a69c2822d~mv2.jpg/v1/fill/w_1200,h_676,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8119b5_3978b529c0b549a7bd0eaf6a69c2822d~mv2.jpg",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.8786, 40.8276]
+      },
+      "properties": {
+        "title": "Swale",
+        "description": "A floating public food forest by Mary Mattingly that used a barge to advocate for public food, urban ecological commons, and climate-resilient food systems.",
+        "artist": "Mary Mattingly",
+        "type": "Floating Public Artwork",
+        "location": "Bronx, New York, USA",
+        "year": 2016,
+        "tags": {
+          "topic": ["Urban Ecology", "Sustainable Practices", "Green Spaces"],
+          "artform": ["Installation", "Public Art", "Social Practice"]
+        },
+        "url": "https://www.swalenyc.org/new-page",
+        "thumbnail": "https://images.squarespace-cdn.com/content/v1/5ca5573718f1680001bd2d75/1747402416664-WZ7JGT10RWZ6W1YGQH1M/Screenshot+2025-05-10+at+3.53.40%E2%80%AFPM.png?format=750w",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-95.398, 29.7174]
+      },
+      "properties": {
+        "title": "The Great Indoors",
+        "description": "A large-scale Aurora Robson installation made from approximately 15,000 reclaimed PET bottles collected from New York streets and transformed into an illuminated environment.",
+        "artist": "Aurora Robson",
+        "type": "Plastic Installation",
+        "location": "Houston, USA",
+        "year": 2008,
+        "tags": {
+          "topic": ["Plastic Pollution", "Recycling", "Waste"],
+          "artform": ["Installation", "Sculpture"]
+        },
+        "url": "https://www.aurorarobson.com/the-great-indoors",
+        "thumbnail": "https://images.squarespace-cdn.com/content/v1/5a0f269fe9bfdf155893fe51/1517526724548-BZVG9KRCBLH8445VYLH4/greatindoorsfront.jpg?format=2500w",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.1652, 39.9526]
+      },
+      "properties": {
+        "title": "Politics of Snow",
+        "description": "A Diane Burko project using glacier imagery and scientific climate data to make visible the changing cryosphere and the politics of climate change.",
+        "artist": "Diane Burko",
+        "type": "Painting / Photography",
+        "location": "Philadelphia, USA",
+        "year": 2010,
+        "tags": {
+          "topic": ["Climate Change", "Glacier Retreat", "Climate Awareness"],
+          "artform": ["Painting", "Photography"]
+        },
+        "url": "https://www.dianeburko.com/politics-of-snow",
+        "thumbnail": "https://images.squarespace-cdn.com/content/v1/5b9c2d201aef1db90148cd24/1541609686599-J4IRST7P6RWZ57354QJW/image.png?format=2500w",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-144, 69]
+      },
+      "properties": {
+        "title": "Arctic National Wildlife Refuge: Seasons of Life and Land",
+        "description": "Subhankar Banerjee's photographic project documenting the Arctic National Wildlife Refuge, its ecological diversity, Indigenous communities, and threats from resource extraction and climate change.",
+        "artist": "Subhankar Banerjee",
+        "type": "Photography",
+        "location": "Arctic National Wildlife Refuge, USA",
+        "year": 2003,
+        "tags": {
+          "topic": ["Climate Change", "Natural Habitat", "Indigenous Knowledge"],
+          "artform": ["Photography"]
+        },
+        "url": "https://www.burkemuseum.org/static/ANWR/about.html",
+        "thumbnail": "https://www.burkemuseum.org/static/ANWR/taiga.jpg",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-82.1013, 39.3292]
+      },
+      "properties": {
+        "title": "Toxic Art",
+        "description": "John Sabraw's ecological art practice transforms acid mine drainage pollution into usable pigments, connecting painting, water remediation, and public environmental action.",
+        "artist": "John Sabraw",
+        "type": "Painting / Ecological Practice",
+        "location": "Athens, Ohio, USA",
+        "year": 2018,
+        "tags": {
+          "topic": ["Toxic Waste", "Water Pollution", "Environmental Health"],
+          "artform": ["Painting", "Eco-Art"]
+        },
+        "url": "https://www.johnsabraw.com/ecological-practice",
+        "thumbnail": "https://images.squarespace-cdn.com/content/v1/6a3aeb3da1c7857fa5dfbade/1790c4a2-3c8c-4f7f-b77c-eb9dda62de7a/Plant+at+Corning+drone+shot.png?format=750w",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-74.006, 40.7128]
+      },
+      "properties": {
+        "title": "Dear Climate",
+        "description": "A collaborative climate art project by Marina Zurkow, Una Chaudhuri, Oliver Kellhammer, and collaborators using posters, audio, and installations to reframe emotional relationships with climate change.",
+        "artist": "Marina Zurkow, Una Chaudhuri, Oliver Kellhammer, Fritz Ertl",
+        "type": "Poster / Installation / Audio",
+        "location": "New York, USA",
+        "year": 2014,
+        "tags": {
+          "topic": ["Climate Change", "Climate Awareness", "Environmental Psychology"],
+          "artform": ["Poster Art", "Installation", "Sound Art"]
+        },
+        "url": "https://www.bitforms.art/artwork/dear-climate",
+        "thumbnail": "https://www.bitforms.art/wp-content/uploads/2020/02/mz_dearclimate_1_w.jpg",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [10.7522, 59.9139]
+      },
+      "properties": {
+        "title": "Flatbread Society",
+        "description": "A long-term public art project by Futurefarmers in Oslo involving grain fields, baking, urban agriculture, food commons, and ecological public programming.",
+        "artist": "Futurefarmers",
+        "type": "Public Art / Social Practice",
+        "location": "Oslo, Norway",
+        "year": 2012,
+        "tags": {
+          "topic": ["Sustainable Practices", "Urban Farming", "Regenerative Land Management"],
+          "artform": ["Public Art", "Social Practice", "Installation"]
+        },
+        "url": "https://flatbreadsociety.net/about",
+        "thumbnail": "",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.4194, 37.7749]
+      },
+      "properties": {
+        "title": "Public Smog",
+        "description": "Amy Balkin's atmospheric public artwork creates a clean-air park through carbon-offset and regulatory mechanisms, while proposing the atmosphere as a shared public commons.",
+        "artist": "Amy Balkin",
+        "type": "Conceptual Public Art",
+        "location": "San Francisco, USA",
+        "year": 2004,
+        "tags": {
+          "topic": ["Air Pollution", "Climate Change", "Carbon Emissions"],
+          "artform": ["Conceptual Art", "Public Art"]
+        },
+        "url": "https://www.kqed.org/arts/11105426/public-park-in-the-sky-seeks-to-protect-",
+        "thumbnail": "https://cdn.kqed.org/wp-content/uploads/sites/2/2015/11/PublicSmogCube.jpg",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-74.006, 40.7128]
+      },
+      "properties": {
+        "title": "Climate Signals",
+        "description": "A citywide public artwork by Justin Brice Guariglia using solar-powered highway message boards to display climate-focused aphorisms across New York City.",
+        "artist": "Justin Brice Guariglia",
+        "type": "Public Art",
+        "location": "New York, USA",
+        "year": 2018,
+        "tags": {
+          "topic": ["Climate Change", "Climate Awareness", "Renewable Energy"],
+          "artform": ["Public Art", "Text Art", "Installation"]
+        },
+        "url": "https://www.justinbrice.com/climate-signals-1",
+        "thumbnail": "https://freight.cargo.site/w/2000/q/75/i/D2452629403208067759031129102164/Copy-of-LisaGoulet_2018Signals_Williams1.jpg",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.306, 48.849]
+      },
+      "properties": {
+        "title": "Wasteland - The Garbage Patch State",
+        "description": "Maria Cristina Finucci's Wasteland project invented the Garbage Patch State as a symbolic nation to make ocean plastic accumulation visible as a political and cultural reality.",
+        "artist": "Maria Cristina Finucci",
+        "type": "Installation / Performance",
+        "location": "Paris, France",
+        "year": 2013,
+        "tags": {
+          "topic": ["Plastic Pollution", "Ocean Pollution", "Waste"],
+          "artform": ["Installation", "Performance", "Public Art"]
+        },
+        "url": "https://www.garbagepatchstate.org/eng/the-garbage-patch-state-project.html",
+        "thumbnail": "https://www.instituteforpublicart.org/site/assets/files/5022/rome2018_3_resized.768x0.jpg",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-105.2705, 40.015]
+      },
+      "properties": {
+        "title": "Ice Receding/Books Reseeding",
+        "description": "Basia Irland's participatory Ice Books project releases seed-laden ice sculptures into rivers to address glacial retreat, watershed restoration, and riparian ecology.",
+        "artist": "Basia Irland",
+        "type": "Ephemeral Ecological Sculpture",
+        "location": "Boulder, USA",
+        "year": 2015,
+        "tags": {
+          "topic": ["Climate Change", "Water Conservation", "Ecosystem Protection"],
+          "artform": ["Sculpture", "Eco-Art", "Social Practice"]
+        },
+        "url": "https://www.basiairland.com/projects/ice%20books/",
+        "thumbnail": "https://www.basiairland.com/projects/ice%20books/Resources/bernesgariverice.jpeg",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-76.1474, 43.0481]
+      },
+      "properties": {
+        "title": "The Canary Project",
+        "description": "A long-running art and media project by Susannah Sayler and Edward Morris producing visual culture that deepens public understanding of climate change, extinction, food systems, and water resources.",
+        "artist": "Susannah Sayler and Edward Morris",
+        "type": "Art and Media Project",
+        "location": "Syracuse, USA",
+        "year": 2006,
+        "tags": {
+          "topic": ["Climate Change", "Extinction", "Water Resources"],
+          "artform": ["Photography", "Digital Art", "Public Art"]
+        },
+        "url": "https://canary-project.org/about/",
+        "thumbnail": "https://canary-project.org/wp-content/uploads/2016/08/CP_honeycomb_about_page_vertical.jpg",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-96.7503, 32.7797]
+      },
+      "properties": {
+        "title": "Fair Park Lagoon",
+        "description": "Patricia Johanson's ecological public artwork redesigned a degraded lagoon in Dallas to reduce erosion, support aquatic habitat, and integrate art with environmental remediation.",
+        "artist": "Patricia Johanson",
+        "type": "Ecological Public Art",
+        "location": "Dallas, USA",
+        "year": 1986,
+        "tags": {
+          "topic": ["Water Management", "Wetlands", "Ecosystem Protection"],
+          "artform": ["Public Art", "Land Art", "Eco-Art"]
+        },
+        "url": "https://patriciajohanson.com/projects/fair-park-lagoon.html",
+        "thumbnail": "https://patriciajohanson.com/projects/fair-park-lagoon_files/fair-park-lagoon.jpg",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-74.006, 40.7128]
+      },
+      "properties": {
+        "title": "Waterpod",
+        "description": "A floating habitat and mobile public space by Mary Mattingly and collaborators, built from a repurposed barge as a speculative model for resilient urban living under climate stress.",
+        "artist": "Mary Mattingly and collaborators",
+        "type": "Floating Public Artwork",
+        "location": "New York, USA",
+        "year": 2009,
+        "tags": {
+          "topic": ["Climate Change", "Sustainable Living", "Urban Futures"],
+          "artform": ["Installation", "Public Art", "Social Practice"]
+        },
+        "url": "https://marymattingly.com/blogs/artwork/2009-waterpod",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0638/3635/6845/files/DSC_1773_copy_600x600.jpg?v=1680447906",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.3155, 45.4408]
+      },
+      "properties": {
+        "title": "Red Regatta",
+        "description": "Melissa McGill's public artwork activated Venice's lagoon and canals with hand-painted red sails to call attention to the climate and tourism pressures threatening the city.",
+        "artist": "Melissa McGill",
+        "type": "Public Art / Performance",
+        "location": "Venice, Italy",
+        "year": 2019,
+        "tags": {
+          "topic": ["Climate Change", "Water Management", "Cultural Heritage"],
+          "artform": ["Public Art", "Performance", "Installation"]
+        },
+        "url": "https://www.melissamcgillartist.com/work/red-regatta/",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoVi-MIYaZLc60TYpjSY3JzIdGihlqXHLrm1_hAHTm6Q&s=10",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-79.3832, 43.6532]
+      },
+      "properties": {
+        "title": "Holoscenes",
+        "description": "A Lars Jan / Early Morning Opera performance and installation series in which everyday human actions unfold inside a flooding tank, connecting daily life to long-term climate disruption.",
+        "artist": "Lars Jan / Early Morning Opera",
+        "type": "Performance Installation",
+        "location": "Toronto, Canada",
+        "year": 2014,
+        "tags": {
+          "topic": ["Climate Change", "Flooding", "Water Management"],
+          "artform": ["Performance", "Installation", "Video Art"]
+        },
+        "url": "https://earlymorningopera.com/wp/projects/holoscenes/",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHp6M7Qg7UKgE48bCmKLvHRgMCyCX6Po8yYth0fgm8iQ&s",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-70.8967, 42.5195]
+      },
+      "properties": {
+        "title": "The Blue Trees",
+        "description": "Konstantin Dimopoulos's environmental community art installation temporarily colors trees with safe blue pigment to provoke dialogue about deforestation and climate change.",
+        "artist": "Konstantin Dimopoulos",
+        "type": "Public Installation",
+        "location": "Salem, USA",
+        "year": 2022,
+        "tags": {
+          "topic": ["Deforestation", "Climate Change", "Biodiversity"],
+          "artform": ["Public Art", "Installation"]
+        },
+        "url": "https://www.pem.org/exhibitions/konstantin-dimopoulos-the-blue-trees",
+        "thumbnail": "https://s3.us-east-1.amazonaws.com/pem-org/images/BlueTrees_sli1600_001.jpg",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.3522, 48.8566]
+      },
+      "properties": {
+        "title": "Geography = War",
+        "description": "Alfredo Jaar's installation responds to the dumping of toxic waste in Koko, Nigeria, connecting environmental violence, colonial extraction, and global waste politics.",
+        "artist": "Alfredo Jaar",
+        "type": "Installation",
+        "location": "Paris, France",
+        "year": 1989,
+        "tags": {
+          "topic": ["Toxic Waste", "Environmental Justice", "Pollution"],
+          "artform": ["Installation", "Photography"]
+        },
+        "url": "https://mcachicago.org/Exhibitions/2007/Alfredo-Jaar",
+        "thumbnail": "https://mcachicago.org/wp-content/uploads/image/IL13YF0D/original-1600x900.jpg",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.1276, 51.5072]
+      },
+      "properties": {
+        "title": "Greenhouse Britain",
+        "description": "A Harrison Studio project mapping sea-level rise and climate futures for Britain, combining ecological planning, cartography, and public environmental imagination.",
+        "artist": "Helen Mayer Harrison and Newton Harrison",
+        "type": "Ecological Mapping / Installation",
+        "location": "London, United Kingdom",
+        "year": 2007,
+        "tags": {
+          "topic": ["Climate Change", "Sea Level Rise", "Landscape Change"],
+          "artform": ["Installation", "Printmaking", "Cartography"]
+        },
+        "url": "https://www.moma.org/collection/works/200480",
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWGLcAiRmhdJkT9UXurw40HAZowKfpAG8Yx6EXC5axHA&s",
+        "review": {
+          "status": "published",
+          "human_verified": true,
+          "review_note": ""
+        }
+      }
+    }
+  ]
+}
