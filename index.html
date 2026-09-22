@@ -83,8 +83,8 @@
 
             <label class="form-control mt-4">
                 <span class="label-text">Topic Cluster</span>
-                <select id="globeCluster" class="select select-bordered">
-                    <option value="">All clusters</option>
+                <select id="globeCluster" class="select select-bordered globe-cluster-select" multiple size="5">
+                    <option value="" selected>All clusters</option>
                 </select>
             </label>
 
@@ -138,6 +138,10 @@
             </div>
 
             <div id="globeScienceStatus" class="alert alert-info mt-4 hidden text-sm"></div>
+
+            <section id="globeLegend" class="globe-map-card mt-4"></section>
+
+            <section id="globeGlobalScienceSummary" class="globe-map-card mt-4 hidden"></section>
 
             <section class="mt-5">
                 <h2 class="text-xl font-semibold">Top Countries</h2>

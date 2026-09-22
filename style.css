@@ -142,6 +142,86 @@
   background: hsl(var(--p));
 }
 
+.globe-cluster-select {
+  min-height: 8.75rem;
+  height: auto;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+}
+
+.globe-map-card {
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  border-radius: 0.5rem;
+  padding: 0.85rem;
+  background: color-mix(in srgb, hsl(var(--b1)) 82%, transparent);
+}
+
+.globe-card-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.globe-card-value {
+  margin-top: 0.35rem;
+  font-size: 1.35rem;
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+.globe-card-subtle {
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  opacity: 0.72;
+}
+
+.globe-legend,
+.globe-breakdown {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.globe-legend-row,
+.globe-breakdown-row {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+
+.globe-legend-row {
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+}
+
+.globe-breakdown-row strong {
+  font-size: 0.78rem;
+}
+
+.globe-legend-art-marker,
+.globe-legend-swatch {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: var(--legend-color, hsl(var(--p)));
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.globe-legend-art-marker {
+  background: hsl(var(--p));
+}
+
+.globe-legend-science-circle {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 999px;
+  background: rgba(20, 184, 166, 0.24);
+  border: 2px solid #ccfbf1;
+}
+
 .globe-popup {
   color: #111827;
 }
@@ -327,6 +407,26 @@
 .globe-popup-description,
 .globe-popup-meta {
   color: #4b5563;
+}
+
+.globe-popup-section {
+  display: grid;
+  gap: 0.35rem;
+  border-top: 1px solid rgba(17, 24, 39, 0.08);
+  padding-top: 0.5rem;
+  font-size: 0.82rem;
+}
+
+.globe-topic-list {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  padding-left: 1rem;
+  color: #4b5563;
+}
+
+.globe-topic-list li strong {
+  color: #111827;
 }
 
 .globe-popup-description {

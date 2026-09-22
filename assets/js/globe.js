@@ -20,6 +20,16 @@ const {
     parseYear
 } = EcoData;
 
+const SCIENCE_CIRCLE_MIN_RADIUS = 10;
+const SCIENCE_CIRCLE_MAX_RADIUS = 32;
+const SCIENCE_NEUTRAL_COLOR = '#14b8a6';
+const SCIENCE_NEUTRAL_CORE_COLOR = '#0f766e';
+const SCIENCE_NEUTRAL_STROKE_COLOR = '#ccfbf1';
+const SCIENCE_SELECTED_STROKE_WIDTH = 4;
+const SCIENCE_DEFAULT_STROKE_WIDTH = 2;
+
+let selectedScienceGroupKey = null;
+
 const globe = new mapboxgl.Map({
     container: 'globeMap',
     style: 'mapbox://styles/mapbox/dark-v11',
@@ -113,6 +123,22 @@ function getMapMode() {
     return document.querySelector('input[name="globeMode"]:checked')?.value || 'art';
 }
 
+function getSelectedClusters() {
+    const select = document.getElementById('globeCluster');
+    if (!select) return [];
+
+    return Array.from(select.selectedOptions)
+        .map(option => option.value)
+        .filter(Boolean);
+}
+
+function resetClusterFilter() {
+    const select = document.getElementById('globeCluster');
+    Array.from(select.options).forEach(option => {
+        option.selected = option.value === '';
+    });
+}
+
 function getMetricLabel() {
     return getMetricMode() === 'perCapita' ? 'per 1M people' : 'total';
 }
@@ -154,7 +180,7 @@ function normalizeScienceRecord(record = {}) {
 
 function getFilteredFeatures() {
     const query = normalizeText(document.getElementById('globeSearch').value.trim());
-    const cluster = document.getElementById('globeCluster').value;
+    const selectedClusters = getSelectedClusters();
     const continent = document.getElementById('globeContinent').value;
     const country = document.getElementById('globeCountry').value;
     const fromYear = parseInt(document.getElementById('globeYearFrom').value, 10);
@@ -167,7 +193,7 @@ function getFilteredFeatures() {
 
         if (!isValidPoint(feature)) return false;
         if (query && !text.includes(query)) return false;
-        if (cluster && !(props.clusters || []).includes(cluster)) return false;
+        if (selectedClusters.length > 0 && !selectedClusters.some(cluster => (props.clusters || []).includes(cluster))) return false;
         if (continent && props.continent !== continent) return false;
         if (country && props.country !== country) return false;
         if (!Number.isNaN(fromYear) && year !== null && year < fromYear) return false;
@@ -178,7 +204,7 @@ function getFilteredFeatures() {
 
 function getFilteredScienceRecords(records = scienceRecords) {
     const query = normalizeText(document.getElementById('globeSearch').value.trim());
-    const cluster = document.getElementById('globeCluster').value;
+    const selectedClusters = getSelectedClusters();
     const continent = document.getElementById('globeContinent').value;
     const country = document.getElementById('globeCountry').value;
     const fromYear = parseInt(document.getElementById('globeYearFrom').value, 10);
@@ -191,7 +217,7 @@ function getFilteredScienceRecords(records = scienceRecords) {
         const text = normalizeText(`${record.country} ${record.region} ${record.city} ${topics.join(' ')} ${clusters.join(' ')}`);
 
         if (query && !text.includes(query)) return false;
-        if (cluster && !clusters.includes(cluster)) return false;
+        if (selectedClusters.length > 0 && !selectedClusters.some(cluster => clusters.includes(cluster))) return false;
         if (continent && record.continent !== continent) return false;
         if (country && record.country !== country) return false;
         if (!Number.isNaN(fromYear) && year !== null && year < fromYear) return false;
@@ -306,6 +332,68 @@ function getUniquePublicationCount(records) {
     return new Set(records.map(record => record.publicationId).filter(id => id != null)).size;
 }
 
+function getUniquePublicationIds(records) {
+    return new Set(records.map(record => record.publicationId).filter(id => id != null));
+}
+
+function getScienceCircleRadius(count, maxCount) {
+    if (count <= 0) return 0;
+    if (maxCount <= 1) return SCIENCE_CIRCLE_MIN_RADIUS;
+
+    const scaled = (Math.sqrt(count) - 1) / (Math.sqrt(maxCount) - 1);
+    return SCIENCE_CIRCLE_MIN_RADIUS + (scaled * (SCIENCE_CIRCLE_MAX_RADIUS - SCIENCE_CIRCLE_MIN_RADIUS));
+}
+
+function getScienceClusterColor(clusterNames, selectedClusters = getSelectedClusters()) {
+    if (selectedClusters.length === 1) {
+        return getClusterColor(selectedClusters[0]);
+    }
+
+    if (selectedClusters.length === 0 && clusterNames.length === 1) {
+        return getClusterColor(clusterNames[0]);
+    }
+
+    return SCIENCE_NEUTRAL_COLOR;
+}
+
+function getScienceClusterBreakdown(records) {
+    const breakdown = new Map();
+
+    records.forEach(record => {
+        (record.topicClusters || []).forEach(cluster => {
+            if (!breakdown.has(cluster)) breakdown.set(cluster, new Set());
+            if (record.publicationId != null) breakdown.get(cluster).add(record.publicationId);
+        });
+    });
+
+    return Array.from(breakdown.entries())
+        .map(([cluster, publicationIds]) => ({
+            cluster,
+            count: publicationIds.size,
+            color: getClusterColor(cluster)
+        }))
+        .sort((a, b) => b.count - a.count || a.cluster.localeCompare(b.cluster));
+}
+
+function getScienceTopicBreakdown(records, limit = 5) {
+    const breakdown = new Map();
+
+    records.forEach(record => {
+        (record.topics || []).forEach(topic => {
+            if (!breakdown.has(topic)) breakdown.set(topic, new Set());
+            if (record.publicationId != null) breakdown.get(topic).add(record.publicationId);
+        });
+    });
+
+    return Array.from(breakdown.entries())
+        .map(([topic, publicationIds]) => ({
+            topic,
+            count: publicationIds.size
+        }))
+        .sort((a, b) => b.count - a.count || a.topic.localeCompare(b.topic))
+        .slice(0, limit);
+}
+
 function groupScienceRecords(records, countryData) {
     groupedScienceLookup = new Map();
 
@@ -333,18 +421,17 @@ function groupScienceRecords(records, countryData) {
         });
     });
 
-    const maxCount = Math.max(1, ...Array.from(groupedScienceLookup.values()).map(group => {
-        const publicationIds = new Set(group.records.map(record => record.publicationId).filter(id => id != null));
-        return publicationIds.size;
-    }));
+    const maxCount = Math.max(1, ...Array.from(groupedScienceLookup.values()).map(group => getUniquePublicationIds(group.records).size));
+    const selectedClusters = getSelectedClusters();
 
     return Array.from(groupedScienceLookup.values()).map(group => {
-        const publicationIds = new Set(group.records.map(record => record.publicationId).filter(id => id != null));
+        const publicationIds = getUniquePublicationIds(group.records);
         const firstRecord = group.records[0];
         const scienceCount = publicationIds.size;
         const countryMetric = countryData[firstRecord.country]?.value || scienceCount;
-        const radius = 8 + ((scienceCount / maxCount) * 22);
+        const radius = getScienceCircleRadius(scienceCount, maxCount);
         const topicClustersForGroup = Array.from(new Set(group.records.flatMap(record => record.topicClusters || []))).sort();
+        const scienceColor = getScienceClusterColor(topicClustersForGroup, selectedClusters);
 
         return {
             type: 'Feature',
@@ -363,6 +450,11 @@ function groupScienceRecords(records, countryData) {
                 scienceCount,
                 countryMetric,
                 radius,
+                scienceColor,
+                scienceCoreColor: scienceColor,
+                scienceStrokeColor: SCIENCE_NEUTRAL_STROKE_COLOR,
+                strokeWidth: selectedScienceGroupKey === group.groupKey ? SCIENCE_SELECTED_STROKE_WIDTH : SCIENCE_DEFAULT_STROKE_WIDTH,
+                selected: selectedScienceGroupKey === group.groupKey,
                 topicClusters: topicClustersForGroup.join(', ')
             }
         };
@@ -452,7 +544,9 @@ function renderRanking(containerId, items) {
     const maxValue = Math.max(1, ...sorted.map(item => item.value || 0));
     container.innerHTML = sorted.map(item => {
         const width = Math.max(3, (item.value / maxValue) * 100);
-        const value = getMetricMode() === 'perCapita' ? item.value.toFixed(3) : item.value.toFixed(0);
+        const value = Number.isFinite(item.artCount) && Number.isFinite(item.scienceCount)
+            ? `Art ${item.artCount} / Sci ${item.scienceCount}`
+            : getMetricMode() === 'perCapita' ? item.value.toFixed(3) : item.value.toFixed(0);
         return `
             <div class="globe-ranking-row">
                 <div class="flex justify-between gap-3 text-sm">
@@ -517,12 +611,28 @@ function setLayerVisibility(layerIds, visible) {
     });
 }
 
-function updateScienceStatus(filteredPlaceableRecords, filteredNonPlaceableRecords, filteredGlobalRecords) {
+function renderInlineClusterBreakdown(items) {
+    return items.map(item => `
+        <div class="globe-breakdown-row">
+            <span class="globe-legend-swatch" style="--legend-color: ${escapeHtml(item.color || SCIENCE_NEUTRAL_COLOR)}"></span>
+            <span>${escapeHtml(item.cluster || item.topic)}</span>
+            <strong>${item.count}</strong>
+        </div>
+    `).join('');
+}
+
+function updateScienceStatus(filteredArtworks, filteredPlaceableRecords, filteredNonPlaceableRecords, filteredGlobalRecords) {
     const status = document.getElementById('globeScienceStatus');
     if (!status) return;
 
     const mode = getMapMode();
     const scienceModeActive = mode === 'science' || mode === 'both';
+    const artModeActive = mode === 'art' || mode === 'both';
+    const scienceCount = getUniquePublicationCount([
+        ...filteredPlaceableRecords,
+        ...filteredNonPlaceableRecords,
+        ...filteredGlobalRecords
+    ]);
     const hasAnyScienceExport = scienceMapData && (
         scienceRecords.length > 0 ||
         nonPlaceableScienceRecords.length > 0 ||
@@ -530,6 +640,12 @@ function updateScienceStatus(filteredPlaceableRecords, filteredNonPlaceableRecor
     );
 
     if (!scienceModeActive) {
+        if (artModeActive && filteredArtworks.length === 0) {
+            status.textContent = 'No artworks match these filters.';
+            status.classList.remove('hidden');
+            return;
+        }
+
         status.classList.add('hidden');
         status.textContent = '';
         return;
@@ -542,6 +658,12 @@ function updateScienceStatus(filteredPlaceableRecords, filteredNonPlaceableRecor
     }
 
     const notes = [];
+    if (scienceCount === 0) {
+        notes.push('No research publications match these filters.');
+    }
+    if (artModeActive && filteredArtworks.length === 0) {
+        notes.push('No artworks match these filters.');
+    }
     if (filteredNonPlaceableRecords.length > 0) {
         notes.push(`${getUniquePublicationCount(filteredNonPlaceableRecords)} publication(s) match the filters but have no safe map coordinates yet.`);
     }
@@ -559,8 +681,80 @@ function updateScienceStatus(filteredPlaceableRecords, filteredNonPlaceableRecor
     status.classList.remove('hidden');
 }
 
+function renderGlobalScienceSummary(filteredGlobalRecords) {
+    const container = document.getElementById('globeGlobalScienceSummary');
+    if (!container) return;
+
+    const mode = getMapMode();
+    const globalCount = getUniquePublicationCount(filteredGlobalRecords);
+
+    if (!(mode === 'science' || mode === 'both') || globalCount === 0) {
+        container.classList.add('hidden');
+        container.innerHTML = '';
+        return;
+    }
+
+    const clusterBreakdown = getScienceClusterBreakdown(filteredGlobalRecords);
+    container.innerHTML = `
+        <h2 class="globe-card-title">Global research</h2>
+        <div class="globe-card-value">${globalCount} publication${globalCount === 1 ? '' : 's'}</div>
+        <div class="globe-card-subtle">Kept outside the geographic point layer.</div>
+        <div class="globe-breakdown mt-3">${renderInlineClusterBreakdown(clusterBreakdown)}</div>
+    `;
+    container.classList.remove('hidden');
+}
+
+function renderMapLegend(displayScienceFeatures = []) {
+    const container = document.getElementById('globeLegend');
+    if (!container) return;
+
+    const mode = getMapMode();
+    const selectedClusters = getSelectedClusters();
+    const scienceActive = mode === 'science' || mode === 'both';
+    const artActive = mode === 'art' || mode === 'both';
+    const selectedClusterText = selectedClusters.length === 1
+        ? `${selectedClusters[0]} color`
+        : selectedClusters.length > 1
+            ? 'neutral color for mixed selected clusters'
+            : 'topic color when one cluster is represented, neutral when mixed';
+    const maxScienceCount = Math.max(0, ...displayScienceFeatures.map(feature => feature.properties.scienceCount || 0));
+
+    const artLegend = artActive ? `
+        <div class="globe-legend-row">
+            <span class="globe-legend-art-marker"></span>
+            <span>Artwork marker: one cultural object; color = topic cluster.</span>
+        </div>
+    ` : '';
+    const scienceLegend = scienceActive ? `
+        <div class="globe-legend-row">
+            <span class="globe-legend-science-circle"></span>
+            <span>Research circle: country-level activity; size = unique matching publications.</span>
+        </div>
+        <div class="globe-legend-row">
+            <span class="globe-legend-swatch" style="--legend-color: ${escapeHtml(selectedClusters.length === 1 ? getClusterColor(selectedClusters[0]) : SCIENCE_NEUTRAL_COLOR)}"></span>
+            <span>Science color: ${escapeHtml(selectedClusterText)}.</span>
+        </div>
+        <div class="globe-card-subtle">Circle scale uses sqrt(count), bounded ${SCIENCE_CIRCLE_MIN_RADIUS}-${SCIENCE_CIRCLE_MAX_RADIUS}px${maxScienceCount ? `; current max ${maxScienceCount}.` : '.'}</div>
+    ` : '';
+
+    container.innerHTML = `
+        <h2 class="globe-card-title">Legend</h2>
+        <div class="globe-legend">${artLegend}${scienceLegend}</div>
+    `;
+}
+
 function updateGlobe() {
     const mode = getMapMode();
+    if (mode === 'science' && activeArtworkPopup) {
+        activeArtworkPopup.remove();
+        activeArtworkPopup = null;
+    }
+    if (mode === 'art' && activeSciencePopup) {
+        activeSciencePopup.remove();
+        activeSciencePopup = null;
+        selectedScienceGroupKey = null;
+    }
+
     const filtered = getFilteredFeatures();
     const countryData = aggregateByCountry(filtered);
     const continentData = aggregateByContinent(filtered);
@@ -590,15 +784,18 @@ function updateGlobe() {
     const displayScienceFeatures = groupScienceRecords(filteredScience, scienceCountryData);
 
     document.getElementById('globeArtworkCount').textContent = mode === 'science' ? 0 : filtered.length;
-    document.getElementById('globeScienceCount').textContent = getUniquePublicationCount([
+    const visibleScienceCount = getUniquePublicationCount([
         ...filteredScience,
         ...filteredNonPlaceableScience,
         ...filteredGlobalScience
     ]);
+    document.getElementById('globeScienceCount').textContent = mode === 'art' ? 0 : visibleScienceCount;
     document.getElementById('globeCountryCount').textContent = Object.keys(rankingCountryData).length;
     renderRanking('globeCountryRanking', countryRankingData);
     renderRanking('globeContinentRanking', rankingContinentData);
-    updateScienceStatus(filteredScience, filteredNonPlaceableScience, filteredGlobalScience);
+    updateScienceStatus(filtered, filteredScience, filteredNonPlaceableScience, filteredGlobalScience);
+    renderMapLegend(displayScienceFeatures);
+    renderGlobalScienceSummary(filteredGlobalScience);
 
     const source = globe.getSource('globeArtworks');
     if (source) {
@@ -617,7 +814,8 @@ function updateGlobe() {
     }
 
     setLayerVisibility(['globe-artwork-halo', 'globe-artwork-point', 'globe-artwork-count'], mode === 'art' || mode === 'both');
-    setLayerVisibility(['globe-science-area', 'globe-science-core', 'globe-science-count'], mode === 'science' || mode === 'both');
+    setLayerVisibility(['globe-science-area', 'globe-science-core'], mode === 'science' || mode === 'both');
+    setLayerVisibility(['globe-science-count'], false);
 }
 
 function populateClusterFilter() {
@@ -666,9 +864,24 @@ function refreshCountryOptions() {
 }
 
 function attachEvents() {
-    ['globeSearch', 'globeCluster', 'globeCountry', 'globeYearFrom', 'globeYearTo'].forEach(id => {
+    ['globeSearch', 'globeCountry', 'globeYearFrom', 'globeYearTo'].forEach(id => {
         document.getElementById(id).addEventListener('input', updateGlobe);
         document.getElementById(id).addEventListener('change', updateGlobe);
+    });
+
+    document.getElementById('globeCluster').addEventListener('change', event => {
+        const select = event.target;
+        const selectedValues = Array.from(select.selectedOptions).map(option => option.value);
+        const allOption = select.querySelector('option[value=""]');
+
+        if (selectedValues.length > 1 && selectedValues.includes('')) {
+            allOption.selected = false;
+        }
+        if (Array.from(select.selectedOptions).length === 0) {
+            allOption.selected = true;
+        }
+
+        updateGlobe();
     });
 
     document.getElementById('globeContinent').addEventListener('change', () => {
@@ -693,7 +906,7 @@ function attachEvents() {
 
     document.getElementById('resetGlobeFilters').addEventListener('click', () => {
         document.getElementById('globeSearch').value = '';
-        document.getElementById('globeCluster').value = '';
+        resetClusterFilter();
         document.getElementById('globeContinent').value = '';
         document.getElementById('globeCountry').value = '';
         document.getElementById('globeYearFrom').value = '';
@@ -727,11 +940,11 @@ function addGlobeLayers() {
             visibility: 'none'
         },
         paint: {
-            'circle-color': '#14b8a6',
+            'circle-color': ['get', 'scienceColor'],
             'circle-radius': ['get', 'radius'],
             'circle-opacity': 0.24,
-            'circle-stroke-width': 2,
-            'circle-stroke-color': '#99f6e4',
+            'circle-stroke-width': ['get', 'strokeWidth'],
+            'circle-stroke-color': ['get', 'scienceStrokeColor'],
             'circle-stroke-opacity': 0.9
         }
     });
@@ -744,7 +957,7 @@ function addGlobeLayers() {
             visibility: 'none'
         },
         paint: {
-            'circle-color': '#0f766e',
+            'circle-color': ['get', 'scienceCoreColor'],
             'circle-radius': 5,
             'circle-opacity': 0.95,
             'circle-stroke-width': 1,
@@ -979,9 +1192,10 @@ function addGlobeLayers() {
     }
 
     function renderSciencePopup(group) {
-        const publicationIds = new Set(group.records.map(record => record.publicationId).filter(id => id != null));
+        const publicationIds = getUniquePublicationIds(group.records);
         const firstRecord = group.records[0] || {};
-        const clusters = Array.from(new Set(group.records.flatMap(record => record.topicClusters || []))).sort();
+        const clusterBreakdown = getScienceClusterBreakdown(group.records);
+        const topicBreakdown = getScienceTopicBreakdown(group.records);
         const years = group.records
             .map(record => parseYear(record.year))
             .filter(year => year !== null)
@@ -989,7 +1203,12 @@ function addGlobeLayers() {
         const yearText = years.length > 0
             ? `${years[0]}-${years[years.length - 1]}`
             : 'Year unknown';
-        const clusterText = clusters.length > 0 ? clusters.join(', ') : 'No classified topic cluster yet';
+        const clusterHtml = clusterBreakdown.length > 0
+            ? renderInlineClusterBreakdown(clusterBreakdown)
+            : '<div class="globe-card-subtle">No classified topic cluster yet.</div>';
+        const topicHtml = topicBreakdown.length > 0
+            ? topicBreakdown.map(item => `<li>${escapeHtml(item.topic)} <strong>${item.count}</strong></li>`).join('')
+            : '';
 
         return `
             <div class="globe-popup globe-popup-science">
@@ -997,9 +1216,19 @@ function addGlobeLayers() {
                 <div class="globe-popup-primary-meta">${publicationIds.size} publication${publicationIds.size === 1 ? '' : 's'}</div>
                 <div class="globe-popup-location">${escapeHtml(yearText)}</div>
                 <div class="globe-popup-meta">
-                    <p><strong>Clusters:</strong> ${escapeHtml(clusterText)}</p>
                     <p><strong>Scope:</strong> ${escapeHtml(firstRecord.geographicScope || 'unknown')}</p>
+                    <p><strong>Geometry:</strong> ${firstRecord.hasStudyCoordinates ? 'study-area coordinates' : 'country display anchor'}</p>
                 </div>
+                <div class="globe-popup-section">
+                    <strong>Cluster breakdown</strong>
+                    <div class="globe-breakdown">${clusterHtml}</div>
+                </div>
+                ${topicHtml ? `
+                    <div class="globe-popup-section">
+                        <strong>Top related topics</strong>
+                        <ul class="globe-topic-list">${topicHtml}</ul>
+                    </div>
+                ` : ''}
             </div>
         `;
     }
@@ -1047,6 +1276,8 @@ function addGlobeLayers() {
         const group = groupedScienceLookup.get(props.groupKey);
         if (!group) return;
 
+        selectedScienceGroupKey = props.groupKey;
+        updateGlobe();
         activeSciencePopup?.remove();
         const popup = new mapboxgl.Popup({ maxWidth: '320px' })
             .setLngLat(feature.geometry.coordinates.slice())
@@ -1056,6 +1287,8 @@ function addGlobeLayers() {
         popup.on('close', () => {
             if (activeSciencePopup === popup) {
                 activeSciencePopup = null;
+                selectedScienceGroupKey = null;
+                updateGlobe();
             }
         });
     }
