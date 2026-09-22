@@ -4,6 +4,8 @@ const path = require('path');
 const dataDir = __dirname;
 const artworkPath = path.join(dataDir, 'artwork-data.json');
 const topicClustersPath = path.join(dataDir, 'topicClusters.json');
+const continentMappingPath = path.join(dataDir, 'continentMapping.json');
+const scienceMapExportPath = path.join(dataDir, 'science', 'exports', 'science-map.json');
 const reportsDir = path.join(dataDir, 'reports');
 const reportJsonPath = path.join(reportsDir, 'data-quality-findings.json');
 const reportMarkdownPath = path.join(reportsDir, 'data-quality-findings.md');
@@ -231,6 +233,129 @@ function validateArtworkData(artworkData, topicClusters) {
     return findings;
 }
 
+function validateScienceMapExport(scienceMap, topicClusters, continentMapping) {
+    const findings = [];
+    const validClusters = new Set(Object.keys(topicClusters));
+    const validCountries = new Set(Object.keys(continentMapping));
+
+    if (!scienceMap || typeof scienceMap !== 'object') {
+        findings.push({
+            severity: 'error',
+            code: 'science-export-invalid-root',
+            message: 'Science map export must be a JSON object.',
+            artwork: null
+        });
+        return findings;
+    }
+
+    if (scienceMap.schemaVersion !== 'science-map-v1') {
+        findings.push({
+            severity: 'warning',
+            code: 'science-export-schema-version',
+            message: 'Science map export should use schemaVersion "science-map-v1".',
+            artwork: null
+        });
+    }
+
+    ['records', 'nonPlaceableRecords', 'globalRecords', 'warnings'].forEach(field => {
+        if (!Array.isArray(scienceMap[field])) {
+            findings.push({
+                severity: 'error',
+                code: 'science-export-invalid-array',
+                message: `Science map export field "${field}" must be an array.`,
+                artwork: null
+            });
+        }
+    });
+
+    function validateScienceRecord(record, collectionName, index) {
+        const label = `${collectionName} #${index + 1}`;
+        const clusters = Array.isArray(record.topicClusters) ? record.topicClusters : [];
+
+        if (record.publicationId == null) {
+            findings.push({
+                severity: 'error',
+                code: 'science-export-missing-publication-id',
+                message: `${label} is missing publicationId.`,
+                artwork: null
+            });
+        }
+
+        clusters.forEach(cluster => {
+            if (!validClusters.has(cluster)) {
+                findings.push({
+                    severity: 'error',
+                    code: 'science-export-cluster-not-in-taxonomy',
+                    message: `${label} references unknown topic cluster "${cluster}".`,
+                    artwork: null
+                });
+            }
+        });
+
+        if (record.country && record.country !== 'Other' && !validCountries.has(record.country)) {
+            findings.push({
+                severity: 'warning',
+                code: 'science-export-country-not-in-continent-mapping',
+                message: `${label} references country "${record.country}", which is not in continentMapping.json.`,
+                artwork: null
+            });
+        }
+
+        const hasLatitude = record.latitude !== null && record.latitude !== undefined;
+        const hasLongitude = record.longitude !== null && record.longitude !== undefined;
+        if (hasLatitude !== hasLongitude) {
+            findings.push({
+                severity: 'error',
+                code: 'science-export-partial-coordinates',
+                message: `${label} must provide both latitude and longitude or neither.`,
+                artwork: null
+            });
+        }
+
+        if (hasLatitude && hasLongitude) {
+            if (!Number.isFinite(record.longitude) || record.longitude < -180 || record.longitude > 180) {
+                findings.push({
+                    severity: 'error',
+                    code: 'science-export-invalid-longitude',
+                    message: `${label} longitude must be between -180 and 180.`,
+                    artwork: null
+                });
+            }
+            if (!Number.isFinite(record.latitude) || record.latitude < -90 || record.latitude > 90) {
+                findings.push({
+                    severity: 'error',
+                    code: 'science-export-invalid-latitude',
+                    message: `${label} latitude must be between -90 and 90.`,
+                    artwork: null
+                });
+            }
+            if (record.longitude === 0 && record.latitude === 0) {
+                findings.push({
+                    severity: 'warning',
+                    code: 'science-export-possible-placeholder-coordinates',
+                    message: `${label} uses [0, 0], which must not be used for global or unknown geography.`,
+                    artwork: null
+                });
+            }
+        }
+
+        if (record.geographicScope === 'global' && (hasLatitude || hasLongitude)) {
+            findings.push({
+                severity: 'error',
+                code: 'science-export-global-has-coordinates',
+                message: `${label} is global and must not have coordinates.`,
+                artwork: null
+            });
+        }
+    }
+
+    (scienceMap.records || []).forEach((record, index) => validateScienceRecord(record, 'records', index));
+    (scienceMap.nonPlaceableRecords || []).forEach((record, index) => validateScienceRecord(record, 'nonPlaceableRecords', index));
+    (scienceMap.globalRecords || []).forEach((record, index) => validateScienceRecord(record, 'globalRecords', index));
+
+    return findings;
+}
+
 function printSummary(findings) {
     const errors = findings.filter(finding => finding.severity === 'error');
     const warnings = findings.filter(finding => finding.severity === 'warning');
@@ -327,8 +452,14 @@ function writeReports(findings) {
 
 try {
     const topicClusters = readJson(topicClustersPath);
+    const continentMapping = readJson(continentMappingPath);
     const artworkData = readJson(artworkPath);
     const findings = validateArtworkData(artworkData, topicClusters);
+
+    if (fs.existsSync(scienceMapExportPath)) {
+        findings.push(...validateScienceMapExport(readJson(scienceMapExportPath), topicClusters, continentMapping));
+    }
+
     const hasErrors = findings.some(finding => finding.severity === 'error');
     const hasWarnings = findings.some(finding => finding.severity === 'warning');
 

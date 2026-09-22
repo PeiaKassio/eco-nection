@@ -130,6 +130,24 @@ function enrichFeature(feature) {
     return EcoData.enrichArtwork(feature, { topicClusters, continentMapping, countryPopulation });
 }
 
+function normalizeScienceRecord(record = {}) {
+    const latitude = record.latitude == null || record.latitude === '' ? null : Number(record.latitude);
+    const longitude = record.longitude == null || record.longitude === '' ? null : Number(record.longitude);
+
+    return {
+        ...record,
+        publicationId: record.publicationId == null ? null : record.publicationId,
+        studyAreaId: record.studyAreaId == null ? null : record.studyAreaId,
+        year: parseYear(record.year),
+        country: record.country || 'Other',
+        continent: record.continent || getContinentForCountry(record.country || 'Other'),
+        latitude: Number.isFinite(latitude) ? latitude : null,
+        longitude: Number.isFinite(longitude) ? longitude : null,
+        topicClusters: Array.isArray(record.topicClusters) ? record.topicClusters : [],
+        topics: Array.isArray(record.topics) ? record.topics : []
+    };
+}
+
 function getFilteredFeatures() {
     const query = normalizeText(document.getElementById('globeSearch').value.trim());
     const cluster = document.getElementById('globeCluster').value;
@@ -687,6 +705,63 @@ function attachEvents() {
 }
 
 function addGlobeLayers() {
+    globe.addSource('globeScience', {
+        type: 'geojson',
+        data: {
+            type: 'FeatureCollection',
+            features: []
+        }
+    });
+
+    globe.addLayer({
+        id: 'globe-science-area',
+        type: 'circle',
+        source: 'globeScience',
+        layout: {
+            visibility: 'none'
+        },
+        paint: {
+            'circle-color': '#14b8a6',
+            'circle-radius': ['get', 'radius'],
+            'circle-opacity': 0.24,
+            'circle-stroke-width': 2,
+            'circle-stroke-color': '#99f6e4',
+            'circle-stroke-opacity': 0.9
+        }
+    });
+
+    globe.addLayer({
+        id: 'globe-science-core',
+        type: 'circle',
+        source: 'globeScience',
+        layout: {
+            visibility: 'none'
+        },
+        paint: {
+            'circle-color': '#0f766e',
+            'circle-radius': 5,
+            'circle-opacity': 0.95,
+            'circle-stroke-width': 1,
+            'circle-stroke-color': '#ecfeff'
+        }
+    });
+
+    globe.addLayer({
+        id: 'globe-science-count',
+        type: 'symbol',
+        source: 'globeScience',
+        layout: {
+            visibility: 'none',
+            'text-field': ['to-string', ['get', 'scienceCount']],
+            'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+            'text-size': 10,
+            'text-allow-overlap': true
+        },
+        paint: {
+            'text-color': '#ffffff'
+        }
+    });
+
     globe.addSource('globeArtworks', {
         type: 'geojson',
         data: {
@@ -762,6 +837,16 @@ function addGlobeLayers() {
     });
 
     ['globe-artwork-point', 'globe-artwork-count'].forEach(layerId => {
+        globe.on('mouseenter', layerId, () => {
+            globe.getCanvas().style.cursor = 'pointer';
+        });
+
+        globe.on('mouseleave', layerId, () => {
+            globe.getCanvas().style.cursor = '';
+        });
+    });
+
+    ['globe-science-area', 'globe-science-core', 'globe-science-count'].forEach(layerId => {
         globe.on('mouseenter', layerId, () => {
             globe.getCanvas().style.cursor = 'pointer';
         });
@@ -887,6 +972,32 @@ function addGlobeLayers() {
         `;
     }
 
+    function renderSciencePopup(group) {
+        const publicationIds = new Set(group.records.map(record => record.publicationId).filter(id => id != null));
+        const firstRecord = group.records[0] || {};
+        const clusters = Array.from(new Set(group.records.flatMap(record => record.topicClusters || []))).sort();
+        const years = group.records
+            .map(record => parseYear(record.year))
+            .filter(year => year !== null)
+            .sort((a, b) => a - b);
+        const yearText = years.length > 0
+            ? `${years[0]}-${years[years.length - 1]}`
+            : 'Year unknown';
+        const clusterText = clusters.length > 0 ? clusters.join(', ') : 'No classified topic cluster yet';
+
+        return `
+            <div class="globe-popup globe-popup-science">
+                <h3>${escapeHtml(firstRecord.country || firstRecord.region || firstRecord.city || 'Study area')}</h3>
+                <div class="globe-popup-primary-meta">${publicationIds.size} publication${publicationIds.size === 1 ? '' : 's'}</div>
+                <div class="globe-popup-location">${escapeHtml(yearText)}</div>
+                <div class="globe-popup-meta">
+                    <p><strong>Clusters:</strong> ${escapeHtml(clusterText)}</p>
+                    <p><strong>Scope:</strong> ${escapeHtml(firstRecord.geographicScope || 'unknown')}</p>
+                </div>
+            </div>
+        `;
+    }
+
     function openArtworkPopup(event) {
         const feature = event.features[0];
         const props = feature.properties || {};
@@ -924,15 +1035,43 @@ function addGlobeLayers() {
         renderCarousel();
     }
 
+    function openSciencePopup(event) {
+        const feature = event.features[0];
+        const props = feature.properties || {};
+        const group = groupedScienceLookup.get(props.groupKey);
+        if (!group) return;
+
+        activeSciencePopup?.remove();
+        const popup = new mapboxgl.Popup({ maxWidth: '320px' })
+            .setLngLat(feature.geometry.coordinates.slice())
+            .setHTML(renderSciencePopup(group))
+            .addTo(globe);
+        activeSciencePopup = popup;
+        popup.on('close', () => {
+            if (activeSciencePopup === popup) {
+                activeSciencePopup = null;
+            }
+        });
+    }
+
     globe.on('click', 'globe-artwork-point', openArtworkPopup);
     globe.on('click', 'globe-artwork-count', openArtworkPopup);
+    globe.on('click', 'globe-science-area', openSciencePopup);
+    globe.on('click', 'globe-science-core', openSciencePopup);
+    globe.on('click', 'globe-science-count', openSciencePopup);
 }
 
 async function loadGlobeData() {
     ({ artworkData, topicClusters, continentMapping, countryPopulation } = await loadSharedData());
+    scienceMapData = await loadScienceMapData();
     enrichedFeatures = (artworkData.features || []).map(enrichFeature);
+    scienceRecords = (scienceMapData?.records || []).map(normalizeScienceRecord);
+    nonPlaceableScienceRecords = (scienceMapData?.nonPlaceableRecords || []).map(normalizeScienceRecord);
+    globalScienceRecords = (scienceMapData?.globalRecords || []).map(normalizeScienceRecord);
 
     populateClusterFilter();
+    populatePlaceFilters();
+    refreshCountryOptions();
     attachEvents();
     updateGlobe();
 }

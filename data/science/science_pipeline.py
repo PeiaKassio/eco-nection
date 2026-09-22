@@ -13,6 +13,7 @@ import json
 import re
 import sqlite3
 import sys
+from contextlib import closing
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -75,7 +76,7 @@ def reconstruct_openalex_abstract(inverted_index: Any) -> str | None:
 
 
 def init_db(db_path: Path, schema_path: Path, topic_clusters_path: Path) -> None:
-    with connect(db_path) as conn:
+    with closing(connect(db_path)) as conn:
         conn.executescript(schema_path.read_text(encoding="utf-8"))
         sync_topics(conn, topic_clusters_path)
 
@@ -293,7 +294,7 @@ def ingest_openalex(args: argparse.Namespace) -> None:
         params["api_key"] = args.openalex_api_key
 
     imported = 0
-    with connect(args.db) as conn:
+    with closing(connect(args.db)) as conn:
         for page in range(1, args.max_pages + 1):
             params["page"] = page
             url = f"https://api.openalex.org/works?{urlencode(params)}"
@@ -341,7 +342,7 @@ def normalize_crossref_work(message: dict[str, Any]) -> dict[str, Any]:
 
 def enrich_crossref(args: argparse.Namespace) -> None:
     init_db(args.db, DEFAULT_SCHEMA, args.topic_clusters)
-    with connect(args.db) as conn:
+    with closing(connect(args.db)) as conn:
         rows = conn.execute(
             "SELECT id, normalized_doi FROM publications WHERE normalized_doi IS NOT NULL ORDER BY id"
         ).fetchall()
@@ -373,7 +374,7 @@ def resolve_publication_id(conn: sqlite3.Connection, value: str) -> int:
 
 def add_topic(args: argparse.Namespace) -> None:
     init_db(args.db, DEFAULT_SCHEMA, args.topic_clusters)
-    with connect(args.db) as conn:
+    with closing(connect(args.db)) as conn:
         publication_id = resolve_publication_id(conn, args.publication)
         if args.cluster:
             topic_row = conn.execute(
@@ -418,7 +419,7 @@ def add_study_area(args: argparse.Namespace) -> None:
         raise ValueError("Latitude and longitude must either both be provided or both be omitted.")
     if args.geographic_scope == "global" and (latitude is not None or longitude is not None):
         raise ValueError("Global study areas must not have coordinates.")
-    with connect(args.db) as conn:
+    with closing(connect(args.db)) as conn:
         publication_id = resolve_publication_id(conn, args.publication)
         conn.execute(
             """
@@ -453,7 +454,7 @@ def load_continent_mapping(path: Path) -> dict[str, str]:
 def validate_science(args: argparse.Namespace) -> int:
     findings: list[dict[str, Any]] = []
     continent_mapping = load_continent_mapping(args.continent_mapping)
-    with connect(args.db) as conn:
+    with closing(connect(args.db)) as conn:
         for row in conn.execute("SELECT id, title, year, normalized_doi FROM publications"):
             if not row["title"]:
                 findings.append({"severity": "error", "code": "missing-title", "publication_id": row["id"]})
@@ -513,7 +514,7 @@ def collect_publication_topics(conn: sqlite3.Connection) -> dict[int, dict[str, 
 def export_map(args: argparse.Namespace) -> None:
     init_db(args.db, DEFAULT_SCHEMA, args.topic_clusters)
     continent_mapping = load_continent_mapping(args.continent_mapping)
-    with connect(args.db) as conn:
+    with closing(connect(args.db)) as conn:
         topic_lookup = collect_publication_topics(conn)
         rows = conn.execute(
             """
