@@ -583,7 +583,7 @@ function updateGlobe() {
     const displayFeatures = groupFeaturesByPoint(enrichMetricValues(filtered, countryData));
     const displayScienceFeatures = groupScienceRecords(filteredScience, scienceCountryData);
 
-    document.getElementById('globeArtworkCount').textContent = filtered.length;
+    document.getElementById('globeArtworkCount').textContent = mode === 'science' ? 0 : filtered.length;
     document.getElementById('globeScienceCount').textContent = getUniquePublicationCount([
         ...filteredScience,
         ...filteredNonPlaceableScience,
