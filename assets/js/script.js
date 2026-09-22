@@ -34,6 +34,9 @@ map.on('load', async () => {
     try {
         const artworkResponse = await fetch('data/artwork-data.json');
         artworkData = await artworkResponse.json();
+        artworkData.features = artworkData.features.filter(feature =>
+            feature.properties?.review?.status !== 'needs_review'
+        );
         console.log("Artwork Data Loaded:", artworkData.features);
 
 //indexing to shift position of coordinates

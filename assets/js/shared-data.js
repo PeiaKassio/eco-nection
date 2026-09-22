@@ -34,10 +34,21 @@ const EcoData = (() => {
         ]);
 
         return {
-            artworkData,
+            artworkData: getPublishedArtworkData(artworkData),
             topicClusters,
             continentMapping,
             countryPopulation
+        };
+    }
+
+    function isPublishedArtwork(artwork) {
+        return artwork?.properties?.review?.status !== 'needs_review';
+    }
+
+    function getPublishedArtworkData(artworkData) {
+        return {
+            ...artworkData,
+            features: (artworkData.features || []).filter(isPublishedArtwork)
         };
     }
 
@@ -121,6 +132,8 @@ const EcoData = (() => {
         COUNTRY_ALIASES,
         MIN_POPULATION_FOR_COUNTRY_PER_CAPITA,
         loadSharedData,
+        isPublishedArtwork,
+        getPublishedArtworkData,
         normalizeText,
         getCountryFromLocation,
         getContinentForCountry,

@@ -10,6 +10,9 @@ const reportMarkdownPath = path.join(reportsDir, 'data-quality-findings.md');
 
 const STRICT_DATA_QUALITY = process.env.STRICT_DATA_QUALITY === '1';
 const WRITE_REPORT = process.argv.includes('--report');
+const IGNORED_HIGHLY_REUSED_COORDINATES = new Set([
+    '[28.9784,41.0082]' // Istanbul has several intentionally city-level records.
+]);
 
 function readJson(filePath) {
     return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
@@ -213,7 +216,7 @@ function validateArtworkData(artworkData, topicClusters) {
     });
 
     Array.from(coordinateCounts.entries())
-        .filter(([, count]) => count > 5)
+        .filter(([coordinates, count]) => count > 5 && !IGNORED_HIGHLY_REUSED_COORDINATES.has(coordinates))
         .forEach(([coordinates, count]) => {
             findings.push({
                 severity: 'warning',

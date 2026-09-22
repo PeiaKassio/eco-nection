@@ -29,8 +29,7 @@
     "thumbnail": ""
   }
 },
-
-{
+        {
   "type": "Feature",
   "geometry": {
     "type": "Point",
@@ -57,7 +56,7 @@
     "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy8k9VvK6t0ApW4ulav8pRSqZ2az7tM0Gg5bn0Qna6Fg&s"
   }
 },
-{
+        {
   "type": "Feature",
   "geometry": { "type": "Point", "coordinates": [3.3792, 6.5244] },
   "properties": {
@@ -86,7 +85,7 @@
     "thumbnail": ""
   }
 },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-118.2437, 34.0522] },
     "properties": {
@@ -110,7 +109,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-95.3698, 29.7604] },
     "properties": {
@@ -135,7 +134,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [2.3522, 48.8566] },
     "properties": {
@@ -160,7 +159,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-0.1276, 51.5072] },
     "properties": {
@@ -184,7 +183,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-96.7970, 32.7767] },
     "properties": {
@@ -209,7 +208,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-90.0715, 29.9511] },
     "properties": {
@@ -234,7 +233,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-0.1870, 5.6037] },
     "properties": {
@@ -263,7 +262,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-7.9922, 12.6392] },
     "properties": {
@@ -290,7 +289,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-17.4677, 14.7167] },
     "properties": {
@@ -315,7 +314,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [7.3986, 9.0765] },
     "properties": {
@@ -342,7 +341,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [6.7735, 51.2277] },
     "properties": {
@@ -370,7 +369,7 @@
       "thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/FridericianumBeuys_kasselgalerie_de.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [7.6261, 51.9607] },
     "properties": {
@@ -395,7 +394,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
     "properties": {
@@ -420,7 +419,7 @@
       "thumbnail": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e3/I_Like_America_and_America_Likes_Me.jpg/330px-I_Like_America_and_America_Likes_Me.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [6.9603, 50.9375] },
     "properties": {
@@ -446,7 +445,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [11.5820, 48.1351] },
     "properties": {
@@ -473,8 +472,7 @@
       "thumbnail": ""
     }
   },
-
-{
+        {
   "type": "Feature",
   "geometry": { "type": "Point", "coordinates": [16.3738, 48.2082] },
   "properties": {
@@ -498,7 +496,7 @@
     "thumbnail": ""
   }
 },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-71.3128, 41.4901] },
     "properties": {
@@ -516,7 +514,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-71.3128, 41.4901] },
     "properties": {
@@ -534,7 +532,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-71.3128, 41.4901] },
     "properties": {
@@ -552,7 +550,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [10.7522, 59.9139] },
     "properties": {
@@ -570,7 +568,7 @@
       "thumbnail": "https://books.google.com/books/content?id=9BRpDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [10.7522, 59.9139] },
     "properties": {
@@ -588,7 +586,7 @@
       "thumbnail": "https://books.google.com/books/content?id=QKJfDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [10.7522, 59.9139] },
     "properties": {
@@ -606,7 +604,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [10.7522, 59.9139] },
     "properties": {
@@ -624,7 +622,7 @@
       "thumbnail": ""
     }
   },
-{
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-43.3629, -22.9106] },
     "properties": {
@@ -642,7 +640,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-0.1276, 51.5072] },
     "properties": {
@@ -660,7 +658,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-0.1276, 51.5072] },
     "properties": {
@@ -678,7 +676,7 @@
       "thumbnail": ""
     }
   },
-{
+        {
   "type": "Feature",
   "geometry": {
     "type": "Point",
@@ -707,7 +705,7 @@
     "thumbnail": "https://i0.wp.com/magzoid.com/wp-content/uploads/2021/10/BeFunky-collage-1-scaled.jpg?fit=2560%2C1658&ssl=1" 
   }
 },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -728,7 +726,7 @@
       "thumbnail": null
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -749,7 +747,7 @@
       "thumbnail": null
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -770,7 +768,7 @@
       "thumbnail": null
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-105.5911, 41.3114] },
     "properties": {
@@ -788,7 +786,7 @@
       "thumbnail": "https://chrisdrury.co.uk/wp-content/uploads/2022/03/wo_carbon_sink.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-73.9442, 40.6782] },
     "properties": {
@@ -806,7 +804,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-73.9442, 40.6782] },
     "properties": {
@@ -824,7 +822,7 @@
       "thumbnail": "https://images.squarespace-cdn.com/content/v1/55d77558e4b05e2874c32d03/1440186236158-77KJDMFM2LNL49G83DHJ/Beauty%2BShop.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-118.2437, 34.0522] },
     "properties": {
@@ -842,7 +840,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-69.332, 77.466] },
     "properties": {
@@ -860,7 +858,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/01/S_Copeland_NightInQaanaaq.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-117.1611, 32.7157] },
     "properties": {
@@ -878,7 +876,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2015/12/L_Ball_GrowingPains.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [9.1829, 48.7758] },
     "properties": {
@@ -896,7 +894,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-73.9352, 40.7306] },
     "properties": {
@@ -914,7 +912,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/07/1-Mitchell-Joachim-and-Terreform-ONE-cricket_sky_terreform_AAA1_slider.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [2.3522, 48.8566] },
     "properties": {
@@ -932,7 +930,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-74.006, 40.7128] },
     "properties": {
@@ -950,8 +948,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/01/M_Mattingly_DrySeason_web.jpg"
     }
   },
-
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-122.3321, 47.6062] },
     "properties": {
@@ -969,7 +966,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/01/C_Jordan_Whale.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-177.366, 28.2] },
     "properties": {
@@ -987,7 +984,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/01/C_Jordan_Midway.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-88.3658, 28.7367] },
     "properties": {
@@ -1005,7 +1002,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/01/D_Beltra_OilSpill12_web.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-88.3658, 28.7367] },
     "properties": {
@@ -1023,7 +1020,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/01/D_Beltra_OilSpill20_web.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-51.1, 69.2] },
     "properties": {
@@ -1041,7 +1038,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/01/S_Copeland_IcebergXVIII.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-74.01, 40.7] },
     "properties": {
@@ -1059,7 +1056,7 @@
       "thumbnail": ""
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-118.2437, 34.0522] },
     "properties": {
@@ -1077,7 +1074,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/02/W_Gladstone_WelcomeHomeIHTFP_web.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-87.6298, 41.8781] },
     "properties": {
@@ -1095,7 +1092,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2015/07/J_Yoshimoto_EvanescentEncounter.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-118.2437, 34.0522] },
     "properties": {
@@ -1113,7 +1110,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/02/A_Grumet_FightingOverTheLastPieceOfSushi.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-74.006, 40.7128] },
     "properties": {
@@ -1131,8 +1128,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/01/M_Mattingly_InflatableHome_web.jpg"
     }
   },
-
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-84.388, 33.749] },
     "properties": {
@@ -1150,7 +1146,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/01/C_Jordan_CellPhoneChargersAtlanta2004-1.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-122.3321, 47.6062] },
     "properties": {
@@ -1168,7 +1164,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/01/C_Jordan_RecyclingYard6Seattle-1.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-123.1207, 49.2827] },
     "properties": {
@@ -1186,7 +1182,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/03/N_Dextras_MapleFlapperJumper_web.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-122.4194, 37.7749] },
     "properties": {
@@ -1204,7 +1200,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/07/8-Phil-Ross-Mycotecture-IMG_1935.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [-106.6504, 35.0844] },
     "properties": {
@@ -1222,7 +1218,7 @@
       "thumbnail": "https://www.artworksforchange.org/wp-content/uploads/2016/02/S_Greene_StarsNTarnation.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -1243,7 +1239,7 @@
       "thumbnail": "https://nga.gov.au/wp-content/uploads/2021/01/skywhale-nga-1200x630.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -1264,7 +1260,7 @@
       "thumbnail": "https://www.trianglenetwork.org/CACHE/images/2018/01/19/IMG_0278/b4d346d4b40ec6f9668d0046ccc49747.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -1285,7 +1281,7 @@
       "thumbnail": "https://www.africamultiple.uni-bayreuth.de/en/Artists-in-Cluster-files/mbogeni/3galerie/IMG_2148.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -1306,7 +1302,7 @@
       "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT660n4dr_8BnQS2LbXaaeeyr32xCfAQSVHhNXKAnJZ0Q&s=10"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -1327,7 +1323,7 @@
       "thumbnail": "https://bigertbergstrom.fra1.cdn.digitaloceanspaces.com/www/DSF8535-HDR-640x427.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -1348,7 +1344,7 @@
       "thumbnail": "https://publicartagencysweden.com/wp-content/uploads/2023/12/future-island-stockholm.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -1369,7 +1365,7 @@
       "thumbnail": "https://landartgenerator.org/blagi/wp-content/uploads/2018/06/pollution-pods.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -1390,8 +1386,7 @@
       "thumbnail": "https://climate-adapt.eea.europa.eu/en/mission/solutions/mission-stories/the-sunken-house_figure-1-min.png/@@images/image-800-fb0f15ffddffd63682d11bd8838517d0.png"
     }
   },
-        
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -1412,7 +1407,7 @@
       "thumbnail": "https://kingstoncreative.org/wp-content/uploads/2024/11/A-Feral-Commons-Kingston-Creative-1024x576.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -1433,7 +1428,7 @@
       "thumbnail": "https://www.kariculture.net/wp-content/uploads/2020/06/ronald-cyrille-black-bird.jpg"
     }
   },
-{
+        {
   "type": "Feature",
   "geometry": {
     "type": "Point",
@@ -1461,7 +1456,7 @@
     "thumbnail": "https://images.squarespace-cdn.com/content/v1/5a8c38cdf09ca4bb727c4a90/1519931864842-7A0NJZ3PUP3M9TCTPL2L/_0133394.jpg?format=1000w"
   }
 },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -1482,7 +1477,7 @@
       "thumbnail": "https://images.squarespace-cdn.com/content/v1/50b3a6c4e4b05036d3b16d01/a4ebb5eb-f1f1-4f85-9631-063bb1782251/OpenArts-2021-MIA1818-MorelDoucet-Final-19.jpg"
     }
   },
-  {
+        {
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -1503,7 +1498,6 @@
       "thumbnail": "https://i.ytimg.com/vi/vKI3V1eJnPk/hqdefault.jpg"
     }
   },
-        
         {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [8.8017, 53.0793] },
@@ -1521,7 +1515,7 @@
         "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
     }
 },
-{
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [11.5761, 48.1372] },
     "properties": {
@@ -1538,7 +1532,7 @@
         "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
     }
 },
-{
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [9.8730, 47.6560] },
     "properties": {
@@ -1555,7 +1549,7 @@
         "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
     }
 },
-{
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [9.1829, 48.7758] },
     "properties": {
@@ -1572,7 +1566,7 @@
         "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
     }
 },
-{
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [7.0123, 51.4556] },
     "properties": {
@@ -1589,7 +1583,7 @@
         "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
     }
 },
-{
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [6.9969, 49.2402] },
     "properties": {
@@ -1606,7 +1600,7 @@
         "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
     }
 },
-{
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [7.0123, 51.4556] },
     "properties": {
@@ -1623,7 +1617,7 @@
         "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
     }
 },
-{
+        {
     "type": "Feature",
     "geometry": { "type": "Point", "coordinates": [13.4049, 52.5200] },
     "properties": {
@@ -1640,7 +1634,7 @@
         "url": "https://www.orchester-des-wandels.de/unsere-konzerte/"
     }
 },
-    {
+        {
       "type": "Feature",
       "geometry": {
         "type": "Point",
@@ -1667,7 +1661,7 @@
         "thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Funchal%2C%20Pra%C3%A7a%20CR7%20-%20Plastic%20Mero%20by%20Artur%20Bordalo%20a.k.a.%20Bordalo%20II.jpg"
       }
     },
-    {
+        {
       "type": "Feature",
       "geometry": {
         "type": "Point",
@@ -1694,7 +1688,7 @@
         "thumbnail": ""
       }
     },
-    {
+        {
       "type": "Feature",
       "geometry": {
         "type": "Point",
@@ -1724,7 +1718,7 @@
         "thumbnail": "https://nynkelaverman.nl/wp-content/uploads/2021/11/YOUR-ANCESTORS-FOTO-SARIS-WIGGERS-1.jpg"
       }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -1745,7 +1739,7 @@
             }
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -1766,9 +1760,7 @@
             }
         }
     },
-
-        
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -1789,7 +1781,7 @@
             }
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -1810,7 +1802,7 @@
             }
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -1831,7 +1823,7 @@
             }
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -1852,7 +1844,7 @@
             }
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -1873,7 +1865,7 @@
             }
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -1894,7 +1886,7 @@
             }
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -1915,7 +1907,7 @@
             }
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -1935,8 +1927,8 @@
                 "artform": ["Sculpture", "Environmental Art"]
             }
         }
-     } , 
-   {
+     },
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -1958,7 +1950,7 @@
             "thumbnail": "https://upload.wikimedia.org/wikipedia/en/thumb/5/59/Big_Yellow_Taxi_by_Joni_Mitchell_1970_Canadian_vinyl.png/250px-Big_Yellow_Taxi_by_Joni_Mitchell_1970_Canadian_vinyl.png"
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -1980,7 +1972,7 @@
             "thumbnail": "https://s.mxmcdn.net/images-storage/albums5/6/3/9/8/4/1/47148936_500_500.jpg"
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -2002,7 +1994,7 @@
             "thumbnail": ""
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -2023,7 +2015,7 @@
             "thumbnail": "https://cambodianess.com/news/images/%E1%9E%82%E1%9E%93%E1%9F%92%E1%9E%9B%E1%9E%84%E1%9E%90%E1%9F%92%E1%9E%98%E1%9E%B8___New_Trajectory_CHHOEUN_Channy_1703319669.jpg"
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -2043,7 +2035,7 @@
             "thumbnail": ""
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -2064,7 +2056,7 @@
             "thumbnail": ""
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -2084,8 +2076,8 @@
             "url": "https://whitecanvas.pro/artwork/moon_sou-sophy/",
             "thumbnail": "https://whitecanvas.pro/wp-content/uploads/2025/01/7.-%E1%9E%9F%E1%9F%8A%E1%9E%BC%E2%80%8B-%E1%9E%9F%E1%9E%BB%E1%9E%97%E1%9E%B8_Sou-Sophy-600x338.png"
         }
-    }, 
-   { "type": "Feature",
+    },
+        { "type": "Feature",
     "geometry": {
         "type": "Point",
         "coordinates": [-118.2437, 34.0522] 
@@ -2104,8 +2096,8 @@
             "artform": ["Photography", "Conceptual Art"]
         }
     }
-}, 
-  {  "type": "Feature",
+},
+        {  "type": "Feature",
     "geometry": {
         "type": "Point",
         "coordinates": [
@@ -2200,11 +2192,6 @@
         "thumbnail": "https://en.wikipedia.org/wiki/File:Ponyo.png"
     }
 },
-
-
-
-
-        
         {
     "type": "Feature",
     "geometry": {
@@ -2234,7 +2221,7 @@
         "url": "https://www.susanne-krauss.com/illustration",
         "thumbnail": "https://www.susanne-krauss.com/illustration?lightbox=dataItem-m72620og"
     }
-},    
+},
         {
             "type": "Feature",
             "geometry": {
@@ -2407,7 +2394,7 @@
                 "url": "https://olafureliasson.net/artwork/the-weather-project-2003/",
                 "thumbnail": "https://res.cloudinary.com/olafureliasson-net/image/private/q_auto:eco,c_fit,h_320,w_320/img/the-weather-project_21881.webp"
             }
-        },        
+        },
         {
             "type": "Feature",
             "geometry": {
@@ -2529,49 +2516,17 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -106.6504,
-                    35.0844
-                ]
-            },
-            "properties": {
-                "title": "Desert Bloom",
-                "description": "An art piece addressing water scarcity in the desert.",
-                "artist": "Anna Smith",
-                "type": "Installation",
-                "location": "Albuquerque, USA",
-                "year": 2022,
-                "tags": {
-                    "topic": [
-                        "Water Conservation",
-                        "Sustainable Design"
-                    ],
-                    "artform": [
-                        "Installation"
-                    ]
-                },
-                "thumbnail": "",
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    2.3522,
-                    48.8566
+                    -73.9733,
+                    40.7813
                 ]
             },
             "properties": {
                 "title": "Climate Wall",
-                "description": "A digital wall showcasing the carbon impact of daily activities.",
-                "artist": "Juliette Martin",
-                "type": "Installation",
-                "location": "Paris, France",
-                "year": 2021,
+                "description": "A permanent 36-screen climate change media wall in the American Museum of Natural History's Hall of Planet Earth, combining large-scale NASA and NOAA climate visualizations with interactive digital displays.",
+                "artist": "American Museum of Natural History Science Visualization Group / Brian Foo",
+                "type": "Digital Installation",
+                "location": "New York, USA",
+                "year": 2018,
                 "tags": {
                     "topic": [
                         "Carbon Emissions",
@@ -2582,75 +2537,11 @@
                         "Installation"
                     ]
                 },
-                "thumbnail": "",
+                "url": "https://brianfoo.com/amnh/climate/",
+                "thumbnail": "https://brianfoo.com/assets/amnh_climate_wall/amnh_climate_wall_composite.jpg",
                 "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    139.6917,
-                    35.6895
-                ]
-            },
-            "properties": {
-                "title": "Ocean Echo",
-                "description": "Installation mimicking ocean sounds to raise awareness of ocean pollution.",
-                "artist": "Yuki Tanaka",
-                "type": "Installation",
-                "location": "Tokyo, Japan",
-                "year": 2021,
-                "tags": {
-                    "topic": [
-                        "Ocean Conservation",
-                        "Environmental Awareness"
-                    ],
-                    "artform": [
-                        "Sound Art",
-                        "Installation"
-                    ]
-                },
-                "thumbnail": "",
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    18.4241,
-                    -33.9249
-                ]
-            },
-            "properties": {
-                "title": "The Last Breath",
-                "description": "Installation addressing air quality in urban areas.",
-                "artist": "Nandi Mbatha",
-                "type": "Installation",
-                "location": "Cape Town, South Africa",
-                "year": 2021,
-                "tags": {
-                    "topic": [
-                        "Air Quality",
-                        "Environmental Health"
-                    ],
-                    "artform": [
-                        "Installation"
-                    ]
-                },
-                "thumbnail": "",
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
+                    "status": "published",
+                    "human_verified": true
                 }
             }
         },
@@ -2868,37 +2759,6 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    31.2336,
-                    30.0444
-                ]
-            },
-            "properties": {
-                "title": "Nile's Legacy",
-                "description": "Sculpture using river debris to symbolize the Nile\u2019s challenges.",
-                "artist": "Ahmed Omar",
-                "type": "Sculpture",
-                "location": "Cairo, Egypt",
-                "year": 2020,
-                "tags": {
-                    "topic": [
-                        "Water Pollution",
-                        "Recycling"
-                    ],
-                    "artform": [
-                        "Sculpture"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
                     -77.0282,
                     -12.0432
                 ]
@@ -2922,99 +2782,6 @@
                 }, 
                 "url": "https://www.anateresabarboza.com/",
                 "thumbnail":  ""
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    77.1025,
-                    28.7041
-                ]
-            },
-            "properties": {
-                "title": "River of Life",
-                "description": "An installation addressing water pollution in the Yamuna River.",
-                "artist": "Amit Sharma",
-                "type": "Installation",
-                "location": "Delhi, India",
-                "year": 2020,
-                "tags": {
-                    "topic": [
-                        "Water Pollution",
-                        "River Conservation"
-                    ],
-                    "artform": [
-                        "Installation"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    151.2093,
-                    -33.8688
-                ]
-            },
-            "properties": {
-                "title": "Bleached Reef",
-                "description": "Art installation addressing coral bleaching in the Great Barrier Reef.",
-                "artist": "Emily Carter",
-                "type": "Installation",
-                "location": "Sydney, Australia",
-                "year": 2018,
-                "tags": {
-                    "topic": [
-                        "Coral Bleaching",
-                        "Ocean Conservation"
-                    ],
-                    "artform": [
-                        "Installation"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    31.2336,
-                    30.0444
-                ]
-            },
-            "properties": {
-                "title": "River Revival",
-                "description": "An art project using debris to highlight water scarcity issues.",
-                "artist": "Ahmed Khalid",
-                "type": "Installation",
-                "location": "Cairo, Egypt",
-                "year": 2020,
-                "tags": {
-                    "topic": [
-                        "Water Scarcity",
-                        "Sustainability"
-                    ],
-                    "artform": [
-                        "Installation"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
             }
         },
         {
@@ -3051,37 +2818,6 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -122.6765,
-                    45.5231
-                ]
-            },
-            "properties": {
-                "title": "Forest Revival",
-                "description": "Interactive installations showcasing reforestation efforts.",
-                "artist": "Green Pulse Collective",
-                "type": "Installation",
-                "location": "Portland, USA",
-                "year": 2023,
-                "tags": {
-                    "topic": [
-                        "Forest Conservation",
-                        "Recycling"
-                    ],
-                    "artform": [
-                        "Interactive Art"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
                     -99.1332,
                     19.4326
                 ]
@@ -3106,222 +2842,6 @@
                 },
                 "url": "https://www.alejandroduran.com/washed-up",
                 "thumbnail": "https://images.squarespace-cdn.com/content/v1/5de0a7f224b1dd71d8856f9f/1596000342231-Y461N66MI9MHBFTI7IW7/Brotes.jpg?format=500w"
-            }
-        },
-        
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -58.3816,
-                    -34.6037
-                ]
-            },
-            "properties": {
-                "title": "Eco-Walls of Buenos Aires",
-                "description": "Murals created from recycled materials.",
-                "artist": "Ana Lopez",
-                "type": "Mural Art",
-                "location": "Buenos Aires, Argentina",
-                "year": 2021,
-                "tags": {
-                    "topic": [
-                        "Waste Management",
-                        "Sustainability"
-                    ],
-                    "artform": [
-                        "Mural Art"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -75.5775,
-                    6.2528
-                ]
-            },
-            "properties": {
-                "title": "Andean Streams",
-                "description": "Sculptures addressing water issues in Medellin.",
-                "artist": "Luis Fernando",
-                "type": "Sculpture",
-                "location": "Medellin, Colombia",
-                "year": 2018,
-                "tags": {
-                    "topic": [
-                        "Water Conservation",
-                        "Ecosystems"
-                    ],
-                    "artform": [
-                        "Sculpture"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    2.3522,
-                    48.8566
-                ]
-            },
-            "properties": {
-                "title": "Carbon Towers",
-                "description": "A digital exhibition on the impact of carbon footprints.",
-                "artist": "Pierre Dubois",
-                "type": "Digital Art",
-                "location": "Paris, France",
-                "year": 2022,
-                "tags": {
-                    "topic": [
-                        "Carbon Emissions",
-                        "Climate Awareness"
-                    ],
-                    "artform": [
-                        "Digital Art"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    8.6821,
-                    50.1109
-                ]
-            },
-            "properties": {
-                "title": "Water Cycle Symphony",
-                "description": "An interactive sound installation about the water cycle.",
-                "artist": "Marta Kohler",
-                "type": "Sound Art",
-                "location": "Frankfurt, Germany",
-                "year": 2023,
-                "tags": {
-                    "topic": [
-                        "Water Conservation"
-                    ],
-                    "artform": [
-                        "Sound Art"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    34.8516,
-                    31.0461
-                ]
-            },
-            "properties": {
-                "title": "Dead Sea Revival",
-                "description": "Sculptures highlighting water loss in the Dead Sea.",
-                "artist": "Noam Levi",
-                "type": "Sculpture",
-                "location": "Jerusalem, Israel",
-                "year": 2021,
-                "tags": {
-                    "topic": [
-                        "Water Shortage"
-                    ],
-                    "artform": [
-                        "Sculpture"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    77.2167,
-                    28.6667
-                ]
-            },
-            "properties": {
-                "title": "Green Delhi",
-                "description": "Vertical gardens in urban spaces.",
-                "artist": "Arun Mehta",
-                "type": "Installation",
-                "location": "Delhi, India",
-                "year": 2022,
-                "tags": {
-                    "topic": [
-                        "Urban Ecology",
-                        "Green Spaces"
-                    ],
-                    "artform": [
-                        "Vertical Garden"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    151.2093,
-                    -33.8688
-                ]
-            },
-            "properties": {
-                "title": "Ocean Mirror",
-                "description": "Interactive art emphasizing ocean pollution.",
-                "artist": "Sophie Clarke",
-                "type": "Installation",
-                "location": "Sydney, Australia",
-                "year": 2023,
-                "tags": {
-                    "topic": [
-                        "Plastic Pollution",
-                        "Ocean Conservation"
-                    ],
-                    "artform": [
-                        "Interactive Art"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
             }
         },
         {
@@ -3432,7 +2952,7 @@
             "thumbnail": "https://oceansole.com/cdn/shop/collections/April_Social_Posts_21.png?v=1746184302&width=1200"
             }
             },
-            {
+        {
             "type": "Feature",
             "geometry": { "type": "Point", "coordinates": [28.098, -26.103] },
             "properties": {
@@ -3450,7 +2970,7 @@
             "thumbnail": "https://www.hanneliecoetzee.com/wp-content/uploads/2025/02/130425-Art-and-litter-trap-MAP-SUNCASA-STRIP-v3-FIN.jpg"
             }
             },
-            {
+        {
             "type": "Feature",
             "geometry": { "type": "Point", "coordinates": [2.4183, 6.3703] },
             "properties": {
@@ -3468,7 +2988,7 @@
             "thumbnail": "https://www.octobergallery.co.uk/website_safezone/images/figures/RH005-image.jpg"
             }
             },
-            {
+        {
             "type": "Feature",
             "geometry": { "type": "Point", "coordinates": [18.4241, -33.9249] },
             "properties": {
@@ -3486,7 +3006,7 @@
             "thumbnail": ""
             }
             },
-            {
+        {
             "type": "Feature",
             "geometry": { "type": "Point", "coordinates": [18.4241, -33.9249] },
             "properties": {
@@ -3504,7 +3024,7 @@
             "thumbnail": ""
             }
             },
-            {
+        {
             "type": "Feature",
             "geometry": { "type": "Point", "coordinates": [36.713, -1.313] },
             "properties": {
@@ -3522,7 +3042,7 @@
             "thumbnail": "https://indigoarts.com/sites/default/files/styles/medium_sidespace/public/flip-lion-med-1.jpg?itok=YhDb73zy"
             }
             },
-            {
+        {
             "type": "Feature",
             "geometry": { "type": "Point", "coordinates": [31.2357, -17.8292] },
             "properties": {
@@ -3540,7 +3060,7 @@
             "thumbnail": ""
             }
             },
-            {
+        {
             "type": "Feature",
             "geometry": { "type": "Point", "coordinates": [39.446, -4.211] },
             "properties": {
@@ -3555,10 +3075,10 @@
             "artform": ["Design", "Installation", "Eco-Art"]
             },
             "url": "https://www.africanews.com/2023/12/15/kenyan-artist-transforms-plastic-menace-into-functional-art/",
-            "thumbnail": ""
+            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMZ1fmzOO9KwosFkb-QUBx_uAziuE-LEdO7yaMnyLxrw&s=10"
             }
             },
-            {
+        {
             "type": "Feature",
             "geometry": { "type": "Point", "coordinates": [15.2663, -4.325] },
             "properties": {
@@ -3576,7 +3096,6 @@
             "thumbnail": ""
             }
             },
-       
         {
             "type": "Feature",
             "geometry": {
@@ -3701,216 +3220,31 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    18.0632,
-                    59.3346
+                    -7.8281,
+                    27.49247
                 ]
             },
             "properties": {
-                "title": "Baltic Sea Rescue Project",
-                "description": "A public art installation addressing marine pollution in the Baltic Sea.",
-                "artist": "Anna Lundh",
+                "title": "The Great Wave of Plastics",
+                "description": "A participatory artwork created with children from Bubisher Library in Samara Camp, using collected plastic waste to visually recreate Hokusai's Great Wave and call attention to plastic pollution.",
+                "artist": "Mohamed Sleiman Labat / Motif Art Studio",
                 "type": "Installation",
-                "location": "Stockholm, Sweden",
-                "year": 2021,
-                "tags": {
-                    "topic": [
-                        "Marine Pollution",
-                        "Water Conservation"
-                    ],
-                    "artform": [
-                        "Installation"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    121.4737,
-                    31.2304
-                ]
-            },
-            "properties": {
-                "title": "Yangtze River Plastic Wave",
-                "description": "A giant sculpture made from plastic collected along the Yangtze River.",
-                "artist": "Wang Wei",
-                "type": "Sculpture",
-                "location": "Shanghai, China",
-                "year": 2019,
+                "location": "Smara Refugee Camp, Tindouf, Algeria",
+                "year": 2018,
                 "tags": {
                     "topic": [
                         "Plastic Pollution",
                         "Recycling"
                     ],
                     "artform": [
-                        "Sculpture"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    116.4074,
-                    39.9042
-                ]
-            },
-            "properties": {
-                "title": "Smog Tower Art",
-                "description": "An innovative smog-absorbing tower doubling as an art installation.",
-                "artist": "Li Xiaodong",
-                "type": "Installation",
-                "location": "Beijing, China",
-                "year": 2020,
-                "tags": {
-                    "topic": [
-                        "Air Pollution",
-                        "Urban Ecology"
-                    ],
-                    "artform": [
-                        "Installation",
-                        "Architecture"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    31.2357,
-                    -17.8292
-                ]
-            },
-            "properties": {
-                "title": "Wildlife Corridors",
-                "description": "An initiative using art installations to promote animal migration corridors.",
-                "artist": "Nadine Mwende",
-                "type": "Installation",
-                "location": "Harare, Zimbabwe",
-                "year": 2022,
-                "tags": {
-                    "topic": [
-                        "Wildlife Preservation",
-                        "Ecosystem Protection"
-                    ],
-                    "artform": [
                         "Installation"
                     ]
                 },
+                "url": "https://motifartstudio.com/great-wave-of-plastics/",
+                "thumbnail": "https://motifartstudio.com/wp-content/uploads/2020/06/the-great-wave-of-plastics_mohamed-sleiman-labat_motif-art-studio_fair-saturday-event-in-samara-camp-3.jpg",
                 "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    15.5943,
-                    -4.4419
-                ]
-            },
-            "properties": {
-                "title": "Kinshasa Green Mural",
-                "description": "A mural promoting urban reforestation.",
-                "artist": "Jacques Mbuyi",
-                "type": "Mural Art",
-                "location": "Kinshasa, Democratic Republic of the Congo",
-                "year": 2021,
-                "tags": {
-                    "topic": [
-                        "Urban Ecology",
-                        "Green Spaces"
-                    ],
-                    "artform": [
-                        "Mural Art"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    17.8641,
-                    -31.1328
-                ]
-            },
-            "properties": {
-                "title": "The Karoo Energy Project",
-                "description": "An art project exploring renewable energy potential in semi-arid regions.",
-                "artist": "Sarah van Zyl",
-                "type": "Installation",
-                "location": "Karoo, South Africa",
-                "year": 2023,
-                "tags": {
-                    "topic": [
-                        "Renewable Energy",
-                        "Sustainable Practices"
-                    ],
-                    "artform": [
-                        "Installation"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
-                }
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    18.642,
-                    -33.9301
-                ]
-            },
-            "properties": {
-                "title": "Cape Coral Crisis",
-                "description": "A coral-shaped sculpture highlighting ocean acidification effects.",
-                "artist": "Tumi Dlamini",
-                "type": "Sculpture",
-                "location": "Cape Town, South Africa",
-                "year": 2021,
-                "tags": {
-                    "topic": [
-                        "Coral Reef",
-                        "Ocean Conservation"
-                    ],
-                    "artform": [
-                        "Sculpture"
-                    ]
-                },
-                "review": {
-                    "status": "needs_review",
-                    "human_verified": false
+                    "status": "published",
+                    "human_verified": true
                 }
             }
         },
@@ -4147,8 +3481,7 @@
               "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCZ0bN9NyhFAod24WDFhtm21LIYz--3QiWDq34KsuqTA&s=10"
             }
           },
-
-                {
+        {
     "type": "Feature",
     "geometry": {
         "type": "Point",
@@ -4176,8 +3509,7 @@
         "thumbnail": "https://f4.bcbits.com/img/a4045171485_10.jpg"
             }
           },
-
-                        {
+        {
     "type": "Feature",
     "geometry": {
         "type": "Point",
@@ -4331,7 +3663,7 @@
                 "thumbnail": "https://www.ryojiikeda.com/wp-content/uploads/2022/07/tokyo-smog-dome.jpg"
             }
         },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -4352,7 +3684,7 @@
             "thumbnail": "https://www.moca.org/storage/app/uploads/public/665/a36/fb7/thumb_12904_1120_0_0_0_auto.jpg"
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -4373,7 +3705,7 @@
             "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Plastic_Whale_Sculpture.jpg"
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -4394,7 +3726,7 @@
             "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Carbon_Emissions_Clock.jpg"
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -4415,7 +3747,7 @@
             "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Amazonian_Warning_Mural.jpg"
         }
     },
-    {
+        {
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -4987,7 +4319,8 @@
                 "url": "https://bienal.iksv.org/en/bienal-artists/hale-tenger",
                 "thumbnail": "https://bienal.iksv.org/i/content/11001_1_Hale-Tenger.jpg"
             }
-        },        {
+        },
+        {
             "type": "Feature",
             "geometry": { "type": "Point", "coordinates": [44.0065, 56.3269] },
             "properties": {
