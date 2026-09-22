@@ -1,18 +1,12 @@
 # Eco:nection Data Quality Findings
 
-Generated at: 2026-09-22T19:26:56.151Z
+Generated at: 2026-09-22T19:40:28.358Z
 
 ## Summary
 
 - Errors: 0
-- Warnings: 137
-- Total findings: 137
-
-## duplicate-topic-within-cluster
-
-Count: 1
-
-- [warning] Topic "Ecosystem Protection" appears more than once in cluster "Ecosystems".
+- Warnings: 93
+- Total findings: 93
 
 ## highly-reused-coordinates
 
@@ -20,104 +14,41 @@ Count: 1
 
 - [warning] Coordinates [28.9784,41.0082] are used by 8 artworks. This may be intentional for exhibitions/cities or may need review.
 
-## invalid-thumbnail-url
-
-Count: 1
-
-- [warning] (Spaceship: Earth) Feature #174 thumbnail should use http:// or https://.
-
-## missing-description
-
-Count: 1
-
-- [warning] (Spaceship: Earth) Feature #174 is missing a description.
-
-## missing-display-type
-
-Count: 24
-
-- [warning] (Wire Portrait Series) Feature #3 is missing properties.type display text.
-- [warning] (It's Just a Wildfire) Feature #4 is missing properties.type display text.
-- [warning] (Bang Bang Drilly Drilly Bomb) Feature #5 is missing properties.type display text.
-- [warning] (I Like America and America Likes Me) Feature #16 is missing properties.type display text.
-- [warning] (Skywhale (Sustainable Flight)) Feature #60 is missing properties.type display text.
-- [warning] (Imagined Landscapes) Feature #72 is missing properties.type display text.
-- [warning] (Now the Cranes Fly Again) Feature #73 is missing properties.type display text.
-- [warning] (Studio Sound: Walk in the Forest) Feature #74 is missing properties.type display text.
-- [warning] (Festival in Achberg: Workshops, Lectures and Concerts) Feature #75 is missing properties.type display text.
-- [warning] (Tracing Trees) Feature #84 is missing properties.type display text.
-- [warning] (Coding into the Forest) Feature #85 is missing properties.type display text.
-- [warning] (The Forest of Brotonne) Feature #86 is missing properties.type display text.
-- [warning] (Solar) Feature #87 is missing properties.type display text.
-- [warning] (The Child in Time) Feature #88 is missing properties.type display text.
-- [warning] (Enduring Love) Feature #89 is missing properties.type display text.
-- [warning] (Channel #23) Feature #90 is missing properties.type display text.
-- [warning] (Air Pollution of Iran) Feature #91 is missing properties.type display text.
-- [warning] (The Eye in the Sky) Feature #92 is missing properties.type display text.
-- [warning] (Six Sculptures) Feature #93 is missing properties.type display text.
-- [warning] (7 Days of Garbage) Feature #101 is missing properties.type display text.
-- [warning] (Nausicaä of the Valley of the Wind) Feature #102 is missing properties.type display text.
-- [warning] (Princess Mononoke) Feature #103 is missing properties.type display text.
-- [warning] (Ponyo) Feature #104 is missing properties.type display text.
-- [warning] (Psychozoic Era) Feature #157 is missing properties.type display text.
-
 ## missing-source-url
 
-Count: 39
+Count: 23
 
-- [warning] (Wire Portrait Series) Feature #3 is published without a source URL.
-- [warning] (It's Just a Wildfire) Feature #4 is published without a source URL.
-- [warning] (Bang Bang Drilly Drilly Bomb) Feature #5 is published without a source URL.
-- [warning] (Carbonne? C'est Bon) Feature #6 is published without a source URL.
-- [warning] (Net Zero Meeting) Feature #7 is published without a source URL.
-- [warning] (Drill It Just Like That) Feature #8 is published without a source URL.
-- [warning] (Pump It Fast) Feature #9 is published without a source URL.
-- [warning] (Am Samstag gehen die Mädchen in den Wald und jagen Sachen in die Luft) Feature #19 is published without a source URL.
-- [warning] (East Stanley Glacier, Mt Stanley, Rwenzori Mountains, Uganda) Feature #34 is published without a source URL.
-- [warning] (Big Yellow Taxi) Feature #94 is published without a source URL.
-- [warning] (Plastic Ocean) Feature #113 is published without a source URL.
-- [warning] (Aquatic Fauna No. 1) Feature #114 is published without a source URL.
-- [warning] (What is a Tree?) Feature #115 is published without a source URL.
-- [warning] (Desert Bloom) Feature #116 is published without a source URL.
-- [warning] (Climate Wall) Feature #117 is published without a source URL.
-- [warning] (Ocean Echo) Feature #118 is published without a source URL.
-- [warning] (The Last Breath) Feature #119 is published without a source URL.
-- [warning] (Christi Belcourt - Indigenous Nature) Feature #122 is published without a source URL.
-- [warning] (Underwater Museum of Art) Feature #125 is published without a source URL.
-- [warning] (Nile's Legacy) Feature #127 is published without a source URL.
-- [warning] (River of Life) Feature #129 is published without a source URL.
-- [warning] (Bleached Reef) Feature #130 is published without a source URL.
-- [warning] (River Revival) Feature #131 is published without a source URL.
-- [warning] (Treehotel - Mirrorcube) Feature #132 is published without a source URL.
-- [warning] (Forest Revival) Feature #133 is published without a source URL.
-- [warning] (Eco-Walls of Buenos Aires) Feature #135 is published without a source URL.
-- [warning] (Andean Streams) Feature #136 is published without a source URL.
-- [warning] (Carbon Towers) Feature #137 is published without a source URL.
-- [warning] (Water Cycle Symphony) Feature #138 is published without a source URL.
-- [warning] (Dead Sea Revival) Feature #139 is published without a source URL.
-- [warning] (Green Delhi) Feature #140 is published without a source URL.
-- [warning] (Ocean Mirror) Feature #141 is published without a source URL.
-- [warning] (Baltic Sea Rescue Project) Feature #160 is published without a source URL.
-- [warning] (Yangtze River Plastic Wave) Feature #161 is published without a source URL.
-- [warning] (Smog Tower Art) Feature #162 is published without a source URL.
-- [warning] (Wildlife Corridors) Feature #163 is published without a source URL.
-- [warning] (Kinshasa Green Mural) Feature #164 is published without a source URL.
-- [warning] (The Karoo Energy Project) Feature #165 is published without a source URL.
-- [warning] (Cape Coral Crisis) Feature #166 is published without a source URL.
-
-## possible-duplicate-artwork
-
-Count: 1
-
-- [warning] (East Stanley Glacier, Mt Stanley, Rwenzori Mountains, Uganda) Feature #34 duplicates title/location/year with "East Stanley Glacier, Mt Stanley, Rwenzori Mountains, Uganda".
+- [warning] (Desert Bloom) Feature #115 is published without a source URL.
+- [warning] (Climate Wall) Feature #116 is published without a source URL.
+- [warning] (Ocean Echo) Feature #117 is published without a source URL.
+- [warning] (The Last Breath) Feature #118 is published without a source URL.
+- [warning] (Nile's Legacy) Feature #126 is published without a source URL.
+- [warning] (River of Life) Feature #128 is published without a source URL.
+- [warning] (Bleached Reef) Feature #129 is published without a source URL.
+- [warning] (River Revival) Feature #130 is published without a source URL.
+- [warning] (Forest Revival) Feature #132 is published without a source URL.
+- [warning] (Eco-Walls of Buenos Aires) Feature #134 is published without a source URL.
+- [warning] (Andean Streams) Feature #135 is published without a source URL.
+- [warning] (Carbon Towers) Feature #136 is published without a source URL.
+- [warning] (Water Cycle Symphony) Feature #137 is published without a source URL.
+- [warning] (Dead Sea Revival) Feature #138 is published without a source URL.
+- [warning] (Green Delhi) Feature #139 is published without a source URL.
+- [warning] (Ocean Mirror) Feature #140 is published without a source URL.
+- [warning] (Baltic Sea Rescue Project) Feature #159 is published without a source URL.
+- [warning] (Yangtze River Plastic Wave) Feature #160 is published without a source URL.
+- [warning] (Smog Tower Art) Feature #161 is published without a source URL.
+- [warning] (Wildlife Corridors) Feature #162 is published without a source URL.
+- [warning] (Kinshasa Green Mural) Feature #163 is published without a source URL.
+- [warning] (The Karoo Energy Project) Feature #164 is published without a source URL.
+- [warning] (Cape Coral Crisis) Feature #165 is published without a source URL.
 
 ## possible-placeholder-coordinates
 
 Count: 3
 
-- [warning] (Pression en tropics) Feature #70 uses [0, 0], which may be a placeholder.
-- [warning] (Washed up) Feature #167 uses [0, 0], which may be a placeholder.
-- [warning] (Gyrecraft) Feature #168 uses [0, 0], which may be a placeholder.
+- [warning] (Pression en tropics) Feature #69 uses [0, 0], which may be a placeholder.
+- [warning] (Washed up) Feature #166 uses [0, 0], which may be a placeholder.
+- [warning] (Gyrecraft) Feature #167 uses [0, 0], which may be a placeholder.
 
 ## topic-in-multiple-clusters
 
@@ -188,15 +119,15 @@ Count: 50
 
 Count: 11
 
-- [warning] (Pression en tropics) Feature #70 has a string year "Ongoing". Use the numeric start year for future records.
-- [warning] (DeadSee (Dead Sea Salt Works)) Feature #142 has a string year "2005–ongoing". Use the numeric start year for future records.
-- [warning] (Desert X AlUla (Environmental Commissions)) Feature #143 has a string year "2020". Use the numeric start year for future records.
-- [warning] (Riyadh Art – Urban Landscape and Eco-future Commissions) Feature #146 has a string year "2021–ongoing". Use the numeric start year for future records.
-- [warning] (Bidon-Masques (Jerrycan Masks)) Feature #149 has a string year "2000s–ongoing". Use the numeric start year for future records.
-- [warning] (Site-Specific Land Art (Western Cape)) Feature #150 has a string year "2000s–ongoing". Use the numeric start year for future records.
-- [warning] (Recycled Flip-Flop Sculptures) Feature #152 has a string year "2010s–ongoing". Use the numeric start year for future records.
-- [warning] (Plastic Reef) Feature #169 has a string year "2008-2012". Use the numeric start year for future records.
-- [warning] (The Great Plastic Garbage Patch) Feature #170 has a string year "Ongoing project". Use the numeric start year for future records.
-- [warning] (Washed Ashore Project) Feature #173 has a string year "2024". Use the numeric start year for future records.
-- [warning] (Touch Sanitation) Feature #178 has a string year "1979-1980". Use the numeric start year for future records.
+- [warning] (Pression en tropics) Feature #69 has a string year "Ongoing". Use the numeric start year for future records.
+- [warning] (DeadSee (Dead Sea Salt Works)) Feature #141 has a string year "2005–ongoing". Use the numeric start year for future records.
+- [warning] (Desert X AlUla (Environmental Commissions)) Feature #142 has a string year "2020". Use the numeric start year for future records.
+- [warning] (Riyadh Art – Urban Landscape and Eco-future Commissions) Feature #145 has a string year "2021–ongoing". Use the numeric start year for future records.
+- [warning] (Bidon-Masques (Jerrycan Masks)) Feature #148 has a string year "2000s–ongoing". Use the numeric start year for future records.
+- [warning] (Site-Specific Land Art (Western Cape)) Feature #149 has a string year "2000s–ongoing". Use the numeric start year for future records.
+- [warning] (Recycled Flip-Flop Sculptures) Feature #151 has a string year "2010s–ongoing". Use the numeric start year for future records.
+- [warning] (Plastic Reef) Feature #168 has a string year "2008-2012". Use the numeric start year for future records.
+- [warning] (The Great Plastic Garbage Patch) Feature #169 has a string year "Ongoing project". Use the numeric start year for future records.
+- [warning] (Washed Ashore Project) Feature #172 has a string year "2024". Use the numeric start year for future records.
+- [warning] (Touch Sanitation) Feature #177 has a string year "1979-1980". Use the numeric start year for future records.
 

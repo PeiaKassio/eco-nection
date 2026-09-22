@@ -64,6 +64,7 @@
     "title": "Wire Portrait Series",
     "description": "Large-scale sculptural portraits constructed from recycled electrical cables and wire, transforming electronic and industrial waste into intricate human forms that reflect identity, consumption, and material reuse.",
     "artist": "Patience Adekunle",
+    "type": "Sculpture",
     "location": "Lagos, Nigeria",
     "year": 2023,
     "tags": {
@@ -81,7 +82,7 @@
         "Mixed Media"
       ]
     },
-    "url": "",
+    "url": "https://africanah.org/the-rise-of-eco-art-in-west-africa/",
     "thumbnail": ""
   }
 },
@@ -92,6 +93,7 @@
       "title": "It's Just a Wildfire",
       "description": "A satirical climate-themed song reflecting the normalization of increasingly destructive wildfires and environmental collapse.",
       "artist": "Kerry Kerosene",
+      "type": "Song",
       "location": "Los Angeles, California, USA",
       "year": 2024,
       "tags": {
@@ -105,7 +107,7 @@
           "Music"
         ]
       },
-      "url": "",
+      "url": "https://fossilvision.com/",
       "thumbnail": ""
     }
   },
@@ -116,6 +118,7 @@
       "title": "Bang Bang Drilly Drilly Bomb",
       "description": "A parody song criticizing oil drilling culture, fossil fuel dependency, and extractive energy politics through exaggerated energy-industry imagery.",
       "artist": "Oilly Frost",
+      "type": "Song",
       "location": "Houston, Texas, USA",
       "year": 2024,
       "tags": {
@@ -129,7 +132,7 @@
           "Music"
         ]
       },
-      "url": "",
+      "url": "https://fossilvision.com/",
       "thumbnail": ""
     }
   },
@@ -154,7 +157,7 @@
           "Music"
         ]
       },
-      "url": "",
+      "url": "https://fossilvision.com/",
       "thumbnail": ""
     }
   },
@@ -179,7 +182,7 @@
           "Music"
         ]
       },
-      "url": "",
+      "url": "https://fossilvision.com/",
       "thumbnail": ""
     }
   },
@@ -204,7 +207,7 @@
           "Music"
         ]
       },
-      "url": "",
+      "url": "https://fossilvision.com/",
       "thumbnail": ""
     }
   },
@@ -229,7 +232,7 @@
           "Music"
         ]
       },
-      "url": "",
+      "url": "https://fossilvision.com/",
       "thumbnail": ""
     }
   },
@@ -401,6 +404,7 @@
       "title": "I Like America and America Likes Me",
       "description": "Performance piece involving a live coyote, addressing human relationships with animals, colonial violence, and ecological imbalance.",
       "artist": "Joseph Beuys",
+      "type": "Performance",
       "location": "Berlin, Germany",
       "year": 1974,
       "tags": {
@@ -492,7 +496,7 @@
       ],
       "artform": ["Literature"]
     },
-    "url": "",
+    "url": "https://www.goodreads.com/book/show/218931174-am-samstag-gehen-die-m-dchen-in-den-wald-und-jagen-sachen-in-die-luft",
     "thumbnail": ""
   }
 },
@@ -765,27 +769,6 @@
         "artform": ["Photography"]
       },
       "url": "https://miamioh.edu/cca/art-museum/exhibitions/past-exhibitions/2023-2024/24sp-the-world-in-which-we-live.html",
-      "thumbnail": null
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [-83.144, 39.507]
-    },
-    "properties": {
-      "title": "East Stanley Glacier, Mt Stanley, Rwenzori Mountains, Uganda",
-      "description": "Ink print depicting a glacier in the Rwenzori Mountains, underscoring rapid environmental change and glacial retreat.",
-      "artist": "Ian van Coller",
-      "type": "Photography/Print",
-      "location": "Oxford, Ohio, USA",
-      "year": 2020,
-      "tags": {
-        "topic": ["Climate Change", "Environmental Awareness", "Ecosystems"],
-        "artform": ["Photography"]
-      },
-      "url": null,
       "thumbnail": null
     }
   },
@@ -1251,6 +1234,7 @@
       "title": "Skywhale (Sustainable Flight)",
       "description": "Hot-air bio-sculpture as a poetic engagement with nature, resources, and energy consumption.",
       "artist": "Patricia Piccinini",
+      "type": "Balloon Sculpture",
       "location": "Melbourne, Australia",
       "year": 2013,
       "tags": {
@@ -1510,6 +1494,7 @@
       "title": "Imagined Landscapes",
       "description": "Large-scale paintings blending environmental symbolism and Caribbean histories.",
       "artist": "Edouard Duval-Carrié",
+      "type": "Painting",
       "location": "Miami, USA",
       "year": 2019,
       "tags": {
@@ -1527,6 +1512,7 @@
     "properties": {
         "title": "Now the Cranes Fly Again",
         "artist": "Bremer Philharmoniker, Lecture: Sabrina Hüpperling",
+        "type": "Concert",
         "location": "Bremen, Germany",
         "year": 2024,
         "description": "Lecture on the impact of climate change on cranes (Biological Station Osterholz) and music including works by Isang Yun.",
@@ -1543,6 +1529,7 @@
     "properties": {
         "title": "Studio Sound: Walk in the Forest",
         "artist": "Münchner Symphoniker, Lea Brückner (Climate Ambassador), Conductor: Joseph Bastian",
+        "type": "Concert",
         "location": "Munich, Germany",
         "year": 2024,
         "description": "Chamber music series with forest-related works; moderated by forest experts on the future of forests.",
@@ -1559,6 +1546,7 @@
     "properties": {
         "title": "Festival in Achberg: Workshops, Lectures and Concerts",
         "artist": "Orchester des Wandels & Guests, DJ/Ecologist Dominik Eulberg",
+        "type": "Festival / Concert",
         "location": "Achberg, Germany",
         "year": 2024,
         "description": "Over 40 participants, interactive formats on climate and nature, music in the castle garden.",
@@ -1747,6 +1735,7 @@
         "properties": {
             "title": "Tracing Trees",
             "artist": "Olaf Val",
+            "type": "Installation",
             "year": 2021,
             "location": "Kassel, Germany",
             "url": "https://projects.olafval.de/tracing-trees/",
@@ -1767,6 +1756,7 @@
         "properties": {
             "title": "Coding into the Forest",
             "artist": "Olaf Val",
+            "type": "Installation",
             "year": 2019,
             "location": "Kassel, Germany",
             "url": "https://projects.olafval.de/coding-into-the-forest/",
@@ -1789,6 +1779,7 @@
         "properties": {
             "title": "The Forest of Brotonne",
             "artist": "Sir Henry Rushbury",
+            "type": "Printmaking",
             "year": 1920,
             "location": "Brotonne, France",
             "url": "https://www.tate.org.uk/art/artworks/rushbury-the-forest-of-brotonne-n03567",
@@ -1809,6 +1800,7 @@
         "properties": {
             "title": "Solar",
             "artist": "Ian McEwan",
+            "type": "Book",
             "year": 2010,
             "location": "United Kingdom",
             "url": "https://www.ianmcewan.com/solar",
@@ -1829,6 +1821,7 @@
         "properties": {
             "title": "The Child in Time",
             "artist": "Ian McEwan",
+            "type": "Book",
             "year": 1987,
             "location": "United Kingdom",
             "url": "https://www.ianmcewan.com/childintime",
@@ -1849,6 +1842,7 @@
         "properties": {
             "title": "Enduring Love",
             "artist": "Ian McEwan",
+            "type": "Book",
             "year": 1997,
             "location": "United Kingdom",
             "url": "https://www.ianmcewan.com/enduringlove",
@@ -1869,6 +1863,7 @@
         "properties": {
             "title": "Channel #23",
             "artist": "Simryn Gill",
+            "type": "Photography",
             "year": 2014,
             "location": "Port Dickson, Malaysia",
             "url": "https://www.tate.org.uk/art/artworks/gill-channel-23-p82160",
@@ -1889,6 +1884,7 @@
         "properties": {
             "title": "Air Pollution of Iran",
             "artist": "Mahmoud Bakhshi Moakhar",
+            "type": "Mixed Media",
             "year": 2004,
             "location": "Tehran, Iran",
             "url": "https://www.tate.org.uk/art/artworks/bakhshi-moakhar-air-pollution-of-iran-t13191",
@@ -1909,6 +1905,7 @@
         "properties": {
             "title": "The Eye in the Sky",
             "artist": "Gauri Gill, Rajesh Vangad",
+            "type": "Photography / Drawing",
             "year": 2014,
             "location": "Maharashtra, India",
             "url": "https://www.tate.org.uk/art/artworks/gill-vangad-the-eye-in-the-sky-t14992",
@@ -1929,6 +1926,7 @@
         "properties": {
             "title": "Six Sculptures",
             "artist": "Bruce McLean",
+            "type": "Sculpture",
             "year": 1967,
             "location": "London, United Kingdom",
             "url": "https://www.tate.org.uk/art/artworks/mclean-six-sculptures-t01740",
@@ -1958,6 +1956,7 @@
                 "cluster": ["Urban Issues", "Resource Depletion"],
                 "artform": ["Music"]
             },
+            "url": "https://jonimitchell.com/music/song.cfm?id=13",
             "thumbnail": "https://upload.wikimedia.org/wikipedia/en/thumb/5/59/Big_Yellow_Taxi_by_Joni_Mitchell_1970_Canadian_vinyl.png/250px-Big_Yellow_Taxi_by_Joni_Mitchell_1970_Canadian_vinyl.png"
         }
     },
@@ -2096,6 +2095,7 @@
     "properties": {
         "title": "7 Days of Garbage",
         "artist": "Greg Segall",
+        "type": "Photography",
         "year": 2014,
         "description": "A photographic project where individuals and families pose with a week's worth of their garbage to highlight waste consumption.",
         "location": "Los Angeles, USA",
@@ -2119,6 +2119,7 @@
         "title": "Nausicaä of the Valley of the Wind",
         "description": "A post-apocalyptic anime film exploring themes of environmental destruction, toxic landscapes, and the relationship between humans and nature.",
         "artist": "Hayao Miyazaki",
+        "type": "Film",
         "location": "Tokyo, Japan",
         "year": 1984,
         "tags": {
@@ -2150,6 +2151,7 @@
         "title": "Princess Mononoke",
         "description": "A powerful film depicting the conflict between industrial expansion and the spirits of the forest, highlighting themes of deforestation, exploitation, and ecological balance.",
         "artist": "Hayao Miyazaki",
+        "type": "Film",
         "location": "Japan",
         "year": 1997,
         "tags": {
@@ -2181,6 +2183,7 @@
         "title": "Ponyo",
         "description": "A heartwarming animated film about a magical fish girl, highlighting themes of ocean pollution, marine conservation, and the balance of nature.",
         "artist": "Hayao Miyazaki",
+        "type": "Film",
         "location": "Japan",
         "year": 2008,
         "tags": {
@@ -2463,6 +2466,7 @@
                         "Installation"
                     ]
                 },
+                "url": "https://www.singaporeartmuseum.sg/-/media/sam/files/press-release/2016-pr/imaginarium_over_the_ocean_under_the_sea_14apr2016.pdf",
                 "thumbnail": ""
             }
         },
@@ -2490,7 +2494,8 @@
                     "artform": [
                         "Mural Art"
                     ]
-                }
+                },
+                "url": "https://www.lta.gov.sg/content/dam/ltagov/getting_around/public_transport/a_better_public_transport_experience/art_in_transit/pdf/DTL%20AIT%20QR%20DT9%20BTN.pdf"
             }
         },
         {
@@ -2517,7 +2522,8 @@
                     "artform": [
                         "Mural Art"
                     ]
-                }
+                },
+                "url": "https://www.lta.gov.sg/content/dam/ltagov/getting_around/public_transport/a_better_public_transport_experience/art_in_transit/pdf/DTL%20AIT%20QR%20DT9%20BTN.pdf"
             }
         },
         {
@@ -2719,6 +2725,7 @@
                         "Painting"
                     ]
                 },
+                "url": "https://christibelcourt.com/",
                 "thumbnail": ""
             }
         },
@@ -2808,7 +2815,8 @@
                         "Sculpture",
                         "Installation"
                     ]
-                }
+                },
+                "url": "https://underwatersculpture.com/"
             }
         },
         {
@@ -3004,7 +3012,8 @@
                         "Installation",
                         "Architecture"
                     ]
-                }
+                },
+                "url": "https://treehotel.se/treerooms/mirrorcube/"
             }
         },
         {
@@ -3549,6 +3558,7 @@
                 "title": "Psychozoic Era",
                 "description": "A project examining industrial waste and landfill issues through paintings and films.",
                 "artist": "Pavel Otdelnov",
+                "type": "Painting / Film",
                 "location": "Moscow, Russia",
                 "year": 2020,
                 "tags": {
@@ -4031,6 +4041,7 @@
               "title": "Spaceship: Earth",
               "artist": "Mop Mop, Anthony Joseph",
               "type": "Song",
+              "description": "A song by Mop Mop with Anthony Joseph that frames Earth as a shared vessel, using spoken-word and jazz-funk textures to reflect on planetary awareness and human responsibility.",
               "location": "Germany",
               "year": 2016,
               "tags": {
@@ -4043,7 +4054,7 @@
                 ]
               },
               "url": "https://open.spotify.com/intl-de/track/4TshxTMDh3V49mZTzxVS9m",
-              "thumbnail": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAB8AOAMBEQACEQEDEQH/xAAaAAACAwEBAAAAAAAAAAAAAAAGBwADBQQB/8QALxAAAQQABAQEBAcAAAAAAAAAAQIDBBEABRIhBhMUMSIyQVEHcZGxFSMzYYGhwf/EABoBAAIDAQEAAAAAAAAAAAAAAAAFAwQGAgH/xAAvEQABAwMBBgUCBwAAAAAAAAABAAIDBBEhMRITUWFx8BRBkaHRIuEFFUJygbHB/9oADAMBAAIRAxEAPwBHYEIw+HVGRNQe6wgA1fvizBIImPkdoBf0Sf8AFInzPijZqTb1snbwvFYHKQhsJQST271jJmd9ZPvJfP2HBaqOmjpIRFHoPfmvW8pz5fFKZL0tScvafcIAd8LrKk7IUjtsTXa9rvDgvgNPs2ylgZUip2v0nvHNLz4hPPMcazITKkIjhpCwV6iAdIJHmAH3+uIadoiaXMuDywrUwEp2XgEcxdL7iCU5LjxVulBUHHB+WSUjZGwvDTO7FyTrqlsbGtnfsgDA0xxWLjhWVMCEafDII62WpZoJCP8AcErC+llaOCpTSBlZTk6X+AmDI4kzDL8wjQssipfWKUSELWVEq8vh8nvatvocZyjiY9m042N8fOdegWhqHva6wFxbPf8Aq3zxPnIjmSTA6fp+eF9OsA7Xp1a6CfXmdqN1WGm4z36/ZV7ushIyk53m0pGe5LC6kb8xyIUuJo1oJX5/mnb64X1LzCy8bzrnPvjS/DVTQDePIe0aY75IH+IkWLEkREwm22mVBatDaQAD4fbGiDXNp4w7W2Vn6eUSVU5Gl8dMoQxwrymBC1uG4juZTugblmOl2lGgTrKew2/k77YinnMEZda66jhbLIL6+SKovEasomyo2ctPMSnFsW+lCSVNou0Lo7pVYUauymiCNsRQMjLAYstypnvc1/16ruTkM4cTrlfiM4OjdU0lX6YNFR23TtVdvTti59GxtJt4Wg3PiM/tvm/XvjyWfK4hVnWYQ4+TMPOyGxISuQUpC+WtVhKbOyUC9JJHmIAA2xSnZG1hdLgYSmNz3PszVDHEjDsCWnLXJXUIi2EHSQUA14TfyH7YnhqDPEHEWVd9OyGV2zqdVkYkQpgQroqgh0KKQqt6N1/WBCP8rzVziDLVZU7NdalLSoJc0BSXRW4Xfz9PbvhLPTNpZN+1t2/10TGOUzM3ZOVavLeL15eYKpmX8otcor0jmFGnTWvRfl2vvW14l/M6bge/5XHhJrWuFRnWcPZJl/4TFnOOSW9KXXi2E8oUKCKr7evfEVNStqJN+9tm+Qvr1Xcsxibu2nPeiBJa2VBsMtcurve77YdkhLRdc+PF6v/Z"
+              "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCZ0bN9NyhFAod24WDFhtm21LIYz--3QiWDq34KsuqTA&s=10"
             }
           },
 
