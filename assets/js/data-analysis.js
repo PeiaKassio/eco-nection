@@ -753,26 +753,24 @@
             const color = state.clusterColors[topic] || '#94a3b8';
             const symbol = TIMELINE_SYMBOLS[index % TIMELINE_SYMBOLS.length];
             const series = model.yearlyByTopic[topic] || { art: [], science: [] };
-            const artSeries = state.timeSeriesMode === 'smoothed' ? smoothYearlySeries(series.art) : series.art;
-            const scienceSeries = state.timeSeriesMode === 'smoothed' ? smoothYearlySeries(series.science) : series.science;
 
             if (getActiveDatasets().includes('art')) {
-                traces.push(yearlyTrace({
+                traces.push(...yearlyTraces({
                     topic,
                     dataset: state.mode === 'compare' ? 'Art' : '',
                     datasetKey: 'art',
-                    series: artSeries,
+                    series: series.art,
                     color,
                     symbol,
                     dash: 'solid'
                 }));
             }
             if (getActiveDatasets().includes('science') && state.scienceAvailable) {
-                traces.push(yearlyTrace({
+                traces.push(...yearlyTraces({
                     topic,
                     dataset: state.mode === 'compare' ? 'Science' : '',
                     datasetKey: 'science',
-                    series: scienceSeries,
+                    series: series.science,
                     color,
                     symbol: openMarkerSymbol(symbol),
                     dash: 'dot'
@@ -812,9 +810,10 @@
             if (intro) {
                 intro.textContent = 'Each point is calculated within that year: topic records divided by all selected records in the same dataset year.';
             }
+            const supportNote = ` Years with fewer than ${LOW_SUPPORT_DENOMINATOR} records are shown as faint markers and are not connected as trend lines.`;
             note.textContent = state.timeSeriesMode === 'smoothed'
-                ? '3-YEAR AVG smooths each yearly share with the previous, current, and next observed years. The denominator for each raw point remains that dataset year only.'
-                : 'YEARLY shows raw annual shares: matching records in that year / all selected records in that same year.';
+                ? `3-YEAR AVG smooths supported yearly shares with nearby observed years. The denominator for each raw point remains that dataset year only.${supportNote}`
+                : `YEARLY shows raw annual shares: matching records in that year / all selected records in that same year.${supportNote}`;
             return;
         }
 
@@ -822,25 +821,27 @@
             if (intro) {
                 intro.textContent = 'Each point shows annual topic records normalized by the combined population of the selected countries.';
             }
+            const supportNote = ` Years with fewer than ${LOW_SUPPORT_DENOMINATOR} records are shown as faint markers and are not connected as trend lines.`;
             note.textContent = state.timeSeriesMode === 'smoothed'
-                ? '3-YEAR AVG smooths annual records per 1M inhabitants across the previous, current, and next observed years.'
-                : 'YEARLY shows annual matching records per 1M inhabitants using the selected-country population denominator.';
+                ? `3-YEAR AVG smooths supported annual records per 1M inhabitants across nearby observed years.${supportNote}`
+                : `YEARLY shows annual matching records per 1M inhabitants using the selected-country population denominator.${supportNote}`;
             return;
         }
 
         if (intro) {
             intro.textContent = 'Each point shows the unique matching topic records in that year.';
         }
+        const supportNote = ` Years with fewer than ${LOW_SUPPORT_DENOMINATOR} records are shown as faint markers and are not connected as trend lines.`;
         note.textContent = state.timeSeriesMode === 'smoothed'
-            ? '3-YEAR AVG smooths annual unique record counts across the previous, current, and next observed years.'
-            : 'YEARLY shows raw unique matching record counts for each year.';
+            ? `3-YEAR AVG smooths supported annual unique record counts across nearby observed years.${supportNote}`
+            : `YEARLY shows raw unique matching record counts for each year.${supportNote}`;
     }
 
     function openMarkerSymbol(symbol) {
         return symbol.includes('-open') ? symbol : `${symbol}-open`;
     }
 
-    function yearlyTrace({ topic, dataset, datasetKey, series, color, symbol, dash }) {
+    function yearlyTraces({ topic, dataset, datasetKey, series, color, symbol, dash }) {
         const isScience = datasetKey === 'science';
         const traceName = dataset ? `${topic} · ${dataset}` : topic;
         const valueLine = state.metric === 'share'
@@ -851,10 +852,16 @@
         const denominatorLine = state.metric === 'share'
             ? '%{customdata[2]} / %{customdata[3]} records in this year'
             : '%{customdata[2]} matching records in this year';
-        return {
-            x: series.map(point => point.year),
-            y: series.map(point => point.value),
-            customdata: series.map(point => [topic, dataset || state.mode.toUpperCase(), point.count, point.denominator, point.lowSupport ? 'Low data support' : '']),
+
+        const reliableSource = series.filter(point => !point.lowSupport);
+        const reliableSeries = state.timeSeriesMode === 'smoothed'
+            ? smoothYearlySeries(reliableSource)
+            : reliableSource;
+        const sparseSeries = series.filter(point => point.lowSupport && point.count > 0);
+        const traces = [{
+            x: reliableSeries.map(point => point.year),
+            y: reliableSeries.map(point => point.value),
+            customdata: reliableSeries.map(point => [topic, dataset || state.mode.toUpperCase(), point.count, point.denominator, '']),
             name: traceName,
             type: 'scatter',
             mode: 'lines+markers',
@@ -867,7 +874,29 @@
                 size: isScience ? 9 : 8
             },
             hovertemplate: `%{x}<br>%{customdata[0]} · %{customdata[1]}<br>${denominatorLine}<br>${valueLine}<br>%{customdata[4]}<extra></extra>`
-        };
+        }];
+
+        if (sparseSeries.length > 0) {
+            traces.push({
+                x: sparseSeries.map(point => point.year),
+                y: sparseSeries.map(point => point.value),
+                customdata: sparseSeries.map(point => [topic, dataset || state.mode.toUpperCase(), point.count, point.denominator, `Low support: fewer than ${LOW_SUPPORT_DENOMINATOR} records in this year`]),
+                name: `${traceName} · low support`,
+                type: 'scatter',
+                mode: 'markers',
+                showlegend: reliableSeries.length === 0,
+                opacity: 0.35,
+                marker: {
+                    color,
+                    line: { color: '#f8fafc', width: isScience ? 1.4 : 1 },
+                    symbol,
+                    size: isScience ? 7 : 6
+                },
+                hovertemplate: `%{x}<br>%{customdata[0]} · %{customdata[1]}<br>${denominatorLine}<br>${valueLine}<br>%{customdata[4]}<extra></extra>`
+            });
+        }
+
+        return traces;
     }
 
     function renderTemporalShift(model) {
@@ -981,48 +1010,6 @@
         attachTopicClick(chartId);
     }
 
-    function renderTopicDifference(model) {
-        const chartId = 'topicDifferenceChart';
-        if (state.mode !== 'compare') {
-            setEmpty('topicDifferenceEmpty', 'Topic difference is shown in COMPARE mode.');
-            purgePlot(chartId);
-            return;
-        }
-        if (!state.scienceAvailable) {
-            setEmpty('topicDifferenceEmpty', 'Science data is currently unavailable for topic differences.');
-            purgePlot(chartId);
-            return;
-        }
-        const rows = model.topicMetrics
-            .filter(item => item.difference != null)
-            .sort((a, b) => Math.abs(b.difference) - Math.abs(a.difference) || a.topic.localeCompare(b.topic))
-            .slice(0, 14);
-        if (rows.length === 0) {
-            setEmpty('topicDifferenceEmpty', 'No comparable topic values for this selection.');
-            purgePlot(chartId);
-            return;
-        }
-        setEmpty('topicDifferenceEmpty', '');
-        plot(chartId, [{
-            x: rows.map(row => row.difference),
-            y: rows.map(row => row.topic),
-            type: 'bar',
-            orientation: 'h',
-            marker: { color: rows.map(row => row.difference >= 0 ? ART_SERIES_COLOR : SCIENCE_SERIES_COLOR) },
-            customdata: rows.map(row => [row.art.count, row.art.denominator, row.science.count, row.science.denominator]),
-            hovertemplate: '%{y}<br>Difference: %{x:.2f}<br>Art: %{customdata[0]} / %{customdata[1]}<br>Science: %{customdata[2]} / %{customdata[3]}<extra></extra>'
-        }], {
-            xaxis: {
-                title: state.metric === 'share' ? 'Higher Art share ← percentage-point difference → Higher Science share' : 'Art value minus Science value',
-                zeroline: true,
-                zerolinecolor: '#f8fafc',
-                ticksuffix: state.metric === 'share' ? ' pp' : ''
-            },
-            yaxis: { automargin: true, autorange: 'reversed' }
-        });
-        attachTopicClick(chartId);
-    }
-
     function renderGeographicTopics(model) {
         const chartId = 'geographicTopicsChart';
         const dataset = state.mode === 'science' ? 'science' : 'art';
@@ -1126,7 +1113,7 @@
         }], {
             xaxis: {
                 title: state.metric === 'share'
-                    ? (model.focusedTopic ? 'Higher Art topic share ← percentage-point difference → Higher Science topic share' : 'Higher Art place share ← percentage-point difference → Higher Science place share')
+                    ? (model.focusedTopic ? 'Higher Science topic share ← Art minus Science (percentage points, pp) → Higher Art topic share' : 'Higher Science place share ← Art minus Science (percentage points, pp) → Higher Art place share')
                     : 'Art value minus Science value',
                 zeroline: true,
                 zerolinecolor: '#f8fafc',
@@ -1158,16 +1145,6 @@
         const container = document.getElementById('interestingPatterns');
         if (!container) return;
         const patterns = [];
-        const diff = model.topicMetrics
-            .filter(item => item.difference != null && !item.art.lowSupport && !item.science.lowSupport)
-            .sort((a, b) => Math.abs(b.difference) - Math.abs(a.difference))[0];
-        if (state.mode === 'compare' && diff && Math.abs(diff.difference) >= (state.metric === 'share' ? 5 : 1)) {
-            patterns.push({
-                type: 'Topic difference',
-                title: diff.topic,
-                body: `${diff.difference >= 0 ? 'Art' : 'Science'} has a higher ${state.metric === 'share' ? 'share' : 'value'} in this selection (${formatDifference(Math.abs(diff.difference), state.metric)} difference).`
-            });
-        }
         const shift = model.temporal.find(item => item.supported && item.shift != null && Math.abs(item.shift) >= 2);
         if (state.mode === 'compare' && shift) {
             patterns.push({
@@ -1284,7 +1261,7 @@
         document.getElementById('comparisonTopicGrid')?.classList.toggle('analysis-grid-single', !compareActive);
 
         if (!compareActive) {
-            ['temporalShiftChart', 'topicDifferenceChart', 'geographicDifferenceChart'].forEach(purgePlot);
+            ['temporalShiftChart', 'geographicDifferenceChart'].forEach(purgePlot);
         }
     }
 
@@ -1405,7 +1382,6 @@
         renderGeographicTopics(model);
         if (state.mode === 'compare') {
             renderTemporalShift(model);
-            renderTopicDifference(model);
             renderGeographicDifference(model);
             renderInterestingPatterns(model);
         }

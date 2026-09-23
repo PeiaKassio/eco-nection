@@ -6986,6 +6986,690 @@
                     "review_note": ""
                 }
             }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -73.9994,
+                    40.7256
+                ]
+            },
+            "properties": {
+                "title": "Time Landscape",
+                "description": "A living urban forest artwork restoring native precolonial vegetation in Manhattan and making urban ecology visible in public space.",
+                "artist": "Alan Sonfist",
+                "type": "Land Art",
+                "location": "New York, USA",
+                "year": 1978,
+                "tags": {
+                    "topic": [
+                        "Urban Ecology",
+                        "Biodiversity",
+                        "Natural Habitat",
+                        "Conservation"
+                    ],
+                    "artform": [
+                        "Land Art",
+                        "Public Art",
+                        "Living Sculpture"
+                    ]
+                },
+                "url": "https://www.nycgovparks.org/parks/time-landscape",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4194,
+                    37.7749
+                ]
+            },
+            "properties": {
+                "title": "The Farm",
+                "description": "An early urban ecology and community art project that transformed traffic-adjacent land into gardens, animal habitats, and environmental learning spaces.",
+                "artist": "Bonnie Ora Sherk",
+                "type": "Urban Ecology Project",
+                "location": "San Francisco, USA",
+                "year": 1974,
+                "tags": {
+                    "topic": [
+                        "Urban Farming",
+                        "Urban Ecology",
+                        "Environmental Education",
+                        "Green Spaces"
+                    ],
+                    "artform": [
+                        "Public Art",
+                        "Community Art",
+                        "Ecological Art"
+                    ]
+                },
+                "url": "https://www.alivinglibrary.org/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.3155,
+                    45.4408
+                ]
+            },
+            "properties": {
+                "title": "Coloration of the Grand Canal",
+                "description": "A public water-coloration action using fluorescent dye to call attention to water pollution, ecological visibility, and urban waterways.",
+                "artist": "Nicolas Garcia Uriburu",
+                "type": "Environmental Intervention",
+                "location": "Venice, Italy",
+                "year": 1968,
+                "tags": {
+                    "topic": [
+                        "Water Pollution",
+                        "River Conservation",
+                        "Environmental Awareness",
+                        "Urban Pollution"
+                    ],
+                    "artform": [
+                        "Performance",
+                        "Public Intervention",
+                        "Eco-Art"
+                    ]
+                },
+                "url": "https://www.malba.org.ar/evento/nicolas-garcia-uriburu/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    104.0668,
+                    30.5728
+                ]
+            },
+            "properties": {
+                "title": "The Living Water Garden",
+                "description": "A public park and water-cleaning artwork designed with natural filtration systems to restore awareness of urban water ecologies.",
+                "artist": "Betsy Damon",
+                "type": "Public Ecological Artwork",
+                "location": "Chengdu, China",
+                "year": 1998,
+                "tags": {
+                    "topic": [
+                        "Water Management",
+                        "Water Conservation",
+                        "Urban Ecology",
+                        "Public Health"
+                    ],
+                    "artform": [
+                        "Public Art",
+                        "Ecological Design",
+                        "Installation"
+                    ]
+                },
+                "url": "https://www.keepersofthewaters.org/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    116.4074,
+                    39.9042
+                ]
+            },
+            "properties": {
+                "title": "Beijing Besieged by Waste",
+                "description": "A documentary photography project mapping informal landfill sites around Beijing and exposing the scale of urban waste and pollution.",
+                "artist": "Wang Jiuliang",
+                "type": "Photography / Documentary",
+                "location": "Beijing, China",
+                "year": 2008,
+                "tags": {
+                    "topic": [
+                        "Waste Management",
+                        "Landfill Issues",
+                        "Urban Pollution",
+                        "Environmental Awareness"
+                    ],
+                    "artform": [
+                        "Photography",
+                        "Documentary",
+                        "Research-based Art"
+                    ]
+                },
+                "url": "https://www.wangjiuliang.com/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    85.0985,
+                    20.9517
+                ]
+            },
+            "properties": {
+                "title": "The Sovereign Forest",
+                "description": "A long-form installation on land rights, seed sovereignty, mining, forests, and ecological justice in Odisha.",
+                "artist": "Amar Kanwar",
+                "type": "Film / Installation",
+                "location": "Odisha, India",
+                "year": 2012,
+                "tags": {
+                    "topic": [
+                        "Environmental Justice",
+                        "Resource Extraction",
+                        "Forest Conservation",
+                        "Food Systems"
+                    ],
+                    "artform": [
+                        "Film",
+                        "Installation",
+                        "Research-based Art"
+                    ]
+                },
+                "url": "https://www.amar-kanwar.com/projects/the-sovereign-forest",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.1025,
+                    28.7041
+                ]
+            },
+            "properties": {
+                "title": "Have You Seen the Flowers on the River?",
+                "description": "A project engaging the Yamuna River, urban pollution, ecological memory, and the social life of water in Delhi.",
+                "artist": "Ravi Agarwal",
+                "type": "Photography / Installation",
+                "location": "Delhi, India",
+                "year": 2007,
+                "tags": {
+                    "topic": [
+                        "Water Pollution",
+                        "River Conservation",
+                        "Urban Pollution",
+                        "Environmental Justice"
+                    ],
+                    "artform": [
+                        "Photography",
+                        "Installation",
+                        "Public Art"
+                    ]
+                },
+                "url": "https://raviagarwal.com/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -43.1729,
+                    -22.9068
+                ]
+            },
+            "properties": {
+                "title": "Pictures of Garbage",
+                "description": "Portraits made with recyclable material in collaboration with landfill waste pickers, addressing waste economies, recycling, and dignity.",
+                "artist": "Vik Muniz",
+                "type": "Photography / Assemblage",
+                "location": "Rio de Janeiro, Brazil",
+                "year": 2008,
+                "tags": {
+                    "topic": [
+                        "Waste Management",
+                        "Recycling",
+                        "Environmental Justice",
+                        "Consumerism"
+                    ],
+                    "artform": [
+                        "Photography",
+                        "Assemblage",
+                        "Social Practice"
+                    ]
+                },
+                "url": "https://vikmuniz.net/gallery/pictures-of-garbage",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -46.6333,
+                    -23.5505
+                ]
+            },
+            "properties": {
+                "title": "PETS",
+                "description": "Large inflatable plastic bottles installed in the Tiete River to confront urban water pollution and plastic waste.",
+                "artist": "Eduardo Srur",
+                "type": "Public Installation",
+                "location": "Sao Paulo, Brazil",
+                "year": 2008,
+                "tags": {
+                    "topic": [
+                        "Plastic Pollution",
+                        "Water Pollution",
+                        "Urban Pollution",
+                        "Environmental Awareness"
+                    ],
+                    "artform": [
+                        "Public Art",
+                        "Installation",
+                        "Environmental Intervention"
+                    ]
+                },
+                "url": "https://www.eduardosrur.com.br/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.6323,
+                    6.4969
+                ]
+            },
+            "properties": {
+                "title": "La Bouche du Roi",
+                "description": "An installation using petrol cans to connect waste, resource extraction, colonial histories, and contemporary environmental harm.",
+                "artist": "Romuald Hazoume",
+                "type": "Installation",
+                "location": "Porto-Novo, Benin",
+                "year": 1997,
+                "tags": {
+                    "topic": [
+                        "Plastic Waste",
+                        "Resource Extraction",
+                        "Colonial Histories",
+                        "Environmental Justice"
+                    ],
+                    "artform": [
+                        "Installation",
+                        "Assemblage",
+                        "Sculpture"
+                    ]
+                },
+                "url": "https://www.britishmuseum.org/collection/object/E_Af2007-20-1",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    7.0498,
+                    4.8156
+                ]
+            },
+            "properties": {
+                "title": "Acid Rain",
+                "description": "An installation of suspended water-filled bags responding to oil extraction, acid rain, industrial pollution, and environmental vulnerability in the Niger Delta.",
+                "artist": "Bright Ugochukwu Eke",
+                "type": "Installation",
+                "location": "Port Harcourt, Nigeria",
+                "year": 2005,
+                "tags": {
+                    "topic": [
+                        "Oil Pollution",
+                        "Industrial Emissions",
+                        "Environmental Justice",
+                        "Water Pollution"
+                    ],
+                    "artform": [
+                        "Installation",
+                        "Sculpture",
+                        "Eco-Art"
+                    ]
+                },
+                "url": "https://www.contemporaryand.com/magazines/bright-ugochukwu-eke/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    18.4904,
+                    -22.9576
+                ]
+            },
+            "properties": {
+                "title": "In Pursuit of Bling",
+                "description": "A research-led work tracing minerals, desire, extraction, and landscapes, linking resource depletion to global commodity circuits.",
+                "artist": "Otobong Nkanga",
+                "type": "Installation / Performance",
+                "location": "Namibia",
+                "year": 2014,
+                "tags": {
+                    "topic": [
+                        "Resource Extraction",
+                        "Resource Depletion",
+                        "Environmental Justice",
+                        "Colonial Histories"
+                    ],
+                    "artform": [
+                        "Installation",
+                        "Performance",
+                        "Research-based Art"
+                    ]
+                },
+                "url": "https://www.otobongnkanga.com/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.8456,
+                    -6.2088
+                ]
+            },
+            "properties": {
+                "title": "1001st Island - The Most Sustainable Island in Archipelago",
+                "description": "A floating island made from plastic waste that addresses coastal urbanization, sea-level rise, plastic pollution, and informal economies.",
+                "artist": "Tita Salina",
+                "type": "Public Intervention",
+                "location": "Jakarta, Indonesia",
+                "year": 2015,
+                "tags": {
+                    "topic": [
+                        "Plastic Waste",
+                        "Sea Level Rise",
+                        "Urban Pollution",
+                        "Climate Change"
+                    ],
+                    "artform": [
+                        "Public Art",
+                        "Installation",
+                        "Environmental Intervention"
+                    ]
+                },
+                "url": "https://titasalina.com/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    151.2093,
+                    -33.8688
+                ]
+            },
+            "properties": {
+                "title": "Deep Breathing: Resuscitation for the Reef",
+                "description": "An immersive installation responding to coral bleaching and reef fragility through laboratory aesthetics, care, and ecological mourning.",
+                "artist": "Janet Laurence",
+                "type": "Installation",
+                "location": "Sydney, Australia",
+                "year": 2015,
+                "tags": {
+                    "topic": [
+                        "Coral Bleaching",
+                        "Ocean Conservation",
+                        "Climate Change",
+                        "Marine Ecosystems"
+                    ],
+                    "artform": [
+                        "Installation",
+                        "Mixed Media",
+                        "Eco-Art"
+                    ]
+                },
+                "url": "https://www.janetlaurence.com/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -68.8317,
+                    44.0481
+                ]
+            },
+            "properties": {
+                "title": "Ghost Nets",
+                "description": "A restoration-based art project addressing degraded coastal habitat, marine life, community stewardship, and ecological repair.",
+                "artist": "Aviva Rahmani",
+                "type": "Ecological Restoration / Performance",
+                "location": "Vinalhaven, USA",
+                "year": 1990,
+                "tags": {
+                    "topic": [
+                        "Marine Conservation",
+                        "Marine Life",
+                        "Habitat Loss",
+                        "Ecosystem Protection"
+                    ],
+                    "artform": [
+                        "Performance",
+                        "Ecological Art",
+                        "Restoration Art"
+                    ]
+                },
+                "url": "https://ghostnets.com/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -2.5879,
+                    51.4545
+                ]
+            },
+            "properties": {
+                "title": "Seeds of Change",
+                "description": "A research project tracing ballast seeds and colonial trade routes, connecting botany, migration, urban nature, and environmental histories.",
+                "artist": "Maria Thereza Alves",
+                "type": "Research-based Installation",
+                "location": "Bristol, United Kingdom",
+                "year": 1999,
+                "tags": {
+                    "topic": [
+                        "Biodiversity",
+                        "Colonial Histories",
+                        "Urban Nature",
+                        "Cultural Heritage"
+                    ],
+                    "artform": [
+                        "Installation",
+                        "Research-based Art",
+                        "Public Art"
+                    ]
+                },
+                "url": "https://www.mariatherezaalves.org/works/seeds-of-change",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.5683,
+                    55.6761
+                ]
+            },
+            "properties": {
+                "title": "Ice Watch",
+                "description": "Blocks of Greenland ice installed in public space to make glacier retreat, global warming, and climate urgency physically present.",
+                "artist": "Olafur Eliasson and Minik Rosing",
+                "type": "Public Installation",
+                "location": "Copenhagen, Denmark",
+                "year": 2014,
+                "tags": {
+                    "topic": [
+                        "Climate Change",
+                        "Glacier Retreat",
+                        "Climate Awareness",
+                        "Urgency"
+                    ],
+                    "artform": [
+                        "Public Art",
+                        "Installation",
+                        "Environmental Intervention"
+                    ]
+                },
+                "url": "https://olafureliasson.net/artwork/ice-watch-2014/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -73.9442,
+                    40.6782
+                ]
+            },
+            "properties": {
+                "title": "A Project to Reclaim the River",
+                "description": "A public ecological artwork focused on constructed wetlands, stormwater, habitat restoration, and urban water systems.",
+                "artist": "Lilian Ball",
+                "type": "Wetland Public Art",
+                "location": "New York, USA",
+                "year": 1997,
+                "tags": {
+                    "topic": [
+                        "Wetlands",
+                        "Water Management",
+                        "Urban Ecology",
+                        "Ecosystem Protection"
+                    ],
+                    "artform": [
+                        "Public Art",
+                        "Ecological Design",
+                        "Installation"
+                    ]
+                },
+                "url": "https://lilianball.com/",
+                "thumbnail": "",
+                "review": {
+                    "status": "published",
+                    "human_verified": true,
+                    "review_note": "Curated regional artwork expansion, September 2026."
+                }
+            }
         }
     ]
 }

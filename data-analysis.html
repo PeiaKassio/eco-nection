@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist"></script>
     <script src="https://unpkg.com/vis-network/dist/vis-network.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-    <link rel="stylesheet" href="style.css?v=20260923-data-analysis-metrics">
+    <link rel="stylesheet" href="style.css?v=20260923-left-analysis-filters">
 </head>
 <body class="h-full flex flex-col bg-base-100">
     <nav class="navbar bg-base-300">
@@ -61,62 +61,64 @@
             </button>
         </section>
 
-        <section class="analysis-filter-bar bg-base-200 border border-base-300">
-            <div class="analysis-control">
-                <span class="label-text">Mode</span>
-                <div class="join w-full" role="group" aria-label="Choose analysis mode">
-                    <input class="join-item btn btn-sm flex-1" type="radio" name="analysisMode" value="art" aria-label="ART">
-                    <input class="join-item btn btn-sm flex-1" type="radio" name="analysisMode" value="science" aria-label="SCIENCE">
-                    <input class="join-item btn btn-sm flex-1" type="radio" name="analysisMode" value="compare" aria-label="COMPARE" checked>
+        <div class="analysis-layout">
+            <section class="analysis-filter-bar bg-base-200 border border-base-300" aria-label="Analysis filters">
+                <div class="analysis-control">
+                    <span class="label-text">Mode</span>
+                    <div class="join w-full" role="group" aria-label="Choose analysis mode">
+                        <input class="join-item btn btn-sm flex-1" type="radio" name="analysisMode" value="art" aria-label="ART">
+                        <input class="join-item btn btn-sm flex-1" type="radio" name="analysisMode" value="science" aria-label="SCIENCE">
+                        <input class="join-item btn btn-sm flex-1" type="radio" name="analysisMode" value="compare" aria-label="COMPARE" checked>
+                    </div>
                 </div>
-            </div>
 
-            <label class="analysis-control">
-                <span class="label-text">Continent</span>
-                <select id="continentSelect" class="select select-bordered select-sm">
-                    <option value="">All continents</option>
-                </select>
-            </label>
+                <label class="analysis-control">
+                    <span class="label-text">Continent</span>
+                    <select id="continentSelect" class="select select-bordered select-sm">
+                        <option value="">All continents</option>
+                    </select>
+                </label>
 
-            <label class="analysis-control">
-                <span class="label-text">Country</span>
-                <select id="countrySelect" class="select select-bordered select-sm" multiple size="4">
-                    <option value="" selected>All countries</option>
-                </select>
-            </label>
+                <label class="analysis-control">
+                    <span class="label-text">Country</span>
+                    <select id="countrySelect" class="select select-bordered select-sm" multiple size="4">
+                        <option value="" selected>All countries</option>
+                    </select>
+                </label>
 
-            <label class="analysis-control analysis-control-wide">
-                <span class="label-text">Topic Cluster</span>
-                <select id="topicClusterSelect" class="select select-bordered select-sm" multiple size="4">
-                    <option value="" selected>All topic clusters</option>
-                </select>
-            </label>
+                <label class="analysis-control analysis-control-wide">
+                    <span class="label-text">Topic Cluster</span>
+                    <select id="topicClusterSelect" class="select select-bordered select-sm" multiple size="4">
+                        <option value="" selected>All topic clusters</option>
+                    </select>
+                </label>
 
-            <div class="analysis-control analysis-years">
-                <span class="label-text">Years</span>
-                <div class="grid grid-cols-2 gap-2">
-                    <input id="yearFrom" type="number" min="1600" max="2100" class="input input-bordered input-sm" placeholder="From">
-                    <input id="yearTo" type="number" min="1600" max="2100" class="input input-bordered input-sm" placeholder="To">
+                <div class="analysis-control analysis-years">
+                    <span class="label-text">Years</span>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input id="yearFrom" type="number" min="1600" max="2100" class="input input-bordered input-sm" placeholder="From">
+                        <input id="yearTo" type="number" min="1600" max="2100" class="input input-bordered input-sm" placeholder="To">
+                    </div>
                 </div>
-            </div>
 
-            <div class="analysis-control analysis-control-wide">
-                <span class="label-text">Metric</span>
-                <div class="join w-full" role="group" aria-label="Choose metric">
-                    <input class="join-item btn btn-sm flex-1" type="radio" name="metricMode" value="share" aria-label="SHARE" checked>
-                    <input class="join-item btn btn-sm flex-1 analysis-hidden" type="radio" name="metricMode" value="absolute" aria-label="ABSOLUTE" hidden>
-                    <input class="join-item btn btn-sm flex-1 analysis-hidden" type="radio" name="metricMode" value="perPopulation" aria-label="PER POPULATION" hidden>
+                <div class="analysis-control analysis-control-wide">
+                    <span class="label-text">Metric</span>
+                    <div class="join w-full" role="group" aria-label="Choose metric">
+                        <input class="join-item btn btn-sm flex-1" type="radio" name="metricMode" value="share" aria-label="SHARE" checked>
+                        <input class="join-item btn btn-sm flex-1 analysis-hidden" type="radio" name="metricMode" value="absolute" aria-label="ABSOLUTE" hidden>
+                        <input class="join-item btn btn-sm flex-1 analysis-hidden" type="radio" name="metricMode" value="perPopulation" aria-label="PER POPULATION" hidden>
+                    </div>
+                    <small id="metricModeNote" class="analysis-filter-note">Compare mode can use within-dataset shares.</small>
                 </div>
-                <small id="metricModeNote" class="analysis-filter-note">Compare mode can use within-dataset shares.</small>
-            </div>
 
-            <button id="resetFilters" class="btn btn-outline btn-sm btn-primary analysis-reset" type="button">
-                <i class="ti ti-refresh text-lg"></i>
-                Reset
-            </button>
-        </section>
+                <button id="resetFilters" class="btn btn-outline btn-sm btn-primary analysis-reset" type="button">
+                    <i class="ti ti-refresh text-lg"></i>
+                    Reset
+                </button>
+            </section>
 
-        <div id="scienceStatus" class="alert alert-info hidden"></div>
+            <div class="analysis-results">
+                <div id="scienceStatus" class="alert alert-info hidden"></div>
 
         <section id="selectionSummary" class="analysis-section"></section>
 
@@ -164,17 +166,6 @@
             </article>
         </section>
 
-        <section id="topicDifferenceSection" class="analysis-section analysis-compare-only">
-            <div class="analysis-section-heading">
-                <div>
-                        <h2>Topic difference</h2>
-                    <p>Positive values indicate a higher value in Art; negative values indicate a higher value in Science.</p>
-                </div>
-            </div>
-            <div id="topicDifferenceEmpty" class="analysis-empty hidden"></div>
-            <div id="topicDifferenceChart" class="analysis-plot analysis-plot-compact"></div>
-        </section>
-
         <section id="geographicTopicsSection" class="analysis-section">
             <div class="analysis-section-heading">
                 <div>
@@ -194,7 +185,7 @@
             <div class="analysis-section-heading">
                 <div>
                     <h2>Country and continent comparison</h2>
-                    <p>Ranked representation difference across places for the active selection.</p>
+                    <p>Compares Art share minus Science share by place. Values are shown in percentage points (pp): +10 pp means Art is 10 percentage points higher; -10 pp means Science is 10 percentage points higher.</p>
                 </div>
                 <div class="join" role="group" aria-label="Choose geographic level">
                     <input class="join-item btn btn-xs" type="radio" name="geographyMode" value="countries" aria-label="COUNTRIES" checked>
@@ -248,6 +239,8 @@
                 <div id="evidenceList" class="analysis-evidence"></div>
             </details>
         </section>
+            </div>
+        </div>
     </main>
 
     <dialog id="methodologyDialog" class="modal">
@@ -260,7 +253,8 @@
                 <p>Artworks and scientific publications come from different corpora, so Compare mode can use each dataset's internal share rather than raw counts. Single-dataset views use absolute counts by default.</p>
                 <p><strong>Topic share:</strong> available in Compare mode. It divides unique matching records for a topic cluster by all unique records in the current geography and time base. The selected topic changes the numerator, not the denominator.</p>
                 <p><strong>Yearly share:</strong> unique topic records in a year divided by all unique records in that same year, geography, and dataset.</p>
-                <p><strong>Topic difference:</strong> Art share minus Science share, shown in percentage points.</p>
+                <p><strong>Difference values:</strong> Art share minus Science share, shown in percentage points (pp). Percentage points are the absolute gap between two percentages, for example 40% minus 25% = 15 pp.</p>
+                <p><strong>Country and continent comparison:</strong> the same Art-minus-Science difference calculated per country or continent for the active topic selection.</p>
                 <p><strong>Attention center:</strong> the weighted median year of the yearly share series. Temporal shift is Art attention center minus Science attention center.</p>
                 <p>Records may belong to several topic clusters. They count once per cluster and once in the denominator, so cluster shares can sum above 100%.</p>
                 <p>Science geography means study area, not author affiliation. Sparse data can prevent reliable temporal-shift estimates.</p>
@@ -271,6 +265,6 @@
     </dialog>
 
     <script src="assets/js/shared-data.js?v=20260923-data-analysis-metrics"></script>
-    <script src="assets/js/data-analysis.js?v=20260923-metric-visibility"></script>
+    <script src="assets/js/data-analysis.js?v=20260923-pp-labels"></script>
 </body>
 </html>

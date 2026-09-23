@@ -61,20 +61,12 @@
       "Sustainable Living",
       "Biomimicry",
       "Sustainable Mobility",
-      "Regenerative Land Management"
+      "Regenerative Land Management",
+      "Renewable Energy",
+      "Energy Efficiency"
     ],
     "color": "#90EE90"
   },
-"Energy": {
-  "topics": [
-    "Renewable Energy",
-    "Energy Efficiency",
-    "Energy Overuse",
-    "Fossil Fuels",
-    "Hydropower"
-  ],
-  "color": "#FFA500"
-},
   "Water Issues": {
     "topics": [
       "Water Conservation", 
@@ -88,7 +80,8 @@
       "Flooding",
       "Marine Conservation",
       "Drought",
-      "River Conservation"
+      "River Conservation",
+      "Hydropower"
     ],
     "color": "#1E90FF"
   },
@@ -159,7 +152,9 @@
       "Resource Depletion",
       "Recycling",
       "Plastic Recycling",
-      "Circular Economy"
+      "Circular Economy",
+      "Energy Overuse",
+      "Fossil Fuels"
     ],
     "color": "#5B3A29"
   },

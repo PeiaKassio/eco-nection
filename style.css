@@ -675,14 +675,32 @@ section.chart-container {
   margin-bottom: 1rem;
 }
 
+.analysis-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 320px) minmax(0, 1fr);
+  align-items: start;
+  gap: 1rem;
+}
+
+.analysis-results {
+  min-width: 0;
+}
+
+.analysis-results > .alert:first-child:not(.hidden),
+.analysis-results > #selectionSummary {
+  margin-top: 0;
+}
+
 .analysis-filter-bar {
   position: sticky;
-  top: 0;
+  top: 0.85rem;
   z-index: 15;
   display: grid;
-  grid-template-columns: minmax(220px, 1fr) repeat(2, minmax(160px, 0.75fr)) minmax(240px, 1fr) minmax(190px, 0.85fr) minmax(260px, 1fr) auto;
+  grid-template-columns: 1fr;
   gap: 0.85rem;
-  align-items: end;
+  align-items: stretch;
+  max-height: calc(100vh - 1.7rem);
+  overflow-y: auto;
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 16px 28px rgba(0, 0, 0, 0.18);
@@ -705,7 +723,7 @@ section.chart-container {
 }
 
 .analysis-reset {
-  align-self: end;
+  align-self: stretch;
 }
 
 .analysis-section,
@@ -1005,15 +1023,26 @@ body:has(.data-analysis-page) .plotly-chart {
 }
 
 @media (max-width: 1180px) {
+  .analysis-layout {
+    display: block;
+  }
+
   .analysis-filter-bar {
     position: static;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-height: none;
+    overflow: visible;
+    margin-bottom: 1rem;
+  }
+
+  .analysis-results > #selectionSummary {
+    margin-top: 1rem;
   }
 }
 
 @media (max-width: 1380px) {
-  .analysis-filter-bar {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .analysis-layout {
+    grid-template-columns: minmax(260px, 300px) minmax(0, 1fr);
   }
 }
 
