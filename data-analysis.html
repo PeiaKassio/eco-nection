@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist"></script>
     <script src="https://unpkg.com/vis-network/dist/vis-network.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-    <link rel="stylesheet" href="style.css?v=20260922-data-comparison">
+    <link rel="stylesheet" href="style.css?v=20260923-data-analysis-metrics">
 </head>
 <body class="h-full flex flex-col bg-base-100">
     <nav class="navbar bg-base-300">
@@ -80,15 +80,15 @@
 
             <label class="analysis-control">
                 <span class="label-text">Country</span>
-                <select id="countrySelect" class="select select-bordered select-sm">
-                    <option value="">All countries</option>
+                <select id="countrySelect" class="select select-bordered select-sm" multiple size="4">
+                    <option value="" selected>All countries</option>
                 </select>
             </label>
 
             <label class="analysis-control analysis-control-wide">
                 <span class="label-text">Topic Cluster</span>
                 <select id="topicClusterSelect" class="select select-bordered select-sm" multiple size="4">
-                    <option value="">All topic clusters</option>
+                    <option value="" selected>All topic clusters</option>
                 </select>
             </label>
 
@@ -104,9 +104,10 @@
                 <span class="label-text">Metric</span>
                 <div class="join w-full" role="group" aria-label="Choose metric">
                     <input class="join-item btn btn-sm flex-1" type="radio" name="metricMode" value="share" aria-label="SHARE" checked>
-                    <input class="join-item btn btn-sm flex-1" type="radio" name="metricMode" value="absolute" aria-label="ABSOLUTE">
-                    <input class="join-item btn btn-sm flex-1" type="radio" name="metricMode" value="perPopulation" aria-label="PER POPULATION">
+                    <input class="join-item btn btn-sm flex-1 analysis-hidden" type="radio" name="metricMode" value="absolute" aria-label="ABSOLUTE" hidden>
+                    <input class="join-item btn btn-sm flex-1 analysis-hidden" type="radio" name="metricMode" value="perPopulation" aria-label="PER POPULATION" hidden>
                 </div>
+                <small id="metricModeNote" class="analysis-filter-note">Compare mode can use within-dataset shares.</small>
             </div>
 
             <button id="resetFilters" class="btn btn-outline btn-sm btn-primary analysis-reset" type="button">
@@ -123,19 +124,24 @@
             <div class="analysis-section-heading">
                 <div>
                     <h2>Attention over time</h2>
-                    <p>Yearly share uses each dataset's records in that year as the denominator.</p>
+                    <p id="attentionOverTimeIntro">Each point is calculated within the selected year and metric.</p>
                 </div>
                 <div class="join" role="group" aria-label="Choose time series smoothing">
-                    <input class="join-item btn btn-xs" type="radio" name="timeSeriesMode" value="raw" aria-label="RAW" checked>
-                    <input class="join-item btn btn-xs" type="radio" name="timeSeriesMode" value="smoothed" aria-label="SMOOTHED">
+                    <input class="join-item btn btn-xs" type="radio" name="timeSeriesMode" value="raw" aria-label="YEARLY" checked>
+                    <input class="join-item btn btn-xs" type="radio" name="timeSeriesMode" value="smoothed" aria-label="3-YEAR AVG">
                 </div>
+            </div>
+            <p id="attentionOverTimeMethod" class="analysis-method-note"></p>
+            <div id="attentionDatasetKey" class="analysis-dataset-key analysis-compare-only" aria-label="Timeline dataset encoding">
+                <span><i class="analysis-line-sample analysis-line-art"></i>Art: solid, filled markers</span>
+                <span><i class="analysis-line-sample analysis-line-science"></i>Science: dotted, open markers</span>
             </div>
             <div id="attentionOverTimeEmpty" class="analysis-empty hidden"></div>
             <div id="attentionOverTimeChart" class="analysis-plot"></div>
         </section>
 
-        <section class="analysis-grid-2">
-            <article class="analysis-section">
+        <section id="comparisonTopicGrid" class="analysis-grid-2">
+            <article id="temporalShiftSection" class="analysis-section analysis-compare-only">
                 <div class="analysis-section-heading">
                     <div>
                         <h2>Temporal shift</h2>
@@ -150,7 +156,7 @@
                 <div class="analysis-section-heading">
                     <div>
                         <h2>Topic representation</h2>
-                        <p>Topic shares are multi-label and may sum above 100%.</p>
+                        <p>Topic values use the active metric.</p>
                     </div>
                 </div>
                 <div id="topicRepresentationEmpty" class="analysis-empty hidden"></div>
@@ -158,22 +164,37 @@
             </article>
         </section>
 
-        <section class="analysis-section">
+        <section id="topicDifferenceSection" class="analysis-section analysis-compare-only">
             <div class="analysis-section-heading">
                 <div>
-                    <h2>Topic difference</h2>
-                    <p>Positive values indicate a higher share in Art; negative values indicate a higher share in Science.</p>
+                        <h2>Topic difference</h2>
+                    <p>Positive values indicate a higher value in Art; negative values indicate a higher value in Science.</p>
                 </div>
             </div>
             <div id="topicDifferenceEmpty" class="analysis-empty hidden"></div>
             <div id="topicDifferenceChart" class="analysis-plot analysis-plot-compact"></div>
         </section>
 
-        <section class="analysis-section">
+        <section id="geographicTopicsSection" class="analysis-section">
             <div class="analysis-section-heading">
                 <div>
-                    <h2>Geographic difference</h2>
-                    <p>Ranked representation difference for the focused topic cluster.</p>
+                    <h2>Topics by country and continent</h2>
+                    <p>Topic representation within each selected place.</p>
+                </div>
+                <div class="join" role="group" aria-label="Choose geographic topic level">
+                    <button class="join-item btn btn-xs btn-active" type="button" data-geographic-topic-mode="countries">COUNTRIES</button>
+                    <button class="join-item btn btn-xs" type="button" data-geographic-topic-mode="continents">CONTINENTS</button>
+                </div>
+            </div>
+            <div id="geographicTopicsEmpty" class="analysis-empty hidden"></div>
+            <div id="geographicTopicsChart" class="analysis-plot analysis-plot-compact"></div>
+        </section>
+
+        <section id="geographicDifferenceSection" class="analysis-section analysis-compare-only">
+            <div class="analysis-section-heading">
+                <div>
+                    <h2>Country and continent comparison</h2>
+                    <p>Ranked representation difference across places for the active selection.</p>
                 </div>
                 <div class="join" role="group" aria-label="Choose geographic level">
                     <input class="join-item btn btn-xs" type="radio" name="geographyMode" value="countries" aria-label="COUNTRIES" checked>
@@ -184,7 +205,7 @@
             <div id="geographicDifferenceChart" class="analysis-plot analysis-plot-compact"></div>
         </section>
 
-        <section class="analysis-section">
+        <section id="interestingPatternsSection" class="analysis-section analysis-compare-only">
             <div class="analysis-section-heading">
                 <div>
                     <h2>Interesting patterns</h2>
@@ -209,18 +230,23 @@
             <div id="coOccurrenceNetwork" class="analysis-network"></div>
         </section>
 
-        <section class="analysis-section">
-            <div class="analysis-section-heading">
-                <div>
-                    <h2>Evidence</h2>
-                    <p>Source records behind the active selection.</p>
+        <section class="analysis-section analysis-section-compact">
+            <details id="evidenceDetails" class="analysis-evidence-details">
+                <summary>
+                    <span>
+                        <strong>Evidence</strong>
+                        <small id="evidenceSummaryText">Source records behind the active selection.</small>
+                    </span>
+                    <span class="analysis-evidence-toggle">Show</span>
+                </summary>
+                <div class="analysis-evidence-controls">
+                    <div class="join" role="group" aria-label="Choose evidence dataset">
+                        <input class="join-item btn btn-xs" type="radio" name="evidenceMode" value="art" aria-label="ARTWORKS" checked>
+                        <input class="join-item btn btn-xs" type="radio" name="evidenceMode" value="science" aria-label="PUBLICATIONS">
+                    </div>
                 </div>
-                <div class="join" role="group" aria-label="Choose evidence dataset">
-                    <input class="join-item btn btn-xs" type="radio" name="evidenceMode" value="art" aria-label="ARTWORKS" checked>
-                    <input class="join-item btn btn-xs" type="radio" name="evidenceMode" value="science" aria-label="PUBLICATIONS">
-                </div>
-            </div>
-            <div id="evidenceList" class="analysis-evidence"></div>
+                <div id="evidenceList" class="analysis-evidence"></div>
+            </details>
         </section>
     </main>
 
@@ -231,20 +257,20 @@
             </form>
             <h3 class="font-bold text-xl">How the comparison is calculated</h3>
             <div class="analysis-methodology mt-4">
-                <p>Artworks and scientific publications come from different corpora, so the default comparison uses each dataset's internal share rather than raw counts.</p>
-                <p><strong>Topic share:</strong> unique matching records for a topic cluster divided by all unique records in the current geography and time base. The selected topic changes the numerator, not the denominator.</p>
+                <p>Artworks and scientific publications come from different corpora, so Compare mode can use each dataset's internal share rather than raw counts. Single-dataset views use absolute counts by default.</p>
+                <p><strong>Topic share:</strong> available in Compare mode. It divides unique matching records for a topic cluster by all unique records in the current geography and time base. The selected topic changes the numerator, not the denominator.</p>
                 <p><strong>Yearly share:</strong> unique topic records in a year divided by all unique records in that same year, geography, and dataset.</p>
                 <p><strong>Topic difference:</strong> Art share minus Science share, shown in percentage points.</p>
                 <p><strong>Attention center:</strong> the weighted median year of the yearly share series. Temporal shift is Art attention center minus Science attention center.</p>
                 <p>Records may belong to several topic clusters. They count once per cluster and once in the denominator, so cluster shares can sum above 100%.</p>
                 <p>Science geography means study area, not author affiliation. Sparse data can prevent reliable temporal-shift estimates.</p>
-                <p>Per-population mode uses country population values where available and reports records per 1 million inhabitants. Missing population is shown as unavailable.</p>
+                <p><strong>Per population:</strong> matching records divided by the combined population of the selected countries, multiplied by 1 million. With All countries, the denominator is the population sum for all countries in the active continent filter, or all known countries when no continent is selected. Missing population is shown as unavailable.</p>
             </div>
         </div>
         <form method="dialog" class="modal-backdrop"><button>close</button></form>
     </dialog>
 
-    <script src="assets/js/shared-data.js"></script>
-    <script src="assets/js/data-analysis.js?v=20260922-data-comparison"></script>
+    <script src="assets/js/shared-data.js?v=20260923-data-analysis-metrics"></script>
+    <script src="assets/js/data-analysis.js?v=20260923-metric-visibility"></script>
 </body>
 </html>

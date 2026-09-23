@@ -403,7 +403,8 @@ def ingest_openalex(args: argparse.Namespace) -> None:
 
 
 def phrase_in_text(text: str, phrase: str) -> bool:
-    return normalize_text(phrase) in text
+    normalized_phrase = normalize_text(phrase)
+    return bool(normalized_phrase) and f" {normalized_phrase} " in f" {text} "
 
 
 def score_research_foundation(metadata: dict[str, Any], topic_clusters: dict[str, Any]) -> tuple[int, list[str]]:
@@ -503,7 +504,7 @@ def infer_study_areas(
     matched_countries = [
         country
         for country in sorted(continent_mapping)
-        if phrase_in_text(text, country)
+        if country != "Other" and phrase_in_text(text, country)
     ]
     inserted = 0
 
@@ -554,6 +555,68 @@ def infer_study_areas(
             inserted += 1
 
     return inserted
+
+
+def refresh_curated_classifications(args: argparse.Namespace) -> None:
+    init_db(args.db, DEFAULT_SCHEMA, args.topic_clusters)
+    topic_clusters = read_json(args.topic_clusters)
+    continent_mapping = load_continent_mapping(args.continent_mapping)
+    refreshed_publications = 0
+    topic_links = 0
+    study_areas = 0
+
+    with closing(connect(args.db)) as conn:
+        if args.replace:
+            conn.execute(
+                """
+                DELETE FROM publication_topics
+                WHERE classification_method = 'auto-keyword' AND classification_version = ?
+                """,
+                (CURATION_VERSION,),
+            )
+            conn.execute(
+                """
+                DELETE FROM study_areas
+                WHERE extraction_method = 'auto-text' AND classification_version = ?
+                """,
+                (CURATION_VERSION,),
+            )
+
+        rows = conn.execute(
+            """
+            SELECT id, title, abstract, journal, publication_type
+            FROM publications
+            ORDER BY id
+            """
+        ).fetchall()
+        for row in rows:
+            metadata = {
+                "title": row["title"],
+                "abstract": row["abstract"],
+                "journal": row["journal"],
+                "publication_type": row["publication_type"],
+            }
+            score, _ = score_research_foundation(metadata, topic_clusters)
+            if score < args.min_score:
+                continue
+
+            confidence = min(0.95, max(0.55, 0.55 + (score / 20)))
+            topic_links += classify_publication_topics(conn, int(row["id"]), metadata, topic_clusters, confidence)
+            study_areas += infer_study_areas(
+                conn,
+                int(row["id"]),
+                metadata,
+                continent_mapping,
+                args.max_countries_per_work,
+                max(0.5, confidence - 0.1),
+            )
+            refreshed_publications += 1
+        conn.commit()
+
+    print(
+        "Refreshed curated classifications: "
+        f"{refreshed_publications} publication(s), {topic_links} topic link(s), {study_areas} study area(s)."
+    )
 
 
 def build_curated_queries(args: argparse.Namespace) -> list[str]:
@@ -967,6 +1030,15 @@ def build_parser() -> argparse.ArgumentParser:
     curated_parser.add_argument("--continent-mapping", type=Path, default=DEFAULT_CONTINENT_MAPPING)
     curated_parser.add_argument("--openalex-api-key")
 
+    refresh_parser = subparsers.add_parser(
+        "refresh-curated-classifications",
+        help="Recompute automatic curation topic and study-area labels from stored publication metadata.",
+    )
+    refresh_parser.add_argument("--min-score", type=int, default=5)
+    refresh_parser.add_argument("--max-countries-per-work", type=int, default=4)
+    refresh_parser.add_argument("--continent-mapping", type=Path, default=DEFAULT_CONTINENT_MAPPING)
+    refresh_parser.add_argument("--replace", action="store_true", help="Remove previous auto curation labels first.")
+
     subparsers.add_parser("enrich-crossref", help="Enrich DOI-backed publications from Crossref.")
 
     topic_parser = subparsers.add_parser("add-topic", help="Attach a verified eco:nection topic to a publication.")
@@ -1013,6 +1085,8 @@ def main(argv: list[str] | None = None) -> int:
             ingest_openalex(args)
         elif args.command == "ingest-curated-openalex":
             ingest_curated_openalex(args)
+        elif args.command == "refresh-curated-classifications":
+            refresh_curated_classifications(args)
         elif args.command == "enrich-crossref":
             enrich_crossref(args)
         elif args.command == "add-topic":

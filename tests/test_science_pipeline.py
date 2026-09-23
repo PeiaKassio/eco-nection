@@ -179,6 +179,10 @@ class SciencePipelineTests(unittest.TestCase):
         self.assertTrue(any(reason.startswith("method-noise") for reason in method_reasons))
         self.assertTrue(any(reason.startswith("eco-topic-match") for reason in insight_reasons))
 
+    def test_phrase_matching_uses_word_boundaries(self):
+        self.assertTrue(science_pipeline.phrase_in_text(science_pipeline.normalize_text("Studies in Mali"), "Mali"))
+        self.assertFalse(science_pipeline.phrase_in_text(science_pipeline.normalize_text("abnormalities"), "Mali"))
+
     def test_auto_classification_links_topics_and_country_study_area(self):
         publication_id = science_pipeline.upsert_publication(
             self.conn,

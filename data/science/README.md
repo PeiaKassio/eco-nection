@@ -44,6 +44,12 @@ Import curated insight/basic-research candidates from OpenAlex:
 python data/science/science_pipeline.py ingest-curated-openalex --from-year 2018 --to-year 2026 --country Germany --country Kenya --max-pages 1
 ```
 
+Recompute automatic curation labels after tuning the filters:
+
+```bash
+python data/science/science_pipeline.py refresh-curated-classifications --replace --min-score 6
+```
+
 Enrich DOI-backed publications from Crossref:
 
 ```bash

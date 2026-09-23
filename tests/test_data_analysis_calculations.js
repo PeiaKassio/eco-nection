@@ -123,4 +123,64 @@ const unsupportedShift = analysis.calculateTemporalShift(
 );
 assert.equal(unsupportedShift.supported, false, 'sparse data does not produce a forced shift');
 
+const countryDistribution = analysis.calculateGeographicDifferences(
+  records,
+  scienceStudyAreas,
+  filters,
+  null,
+  'share',
+  'countries',
+  {}
+);
+const germanyDistribution = countryDistribution.find(item => item.label === 'Germany');
+assert.equal(germanyDistribution.art.count, 3, 'country comparison without a topic counts selected records in each country');
+assert.equal(germanyDistribution.art.denominator, 4, 'country comparison without a topic compares against the current dataset base');
+assert.equal(germanyDistribution.science.count, 3);
+assert.equal(germanyDistribution.science.denominator, 3);
+
+const multiCountryFilters = {
+  ...filters,
+  countries: ['Germany', 'France']
+};
+assert.equal(analysis.recordPassesBase(records[0], multiCountryFilters), true);
+assert.equal(analysis.recordPassesBase({ ...records[0], country: 'USA' }, multiCountryFilters), false);
+
+const germanyAndFranceClimateShare = analysis.calculateTopicShare(records, multiCountryFilters, 'Climate Change', 'share');
+assert.equal(germanyAndFranceClimateShare.count, 3);
+assert.equal(germanyAndFranceClimateShare.denominator, 4);
+
+const germanyOnlyFilters = {
+  ...filters,
+  countries: ['Germany']
+};
+const germanyOnlyClimateShare = analysis.calculateTopicShare(records, germanyOnlyFilters, 'Climate Change', 'share');
+assert.equal(germanyOnlyClimateShare.count, 2);
+assert.equal(germanyOnlyClimateShare.denominator, 3);
+
+const countryPopulation = {
+  Germany: 80000000,
+  France: 60000000,
+  USA: 300000000
+};
+const allCountryClimatePerPopulation = analysis.calculateTopicShare(records, filters, 'Climate Change', 'perPopulation', { countryPopulation });
+assert.equal(
+  Math.round(allCountryClimatePerPopulation.value * 1000000) / 1000000,
+  Math.round((3 / 440000000) * 1000000 * 1000000) / 1000000,
+  'all-countries per-population uses the full selected population scope, not only countries with records'
+);
+
+const selectedCountryClimatePerPopulation = analysis.calculateTopicShare(records, multiCountryFilters, 'Climate Change', 'perPopulation', { countryPopulation });
+assert.equal(
+  Math.round(selectedCountryClimatePerPopulation.value * 1000000) / 1000000,
+  Math.round((3 / 140000000) * 1000000 * 1000000) / 1000000,
+  'multi-country per-population uses the selected countries as denominator'
+);
+
+const yearlyPerPopulation = analysis.calculateYearlyTopicShares(records, filters, 'Climate Change', 'perPopulation', countryPopulation);
+assert.deepEqual(
+  yearlyPerPopulation.map(point => point.population),
+  [440000000, 440000000],
+  'yearly per-population keeps the selected population scope stable across years'
+);
+
 console.log('data-analysis calculation tests passed');

@@ -476,25 +476,6 @@ function prepareScienceRingIcons(features) {
     });
 }
 
-function getScienceTopicBreakdown(records, limit = 5) {
-    const breakdown = new Map();
-
-    records.forEach(record => {
-        (record.topics || []).forEach(topic => {
-            if (!breakdown.has(topic)) breakdown.set(topic, new Set());
-            if (record.publicationId != null) breakdown.get(topic).add(record.publicationId);
-        });
-    });
-
-    return Array.from(breakdown.entries())
-        .map(([topic, publicationIds]) => ({
-            topic,
-            count: publicationIds.size
-        }))
-        .sort((a, b) => b.count - a.count || a.topic.localeCompare(b.topic))
-        .slice(0, limit);
-}
-
 function groupScienceRecords(records, countryData) {
     groupedScienceLookup = new Map();
 
@@ -1318,7 +1299,6 @@ function addGlobeLayers() {
         const publicationIds = getUniquePublicationIds(group.records);
         const firstRecord = group.records[0] || {};
         const clusterBreakdown = getScienceClusterBreakdown(group.records);
-        const topicBreakdown = getScienceTopicBreakdown(group.records);
         const years = group.records
             .map(record => parseYear(record.year))
             .filter(year => year !== null)
@@ -1329,9 +1309,6 @@ function addGlobeLayers() {
         const clusterHtml = clusterBreakdown.length > 0
             ? renderInlineClusterBreakdown(clusterBreakdown)
             : '<div class="globe-card-subtle">No classified topic cluster yet.</div>';
-        const topicHtml = topicBreakdown.length > 0
-            ? topicBreakdown.map(item => `<li>${escapeHtml(item.topic)} <strong>${item.count}</strong></li>`).join('')
-            : '';
 
         return `
             <div class="globe-popup globe-popup-science">
@@ -1346,12 +1323,6 @@ function addGlobeLayers() {
                     <strong>Cluster breakdown</strong>
                     <div class="globe-breakdown">${clusterHtml}</div>
                 </div>
-                ${topicHtml ? `
-                    <div class="globe-popup-section">
-                        <strong>Top related topics</strong>
-                        <ul class="globe-topic-list">${topicHtml}</ul>
-                    </div>
-                ` : ''}
             </div>
         `;
     }

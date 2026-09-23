@@ -41,6 +41,7 @@
       "Desert Ecology",
       "Nature Cycles",
       "Ecosystems",
+      "Natural Habitat",
       "Marine Ecosystems",
       "Marine Life",
       "Landscape Change",
@@ -131,7 +132,6 @@
       "Extinction",
       "Wildlife Preservation",
       "Wildlife Conservation", 
-      "Natural Habitat", 
       "Invasive Species Management", 
       "Species Conservation",
       "Habitat Loss"
@@ -193,12 +193,6 @@
       "Ecofeminism"
     ],
     "color": "#FFDD88"
-  },
-  "Technology": {
-    "topics": [
-      "Digital Technology"
-    ],
-    "color": "#D3D3D3"
   },
   "Food and Agriculture": {
     "topics": [

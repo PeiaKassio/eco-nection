@@ -4,11 +4,13 @@
     const TEMPORAL_SHIFT_MIN_YEARS = 2;
     const PER_POPULATION_UNIT = 1000000;
     const SMOOTHING_WINDOW_RADIUS = 1;
-    const MAX_EVIDENCE_ITEMS = 20;
+    const MAX_EVIDENCE_ITEMS = 6;
+    const MAX_TIMELINE_TOPICS = 6;
 
     const SCIENCE_NEUTRAL_COLOR = '#14b8a6';
     const ART_SERIES_COLOR = '#f59e0b';
     const SCIENCE_SERIES_COLOR = '#2dd4bf';
+    const TIMELINE_SYMBOLS = ['circle', 'square', 'diamond', 'triangle-up', 'cross', 'x'];
 
     const state = {
         artRecords: [],
@@ -21,12 +23,13 @@
         mode: 'compare',
         metric: 'share',
         geographyMode: 'countries',
+        geographicTopicMode: 'countries',
         relationshipMode: 'art',
         evidenceMode: 'art',
         timeSeriesMode: 'raw',
         filters: {
             continent: '',
-            country: '',
+            countries: [],
             topics: [],
             fromYear: null,
             toYear: null
@@ -165,8 +168,17 @@
 
     function recordPassesBase(record, filters, overrides = {}) {
         const active = { ...filters, ...overrides };
+        const hasCountryOverride = Object.prototype.hasOwnProperty.call(overrides, 'country');
+        const hasCountriesOverride = Object.prototype.hasOwnProperty.call(overrides, 'countries');
         if (active.continent && record.continent !== active.continent) return false;
-        if (active.country && record.country !== active.country) return false;
+        if (hasCountryOverride) {
+            if (active.country && record.country !== active.country) return false;
+        } else {
+            const countries = hasCountriesOverride
+                ? (Array.isArray(active.countries) ? active.countries : [])
+                : (Array.isArray(active.countries) ? active.countries : active.country ? [active.country] : []);
+            if (countries.length > 0 && !countries.includes(record.country)) return false;
+        }
         if (active.fromYear != null && record.year != null && record.year < active.fromYear) return false;
         if (active.toYear != null && record.year != null && record.year > active.toYear) return false;
         return true;
@@ -202,11 +214,40 @@
         }));
     }
 
-    function getPopulationForScope(records, level, label, countryPopulation) {
-        if (level === 'country') return countryPopulation[label] || null;
-        const countries = new Set(records.map(record => record.country).filter(country => country && country !== 'Other'));
-        const population = Array.from(countries).reduce((sum, country) => sum + (countryPopulation[country] || 0), 0);
+    function populationFromCountries(countries, countryPopulation) {
+        const population = Array.from(new Set(countries))
+            .reduce((sum, country) => sum + (countryPopulation[country] || 0), 0);
         return population || null;
+    }
+
+    function getPopulationCountries(records, level, label, countryPopulation, filters = {}, continentMapping = state.continentMapping) {
+        if (level === 'country') return label ? [label] : [];
+        if (level === 'continent') {
+            const mappedCountries = Object.keys(countryPopulation)
+                .filter(country => continentMapping[country] === label);
+            if (mappedCountries.length > 0) return mappedCountries;
+            return records
+                .filter(record => record.continent === label)
+                .map(record => record.country)
+                .filter(country => country && country !== 'Other');
+        }
+
+        if (filters.country) return [filters.country];
+        const selectedCountries = Array.isArray(filters.countries) ? filters.countries.filter(Boolean) : [];
+        if (selectedCountries.length > 0) return selectedCountries;
+        if (filters.continent) {
+            const mappedCountries = Object.keys(countryPopulation)
+                .filter(country => continentMapping[country] === filters.continent);
+            if (mappedCountries.length > 0) return mappedCountries;
+        }
+        return Object.keys(countryPopulation);
+    }
+
+    function getPopulationForScope(records, level, label, countryPopulation, filters = {}, continentMapping = state.continentMapping) {
+        return populationFromCountries(
+            getPopulationCountries(records, level, label, countryPopulation, filters, continentMapping),
+            countryPopulation
+        );
     }
 
     function metricFromCount(count, denominator, population, metric) {
@@ -224,7 +265,14 @@
         const matchingRecords = topic
             ? getTopicRecords(records, filters, topic, options.baseOverrides)
             : uniqueRecords(baseRecords.filter(record => recordPassesTopics(record, filters.topics)));
-        const population = options.population ?? getPopulationForScope(baseRecords, options.level || 'selection', options.label || '', options.countryPopulation || {});
+        const population = options.population ?? getPopulationForScope(
+            baseRecords,
+            options.level || 'selection',
+            options.label || '',
+            options.countryPopulation || {},
+            { ...filters, ...(options.baseOverrides || {}) },
+            options.continentMapping || state.continentMapping
+        );
 
         return {
             count: matchingRecords.length,
@@ -239,19 +287,18 @@
         if (!topic) return [];
         const baseRecords = records.filter(record => recordPassesBase(record, filters) && record.year != null);
         const years = Array.from(new Set(baseRecords.map(record => record.year))).sort((a, b) => a - b);
+        const selectedPopulation = getPopulationForScope(baseRecords, 'selection', '', countryPopulation, filters);
 
         return years.map(year => {
             const yearlyBase = uniqueRecords(baseRecords.filter(record => record.year === year));
             const yearlyTopic = uniqueRecords(yearlyBase.filter(record => getRecordClusterSet(record).has(topic)));
-            const countries = new Set(yearlyBase.map(record => record.country).filter(country => country && country !== 'Other'));
-            const population = Array.from(countries).reduce((sum, country) => sum + (countryPopulation[country] || 0), 0) || null;
             return {
                 year,
                 count: yearlyTopic.length,
                 denominator: yearlyBase.length,
-                population,
-                value: metricFromCount(yearlyTopic.length, yearlyBase.length, population, metric),
-                share: metricFromCount(yearlyTopic.length, yearlyBase.length, population, 'share'),
+                population: selectedPopulation,
+                value: metricFromCount(yearlyTopic.length, yearlyBase.length, selectedPopulation, metric),
+                share: metricFromCount(yearlyTopic.length, yearlyBase.length, selectedPopulation, 'share'),
                 lowSupport: yearlyBase.length > 0 && yearlyBase.length < LOW_SUPPORT_DENOMINATOR
             };
         });
@@ -322,6 +369,20 @@
         };
     }
 
+    function calculateSelectionMetric(records, filters, metric, countryPopulation) {
+        const baseRecords = getBaseRecords(records, filters);
+        const matchingRecords = uniqueRecords(baseRecords.filter(record => recordPassesTopics(record, filters.topics)));
+        const population = getPopulationForScope(baseRecords, 'selection', '', countryPopulation, filters);
+
+        return {
+            count: matchingRecords.length,
+            denominator: baseRecords.length,
+            population,
+            value: metricFromCount(matchingRecords.length, baseRecords.length, population, metric),
+            lowSupport: baseRecords.length > 0 && baseRecords.length < LOW_SUPPORT_DENOMINATOR
+        };
+    }
+
     function calculateTopicMetrics(artRecords, scienceRecords, filters, topics, metric, countryPopulation) {
         return topics.map(topic => {
             const art = calculateTopicShare(artRecords, filters, topic, metric, { countryPopulation });
@@ -335,12 +396,39 @@
         });
     }
 
+    function calculateSelectionShare(records, filters, labelKey, label, metric, countryPopulation) {
+        const denominatorOverrides = labelKey === 'country' ? {} : { continent: '', country: '', countries: [] };
+        const labelOverrides = labelKey === 'country' ? { country: label } : { continent: label, country: '', countries: [] };
+        const denominatorRecords = uniqueRecords(records.filter(record => {
+            if (!recordPassesBase(record, filters, denominatorOverrides)) return false;
+            return recordPassesTopics(record, filters.topics);
+        }));
+        const matchingRecords = uniqueRecords(records.filter(record => {
+            if (!recordPassesBase(record, filters, labelOverrides)) return false;
+            return recordPassesTopics(record, filters.topics);
+        }));
+        const population = getPopulationForScope(
+            denominatorRecords,
+            labelKey === 'country' ? 'country' : 'continent',
+            label,
+            countryPopulation,
+            filters
+        );
+
+        return {
+            count: matchingRecords.length,
+            denominator: denominatorRecords.length,
+            population,
+            value: metricFromCount(matchingRecords.length, denominatorRecords.length, population, metric),
+            lowSupport: denominatorRecords.length > 0 && denominatorRecords.length < LOW_SUPPORT_DENOMINATOR
+        };
+    }
+
     function calculateGeographicDifferences(artRecords, scienceRecords, filters, topic, metric, level, countryPopulation) {
-        if (!topic) return [];
         const labelKey = level === 'continents' ? 'continent' : 'country';
         const labels = new Set();
         [...artRecords, ...scienceRecords].forEach(record => {
-            if (!recordPassesBase(record, filters, { country: level === 'countries' ? '' : filters.country })) return;
+            if (!recordPassesBase(record, filters, level === 'countries' ? {} : { country: '', countries: [] })) return;
             if (level === 'countries' && filters.continent && record.continent !== filters.continent) return;
             if (record[labelKey]) labels.add(record[labelKey]);
         });
@@ -351,22 +439,26 @@
                 const overrides = labelKey === 'country' ? { country: label } : { continent: label, country: '' };
                 const artBase = getBaseRecords(artRecords, filters, overrides);
                 const scienceBase = getBaseRecords(scienceRecords, filters, overrides);
-                const artPopulation = getPopulationForScope(artBase, labelKey === 'country' ? 'country' : 'continent', label, countryPopulation);
-                const sciencePopulation = getPopulationForScope(scienceBase, labelKey === 'country' ? 'country' : 'continent', label, countryPopulation);
-                const art = calculateTopicShare(artRecords, filters, topic, metric, {
-                    baseOverrides: overrides,
-                    population: artPopulation,
-                    level: labelKey === 'country' ? 'country' : 'continent',
-                    label,
-                    countryPopulation
-                });
-                const science = calculateTopicShare(scienceRecords, filters, topic, metric, {
-                    baseOverrides: overrides,
-                    population: sciencePopulation,
-                    level: labelKey === 'country' ? 'country' : 'continent',
-                    label,
-                    countryPopulation
-                });
+                const artPopulation = getPopulationForScope(artBase, labelKey === 'country' ? 'country' : 'continent', label, countryPopulation, filters);
+                const sciencePopulation = getPopulationForScope(scienceBase, labelKey === 'country' ? 'country' : 'continent', label, countryPopulation, filters);
+                const art = topic
+                    ? calculateTopicShare(artRecords, filters, topic, metric, {
+                        baseOverrides: overrides,
+                        population: artPopulation,
+                        level: labelKey === 'country' ? 'country' : 'continent',
+                        label,
+                        countryPopulation
+                    })
+                    : calculateSelectionShare(artRecords, filters, labelKey, label, metric, countryPopulation);
+                const science = topic
+                    ? calculateTopicShare(scienceRecords, filters, topic, metric, {
+                        baseOverrides: overrides,
+                        population: sciencePopulation,
+                        level: labelKey === 'country' ? 'country' : 'continent',
+                        label,
+                        countryPopulation
+                    })
+                    : calculateSelectionShare(scienceRecords, filters, labelKey, label, metric, countryPopulation);
                 return {
                     label,
                     art,
@@ -377,6 +469,63 @@
             .filter(item => item.art.denominator > 0 || item.science.denominator > 0)
             .sort((a, b) => Math.abs(b.difference || 0) - Math.abs(a.difference || 0) || a.label.localeCompare(b.label))
             .slice(0, 14);
+    }
+
+    function calculateGeographicTopicDistribution(records, filters, topics, metric, level, countryPopulation) {
+        const labelKey = level === 'continents' ? 'continent' : 'country';
+        const baseRecords = getBaseRecords(records, filters, level === 'continents' ? { country: '', countries: [] } : {});
+        const labels = Array.from(new Set(baseRecords.map(record => record[labelKey]).filter(label => label && label !== 'Other')));
+
+        return labels.map(label => {
+            const placeRecords = uniqueRecords(baseRecords.filter(record => record[labelKey] === label));
+            const population = getPopulationForScope(
+                placeRecords,
+                labelKey === 'country' ? 'country' : 'continent',
+                label,
+                countryPopulation,
+                filters
+            );
+            const topicValues = Object.fromEntries(topics.map(topic => {
+                const matchingRecords = uniqueRecords(placeRecords.filter(record => getRecordClusterSet(record).has(topic)));
+                return [topic, {
+                    count: matchingRecords.length,
+                    denominator: placeRecords.length,
+                    population,
+                    value: metricFromCount(matchingRecords.length, placeRecords.length, population, metric)
+                }];
+            }));
+            return {
+                label,
+                denominator: placeRecords.length,
+                topicValues
+            };
+        })
+            .filter(item => item.denominator > 0)
+            .sort((a, b) => b.denominator - a.denominator || a.label.localeCompare(b.label))
+            .slice(0, 14);
+    }
+
+    function getTimelineTopics(topicMetrics, selectedTopics) {
+        const candidates = selectedTopics.length > 1
+            ? topicMetrics.filter(item => selectedTopics.includes(item.topic))
+            : selectedTopics.length === 1
+                ? topicMetrics.filter(item => item.topic === selectedTopics[0])
+            : topicMetrics;
+        const datasets = getActiveDatasets();
+        const getSortValue = metric => {
+            if (datasets.length === 1 && datasets[0] === 'art') return metric.art.value || 0;
+            if (datasets.length === 1 && datasets[0] === 'science') return metric.science.value || 0;
+            return Math.max(metric.art.value || 0, metric.science.value || 0);
+        };
+
+        return [...candidates]
+            .sort((a, b) => {
+                const bValue = getSortValue(b);
+                const aValue = getSortValue(a);
+                return bValue - aValue || a.topic.localeCompare(b.topic);
+            })
+            .slice(0, selectedTopics.length > 0 ? Math.min(selectedTopics.length, MAX_TIMELINE_TOPICS) : MAX_TIMELINE_TOPICS)
+            .map(item => item.topic);
     }
 
     function buildAnalysisModel() {
@@ -395,10 +544,11 @@
             state.metric,
             state.countryPopulation
         );
-        const yearly = focusedTopic ? {
-            art: calculateYearlyTopicShares(state.artRecords, state.filters, focusedTopic, state.metric, state.countryPopulation),
-            science: calculateYearlyTopicShares(state.scienceRecords, state.filters, focusedTopic, state.metric, state.countryPopulation)
-        } : { art: [], science: [] };
+        const timelineTopics = getTimelineTopics(topicMetrics, state.filters.topics);
+        const yearlyByTopic = Object.fromEntries(timelineTopics.map(topic => [topic, {
+            art: calculateYearlyTopicShares(state.artRecords, state.filters, topic, state.metric, state.countryPopulation),
+            science: calculateYearlyTopicShares(state.scienceRecords, state.filters, topic, state.metric, state.countryPopulation)
+        }]));
 
         const temporal = (state.filters.topics.length > 0 ? state.filters.topics : topics).map(topic => {
             const artYearly = calculateYearlyTopicShares(state.artRecords, state.filters, topic, 'share', state.countryPopulation);
@@ -418,19 +568,39 @@
             state.geographyMode,
             state.countryPopulation
         );
+        const geographicTopics = {
+            art: calculateGeographicTopicDistribution(
+                state.artRecords,
+                state.filters,
+                visibleTopics,
+                state.metric,
+                state.geographicTopicMode,
+                state.countryPopulation
+            ),
+            science: calculateGeographicTopicDistribution(
+                state.scienceRecords,
+                state.filters,
+                visibleTopics,
+                state.metric,
+                state.geographicTopicMode,
+                state.countryPopulation
+            )
+        };
 
         return {
             topics,
             visibleTopics,
             focusedTopic,
+            timelineTopics,
+            yearlyByTopic,
             artBase,
             scienceBase,
             artFiltered,
             scienceFiltered,
             topicMetrics,
-            yearly,
             temporal,
-            geographic
+            geographic,
+            geographicTopics
         };
     }
 
@@ -484,7 +654,11 @@
         const container = document.getElementById('selectionSummary');
         if (!container) return;
         const focusLabel = model.focusedTopic || (state.filters.topics.length > 1 ? `${state.filters.topics.length} Topic Clusters selected` : 'All Topic Clusters');
-        const geographyLabel = state.filters.country || state.filters.continent || 'All places';
+        const geographyLabel = state.filters.countries.length === 1
+            ? state.filters.countries[0]
+            : state.filters.countries.length > 1
+                ? `${state.filters.countries.length} countries selected`
+                : state.filters.continent || 'All places';
         const years = state.filters.fromYear || state.filters.toYear
             ? `${state.filters.fromYear || 'earliest'}-${state.filters.toYear || 'latest'}`
             : 'All years';
@@ -494,14 +668,14 @@
         if (datasets.includes('art')) {
             const artStat = model.focusedTopic
                 ? calculateTopicShare(state.artRecords, state.filters, model.focusedTopic, state.metric, { countryPopulation: state.countryPopulation })
-                : { count: model.artFiltered.length, denominator: model.artBase.length, value: state.metric === 'share' ? null : model.artFiltered.length };
+                : calculateSelectionMetric(state.artRecords, state.filters, state.metric, state.countryPopulation);
             cards.push(summaryCard('ART', artStat, 'artworks', model.focusedTopic));
         }
         if (datasets.includes('science')) {
             if (state.scienceAvailable) {
                 const scienceStat = model.focusedTopic
                     ? calculateTopicShare(state.scienceRecords, state.filters, model.focusedTopic, state.metric, { countryPopulation: state.countryPopulation })
-                    : { count: model.scienceFiltered.length, denominator: model.scienceBase.length, value: state.metric === 'share' ? null : model.scienceFiltered.length };
+                    : calculateSelectionMetric(state.scienceRecords, state.filters, state.metric, state.countryPopulation);
                 cards.push(summaryCard('SCIENCE', scienceStat, 'publications', model.focusedTopic));
             } else {
                 cards.push(`<div class="analysis-summary-card"><span>SCIENCE</span><strong>N/A</strong><small>Science data unavailable</small></div>`);
@@ -535,11 +709,14 @@
     }
 
     function summaryCard(label, stat, noun, hasTopic) {
-        const primary = hasTopic
+        const useMetricValue = hasTopic || state.metric === 'perPopulation';
+        const primary = useMetricValue
             ? formatMetricValue(stat.value, state.metric)
             : stat.count.toLocaleString();
         const support = hasTopic && state.metric === 'share'
             ? `${stat.count.toLocaleString()} / ${stat.denominator.toLocaleString()} ${noun}`
+            : state.metric === 'perPopulation'
+                ? `${stat.count.toLocaleString()} ${noun} / selected countries`
             : `${stat.count.toLocaleString()} ${noun}`;
         return `
             <div class="analysis-summary-card">
@@ -552,8 +729,9 @@
 
     function renderAttentionOverTime(model) {
         const chartId = 'attentionOverTimeChart';
-        if (!model.focusedTopic) {
-            setEmpty('attentionOverTimeEmpty', 'Select exactly one Topic Cluster to compare attention over time.');
+        renderAttentionMethodNote();
+        if (model.timelineTopics.length === 0) {
+            setEmpty('attentionOverTimeEmpty', 'No Topic Cluster has enough records for an attention timeline in this selection.');
             purgePlot(chartId);
             return;
         }
@@ -564,47 +742,131 @@
         }
 
         setEmpty('attentionOverTimeEmpty', '');
-        const series = {
-            art: state.timeSeriesMode === 'smoothed' ? smoothYearlySeries(model.yearly.art) : model.yearly.art,
-            science: state.timeSeriesMode === 'smoothed' ? smoothYearlySeries(model.yearly.science) : model.yearly.science
-        };
         const traces = [];
         const metricLabel = state.metric === 'share'
-            ? 'share of records associated with selected topic'
+            ? 'yearly share of selected records associated with topic'
             : state.metric === 'perPopulation'
-                ? 'records per 1M inhabitants'
-                : 'unique records';
+                ? 'yearly records per 1M inhabitants'
+                : 'unique records in year';
 
-        if (getActiveDatasets().includes('art')) {
-            traces.push(yearlyTrace('Art', series.art, ART_SERIES_COLOR, 'circle', 'solid'));
-        }
-        if (getActiveDatasets().includes('science') && state.scienceAvailable) {
-            traces.push(yearlyTrace('Science', series.science, SCIENCE_SERIES_COLOR, 'diamond', 'dash'));
-        }
+        model.timelineTopics.forEach((topic, index) => {
+            const color = state.clusterColors[topic] || '#94a3b8';
+            const symbol = TIMELINE_SYMBOLS[index % TIMELINE_SYMBOLS.length];
+            const series = model.yearlyByTopic[topic] || { art: [], science: [] };
+            const artSeries = state.timeSeriesMode === 'smoothed' ? smoothYearlySeries(series.art) : series.art;
+            const scienceSeries = state.timeSeriesMode === 'smoothed' ? smoothYearlySeries(series.science) : series.science;
+
+            if (getActiveDatasets().includes('art')) {
+                traces.push(yearlyTrace({
+                    topic,
+                    dataset: state.mode === 'compare' ? 'Art' : '',
+                    datasetKey: 'art',
+                    series: artSeries,
+                    color,
+                    symbol,
+                    dash: 'solid'
+                }));
+            }
+            if (getActiveDatasets().includes('science') && state.scienceAvailable) {
+                traces.push(yearlyTrace({
+                    topic,
+                    dataset: state.mode === 'compare' ? 'Science' : '',
+                    datasetKey: 'science',
+                    series: scienceSeries,
+                    color,
+                    symbol: openMarkerSymbol(symbol),
+                    dash: 'dot'
+                }));
+            }
+        });
+
         if (traces.every(trace => trace.x.length === 0)) {
             setEmpty('attentionOverTimeEmpty', 'No yearly records match this selection.');
             purgePlot(chartId);
             return;
         }
 
+        const hiddenTopicCount = Math.max(0, (state.filters.topics.length || model.visibleTopics.length) - model.timelineTopics.length);
+        const focusNote = state.filters.topics.length > 0
+            ? `${model.timelineTopics.join(', ')}${hiddenTopicCount > 0 ? ` (+${hiddenTopicCount} more not shown)` : ''}`
+            : `Top ${model.timelineTopics.length} visible Topic Clusters`;
         plot(chartId, traces, {
+            title: {
+                text: `Timeline topics: ${focusNote}`,
+                font: { size: 14, color: '#cbd5e1' },
+                x: 0,
+                xanchor: 'left'
+            },
             xaxis: { title: 'Year', showgrid: false, zeroline: false },
             yaxis: { title: metricLabel, rangemode: 'tozero', ticksuffix: state.metric === 'share' ? '%' : '' },
             legend: { orientation: 'h', y: -0.25 }
         });
     }
 
-    function yearlyTrace(name, series, color, symbol, dash) {
+    function renderAttentionMethodNote() {
+        const intro = document.getElementById('attentionOverTimeIntro');
+        const note = document.getElementById('attentionOverTimeMethod');
+        if (!note) return;
+
+        if (state.metric === 'share') {
+            if (intro) {
+                intro.textContent = 'Each point is calculated within that year: topic records divided by all selected records in the same dataset year.';
+            }
+            note.textContent = state.timeSeriesMode === 'smoothed'
+                ? '3-YEAR AVG smooths each yearly share with the previous, current, and next observed years. The denominator for each raw point remains that dataset year only.'
+                : 'YEARLY shows raw annual shares: matching records in that year / all selected records in that same year.';
+            return;
+        }
+
+        if (state.metric === 'perPopulation') {
+            if (intro) {
+                intro.textContent = 'Each point shows annual topic records normalized by the combined population of the selected countries.';
+            }
+            note.textContent = state.timeSeriesMode === 'smoothed'
+                ? '3-YEAR AVG smooths annual records per 1M inhabitants across the previous, current, and next observed years.'
+                : 'YEARLY shows annual matching records per 1M inhabitants using the selected-country population denominator.';
+            return;
+        }
+
+        if (intro) {
+            intro.textContent = 'Each point shows the unique matching topic records in that year.';
+        }
+        note.textContent = state.timeSeriesMode === 'smoothed'
+            ? '3-YEAR AVG smooths annual unique record counts across the previous, current, and next observed years.'
+            : 'YEARLY shows raw unique matching record counts for each year.';
+    }
+
+    function openMarkerSymbol(symbol) {
+        return symbol.includes('-open') ? symbol : `${symbol}-open`;
+    }
+
+    function yearlyTrace({ topic, dataset, datasetKey, series, color, symbol, dash }) {
+        const isScience = datasetKey === 'science';
+        const traceName = dataset ? `${topic} · ${dataset}` : topic;
+        const valueLine = state.metric === 'share'
+            ? 'Yearly share: %{y:.2f}%'
+            : state.metric === 'perPopulation'
+                ? 'Records per 1M: %{y:.3f}'
+                : 'Unique records: %{y:.0f}';
+        const denominatorLine = state.metric === 'share'
+            ? '%{customdata[2]} / %{customdata[3]} records in this year'
+            : '%{customdata[2]} matching records in this year';
         return {
             x: series.map(point => point.year),
             y: series.map(point => point.value),
-            customdata: series.map(point => [point.count, point.denominator, point.lowSupport ? 'Low data support' : '']),
-            name,
+            customdata: series.map(point => [topic, dataset || state.mode.toUpperCase(), point.count, point.denominator, point.lowSupport ? 'Low data support' : '']),
+            name: traceName,
             type: 'scatter',
             mode: 'lines+markers',
-            line: { color, width: 3, dash },
-            marker: { color, symbol, size: 8 },
-            hovertemplate: `%{x}<br>${name}<br>%{customdata[0]} / %{customdata[1]} records<br>${state.metric === 'share' ? '%{y:.2f}%' : '%{y:.3f}'}<br>%{customdata[2]}<extra></extra>`
+            opacity: isScience ? 0.82 : 1,
+            line: { color, width: isScience ? 2.4 : 3.6, dash },
+            marker: {
+                color,
+                line: { color, width: isScience ? 2.4 : 1.2 },
+                symbol,
+                size: isScience ? 9 : 8
+            },
+            hovertemplate: `%{x}<br>%{customdata[0]} · %{customdata[1]}<br>${denominatorLine}<br>${valueLine}<br>%{customdata[4]}<extra></extra>`
         };
     }
 
@@ -682,7 +944,7 @@
         const traces = [];
         if (getActiveDatasets().includes('art')) {
             traces.push({
-                x: rows.map(row => state.mode === 'compare' ? -(row.art.value || 0) : row.art.value),
+                x: rows.map(row => row.art.value || 0),
                 y: rows.map(row => row.topic),
                 name: 'Art',
                 type: 'bar',
@@ -705,12 +967,13 @@
             });
         }
         plot(chartId, traces, {
-            barmode: 'relative',
+            barmode: state.mode === 'compare' ? 'group' : 'relative',
             xaxis: {
-                title: state.mode === 'compare' ? 'Art left · Science right' : metricAxisTitle(),
+                title: metricAxisTitle(),
                 ticksuffix: state.metric === 'share' ? '%' : '',
                 zeroline: true,
-                zerolinecolor: '#f8fafc'
+                zerolinecolor: '#f8fafc',
+                rangemode: 'tozero'
             },
             yaxis: { automargin: true, autorange: 'reversed' },
             legend: { orientation: 'h', y: -0.25 }
@@ -760,15 +1023,84 @@
         attachTopicClick(chartId);
     }
 
+    function renderGeographicTopics(model) {
+        const chartId = 'geographicTopicsChart';
+        const dataset = state.mode === 'science' ? 'science' : 'art';
+        const datasetLabel = dataset === 'science' ? 'Science' : 'Art';
+        const rows = model.geographicTopics[dataset] || [];
+        const topics = model.visibleTopics
+            .map(topic => {
+                const total = rows.reduce((sum, row) => sum + (row.topicValues[topic]?.value || 0), 0);
+                return { topic, total };
+            })
+            .filter(item => item.total > 0)
+            .sort((a, b) => b.total - a.total || a.topic.localeCompare(b.topic))
+            .slice(0, 8)
+            .map(item => item.topic);
+
+        if (rows.length === 0 || topics.length === 0) {
+            setEmpty('geographicTopicsEmpty', `No ${datasetLabel} geographic topic records match this selection.`);
+            purgePlot(chartId);
+            return;
+        }
+        setEmpty('geographicTopicsEmpty', '');
+
+        const traces = topics.map(topic => ({
+            x: rows.map(row => row.topicValues[topic]?.value || 0),
+            y: rows.map(row => row.label),
+            name: topic,
+            type: 'bar',
+            orientation: 'h',
+            marker: { color: state.clusterColors[topic] || '#94a3b8' },
+            customdata: rows.map(row => [
+                row.topicValues[topic]?.count || 0,
+                row.topicValues[topic]?.denominator || row.denominator,
+                datasetLabel
+            ]),
+            hovertemplate: `%{y}<br>%{customdata[2]} · ${topic}<br>%{customdata[0]} / %{customdata[1]} records${state.metric === 'share' ? '<br>%{x:.2f}%' : '<br>%{x:.3f}'}<extra></extra>`
+        }));
+
+        plot(chartId, traces, {
+            barmode: 'stack',
+            title: {
+                text: `${datasetLabel} topics by ${state.geographicTopicMode === 'continents' ? 'continent' : 'country'}`,
+                font: { size: 14, color: '#cbd5e1' },
+                x: 0,
+                xanchor: 'left'
+            },
+            xaxis: {
+                title: metricAxisTitle(),
+                ticksuffix: state.metric === 'share' ? '%' : '',
+                rangemode: 'tozero'
+            },
+            yaxis: { automargin: true, autorange: 'reversed' },
+            legend: { orientation: 'h', y: -0.25 }
+        });
+
+        const el = document.getElementById(chartId);
+        el?.on?.('plotly_click', event => {
+            const label = event.points?.[0]?.y;
+            const topic = event.points?.[0]?.data?.name;
+            if (label) {
+                if (state.geographicTopicMode === 'countries') {
+                    const countrySelect = document.getElementById('countrySelect');
+                    Array.from(countrySelect.options).forEach(option => {
+                        option.selected = option.value === label;
+                    });
+                } else {
+                    document.getElementById('continentSelect').value = label;
+                    setMultiSelectValues(document.getElementById('countrySelect'), []);
+                }
+            }
+            if (topic) setMultiSelectValues(document.getElementById('topicClusterSelect'), [topic]);
+            updateFromControls();
+        });
+    }
+
     function renderGeographicDifference(model) {
         const chartId = 'geographicDifferenceChart';
         if (state.mode !== 'compare') {
             setEmpty('geographicDifferenceEmpty', 'Geographic difference is shown in COMPARE mode.');
-            purgePlot(chartId);
-            return;
-        }
-        if (!model.focusedTopic) {
-            setEmpty('geographicDifferenceEmpty', 'Select exactly one Topic Cluster to rank geographic differences.');
             purgePlot(chartId);
             return;
         }
@@ -793,7 +1125,9 @@
             hovertemplate: '%{y}<br>Difference: %{x:.2f}<br>Art: %{customdata[0]} / %{customdata[1]}<br>Science: %{customdata[2]} / %{customdata[3]}<extra></extra>'
         }], {
             xaxis: {
-                title: state.metric === 'share' ? 'Higher Art share ← percentage-point difference → Higher Science share' : 'Art value minus Science value',
+                title: state.metric === 'share'
+                    ? (model.focusedTopic ? 'Higher Art topic share ← percentage-point difference → Higher Science topic share' : 'Higher Art place share ← percentage-point difference → Higher Science place share')
+                    : 'Art value minus Science value',
                 zeroline: true,
                 zerolinecolor: '#f8fafc',
                 ticksuffix: state.metric === 'share' ? ' pp' : ''
@@ -805,10 +1139,16 @@
             const label = event.points?.[0]?.y;
             if (!label) return;
             if (state.geographyMode === 'countries') {
-                document.getElementById('countrySelect').value = label;
+                const countrySelect = document.getElementById('countrySelect');
+                Array.from(countrySelect.options).forEach(option => {
+                    option.selected = option.value === label;
+                });
             } else {
                 document.getElementById('continentSelect').value = label;
-                document.getElementById('countrySelect').value = '';
+                const countrySelect = document.getElementById('countrySelect');
+                Array.from(countrySelect.options).forEach(option => {
+                    option.selected = option.value === '';
+                });
             }
             updateFromControls();
         });
@@ -915,6 +1255,10 @@
         if (!container) return;
         const records = state.evidenceMode === 'science' ? model.scienceFiltered : model.artFiltered;
         const noun = state.evidenceMode === 'science' ? 'publications' : 'artworks';
+        const summary = document.getElementById('evidenceSummaryText');
+        if (summary) {
+            summary.textContent = `${records.length.toLocaleString()} matching ${noun}; compact source list.`;
+        }
         if (records.length === 0) {
             container.innerHTML = `<div class="analysis-empty">No matching ${noun} for this selection.</div>`;
             return;
@@ -929,7 +1273,19 @@
                 </div>
                 ${record.url ? `<a class="btn btn-xs btn-outline btn-primary" href="${escapeHtml(record.url)}" target="_blank" rel="noopener">Open</a>` : ''}
             </article>
-        `).join('') + (records.length > MAX_EVIDENCE_ITEMS ? `<p class="text-sm opacity-70 mt-3">Showing ${MAX_EVIDENCE_ITEMS} of ${records.length.toLocaleString()} matching ${noun}.</p>` : '');
+        `).join('') + (records.length > MAX_EVIDENCE_ITEMS ? `<p class="text-xs opacity-70 mt-2">Showing ${MAX_EVIDENCE_ITEMS} of ${records.length.toLocaleString()} matching ${noun}.</p>` : '');
+    }
+
+    function renderModeVisibility() {
+        const compareActive = state.mode === 'compare';
+        document.querySelectorAll('.analysis-compare-only').forEach(section => {
+            section.classList.toggle('analysis-hidden', !compareActive);
+        });
+        document.getElementById('comparisonTopicGrid')?.classList.toggle('analysis-grid-single', !compareActive);
+
+        if (!compareActive) {
+            ['temporalShiftChart', 'topicDifferenceChart', 'geographicDifferenceChart'].forEach(purgePlot);
+        }
     }
 
     function metricAxisTitle() {
@@ -956,48 +1312,103 @@
 
     function updateCountryOptions() {
         const countrySelect = document.getElementById('countrySelect');
-        const current = countrySelect.value;
         Array.from(countrySelect.options).forEach(option => {
             if (!option.value) return;
             const continent = state.continentMapping[option.value] || 'Other';
             option.hidden = Boolean(state.filters.continent && continent !== state.filters.continent);
+            if (option.hidden && option.selected) option.selected = false;
         });
-        if (current && countrySelect.selectedOptions[0]?.hidden) countrySelect.value = '';
     }
 
     function selectedMultiValues(select) {
-        const values = Array.from(select.selectedOptions).map(option => option.value).filter(Boolean);
-        return values.includes('') ? [] : values;
+        const rawValues = Array.from(select.selectedOptions).map(option => option.value);
+        if (rawValues.includes('')) return [];
+        return rawValues.filter(Boolean);
+    }
+
+    function setMultiSelectValues(select, values) {
+        const selected = new Set(values || []);
+        Array.from(select.options).forEach(option => {
+            option.selected = selected.size === 0 ? option.value === '' : selected.has(option.value);
+        });
+    }
+
+    function setGeographicTopicMode(mode) {
+        state.geographicTopicMode = mode === 'continents' ? 'continents' : 'countries';
+        document.querySelectorAll('[data-geographic-topic-mode]').forEach(button => {
+            button.classList.toggle('btn-active', button.dataset.geographicTopicMode === state.geographicTopicMode);
+        });
+    }
+
+    function defaultMetricForMode(mode = state.mode) {
+        return mode === 'compare' ? 'share' : 'absolute';
+    }
+
+    function syncMetricControls() {
+        const shareInput = document.querySelector('input[name="metricMode"][value="share"]');
+        const absoluteInput = document.querySelector('input[name="metricMode"][value="absolute"]');
+        const perPopulationInput = document.querySelector('input[name="metricMode"][value="perPopulation"]');
+        const note = document.getElementById('metricModeNote');
+        const compareActive = state.mode === 'compare';
+        const setMetricVisibility = (input, visible) => {
+            if (!input) return;
+            input.disabled = !visible;
+            input.hidden = !visible;
+            input.classList.toggle('analysis-hidden', !visible);
+        };
+
+        setMetricVisibility(shareInput, compareActive);
+        setMetricVisibility(absoluteInput, !compareActive);
+        setMetricVisibility(perPopulationInput, !compareActive);
+
+        if (compareActive && shareInput && !shareInput.checked) {
+            shareInput.checked = true;
+        }
+        if (!compareActive && shareInput?.checked && absoluteInput) {
+            absoluteInput.checked = true;
+        }
+
+        if (note) {
+            note.textContent = compareActive
+                ? 'Compare mode uses within-dataset shares only.'
+                : 'Single-dataset views use counts or population-normalized counts.';
+        }
     }
 
     function updateFromControls(pushUrl = true) {
         state.mode = document.querySelector('input[name="analysisMode"]:checked')?.value || 'compare';
-        state.metric = document.querySelector('input[name="metricMode"]:checked')?.value || 'share';
+        syncMetricControls();
+        state.metric = document.querySelector('input[name="metricMode"]:checked')?.value || defaultMetricForMode();
         state.geographyMode = document.querySelector('input[name="geographyMode"]:checked')?.value || 'countries';
         state.relationshipMode = document.querySelector('input[name="relationshipMode"]:checked')?.value || 'art';
         state.evidenceMode = document.querySelector('input[name="evidenceMode"]:checked')?.value || 'art';
         state.timeSeriesMode = document.querySelector('input[name="timeSeriesMode"]:checked')?.value || 'raw';
         state.filters.continent = document.getElementById('continentSelect').value;
-        state.filters.country = document.getElementById('countrySelect').value;
+        state.filters.countries = selectedMultiValues(document.getElementById('countrySelect'));
         state.filters.topics = selectedMultiValues(document.getElementById('topicClusterSelect'));
         state.filters.fromYear = toNumber(document.getElementById('yearFrom').value);
         state.filters.toYear = toNumber(document.getElementById('yearTo').value);
 
         updateCountryOptions();
+        state.filters.countries = selectedMultiValues(document.getElementById('countrySelect'));
         if (pushUrl) writeUrlState();
         renderAll();
     }
 
     function renderAll() {
         const model = buildAnalysisModel();
+        renderModeVisibility();
         renderScienceStatus();
         renderSelectionSummary(model);
         renderAttentionOverTime(model);
-        renderTemporalShift(model);
         renderTopicRepresentation(model);
-        renderTopicDifference(model);
-        renderGeographicDifference(model);
-        renderInterestingPatterns(model);
+        renderGeographicTopics(model);
+        if (state.mode === 'compare') {
+            renderTemporalShift(model);
+            renderTopicDifference(model);
+            renderGeographicDifference(model);
+            renderInterestingPatterns(model);
+        }
         renderThemeRelationships(model);
         renderEvidence(model);
     }
@@ -1038,25 +1449,23 @@
             document.querySelector(`input[name="metricMode"][value="${normalizedMetric}"]`).checked = true;
         }
         document.getElementById('continentSelect').value = params.get('continent') || '';
-        document.getElementById('countrySelect').value = params.get('country') || '';
+        const countryParam = params.get('countries') || params.get('country') || '';
+        setMultiSelectValues(document.getElementById('countrySelect'), countryParam.split(',').map(value => value.trim()).filter(Boolean));
         document.getElementById('yearFrom').value = fromYear != null && fromYear >= 1600 ? fromYear : '';
         document.getElementById('yearTo').value = toYear != null && toYear >= 1600 ? toYear : '';
 
         if (topicParam) {
             const requested = topicParam.split(',').map(value => value.trim()).filter(Boolean);
-            const select = document.getElementById('topicClusterSelect');
-            Array.from(select.options).forEach(option => {
-                option.selected = requested.includes(option.value);
-            });
+            setMultiSelectValues(document.getElementById('topicClusterSelect'), requested);
         }
     }
 
     function writeUrlState() {
         const params = new URLSearchParams();
         if (state.mode !== 'compare') params.set('mode', state.mode);
-        if (state.metric !== 'share') params.set('metric', state.metric);
+        if (state.metric !== defaultMetricForMode()) params.set('metric', state.metric);
         if (state.filters.continent) params.set('continent', state.filters.continent);
-        if (state.filters.country) params.set('country', state.filters.country);
+        if (state.filters.countries.length > 0) params.set('countries', state.filters.countries.join(','));
         if (state.filters.topics.length > 0) params.set('topics', state.filters.topics.join(','));
         if (state.filters.fromYear != null) params.set('from', state.filters.fromYear);
         if (state.filters.toYear != null) params.set('to', state.filters.toYear);
@@ -1070,15 +1479,14 @@
         document.querySelector('input[name="metricMode"][value="share"]').checked = true;
         document.querySelector('input[name="timeSeriesMode"][value="raw"]').checked = true;
         document.querySelector('input[name="geographyMode"][value="countries"]').checked = true;
+        setGeographicTopicMode('countries');
         document.querySelector('input[name="relationshipMode"][value="art"]').checked = true;
         document.querySelector('input[name="evidenceMode"][value="art"]').checked = true;
         document.getElementById('continentSelect').value = '';
-        document.getElementById('countrySelect').value = '';
+        setMultiSelectValues(document.getElementById('countrySelect'), []);
         document.getElementById('yearFrom').value = '';
         document.getElementById('yearTo').value = '';
-        Array.from(document.getElementById('topicClusterSelect').options).forEach(option => {
-            option.selected = option.value === '';
-        });
+        setMultiSelectValues(document.getElementById('topicClusterSelect'), []);
         updateFromControls();
     }
 
@@ -1100,6 +1508,13 @@
         ].forEach(name => {
             document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
                 input.addEventListener('change', () => updateFromControls());
+            });
+        });
+        document.querySelectorAll('[data-geographic-topic-mode]').forEach(button => {
+            button.addEventListener('click', () => {
+                setGeographicTopicMode(button.dataset.geographicTopicMode);
+                writeUrlState();
+                renderAll();
             });
         });
         document.getElementById('resetFilters').addEventListener('click', resetFilters);
@@ -1130,6 +1545,7 @@
         readUrlState();
         wireControls();
         updateFromControls(false);
+        writeUrlState();
     }
 
     const api = {
