@@ -7670,6 +7670,199 @@
                     "review_note": "Curated regional artwork expansion, September 2026."
                 }
             }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    36.8167,
+                    -1.2833
+                ]
+            },
+            "properties": {
+                "title": "Nairobi Space Station",
+                "description": "A speculative urban-futures project exploring Nairobi through art, design and practical ecological interventions, including local-material innovation, water rights and scarcity, and rewilding inner-city areas.",
+                "artist": "Kairos Futura",
+                "type": "Participatory Art / Performance / Design",
+                "location": "Nairobi, Kenya",
+                "year": 2022,
+                "tags": {
+                    "topic": [
+                        "Urban Futures",
+                        "Water Scarcity",
+                        "Water Management",
+                        "Green Spaces",
+                        "Sustainable Design"
+                    ],
+                    "artform": [
+                        "Participatory Art",
+                        "Performance",
+                        "Design"
+                    ]
+                },
+                "url": "https://www.thefutureisonearth.org/space-stations",
+                "thumbnail": "",
+                "sources": [
+                    {
+                        "url": "https://www.thefutureisonearth.org/space-stations",
+                        "type": "official",
+                        "accessed_at": "2026-09-29"
+                    },
+                    {
+                        "url": "https://dakartnews.com/",
+                        "type": "reference",
+                        "accessed_at": "2026-09-29"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": false
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    36.89872,
+                    -1.30013
+                ]
+            },
+            "properties": {
+                "title": "MtaaZillas",
+                "description": "A participatory speculative-design project in Nairobi's Mukuru informal settlement that reimagines local trash collectors as community superheroes confronting plastic pollution through superhero-inspired protective wear and storytelling.",
+                "artist": "Muli / Kairos Futura",
+                "type": "Participatory Design / Performance",
+                "location": "Mukuru, Nairobi, Kenya",
+                "year": 2025,
+                "tags": {
+                    "topic": [
+                        "Plastic Pollution",
+                        "Waste Management",
+                        "Environmental Awareness"
+                    ],
+                    "artform": [
+                        "Participatory Art",
+                        "Design",
+                        "Performance"
+                    ]
+                },
+                "url": "https://dakartnews.com/",
+                "thumbnail": "",
+                "sources": [
+                    {
+                        "url": "https://dakartnews.com/",
+                        "type": "reference",
+                        "accessed_at": "2026-09-29"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": false
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    37.96553,
+                    -2.41034
+                ]
+            },
+            "properties": {
+                "title": "The Human Nest",
+                "description": "A human-scale architectural shelter created for Kairos Futura's Chyulu Imagination Safari. Hand-woven from locally sourced grass over a welded metal frame and modeled on a weaverbird nest, it explores biomimicry and natural materials in sustainable housing.",
+                "artist": "Purity Musau / Kairos Futura",
+                "type": "Architectural Installation",
+                "location": "Kibwezi, Kenya",
+                "year": 2026,
+                "tags": {
+                    "topic": [
+                        "Biomimicry",
+                        "Sustainable Design",
+                        "Sustainable Practices",
+                        "Human-Nature Interaction"
+                    ],
+                    "artform": [
+                        "Architecture",
+                        "Installation",
+                        "Design"
+                    ]
+                },
+                "url": "https://dakartnews.com/",
+                "thumbnail": "",
+                "sources": [
+                    {
+                        "url": "https://dakartnews.com/",
+                        "type": "reference",
+                        "accessed_at": "2026-09-29"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": false
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    36.8167,
+                    -1.2833
+                ]
+            },
+            "properties": {
+                "title": "The Wild Future Lab",
+                "description": "An ongoing speculative worldbuilding and design project imagining Nairobi in 2045 as a rewilded, regenerative city. It brings together locally made materials, textiles, fashion, biomimetic design and practical prototyping to explore ecological resilience and post-extractive urban futures.",
+                "artist": "Kairos Futura",
+                "type": "Speculative Design / Fashion / Installation",
+                "location": "Nairobi, Kenya",
+                "year": 2023,
+                "tags": {
+                    "topic": [
+                        "Urban Futures",
+                        "Biomimicry",
+                        "Sustainable Design",
+                        "Climate Resilience",
+                        "Urban Ecology"
+                    ],
+                    "artform": [
+                        "Design",
+                        "Fashion",
+                        "Installation",
+                        "Participatory Art"
+                    ]
+                },
+                "url": "https://www.thefutureisonearth.org/wild-future-labs",
+                "thumbnail": "",
+                "sources": [
+                    {
+                        "url": "https://www.thefutureisonearth.org/wild-future-labs",
+                        "type": "official",
+                        "accessed_at": "2026-09-29"
+                    },
+                    {
+                        "url": "https://starts-prize-call.aec.at/2025/winners/15218/",
+                        "type": "reference",
+                        "accessed_at": "2026-09-29"
+                    },
+                    {
+                        "url": "https://dakartnews.com/",
+                        "type": "reference",
+                        "accessed_at": "2026-09-29"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": false
+                }
+            }
         }
     ]
 }
