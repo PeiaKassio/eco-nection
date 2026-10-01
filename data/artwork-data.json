@@ -4776,7 +4776,8 @@
                 "tags": {
                     "topic": [
                         "Waste Management",
-                        "Public Health"
+                        "Public Health",
+                        "Care Work"
                     ],
                     "artform": [
                         "Performance"
@@ -5977,7 +5978,9 @@
                         "Sustainability",
                         "Soil",
                         "Ecofeminism",
-                        "Human-Nature Interaction"
+                        "Human-Nature Interaction",
+                        "Feminist Ecology",
+                        "Care Ethics"
                     ],
                     "artform": [
                         "Textile Art",
@@ -6206,7 +6209,8 @@
                         "Climate Action",
                         "Environmental Awareness",
                         "Sustainability",
-                        "Social-Environmental Justice"
+                        "Social-Environmental Justice",
+                        "Feminism"
                     ],
                     "artform": [
                         "Performance",
@@ -7502,7 +7506,8 @@
                         "Coral Bleaching",
                         "Ocean Conservation",
                         "Climate Change",
-                        "Marine Ecosystems"
+                        "Marine Ecosystems",
+                        "Care Ethics"
                     ],
                     "artform": [
                         "Installation",
@@ -7862,6 +7867,38 @@
                     "status": "published",
                     "human_verified": true
                 }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.5946,
+                    12.9716
+                ]
+            },
+            "properties": {
+                "title": "Veppa Marathadiyila",
+                "description": "A multilingual Tamil-Kannada folk-rap track exploring climate change and climate injustice through lived experiences in and around Bengaluru. The song addresses disappearing lakes, groundwater extraction, tree loss, extreme heat, floods and water scarcity, while asking who is able to escape the consequences of the climate crisis and who is left to bear them.",
+                "artist": "Sollisai Sistahs",
+                "type": "Song",
+                "location": "Bengaluru, India",
+                "year": 2026,
+                "tags": {
+                    "topic": [
+                        "Climate Change",
+                        "Climate Action",
+                        "Environmental Awareness",
+                        "Water Scarcity",
+                        "Environmental Justice"
+                    ],
+                    "artform": [
+                        "Music"
+                    ]
+                },
+                "url": "https://linktr.ee/youthkiawaaz",
+                "thumbnail": ""
             }
         }
     ]

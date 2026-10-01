@@ -1,5 +1,5 @@
 const EcoData = (() => {
-    const DATA_VERSION = '20260923-regional-data-expansion';
+    const DATA_VERSION = '20261001-topic-taxonomy';
     const DATA_PATHS = {
         artworkData: 'data/artwork-data.json',
         topicClusters: 'data/topicClusters.json',
