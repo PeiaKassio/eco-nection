@@ -8,6 +8,7 @@
     const MAX_TIMELINE_TOPICS = 6;
     const MAX_TOPIC_FREQUENCY = 18;
     const MAX_TOPIC_MATRIX = 14;
+    const MAX_CLUSTER_MATRIX = 12;
 
     const SCIENCE_NEUTRAL_COLOR = '#14b8a6';
     const ART_SERIES_COLOR = '#f59e0b';
@@ -1201,39 +1202,14 @@
 
     function renderThemeRelationships(model) {
         const records = state.relationshipMode === 'science' ? model.scienceFiltered : model.artFiltered;
-        const container = document.getElementById('coOccurrenceNetwork');
-        if (!container || !root.vis) return;
-        const nodes = [];
-        const edges = [];
-        const nodeSet = new Set();
+        const datasetLabel = state.relationshipMode === 'science' ? 'Science' : 'Art';
+        const clusterCounts = new Map();
         const edgeCounts = new Map();
 
         records.forEach(record => {
             const clusters = uniq(record.clusters).sort();
             clusters.forEach(cluster => {
-                if (!nodeSet.has(cluster)) {
-                    nodeSet.add(cluster);
-                    nodes.push({
-                        id: cluster,
-                        label: cluster,
-                        color: {
-                            background: state.clusterColors[cluster] || '#94a3b8',
-                            border: '#f8fafc',
-                            highlight: {
-                                background: state.clusterColors[cluster] || '#94a3b8',
-                                border: '#ffffff'
-                            }
-                        },
-                        font: {
-                            color: '#f8fafc',
-                            size: 17,
-                            face: 'Inter, system-ui, sans-serif',
-                            strokeWidth: 4,
-                            strokeColor: '#111827',
-                            vadjust: -8
-                        }
-                    });
-                }
+                clusterCounts.set(cluster, (clusterCounts.get(cluster) || 0) + 1);
             });
             for (let i = 0; i < clusters.length; i += 1) {
                 for (let j = i + 1; j < clusters.length; j += 1) {
@@ -1243,63 +1219,91 @@
             }
         });
 
-        edgeCounts.forEach((value, key) => {
-            const [from, to] = key.split('::');
-            edges.push({ from, to, value, width: Math.min(1 + value * 0.35, 8), title: `${value} co-occurrence(s)` });
-        });
+        const rows = Array.from(clusterCounts.entries())
+            .map(([cluster, count]) => ({ cluster, count }))
+            .sort((a, b) => b.count - a.count || a.cluster.localeCompare(b.cluster));
 
-        if (nodes.length === 0) {
-            setEmpty('themeRelationshipsEmpty', `No ${state.relationshipMode === 'science' ? 'Science' : 'Art'} records available for this relationship view.`);
-            container.innerHTML = '';
+        if (rows.length === 0) {
+            setEmpty('themeRelationshipsEmpty', `No ${datasetLabel} cluster records available for this relationship view.`);
+            purgePlot('clusterFrequencyChart');
+            purgePlot('clusterCoOccurrenceMatrix');
             return;
         }
         setEmpty('themeRelationshipsEmpty', '');
-        if (state.network?.destroy) state.network.destroy();
-        state.network = new root.vis.Network(container, {
-            nodes: new root.vis.DataSet(nodes),
-            edges: new root.vis.DataSet(edges)
-        }, {
-            autoResize: true,
-            layout: { improvedLayout: true },
-            nodes: {
-                shape: 'dot',
-                size: 22,
-                borderWidth: 2,
-                margin: 10
+
+        const frequencyRows = rows.slice().reverse();
+        plot('clusterFrequencyChart', [{
+            x: frequencyRows.map(row => row.count),
+            y: frequencyRows.map(row => row.cluster),
+            type: 'bar',
+            orientation: 'h',
+            marker: { color: frequencyRows.map(row => state.clusterColors[row.cluster] || '#94a3b8') },
+            hovertemplate: '%{y}<br>%{x} record(s)<extra></extra>'
+        }], {
+            title: {
+                text: `${datasetLabel} clusters by record count`,
+                font: { size: 14, color: '#cbd5e1' },
+                x: 0,
+                xanchor: 'left'
             },
-            edges: {
-                color: { color: 'rgba(148, 163, 184, 0.74)', highlight: '#f8fafc' },
-                smooth: { type: 'dynamic', roundness: 0.35 },
-                scaling: { min: 1, max: 8 }
-            },
-            physics: {
-                solver: 'repulsion',
-                repulsion: {
-                    nodeDistance: 185,
-                    centralGravity: 0.08,
-                    springLength: 170,
-                    springConstant: 0.045,
-                    damping: 0.18
-                },
-                stabilization: { iterations: 220, fit: true }
-            },
-            interaction: {
-                hover: true,
-                tooltipDelay: 80
-            }
+            xaxis: { title: 'Records', rangemode: 'tozero' },
+            yaxis: { automargin: true },
+            margin: { l: 170, r: 24, t: 42, b: 44 }
         });
-        state.network.once('stabilizationIterationsDone', () => {
-            state.network.setOptions({ physics: false });
-            state.network.fit({ animation: false });
-            state.network.moveTo({ scale: 1.05 });
+
+        const clusterFrequencyEl = document.getElementById('clusterFrequencyChart');
+        clusterFrequencyEl?.on?.('plotly_click', event => {
+            const cluster = event.points?.[0]?.y;
+            if (!cluster) return;
+            setMultiSelectValues(document.getElementById('topicClusterSelect'), [cluster]);
+            updateFromControls();
+        });
+
+        const matrixRows = rows.slice(0, MAX_CLUSTER_MATRIX);
+        const matrixClusters = matrixRows.map(row => row.cluster);
+        const matrix = matrixClusters.map(rowCluster => matrixClusters.map(columnCluster => {
+            if (rowCluster === columnCluster) return clusterCounts.get(rowCluster) || 0;
+            const key = [rowCluster, columnCluster].sort().join('::');
+            return edgeCounts.get(key) || 0;
+        }));
+
+        plot('clusterCoOccurrenceMatrix', [{
+            x: matrixClusters,
+            y: matrixClusters,
+            z: matrix,
+            type: 'heatmap',
+            colorscale: [
+                [0, 'rgba(15, 23, 42, 0.2)'],
+                [0.35, '#0f766e'],
+                [1, '#f59e0b']
+            ],
+            hovertemplate: 'Cluster: %{y}<br>With: %{x}<br>Records: %{z}<extra></extra>'
+        }], {
+            title: {
+                text: `${datasetLabel} cluster co-occurrence`,
+                font: { size: 14, color: '#cbd5e1' },
+                x: 0,
+                xanchor: 'left'
+            },
+            xaxis: { automargin: true, tickangle: -35 },
+            yaxis: { automargin: true },
+            margin: { l: 145, r: 24, t: 42, b: 105 }
         });
     }
 
     function renderTopicRelationships(model) {
+        const selectedClusters = (state.filters.topics || []).filter(cluster => state.topicClusters[cluster]);
         const records = state.relationshipMode === 'science' ? model.scienceFiltered : model.artFiltered;
         const datasetLabel = state.relationshipMode === 'science' ? 'Science' : 'Art';
         const topicCounts = new Map();
         const edgeCounts = new Map();
+
+        if (selectedClusters.length === 0) {
+            setEmpty('topicRelationshipsEmpty', 'Select a Topic Cluster, for example Biodiversity, to inspect which topics occur most often inside it.');
+            purgePlot('topicFrequencyChart');
+            purgePlot('topicCoOccurrenceMatrix');
+            return;
+        }
 
         records.forEach(record => {
             const topics = getRecordTopicsForTopicView(record).sort();
@@ -1330,6 +1334,9 @@
         }
         setEmpty('topicRelationshipsEmpty', '');
 
+        const contextLabel = selectedClusters.length === 1
+            ? selectedClusters[0]
+            : `${selectedClusters.length} selected clusters`;
         const frequencyRows = rows.slice(0, MAX_TOPIC_FREQUENCY).reverse();
         plot('topicFrequencyChart', [{
             x: frequencyRows.map(row => row.count),
@@ -1341,7 +1348,7 @@
             hovertemplate: '%{y}<br>%{x} record(s)<br>Cluster: %{customdata}<extra></extra>'
         }], {
             title: {
-                text: `${datasetLabel} topics by record count`,
+                text: `${datasetLabel} topics inside ${contextLabel}`,
                 font: { size: 14, color: '#cbd5e1' },
                 x: 0,
                 xanchor: 'left'
@@ -1381,7 +1388,7 @@
             hovertemplate: 'Topic: %{y}<br>With: %{x}<br>Records: %{z}<extra></extra>'
         }], {
             title: {
-                text: `${datasetLabel} topic co-occurrence`,
+                text: `${datasetLabel} topic co-occurrence inside ${contextLabel}`,
                 font: { size: 14, color: '#cbd5e1' },
                 x: 0,
                 xanchor: 'left'
