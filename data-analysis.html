@@ -10,7 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist"></script>
-    <script src="https://unpkg.com/vis-network/dist/vis-network.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link rel="stylesheet" href="style.css?v=20261001-topic-taxonomy">
 </head>
@@ -23,7 +22,7 @@
                 </div>
                 <ul tabindex="0" class="menu menu-sm dropdown-content gap-y-3 bg-base-300 rounded-box z-20 mt-3 w-48 shadow">
                     <li><a class="btn btn-primary justify-start" href="index.html"><i class="ti ti-compass text-xl"></i>Explore</a></li>
-                    <li><a class="btn btn-primary justify-start" href="data-analysis.html"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
+                    <li><a class="btn btn-primary justify-start" href="data-analysis.html?v=20261001-cluster-topic-view"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
                     <li><a class="btn btn-primary justify-start" href="submit-artwork.html"><i class="ti ti-upload text-xl"></i>Submit</a></li>
                 </ul>
             </div>
@@ -39,7 +38,7 @@
             </div>
             <ul class="hidden lg:flex menu menu-horizontal px-1 gap-x-4">
                 <li><a class="btn btn-primary" href="index.html"><i class="ti ti-compass text-xl"></i>Explore</a></li>
-                <li><a class="btn btn-primary" href="data-analysis.html"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
+                <li><a class="btn btn-primary" href="data-analysis.html?v=20261001-cluster-topic-view"><i class="ti ti-chart-dots-2 text-xl"></i>Data</a></li>
                 <li><a class="btn btn-primary" href="submit-artwork.html"><i class="ti ti-upload text-xl"></i>Submit</a></li>
             </ul>
         </div>
@@ -228,13 +227,13 @@
             <div class="analysis-section-heading">
                 <div>
                     <h2>Topic relationships</h2>
-                    <p>Topic frequency and co-occurrence inside selected clusters, such as Biodiversity.</p>
+                    <p>Topic frequency inside selected clusters and the strongest topic pairs connected to them.</p>
                 </div>
             </div>
             <div id="topicRelationshipsEmpty" class="analysis-empty hidden"></div>
             <div class="analysis-grid-2">
                 <div id="topicFrequencyChart" class="analysis-plot analysis-plot-compact"></div>
-                <div id="topicCoOccurrenceMatrix" class="analysis-plot analysis-plot-compact"></div>
+                <div id="topicPairChart" class="analysis-plot analysis-plot-compact"></div>
             </div>
         </section>
 
@@ -282,6 +281,6 @@
     </dialog>
 
     <script src="assets/js/shared-data.js?v=20261001-topic-taxonomy"></script>
-    <script src="assets/js/data-analysis.js?v=20261001-cluster-topic-view"></script>
+    <script src="assets/js/data-analysis.js?v=20261001-topic-pairs"></script>
 </body>
 </html>

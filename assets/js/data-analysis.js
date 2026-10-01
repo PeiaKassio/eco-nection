@@ -7,7 +7,7 @@
     const MAX_EVIDENCE_ITEMS = 6;
     const MAX_TIMELINE_TOPICS = 6;
     const MAX_TOPIC_FREQUENCY = 18;
-    const MAX_TOPIC_MATRIX = 14;
+    const MAX_TOPIC_PAIRS = 18;
     const MAX_CLUSTER_MATRIX = 12;
 
     const SCIENCE_NEUTRAL_COLOR = '#14b8a6';
@@ -80,15 +80,15 @@
             .find(cluster => (state.topicClusters[cluster]?.topics || []).includes(topic)) || '';
     }
 
-    function topicMatchesSelectedClusters(topic) {
-        if (!state.filters.topics || state.filters.topics.length === 0) return true;
-        return state.filters.topics.includes(getTopicCluster(topic));
+    function topicMatchesClusters(topic, clusters = state.filters.topics) {
+        if (!clusters || clusters.length === 0) return true;
+        return clusters.includes(getTopicCluster(topic));
     }
 
     function getRecordTopicsForTopicView(record) {
         return uniq(record.topics || [])
             .filter(topic => getTopicCluster(topic))
-            .filter(topicMatchesSelectedClusters);
+            .filter(topic => topicMatchesClusters(topic));
     }
 
     function formatPercent(value) {
@@ -1296,24 +1296,34 @@
         const records = state.relationshipMode === 'science' ? model.scienceFiltered : model.artFiltered;
         const datasetLabel = state.relationshipMode === 'science' ? 'Science' : 'Art';
         const topicCounts = new Map();
-        const edgeCounts = new Map();
+        const pairCounts = new Map();
+        const selectedClusterSet = new Set(selectedClusters);
 
         if (selectedClusters.length === 0) {
             setEmpty('topicRelationshipsEmpty', 'Select a Topic Cluster, for example Biodiversity, to inspect which topics occur most often inside it.');
             purgePlot('topicFrequencyChart');
-            purgePlot('topicCoOccurrenceMatrix');
+            purgePlot('topicPairChart');
             return;
         }
 
         records.forEach(record => {
-            const topics = getRecordTopicsForTopicView(record).sort();
-            topics.forEach(topic => {
+            const clusterTopics = getRecordTopicsForTopicView(record).sort();
+            const recordTopics = uniq(record.topics || [])
+                .filter(topic => getTopicCluster(topic))
+                .sort();
+
+            clusterTopics.forEach(topic => {
                 topicCounts.set(topic, (topicCounts.get(topic) || 0) + 1);
             });
-            for (let i = 0; i < topics.length; i += 1) {
-                for (let j = i + 1; j < topics.length; j += 1) {
-                    const key = [topics[i], topics[j]].join('::');
-                    edgeCounts.set(key, (edgeCounts.get(key) || 0) + 1);
+            for (let i = 0; i < recordTopics.length; i += 1) {
+                for (let j = i + 1; j < recordTopics.length; j += 1) {
+                    const first = recordTopics[i];
+                    const second = recordTopics[j];
+                    const firstCluster = getTopicCluster(first);
+                    const secondCluster = getTopicCluster(second);
+                    if (!selectedClusterSet.has(firstCluster) && !selectedClusterSet.has(secondCluster)) continue;
+                    const key = [first, second].sort().join('::');
+                    pairCounts.set(key, (pairCounts.get(key) || 0) + 1);
                 }
             }
         });
@@ -1329,7 +1339,7 @@
         if (rows.length === 0) {
             setEmpty('topicRelationshipsEmpty', `No ${datasetLabel} topic records available for this topic view.`);
             purgePlot('topicFrequencyChart');
-            purgePlot('topicCoOccurrenceMatrix');
+            purgePlot('topicPairChart');
             return;
         }
         setEmpty('topicRelationshipsEmpty', '');
@@ -1367,35 +1377,53 @@
             updateFromControls();
         });
 
-        const matrixRows = rows.slice(0, MAX_TOPIC_MATRIX);
-        const matrixTopics = matrixRows.map(row => row.topic);
-        const matrix = matrixTopics.map(rowTopic => matrixTopics.map(columnTopic => {
-            if (rowTopic === columnTopic) return topicCounts.get(rowTopic) || 0;
-            const key = [rowTopic, columnTopic].sort().join('::');
-            return edgeCounts.get(key) || 0;
-        }));
+        const pairRows = Array.from(pairCounts.entries())
+            .map(([key, count]) => {
+                const [first, second] = key.split('::');
+                const firstCluster = getTopicCluster(first);
+                const secondCluster = getTopicCluster(second);
+                return {
+                    first,
+                    second,
+                    firstCluster,
+                    secondCluster,
+                    label: `${first} + ${second}`,
+                    count
+                };
+            })
+            .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label))
+            .slice(0, MAX_TOPIC_PAIRS)
+            .reverse();
 
-        plot('topicCoOccurrenceMatrix', [{
-            x: matrixTopics,
-            y: matrixTopics,
-            z: matrix,
-            type: 'heatmap',
-            colorscale: [
-                [0, 'rgba(15, 23, 42, 0.2)'],
-                [0.35, '#0f766e'],
-                [1, '#f59e0b']
-            ],
-            hovertemplate: 'Topic: %{y}<br>With: %{x}<br>Records: %{z}<extra></extra>'
+        if (pairRows.length === 0) {
+            setEmpty('topicRelationshipsEmpty', `No ${datasetLabel} topic pairs available inside ${contextLabel}.`);
+            purgePlot('topicPairChart');
+            return;
+        }
+
+        plot('topicPairChart', [{
+            x: pairRows.map(row => row.count),
+            y: pairRows.map(row => row.label),
+            type: 'bar',
+            orientation: 'h',
+            marker: {
+                color: pairRows.map(row => {
+                    if (row.firstCluster === row.secondCluster) return state.clusterColors[row.firstCluster] || '#94a3b8';
+                    return '#2dd4bf';
+                })
+            },
+            customdata: pairRows.map(row => [row.firstCluster, row.secondCluster]),
+            hovertemplate: '%{y}<br>%{x} shared record(s)<br>%{customdata[0]} + %{customdata[1]}<extra></extra>'
         }], {
             title: {
-                text: `${datasetLabel} topic co-occurrence inside ${contextLabel}`,
+                text: `${datasetLabel} strongest topic pairs linked to ${contextLabel}`,
                 font: { size: 14, color: '#cbd5e1' },
                 x: 0,
                 xanchor: 'left'
             },
-            xaxis: { automargin: true, tickangle: -35 },
+            xaxis: { title: 'Shared records', rangemode: 'tozero' },
             yaxis: { automargin: true },
-            margin: { l: 150, r: 24, t: 42, b: 110 }
+            margin: { l: 260, r: 24, t: 42, b: 44 }
         });
     }
 
