@@ -6,6 +6,8 @@
     const SMOOTHING_WINDOW_RADIUS = 1;
     const MAX_EVIDENCE_ITEMS = 6;
     const MAX_TIMELINE_TOPICS = 6;
+    const MAX_TOPIC_FREQUENCY = 18;
+    const MAX_TOPIC_MATRIX = 14;
 
     const SCIENCE_NEUTRAL_COLOR = '#14b8a6';
     const ART_SERIES_COLOR = '#f59e0b';
@@ -70,6 +72,22 @@
 
     function getRecordClusterSet(record) {
         return new Set(record.clusters || []);
+    }
+
+    function getTopicCluster(topic) {
+        return Object.keys(state.topicClusters)
+            .find(cluster => (state.topicClusters[cluster]?.topics || []).includes(topic)) || '';
+    }
+
+    function topicMatchesSelectedClusters(topic) {
+        if (!state.filters.topics || state.filters.topics.length === 0) return true;
+        return state.filters.topics.includes(getTopicCluster(topic));
+    }
+
+    function getRecordTopicsForTopicView(record) {
+        return uniq(record.topics || [])
+            .filter(topic => getTopicCluster(topic))
+            .filter(topicMatchesSelectedClusters);
     }
 
     function formatPercent(value) {
@@ -1195,7 +1213,26 @@
             clusters.forEach(cluster => {
                 if (!nodeSet.has(cluster)) {
                     nodeSet.add(cluster);
-                    nodes.push({ id: cluster, label: cluster, color: state.clusterColors[cluster] || '#94a3b8', font: { color: '#f8fafc' } });
+                    nodes.push({
+                        id: cluster,
+                        label: cluster,
+                        color: {
+                            background: state.clusterColors[cluster] || '#94a3b8',
+                            border: '#f8fafc',
+                            highlight: {
+                                background: state.clusterColors[cluster] || '#94a3b8',
+                                border: '#ffffff'
+                            }
+                        },
+                        font: {
+                            color: '#f8fafc',
+                            size: 17,
+                            face: 'Inter, system-ui, sans-serif',
+                            strokeWidth: 4,
+                            strokeColor: '#111827',
+                            vadjust: -8
+                        }
+                    });
                 }
             });
             for (let i = 0; i < clusters.length; i += 1) {
@@ -1208,7 +1245,7 @@
 
         edgeCounts.forEach((value, key) => {
             const [from, to] = key.split('::');
-            edges.push({ from, to, value, title: `${value} co-occurrence(s)` });
+            edges.push({ from, to, value, width: Math.min(1 + value * 0.35, 8), title: `${value} co-occurrence(s)` });
         });
 
         if (nodes.length === 0) {
@@ -1217,13 +1254,141 @@
             return;
         }
         setEmpty('themeRelationshipsEmpty', '');
+        if (state.network?.destroy) state.network.destroy();
         state.network = new root.vis.Network(container, {
             nodes: new root.vis.DataSet(nodes),
             edges: new root.vis.DataSet(edges)
         }, {
-            nodes: { shape: 'dot', size: 14 },
-            edges: { color: { color: '#94a3b8' }, smooth: { type: 'continuous' } },
-            physics: { stabilization: true }
+            autoResize: true,
+            layout: { improvedLayout: true },
+            nodes: {
+                shape: 'dot',
+                size: 22,
+                borderWidth: 2,
+                margin: 10
+            },
+            edges: {
+                color: { color: 'rgba(148, 163, 184, 0.74)', highlight: '#f8fafc' },
+                smooth: { type: 'dynamic', roundness: 0.35 },
+                scaling: { min: 1, max: 8 }
+            },
+            physics: {
+                solver: 'repulsion',
+                repulsion: {
+                    nodeDistance: 185,
+                    centralGravity: 0.08,
+                    springLength: 170,
+                    springConstant: 0.045,
+                    damping: 0.18
+                },
+                stabilization: { iterations: 220, fit: true }
+            },
+            interaction: {
+                hover: true,
+                tooltipDelay: 80
+            }
+        });
+        state.network.once('stabilizationIterationsDone', () => {
+            state.network.setOptions({ physics: false });
+            state.network.fit({ animation: false });
+            state.network.moveTo({ scale: 1.05 });
+        });
+    }
+
+    function renderTopicRelationships(model) {
+        const records = state.relationshipMode === 'science' ? model.scienceFiltered : model.artFiltered;
+        const datasetLabel = state.relationshipMode === 'science' ? 'Science' : 'Art';
+        const topicCounts = new Map();
+        const edgeCounts = new Map();
+
+        records.forEach(record => {
+            const topics = getRecordTopicsForTopicView(record).sort();
+            topics.forEach(topic => {
+                topicCounts.set(topic, (topicCounts.get(topic) || 0) + 1);
+            });
+            for (let i = 0; i < topics.length; i += 1) {
+                for (let j = i + 1; j < topics.length; j += 1) {
+                    const key = [topics[i], topics[j]].join('::');
+                    edgeCounts.set(key, (edgeCounts.get(key) || 0) + 1);
+                }
+            }
+        });
+
+        const rows = Array.from(topicCounts.entries())
+            .map(([topic, count]) => ({
+                topic,
+                count,
+                cluster: getTopicCluster(topic)
+            }))
+            .sort((a, b) => b.count - a.count || a.topic.localeCompare(b.topic));
+
+        if (rows.length === 0) {
+            setEmpty('topicRelationshipsEmpty', `No ${datasetLabel} topic records available for this topic view.`);
+            purgePlot('topicFrequencyChart');
+            purgePlot('topicCoOccurrenceMatrix');
+            return;
+        }
+        setEmpty('topicRelationshipsEmpty', '');
+
+        const frequencyRows = rows.slice(0, MAX_TOPIC_FREQUENCY).reverse();
+        plot('topicFrequencyChart', [{
+            x: frequencyRows.map(row => row.count),
+            y: frequencyRows.map(row => row.topic),
+            type: 'bar',
+            orientation: 'h',
+            marker: { color: frequencyRows.map(row => state.clusterColors[row.cluster] || '#94a3b8') },
+            customdata: frequencyRows.map(row => row.cluster),
+            hovertemplate: '%{y}<br>%{x} record(s)<br>Cluster: %{customdata}<extra></extra>'
+        }], {
+            title: {
+                text: `${datasetLabel} topics by record count`,
+                font: { size: 14, color: '#cbd5e1' },
+                x: 0,
+                xanchor: 'left'
+            },
+            xaxis: { title: 'Records', rangemode: 'tozero' },
+            yaxis: { automargin: true },
+            margin: { l: 190, r: 24, t: 42, b: 44 }
+        });
+
+        const frequencyEl = document.getElementById('topicFrequencyChart');
+        frequencyEl?.on?.('plotly_click', event => {
+            const topic = event.points?.[0]?.y;
+            const cluster = topic ? getTopicCluster(topic) : '';
+            if (!cluster) return;
+            setMultiSelectValues(document.getElementById('topicClusterSelect'), [cluster]);
+            updateFromControls();
+        });
+
+        const matrixRows = rows.slice(0, MAX_TOPIC_MATRIX);
+        const matrixTopics = matrixRows.map(row => row.topic);
+        const matrix = matrixTopics.map(rowTopic => matrixTopics.map(columnTopic => {
+            if (rowTopic === columnTopic) return topicCounts.get(rowTopic) || 0;
+            const key = [rowTopic, columnTopic].sort().join('::');
+            return edgeCounts.get(key) || 0;
+        }));
+
+        plot('topicCoOccurrenceMatrix', [{
+            x: matrixTopics,
+            y: matrixTopics,
+            z: matrix,
+            type: 'heatmap',
+            colorscale: [
+                [0, 'rgba(15, 23, 42, 0.2)'],
+                [0.35, '#0f766e'],
+                [1, '#f59e0b']
+            ],
+            hovertemplate: 'Topic: %{y}<br>With: %{x}<br>Records: %{z}<extra></extra>'
+        }], {
+            title: {
+                text: `${datasetLabel} topic co-occurrence`,
+                font: { size: 14, color: '#cbd5e1' },
+                x: 0,
+                xanchor: 'left'
+            },
+            xaxis: { automargin: true, tickangle: -35 },
+            yaxis: { automargin: true },
+            margin: { l: 150, r: 24, t: 42, b: 110 }
         });
     }
 
@@ -1386,6 +1551,7 @@
             renderInterestingPatterns(model);
         }
         renderThemeRelationships(model);
+        renderTopicRelationships(model);
         renderEvidence(model);
     }
 

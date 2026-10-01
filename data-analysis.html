@@ -209,8 +209,8 @@
         <section class="analysis-section">
             <div class="analysis-section-heading">
                 <div>
-                    <h2>Theme relationships</h2>
-                    <p>Topic co-occurrence within the selected records.</p>
+                    <h2>Cluster relationships</h2>
+                    <p>Topic-cluster co-occurrence within the selected records.</p>
                 </div>
                 <div class="join" role="group" aria-label="Choose relationship dataset">
                     <input class="join-item btn btn-xs" type="radio" name="relationshipMode" value="art" aria-label="ART" checked>
@@ -219,6 +219,20 @@
             </div>
             <div id="themeRelationshipsEmpty" class="analysis-empty hidden"></div>
             <div id="coOccurrenceNetwork" class="analysis-network"></div>
+        </section>
+
+        <section class="analysis-section">
+            <div class="analysis-section-heading">
+                <div>
+                    <h2>Topic relationships</h2>
+                    <p>Exact topic frequency and topic co-occurrence inside the selected cluster context.</p>
+                </div>
+            </div>
+            <div id="topicRelationshipsEmpty" class="analysis-empty hidden"></div>
+            <div class="analysis-grid-2">
+                <div id="topicFrequencyChart" class="analysis-plot analysis-plot-compact"></div>
+                <div id="topicCoOccurrenceMatrix" class="analysis-plot analysis-plot-compact"></div>
+            </div>
         </section>
 
         <section class="analysis-section analysis-section-compact">
@@ -265,6 +279,6 @@
     </dialog>
 
     <script src="assets/js/shared-data.js?v=20261001-topic-taxonomy"></script>
-    <script src="assets/js/data-analysis.js?v=20261001-topic-taxonomy"></script>
+    <script src="assets/js/data-analysis.js?v=20261001-readable-networks"></script>
 </body>
 </html>

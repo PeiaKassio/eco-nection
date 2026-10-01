@@ -832,7 +832,7 @@ section.chart-container {
 
 .analysis-network {
   width: 100%;
-  min-height: 340px;
+  min-height: 460px;
   border-radius: 0.5rem;
   background: rgba(15, 23, 42, 0.32);
 }
