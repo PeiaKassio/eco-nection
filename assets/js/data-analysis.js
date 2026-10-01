@@ -8,7 +8,6 @@
     const MAX_TIMELINE_TOPICS = 6;
     const MAX_TOPIC_FREQUENCY = 18;
     const MAX_TOPIC_PAIRS = 18;
-    const MAX_CLUSTER_MATRIX = 12;
 
     const SCIENCE_NEUTRAL_COLOR = '#14b8a6';
     const ART_SERIES_COLOR = '#f59e0b';
@@ -1225,69 +1224,98 @@
 
         if (rows.length === 0) {
             setEmpty('themeRelationshipsEmpty', `No ${datasetLabel} cluster records available for this relationship view.`);
-            purgePlot('clusterFrequencyChart');
-            purgePlot('clusterCoOccurrenceMatrix');
+            purgePlot('clusterCoOccurrenceNetwork');
             return;
         }
         setEmpty('themeRelationshipsEmpty', '');
 
-        const frequencyRows = rows.slice().reverse();
-        plot('clusterFrequencyChart', [{
-            x: frequencyRows.map(row => row.count),
-            y: frequencyRows.map(row => row.cluster),
-            type: 'bar',
-            orientation: 'h',
-            marker: { color: frequencyRows.map(row => state.clusterColors[row.cluster] || '#94a3b8') },
-            hovertemplate: '%{y}<br>%{x} record(s)<extra></extra>'
-        }], {
+        const positions = new Map();
+        const maxCount = Math.max(...rows.map(row => row.count), 1);
+        rows.forEach((row, index) => {
+            const angle = (-Math.PI / 2) + (index / rows.length) * Math.PI * 2;
+            positions.set(row.cluster, {
+                x: Math.cos(angle),
+                y: Math.sin(angle)
+            });
+        });
+
+        const edgeTraces = Array.from(edgeCounts.entries())
+            .map(([key, value]) => {
+                const [from, to] = key.split('::');
+                const fromPosition = positions.get(from);
+                const toPosition = positions.get(to);
+                if (!fromPosition || !toPosition) return null;
+                return {
+                    x: [fromPosition.x, toPosition.x],
+                    y: [fromPosition.y, toPosition.y],
+                    mode: 'lines',
+                    type: 'scatter',
+                    line: {
+                        color: 'rgba(203, 213, 225, 0.34)',
+                        width: Math.min(1 + value * 0.22, 7)
+                    },
+                    hoverinfo: 'text',
+                    text: `${from} + ${to}<br>${value} shared record(s)`,
+                    showlegend: false
+                };
+            })
+            .filter(Boolean);
+
+        const nodeTrace = {
+            x: rows.map(row => positions.get(row.cluster).x),
+            y: rows.map(row => positions.get(row.cluster).y),
+            mode: 'markers+text',
+            type: 'scatter',
+            text: rows.map(row => row.cluster),
+            textposition: rows.map((row, index) => {
+                const angle = (-Math.PI / 2) + (index / rows.length) * Math.PI * 2;
+                if (Math.sin(angle) < -0.5) return 'bottom center';
+                if (Math.sin(angle) > 0.5) return 'top center';
+                return Math.cos(angle) > 0 ? 'middle right' : 'middle left';
+            }),
+            textfont: {
+                color: '#f8fafc',
+                size: 14
+            },
+            marker: {
+                size: rows.map(row => 24 + (row.count / maxCount) * 26),
+                color: rows.map(row => state.clusterColors[row.cluster] || '#94a3b8'),
+                line: { color: '#f8fafc', width: 2 }
+            },
+            customdata: rows.map(row => [row.cluster, row.count]),
+            hovertemplate: '%{customdata[0]}<br>%{customdata[1]} record(s)<extra></extra>',
+            showlegend: false
+        };
+
+        plot('clusterCoOccurrenceNetwork', [...edgeTraces, nodeTrace], {
             title: {
-                text: `${datasetLabel} clusters by record count`,
+                text: `${datasetLabel} cluster co-occurrence network`,
                 font: { size: 14, color: '#cbd5e1' },
                 x: 0,
                 xanchor: 'left'
             },
-            xaxis: { title: 'Records', rangemode: 'tozero' },
-            yaxis: { automargin: true },
-            margin: { l: 170, r: 24, t: 42, b: 44 }
+            xaxis: {
+                visible: false,
+                range: [-1.45, 1.45],
+                fixedrange: true
+            },
+            yaxis: {
+                visible: false,
+                range: [-1.28, 1.28],
+                scaleanchor: 'x',
+                scaleratio: 1,
+                fixedrange: true
+            },
+            margin: { l: 36, r: 36, t: 46, b: 28 },
+            hovermode: 'closest'
         });
 
-        const clusterFrequencyEl = document.getElementById('clusterFrequencyChart');
-        clusterFrequencyEl?.on?.('plotly_click', event => {
-            const cluster = event.points?.[0]?.y;
-            if (!cluster) return;
+        const clusterNetworkEl = document.getElementById('clusterCoOccurrenceNetwork');
+        clusterNetworkEl?.on?.('plotly_click', event => {
+            const cluster = event.points?.[0]?.customdata?.[0];
+            if (!cluster || !state.topicClusters[cluster]) return;
             setMultiSelectValues(document.getElementById('topicClusterSelect'), [cluster]);
             updateFromControls();
-        });
-
-        const matrixRows = rows.slice(0, MAX_CLUSTER_MATRIX);
-        const matrixClusters = matrixRows.map(row => row.cluster);
-        const matrix = matrixClusters.map(rowCluster => matrixClusters.map(columnCluster => {
-            if (rowCluster === columnCluster) return clusterCounts.get(rowCluster) || 0;
-            const key = [rowCluster, columnCluster].sort().join('::');
-            return edgeCounts.get(key) || 0;
-        }));
-
-        plot('clusterCoOccurrenceMatrix', [{
-            x: matrixClusters,
-            y: matrixClusters,
-            z: matrix,
-            type: 'heatmap',
-            colorscale: [
-                [0, 'rgba(15, 23, 42, 0.2)'],
-                [0.35, '#0f766e'],
-                [1, '#f59e0b']
-            ],
-            hovertemplate: 'Cluster: %{y}<br>With: %{x}<br>Records: %{z}<extra></extra>'
-        }], {
-            title: {
-                text: `${datasetLabel} cluster co-occurrence`,
-                font: { size: 14, color: '#cbd5e1' },
-                x: 0,
-                xanchor: 'left'
-            },
-            xaxis: { automargin: true, tickangle: -35 },
-            yaxis: { automargin: true },
-            margin: { l: 145, r: 24, t: 42, b: 105 }
         });
     }
 

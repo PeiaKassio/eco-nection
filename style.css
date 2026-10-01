@@ -830,6 +830,10 @@ section.chart-container {
   min-height: 330px;
 }
 
+.analysis-network-plot {
+  min-height: 460px;
+}
+
 .analysis-empty {
   border-radius: 0.5rem;
   border: 1px dashed rgba(148, 163, 184, 0.34);
