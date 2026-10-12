@@ -8265,6 +8265,58 @@
                     "human_verified": true
                 }
             }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -118.2437,
+                    34.0522
+                ]
+            },
+            "properties": {
+                "title": "Digger",
+                "description": "Black satirical comedy by Alejandro G. Iñárritu starring Tom Cruise, Sandra Hüller and Riz Ahmed. Aging, eccentric oil magnate Digger Rockwell has exploited the planet for decades through ruthless business tactics, triggering a global environmental catastrophe that pushes humanity to the brink of collapse. Before the apocalypse sets in, the US President forces him to take responsibility and save the Earth – a challenge he accepts not out of conscience or remorse, but because the prospect of going down in history as humanity's great saviour and waging war against nature perfectly suits his ego.",
+                "artist": "Alejandro G. Iñárritu",
+                "type": "Film",
+                "location": "Los Angeles, USA",
+                "year": 2026,
+                "tags": {
+                    "topic": [
+                        "Fossil Fuels",
+                        "Climate Change",
+                        "Capitalism Critique",
+                        "System Critique"
+                    ],
+                    "artform": [
+                        "Film"
+                    ]
+                },
+                "url": "https://www.warnerbros.com/movies/digger",
+                "thumbnail": "https://irs.www.warnerbros.com/keyart-jpeg/movies/media/browser/digger_keyart_2.jpg",
+                "sources": [
+                    {
+                        "url": "https://www.warnerbros.com/movies/digger",
+                        "type": "official",
+                        "accessed_at": "2026-10-12"
+                    },
+                    {
+                        "url": "https://theplaylist.net/digger-trailer-tom-cruise-alejandro-g-inarritu-promise-a-comedy-of-catastrophic-proportions-20260713/",
+                        "type": "reference",
+                        "accessed_at": "2026-10-12"
+                    },
+                    {
+                        "url": "https://irs.www.warnerbros.com/keyart-jpeg/movies/media/browser/digger_keyart_2.jpg",
+                        "type": "image",
+                        "accessed_at": "2026-10-12"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": true
+                }
+            }
         }
     ]
 }
