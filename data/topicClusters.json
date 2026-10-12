@@ -9,7 +9,8 @@
       "Industrial Emissions",
       "Marine Pollution",
       "Pollution",
-      "Oil Pollution"
+      "Oil Pollution",
+      "Radioactive Contamination"
     ],
     "color": "#808080"
   },
@@ -154,7 +155,8 @@
       "Plastic Recycling",
       "Circular Economy",
       "Energy Overuse",
-      "Fossil Fuels"
+      "Fossil Fuels",
+      "Nuclear Energy"
     ],
     "color": "#5B3A29"
   },
