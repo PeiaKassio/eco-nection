@@ -7900,6 +7900,375 @@
                 "url": "https://linktr.ee/youthkiawaaz",
                 "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5m5KZNlayHBZCxdozVb91VRy55h7nc5HRvdxnWSzKTw&s=10"
             }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.5619,
+                    50.6736
+                ]
+            },
+            "properties": {
+                "title": "Die Wolke",
+                "description": "Youth novel written after Chernobyl about a nuclear accident in West Germany and its consequences for a teenage girl and her family.",
+                "artist": "Gudrun Pausewang",
+                "type": "Novel",
+                "location": "Schlitz, Germany",
+                "year": 1987,
+                "tags": {
+                    "topic": [
+                        "Nuclear Energy",
+                        "Radioactive Contamination",
+                        "Environmental Health"
+                    ],
+                    "artform": [
+                        "Literature"
+                    ]
+                },
+                "url": "https://de.wikipedia.org/wiki/Die_Wolke",
+                "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7EtA_Eki8l8V-HcjbJGREMZgBpc2elUvLnDKyealsyg&s=10",
+                "sources": [
+                    {
+                        "url": "https://de.wikipedia.org/wiki/Die_Wolke",
+                        "type": "reference",
+                        "accessed_at": "2026-10-12"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": true
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    13.405,
+                    52.52
+                ]
+            },
+            "properties": {
+                "title": "Störfall. Nachrichten eines Tages",
+                "description": "Narrative of a single day in 1986, interweaving news of the Chernobyl disaster with the narrator's brother's brain surgery.",
+                "artist": "Christa Wolf",
+                "type": "Novel",
+                "location": "Berlin, Germany",
+                "year": 1987,
+                "tags": {
+                    "topic": [
+                        "Nuclear Energy",
+                        "Radioactive Contamination"
+                    ],
+                    "artform": [
+                        "Literature"
+                    ]
+                },
+                "url": "https://de.wikipedia.org/wiki/St%C3%B6rfall_(Christa_Wolf)",
+                "thumbnail": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSc4YFOobMRpkUwyvZ1hMi4T76r0nP9D0VWYIX2kz-Vom4ntKEJulyq-8mj6bmoIYfbsYkMQGAU47eCJK32Wm2utJgVuFvLkhsKnog_2n8&usqp=CAc",
+                "sources": [
+                    {
+                        "url": "https://de.wikipedia.org/wiki/St%C3%B6rfall_(Christa_Wolf)",
+                        "type": "reference",
+                        "accessed_at": "2026-10-12"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": true
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.0544,
+                    51.4045
+                ]
+            },
+            "properties": {
+                "title": "Zones of Exclusion: Pripyat and Chernobyl",
+                "description": "Large-format photobook of the Chernobyl exclusion zone, photographed in 2001: the burned-out control room of Reactor 4, the abandoned apartment blocks, schools and nurseries of Pripyat, and the vehicles left from the clean-up.",
+                "artist": "Robert Polidori",
+                "type": "Photobook",
+                "location": "Pripyat, Ukraine",
+                "year": 2003,
+                "tags": {
+                    "topic": [
+                        "Radioactive Contamination",
+                        "Landscape Change"
+                    ],
+                    "artform": [
+                        "Photography"
+                    ]
+                },
+                "url": "https://steidl.de/Books/Zones-of-Exclusion-Pripyat-and-Chernobyl-0929394559.html",
+                "thumbnail": "https://steidl.de//assets/images/-UTQ3ZXDKcSL0I0htBjQ6cuZc6Is2nV3ch2pggrh1euWHYBLoXWVo5o5,qgZC70W67WG,Ng==/9783882439212_1.jpg.png",
+                "sources": [
+                    {
+                        "url": "https://steidl.de/Books/Zones-of-Exclusion-Pripyat-and-Chernobyl-0929394559.html",
+                        "type": "official",
+                        "accessed_at": "2026-10-12"
+                    },
+                    {
+                        "url": "https://www.cca.qc.ca/en/search/details/library/publication/53071465",
+                        "type": "reference",
+                        "accessed_at": "2026-10-12"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": true
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.2219,
+                    51.2763
+                ]
+            },
+            "properties": {
+                "title": "Atom Suit Project",
+                "description": "Staged photographs and performances in which the artist travelled through the Chernobyl exclusion zone in a self-built suit with Geiger counters, measuring radiation in abandoned places such as a nursery school.",
+                "artist": "Kenji Yanobe",
+                "type": "Performance / Photography",
+                "location": "Chernobyl, Ukraine",
+                "year": 1997,
+                "tags": {
+                    "topic": [
+                        "Nuclear Energy",
+                        "Radioactive Contamination"
+                    ],
+                    "artform": [
+                        "Performance",
+                        "Photography"
+                    ]
+                },
+                "url": "https://yanobe.com/en_biography",
+                "thumbnail": "https://tab-prod-public.s3.ap-northeast-1.amazonaws.com/asset_files/transferred/images.ctfassets.net/j05yk38inose/import_event_image__2011_7EB5/10c929173bc074fb16052a6beff29a4d/2011_7EB5?w=1200",
+                "sources": [
+                    {
+                        "url": "https://yanobe.com/en_biography",
+                        "type": "official",
+                        "accessed_at": "2026-10-12"
+                    },
+                    {
+                        "url": "https://tokyoartbeat.com/en/events/-/2011%2F7EB5",
+                        "type": "image",
+                        "accessed_at": "2026-10-12"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": true
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    135.5629,
+                    34.8166
+                ]
+            },
+            "properties": {
+                "title": "Sun Child",
+                "description": "A 6.2-metre figure of a child in a protective suit, helmet in one hand and a small sun in the other; the Geiger counter on its chest reads 000. Made after the Fukushima accident as a monument of hope, unveiled in Osaka in 2011 and permanently installed at Minami-Ibaraki Station in 2012. A version shown in Fukushima City in 2018 was removed after criticism from residents.",
+                "artist": "Kenji Yanobe",
+                "type": "Sculpture",
+                "location": "Ibaraki, Osaka, Japan",
+                "year": 2011,
+                "tags": {
+                    "topic": [
+                        "Nuclear Energy",
+                        "Radioactive Contamination"
+                    ],
+                    "artform": [
+                        "Sculpture",
+                        "Public Art"
+                    ]
+                },
+                "url": "https://www.art-tourism.jp/en/article/sun-child_en",
+                "thumbnail": "https://static.wixstatic.com/media/bfde4e_ecd9a6e912a442b59fdf93ee539ad79a~mv2.jpg/v1/fill/w_1079,h_773,al_c/bfde4e_ecd9a6e912a442b59fdf93ee539ad79a~mv2.jpg",
+                "sources": [
+                    {
+                        "url": "https://www.art-tourism.jp/en/article/sun-child_en",
+                        "type": "reference",
+                        "accessed_at": "2026-10-12"
+                    },
+                    {
+                        "url": "https://aichitriennale2010-2019.jp/2013/english/artist/yanobe_kenji.html",
+                        "type": "reference",
+                        "accessed_at": "2026-10-12"
+                    },
+                    {
+                        "url": "https://www.upi.com/Top_News/World-News/2018/08/14/Artist-sorry-for-nuclear-themed-statue-in-city-devastated-by-2011-meltdown/6401534265943/",
+                        "type": "reference",
+                        "accessed_at": "2026-10-12"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": true
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.98,
+                    37.45
+                ]
+            },
+            "properties": {
+                "title": "Don't Follow the Wind",
+                "description": "Exhibition opened in March 2015 inside the Fukushima exclusion zone, with new works by artists such as Ai Weiwei, Trevor Paglen, Taryn Simon and Chim↑Pom in homes lent by former residents. It can only be visited once the evacuation order is lifted; travelling \"Non-Visitor Centers\" show it elsewhere.",
+                "artist": "Don't Follow the Wind (Chim↑Pom, Kenji Kubota, Jason Waite, Eva and Franco Mattes)",
+                "type": "Exhibition",
+                "location": "Fukushima exclusion zone, Japan",
+                "year": 2015,
+                "tags": {
+                    "topic": [
+                        "Radioactive Contamination",
+                        "Nuclear Energy"
+                    ],
+                    "artform": [
+                        "Exhibition",
+                        "Installation"
+                    ]
+                },
+                "url": "https://www.mujin-to.com/en/artwork/dont-follow-the-wind/",
+                "thumbnail": "https://mujin-to.sakura.ne.jp/wp/wp-content/uploads/dfw_watarium_03_4106.jpg",
+                "sources": [
+                    {
+                        "url": "https://www.mujin-to.com/en/artwork/dont-follow-the-wind/",
+                        "type": "official",
+                        "accessed_at": "2026-10-12"
+                    },
+                    {
+                        "url": "https://www.biennaleofsydney.art/participants/dont-follow-the-wind/",
+                        "type": "reference",
+                        "accessed_at": "2026-10-12"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": true
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.7016,
+                    35.658
+                ]
+            },
+            "properties": {
+                "title": "Myth of Tomorrow (Asu no Shinwa)",
+                "description": "Thirty-metre anti-nuclear mural showing the atomic bombings of Hiroshima and Nagasaki and the Lucky Dragon No. 5, the fishing boat hit by fallout from the 1954 Bikini test. Painted in 1968-69 for a hotel in Mexico City, lost for decades, and installed in Shibuya Station in 2008.",
+                "artist": "Taro Okamoto",
+                "type": "Mural",
+                "location": "Tokyo, Japan",
+                "year": 1969,
+                "tags": {
+                    "topic": [
+                        "Radioactive Contamination"
+                    ],
+                    "artform": [
+                        "Painting",
+                        "Mural"
+                    ]
+                },
+                "url": "https://ja.wikipedia.org/wiki/%E6%98%8E%E6%97%A5%E3%81%AE%E7%A5%9E%E8%A9%B1",
+                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Shibuya_-_Asu_no_Shinwa_-_2016-05-06.jpg",
+                "sources": [
+                    {
+                        "url": "https://ja.wikipedia.org/wiki/%E6%98%8E%E6%97%A5%E3%81%AE%E7%A5%9E%E8%A9%B1",
+                        "type": "reference",
+                        "accessed_at": "2026-10-12"
+                    },
+                    {
+                        "url": "https://commons.wikimedia.org/wiki/File:Shibuya_-_Asu_no_Shinwa_-_2016-05-06.jpg",
+                        "type": "image",
+                        "accessed_at": "2026-10-12"
+                    },
+                    {
+                        "url": "https://www.michaeljohngrist.com/?p=6760",
+                        "type": "reference",
+                        "accessed_at": "2026-10-12"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": true
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.6917,
+                    35.6895
+                ]
+            },
+            "properties": {
+                "title": "1945-1998",
+                "description": "Time-lapse world map of all 2,053 nuclear test explosions from 1945 to 1998, each marked by a flash and a tone; one month passes every second. Made without text so it can be understood in any language.",
+                "artist": "Isao Hashimoto",
+                "type": "Video / Animation",
+                "location": "Tokyo, Japan",
+                "year": 2003,
+                "tags": {
+                    "topic": [
+                        "Radioactive Contamination"
+                    ],
+                    "artform": [
+                        "Digital Art",
+                        "Animation"
+                    ]
+                },
+                "url": "https://www.ctbto.org/specials/1945-1998-by-isao-hashimoto/",
+                "thumbnail": "https://i.ytimg.com/vi/LLCF7vPanrY/hqdefault.jpg",
+                "sources": [
+                    {
+                        "url": "https://www.ctbto.org/specials/1945-1998-by-isao-hashimoto/",
+                        "type": "official",
+                        "accessed_at": "2026-10-12"
+                    },
+                    {
+                        "url": "https://www.thenuclearworld.org/nuclear-explosions-1945-1998-by-isao-hashimoto",
+                        "type": "reference",
+                        "accessed_at": "2026-10-12"
+                    },
+                    {
+                        "url": "https://www.youtube.com/watch?v=LLCF7vPanrY",
+                        "type": "image",
+                        "accessed_at": "2026-10-12"
+                    }
+                ],
+                "review": {
+                    "status": "published",
+                    "human_verified": true
+                }
+            }
         }
     ]
 }
